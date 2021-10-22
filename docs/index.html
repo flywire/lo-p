@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Java LibreOffice Programming</title>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type>
+   <META NAME="Description" 
+         CONTENT="Java LibreOffice Programming">
+   <META NAME="Keywords"
+         CONTENT="java libreoffice programming uno openoffice">
+
+<style type="text/css">
+
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}
+
+	body{
+		margin: 0;
+		padding: 0;
+		overflow: visible;
+		height: 100%;
+		max-height: 100%;
+		font-family:Sans-serif;
+		line-height: 1.5em;
+	}
+
+	#nav{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		width: 230px; /* Width of navigation frame */
+		height: 100%;
+		overflow: hidden; /* Disables scrollbars on the navigation frame. To enable scrollbars, change "hidden" to "scroll" */
+		background: #eee;
+	}
+
+	main{
+		position: fixed;
+		top: 0;
+		left: 230px; /* Set this to the width of the navigation frame */
+		right: 0;
+		bottom: 0;
+		overflow: auto;
+		background: #fff;
+	}
+
+	.innertube{
+		margin: 15px; /* Provides padding for the content */
+	}
+
+        h2 {
+               height: 50px;
+               line-height: 50px;
+               background-color: lightblue;
+        }
+
+	p {
+		color: #555;
+	}
+
+	nav ul {
+		/* list-style-type: none; */
+		/* margin: 0; */
+		padding: 10px;
+	}
+
+	nav ul a:link {
+		color: darkgreen;
+		/* text-decoration: none; */
+	}
+
+        nav ul a:visited {
+                 color: brown;
+        }
+
+        nav ul a:hover {
+                 color: blue;
+        }
+
+
+	/*IE6 fix*/
+	* html body{
+		padding: 0 0 0 230px; /* Set the last value to the width of the navigation frame */
+	}
+
+	* html main{
+		height: 100%;
+		width: 100%;
+	}
+
+</style>
+
+
+</head>
+
+<!-- --------------------- main body -------------------------- -->
+
+<body>
+<main>
+<div class="innertube">
+
+<h1 id="contents"><FONT color=#666633>Java LibreOffice Programming</FONT>
+<img src="images/jLo.png" align="right" alt="Java LibreOffice Programming">
+</h1>
+<pre>
+&nbsp;
+</pre>
+
+<P><i><FONT color=#CC3300>Java LibreOffice Programming</FONT></i> (JLOP)
+is intended for programmers who want to learn how to use the Java version of
+the <a href="http://www.libreoffice.org/" target="_blank">LibreOffice</a> API. 
+This allows Java to control and manipulate LibreOffice's text, drawing,
+presentation, spreadsheet, and database applications, and a lot more
+(e.g. its spell checker, forms designer, and charting tools). </P>
+
+<P>This book is <b>not</b> about how to use LibreOffice's GUI. I won't
+explain where to find a particular menu item to change text colour
+or run the spell checker. But I <b>will</b> explain how to
+do these kinds of things via API calls from Java programs. For instance, 
+I describe a program that constructs a Word file full of randomly
+generated algebra questions, and show
+how a ASCII text file can be transformed into a slide presentation.</P>
+
+<P>Although most of the examples are Java programs that
+call the LibreOffice API, I briefly look at other kinds of programming,
+such as Java macros and new LibreOffice functionality, accessible via
+menu items or as spreadsheet functions, and the dispatching of commands to
+the GUI.</P>
+
+<P>One of my aims was to develop utility code to help flatten the
+steep learning curve for the API. For example, my
+<tt>Lo</tt> class simplifies the steps needed to initialize
+the API (by creating a connection to a LibreOffice process), to 
+open/create a document, save it, and close down LibreOffice.</P>
+
+<P>Another aim was to have my code work on LibreOffice <b>and</b> 
+<a href="https://www.openoffice.org/" target="_blank">OpenOffice</a>, which isn't
+difficult since their APIs are nearly identical. However, I must admit
+that at this stage I've restricted myself to testing the
+programs only on LibreOffice, and only on MS Windows.</P>
+
+<pre>
+&nbsp;
+</pre>
+
+
+<h2 id="basics"><font color=#666633>Part 1: Basics</font></h2>
+
+
+<h3 id="ch1">Chapter 1. LibreOffice API Concepts
+<img src="images/offProg.png" align="right" alt="[Office program]"></h3>
+
+<p>Topics: Some History; Help and Examples for the LibreOffice SDK (<tt>loDoc</tt>, <tt>loGuide</tt>); Office as a Process; Common Structures (Interface, Property, Service, and Component); Service and Interface Inheritance Hierarchies; the Frame-Controller-Model (FCM) Relationship; Extensions; Comparison with Basic.
+<ul>
+<li><a href="chaps/01.%20Concepts.pdf">Chapter</a> (400 KB; pdf). 
+Updated: 20th March 2017.
+<li><a href="code/utils.zip">Utilities</a>
+(<tt>Utils/</tt>) (184 KB; zip).
+Updated: 13th Jan. 2017.
+<li><a href="install.html">How to install, compile, and run my code.</a>
+</ul>
+<br>&nbsp;</p>
+
+
+
+<h3 id="ch2">Chapter 2. Starting and Stopping
+<img src="images/crashReport.png" align="right" alt="[Crash Report]"></h3>
+
+<p>Topics: Starting Office; Closing Down/Killing Office; Opening a Document; Creating a Document; Saving; Closing; Document Conversion; Bug Detection and Reporting.
+<ul>
+<li><a href="chaps/02.%20Starting%20and%20Stopping.pdf">Chapter</a> (472 KB; pdf). 
+Updated: 20th March 2017.
+<li><a href="code/OfficeTests.zip">Examples</a> 
+(<tt>Office Tests/</tt>) (920 KB; zip).
+Updated: 15th August 2015. <br>
+Place <tt>Office Tests/</tt> and <tt>Utils/</tt> 
+(see <a href="#ch1">chapter 1</a>) in the same directory.
+</ul>
+<br>&nbsp;</p>
+
+
+<h3 id="ch3">Chapter 3. Examining
+<img src="images/mri.png" align="right" alt="[MRI]"></h3>
+
+<p>Topics: Examining Office; Getting and Setting Document  Properties; Examining a Document for API Details; Examining a Document Using MRI.
+<ul>
+<li><a href="chaps/03.%20Examining.pdf">Chapter</a> (312 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Office Tests/</tt>), see <a href="#ch2">chapter 2</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+<h3 id="ch4">Chapter 4. Listening, and Other Techniques</h3>
+
+<p>Topics: Window Listeners; Office Manipulation with JNA; Dispatching; Robot Keys.
+<ul>
+<li><a href="chaps/04.%20Listening.pdf">Chapter</a> (208 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Office Tests/</tt>), see <a href="#ch2">chapter 2</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+<pre>
+&nbsp;
+</pre>
+<!-- ----------------------------------------------- -->
+<h2 id="writer"><font color=#666633>Part 2: Writer Modules</font></h2>
+
+
+<h3 id="ch5">Chapter 5. Text API Overview
+<img src="images/textServices.png" align="right" alt="[Text Doc Services]"></h3>
+
+<p>Topics: API Overview; Text Cursors; Extracting Text; Cursor Iteration; Creating Cursors; Creating a Document; Using and Comparing Text Cursors; Inserting/Changing Text in a Document; Text Enumeration; Appending Documents.
+<ul>
+<li><a href="chaps/05.%20Text%20API%20Overview.pdf">Chapter</a> (344 KB; pdf). 
+Updated: 20th March 2017.
+<li><a href="code/TextTests.zip">Examples</a> 
+(<tt>Text Tests/</tt>) (304 KB; zip).
+Updated: 15th August 2015. <br>
+Place <tt>Text Tests/</tt> and <tt>Utils/</tt> 
+(see <a href="#ch1">chapter 1</a>) in the same directory.
+</ul>
+<br>&nbsp;</p>
+
+
+<h3 id="ch6">Chapter 6. Text Styles
+<img src="images/styleFam.png" align="right" alt="[Style Families]"></h3>
+
+<p>Topics: Five Style Families; Properties; Listing Styles;  Creating a Style; Applying Styles; Paragraph/Word Styles; Hyperlink Styling; Text Numbering; Headers and Footers.
+<ul>
+<li><a href="chaps/06.%20Text%20Styles.pdf">Chapter</a> (396 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Text Tests/</tt>), see <a href="#ch5">chapter 5</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+<h3 id="ch7">Chapter 7. Text Content Other than Strings</h3>
+
+<p>Topics: Accessing Text Content; Text  Frames; Embedded Objects  (Math Formulae); Text  Fields; Text Tables; Bookmarks.
+<ul>
+<li><a href="chaps/07.%20Non-text%20Content.pdf">Chapter</a> (528 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Text Tests/</tt>), see <a href="#ch5">chapter 5</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+<h3 id="ch8">Chapter 8. Graphic Content</h3>
+
+<p>Topics: Graphics; Linked Images/Shapes.
+<ul>
+<li><a href="chaps/08.%20Graphic%20Content.pdf">Chapter</a> (252 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Text Tests/</tt>), see <a href="#ch5">chapter 5</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+<h3 id="ch9">Chapter 9. Text Search and Replace
+<img src="images/textSearch.png" align="right" alt="[XSearchable]"></h3>
+
+<p>Topics: Finding the First Matching Phrase; Replacing all the Matching Words; Finding all Matching Phrases.
+<ul>
+<li><a href="chaps/09.%20Text%20Search.pdf">Chapter</a> (144 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Text Tests/</tt>), see <a href="#ch5">chapter 5</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+<h3 id="ch10">Chapter 10. The Linguistics API
+<img src="images/lingu.png" align="right" alt="[Lingu Services]"></h3>
+
+<p>Topics: Linguistic Tools; Using the Spell Checker; Using the Thesaurus; Grammar Checking; Guessing the Language used in a String; Spell Checking and Grammar Checking a Document.
+<ul>
+<li><a href="chaps/10.%20Linguistics.pdf">Chapter</a> (628 KB; pdf). 
+Updated: 20th March 2017.
+<li><a href="code/LinguTests.zip">Examples</a> 
+(<tt>Lingu Tests/</tt>) (40 KB; zip).
+Updated: 2nd August 2016. <br>
+Place <tt>Lingu Tests/</tt> and <tt>Utils/</tt> 
+(see <a href="#ch1">chapter 1</a>) in the same directory.
+</ul>
+<br>&nbsp;</p>
+
+
+<pre>
+&nbsp;
+</pre>
+<!-- ----------------------------------------------- -->
+<h2 id="draw"><font color=#666633>Part 3: Draw & Impress Modules</font></h2>
+
+
+<h3 id="ch11">Chapter 11. Draw/Impress APIs Overview
+<img src="images/drawServices.png" align="right" alt="[Draw Services]"></h3>
+
+<p>Topics: Draw Pages and Master Pages; Draw Page Details; API Hierarchy Code Examples; Shapes in a Drawing; Shapes in a Presentation ; The Slide Show APIs.
+<ul>
+<li><a href="chaps/11.%20Draw%26Impress%20APIs.pdf">Chapter</a> (360 KB; pdf). 
+Updated: 20th March 2017.
+<li><a href="code/DrawTests.zip">Examples</a> 
+(<tt>Draw Tests/</tt>) (1.77 MB; zip).
+Updated: 15th August 2015. <br>
+Place <tt>Draw Tests/</tt> and <tt>Utils/</tt> 
+(see <a href="#ch1">chapter 1</a>) in the same directory.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<h3 id="ch12">Chapter 12. Examining a Draw/Impress Document</h3>
+
+<p>Topics: Examining Slides/Pages; Page Layers; Styles.
+<ul>
+<li><a href="chaps/12.%20Examining%20DrawImpress.pdf">Chapter</a> (228 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Draw Tests/</tt>), see <a href="#ch11">chapter 11</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+<h3 id="ch13">Chapter 13. Drawing Basic Shapes
+<img src="images/fillRect.png" align="right" alt="[Filling Rectangle]"></h3>
+
+<p>Topics: A Black Dashed Line; A Red Ellipse; Filled Rectangles; Text; Shape Names; A Transparent Circle and a Polar Line; A Math Formula as an OLE Shape; Polygons; Multiple Lines, Partial Elipses.
+<ul>
+<li><a href="chaps/13.%20Basic%20Shapes.pdf">Chapter</a> (488 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Draw Tests/</tt>), see <a href="#ch11">chapter 11</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+<h3 id="ch14">Chapter 14. Animation
+<img src="images/bikeAnim.png" align="right" alt="[Bike Animation]"></h3>
+
+<p>Topics: Circle Movement; Line Rotation; Animating an Image; The Gallery Module.
+<ul>
+<li><a href="chaps/14.%20Animation.pdf">Chapter</a> (292 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Draw Tests/</tt>), see <a href="#ch11">chapter 11</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+<h3 id="ch15">Chapter 15. Complex Shapes
+<img src="images/bezier.png" align="right" alt="[Bezier curve]"></h3>
+
+<p>Topics: Connecting Two Rectangles; Shape Composition (grouping, binding, and combining); Combining with Dispatches; Undoing Composition; Bezier Curves (simple and complex).
+<ul>
+<li><a href="chaps/15.%20Complex%20Shapes.pdf">Chapter</a> (404 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Draw Tests/</tt>), see <a href="#ch11">chapter 11</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+<h3 id="ch16">Chapter 16. Making Slides
+<img src="images/dShapes.png" align="right" alt="[Dispatched shapes]"></h3>
+
+<p>Topics: Creating Slides: title, subtitle, bullets, images, video, buttons; Shape Animations; Dispatch Shapes (special symbols, block arrows, 3D shapes, flowchart elements, callouts, and stars); Slide Viewing.
+<ul>
+<li><a href="chaps/16.%20Making%20Slides.pdf">Chapter</a> (572 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Draw Tests/</tt>), see <a href="#ch11">chapter 11</a>.
+<li><a href="wildlife.html">wildlife.wmv</a> video (38.5 MB)
+</ul>
+<br>&nbsp;</p>
+
+
+<h3 id="ch17">Chapter 17. Slide Deck Manipulation
+<img src="images/genSlide.png" align="right" alt="[Generated slide]"></h3>
+
+<p>Topics: Deck Building; Master Pages; Adding a Slide to  a Deck; Rearranging a Deck; Appending Two Decks; Exporting a Slide as an Image; Extracting the Text from a Deck.
+<ul>
+<li><a href="chaps/17.%20Slide%20Deck%20Manipulation.pdf">Chapter</a> (368 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Draw Tests/</tt>), see <a href="#ch11">chapter 11</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+<h3 id="ch18">Chapter 18. Slide Shows</h3>
+
+<p>Topics: Starting a Slide Show; Play and End a Slide Show Automatically; Play a Slide Show Repeatedly; Play a  Custom Slide Show.
+<ul>
+<li><a href="chaps/18.%20Slide%20Shows.pdf">Chapter</a> (236 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Draw Tests/</tt>), see <a href="#ch11">chapter 11</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+<pre>
+&nbsp;
+</pre>
+<!-- ----------------------------------------------- -->
+<h2 id="calc"><font color=#666633>Part 4: Calc Modules</font></h2>
+
+
+<h3 id="ch19">Chapter 19. Calc API Overview
+<img src="images/sheetServices.png" align="right" alt="[Sheet Services]"></h3>
+
+<p>Topics: The Spreadsheet Document; Document Spreadsheets; Spreadsheet Data; The Spreadsheet Service; Cell Range Services; Cell Services; Sheet Cell Ranges.
+<ul>
+<li><a href="chaps/19.%20Calc%20API%20Overview.pdf">Chapter</a> (380 KB; pdf). 
+Updated: 20th March 2017.
+<li><a href="code/CalcTests.zip">Examples</a> 
+(<tt>Calc Tests/</tt>) (372 KB; zip).
+Updated: 2nd October 2015. <br>
+Place <tt>Calc Tests/</tt> and <tt>Utils/</tt> 
+(see <a href="#ch1">chapter 1</a>) in the same directory.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<h3 id="ch20">Chapter 20. Spreadsheet Displaying and Creation
+<img src="images/sheetView.png" align="right" alt="[Sheet view]"></h3>
+
+<p>Topics: Displaying a Document; Read-only and Protected Viewing; Active Sheets; Sheet Names; Zooming; Creating a Document; Cell Names and Ranges; Cell Values; Data Arrays; Rows and Columns of Data; Adding a Picture and a Chart.
+<ul>
+<li><a href="chaps/20.%20Spreadsheet%20Manipulation.pdf">Chapter</a> (200 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Calc Tests/</tt>), see <a href="#ch19">chapter 19</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<h3 id="ch21">Chapter 21. Extracting Data</h3>
+
+<p>Topics: Getting a Cell Value; Getting the Data from a Cell Range; Getting Rows and Columns of Data;  Obtaining Cell Ranges by Using Queries; Finding the Used Area with Sheet Cursors.
+<ul>
+<li><a href="chaps/21.%20Extracting%20Data.pdf">Chapter</a> (204 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Calc Tests/</tt>), see <a href="#ch19">chapter 19</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<h3 id="ch22">Chapter 22. Styles
+<img src="images/sheetStyle.png" align="right" alt="[Styled sheet]"></h3>
+
+<p>Topics: Obtaining Style Information:  the TableCellStyle and TablePageStyle Services;  Creating and Using a New Style; Adding Borders.
+<ul>
+<li><a href="chaps/22.%20Styles.pdf">Chapter</a> (164 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Calc Tests/</tt>), see <a href="#ch19">chapter 19</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<h3 id="ch23">Chapter 23. Garlic Secrets
+<img src="images/garlicSecrets.png" align="right" alt="[Garlic Secrets]"></h3>
+
+<p>Topics: Freezing Rows; GeneralFunctions; Sheet Searching; Sheet Range Queries; Hidden  Cells; Cell Merging; Splitting Windows; View Panes; View State Data; Active Panes;  Inserting Rows and Columns; Shifting Cells.
+<ul>
+<li><a href="chaps/23.%20Garlic%20Secrets.pdf">Chapter</a> (392 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Calc Tests/</tt>), see <a href="#ch19">chapter 19</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<h3 id="ch24">Chapter 24. Complex Data Manipulation
+<img src="images/sheetManip.png" align="right" alt="[Sheet Manipulation]"></h3>
+
+<p>Topics: Sorting Data; Generating Data: Automatic, LINEAR Mode, DATE Mode, GROWTH Mode; Fancy Text: borders, headlines, hyperlinks, annotations.
+<ul>
+<li><a href="chaps/24.%20Complex%20Data%20Manipulation.pdf">Chapter</a> (228 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Calc Tests/</tt>), see <a href="#ch19">chapter 19</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<h3 id="ch25">Chapter 25. Monitoring Sheets</h3>
+
+<p>Topics: Listening for Document Modifications (XModifyListener); Listening for Application Closing (XTopWindowListener); Listening for Cell Selection (XSelectionChangeListener).
+<ul>
+<li><a href="chaps/25.%20Monitoring%20Sheets.pdf">Chapter</a> (156 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Calc Tests/</tt>), see <a href="#ch19">chapter 19</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<h3 id="ch26">Chapter 26. Search and Replace
+<img src="images/ramSearch.png" align="right" alt="[Ram search]"></h3>
+
+<p>Topics: XSearchable; XReplaceable; SearchDescriptor; ReplaceDescriptor; Searching Iteratively; Searching For All Matches; Replacing All Matches.
+<ul>
+<li><a href="chaps/26.%20Search%20%26%20Replace.pdf">Chapter</a> (228 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Calc Tests/</tt>), see <a href="#ch19">chapter 19</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<h3 id="ch27">Chapter 27. Functions and Data Analysis
+<img src="images/nonlinear.png" align="right" alt="[Nonlinear]"></h3>
+
+<p>Topics: Calling Calc Functions from Code; Pivot Tables; Goal Seek; Linear and Nonlinear Solving (using SCO, DEPS).
+<ul>
+<li><a href="chaps/27.%20Funcs%20%26%20Analysis.pdf">Chapter</a> (560 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Calc Tests/</tt>), see <a href="#ch19">chapter 19</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<pre>
+&nbsp;
+</pre>
+<!-- ----------------------------------------------- -->
+<h2 id="chart"><font color=#666633>Part 5: Chart Modules</font></h2>
+
+
+<h3 id="ch28">Chapter 28. Chart2 API Overview
+<img src="images/tableChart.png" align="right" alt="[TableChart service]"></h3>
+
+<p>Topics: Charting Elements; Chart Creation: TableChart, ChartDocument, linking template, diagram, and data source; Modifying Chart Elements: diagram, coordinate system, chart type, data series.
+<ul>
+<li><a href="chaps/28.%20Chart2%20API%20Overview.pdf">Chapter</a> (596 KB; pdf). 
+Updated: 20th March 2017.
+<li><a href="code/Chart2Tests.zip">Examples</a> 
+(<tt>Chart2 Tests/</tt>) (36 KB; zip).
+Updated: 7th Nov. 2015. <br>
+Place <tt>Chart2 Tests/</tt> and <tt>Utils/</tt> 
+(see <a href="#ch1">chapter 1</a>) in the same directory.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<h3 id="ch29">Chapter 29. Column Charts
+<img src="images/colLine.png" align="right" alt="[Col/Line chart]"></h3>
+
+<p>Topics: Creating a Chart Title; Creating Axis Titles; Rotating Axis Titles; What Chart Templates are Available?; Multiple Columns; 3D Pizazz; The Column and Line Chart.
+<ul>
+<li><a href="chaps/29.%20Column%20Charts.pdf">Chapter</a> (284 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Chart2 Tests/</tt>), see <a href="#ch28">chapter 28</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<h3 id="ch30">Chapter 30. Bar, Pie, Area, Line Charts
+<img src="images/donut.png" align="right" alt="[Donut chart]"></h3>
+
+<p>Topics: The Bar Chart; The Pie Chart; 3D Pie; Donuts; The Area Chart; The Line Chart: multiple lines.
+<ul>
+<li><a href="chaps/30.%20Bar%2c%20Pie%2c%20Area%2c%20Line%20Charts.pdf">Chapter</a> (412 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Chart2 Tests/</tt>), see <a href="#ch28">chapter 28</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<h3 id="ch31">Chapter 31. XY (Scatter) Charts
+<img src="images/scatter.png" align="right" alt="[Scatter chart]"></h3>
+
+<p>Topics: A Scatter Chart (with Regressions); Calculating Regressions; Drawing a Regression Curve; Changing Axis Scales; Adding Error Bars.
+<ul>
+<li><a href="chaps/31.%20XY%20Scatter%20Charts.pdf">Chapter</a> (476 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Chart2 Tests/</tt>), see <a href="#ch28">chapter 28</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<h3 id="ch32">Chapter 32. Bubble, Net, Stock Charts
+<img src="images/netChart.png" align="right" alt="[Net chart]"></h3>
+
+<p>Topics: The Bubble Chart; The Net Chart; The Stock Chart: basic and modified candle sticks; Stock Chart and Line Graph.
+<ul>
+<li><a href="chaps/32.%20Bubble%2c%20Net%2c%20Stock%20Charts.pdf">Chapter</a> (436 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Chart2 Tests/</tt>), see <a href="#ch28">chapter 28</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<h3 id="ch33">Chapter 33. Using Charts in Other Documents</h3>
+
+<p>Topics: Copy-and-Paste Dispatches; Adding a Chart to a Text Document; Adding a Chart to a Slide Document; Saving the Chart as an Image.
+<ul>
+<li><a href="chaps/33.%20Charts%20in%20Others%20Docs.pdf">Chapter</a> (216 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Chart2 Tests/</tt>), see <a href="#ch28">chapter 28</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<pre>
+&nbsp;
+</pre>
+<!-- ----------------------------------------------- -->
+<h2 id="base"><font color=#666633>Part 6: Base Modules</font></h2>
+
+
+<h3 id="ch34">Chapter 34. From JDBC to the Base API
+<img src="images/sdbc.png" align="right" alt="[Database modules]"></h3>
+
+<p>Topics: Three Database Modules: sdbc, sdbcx, sdb; A Little JDBC; From JDBC to sdbc.
+<ul>
+<li><a href="chaps/34.%20JDBC%20to%20Base%20API.pdf">Chapter</a> (336 KB; pdf). 
+Updated: 20th March 2017.
+<li><a href="code/BaseTests.zip">Examples</a> 
+(<tt>Base Tests/</tt>) (276 KB; zip).
+Updated: 13th April 2016. <br>
+Place <tt>Base Tests/</tt> and <tt>Utils/</tt> 
+(see <a href="#ch1">chapter 1</a>) in the same directory.
+</ul>
+<br>&nbsp;</p>
+
+
+
+
+<h3 id="ch35">Chapter 35. Examining Base Documents
+<img src="images/dbRelations.png" align="right" alt="[Relation diagram]"></h3>
+
+<p>Topics: Querying an Embedded HSQLDB Database; Using Metadata when Querying; Debugging Database Code; Creating a Base Document; Processing Multiple SQL Commands; Displaying Table Relationships; Prepared Statements; Scrollable and Updatable Result Sets; Converting a Database to Text.
+<ul>
+<li><a href="chaps/35.%20Examining%20Base%20Docs.pdf">Chapter</a> (576 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Base Tests/</tt>), see <a href="#ch34">chapter 34</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+
+
+<h3 id="ch36">Chapter 36. Using RowSets and Database Context</h3>
+
+<p>Topics: Using RowSets; Using the Database Context; Copying Data From Base To Calc.
+<ul>
+<li><a href="chaps/36.%20RowSets%2c%20DB%20Context.pdf">Chapter</a> (260 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Base Tests/</tt>), see <a href="#ch34">chapter 34</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<h3 id="ch37">Chapter 37. Using the Driver Manager</h3>
+
+<p>Topics: Querying a CSV File; Querying an Access File; Querying a Calc Spreadsheet; Querying a Thunderbird Address Book.
+<ul>
+<li><a href="chaps/37.%20Driver%20Manager.pdf">Chapter</a> (232 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Base Tests/</tt>), see <a href="#ch34">chapter 34</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<h3 id="ch38">Chapter 38. Treating an ODB File as a Zipped Folder
+<img src="images/zipODB.png" align="right" alt="[Inside ODB]"></h3>
+
+<p>Topics: Extracting a Database from an ODB File; Querying an Extracted HSQLDB Database; Querying an Extracted Firebird Database.
+<ul>
+<li><a href="chaps/38.%20ODB%20as%20Zip.pdf">Chapter</a> (380 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Base Tests/</tt>), see <a href="#ch34">chapter 34</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+
+
+<pre>
+&nbsp;
+</pre>
+<!-- ----------------------------------------------- -->
+<h2 id="crossApp"><font color=#666633>
+Part 7: Cross-application Modules</font></h2>
+
+
+<h3 id="ch39">Chapter 39. Forms API Overview
+<img src="images/formStructs.png" align="right" alt="[Form structs]"></h3>
+
+<p>Topics: An Overview of the Forms API; Examining a Text-based Form; Attaching Listeners to a View.
+<ul>
+<li><a href="chaps/39.%20Forms%20API%20Overview.pdf">Chapter</a> (388 KB; pdf). 
+Updated: 20th March 2017.
+<li><a href="code/FormsTests.zip">Examples</a> 
+(<tt>Forms Tests/</tt>) (52 KB; zip).
+Updated: 14th June 2016. <br>
+Place <tt>Forms Tests/</tt> and <tt>Utils/</tt> 
+(see <a href="#ch1">chapter 1</a>) in the same directory.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<h3 id="ch40">Chapter 40. Building a Form Programmatically
+<img src="images/buildForm.png" align="right" alt="[Build a form]"></h3>
+
+<p>Topics: Creating Controls; Assigning a Data Source to a Form; Creating Data-aware Controls; Attaching Listeners.
+<ul>
+<li><a href="chaps/40.%20Building%20a%20Form.pdf">Chapter</a> (376 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>Forms Tests/</tt>), see <a href="#ch39">chapter 39</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<h3 id="ch41">Chapter 41. Printing</h3>
+
+<p>Topics: The Java Print Service (JPS); Printing in Office Writer, Impress, Calc; Viewing a Document's Print Properties; Specialized Printing: Writer, Impress, Calc; Hacking the GUI; Command Prompt Printing.
+<ul>
+<li><a href="chaps/41.%20Printing.pdf">Chapter</a> (600 KB; pdf). 
+Updated: 20th March 2017.
+<li><a href="code/PrintingTests.zip">Examples</a> 
+(<tt>Printing Tests/</tt>) (744 KB; zip).
+Updated: 26th June 2016. <br>
+Place <tt>Printing Tests/</tt> and <tt>Utils/</tt> 
+(see <a href="#ch1">chapter 1</a>) in the same directory.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<h3 id="ch42">Chapter 42. Sending E-mail
+<img src="images/formLetter.png" align="right" alt="[Form letter]"></h3>
+
+<p>Topics: SimpleSystemMail / SimpleCommandMail; Using the MailServiceProvider Service; Using JavaMail; The Desktop API; Thunderbird Scripting; Office Mail Merge.
+<ul>
+<li><a href="chaps/42.%20Sending%20E-mail.pdf">Chapter</a> (468 KB; pdf). 
+Updated: 20th March 2017.
+<li><a href="code/MailTests.zip">Examples</a> 
+(<tt>Mail Tests/</tt>) (132 KB; zip).
+Updated: 8th July 2016. <br>
+Place <tt>Mail Tests/</tt> and <tt>Utils/</tt> 
+(see <a href="#ch1">chapter 1</a>) in the same directory.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<h3 id="ch43">Chapter 43. Using the Clipboard</h3>
+
+<p>Topics: The Office Clipboard API: adding, retrieving, text, images; Java's Clipboard API adding, retrieving, text, images, 2D arrays;  Copy and Pasting in an Office Document: Writer, Calc, Impress, Base.
+<ul>
+<li><a href="chaps/43.%20Using%20the%20Clipboard.pdf">Chapter</a> (512 KB; pdf). 
+Updated: 20th March 2017.
+<li><a href="code/ClipboardTests.zip">Examples</a> 
+(<tt>Clipboard Tests/</tt>) (416 KB; zip).
+Updated: 21st July 2016. <br>
+Place <tt>Clipboard Tests/</tt> and <tt>Utils/</tt> 
+(see <a href="#ch1">chapter 1</a>) in the same directory.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<h3 id="ch44">Chapter 44. Office as a GUI Component
+<img src="images/swingViewer.png" align="right" alt="[SwingViewer]"></h3>
+
+<p>Topics: OOoBean; Wrapping OOoBean in a JPanel; Using the OBeanPanel; Using an Undecorated Office Window; Augmenting the User Interface: a New Toolbar Item; Augmenting the User Interface: a New Menu Item.
+<ul>
+<li><a href="chaps/44.%20Office%20as%20GUI%20Comp.pdf">Chapter</a> (500 KB; pdf). 
+Updated: 20th March 2017.
+<li><a href="code/GUITests.zip">Examples</a> 
+(<tt>GUI Tests/</tt>) (400 KB; zip).
+Updated: 29th August 2016. <br>
+Place <tt>GUI Tests/</tt> and <tt>Utils/</tt> 
+(see <a href="#ch1">chapter 1</a>) in the same directory.
+</ul>
+<br>&nbsp;</p>
+
+
+
+
+<pre>
+&nbsp;
+</pre>
+<!-- ----------------------------------------------- -->
+<h2 id="extend"><font color=#666633>Part 8: Extending LibreOffice</font></h2>
+
+
+<h3 id="ch45">Chapter 45. Coding UNO Components
+<img src="images/poem.png" align="right" alt="[Generated poem]"></h3>
+
+<p>Topics: Using the RandomSents Component; Writing IDL Definitions; Using idlc.bat; Merging Type Data into a Registry Database; Generating the Java Package and Interface; Creating a Skeleton Component; Compiling the Completed Implementation; Packaging the Component; Installing the Extension; Using a New Component in a Program.
+<ul>
+<li><a href="chaps/45.%20UNO%20Components.pdf">Chapter</a> (480 KB; pdf). 
+Updated: 20th March 2017.
+<li><a href="code/UNOCompsTests.zip">Examples</a> 
+(<tt>UNO Comps Tests/</tt>) (1.51 MB; zip).
+Updated: 26th Sept. 2016. <br>
+Place <tt>UNO Comps Tests/</tt> and <tt>Utils/</tt> 
+(see <a href="#ch1">chapter 1</a>) in the same directory.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<h3 id="ch46">Chapter 46. Add-ons
+<img src="images/addon.png" align="right" alt="[Add-on]"></h3>
+
+<p>Topics: What is an Add-on?; Creating the EzHighlight Add-on; Creating a Partial Add-on Implementation; The FreeMarker-generated EzHighlightAddonImpl; Creating the Dialog; Configuring the Add-on; Building and Installing the OXT File.
+<ul>
+<li><a href="chaps/46.%20Addons.pdf">Chapter</a> (616 KB; pdf). 
+Updated: 20th March 2017.
+<li><a href="code/AddOnTests.zip">Examples</a> 
+(<tt>AddOn Tests/</tt>) (428 KB; zip).
+Updated: 14th Oct. 2016. <br>
+Place <tt>AddOn Tests/</tt> and <tt>Utils/</tt> 
+(see <a href="#ch1">chapter 1</a>) in the same directory.
+</ul>
+<br>&nbsp;</p>
+
+
+
+
+<h3 id="ch47">Chapter 47. Calc Add-ins
+<img src="images/calcAddin.png" align="right" alt="[Calc Add-in]"></h3>
+
+<p>Topics: Implementing a Calc Add-in; The IDL definitions of the Functions; XCU creation.
+<ul>
+<li><a href="chaps/47.%20Calc%20Add-ins.pdf">Chapter</a> (480 KB; pdf). 
+Updated: 20th March 2017.
+<li><a href="code/AddinTests.zip">Examples</a> 
+(<tt>Addin Tests/</tt>) (1.74 MB; zip).
+Updated: 4th Nov. 2016. <br>
+Place <tt>Addin Tests/</tt> and <tt>Utils/</tt> 
+(see <a href="#ch1">chapter 1</a>) in the same directory.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<h3 id="ch48">Chapter 48. Event Macros
+<img src="images/libreLogo.png" align="right" alt="[LibreLogo]"></h3>
+
+<p>Topics: Macro Locations; Naming Macro Functions; Calling Existing Macros; The LibreLogo Macro; Writing a Simple Event Macro; Automating the Assigning of Event Macros.
+<ul>
+<li><a href="chaps/48.%20Event%20Macros.pdf">Chapter</a> (652 KB; pdf). 
+Updated: 20th March 2017.
+<li><a href="code/EvMacroTests.zip">Examples</a> 
+(<tt>EvMacro Tests/</tt>) (636 KB; zip).
+Updated: 16th Dec. 2016. <br>
+Place <tt>EvMacro Tests/</tt> and <tt>Utils/</tt> 
+(see <a href="#ch1">chapter 1</a>) in the same directory.
+</ul>
+<br>&nbsp;</p>
+
+
+
+
+<h3 id="ch49">Chapter 49. Extension and Document Event Macros
+<img src="images/macroDialog.png" align="right" alt="[Macro dialog]"></h3>
+
+<p>Topics: Form Macros as an Extension; Loading an XML Dialog; Building a Dialog at Runtime; Storing Macros inside the (Form) Document; Attaching Macros to Other Events; Executing Macros from the Command Line.
+<ul>
+<li><a href="chaps/49.%20Ext%20%26%20Doc%20Event%20Macros.pdf">Chapter</a> (528 KB; pdf). 
+Updated: 20th March 2017.
+<li>For the examples (<tt>EvMacro Tests/</tt>), see <a href="#ch48">chapter 48</a>.
+</ul>
+<br>&nbsp;</p>
+
+
+
+<pre>
+&nbsp;
+</pre>
+<!-- ----------------------------------------------- -->
+<h2  id="odf"><font color=#666633>Part 9: The ODF Format</font></h2>
+
+
+<h3 id="ch50">Chapter 50. Importing XML
+<img src="images/XSLTFilter.png" align="right" alt="[XSLT filter]"></h3>
+
+<p>Topics: XSLT Filters; Using Filters with Java; Alternatives to XSLT Filters: DOM Parsing, Node and Attribute Data Extraction, JAXB Conversion.
+<ul>
+<li><a href="chaps/50.%20Importing%20XML.pdf">Chapter</a> (582 KB; pdf). 
+Updated: 20th March 2017.
+<li><a href="code/FilterTests.zip">Examples</a> 
+(<tt>Filter Tests/</tt>) (56 KB; zip).
+Updated: 6th Jan. 2017. <br>
+Place <tt>Filter Tests/</tt> and <tt>Utils/</tt> 
+(see <a href="#ch1">chapter 1</a>) in the same directory.
+</ul>
+<br>&nbsp;</p>
+
+
+
+
+<h3 id="ch51">Chapter 51. Simple ODF
+<img src="images/odfText.png" align="right" alt="[ODF Text]"></h3>
+
+<p>Topics: The OpenDocument Format; Doc Information; Unzipping an ODF Doc; the Simple Java API for ODF (Apache ODF Toolkit): making docs (text, sheet, and slides), slide movement, doc concatenation (text, sheet, and slides).
+<ul>
+<li><a href="chaps/51.%20Simple%20ODF.pdf">Chapter</a> (304 KB; pdf). 
+Updated: 20th March 2017.
+<li><a href="code/ODFToolkitTests.zip">Examples</a> 
+(<tt>ODFToolkit Tests/</tt>) (544 KB; zip).
+Updated: 13th Jan. 2017. <br>
+Place <tt>ODFToolkit Tests/</tt> and <tt>Utils/</tt> 
+(see <a href="#ch1">chapter 1</a>) in the same directory.
+<li><a href="code/ODFToolkitLibs.zip">A collection of all the libraries
+needed to get ODF Toolkit to work</a> 
+("ODFToolkit Libs") (78.7 <b>MB</b>). <br>
+Updated: 13th Jan. 2017. <br>
+</ul>
+<br>&nbsp;</p>
+
+
+
+</div>
+</main>
+
+<!-- -----------------------navigation frame -------------------------- -->
+
+<nav id="nav">
+<div class="innertube ">
+
+<h3><a href="#contents">Java LibreOffice Programming</a></h3>
+<ul>
+	<li>Part 1: <a href="#basics">Basics</a> (chs 1-4)</li>
+	<li>Part 2: <a href="#writer">Writer</a> (5-10)</li>
+	<li>Part 3: <a href="#draw">Draw & Impress</a> (11-18)</li>
+	<li>Part 4: <a href="#calc">Calc</a> (19-27)</li>
+	<li>Part 5: <a href="#chart">Chart</a> (28-33)</li>
+	<li>Part 6: <a href="#base">Base</a> (34-38)</li>
+	<li>Part 7: <a href="#crossApp">Cross-application Modules</a> (39-44)</li>
+	<li>Part 8: <a href="#extend">Extending LibreOffice</a> (45-49)</li>
+	<li>Part 9: <a href="#odf">The ODF Format</a> (50-51)</li>
+</ul>
+
+</div>
+
+<hr>
+<p style="font-size:14px">
+<a href="https://fivedots.coe.psu.ac.th/~ad/index.html">Dr. Andrew Davison</a><br>
+<a href="mailto:ad@fivedots.coe.psu.ac.th">ad@fivedots.coe.psu.ac.th</a><br>
+</p>
+
+</nav>
+
+</body>
+
+</html>
