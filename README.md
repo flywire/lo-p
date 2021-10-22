@@ -2,7 +2,7 @@
 
 Star Basic is the native language of Star Office which has been incorporated by Open Office and Libre Office. This means that all other supported languages must negotiate a basic bridge.
 
-This [comment](https://stackoverflow.com/a/64517979) from Dan Dascalescu offers a challenge to the community:
+This [comment](https://stackoverflow.com/a/64517979) from Dan Dascalescu is a challenge to the community:
 
 > _after 20 years of software development, the LibreOffice API is the crappiest one I've had the "pleasure" of working with. The documentation is [horrible](https://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1util_1_1SearchDescriptor.html), spread all over the place, [littered with Uyghur](https://bug-attachments.documentfoundation.org/attachment.cgi?id=166685), or [completely missing](https://ask.libreoffice.org/en/question/98257/javascript-macro-reference/). The LibreOffice macro IDE is also extremely unhelpful._
 
