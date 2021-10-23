@@ -1,3 +1,42 @@
-site_name: My Docs
-theme: 
-  name: material 
+site_name: LibreOffice Programming
+# site_url: https://flywire.github.io/lo-p/
+site_description: >-
+  LibreOffice Programming (LO-P) is intended for programmers who want 
+  to learn how to use the the LibreOffice API. This allows programs to control 
+  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and 
+  database applications, and a lot more (e.g. its spell checker, forms 
+  designer, and charting tools).  
+
+repo_name: lo-p
+repo_url: https://github.com/flywire/lo-p
+
+use_directory_urls: false
+
+theme:
+  name: material
+  # custom_dir: docs/overrides
+  palette:
+    scheme: preference
+  static_templates:
+    - 404.html
+  features:
+    #- navigation.instant
+    #- navigation.sections
+    #- navigation.tabs
+    #- header.autohide
+
+markdown_extensions:
+  - toc:
+      permalink:
+  - admonition
+  - def_list
+  #- nl2br
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.superfences
+
+extra_css:
+  - css/extra.css
+    
+plugins:
+  - search
