@@ -546,6 +546,7 @@ MathQuestions.java is mainly a for-loop for randomly generating numbers and
 constructing simple formulae strings. Ten formulae are added to the document, which 
 is saved as "mathQuestions.pdf". The main() function: 
  
+```java
 public static void main(String[] args) 
 { 
   XComponentLoader loader = Lo.loadOffice(); 
@@ -592,6 +593,7 @@ public static void main(String[] args)
   Lo.closeDoc(doc); 
   Lo.closeOffice(); 
 } // end of main() 
+```
  
 Figure 5 shows a screenshot of part of mathQuestions.pdf. 
 
