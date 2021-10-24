@@ -1,0 +1,3105 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 43. Using the Clipboard - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-43-using-the-clipboard" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 43. Using the Clipboard
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="07-Non-text_Content.html" class="md-nav__link">
+        Chapter 7. Text Content Other than Strings
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="27-Funcs_Analysis.html" class="md-nav__link">
+        Chapter 27. Functions and Data Analysis
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 43. Using the Clipboard
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="43-Using_the_Clipboard.html" class="md-nav__link md-nav__link--active">
+        Chapter 43. Using the Clipboard
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-office-clipboard-api" class="md-nav__link">
+    1.  The Office Clipboard API
+  </a>
+  
+    <nav class="md-nav" aria-label="1.  The Office Clipboard API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-adding-data-to-the-clipboard" class="md-nav__link">
+    1.1.  Adding Data to the Clipboard
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-retrieving-data-from-the-clipboard" class="md-nav__link">
+    1.2.  Retrieving Data from the Clipboard
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-adding-and-retrieving-text" class="md-nav__link">
+    1.3.  Adding and Retrieving Text
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-adding-and-retrieving-an-image" class="md-nav__link">
+    1.3.  Adding and Retrieving an Image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-adding-and-retrieving-an-image-from-a-file" class="md-nav__link">
+    1.4.  Adding and Retrieving an Image from a File
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-javas-clipboard-api" class="md-nav__link">
+    2.  Java's Clipboard API
+  </a>
+  
+    <nav class="md-nav" aria-label="2.  Java's Clipboard API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-adding-and-retrieving-text" class="md-nav__link">
+    2.1.  Adding and Retrieving Text
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-adding-and-retrieving-an-image" class="md-nav__link">
+    2.2.  Adding and Retrieving an Image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-adding-and-retrieving-a-2d-array" class="md-nav__link">
+    2.3.  Adding and Retrieving a 2D Array
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-more-details-on-the-java-clipboard-api" class="md-nav__link">
+    2.4.  More Details on the Java Clipboard API
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-copy-and-pasting-in-an-office-document" class="md-nav__link">
+    3.  Copy and Pasting in an Office Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-copy-and-pasting-in-a-writer-document" class="md-nav__link">
+    4.  Copy and Pasting in a Writer Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-applicationx-openoffice-embed-source-xmlwindows_formatnamestar" class="md-nav__link">
+    1.  application/x-openoffice-embed-source-xml;windows_formatname="Star
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-textrichtext" class="md-nav__link">
+    2.  text/richtext
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-texthtml" class="md-nav__link">
+    3.  text/html
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-textplaincharsetutf-16" class="md-nav__link">
+    4.  text/plain;charset=utf-16
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-applicationx-openoffice-linkwindows_formatnamelink" class="md-nav__link">
+    5.  application/x-openoffice-link;windows_formatname="Link"
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-applicationx-openoffice-objectdescriptor-xml" class="md-nav__link">
+    6.  application/x-openoffice-objectdescriptor-xml;
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-copy-and-pasting-in-a-calc-document" class="md-nav__link">
+    5.  Copy and Pasting in a Calc Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-applicationx-openoffice-embed-source-xmlwindows_formatnamestar_1" class="md-nav__link">
+    1.  application/x-openoffice-embed-source-xml;windows_formatname="Star
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-applicationx-openoffice-objectdescriptor-xml" class="md-nav__link">
+    2.  application/x-openoffice-objectdescriptor-xml;
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-applicationx-openoffice-gdimetafile" class="md-nav__link">
+    3.  application/x-openoffice-gdimetafile;
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-applicationx-openoffice-emfwindows_formatnameimage-emf" class="md-nav__link">
+    4.  application/x-openoffice-emf;windows_formatname="Image EMF"
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-applicationx-openoffice-wmfwindows_formatnameimage-wmf" class="md-nav__link">
+    5.  application/x-openoffice-wmf;windows_formatname="Image WMF"
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-imagepng" class="md-nav__link">
+    6.  image/png
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-applicationx-openoffice-bitmapwindows_formatnamebitmap" class="md-nav__link">
+    7.  application/x-openoffice-bitmap;windows_formatname="Bitmap"
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-imagebmp" class="md-nav__link">
+    8.  image/bmp
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-texthtml" class="md-nav__link">
+    9.  text/html
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-copy-and-pasting-in-an-impress-document" class="md-nav__link">
+    5.  Copy and Pasting in an Impress Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-applicationx-openoffice-objectdescriptor-xml" class="md-nav__link">
+    1.  application/x-openoffice-objectdescriptor-xml;
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-applicationx-openoffice-embed-source-xml" class="md-nav__link">
+    2.  application/x-openoffice-embed-source-xml;
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-applicationx-openoffice-drawing" class="md-nav__link">
+    3.  application/x-openoffice-drawing;
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-applicationx-openoffice-gdimetafile" class="md-nav__link">
+    4.  application/x-openoffice-gdimetafile;
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-applicationx-openoffice-emfwindows_formatnameimage-emf" class="md-nav__link">
+    5.  application/x-openoffice-emf;windows_formatname="Image EMF"
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-applicationx-openoffice-wmfwindows_formatnameimage-wmf" class="md-nav__link">
+    6.  application/x-openoffice-wmf;windows_formatname="Image WMF"
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-imagepng" class="md-nav__link">
+    7.  image/png
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-applicationx-openoffice-bitmapwindows_formatnamebitmap" class="md-nav__link">
+    8.  application/x-openoffice-bitmap;windows_formatname="Bitmap"
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-imagebmp" class="md-nav__link">
+    9.  image/bmp
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-copy-and-pasting-in-base-data" class="md-nav__link">
+    6.  Copy and Pasting in Base Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-applicationx-java-serialized-object-classljavalangobject" class="md-nav__link">
+    1.  application/x-java-serialized-object; class="[[Ljava.lang.Object;"
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-office-clipboard-api" class="md-nav__link">
+    1.  The Office Clipboard API
+  </a>
+  
+    <nav class="md-nav" aria-label="1.  The Office Clipboard API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-adding-data-to-the-clipboard" class="md-nav__link">
+    1.1.  Adding Data to the Clipboard
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-retrieving-data-from-the-clipboard" class="md-nav__link">
+    1.2.  Retrieving Data from the Clipboard
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-adding-and-retrieving-text" class="md-nav__link">
+    1.3.  Adding and Retrieving Text
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-adding-and-retrieving-an-image" class="md-nav__link">
+    1.3.  Adding and Retrieving an Image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-adding-and-retrieving-an-image-from-a-file" class="md-nav__link">
+    1.4.  Adding and Retrieving an Image from a File
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-javas-clipboard-api" class="md-nav__link">
+    2.  Java's Clipboard API
+  </a>
+  
+    <nav class="md-nav" aria-label="2.  Java's Clipboard API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-adding-and-retrieving-text" class="md-nav__link">
+    2.1.  Adding and Retrieving Text
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-adding-and-retrieving-an-image" class="md-nav__link">
+    2.2.  Adding and Retrieving an Image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-adding-and-retrieving-a-2d-array" class="md-nav__link">
+    2.3.  Adding and Retrieving a 2D Array
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-more-details-on-the-java-clipboard-api" class="md-nav__link">
+    2.4.  More Details on the Java Clipboard API
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-copy-and-pasting-in-an-office-document" class="md-nav__link">
+    3.  Copy and Pasting in an Office Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-copy-and-pasting-in-a-writer-document" class="md-nav__link">
+    4.  Copy and Pasting in a Writer Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-applicationx-openoffice-embed-source-xmlwindows_formatnamestar" class="md-nav__link">
+    1.  application/x-openoffice-embed-source-xml;windows_formatname="Star
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-textrichtext" class="md-nav__link">
+    2.  text/richtext
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-texthtml" class="md-nav__link">
+    3.  text/html
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-textplaincharsetutf-16" class="md-nav__link">
+    4.  text/plain;charset=utf-16
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-applicationx-openoffice-linkwindows_formatnamelink" class="md-nav__link">
+    5.  application/x-openoffice-link;windows_formatname="Link"
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-applicationx-openoffice-objectdescriptor-xml" class="md-nav__link">
+    6.  application/x-openoffice-objectdescriptor-xml;
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-copy-and-pasting-in-a-calc-document" class="md-nav__link">
+    5.  Copy and Pasting in a Calc Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-applicationx-openoffice-embed-source-xmlwindows_formatnamestar_1" class="md-nav__link">
+    1.  application/x-openoffice-embed-source-xml;windows_formatname="Star
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-applicationx-openoffice-objectdescriptor-xml" class="md-nav__link">
+    2.  application/x-openoffice-objectdescriptor-xml;
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-applicationx-openoffice-gdimetafile" class="md-nav__link">
+    3.  application/x-openoffice-gdimetafile;
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-applicationx-openoffice-emfwindows_formatnameimage-emf" class="md-nav__link">
+    4.  application/x-openoffice-emf;windows_formatname="Image EMF"
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-applicationx-openoffice-wmfwindows_formatnameimage-wmf" class="md-nav__link">
+    5.  application/x-openoffice-wmf;windows_formatname="Image WMF"
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-imagepng" class="md-nav__link">
+    6.  image/png
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-applicationx-openoffice-bitmapwindows_formatnamebitmap" class="md-nav__link">
+    7.  application/x-openoffice-bitmap;windows_formatname="Bitmap"
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-imagebmp" class="md-nav__link">
+    8.  image/bmp
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-texthtml" class="md-nav__link">
+    9.  text/html
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-copy-and-pasting-in-an-impress-document" class="md-nav__link">
+    5.  Copy and Pasting in an Impress Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-applicationx-openoffice-objectdescriptor-xml" class="md-nav__link">
+    1.  application/x-openoffice-objectdescriptor-xml;
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-applicationx-openoffice-embed-source-xml" class="md-nav__link">
+    2.  application/x-openoffice-embed-source-xml;
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-applicationx-openoffice-drawing" class="md-nav__link">
+    3.  application/x-openoffice-drawing;
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-applicationx-openoffice-gdimetafile" class="md-nav__link">
+    4.  application/x-openoffice-gdimetafile;
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-applicationx-openoffice-emfwindows_formatnameimage-emf" class="md-nav__link">
+    5.  application/x-openoffice-emf;windows_formatname="Image EMF"
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-applicationx-openoffice-wmfwindows_formatnameimage-wmf" class="md-nav__link">
+    6.  application/x-openoffice-wmf;windows_formatname="Image WMF"
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-imagepng" class="md-nav__link">
+    7.  image/png
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-applicationx-openoffice-bitmapwindows_formatnamebitmap" class="md-nav__link">
+    8.  application/x-openoffice-bitmap;windows_formatname="Bitmap"
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-imagebmp" class="md-nav__link">
+    9.  image/bmp
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-copy-and-pasting-in-base-data" class="md-nav__link">
+    6.  Copy and Pasting in Base Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-applicationx-java-serialized-object-classljavalangobject" class="md-nav__link">
+    1.  application/x-java-serialized-object; class="[[Ljava.lang.Object;"
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/43-Using_the_Clipboard.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-43-using-the-clipboard">Chapter 43. Using the Clipboard</h1>
+<p>The clipboard has appeared a few times in previous 
+chapters, notably in the CopySlide.java example of 
+Chapter 17, section 4 – I used Lo.dispatchCmd("Copy") to 
+copy a slide, then a "Paste" dispatch to add it to the slide 
+deck in a different position. The example in section 5 of 
+Chapter 17 (AppendSlides.java) is even hackier since it 
+employs "Copy" and "Paste" dispatches and JNA to click 
+on a dialog box. </p>
+<p>The programs are "hacky" because they interact with the 
+OSes windows and dialogs. The "Copy" dispatch asks the OS to copy the highlighted 
+data in the currently active window into the clipboard. My code precedes the dispatch 
+by bringing the necessary window to the front on the desktop, but there's no way for 
+Office to force that selection to be honored. For example, in the short interval before 
+the "Copy" dispatch is sent, it's possible for the user to click the mouse in a different 
+window, making it the active window rather than the one containing the slide. </p>
+<p>Another issue with this approach is timing – a dispatchCmd() call from the Office API 
+returns as soon as the message is passed to the OS, but that's not the same as the 
+message being processed by the OS. The dispatch has to be routed back to the 
+application and executed, which may take many milliseconds. For instance, changing 
+Impress from drawing mode (the default) to slide sorter mode can sometimes take 
+over a second, especially the first time the mode is used. In the meantime, my code 
+will continue executing, assuming that Office is in a state that it hasn’t yet reached. </p>
+<p>The only simple solution is the liberal scattering of Lo.wait() calls after dispatches to 
+hopefully slow the API's execution enough so that the dispatches have been 
+processed. </p>
+<p>You may be wondering why I use "Copy" and "Paste" dispatches when they're so 
+bothersome.  </p>
+<p>One reason is that there may be no other way of achieving the required result, as in 
+the Impress examples. (However, if you don’t mind using a third-party library, then 
+Apache ODF Toolkit offers a better solution; see Chapter 51, section 4.) 
+Another reason is that "Copy" automatically converts copied data into several useful 
+formats, which would require a lot of coding to duplicate. For example, a copied 
+block of spreadsheet cells is available through the clipboard as plain text, different 
+types of images, in two kinds of spreadsheet exchange format, and as an ODS file! 
+Nevertheless, it's best to avoid "Copy" and "Paste" dispatches where possible, and one 
+alternative is Office's clipboard API. Most (but not all) dispatch-based uses of copy 
+and paste can be replaced by the clipboard API which means that there's no need to 
+rely on OS-level windows being active and on Lo.wait() calls.  </p>
+<p>Office's clipboard API is modelled on Java's clipboard classes, and there are 
+advantages to using the Java API instead of Office when manipulating complex data. </p>
+<p>As a consequence, I've developed two support classes, in Clip.java and JClip.java, </p>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>The Office </p>
+</div>
+<p>Clipboard API: adding, 
+retrieving, text, images; 
+Java's Clipboard API 
+adding, retrieving, text, 
+images, 2D arrays;<br />
+Copy and Pasting in an 
+Office Document: 
+Writer, Calc, Impress, 
+Base 
+Example folders: 
+"Clipboard Tests" and 
+"Utils" 
+which contain helpful functions for using the Office clipboard API and the Java 
+version respectively. </p>
+<p>After some short examples of manipulating the clipboard using the Office API and the 
+Java API, I'll look at four slightly longer programs that illustrate how the clipboard 
+can be utilized with a Writer document, a spreadsheet, slides, and a database. </p>
+<p>One thing you might want to install before starting any clipboard programming is a 
+decent clipboard viewer. It's helpful for observing the data being copied and pasted by 
+the Office/Java code; I employ ClCl ( 
+http://www.nakka.com/soft/clcl/index_eng.html). </p>
+<h2 id="1-the-office-clipboard-api">1.  The Office Clipboard API</h2>
+<p>Office's clipboard API is located in the clipboard sub-module inside 
+com.sun.star.datatransfer, and utilizes several services and interfaces from its<br />
+datatransfer parent. Figure 1 shows the SystemClipboard service and its main 
+interfaces. </p>
+<p><img alt="" src="images/43-Using_the_Clipboard-1.png" /></p>
+<p>Figure 1. The SystemClipboard Services and Interfaces. </p>
+<p>If you browse the clipboard module, several classes, such as ClipboardManager, 
+XClipboardManager, and XClipboardFactory, suggest the possibility of creating local 
+clipboards that aren't accessible OS-wide like the system clipboard. Unfortunately, I 
+was unable to figure out how to create one, which parallels the problem that Java 
+programmers have creating local clipboards using the Java API.  </p>
+<p>Programming details about using the clipboard in Office can be found in chapter 6 of 
+the Development Guide in the section "Common Application Features". The guide 
+can be downloaded from 
+https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf, or the 
+relevant section begins online at 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Common_Appl
+ication_Features (or use loGuide "Common Application Features"). </p>
+<p>My Clip.getClip() support method illustrates how to get a reference to the system 
+clipboard: </p>
+<p>// in the Clip class 
+//global 
+private static XSystemClipboard cb = null; 
+        // used to store clipboard ref, so only one is created 
+        // by the methods here </p>
+<p>public static XSystemClipboard getClip() 
+{<br />
+  if (cb == null) { 
+    cb = SystemClipboard.create(Lo.getContext()); <br />
+/* 
+    cb.addClipboardListener( new XClipboardListener() { 
+      public void disposing(EventObject e) { } </p>
+<pre><code>  public void changedContents(ClipboardEvent e) 
+  { System.out.println("&gt;&gt;Clipboard has been updated");  } 
+});
+</code></pre>
+<p>*/ 
+  } 
+  return cb; 
+}  // end of getClip() </p>
+<p>A call to SystemClipboard.create() with the current context instantiates the 
+XSystemClipboard interface. It's possible to attach a XClipboardListener at this stage, 
+which will be triggered whenever the clipboard is updated. I didn't find that capability 
+useful in my examples, so commented it out. </p>
+<p>The Clip class stores the clipboard reference as a static variable so multiple calls to 
+Clip.getClip() reuse the same reference. </p>
+<h3 id="11-adding-data-to-the-clipboard">1.1.  Adding Data to the Clipboard</h3>
+<p>Data is added to and retrieved from the clipboard using XClipboard.setContents() and 
+XClipboard.getContents(), with the data represented by objects implementing the 
+XTransferable interface. My utilities include three concrete transferable classes: 
+TextTransferable, ImageTransferable, and FileTransferable, which I'll explain shortly. </p>
+<p>The Clip class offers an addContents() method for adding transferable data to the 
+clipboard:  </p>
+<p>// in the Clip class 
+private static final int MAX_TRIES = 3; </p>
+<p>public static boolean addContents(XTransferable trf) 
+{ 
+  int i = 0; 
+  while (i &lt; MAX_TRIES) { 
+    try { 
+      getClip().setContents(trf, null); 
+      return true; 
+    } 
+    catch (IllegalStateException e) { 
+      System.out.println("Problem accessing clipboard..."); 
+      Lo.wait(50); 
+    } 
+    i++; 
+  } 
+  System.out.println("Unable to add contents"); 
+  return false; 
+}  // end of addContents() </p>
+<p>The function attempts to add the transferable data to the clipboard three times before 
+returning false.  </p>
+<p>I've coded addContents() like this so that it matches the addContents() function in the 
+JClip class. One difference between the Office and Java clipboard APIs is that the 
+Java version of setContents() can raise an exception, and quite often fails when first 
+asked to write something large to the clipboard (see the next section). However, 
+repeating the request, after a short wait, succeeds. It felt prudent to use the same 
+defensive programming in the Office API even though the Office documentation 
+makes no mention of setContents() being able to raise an exception. In other words, 
+Clip.addContents() is a prime example of paranoid programming. </p>
+<p>The clipboard remembers ownership, which is changed when data is added by a 
+different user or process. This can be employed at the programming level by attaching 
+an XClipboardOwner listener to the clipboard when XClipboard.setContents() adds 
+data. The listener will be triggered when data which changes the ownership is copied 
+to the clipboard. The following code fragment illustrates the technique: </p>
+<p>// add data to the clipboard, and monitor ownership 
+// XSystemClipboard cb = ... </p>
+<p>cb.setContents(data, new XClipboardOwner() { 
+        public void lostOwnership(XClipboard board,<br />
+                                  XTransferable contents)<br />
+       {  System.out.println("Ownership is lost");   } 
+}); </p>
+<p>The  lostOwnership() method is called with the clipboard reference and the tranferable 
+data just overwritten by the new owner. I didn't use this feature in my addContents() 
+function. </p>
+<h3 id="12-retrieving-data-from-the-clipboard">1.2.  Retrieving Data from the Clipboard</h3>
+<p>XClipboard.getContents() copies data from the clipboard as an XTransferable 
+instance. One of the surprising, and useful, features of clipboard data is that it can 
+usually be manipulated in several different forms, such as plain text or a bitmap. This 
+means that the XTransferable extraction must state the required data format, which is 
+encoded as a DataFlavor object. The following code fragment illustrates the idea: </p>
+<p>// XSystemClipboard cb = ... </p>
+<p>XTransferable trf = cb.getContents();  // get transferable 
+DataFlavor df = // dataflavor for type of data required 
+data = trf.getTransferData(df); </p>
+<p>A DataFlavor object is a mapping between a mime type string and an Office type. The 
+following example maps the "text/plain" mime type to Office's String class: </p>
+<p>DataFlavor df = new DataFlavor("text/plain;charset=utf-16",<br />
+                       "Unicode Text", new Type(String.class)) </p>
+<p>The second argument of the DataFlavor constructor is a 'human representable' string 
+for the mime type. </p>
+<h3 id="13-adding-and-retrieving-text">1.3.  Adding and Retrieving Text</h3>
+<p>My TextTransferable class implements the XTransferable interface for storing 
+Unicode data. It defines three methods from XTransferable:<br />
+ getTransferData(): this returns the data for a specified DataFlavor 
+ getTransferDataFlavors(): this returns an array of DataFlavors representing the 
+data formats supported by this transferable 
+ isDataFlavorSupported(): this returns true or false depending of if the supplied 
+DataFlavor is amongst those supported by the transferable 
+The TextTransferable class: </p>
+<p>// in the Utils/ folder 
+public class TextTransferable implements XTransferable 
+{ 
+  private final String UNICODE_MIMETYPE =<br />
+                                "text/plain;charset=utf-16"; 
+  private String text; </p>
+<p>public TextTransferable(String s) 
+  {  text = s;  } </p>
+<p>public Object getTransferData(DataFlavor df)<br />
+                                  throws UnsupportedFlavorException 
+  // return the data matching the df DataFlavor 
+  {<br />
+    if (!df.MimeType.equalsIgnoreCase(UNICODE_MIMETYPE)) 
+      throw new UnsupportedFlavorException(); 
+    return text; 
+  } </p>
+<p>public DataFlavor[] getTransferDataFlavors() 
+  // return an array of all the dataflavors supported<br />
+  {<br />
+    DataFlavor[] dfs = new DataFlavor[1]; 
+    dfs[0] = new DataFlavor(UNICODE_MIMETYPE, "Unicode Text", 
+                                       new Type(String.class)); 
+    return dfs; 
+  } </p>
+<p>public boolean isDataFlavorSupported(DataFlavor df) 
+  // is the df DataFlavor supported by this transferable? 
+  {  return df.MimeType.equalsIgnoreCase(UNICODE_MIMETYPE);  } </p>
+<p>}  // end of TextTransferable class </p>
+<p>TextTransferable supports only the Unicode data format; its flavor maps the 
+"text/plain;charset=utf-16" mime type string to the String class. </p>
+<p>The Clip support class has setText() and getText() methods for simplifying the use of 
+TextTransferable: </p>
+<p>// in the Clip class 
+public static boolean setText(String str) 
+{  return addContents( new TextTransferable(str));  } </p>
+<p>public static String getText() 
+{  return (String) getData("text/plain;charset=utf-16");  } </p>
+<p>The setText() method uses the TextTransferable constructor to convert a string into a 
+transferable that is placed on the clipboard by my addContents() method from above. </p>
+<p>getText() passes a mime type string to Clip.getData(), which copies the transferable 
+from the clipboard, and uses the mime type to decide which kind of data format to use 
+for the returned data: </p>
+<p>// in the Clip class 
+public static Object getData(String mimeStr) 
+{ 
+  XTransferable trf = getClip().getContents(); 
+  if (trf == null) { 
+    System.out.println("No transferable found"); 
+    return null; 
+  } </p>
+<p>try { 
+    DataFlavor df = findFlavor(trf, mimeStr); 
+    if (df != null) 
+      return trf.getTransferData(df); 
+    else 
+      System.out.println("Mime \"" + mimeStr + "\" not found"); 
+  } 
+  catch (com.sun.star.uno.Exception e) { 
+    System.out.println("Could not read clipboard: " + e); 
+  } 
+  return null; 
+}  // end of getData()  </p>
+<p>Clip.findFlavor() searches through the flavors associated with the transferable looking 
+for the mime type string supplied by the user: </p>
+<p>// in the Clip class 
+public static DataFlavor findFlavor(XTransferable trf,<br />
+                                    String mimeStr) 
+{ DataFlavor[] dfs = trf.getTransferDataFlavors(); 
+  for (int i = 0; i &lt; dfs.length; i++) { 
+    if (dfs[i].MimeType.startsWith(mimeStr)) { 
+      return dfs[i]; 
+    } 
+  } 
+  System.out.println("Clip does not support mime: " + mimeStr); 
+  return null; 
+}  // end of findFlavor() </p>
+<p>The CPTests.java file shows an example of how to add and retrieve text from the 
+clipboard: </p>
+<p>// part of CPTests.java... </p>
+<dl>
+<dt>Lo.loadOffice();</dt>
+<dd>Clip.setText(Lo.getTimeStamp()); 
+System.out.println("Added text to clipboard"); </dd>
+<dt>System.out.println("Read clipboard: " + Clip.getText());</dt>
+<dd>Lo.closeOffice(); </dd>
+</dl>
+<h3 id="13-adding-and-retrieving-an-image">1.3.  Adding and Retrieving an Image</h3>
+<p>My ImageTransferable class implements XTransferable so a BufferedImage can be 
+stored on the clipboard. It defines the same three methods as TextTransferable, but its 
+data flavor maps the mime type "application/x-openoffice-
+bitmap;windows_formatname="Bitmap"" to a byte array. </p>
+<p>// in the Utils/ folder 
+public class ImageTransferable implements XTransferable 
+{ 
+  private static final String BITMAP_CLIP =<br />
+   "application/x-openoffice-bitmap;windows_formatname=\"Bitmap\""; </p>
+<p>private byte[] imBytes; </p>
+<p>public ImageTransferable(BufferedImage im) 
+  {  imBytes = Images.im2bytes(im);   } </p>
+<p>public Object getTransferData(DataFlavor df)<br />
+                          throws UnsupportedFlavorException 
+  { if (!df.MimeType.equalsIgnoreCase(BITMAP_CLIP)) 
+      throw new UnsupportedFlavorException(); 
+    return imBytes; 
+  }  // end of getTransferData() </p>
+<p>public DataFlavor[] getTransferDataFlavors() 
+  { DataFlavor[] dfs = new DataFlavor[1]; 
+    dfs[0] = new DataFlavor(BITMAP_CLIP, "Bitmap",<br />
+                                  new Type(byte[].class)); 
+    return dfs; 
+  } </p>
+<p>public boolean isDataFlavorSupported(DataFlavor df) 
+  {  return df.MimeType.equalsIgnoreCase(BITMAP_CLIP);  } </p>
+<p>}  // end of ImageTransferable class </p>
+<p>My choice of mapping to a byte array may seem a bit strange, since it would make 
+more sense to associate the "bitmap" string with a BufferedImage. Unfortunately, 
+Office only supports String (used in TextTransferable) and byte[] (used here). This 
+contrasts with the greater flexibility of Java's clipboard API which allows any 
+serializable type to be used in a flavor. This will motivate my use of Java to transfer 
+2D arrays to and from the clipboard, as described in section 2.3. </p>
+<p>I hide the use of ImageTransferable inside two Clip.java methods, setImage() and 
+getImage(): </p>
+<p>// in the Clip class 
+public static boolean setImage(BufferedImage im) 
+{  return addContents(new ImageTransferable(im));  } </p>
+<p>public static BufferedImage getImage() 
+{ 
+  XTransferable trf = getClip().getContents(); 
+  if (trf == null) { 
+    System.out.println("No transferable found"); 
+    return null; 
+  } 
+  DataFlavor df = findImageFlavor(trf); 
+  if (df == null) 
+    return null; </p>
+<p>try { 
+    return Images.bytes2im( (byte[])trf.getTransferData(df) ); 
+  } 
+  catch (com.sun.star.uno.Exception e) { 
+    System.out.println("Could not retrieve image: " + e); 
+    return null; 
+  } 
+}  // end of getImage() </p>
+<p>getImage() transforms the byte array returned by 
+ImageTransferable.getTransferData() into a BufferedImage. Clip.findImageFlavor() 
+does a slightly more sophisticated lookup than the earlier findFlavor(), searching for a 
+suitable flavor for an image mime type. </p>
+<p>The CPTests.java file shows how to add and retrieve an image from the clipboard: </p>
+<p>// part of CPTests.java... </p>
+<dl>
+<dt>Lo.loadOffice();</dt>
+<dd>BufferedImage im = Images.loadImage("skinner.png"); 
+System.out.println("Image (w,h): " + im.getWidth() + ", " + 
+                                     im.getHeight()); 
+Clip.setImage(im); 
+System.out.println("Added image to clipboard"); </dd>
+<dt>BufferedImage imCopy = Clip.getImage();</dt>
+<dt>if (imCopy != null)</dt>
+<dt>System.out.println("Image (w,h): " + imCopy.getWidth() + ", " +</dt>
+<dt>imCopy.getHeight());</dt>
+<dd>Lo.closeOffice(); </dd>
+</dl>
+<h3 id="14-adding-and-retrieving-an-image-from-a-file">1.4.  Adding and Retrieving an Image from a File</h3>
+<p>FileTransferable is the third transferable class in my utilities; a filename is passed to 
+the constructor, and the contents of the file are stored on the clipboard: </p>
+<p>// in the Utils/ folder 
+public class FileTransferable implements XTransferable 
+{ 
+  private String mimeType = "application/octet-stream";  <br />
+                                 // good default 
+  private byte[] fileData = null; </p>
+<p>public FileTransferable(String fnm) 
+  { <br />
+    mimeType = Info.getMIMEType(fnm); 
+    try { 
+      fileData = Files.readAllBytes( Paths.get(fnm)); 
+    } 
+    catch(java.lang.Exception e) 
+    {  System.out.println("Could not read bytes from " + fnm);  } 
+  }  // end of FileTransferable() </p>
+<p>public Object getTransferData(DataFlavor df)<br />
+                         throws UnsupportedFlavorException 
+  { if (!df.MimeType.equalsIgnoreCase(mimeType)) 
+      throw new UnsupportedFlavorException(); 
+    return fileData; 
+  }  // end of getTransferData() </p>
+<p>public DataFlavor[] getTransferDataFlavors() 
+  { DataFlavor[] flavors = new DataFlavor[1]; 
+    flavors[0] = new DataFlavor(mimeType, mimeType,<br />
+                                     new Type(byte[].class)); 
+    return flavors; 
+  } </p>
+<p>public boolean isDataFlavorSupported(DataFlavor df) 
+  {  return df.MimeType.equalsIgnoreCase(mimeType);  } </p>
+<p>}  // end of FileTransferable class </p>
+<p>Java's Files.readAllBytes() reads in the file's contents as a bytes array. The 
+transferable also stores the mime type string for the data, which it obtains by calling 
+Info.getMIMEType(). </p>
+<p>The Clip class has setFile() and getFile() for using FileTransferable: </p>
+<p>// in the Clip class 
+public static boolean setFile(String fnm) 
+{  return addContents(new FileTransferable(fnm));  } </p>
+<p>public static byte[] getFile(String fnm) 
+{ String mimeStr = Info.getMIMEType(fnm); 
+  return (byte[]) getData(mimeStr); 
+} </p>
+<p>getFile() shows why it's necessary to store the the data's mime type in the transferable 
+– it's used as an argument to Clip.getData() to extract the byte array from the 
+clipboard in the correct data format. </p>
+<p>CPTests.java shows how to add and retrieve the contents of a file from the clipboard: </p>
+<p>// part of CPTests.java... </p>
+<dl>
+<dt>Lo.loadOffice();</dt>
+<dd>Clip.setFile("skinner.jpg"); 
+System.out.println("Added file to clipboard"); </dd>
+</dl>
+<p>byte[] imData = Clip.getFile(fnm); 
+System.out.println("Image byte length: " + imData.length); </p>
+<dl>
+<dt>BufferedImage imCopy = Clip.getImage();</dt>
+<dt>if (imCopy != null)</dt>
+<dt>System.out.println("Image (w,h): " + imCopy.getWidth() + ", " +</dt>
+<dt>imCopy.getHeight());</dt>
+<dd>Lo.closeOffice(); </dd>
+</dl>
+<p>It's possible to read the file's contents from the clipboard in two ways. Clip.getFile() 
+returns it as a byte array, while Clip.getImage() attempts to convert it to a 
+BufferedImage. </p>
+<h2 id="2-javas-clipboard-api">2.  Java's Clipboard API</h2>
+<p>Office's clipboard API is closely related to Java's clipboard API, so I had high hopes 
+of not needing Java's API in this chapter. However, Java's ability to pass serializable 
+objects to the clipboard is very useful when copying and pasting spreadsheet cells and 
+database result sets. It's natural to encode them both as 2D arrays which, because 
+they're serializable, can be more easily manipulated with Java than Office. </p>
+<p>In the end, I coded a JClip.java support class (note the "J") which duplicates a lot of 
+the code in Clip.java, but using Java classes for the clipboard, transferables, and 
+flavors rather than the Office ones. It's easy to get the two APIs confused, so Table 1 
+shows their main correspondences. </p>
+<p>Office Java 
+SystemClipboard.create() Toolkit.getDefaultToolkit(). </p>
+<p>getSystemClipboard() 
+XSystemClipboard inherits 
+XClipboard, and others<br />
+(see Fig. 1); 
+getContents() never fails (?); 
+Clipboard; </p>
+<p>getContents() can fail; 
+Can handle serializable objects; 
+Can handle String or byte[] More methods 
+XClipboardListener FlavorListener 
+XClipboardOwner ClipboardOwner 
+XTransferable Transferable 
+DataFlavor DataFlavor; many predefined 
+constants 
+TextTransferable (my class) StringSelection (in the JDK) 
+Table 1. Corresponding Clipboard Services, Interfaces, and Classes<br />
+in the Office and Java APIs. </p>
+<p>The JClip class uses a similar approach to the Clip class for creating a clipboard 
+reference: </p>
+<p>// in the JClip class 
+private static Clipboard cb = null; 
+      // used to store clipboard ref, so only one is created 
+      // by the methods here </p>
+<p>public static Clipboard getClip() 
+{<br />
+ if (cb == null) { 
+    cb = Toolkit.getDefaultToolkit().getSystemClipboard(); 
+/<em> 
+    cb.addFlavorListener( new FlavorListener() { 
+      public void flavorsChanged(FlavorEvent e) 
+      {  System.out.println("&gt;&gt;Flavor change detected");  } 
+    }); 
+</em>/ 
+  } 
+  return cb; 
+} </p>
+<p>The reference is stored in a static variable so the same instance is used when getClip() 
+is called more than once. The Java version of Office's XClipboardListener is 
+FlavorListener, but is triggered only when the type of flavor changes on the clipboard 
+not when the contents change. </p>
+<p>JClip.java contains an addContents() method: </p>
+<p>// in the JClip class 
+private static final int MAX_TRIES = 3; </p>
+<p>public static boolean addContents(Transferable trf) 
+{ 
+  int i = 0; 
+  while (i &lt; MAX_TRIES) { 
+    try { 
+      getClip().setContents(trf, null); 
+      return true; 
+    } 
+    catch (IllegalStateException e) { 
+      System.out.println("Problem accessing clipboard..."); 
+      Lo.wait(50); 
+    } 
+    i++; 
+  } 
+  System.out.println("Unable to add contents"); 
+  return false; 
+}  // end of addContents() </p>
+<p>Java's Clipboard.setContents() can throw an IllegalStateException. However, 
+exceptions occur infrequently, and my solution of retrying the method three times, 
+after a short wait, deals with the problem.  </p>
+<h3 id="21-adding-and-retrieving-text">2.1.  Adding and Retrieving Text</h3>
+<p>Java's API includes several predefined flavors, including one for strings 
+(DataFlavor.stringFlavor), and a Transferable class for strings called StringSelection, 
+which makes it unnecessary to code a TextTransferable class. </p>
+<p>The JClip support class has setText() and getText() methods: </p>
+<p>// in the JClip class 
+public static boolean setText(String str) 
+{  return addContents( new StringSelection(str));  } </p>
+<p>public static String getText() 
+{ 
+  Transferable trf = getClip().getContents(null); 
+  try { 
+    if (trf != null &amp;&amp;<br />
+        trf.isDataFlavorSupported(DataFlavor.stringFlavor)) 
+      return (String) trf.getTransferData(DataFlavor.stringFlavor); 
+  }<br />
+  catch (UnsupportedFlavorException e)<br />
+  {  System.out.println(e); }<br />
+  catch (IOException e) 
+  { System.out.println(e); } 
+  return null; 
+}  // end of getText() </p>
+<p>JCPTests.java shows how to add and retrieve text from the clipboard: </p>
+<p>// part of JCPTests.java... </p>
+<p>JClip.setText(Lo.getTimeStamp()); 
+System.out.println("Added text to clipboard"); </p>
+<p>System.out.println("Read clipboard: " + JClip.getText()); </p>
+<p>Unlike the Office examples, there's no need to start with a Lo.loadOffice() and end 
+with Lo.closeOffice(). </p>
+<h3 id="22-adding-and-retrieving-an-image">2.2.  Adding and Retrieving an Image</h3>
+<p>Java's API has a predefined flavor for images (DataFlavor.imageFlavor), but no 
+Transferable class. My JImageTransferable is comparable with the earlier 
+ImageTransferable class that used the Office API, but returns a BufferedImage from 
+getTransferData() instead of a byte array: </p>
+<p>// in the Utils/ folder 
+public class JImageTransferable implements Transferable<br />
+{ 
+  private Image im; </p>
+<p>public JImageTransferable(Image im)<br />
+  {  this.im = im;  } </p>
+<p>public Object getTransferData(DataFlavor df) 
+                throws UnsupportedFlavorException, IOException<br />
+  { if (df.equals(DataFlavor.imageFlavor) &amp;&amp; im != null) 
+      return im; 
+    else 
+      throw new UnsupportedFlavorException(df); 
+  } </p>
+<p>public DataFlavor[] getTransferDataFlavors()<br />
+  { DataFlavor[] dfs = new DataFlavor[1]; 
+    dfs[0] = DataFlavor.imageFlavor; 
+    return dfs; 
+  } </p>
+<p>public boolean isDataFlavorSupported(DataFlavor df)<br />
+  { 
+    DataFlavor[] dfs = getTransferDataFlavors(); 
+    for (int i = 0; i &lt; dfs.length; i++) { 
+      if (df.equals(dfs[i])) 
+        return true; 
+    } 
+    return false; 
+  } </p>
+<p>}  // end of JImageTransferable class </p>
+<p>The JClip support class has setImage() and getImage() methods: </p>
+<p>// in the JClip class 
+public static boolean setImage(BufferedImage im) 
+{  return addContents(new JImageTransferable(im));  } </p>
+<p>public static BufferedImage getImage() 
+{ 
+  Transferable trf = getClip().getContents(null); 
+  if (trf != null &amp;&amp;<br />
+      trf.isDataFlavorSupported(DataFlavor.imageFlavor)) { 
+    try { 
+      return (BufferedImage)<br />
+            trf.getTransferData(DataFlavor.imageFlavor); 
+    }<br />
+    catch (Exception e)<br />
+    {  System.out.println(e); } 
+  } 
+  return null; 
+}  // end of getImage() </p>
+<p>JClip.getImage() is simpler than the version in the Clip class since it doesn't have to 
+convert a byte array to a BufferedImage. </p>
+<p>JCPTests.java shows how to add and retrieve an image from the clipboard: </p>
+<p>// part of JCPTests.java... </p>
+<p>BufferedImage im = Images.loadImage("skinner.png"); 
+System.out.println("Image (w,h): " + im.getWidth() + ", " + 
+                                     im.getHeight()); 
+JClip.setImage(im); 
+System.out.println("Added image to clipboard"); </p>
+<p>BufferedImage imCopy = JClip.getImage(); 
+if (imCopy != null) 
+  System.out.println("Image (w,h): " + imCopy.getWidth() + ", " + 
+                                       imCopy.getHeight()); </p>
+<p>It's no different from the example in CPTest.java, except for the use of JClip. </p>
+<h3 id="23-adding-and-retrieving-a-2d-array">2.3.  Adding and Retrieving a 2D Array</h3>
+<p>As I mentioned above, I'm using the Java API because of the simplicity of copying 
+2D arrays to and from the clipboard.  </p>
+<p>JArrayTransferable is an implementation of Transferable that stores a 2D array of 
+objects on the clipboard: </p>
+<p>// in the Utils/ folder 
+public class JArrayTransferable implements Transferable<br />
+{ 
+  private Object[][] vals; 
+  private DataFlavor arrDF; </p>
+<p>public JArrayTransferable(Object[][] vals)<br />
+  {  this.vals = vals; <br />
+     arrDF = new DataFlavor(Object[][].class, "2D Object Array"); 
+  } </p>
+<p>public Object getTransferData(DataFlavor df) 
+                throws UnsupportedFlavorException, IOException<br />
+  { if (df.equals(arrDF) &amp;&amp; vals != null) 
+      return vals; 
+    else 
+      throw new UnsupportedFlavorException(df); 
+  } </p>
+<p>public DataFlavor[] getTransferDataFlavors()<br />
+  { DataFlavor[] dfs = new DataFlavor[1]; 
+    dfs[0] = arrDF; 
+    return dfs; 
+  } </p>
+<p>public boolean isDataFlavorSupported(DataFlavor df)<br />
+  { 
+    DataFlavor[] dfs = getTransferDataFlavors(); 
+    for (int i = 0; i &lt; dfs.length; i++) { 
+      if (df.equals(dfs[i])) 
+        return true; 
+    } 
+    return false; 
+  } </p>
+<p>}  // end of JArrayTransferable class </p>
+<p>JArrayTransferable defines a flavor for the array type: </p>
+<p>DataFlavor arrDF =<br />
+       new DataFlavor(Object[][].class, "2D Object Array"); </p>
+<p>The string argument is a 'human presentable name' rather than a mime type, since 
+there's no good mime type match. </p>
+<p>In JClip.java, the set and get methods for an array are: </p>
+<p>// in the JClip class 
+private static final DataFlavor ARRAY_DF =<br />
+           new DataFlavor(Object[][].class, "2D Object Array"); </p>
+<p>public static boolean setArray(Object[][] vals) 
+{  return addContents(new JArrayTransferable(vals));  } </p>
+<p>public static Object[][] getArray() 
+{ 
+  Transferable trf = getClip().getContents(null); 
+  if (trf != null &amp;&amp; trf.isDataFlavorSupported(ARRAY_DF)) { 
+    try { 
+      return (Object[][]) trf.getTransferData(ARRAY_DF); 
+    }<br />
+    catch (Exception e)<br />
+    {  System.out.println(e); } 
+  } 
+  return null; 
+}  // end of getArray() </p>
+<p>JCPTests.java shows how to store and retrieve an array: </p>
+<p>// part of JCPTests.java... </p>
+<p>Object[][] marks = {{50,60,55,67,70}, 
+                    {62,65,70,70,81}, 
+                    {72,66,77,80,69} };    // no generics used 
+JClip.setArray(marks); 
+System.out.println("Added 2D array to clipboard"); </p>
+<p>Object[][] arr = JClip.getArray(); </p>
+<p>I'll be using JClip.setArray() and JClip.getArray() later in this chapter for clipboard 
+copying of spreadsheet cells and database query results (sections 5 and 7). </p>
+<h3 id="24-more-details-on-the-java-clipboard-api">2.4.  More Details on the Java Clipboard API</h3>
+<p>If you'd like a slower, more detailed, explanation of Java's clipboard features, two 
+good sources are: 
+ Pro Java 8 Programming 
+Terrill Brett Spell 
+Apress, 2015, 3rd ed. </p>
+<p>http://www.apress.com/9781484206423 
+Chapter 9 is about the clipboard. </p>
+<p> Core Java, Volume II -- Advanced Features 
+Cay S. Horstmann; Gary Cornell 
+Prentice Hall, 2016, 10th ed.  </p>
+<p>http://horstmann.com/corejava.html 
+Chapter 7 includes a clipboard section. </p>
+<h2 id="3-copy-and-pasting-in-an-office-document">3.  Copy and Pasting in an Office Document</h2>
+<p>The next four sections look at copying from and pasting to Office documents using 
+the clipboard. The techniques can be divided into two groups: those that use the 
+clipboard without requiring the copy selection to be visible in a window, and those 
+that do need a visible window.  </p>
+<p>The latter 'Visible' group utilize "Copy" and "Paste" dispatches, and suffer from the 
+problems I mentioned at the start of the chapter (i.e. selecting an active window and 
+timing). A problem I haven't mentioned before is how to programmatically select 
+data, which turns out to be different for each document type. </p>
+<p>I'll look at how to use these techniques with four kinds of documents: Writer, Calc, 
+Impress, and Base, as summarized in Table 2. </p>
+<p>Document 
+Copy-and-Paste Approach 
+Invisible Visible 
+Writer 
+(CopyPasteText.java) 
+Copy/Paste:<br />
+text 
+Copy: XTextViewCursor 
+Paste: RTF, HTML, ODT 
+Calc 
+(CopyPasteCalc.java) 
+Copy/Paste:<br />
+2D array 
+Copy: XCellRange 
+Paste: SYLK, ODS 
+Impress 
+(CopySlide.java) 
+none 
+Copy: XDrawView 
+Paste: bitmap, PNG, 
+XML, ODP 
+Base 
+(CopyResultSet.java) 
+Copy/Paste:<br />
+2D array 
+none 
+Table 2. Copy-and-Paste Techniques Applied to Office Documents. </p>
+<p>The 'Visible' column shows the advantage and disadvantage of the approach.  </p>
+<p>The advantage is that pasting can use a range of data formats. For example, a selected 
+grid of cells from a spreadsheet can be saved as a Microsoft SYLK file (an ASCII 
+format for exchanging spreadsheet tables between applications) or as an ODS file.  </p>
+<p>The disadvantage is that copying involves a different interface for data selection in 
+each document type. For example, text copying employs a text cursor (the 
+XTextViewCursor interface), while the spreadsheet uses cell ranges (XCellRange). </p>
+<p>The underlying reason is that each document has a different "view" service for how 
+it's drawn in a window, as illustrated by Figure 2. </p>
+<p><img alt="" src="images/43-Using_the_Clipboard-2.png" /></p>
+<p>Figure 2. Different View Services in Office. </p>
+<p>The display of a Writer document is managed by TextDocumentView, while a slide 
+presentation can use any one of PresentationView, HandoutView, NotesView, 
+OutlineView, and PreviewView. Most of these services implement selection using the 
+XSelectionSupplier.select() method, but the data that is passed to the select() call 
+depends on the document type.  </p>
+<h2 id="4-copy-and-pasting-in-a-writer-document">4.  Copy and Pasting in a Writer Document</h2>
+<p>The CopyPasteText.java example copies a sentence from the start of a document to 
+the clipboard, then pastes it back at the end. The program does this in two ways – the 
+'invisible' approach uses the Clip.java support functions without making Office 
+visible, and the 'visible' approach which visibly selects the sentence so a "Copy" 
+dispatch can copy it to the clipboard. A subsequent "Paste" dispatch places the 
+sentence at the end of the document, as before, but it's also possible to manipulate the 
+clip in formats other than just text. </p>
+<p>The main() function of CopyPasteText.java loads startStory.doc, then calls either 
+useClipUtils() or useDispatches(): </p>
+<p>// in CopyPasteText.java 
+private static final String FNM = "storyStart.doc"; </p>
+<p>public static void main(String args[]) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  XTextDocument doc = Write.openDoc(FNM, loader); 
+  if (doc == null) { 
+    System.out.println("Could not open " + FNM); 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>useClipUtils(doc, 4);    // invisible approach 
+  // useDispatches(doc, 4);  // visible </p>
+<p>Lo.closeDoc(doc); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+<p>useClipUtils() is passed a reference to the document and an integer used to select a 
+sentence: </p>
+<p>// in CopyPasteText.java 
+private static void useClipUtils(XTextDocument doc, int n) 
+{ 
+  XSentenceCursor senCursor = Write.getSentenceCursor(doc); 
+  senCursor.gotoStart(false);     // start of text; no selection 
+  gotoSentence(senCursor, n); </p>
+<p>// copy to clipboard 
+  Clip.setText(senCursor.getString()); 
+  System.out.println("Copied \"" + senCursor.getString() + "\""); </p>
+<p>Lo.wait(2000); 
+  XTextCursor cursor = Write.getCursor(doc); 
+  cursor.gotoEnd(false);   // go to end of doc </p>
+<p>// paste into doc 
+  Write.append(cursor, Clip.getText()); </p>
+<p>GUI.setVisible(doc, true);   // so we can see change 
+  Lo.waitEnter(); 
+}  // end of useClipUtils() </p>
+<p>private static void gotoSentence(XSentenceCursor senCursor, int n) 
+{ 
+  do { 
+    senCursor.gotoEndOfSentence(true);   // select all of sentence 
+    n--; 
+  } while ((n &gt; 0) &amp;&amp; senCursor.gotoNextSentence(false)); 
+}  // end of gotoSentence() </p>
+<p>Sentence selection in gotoSentence() is done with XSentenceCursor, which was 
+previously used in Chapter 5, section 6. The text covered by the cursor is copied to the 
+clipboard by Clip.setText() in useClipUtils(). </p>
+<p>useClipUtils() ends with a call to GUI.setVisible() so the user can see that the 
+sentence has been pasted at the end of the document. </p>
+<p>Visible Cut-and-Paste of Text 
+The hardest part about the 'visible' technique is data selection, which involves two 
+kinds of cursors: XSentenceCursor for moving through the document a sentence at a 
+time, and XTextViewCursor which represents the visible cursor in the Writer 
+window. </p>
+<p>View cursors are used to visibly select text in Writer documents rather than the 
+XSelectionSupplier interface shown in Figure 2. Figure 3 shows how 
+XTextViewCursor is related to the TextDocumentView service. </p>
+<p><img alt="" src="images/43-Using_the_Clipboard-3.png" /></p>
+<p>Figure 3. The TextDocumentView Service and XTextViewCursor. </p>
+<p>Obtaining an XTextViewCursor involves some casting, which I've hidden inside 
+Writer.getViewCursor(): </p>
+<p>// the Writer class 
+public static XTextViewCursor getViewCursor(XTextDocument textDoc) 
+{ 
+  XModel model = Lo.qi(XModel.class, textDoc); 
+  XController xController = model.getCurrentController(); </p>
+<p>// the controller gives us the TextViewCursor 
+  XTextViewCursorSupplier supplier =<br />
+      Lo.qi(XTextViewCursorSupplier.class, xController); 
+  return supplier.getViewCursor(); 
+}  // end of getViewCursor() </p>
+<p>The text document is cast to an XModel interface, which allows its corresponding 
+controller to be obtained. At that point we're positioned on the far right of Figure 2 in 
+XController. The second Lo.qi() cast is the big step, since it travels along the service 
+hierarchy all the way to the left and top of Figure 2. It stops at the 
+TextDocumentView service, and converts XController into 
+XTextViewCursorSupplier, one of the interfaces in Figure 3. The final line of 
+Write.getViewCursor() calls XTextViewCursorSupplier.getViewCursor() to obtain 
+the cursor. </p>
+<p>useDispatches() calls Writer.getViewCursor() to get a view cursor, and 
+Write.getSentenceCursor() for a sentence cursor: </p>
+<p>// in CopyPasteText.java 
+private static void useDispatches(XTextDocument doc, int n) 
+{ 
+  GUI.setVisible(doc, true);   // <em>must</em> be made visible 
+  Lo.wait(2000);   // give Office time to appear </p>
+<p>XTextViewCursor tvc = Write.getViewCursor(doc); 
+  XSentenceCursor senCursor = Write.getSentenceCursor(doc); 
+  senCursor.gotoStart(false);    <br />
+            // go to start of text; no selection 
+  gotoSentence(senCursor, n); </p>
+<p>// move the text view cursor to highlight the current paragraph 
+  tvc.gotoRange(senCursor.getStart(), false); 
+  tvc.gotoRange(senCursor.getEnd(), true); </p>
+<p>Lo.dispatchCmd("Copy"); 
+  Clip.listFlavors(); </p>
+<p>// save copied text as RTF &amp; HTML 
+  FileIO.saveString("storyFrag.rtf", Clip.getRTF()); 
+  FileIO.saveString("storyFrag.html", Clip.getHTML()); </p>
+<p>// save embedded text fragment as ODT 
+  FileIO.saveBytes("storyFrag.odt", Clip.getEmbedSource()); </p>
+<p>Lo.wait(2000); 
+  tvc.gotoEnd(false);    // go to end of doc 
+  Lo.dispatchCmd("Paste"); </p>
+<p>Lo.waitEnter(); 
+}  // end of useDispatches() </p>
+<p>The sentence cursor is moved as before, by calling gotoSentence(), but it doesn't 
+highlight the text in the window. XTextViewCursor is needed for this, by being 
+assigned the start and end positions of XSentenceCursor. The result is illustrated in </p>
+<p><img alt="" src="images/43-Using_the_Clipboard-4.png" /></p>
+<p>Figure 4. </p>
+<p><img alt="" src="images/43-Using_the_Clipboard-4.png" /></p>
+<p>Figure 4. The Highlighted Sentence in the Writer window. </p>
+<p>After the copy, the XTextViewCursor is moved to the end of the document and a 
+"Paste" dispatch adds the copied data back. </p>
+<p>Just after the "Copy" dispatch, Clip.listFlavors() prints out the flavors (data types) that 
+have been copied to the clipboard. The output is: </p>
+<p>No of flavors: 6 </p>
+<h2 id="1-applicationx-openoffice-embed-source-xmlwindows_formatnamestar">1.  application/x-openoffice-embed-source-xml;windows_formatname="Star</h2>
+<p>Embed Source (XML)" </p>
+<h2 id="2-textrichtext">2.  text/richtext</h2>
+<h2 id="3-texthtml">3.  text/html</h2>
+<h2 id="4-textplaincharsetutf-16">4.  text/plain;charset=utf-16</h2>
+<h2 id="5-applicationx-openoffice-linkwindows_formatnamelink">5.  application/x-openoffice-link;windows_formatname="Link"</h2>
+<h2 id="6-applicationx-openoffice-objectdescriptor-xml">6.  application/x-openoffice-objectdescriptor-xml;</h2>
+<p>windows_formatname="Star Object Descriptor (XML)";classname="8BC…" </p>
+<p>Plain text is listed as flavor no. 4, but the data is also available in HTML and RTF 
+formats. Flavor no. 1 ("application/x-openoffice-embed-source-xml") is ODF (Open 
+Document Format), which in this case is an ODT file.  </p>
+<p>Clip.listFlavors() prints this information by getting a copy of the current transferable 
+off the clipboard, and calling its getTransferDataFlavors() method to obtain favor 
+data: </p>
+<p>// in the Clip class 
+public static void listFlavors() 
+{ 
+  XTransferable trf = getClip().getContents(); 
+  if (trf == null) 
+    System.out.println("No transferable found"); 
+  else 
+    listFlavors(trf); 
+}  // end of listFlavors() </p>
+<p>public static void listFlavors(XTransferable trf) 
+{ 
+  DataFlavor[] dfs = trf.getTransferDataFlavors(); 
+  System.out.println("No of flavors: " + dfs.length); 
+  for (int i = 0; i &lt; dfs.length; i++) 
+    System.out.println((i+1) + ". " + dfs[i].MimeType); 
+  System.out.println(); 
+}  // end of listFlavors() </p>
+<p>The ClCl clipboard viewer (http://www.nakka.com/soft/clcl/index_eng.html) is a 
+more graphical way of viewing this information. For example, the copied text is 
+displayed as in Figure 5. </p>
+<p><img alt="" src="images/43-Using_the_Clipboard-5.png" /></p>
+<p>Figure 5. The ClCl View of the Writer Text. </p>
+<p>The different formats are listed below the "Clipboard" node on the left of Figure 5, 
+and the data in a particular format is displayed by clicking on the format name, as in 
+Figure 6 for "Star Embed Source (XML)". </p>
+<p><img alt="" src="images/43-Using_the_Clipboard-6.png" /></p>
+<p>Figure 6. The ClCl "Star Embed Source (XML)" View of the Writer Text. </p>
+<p>The advantage of using Clip.listFlavors() is that it displays the Office mime type 
+strings, which are used to select data from the transferable. These strings are 
+employed by the Clip.getXXX() methods: </p>
+<p>// in the Clip class 
+public static String getHTML() 
+{ <br />
+  byte[] data = (byte[]) getData("text/html"); 
+  if (data == null) 
+    return null; 
+  else 
+    return new String(data); 
+}  // end of getHTML() </p>
+<p>public static String getRTF() 
+// text format used by MS 
+{ <br />
+  byte[] data = (byte[]) getData("text/richtext"); 
+  if (data == null) 
+    return null; 
+  else 
+    return new String(data); 
+}  // end of getRTF() </p>
+<p>public static byte[] getEmbedSource() 
+// fragment in binary ODF 
+{ 
+  return (byte[]) getData( 
+      "application/x-openoffice-embed-source-xml; 
+            windows_formatname=\"Star Embed Source (XML)\""); 
+}  // end of getEmbedSource() </p>
+<p>Recall that I'm using the Office API, so Clip.getData() must return either a string or a 
+byte array. </p>
+<p>These Clip.getXXX() methods are called in useDispatches() in CopyPasteText.java, 
+and the data is saved to a file using FileIO.saveString() or FileIO.saveBytes(). </p>
+<h2 id="5-copy-and-pasting-in-a-calc-document">5.  Copy and Pasting in a Calc Document</h2>
+<p>CopyPasteCalc.java copies the data in a block of spreadsheet cells to empty cells at 
+the bottom of the sheet. The main() function is similar to the Writer example: </p>
+<p>// in CopyPasteCalc.java 
+private static final String FNM = "Addresses.ods"; </p>
+<p>public static void main(String args[]) 
+{ <br />
+  XComponentLoader loader = Lo.loadOffice(); 
+  XSpreadsheetDocument doc = Calc.openDoc(FNM, loader); 
+  if (doc == null) { 
+    System.out.println("Could not open " + FNM); 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>useClipUtils(doc);    // invisible approach 
+  // useDispatches(doc);  // visible </p>
+<p>Lo.closeDoc(doc); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+<p>useClipUtils() employs Clip support functions so the Calc window can remain hidden, 
+while useDispatches() needs the window to be visible so that "Copy" and "Paste" 
+dispatches can work. </p>
+<p>useClipUtils() utilizes the SheetCellRange service which is inherited by the 
+Spreadsheet service (see Chapter 19, section 4, Figure 5). A block of cells is selected 
+by calling Calc.getCellRange() which returns an XCellRange instance. The data 
+covered by that range is extracted as a 2D array by Calc.getCellRangeArray(), and 
+stored on the clipboard by JClip.setArray(): </p>
+<p>// in CopyPasteCalc.java 
+private static void useClipUtils(XSpreadsheetDocument doc) 
+{ 
+  XSpreadsheet sheet = Calc.getSheet(doc, 0); </p>
+<p>XCellRange cellRange = Calc.getCellRange(sheet,0,2,6,2); //row 3 
+  Object[][] data = Calc.getCellRangeArray(cellRange); 
+  JClip.setArray(data);   // copy array to clipboard </p>
+<p>Lo.wait(2000); </p>
+<p>XCellRange toCellRange = Calc.getCellRange(sheet,0,8,6,8); //row 9 
+  Object[][] cbData = JClip.getArray();      // paste in array 
+  Calc.setCellRangeArray(toCellRange, cbData); </p>
+<p>GUI.setVisible(doc, true);   // so can see the paste 
+  Lo.waitEnter(); 
+}  // end of useClipUtils() </p>
+<p>Calc.getCellRangeArray() wraps the XCellRangeData interface, which was explained 
+in Chapter 20, section 2.3: </p>
+<p>// in the Calc class 
+public static Object[][] getCellRangeArray(XCellRange cellRange) 
+{<br />
+  XCellRangeData crData  = Lo.qi(XCellRangeData.class, cellRange); 
+  return crData.getDataArray(); 
+} </p>
+<p>The  process of pasting the cell range back into the sheet requires another call to 
+Calc.getCellRange() to select a new block of cells. Then the clip data as an array is 
+inserted with Calc.setCellRangeArray(). </p>
+<p>Visible Cut-and-Paste of Cells 
+The 'visible' technique also uses XCellRange, but as an argument to 
+XSelectionSupplier.select() so the cells are highlighted in the Calc window. The 
+useDispatches() method is: </p>
+<p>// in CopyPasteCalc.java 
+private static void useDispatches(XSpreadsheetDocument doc) 
+{ 
+  GUI.setVisible(doc, true);   // Office <em>must</em> be visible </p>
+<p>XSpreadsheet sheet = Calc.getSheet(doc, 0); 
+  XCellRange cellRange = Calc.getCellRange(sheet,0,2,6,2); // row 3 </p>
+<p>XSelectionSupplier selSupp = GUI.getSelectionSupplier(doc); 
+  selSupp.select(cellRange); 
+  Lo.dispatchCmd("Copy"); </p>
+<p>Clip.listFlavors(); </p>
+<p>Lo.wait(2000); </p>
+<p>// save embedded cells as ODS 
+  FileIO.saveBytes("AddressesFrag.ods", Clip.getEmbedSource()); </p>
+<p>// save cells as SYLK file 
+  FileIO.saveString("AddressesFrag.slk", Clip.getSylk()); </p>
+<p>XCellRange toCellRange = Calc.getCellRange(sheet,0,8,6,8); // row 9 
+         // GUI dialog asks about insertion if range is too small 
+         // and data repeats if range is too big 
+  selSupp.select(toCellRange); 
+  Lo.dispatchCmd("Paste"); </p>
+<p>Lo.waitEnter(); 
+}  // end of useDispatches() </p>
+<p>The selection of cell ranges is done twice in useDispatches() – a cell range is required 
+for the block of cells being copied, and another range is necessary for the empty cell 
+block where the data will be pasted. Figure 7 shows the cells being selected, just prior 
+to their copying. </p>
+<p><img alt="" src="images/43-Using_the_Clipboard-7.png" /></p>
+<p>Figure 7. The Highlighted Cells in the Calc Window. </p>
+<p>The flavors list printed by Clip.listFlavors() is longer than the one for text: </p>
+<p>No of flavors: 14 </p>
+<h2 id="1-applicationx-openoffice-embed-source-xmlwindows_formatnamestar_1">1.  application/x-openoffice-embed-source-xml;windows_formatname="Star</h2>
+<p>Embed Source (XML)" </p>
+<h2 id="2-applicationx-openoffice-objectdescriptor-xml">2.  application/x-openoffice-objectdescriptor-xml;</h2>
+<p>windows_formatname="Star Object Descriptor (XML)";classname="47BB…" </p>
+<h2 id="3-applicationx-openoffice-gdimetafile">3.  application/x-openoffice-gdimetafile;</h2>
+<p>windows_formatname="GDIMetaFile" </p>
+<h2 id="4-applicationx-openoffice-emfwindows_formatnameimage-emf">4.  application/x-openoffice-emf;windows_formatname="Image EMF"</h2>
+<h2 id="5-applicationx-openoffice-wmfwindows_formatnameimage-wmf">5.  application/x-openoffice-wmf;windows_formatname="Image WMF"</h2>
+<h2 id="6-imagepng">6.  image/png</h2>
+<h2 id="7-applicationx-openoffice-bitmapwindows_formatnamebitmap">7.  application/x-openoffice-bitmap;windows_formatname="Bitmap"</h2>
+<h2 id="8-imagebmp">8.  image/bmp</h2>
+<h2 id="9-texthtml">9.  text/html</h2>
+<ol>
+<li>application/x-openoffice-sylk;windows_formatname="Sylk" </li>
+<li>application/x-openoffice-link;windows_formatname="Link" </li>
+<li>application/x-openoffice-dif;windows_formatname="DIF" </li>
+<li>text/plain;charset=utf-16 </li>
+<li>text/richtext </li>
+</ol>
+<p>The additions are mostly graphic types, but "Sylk" and "DIF" are ASCII-based 
+formats for exchanging spreadsheets between applications. The corresponding ClCl 
+display is shown in Figure 8. </p>
+<p><img alt="" src="images/43-Using_the_Clipboard-8.png" /></p>
+<p>Figure 8. The ClCl View of the Calc Cells. </p>
+<p>Flavors numbers 1 and 10 in the list above allow the data to be saved as an ODS file 
+and as a SYLK file. Clip.getEmbedSource() is called in useDispatches() to return the 
+byte array holding the ODS data, and Clip.getSylk() returns the SYLK text. The code 
+for Clip.getSylk(): </p>
+<p>// in the Clip class 
+public static String getSylk() 
+// text-based spreadsheet format used by MS 
+{ <br />
+  byte[] data = (byte[]) getData( 
+      "application/x-openoffice-sylk;windows_formatname=\"Sylk\""); 
+  if (data == null) 
+    return null; 
+  else 
+    return new String(data); 
+}  // end of getSylk() </p>
+<h2 id="5-copy-and-pasting-in-an-impress-document">5.  Copy and Pasting in an Impress Document</h2>
+<p>Table 2 shows that the Office API has no 'invisible' way of copying a slide, so I have 
+to use "Copy" and "Paste" dispatches to a visible Impress window. I went through two 
+examples using this technique in Chapter 17, section 4 ("Rearranging a Slide Deck") 
+and section 5 ("Appending Slide Decks Together"). Both require Impress to be in 
+slide sorter mode so Draw.gotoPage() can select a slide.  </p>
+<p>The CopySlide.java example in this section is a simplified version of the deck 
+rearranger: the slide is copied without being pasted back. Instead, the contents of the 
+clipboard are saved in various formats. </p>
+<p>The main() function loads a slide deck and calls copySave() to do the hard work: </p>
+<p>// in CopySlide.java 
+private static final String FNM = "algs.odp"; </p>
+<p>public static void main(String args[]) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  XComponent doc = Lo.openDoc(FNM, loader); 
+  if (doc == null) { 
+    System.out.println("Could not open the file: " + FNM); 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>GUI.setVisible(doc, true);  <br />
+  Lo.wait(2000); </p>
+<p>copySave(doc, 3);   // save copy of 4th slide  </p>
+<p>Lo.waitEnter(); 
+  Lo.closeDoc(doc); 
+  Lo.closeOffice(); 
+} // end of main() </p>
+<p>copySave() switches Office to slide sorter mode, goes to the specified slide, which 
+highlights it in the window. The "Copy" dispatch copies that slide to the clipboard. </p>
+<p>// in CopySlide.java 
+private static void copySave(XComponent doc, int fromIdx) 
+{ 
+  XController ctrl = GUI.getCurrentController(doc); </p>
+<p>Lo.dispatchCmd("DiaMode"); 
+      // Switch to slide sorter view 
+  Lo.delay(5000);   // give Office plenty of time to do it </p>
+<p>XDrawPage fromSlide = Draw.getSlide(doc, fromIdx); 
+  Draw.gotoPage(ctrl, fromSlide);  // select this slide </p>
+<p>Lo.dispatchCmd("Copy"); 
+  System.out.println("Copied slide no. " + (fromIdx+1)); </p>
+<p>Clip.listFlavors(); </p>
+<p>// save embedded slide as ODP;<br />
+  FileIO.saveBytes("slide" + (fromIdx+1) +".odp",<br />
+                            Clip.getEmbedSource()); </p>
+<p>// save slide as XML ('flat' ODP) 
+  FileIO.saveString("slide" + (fromIdx+1) +".fodp",<br />
+                            Clip.getXMLDraw()); </p>
+<p>// save slide as PNG image 
+  Images.saveImage(Clip.getImage(), "slide" + (fromIdx+1) +".png"); 
+        // for another approach see Slide2Image.java in Draw Tests/ </p>
+<p>// save slide as a Bitmap<br />
+  FileIO.saveBytes("slide" + (fromIdx+1) +".bmp",<br />
+                            Clip.getBitmap()); </p>
+<p>Lo.dispatchCmd("DrawingMode");<br />
+}  // end of copySave() </p>
+<p>Clip.listFlavors() reports the data types that can be copied from the clipboard: </p>
+<p>No of flavors: 9 </p>
+<h2 id="1-applicationx-openoffice-objectdescriptor-xml">1.  application/x-openoffice-objectdescriptor-xml;</h2>
+<p>windows_formatname="Star Object Descriptor (XML)";classname="9176…" </p>
+<h2 id="2-applicationx-openoffice-embed-source-xml">2.  application/x-openoffice-embed-source-xml;</h2>
+<p>windows_formatname="Star Embed Source (XML)" </p>
+<h2 id="3-applicationx-openoffice-drawing">3.  application/x-openoffice-drawing;</h2>
+<p>windows_formatname="Drawing Format" </p>
+<h2 id="4-applicationx-openoffice-gdimetafile">4.  application/x-openoffice-gdimetafile;</h2>
+<p>windows_formatname="GDIMetaFile" </p>
+<h2 id="5-applicationx-openoffice-emfwindows_formatnameimage-emf">5.  application/x-openoffice-emf;windows_formatname="Image EMF"</h2>
+<h2 id="6-applicationx-openoffice-wmfwindows_formatnameimage-wmf">6.  application/x-openoffice-wmf;windows_formatname="Image WMF"</h2>
+<h2 id="7-imagepng">7.  image/png</h2>
+<h2 id="8-applicationx-openoffice-bitmapwindows_formatnamebitmap">8.  application/x-openoffice-bitmap;windows_formatname="Bitmap"</h2>
+<h2 id="9-imagebmp">9.  image/bmp</h2>
+<p>One of the new mime types is flavor no. 3, "application/x-openoffice-drawing", which 
+encodes an ODP file in XML. </p>
+<p>The clipboard display in ClCl is shown in Figure 9. </p>
+<p><img alt="" src="images/43-Using_the_Clipboard-9.png" /></p>
+<p>Figure 9. The ClCl View of the Impress Slide. </p>
+<p>The code at the end of copySave() reads and saves the clipboard data in four ways.  </p>
+<p>Clip.getXMLDraw() retrieves the XML for the ODP file: </p>
+<p>// in the Clip class 
+public static String getXMLDraw() 
+// a 'flat' XML version of the draw/slide copy 
+{ <br />
+  byte[] data = (byte[]) getData( 
+                 "application/x-openoffice-drawing; 
+                  windows_formatname=\"Drawing Format\""); 
+  if (data == null) 
+    return null; 
+  else 
+    return new String(data); 
+}  // end of getXMLDraw() </p>
+<p>The text is saved to a file with the extension "fodp", indicating that it holds a 'flat' 
+XML version of the ODP document. This file can be opened in Office by double 
+clicking upon it. </p>
+<p>copySave() also saves the slide as PNG and bitmap images. A better way to export an 
+image is explained in Chapter 17, section 6 ("Saving a Slide as an Image"); it's better 
+because it doesn't require the Office window to be visible. </p>
+<h2 id="6-copy-and-pasting-in-base-data">6.  Copy and Pasting in Base Data</h2>
+<p>Table 2 states that the Office API has no 'visible' way of copying a database, although 
+I suspect it may have. I've spent a long time trying to coax DefaultViewController 
+(see Figure 2), the view service for Base, into action. Since it supports the 
+XSelectionSupplier interface, it should be able to select things for copying. Another 
+of its tantalizing interfaces is XDatabaseDocumentUI which seems to offer the ability 
+to open a table window, but I couldn’t get that to work either. The closest I've got is 
+described in Chapter 35, section 3 ("Debugging Database Code") with 
+Base.showTables() which opens all the databases' tables using a "DBTableOpen" 
+dispatch.  </p>
+<p>It's interesting to investigate what I'm losing in terms of data formats by not utilizing a 
+"Copy" dispatch. It's possible to find out by manually copying a database table from 
+Base, then using ClCl to look at the clipboard. The result is shown in Figure 10. </p>
+<p><img alt="" src="images/43-Using_the_Clipboard-10.png" /></p>
+<p>Figure 10. The ClCl View of a Copied Database Table. </p>
+<p>It appears that the copied table could be saved in RTF and HTML formats. The 
+"SBA-DATAFORMAT' entry refers to the mime type "application/x-openoffice-sba-
+dataexchange;windows_formatname=\"SBA-DATAFORMAT\"", but I've no idea 
+what SBA stands for. An online acronym finder site 
+(http://www.acronymfinder.com/) suggests "Susan B. Anthony", but I doubt it. </p>
+<p>The Invisible Cut-and-Paste of Data 
+I've described the  'invisible' approach for databases previously, in Chapter 36, section 
+3 ("Copying Data From Base To Calc"), which converts a Base table into a 
+spreadsheet. SQL is used to generate a result set spanning the table, then 
+Base.getResultSetArr() converts the set into a 2D array of Objects. The array is 
+written into a new spreadsheet using XCellRangeData.setDataArray(). </p>
+<p>The same approach is used in CopyResultSet.java in this section, except that the array 
+is copied to the clipboard with JClip.setArray(): </p>
+<p>// in CopyResultSet.java 
+private static final String FNM = "liangTables.odb"; </p>
+<p>public static void main(String[] args) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  XOfficeDatabaseDocument dbDoc = Base.openBaseDoc(FNM, loader); 
+  if (dbDoc == null) { 
+    System.out.println("Could not open database " + FNM); 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>XConnection conn = null; 
+  try { 
+    XDataSource dataSource = dbDoc.getDataSource(); 
+    conn = dataSource.getConnection("", ""); // no login/password </p>
+<pre><code>XResultSet rs = Base.executeQuery( 
+                    "SELECT * FROM \"Course\"", conn);
+
+// BaseTablePrinter.printResultSet(rs);  
+// rs.beforeFirst();  // fails if ResultSet is TYPE_FORWARD_ONLY,  
+                      // which is the default 
+Object[][] rsArr = Base.getResultSetArr(rs); 
+Base.printResultSetArr(rsArr);
+
+JClip.setArray(rsArr);
+
+// Clip.listFlavors(); 
+JClip.listFlavors();
+
+System.out.println("Saving array from clipboard"); 
+FileIO.saveArray("queryResults.txt", JClip.getArray());
+</code></pre>
+<p>} 
+  catch(SQLException e) { 
+    System.out.println(e); 
+  } </p>
+<p>Base.closeConnection(conn); 
+  Base.closeBaseDoc(dbDoc); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+<p>As with previous examples, listFlavors() displays the flavors available to Office. The 
+Clip.java function reports no flavors since the serialized 2D array added to the 
+clipboard isn't an Office mime type. It's necessary to call the JClip.java version of the 
+function, which prints: </p>
+<p>No of flavors: 1 </p>
+<h2 id="1-applicationx-java-serialized-object-classljavalangobject">1.  application/x-java-serialized-object; class="[[Ljava.lang.Object;"</h2>
+<p>The corresponding ClCl display is shown in Figure 11. </p>
+<p><img alt="" src="images/43-Using_the_Clipboard-11.png" /></p>
+<p>Figure 11. The ClCl View of the ResultSet Data. </p>
+<p>When I was debugging the code, I initially printed the result set using 
+BaseTablePrinter.printResultSet(). Unfortunately, this would make the subsequent 
+call to Base.getResultSetArr() return an array containing only the column headers and 
+no data. BaseTablePrinter.printResultSet() moves the result set cursor through the 
+results, then returns after having moved the cursor to the end of the data. </p>
+<p>Base.getResultSetArr() assumes the cursor is at the start of the data, and moves it 
+forward until it reaches the end of the data. This means that when it's passed a cursor 
+already at the end of the table, it generates no array data. </p>
+<p>One solution is to reset the cursor to the start, using: 
+rs.beforeFirst(); 
+but this usually fails because most result sets use the default 
+TYPE_FORWARD_ONLY setting which restricts the cursor to only moving forward. </p>
+<p>My solution is to extract the 2D array with Base.getResultSetArr(), and print the array 
+with Base.printResultSetArr(). Typical output is: </p>
+<p>Result set array size: 5 x 5 
+  courseId,  subjectId, courseNumber,      title, numOfCredits </p>
+<hr />
+<pre><code> 11111,       CSCI,       1301, Introduction to Java I,          4 
+ 11112,       CSCI,       1302, Introduction to Java II,          3 
+ 11113,       CSCI,       3720, Database Systems,          3 
+ 11114,       CoE ,       3721, Algorithms,          3
+</code></pre>
+<p>It's not as pretty as BaseTablePrinter.printResultSet(), but avoids the cursor problem. </p>
+<p>The array data retrieved from the clipboard is stored as text by calling 
+FileIO.saveArray(). The resulting queryResults.txt file contains: </p>
+<p>courseId subjectId courseNumber title numOfCredits<br />
+11111 CSCI 1301 Introduction to Java I 4<br />
+11112 CSCI 1302 Introduction to Java II 3<br />
+11113 CSCI 3720 Database Systems 3<br />
+11114 CoE  3721 Algorithms 3  </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="42-Sending_E-mail.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 42. Sending E-mail
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="44-Office_as_GUI_Comp.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Chapter 44. Office as a GUI Component
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

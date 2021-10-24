@@ -1,0 +1,2652 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 27. Functions and Data Analysis - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-27-functions-and-data-analysis" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 27. Functions and Data Analysis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="07-Non-text_Content.html" class="md-nav__link">
+        Chapter 7. Text Content Other than Strings
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 27. Functions and Data Analysis
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="27-Funcs_Analysis.html" class="md-nav__link md-nav__link--active">
+        Chapter 27. Functions and Data Analysis
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-calling-calc-functions-from-code" class="md-nav__link">
+    1.  Calling Calc Functions from Code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-database-for-extracting-information-from-calc-tables-where-the-data-is" class="md-nav__link">
+    1.  Database: for extracting information from Calc tables, where the data is
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-date-and-time-eg-see-the-eastersunday-function-below" class="md-nav__link">
+    2.  Date and Time; e.g. see the EASTERSUNDAY function below
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-financial-for-business-calculations" class="md-nav__link">
+    3.  Financial: for business calculations;
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-information-many-of-these-return-boolean-information-about-cells-such-as" class="md-nav__link">
+    4.  Information: many of these return boolean information about cells, such as
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-logical-functions-for-boolean-logic" class="md-nav__link">
+    5.  Logical: functions for boolean logic;
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-mathematical-trigonometric-hyperbolic-logarithmic-and-summation" class="md-nav__link">
+    6.  Mathematical: trigonometric, hyperbolic, logarithmic, and summation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-array-many-of-these-operations-treat-cell-ranges-like-2d-arrays-eg-see" class="md-nav__link">
+    7.  Array: many of these operations treat cell ranges like 2D arrays; e.g. see
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-statistical-for-statistical-and-probability-calculations-eg-see-average-and" class="md-nav__link">
+    8.  Statistical: for statistical and probability calculations; e.g., see AVERAGE and
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-spreadsheet-for-finding-values-in-tables-cell-ranges-and-cells" class="md-nav__link">
+    9.  Spreadsheet: for finding values in tables, cell ranges, and cells;
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-argument-name-number" class="md-nav__link">
+    1.  Argument name: Number
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-argument-name-mode" class="md-nav__link">
+    2.  Argument name: Mode
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-pivot-tables" class="md-nav__link">
+    2.  Pivot Tables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-seeking-a-goal" class="md-nav__link">
+    3.  Seeking a Goal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-linear-and-nonlinear-solving" class="md-nav__link">
+    4.  Linear and Nonlinear Solving
+  </a>
+  
+    <nav class="md-nav" aria-label="4.  Linear and Nonlinear Solving">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-a-linear-optimization-problem" class="md-nav__link">
+    4.1.  A Linear Optimization Problem
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-another-linear-problem-using-sco" class="md-nav__link">
+    4.2.  Another Linear Problem (using SCO)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-a-nonlinear-problem-using-deps-and-sco" class="md-nav__link">
+    4.3.  A Nonlinear Problem (using DEPS and SCO)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="43-Using_the_Clipboard.html" class="md-nav__link">
+        Chapter 43. Using the Clipboard
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-calling-calc-functions-from-code" class="md-nav__link">
+    1.  Calling Calc Functions from Code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-database-for-extracting-information-from-calc-tables-where-the-data-is" class="md-nav__link">
+    1.  Database: for extracting information from Calc tables, where the data is
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-date-and-time-eg-see-the-eastersunday-function-below" class="md-nav__link">
+    2.  Date and Time; e.g. see the EASTERSUNDAY function below
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-financial-for-business-calculations" class="md-nav__link">
+    3.  Financial: for business calculations;
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-information-many-of-these-return-boolean-information-about-cells-such-as" class="md-nav__link">
+    4.  Information: many of these return boolean information about cells, such as
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-logical-functions-for-boolean-logic" class="md-nav__link">
+    5.  Logical: functions for boolean logic;
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-mathematical-trigonometric-hyperbolic-logarithmic-and-summation" class="md-nav__link">
+    6.  Mathematical: trigonometric, hyperbolic, logarithmic, and summation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-array-many-of-these-operations-treat-cell-ranges-like-2d-arrays-eg-see" class="md-nav__link">
+    7.  Array: many of these operations treat cell ranges like 2D arrays; e.g. see
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-statistical-for-statistical-and-probability-calculations-eg-see-average-and" class="md-nav__link">
+    8.  Statistical: for statistical and probability calculations; e.g., see AVERAGE and
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-spreadsheet-for-finding-values-in-tables-cell-ranges-and-cells" class="md-nav__link">
+    9.  Spreadsheet: for finding values in tables, cell ranges, and cells;
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-argument-name-number" class="md-nav__link">
+    1.  Argument name: Number
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-argument-name-mode" class="md-nav__link">
+    2.  Argument name: Mode
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-pivot-tables" class="md-nav__link">
+    2.  Pivot Tables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-seeking-a-goal" class="md-nav__link">
+    3.  Seeking a Goal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-linear-and-nonlinear-solving" class="md-nav__link">
+    4.  Linear and Nonlinear Solving
+  </a>
+  
+    <nav class="md-nav" aria-label="4.  Linear and Nonlinear Solving">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-a-linear-optimization-problem" class="md-nav__link">
+    4.1.  A Linear Optimization Problem
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-another-linear-problem-using-sco" class="md-nav__link">
+    4.2.  Another Linear Problem (using SCO)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-a-nonlinear-problem-using-deps-and-sco" class="md-nav__link">
+    4.3.  A Nonlinear Problem (using DEPS and SCO)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/27-Funcs_Analysis.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-27-functions-and-data-analysis">Chapter 27. Functions and Data Analysis</h1>
+<p>This chapter looks at how to utilize Calc's spreadsheet 
+functions directly from Java, and then examines four of 
+Calc's data analysis features: pivot tables, goal seeking, 
+and linear and nonlinear solving. There are two nonlinear 
+examples, one using the SCO solver, the using employing 
+DEPS. </p>
+<h2 id="1-calling-calc-functions-from-code">1.  Calling Calc Functions from Code</h2>
+<p>Calc comes with an extensive set of functions, which are described in Appendix B of 
+the Calc User Guide, available from https://www.libreoffice.org/get-
+help/documentation/. The information is also online at 
+https://help.libreoffice.org/Calc/Functions_by_Category, organized into 11 categories: </p>
+<h2 id="1-database-for-extracting-information-from-calc-tables-where-the-data-is">1.  Database: for extracting information from Calc tables, where the data is</h2>
+<p>organized into rows. The "Database" name is a little misleading, but the 
+documentation makes the point that Calc database functions have nothing to 
+do with Base databases.  Chapter 13 of the Calc User Guide ("Calc as a 
+Simple Database") explains the distinction in detail. </p>
+<h2 id="2-date-and-time-eg-see-the-eastersunday-function-below">2.  Date and Time; e.g. see the EASTERSUNDAY function below</h2>
+<h2 id="3-financial-for-business-calculations">3.  Financial: for business calculations;</h2>
+<h2 id="4-information-many-of-these-return-boolean-information-about-cells-such-as">4.  Information: many of these return boolean information about cells, such as</h2>
+<p>whether a cell contains text or a formula; </p>
+<h2 id="5-logical-functions-for-boolean-logic">5.  Logical: functions for boolean logic;</h2>
+<h2 id="6-mathematical-trigonometric-hyperbolic-logarithmic-and-summation">6.  Mathematical: trigonometric, hyperbolic, logarithmic, and summation</h2>
+<p>functions; e.g. see ROUND, SIN, and RADIANS below; </p>
+<h2 id="7-array-many-of-these-operations-treat-cell-ranges-like-2d-arrays-eg-see">7.  Array: many of these operations treat cell ranges like 2D arrays; e.g. see</h2>
+<p>TRANSPOSE below; </p>
+<h2 id="8-statistical-for-statistical-and-probability-calculations-eg-see-average-and">8.  Statistical: for statistical and probability calculations; e.g., see AVERAGE and</h2>
+<p>SLOPE below; </p>
+<h2 id="9-spreadsheet-for-finding-values-in-tables-cell-ranges-and-cells">9.  Spreadsheet: for finding values in tables, cell ranges, and cells;</h2>
+<ol>
+<li>Text: string manipulation functions; </li>
+<li>Add-ins: a catch-all category that includes a lot of functions – extra data and 
+time operations, conversion functions between number bases, more statistics, 
+and complex numbers. See IMSUM and ROMAN below for examples. The 
+"Add-ins" documentation starts at https://help.libreoffice.org/Calc/Add-
+in_Functions, and continues in https://help.libreoffice.org/Calc/Add-
+in_Functions,_List_of_Analysis_Functions_Part_One and </li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Calling Calc </p>
+</div>
+<p>Functions from Code; 
+Pivot Tables; Goal Seek; 
+Linear and Nonlinear 
+Solving (using SCO, 
+DEPS) 
+Example folders: "Calc 
+Tests" and "Utils" 
+https://help.libreoffice.org/Calc/Add-
+in_Functions,_List_of_Analysis_Functions_Part_Two. </p>
+<p>A different organization for the functions documentation is used at the OpenOffice 
+site 
+(https://wiki.openoffice.org/wiki/Documentation/How_Tos/Calc:_Functions_listed_b
+y_category), and is probably easy to use when browsing/searching for a suitable 
+function.  </p>
+<p>If you know the name of the function, then a reasonably effective way of finding its 
+documentation is to search for "libreoffice calc function" + the function name. </p>
+<p>The standard way of using these functions is, of course, inside cell formulae. But it's 
+also possible to call them from code via the XFunctionAccess interface. </p>
+<p>XFunctionAccess only contains a single function, callFunction(), but it can be a bit 
+hard to use due to data typing issues. </p>
+<p>Calc.callFun() creates an XFunctionAccess instance, and executes callFunction(): </p>
+<p>// in the Calc class 
+public static Object callFun(String funcName, Object[] args) 
+{ 
+  try { 
+    XFunctionAccess fa =<br />
+          Lo.createInstanceMCF(XFunctionAccess.class, 
+                    "com.sun.star.sheet.FunctionAccess"); 
+    return fa.callFunction(funcName, args); 
+  } 
+  catch(Exception e) 
+  {  System.out.println("Could not invoke \"" + funcName + "\""); <br />
+     return null; 
+  } 
+}  // end of callFun() </p>
+<p>public static Object callFun(String funcName, Object arg) 
+{  return callFun(funcName, new Object[]{arg});  } </p>
+<p>Calc.callFun() is passed the Calc function name and an array of arguments; the 
+function's result is returned as an Object instance. The second version of 
+Calc.callFun() is for calling functions that accept a single argument.  </p>
+<p>Several examples of how to use Calc.callFun() can be found in the FunctionsTest.java 
+example: </p>
+<p>// in FunctionsTest.java 
+public static void main(String[] argus) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); </p>
+<p>// round a double 
+  System.out.println("ROUND result for 1.999 is: " +<br />
+                     Calc.callFun("ROUND", 1.999) + "\n"); </p>
+<pre><code> :  // more examples, explained below
+</code></pre>
+<p>Lo.closeOffice(); 
+}  // end of main() </p>
+<p>The value passed to Calc.callFun() in the code above is an ordinary double, but Java 
+autoboxes it to become a Double object. This is passed to the second version of 
+Calc.callFun() which handles a single Object input argument. </p>
+<p>The printed result is: 
+ROUND result for 1.999 is: 2.0 
+Java can be used to convert the returned Object value. For example, the value returned 
+by ROUND can be cast to a double: 
+double res = (Double) Calc.callFun("ROUND", 1.999); 
+The Object is cast to Double, and then Java unboxes the object, converting it to a 
+double. </p>
+<p>Function calls can be nested, as in: </p>
+<p>// in FunctionsTest.java 
+System.out.printf("SIN result for 30 degrees is: %.3f\n\n",<br />
+         Calc.callFun("SIN",  Calc.callFun("RADIANS", 30))); </p>
+<p>The call to RADIANS converts 30 degrees to radians. The returned Object is accepted 
+by the SIN function as input. The output is: 
+SIN result for 30 degrees is: 0.500 
+Many functions require more than one argument. In that case, the sequence of 
+arguments must be stored in an Object[] array before passing them to Calc.callFun(). </p>
+<p>For instance: </p>
+<p>// in FunctionsTest.java 
+Object[] args = new Object[]{1, 2, 3, 4, 5};   // five args 
+double avg = (Double) Calc.callFun("AVERAGE", args); 
+System.out.println("Average of the numbers is: " +avg + "\n"); </p>
+<p>This reports the average to be 3.0. </p>
+<p>When the Calc function documentation talks about an "array" or "matrix" argument, 
+then the data needs to be packaged as a 2D array. For example, the SLOPE function 
+takes two arrays of x and y coordinates as input, and calculates the slope of the line 
+through them. These two 1D arrays must be passed to Calc.callFun() as two 2D 
+arrays: </p>
+<p>// in FunctionsTest.java 
+double[][] xData = {{1.0, 2.0, 3.0}};  <br />
+    // a 2D array/matrix holding one row of data 
+double[][] yData = {{3.0, 6.0, 9.0}}; </p>
+<p>args = new Object[]{yData, xData}; 
+double slope = (Double) Calc.callFun("SLOPE", args); 
+System.out.println("SLOPE of the line: " + slope + "\n"); </p>
+<p>The args array has to be built in stages so that the two arrays can be treated as two 
+Objects. The slope result is 3.0, as expected. </p>
+<p>The functions in the "Array" category almost all use 2D arrays as arguments. For 
+example, the TRANSPOSE function is called like so: </p>
+<p>// in FunctionsTest.java 
+// transpose a matrix 
+double[][] arr = {{1, 2, 3},{4, 5, 6}}; 
+args = new Object[]{arr}; 
+Object[][] transMat = (Object[][]) Calc.callFun("TRANSPOSE", args); 
+Calc.printArray(transMat); </p>
+<p>The input array is in row-order, so the array arr created above has two rows and three 
+columns. The printed transpose is: </p>
+<p>Row x Column size: 3 x 2 
+  1.0  4.0 
+  2.0  5.0 
+  3.0  6.0 </p>
+<p>Note that the result of this call to Calc.callFun() was not a double but a transposed 2D 
+array, which is why the Object result was cast to Object[][]. Unfortunately, Java's 
+typing does not allow the result to be cast to double[][]. The casting can be done using 
+Calc.convertToDoubles(): 
+double[][] trans = Calc.convertToDoubles(transMat); 
+The TRANSPOSE function only takes a single argument, so it's possible to use the 
+second version of Calc.callFun() which takes a single Object input argument. A slight 
+problem is caused by Java's type system; it's necessary to explicitly cast the double[][] 
+array to Object in the call: </p>
+<p>// in FunctionsTest.java 
+Object[][] transMat =<br />
+   (Object[][]) Calc.callFun("TRANSPOSE", (Object)arr); </p>
+<p>If arr is not cast then Java will issue a runtime error. </p>
+<p>There are several functions for manipulating imaginary numbers, which must be 
+written in the form of strings. For example, IMSUM sums a series of complex 
+numbers like so: </p>
+<p>// in FunctionsTest.java 
+// sum two imaginary numbers: "13+4j" + "5+3j" returns 18+7j. </p>
+<p>String[][] nums = {{"13+4j"},{"5+3j"}}; 
+args = new Object[]{nums}; 
+String sum = (String) Calc.callFun("IMSUM", args); 
+System.out.println("13+4j + 5+3j: "+ sum + "\n"); </p>
+<p>Since IMSUM expects a series of complex numbers, Calc.callFun() must be passed a 
+2D array. Each row contains a single string argument representing a complex number. </p>
+<p>The summed complex number is returned as the string "18+7j". This means that the 
+Calc.callFun() result is cast to String in this case. </p>
+<p>The IMSUM function is only processing a single argument, and so the single 
+argument version of Calc.callFun() can be called. As with the TRANSPOSE function 
+example, the String[][] array must be expicitly cast to an Object: 
+String sum = (String) Calc.callFun("IMSUM", (Object)nums); </p>
+<p>Functions Help 
+If you can't access the Calc documentation on functions, then Calc.java contains two 
+help functions: Calc.getFunctionNames() and Calc.printFunctionInfo(). The former 
+prints a very long list of function names: </p>
+<p>// in FunctionsTest.java 
+System.out.println("Function names"); 
+Lo.printNames( Calc.getFunctionNames(), 6); </p>
+<p>The output begins like so: </p>
+<p>Function names 
+No. of names: 483 
+  "ABS"  "ACCRINT"  "ACCRINTM"  "ACOS"  "ACOSH"  "ACOT" 
+  "ACOTH"  "ADDRESS"  "AGGREGATE"  "AMORDEGRC"  "AMORLINC"  "AND" 
+  "ARABIC"  "AREAS"  "ASC"  "ASIN"  "ASINH"  "ATAN" 
+  "ATAN2"  "ATANH"  "AVEDEV"  "AVERAGE"  "AVERAGEA"  "AVERAGEIF" 
+  "AVERAGEIFS"  "B"  "BAHTTEXT"  "BASE"  "BESSELI"  "BESSELJ" 
+  "BESSELK"  "BESSELY"  "BETA.DIST"  "BETA.INV"  "BETADIST"  "BETAINV" 
+  "BIN2DEC"  "BIN2HEX"  "BIN2OCT"  "BINOM.DIST"  "BINOM.INV"  "BINOMDIST" 
+    : </p>
+<p>If you know a function name, then Calc.printFunctionInfo() will print details about it. </p>
+<p>For instance, information about the ROMAN function is obtained like so: 
+Calc.printFunctionInfo("ROMAN"); 
+The output is: </p>
+<p>Properties for "ROMAN": 
+  Id: 383 
+  Category: 10 
+  Name: ROMAN 
+  Description: Converts a number to a Roman numeral. </p>
+<p>Arguments: [Lcom.sun.star.sheet.FunctionArgument;@b3fc9e </p>
+<p>No. of arguments: 2 </p>
+<h2 id="1-argument-name-number">1.  Argument name: Number</h2>
+<p>Description: "The number to be converted to a Roman numeral must 
+be in the 0 - 3999 range." 
+   Is optional?: false </p>
+<h2 id="2-argument-name-mode">2.  Argument name: Mode</h2>
+<p>Description: "The more this value increases, the more the Roman 
+numeral is simplified. The value must be in the 0 - 4 range." 
+   Is optional?: true </p>
+<p>This output states that ROMAN can be called with one or two arguments, the first 
+being a decimal, and the second an optional argument for the amount of 
+'simplification' carried out on the Roman numeral. For example, here are two ways to 
+convert 999 into Roman form: </p>
+<p>// in FunctionsTest.java 
+String roman = (String) Calc.callFun("ROMAN", 999); </p>
+<p>args = new Object[]{999, 4};   // use max simplification 
+String roman4 = (String) Calc.callFun("ROMAN", args); </p>
+<p>System.out.println("999 in Roman numerals: "+<br />
+                             roman + " or " + roman4 + "\n"); </p>
+<p>The output is: 
+999 in Roman numerals: CMXCIX or IM 
+Calc.getFunctionNames() and Calc.printFunctionInfo() utilize the 
+XFunctionDescriptions interface for retrieving an indexed container of function 
+descriptions. Each function description is an array of PropertyValue objects, which 
+contain a "Name" property. Calc.findFunction() uses this organization to return the 
+PropertyValue[] array for a given function name: </p>
+<p>// in the Calc class 
+public static PropertyValue[] findFunction(String funcNm) 
+// get the function description properties for funcNm 
+{ 
+  // get all the function descriptions 
+  XFunctionDescriptions funcsDesc =<br />
+    Lo.createInstanceMCF(XFunctionDescriptions.class, 
+               "com.sun.star.sheet.FunctionDescriptions"); 
+  if (funcsDesc == null) { 
+    System.out.println("No function descriptions were found"); 
+    return null; 
+  } </p>
+<p>// find the description whose fn name == funcNm 
+  int numFuncs = funcsDesc.getCount(); 
+  for (int i = 0; i &lt; numFuncs; i++) { 
+    try { 
+      PropertyValue[] props =<br />
+             (PropertyValue[]) funcsDesc.getByIndex(i); 
+      for (int p = 0; p &lt; props.length; p++) { 
+        if ((props[p].Name.equals("Name")) &amp;&amp;<br />
+            (props[p].Value.equals(funcNm))) 
+          return props; 
+      } 
+    } 
+    catch(Exception e) {} 
+  } 
+  System.out.println("Function \"" + funcNm + "\" not found"); 
+  return null; 
+}  // end of findFunction() </p>
+<p>The PropertyValue[] array contains five properties: "Name", "Description", "Id", 
+"Category", and "Arguments". The "Arguments" property stores an array of 
+FunctionArgument objects which contain information about each argument's name, 
+description, and whether it is optional. This information is printed by 
+Calc.printFunArguments(): </p>
+<p>// in the Calc class 
+public static void printFunArguments(PropertyValue[] propVals) 
+// print the function argument info in propVals 
+{ 
+  // get the FunctionArgument property 
+  FunctionArgument[] fargs =  (FunctionArgument[])<br />
+                    Props.getValue("Arguments", propVals); 
+  if (fargs == null) { 
+    System.out.println("No arguments found"); 
+    return; 
+  } </p>
+<p>// print all the info 
+  System.out.println("No. of arguments: " + fargs.length); 
+  for (int i=0; i &lt; fargs.length; i++) 
+    printFunArgument(i, fargs[i]); 
+}  // end of printFunArguments() </p>
+<p>public static void printFunArgument(int i, FunctionArgument fa) 
+{ 
+  System.out.println((i+1) + ". Argument name: " + fa.Name); 
+  System.out.println("   Description: \"" + fa.Description + "\""); 
+  System.out.println("   Is optional?: " + fa.IsOptional + "\n"); </p>
+<p>}  // end of printFunArgument() </p>
+<p>Calc.printFunctionInfo() calls Calc.findFunction() and Calc.printFunArguments() to 
+report on a complete function: </p>
+<p>// in the Calc class 
+public static void printFunctionInfo(String funcName) 
+{ 
+  PropertyValue[] propVals = findFunction(funcName); 
+  Props.showProps(funcName, propVals); 
+  printFunArguments(propVals); 
+  System.out.println(); 
+}  // end of printFunctionInfo() </p>
+<h2 id="2-pivot-tables">2.  Pivot Tables</h2>
+<p>Pivot tables are explained in detail in chapter 8 of the Calc User's Guide. They allow a 
+user to view a spreadsheet consisting of columns of data in a variety of table formats, 
+thereby highlighting the relationships between the columns. For example, Figure 1 
+shows the small spreadsheet in my "pivottable1.ods". </p>
+<p><img alt="" src="images/27-Funcs_Analysis-1.png" /></p>
+<p>Figure 1. The "pivottable1.ods" Spreadsheet. </p>
+<p>The spreadsheet uses a database-like organization, with each row acting as a record, 
+and each column is a different type/kind of information. This formatting style is 
+described in chapter 13 "Calc as a Simple Database" in the User Guide. </p>
+<p>The drawback of this kind of data structuring is that it can be difficult to see the<br />
+underlying relationships between the columns; this is where pivot tables can help. </p>
+<p>For example, a pivot table can be generated showing how the "Category" column 
+affects "Revenue (see Figure 2). </p>
+<p><img alt="" src="images/27-Funcs_Analysis-2.png" /></p>
+<p>Figure 2. "Category" Affecting "Revenue". </p>
+<p>Note that the pivot table shows the revenue sum in column B, since several revenue 
+entries in the original sheet are covered by each category. </p>
+<p>Alternatively, it's possible to see how "Period" and "Category" interact to affect the 
+revenue, as in Figure 3. </p>
+<p><img alt="" src="images/27-Funcs_Analysis-3.png" /></p>
+<p>Figure 3. Period and Category Affect on "Revenue". </p>
+<p>The ordering of the "Period" values can be changed by clicking on the arrow next to 
+the "Period" text in cell "A2", then selecting a custom sort (e.g. Jan, Feb, Mar, etc.). </p>
+<p>The "Total Result" row and column are added automatically, and can be changed 
+easily. It's also possible to change the way that the revenue data is grouped (e.g. it can 
+be averaged instead of being summed). </p>
+<p>Pivot tables are straightforward to create and modify via Calc's GUI, starting from the 
+Data  Pivot Table  Create menu item. Calc automatically selects all the cells used 
+in the database-like table like the one in Figure 1, and displays the layout dialog 
+shown in Figure 4. </p>
+<p><img alt="" src="images/27-Funcs_Analysis-4.png" /></p>
+<p>Figure 4. The Pivot Table Layout GUI. </p>
+<p>The right-most "Available Fields" list contains the names of the columns in the sheet, 
+while the other four fields (Page, Column, Row, and Data) are empty. Figure 4 shows 
+a bug in the current version of the Pivot Table GUI – the addition of a "Data" name in 
+the "Column" fields list. This name cannot be removed from the layout dialog, but can 
+be ignored since it doesn't appear in the rendered pivot table. </p>
+<p>The pivot table layout in Figure 5 is easily created by dragging the "Period" name to 
+the Row fields list, "Category to the Column fields list, and "Revenue" to the Data 
+fields list, where it's converted into "Sum – Revenue". </p>
+<p><img alt="" src="images/27-Funcs_Analysis-5.png" /></p>
+<p>Figure 5. The Layout for the Pivot Table in Figure 3. </p>
+<p>Pivot Tables in the API 
+The Calc API refers to pivot tables by their old Office name, DataPilot tables. The 
+relationships between the DataPilotservices and interfaces are shown in Figure 6. </p>
+<p><img alt="" src="images/27-Funcs_Analysis-6.png" /></p>
+<p>Figure 6. The DataPilot Services and Interfaces. </p>
+<p>Figure 6 is best understood by reading downwards: a DataPilotTables service (note 
+the "s") is a sequence of DataPilotTable services. Each table contains a 
+DataPilotFields service (note the "s") which manages a sequence of DataPilotField 
+objects.   </p>
+<p>Each DataPilotField is a named property set, representing a column in the source 
+sheet. For example, in the following code, four pilot fields will be created for the 
+"pivottable1.ods" sheet shown in Figure 1, one each for the columns named Year, 
+Period, Category, and Revenue. </p>
+<p>Figure 6 mentions one of the more important services – DataPilotDescriptor, which 
+does the hard work of converting sheet columns into pilot fields. DataPilotDescriptor 
+is also responsible for assigning each pilot field to one of the Page, Column, Row, or 
+Data field lists. </p>
+<p>The PivotSheet1.java example illustrates how to create the pivot table shown in </p>
+<p><img alt="" src="images/27-Funcs_Analysis-3.png" /></p>
+<p>Figure 3. The program begins by opening the "pivottable1.ods" file (Figure 1): </p>
+<p>// in PivotSheet1.java 
+public static void main(String args[]) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  XSpreadsheetDocument doc =<br />
+               Calc.openDoc("pivottable1.ods", loader); 
+  if (doc == null) { 
+    System.out.println("Could not open pivottable1.ods"); 
+    Lo.closeOffice(); 
+    return; 
+  } 
+  GUI.setVisible(doc, true); </p>
+<p>XSpreadsheet sheet = Calc.getSheet(doc, 0); 
+  XSpreadsheet dpSheet =<br />
+              Calc.insertSheet(doc, "Pivot Table", (short)1); </p>
+<p>createPivotTable(sheet, dpSheet); 
+  Calc.setActiveSheet(doc, dpSheet); </p>
+<p>Lo.saveDoc(doc, "pivotExample1.ods"); 
+  Lo.waitEnter(); 
+  Lo.closeDoc(doc); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+<p>A second sheet (called dpSheet) is created to hold the generated pivot table, and 
+createPivotTable() is called: </p>
+<p>// in PivotSheet1.java 
+private static void createPivotTable( 
+                  XSpreadsheet sheet, XSpreadsheet dpSheet) 
+{ 
+  XCellRange cellRange = Calc.findUsedRange(sheet); 
+         // find the table data on the sheet </p>
+<p>XDataPilotTables dpTables = Calc.getPilotTables(sheet); </p>
+<p>/<em> create a new pilot descriptor which will later be added 
+     as a new pilot table to the pilot tables </em>/ 
+  XDataPilotDescriptor dpDesc =<br />
+                   dpTables.createDataPilotDescriptor(); </p>
+<p>/<em> add the sheet's column data to the descriptor; 
+     this causes the creation of pilot fields </em>/ 
+  dpDesc.setSourceRange( Calc.getAddress(cellRange) ); </p>
+<p>/<em> assign "Available" (Hidden) pilot fields to the<br />
+     Page, Column, Row, and Data fields 
+  </em>/ 
+  XIndexAccess fields = dpDesc.getHiddenFields(); 
+  XPropertySet props; </p>
+<p>// set Page field; not used here 
+  //props = Lo.findContainerProps(fields, "Year"); 
+  //Props.setProperty(props, "Orientation",<br />
+  //                            DataPilotFieldOrientation.PAGE); </p>
+<p>// set Column field 
+  props = Lo.findContainerProps(fields, "Category"); 
+  Props.setProperty(props, "Orientation",<br />
+                              DataPilotFieldOrientation.COLUMN); </p>
+<p>// set Row field 
+  props = Lo.findContainerProps(fields, "Period"); 
+  Props.setProperty(props, "Orientation",<br />
+                              DataPilotFieldOrientation.ROW); </p>
+<p>// set Data field, calculating the sum 
+  props = Lo.findContainerProps(fields, "Revenue"); 
+  Props.setProperty(props, "Orientation",<br />
+                              DataPilotFieldOrientation.DATA); 
+  Props.setProperty(props, "Function", GeneralFunction.SUM); </p>
+<p>// add new pivot table to other tables and to sheet at A1 
+  CellAddress destAddr = Calc.getCellAddress(dpSheet, "A1"); 
+  dpTables.insertNewByName("PivotTableExample", destAddr, dpDesc); 
+}  // end of createPivotTable() </p>
+<p>All the sheet's data is selected by calling Calc.findUsedRange(). Then 
+Calc.getPilotTables() obtains the DataPilotTables service: </p>
+<p>// in the Calc class 
+public static XDataPilotTables getPilotTables(XSpreadsheet sheet) 
+{ 
+  XDataPilotTablesSupplier dpSupp = 
+           Lo.qi(XDataPilotTablesSupplier.class, sheet); 
+  XDataPilotTables dpTables = dpSupp.getDataPilotTables(); 
+  if (dpTables == null) 
+    System.out.println("No data pilot tables found"); 
+  return dpTables; 
+}  // end of getPilotTables() </p>
+<p>Calc.getPilotTables() utilizes the XDataPilotTablesSupplier interface of the 
+Spreadsheet service to obtain the DataPilotTables service.  </p>
+<p>PivotSheet1.java's task is to create a new pilot table, which it does indirectly by 
+creating a new pilot description. After this pilot description has been initialized, it will 
+be added to the DataPilotTables service as a new pilot table 
+An empty pilot description is created by calling 
+XDataPilotTables.createDataPilotDescriptor(): </p>
+<p>// in createPivotTable in PivotTable.java 
+XDataPilotTables dpTables = Calc.getPilotTables(sheet); 
+XDataPilotDescriptor dpDesc = dpTables.createDataPilotDescriptor(); </p>
+<p>The new XDataPilotDescriptor reference (dpDesc) creates a pilot table by carrying 
+out two tasks – loading the sheet data into the pilot table, and assigning the resulting 
+pilot fields to the Page, Column, Row, and Data fields in the descriptor. This latter 
+task is similar to what the Calc user does in the GUI's layout window in Figure 5. </p>
+<p>The descriptor is assigned a source range that spans all the data: 
+dpDesc.setSourceRange( Calc.getAddress(cellRange) ); 
+It converts each detected column into a DataPilotField service, which is a named 
+property set; the name is the column heading. </p>
+<p>These pilot fields are conceptually stored in the "Available Fields" list shown in the 
+layout window in Figure 5, and are retrieved by calling 
+XDataPilotDescriptor.getHiddenFields(): 
+XIndexAccess fields = dpDesc.getHiddenFields(); 
+It's useful to list the names of these pilot fields: </p>
+<p>// in createPivotTable() in PivotSheet1.java 
+String[] fieldNames = Lo.getContainerNames(fields); 
+System.out.println("Field Names (" + fieldNames.length + "):"); 
+for(String name : fieldNames) 
+  System.out.println("  " + name); </p>
+<p>The output for the spreadsheet in Figure 1 is: </p>
+<p>Field Names (5): 
+  Year 
+  Period 
+  Category 
+  Revenue 
+  Data </p>
+<p>This list includes the strange "Data" pilot field which you may remember also 
+cropped up in the layout window in Figure 4.  </p>
+<p>The second task is to assign selected pilot fields to the Page, Column, Row, and Data 
+field lists. The standard way of doing this is illustrated below for the case of assigning 
+the "Category" pilot field to the Column field list: </p>
+<p>// in createPivotTable() in PivotSheet1.java 
+XPropertySet props = Lo.findContainerProps(fields, "Category"); 
+Props.setProperty(props, "Orientation",<br />
+                            DataPilotFieldOrientation.COLUMN); </p>
+<p>The fields variable refers to all the pilot fields as an indexed container. </p>
+<p>Lo.findContainerProps() searches through that container looking for the specified 
+field name.  </p>
+<p>// in the Lo class 
+public static XPropertySet findContainerProps( 
+                                     XIndexAccess con, String nm) 
+{ if (con == null) { 
+    System.out.println("Container is null"); 
+    return null; 
+  } </p>
+<p>for (int i=0; i &lt; con.getCount(); i++) { 
+    try { 
+      Object oElem = con.getByIndex(i); 
+      XNamed named = Lo.qi(XNamed.class, oElem); 
+      if (named.getName().equals(nm)) { 
+        return (XPropertySet) Lo.qi(XPropertySet.class, oElem); 
+      } 
+    } 
+    catch(Exception e) 
+    {  System.out.println("Could not access element " + i);  } 
+  } </p>
+<p>System.out.println("Could not find a \"" + nm + "\" prop set"); 
+  return null; 
+}  // end of findContainerProps() </p>
+<p>The returned property set is an instance of the DataPilotField service, so a complete 
+list of all the properties can be found in its documentation (use lodoc 
+datapilotfield). </p>
+<p>The important property for our needs is "Orientation" which can be assigned a 
+DataPilotFieldOrientation constant, whose values are HIDDEN, COLUMN, ROW, 
+PAGE, and DATA, representing the field lists in the layout window. </p>
+<p>Once the required pilot fields have been assigned to field lists, the new pivot table is 
+added to the other tables and to the sheet by calling 
+XDataPilotTables.insertNewByName(). It takes three arguments: a unique name for 
+the table, the cell address where the table will be drawn, and the completed pilot 
+descriptor: </p>
+<p>// in createPivotTable() in PivotSheet1.java 
+// add new pivot table to other tables and to sheet at A1 
+CellAddress destAddr = Calc.getCellAddress(dpSheet, "A1"); 
+dpTables.insertNewByName("PivotTableExample", destAddr, dpDesc); </p>
+<p>This code should mark the end of the createPivotTable() method, but I found that 
+more complex pivot tables would often not be correctly drawn. The cells in the Data 
+field would be left containing the word "#VALUE!". This problem can be fixed by 
+explicitly requesting a refresh of the pivot table, using: </p>
+<p>// in createPivotTable() in PivotSheet1.java 
+// access pilot tables 
+XDataPilotTables dpTables2 = Calc.getPilotTables(dpSheet); </p>
+<p>// find new table by name 
+XDataPilotTable dpTable =<br />
+           Calc.getPilotTable(dpTables2, "PivotTableExample"); </p>
+<p>if (dpTable != null) 
+  dpTable.refresh();   // update the table entries </p>
+<p>Calc.getPilotTable() searches XDataPilotTables, which is a named container of 
+XDataPilotTable objects. </p>
+<p>Oddly enough, it's not enough to call Calc.getPilotTable() on the current 
+XDataPilotTables reference (called dpTables in createPivotTable()), since the new 
+pivot table isn't found. </p>
+<p>My "Calc Tests" folder contains two more pivot table examples, called 
+PivotSheet2.java and PivotTable.java. PivotSheet2.java creates a more complex pivot 
+table after reading in the spreadsheet stored in pivottable2.ods. PivotTable.java 
+creates its own spreadsheet before generating a table. Both examples only use the 
+methods in PivotSheet1.java, so won't be described here. </p>
+<h2 id="3-seeking-a-goal">3.  Seeking a Goal</h2>
+<p>The Tools  Goal Seek menu item in Calc allows a formula to be executed 
+'backwards'. Instead of supplying the input to a formula, and obtaining the formula's 
+result, the result is given and "goal seek" works backwards through the formula to 
+calculate the value that produces the result. </p>
+<p>The GoalSeek.java example contains several uses of "goal seeking". It begins like so: </p>
+<p>// in GoalSeek.java 
+public static void main(String args[]) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  XSpreadsheetDocument doc = Calc.createDoc(loader); 
+  if (doc == null) { 
+    System.out.println("Document creation failed"); 
+    Lo.closeOffice(); 
+    return; 
+  } 
+  XSpreadsheet sheet = Calc.getSheet(doc, 0); 
+  XGoalSeek gs = Lo.qi(XGoalSeek.class, doc); </p>
+<p>Calc.setVal(sheet, "C1", 9);    // x-variable and starting value<br />
+  Calc.setVal(sheet, "C2", "=SQRT(C1)");   // formula  </p>
+<p>double x = Calc.goalSeek(gs, sheet, "C1", "C2", 4); 
+                                 // x-var, formula, result 
+  System.out.println("x == " + x + " when sqrt(x) == 4\n");<br />
+                         // x is 16 </p>
+<pre><code>   :  // more goal seek examples
+</code></pre>
+<p>Lo.closeDoc(doc); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+<p>Goal seek functionality is accessed via the XGoalSeek interface of the document. </p>
+<p>Also, a spreadsheet is needed to hold an initial guess for the input value being 
+calculated  (which I'll call the x-variable), and for the formula. In the example above, 
+the x-variable is stored in cell "C1" with an initial value of 9, and its formula (sqrt(x)) 
+in cell "C2". </p>
+<p>Calc.goalSeek() is passed the cell names of the x-variable and formula, and the 
+formula's result, and  returns the x-value that produces that result. In the example 
+above, Calc.goalSeek() returns 16, because that's the input to sqrt() that results in 4. </p>
+<p>Calc.goalSeek() is defined as: </p>
+<p>// in the Calc class 
+public static double goalSeek(XGoalSeek gs, XSpreadsheet sheet, 
+          String xCellName, String formulaCellName, double result) 
+// find x input to formula which produces result; 
+// use value in xCellName as a starting guess 
+{ 
+  CellAddress xPos = Calc.getCellAddress(sheet, xCellName); 
+  CellAddress formulaPos =<br />
+                Calc.getCellAddress(sheet, formulaCellName); </p>
+<p>GoalResult goalResult = gs.seekGoal(formulaPos, xPos, ""+result); 
+  if (goalResult.Divergence &gt;= 0.1) 
+    System.out.println("NO result; divergence: " +<br />
+                               goalResult.Divergence); 
+  return goalResult.Result; 
+}  // end of goalSeek() </p>
+<p>The heart of Calc.goalSeek() is a call to XGoalSeek.seekGoal() which requires three 
+arguments: the address of the x-variable cell, the address of the formula cell, and a 
+string representing the formula's result. The call returns a GoalResult object that 
+contains two fields: Result holds the calculated x-value, and Divergence measures the 
+accuracy of the x-value. If the goal seek has succeeded, then the Divergence value 
+should be very close to 0; if it failed to find an x-value then Divergence may be very 
+large since it measures the amount the x-value changed in the last iteration of the 
+"goal seek" algorithm. </p>
+<p>I wasn't able to find out what algorithm "goal seek" employs, but it's most likely a 
+root-finding methods, such as Newton–Raphson or the secant method. These may fail 
+for a poor choice of starting x-value or if the formula function has a strange derivative 
+(an odd curvature). This can be demonstrated by asking "goal seek" to look for an 
+impossible x-value, such as the input that makes sqrt(x) == -4: </p>
+<p>// in GoalSeek.java 
+x = Calc.goalSeek(gs, sheet, "C1", "C2", -4); 
+System.out.println("x == " + x + " when sqrt(x) == -4\n"); </p>
+<p>There's no need to change the starting value in "C1" or the formula in "C2". The 
+output is: </p>
+<p>NO result; divergence: 1.7976931348623157E308 
+x == 3.2462079627414548E-6 when sqrt(x) == -4 </p>
+<p>"Goal seek" can be useful when examining complex equations, such as: </p>
+<p>What's the x-value that produces y == 2? 
+Actually, this equation is simple:        is factorized into           , and the 
+common       factor removed from the fraction; the equation becomes: </p>
+<p>So when y == 2, x will be 1. But let's do things the number-crunching way, and 
+supply the original formula to "goal seek": </p>
+<p>// in GoalSeek.java 
+Calc.setVal(sheet, "D1", 0.8);    // x-variable and starting value 
+Calc.setVal(sheet, "D2", "=(D1^2 - 1)/(D1 - 1)");   // formula<br />
+x = Calc.goalSeek(gs, sheet, "D1", "D2", 2); 
+System.out.println("x == " + x + " when x+1 == 2\n"); </p>
+<p>The printed x-value is: 1.0000000000000053. </p>
+<p>If a formula requires numerical values, they can be supplied as cell references, which 
+allows them to be adjusted easily. The next "goal seek" example employs an annual 
+interest formula, I = x<em>n</em>i, where I is the annual interest, x the capital, n the number 
+of years, and i the interest rate. As usual, the x-variable has a starting value in a cell, 
+but n and i are also represented by cells so that they can be changed. The code is: </p>
+<p>// in GoalSeek.java 
+Calc.setVal(sheet, "B1", 100000);  // x-variable; possible value 
+Calc.setVal(sheet, "B2", 1);       // n, no. of years 
+Calc.setVal(sheet, "B3", 0.075);   // i, interest rate (7.5%) </p>
+<p>Calc.setVal(sheet, "B4", "=B1<em>B2</em>B3");   // formula<br />
+x= Calc.goalSeek(gs, sheet, "B1", "B4", 15000); 
+System.out.println("x == " + x + " when x<em>" + 
+      Calc.getVal(sheet, "B2") + "</em>" + Calc.getVal(sheet, "B3") + 
+      "  == 15000\n");  // x is 200,000 </p>
+<p>"Goal seek" is being asked to determine the x-value when the annual return from the 
+formula is 20000. The values in the cells "B2" and "B3" are employed, and the printed 
+answer is: 
+x == 200000.0 when x<em>1.0</em>0.075  == 15000 </p>
+<h2 id="4-linear-and-nonlinear-solving">4.  Linear and Nonlinear Solving</h2>
+<p>Calc supports both linear and nonlinear programming via its Tools  Solver menu 
+item. The name "linear programming" dates from just after World War II, and doesn't 
+mean programming in the modern sense; in fact, it's probably better to use its other 
+common name, "linear optimization".  </p>
+<p>Linear optimization starts with a series of linear equations involving inequalities, and 
+finds the best numerical values that satisfy the equations according to a 'profit' 
+equation that must be maximized (or minimized). Fortunately, this has a very nice 
+graphical representation when the equations only involve two unknowns: the 
+equations cam be drawn as lines crossing the x- and y- axes, and the best values will 
+be one of the points where the lines intersect. </p>
+<p>As you might expect, nonlinear programming (optimization) is a generalization of the 
+linear case where some of the equations are non-linear (e.g. perhaps they involve 
+polynomials, logarithmic, or trigonometric functions). </p>
+<p>A gentle introduction to linear optimization and its graphing can be found at 
+http://www.purplemath.com/modules/linprog.htm, or you can start at the Wikipedia 
+page, https://en.wikipedia.org/wiki/Linear_programming. </p>
+<p>The Calc documentation on linear and nonlinear solving is rather minimal. There's no 
+mention of it in the Calc Developer's Guide, and just a brief section on its GUI at the 
+end of chapter 9 ("Data Analysis") of the Calc User guide.  </p>
+<p>The current version of LibreOffice (v. 5) offers four optimization tools (called 
+solvers) – two linear optimizers called "LibreOffice Linear Solver" and "LibreOffice 
+CoinMP Linear Solver", and two nonlinear ones called "DEPS Evolutionary 
+Algorithm" and "SCO Evolutionary Algorithm". The easiest way of checking the 
+current solver situation in your version of Office is to look at Calc's Solver dialog 
+window (by clicking on the Tools  Solver menu item), and click on the "Options" 
+button. The options dialog window lists all the installed solvers, and their numerous 
+parameters, as in Figure 8. </p>
+<p><img alt="" src="images/27-Funcs_Analysis-8.png" /></p>
+<p>Figure 8. The LibreOffice Solvers and their Parameters. </p>
+<p>Another way of getting a list of the installed solvers, is to call Calc.listSolvers(), 
+which is demonstrated in the first example given below. </p>
+<p>The two linear solvers are implemented as DLLs, located in the <OFFICE>\program 
+folder as lpsolve55.dll and CoinMP.dll. The source code for these libraries is online, 
+at https://docs.libreoffice.org/sccomp/html/files.html, with the code (and graphs of the 
+code) accessible via the "Files" tab. The file names are LpsolveSolver.cxx and 
+CoinMPSolver.cxx. </p>
+<p>The lpsolve55.dll filename strongly suggests that Office's basic linear solver is 
+lp_solve 5.5, which originates online at http://lpsolve.sourceforge.net/. That site has 
+extensive documentation, including a great introduction to linear optimization. The 
+first programming example below comes from one of the examples in its 
+documentation. One interesting possibility for the lpsolve library is that it can be 
+called directly from Java without the need for Calc. The necessary steps are described 
+on the "Using lp_solve 5.5 in Java programs" page for lp_solve 5.5 at 
+http://lpsolve.sourceforge.net/. The relevant download is lp_solve_5.5.2.0_java.zip 
+from http://sourceforge.net/projects/lpsolve/files/lpsolve/5.5.2.0/. </p>
+<p>Office's other linear optimizer, the CoinMP solver, comes from the COIN-OR 
+(Computational Infrastructure for Operations Research) open-source project which 
+started at IBM research (http://www.coin-or.org/). According to http://www.coin-
+or.org/projects/CoinMP.xml, CoinMP implements most of the functionality of three 
+other COIN-OR projects, called CLP (Coin LP), CBC (Coin Branch-and-Cut), and 
+CGL (Cut Generation Library). The CLP and CBC solvers are documented at 
+http://www.coin-or.org/projects/Clp.xml and http://www.coin-
+or.org/projects/Cbc.xml, and come with large user guides, at http://www.coin-
+or.org/Clp/userguide/ and http://www.coin-or.org/Cbc/. The collection of cut 
+generators in the CGL library is used to speed up the execution of CLP and CBC (see 
+http://www.coin-or.org/projects/Cgl.xml). </p>
+<p>A good overview of COIN-OR can be found in a series of slides by Matthew 
+Saltzman at http://dimacs.rutgers.edu/Workshops/COIN/slides/saltzman.pdf. There's 
+also a Wikipedia page about COIN-OR. </p>
+<p>The two nonlinear solvers are known as DEPS and SCO for short, and are explained 
+in the OpenOffice wiki at https://wiki.openoffice.org/wiki/NLPSolver, along with 
+descriptions of their extensive (and complicated) parameters. They're implemented as 
+JAR files, located in <OFFICE>\share\extensions\nlpsolver as nlpsolver.jar and 
+EvolutionarySolver.jar. Two of the examples below use these solvers. </p>
+<h3 id="41-a-linear-optimization-problem">4.1.  A Linear Optimization Problem</h3>
+<p>The LinearSolverTest.java example shows how to use the basic linear solver, and also 
+CoinMP. It implements the following linear optimization problem, which comes from 
+http://lpsolve.sourceforge.net/5.1/formulate.htm. There are three constraint 
+inequalities: 
+120x + 210y ≤ 15000 
+110x + 30y ≤ 4000 
+x + y ≤ 75 
+The 'profit' expression to be maximized is: 
+P = 143x + 60y 
+The maximum P value is 6315.625, when x == 21.875 and y == 53.125. Perhaps the 
+easiest way of calculating this outside of Office is via the  linear optimization tool at 
+http://www.zweigmedia.com/utilities/lpg/index.html?lang=en. Its solution is shown in </p>
+<p><img alt="" src="images/27-Funcs_Analysis-9.png" /></p>
+<p>Figure 9. </p>
+<p><img alt="" src="images/27-Funcs_Analysis-9.png" /></p>
+<p>Figure 9. Solved and Graphed Linear Optimization Problem. </p>
+<p>Aside from giving the answer, the equations are graphed, which shows how the 
+maximum profit is one of the equation's intersection points. </p>
+<p>The main() function for LinearSolverTest.java: </p>
+<p>// in LinearSolverTest.java 
+public static void main(String args[]) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  XSpreadsheetDocument doc = Calc.createDoc(loader); 
+  if (doc == null) { 
+    System.out.println("Document creation failed"); 
+    Lo.closeOffice(); 
+    return; 
+  } 
+  XSpreadsheet sheet = Calc.getSheet(doc, 0); </p>
+<p>Calc.listSolvers(); </p>
+<p>// specify the variable cells 
+  CellAddress xPos = Calc.getCellAddress(sheet, "B1");   // x 
+  CellAddress yPos = Calc.getCellAddress(sheet, "B2");   // y 
+  CellAddress[] vars = new CellAddress[]{ xPos, yPos }; </p>
+<p>// specify profit equation 
+  Calc.setVal(sheet, "B3", "=143<em>B1 + 60</em>B2");  <br />
+                       // P = 143x + 60y, maximize 
+  CellAddress profitEqu = Calc.getCellAddress(sheet, "B3"); </p>
+<p>// set up equation formulae without inequalities 
+  Calc.setVal(sheet, "B4", "=120<em>B1 + 210</em>B2");<br />
+  Calc.setVal(sheet, "B5", "=110<em>B1 + 30</em>B2");<br />
+  Calc.setVal(sheet, "B6", "=B1 + B2");  </p>
+<p>// create the constraints 
+  // constraints are equations and their inequalities 
+  SolverConstraint sc1 =<br />
+      Calc.makeConstraint(sheet, "B4","&lt;=", 15000);<br />
+                           // 120x + 210y &lt;= 15000 
+         // B4 is the cell address that is constrained  </p>
+<p>SolverConstraint sc2 =<br />
+      Calc.makeConstraint(sheet, "B5", "&lt;=", 4000); 
+                           // 110x + 30y &lt;= 4000 </p>
+<p>SolverConstraint sc3 =<br />
+      Calc.makeConstraint(sheet, "B6", "&lt;=", 75); 
+                           // x + y &lt;= 75 </p>
+<p>SolverConstraint[] constraints =<br />
+      new SolverConstraint[]{ sc1, sc2, sc3 }; </p>
+<p>// initialize the linear solver (basic linear or CoinMP) 
+  XSolver solver = Lo.createInstanceMCF(XSolver.class,<br />
+                "com.sun.star.comp.Calc.LpsolveSolver"); 
+             // "com.sun.star.comp.Calc.CoinMPSolver"); </p>
+<p>// System.out.println("Solver: " + solver); 
+  solver.setDocument(doc); 
+  solver.setObjective(profitEqu); 
+  solver.setVariables(vars); 
+  solver.setConstraints(constraints); 
+  solver.setMaximize(true); </p>
+<p>Props.showObjProps("Solver", solver); 
+  Props.setProperty(solver, "NonNegative", true); 
+     // restrict the search to the top-right quadrant of the graph </p>
+<p>// execute the solver; print the result 
+  solver.solve(); 
+  Calc.solverReport(solver); </p>
+<p>Lo.closeDoc(doc); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+<p>The call to Calc.listSolvers() isn't strictly necessary but it provides useful information 
+about the names of the solver services: </p>
+<p>Services offered by the solver: 
+  com.sun.star.comp.Calc.CoinMPSolver 
+  com.sun.star.comp.Calc.LpsolveSolver 
+  com.sun.star.comp.Calc.NLPSolver.DEPSSolverImpl 
+  com.sun.star.comp.Calc.NLPSolver.SCOSolverImpl </p>
+<p>One of these names is needed when calling Lo.createInstanceMCF() to create a solver 
+instance. </p>
+<p>Calc.listSolvers() is implemented as: </p>
+<p>// in the Calc class 
+public static void listSolvers() 
+{<br />
+  System.out.println("Services offered by the solver:"); 
+  String[] nms = Info.getServiceNames("com.sun.star.sheet.Solver"); 
+  if (nms == null) 
+    System.out.println("  none"); 
+  else { 
+    for(String service : nms) 
+      System.out.println("  " + service); 
+    System.out.println(); 
+  } 
+}  // end of listSolvers() </p>
+<p>The real work of listSolvers() is done by calling Info.getServiceNames() which finds 
+all the implementations that support "com.sun.star.sheet.Solver". </p>
+<p>Back in LinearSolverTest.java, the inequality and profit equations are defined as 
+formulae in a sheet, and the variables in the equations are also assigned to cells. </p>
+<p>The two variables in this problem (x and y) are assigned to the cells "B1" and "B2", 
+and the cell addresses are stored in an array for later: </p>
+<p>// in LinearSolverTest.java 
+CellAddress xPos = Calc.getCellAddress(sheet, "B1");   // x 
+CellAddress yPos = Calc.getCellAddress(sheet, "B2");   // y 
+CellAddress[] vars = new CellAddress[]{ xPos, yPos }; </p>
+<p>Next the equations are defined. Their formulae are assigned to cells without their 
+inequality parts: </p>
+<p>// in LinearSolverTest.java 
+// specify profit equation 
+Calc.setVal(sheet, "B3", "=143<em>B1 + 60</em>B2");  <br />
+                     // P = 143x + 60y, maximize 
+CellAddress profitEqu = Calc.getCellAddress(sheet, "B3"); </p>
+<p>// set up equation formulae without inequalities 
+Calc.setVal(sheet, "B4", "=120<em>B1 + 210</em>B2");<br />
+Calc.setVal(sheet, "B5", "=110<em>B1 + 30</em>B2");<br />
+Calc.setVal(sheet, "B6", "=B1 + B2");  </p>
+<p>Now the three equation formulae are converted into SolverConstraint objects by 
+calling Calc.makeConstraint(), and the constraints are stored in an array for later use: </p>
+<p>// in LinearSolverTest.java 
+// create the constraints: 
+// constraints are equations and their inequalities 
+SolverConstraint sc1 =<br />
+    Calc.makeConstraint(sheet, "B4","&lt;=", 15000);<br />
+                         // 120x + 210y &lt;= 15000 
+       // B4 is the cell address that is constrained  </p>
+<p>SolverConstraint sc2 =<br />
+    Calc.makeConstraint(sheet, "B5", "&lt;=", 4000); 
+                         // 110x + 30y &lt;= 4000 </p>
+<p>SolverConstraint sc3 =<br />
+    Calc.makeConstraint(sheet, "B6", "&lt;=", 75); 
+                         // x + y &lt;= 75 </p>
+<p>SolverConstraint[] constraints =<br />
+    new SolverConstraint[]{ sc1, sc2, sc3 }; </p>
+<p>A constraint is the cell name where an equation is stored and an inequality. </p>
+<p>Calc.makeConstraint() is defined as: </p>
+<p>// in the Calc class 
+public static SolverConstraint makeConstraint( 
+                   XSpreadsheet sheet, String cellName,<br />
+                   String op, double d) 
+{ return makeConstraint(Calc.getCellAddress(sheet, cellName),op,d); }  </p>
+<p>public static SolverConstraint makeConstraint( 
+                   CellAddress addr, String op, double d) 
+{ return makeConstraint(addr, toConstraintOp(op), d);   } </p>
+<p>public static SolverConstraint makeConstraint( 
+                   XSpreadsheet sheet, String cellName,<br />
+                   SolverConstraintOperator op, double d) 
+{  return makeConstraint(Calc.getCellAddress(sheet, cellName),op,d);}  </p>
+<p>public static SolverConstraint makeConstraint(CellAddress addr,<br />
+                    SolverConstraintOperator op, double d) 
+{ SolverConstraint sc = new SolverConstraint(); 
+  sc.Left = addr;<br />
+  sc.Operator = op; 
+  sc.Right = d;<br />
+  return sc; 
+}  // end of makeConstraint() </p>
+<p>That's a lot of functions to create a SolverConstraint object with four arguments. </p>
+<p>Now the solver is created, and its parameters are set: </p>
+<p>// in LinearSolverTest.java 
+XSolver solver = Lo.createInstanceMCF(XSolver.class,<br />
+                      "com.sun.star.comp.Calc.LpsolveSolver"); 
+solver.setDocument(doc); 
+solver.setObjective(profitEqu); 
+solver.setVariables(vars); 
+solver.setConstraints(constraints); 
+solver.setMaximize(true);  // maximize the profit equ </p>
+<p>The XSolver interface is utilized by all the solvers, but the name of service can vary. </p>
+<p>In the code above I'm using the basic linear solver. A CoinMP solver would be 
+created by changing "LpsolveSolver" to "CoinMPSolver": </p>
+<p>XSolver solver = Lo.createInstanceMCF(XSolver.class,<br />
+                      "com.sun.star.comp.Calc.CoinMPSolver"); </p>
+<p>The various "set" methods are described in the XSolver documentation as public 
+variables (call lodoc xsolver to see the page). They load the profit equation, 
+constraints, and variables into the solver. It's also necessary to specify that the profit 
+equation be maximized, and link the solver to the Calc document. </p>
+<p>These "set" methods are used in the same way no matter which of the four solvers is 
+employed. Where the solvers differ is in their service properties. As mentioned above, 
+there's a few sources of online information depending on which solver you're using, or 
+you could look at the options dialog window shown in Figure 8.  </p>
+<p>Another source is to call Props.showObjProps() on the solver, to list its property 
+names and current values: 
+Props.showObjProps("Solver", solver); 
+When the basic linear solver is being used, showObjProps()'s output is: </p>
+<p>EpsilonLevel == 0 
+Integer == false 
+LimitBBDepth == true 
+NonNegative == false 
+Timeout == 100 </p>
+<p>This corresponds to the information shown for the basic linear solver in the options 
+dialog in Figure 10. </p>
+<p><img alt="" src="images/27-Funcs_Analysis-10.png" /></p>
+<p>Figure 10. The Options Dialog for the Basic Linear Solver. </p>
+<p>As to what these parameters actually mean, you'll have to look through the "lp_solve 
+API reference" section of the documentation at http://lpsolve.sourceforge.net/. For 
+example, the "epsilon level" is partly explained under the sub-heading "set_epslevel". </p>
+<p>The only property I've changed in the LinearSolverTest.java example is 
+"NonNegative", which is set to true: 
+// in LinearSolverTest.java ... </p>
+<p>Props.setProperty(solver, "NonNegative", true); 
+This restricts the search for intersection points to the top-right quadrant of the graph. </p>
+<p>Alternatively I could have implemented two more constraints: 
+x ≥ 0 
+y ≥ 0 
+The solver's results are printed by Calc.solverReport(): </p>
+<p>// in LinearSolverTest.java 
+solver.solve(); 
+Calc.solverReport(solver); </p>
+<p>The output: </p>
+<p>Solver result: 
+  B3 == 6315.6250 
+Solver variables: 
+  B1 == 21.8750 
+  B2 == 53.1250 </p>
+<p>Calc.solverReport() is implemented as: </p>
+<p>// in the Calc class 
+public static void solverReport(XSolver solver) 
+{ 
+  boolean isSuccessful = solver.getSuccess(); 
+  if (isSuccessful) { 
+    String cellName = getCellStr(solver.getObjective()); 
+    System.out.println("Solver result: "); 
+    System.out.printf("  %s == %.4f\n", cellName,<br />
+                             solver.getResultValue()); </p>
+<pre><code>CellAddress[] addrs = solver.getVariables(); 
+double[] solns = solver.getSolution(); 
+System.out.println("Solver variables: "); 
+for (int i=0; i &lt; solns.length; i++) { 
+  cellName = getCellStr(addrs[i]); 
+  System.out.printf("  %s == %.4f\n", cellName, solns[i]); 
+} 
+System.out.println();
+</code></pre>
+<p>} 
+  else 
+    System.out.println("Solver FAILED"); 
+}  // end of solverReport() </p>
+<p>XSolver.getObjective() and XSolver.getVariables() return the cell addresses holding 
+the profit equation and the variables (x and y). In a corresponding fashion, 
+XSolver.getResultValue() and XSolver.getSolution() return the calculated values for 
+the profit equation and variables. </p>
+<p>A solver may fail, and so solverReport() first calls XSolver.getSuccess(). </p>
+<h3 id="42-another-linear-problem-using-sco">4.2.  Another Linear Problem (using SCO)</h3>
+<p>I've coded two examples using the nonlinear optimizers – SolverTest.java utilizes the 
+SCO solver, and SolverTest2.java employs DEPS. As I mentioned earlier, these two 
+solvers are explained at https://wiki.openoffice.org/wiki/NLPSolver. </p>
+<p>The SolverTest.java example solves a linear problem, but one involving three 
+unknowns. This means that graphically the equations define planes in a 3D space, and 
+solving the profit equation involves examining the corners of the volume defined by 
+how the planes intersect. Unfortunately, the 
+http://www.zweigmedia.com/utilities/lpg/index.html?lang=en website cannot handle 
+linear optimizations involving more than two variables, but no such restriction applies<br />
+to Calc's solvers. </p>
+<p>There are three constraint inequalities: 
+x ≤ 6 
+y ≤ 8 
+z ≥ 4 
+The 'profit' expression to be maximized is: 
+P = x + y - z 
+The maximum P value is 10, when x == 6, y == 8, and z == 4.  </p>
+<p>Much of main() in SolverTest.java is very similar to LinearSolver.java: </p>
+<p>// part of main() in SolverTest.java 
+     : 
+XSpreadsheet sheet = Calc.getSheet(doc, 0); </p>
+<p>// specify the variable cells 
+CellAddress xPos = Calc.getCellAddress(sheet, "B1");  // x 
+CellAddress yPos = Calc.getCellAddress(sheet, "B2");  // y 
+CellAddress zPos = Calc.getCellAddress(sheet, "B3");  // z </p>
+<p>CellAddress[] vars = new CellAddress[]{ xPos, yPos, zPos }; </p>
+<p>// only define the profit formula without inequality 
+Calc.setVal(sheet, "B4", "=B1+B2-B3");<br />
+CellAddress objective = Calc.getCellAddress(sheet, "B4"); </p>
+<p>// create three constraints (using the 3 variables) 
+SolverConstraint sc1 = Calc.makeConstraint(sheet, "B1", "&lt;=", 6); 
+                          // x &lt;= 6 
+SolverConstraint sc2 = Calc.makeConstraint(sheet, "B2", "&lt;=", 8); 
+                          // y &lt;= 8 
+SolverConstraint sc3 = Calc.makeConstraint(sheet, "B3", "&gt;=", 4); 
+                          // z &gt;= 4 </p>
+<p>SolverConstraint[] constraints =<br />
+                         new SolverConstraint[]{ sc1, sc2, sc3 }; </p>
+<p>// initialize the SCO nonlinear solver 
+XSolver solver = Lo.createInstanceMCF(XSolver.class, <br />
+               "com.sun.star.comp.Calc.NLPSolver.SCOSolverImpl"); </p>
+<p>solver.setDocument(doc); 
+solver.setObjective(objective); 
+solver.setVariables(vars); 
+solver.setConstraints(constraints); 
+solver.setMaximize(true); </p>
+<p>Props.showObjProps("Solver", solver); 
+Props.setProperty(solver, "EnhancedSolverStatus", false); 
+          // switch off nonlinear dialog about current progress </p>
+<p>// execute the solver 
+solver.solve(); 
+Calc.solverReport(solver); </p>
+<p>Only the profit formula needs to be assigned to a cell due to the simplicity of the 
+equation inequalities. Their constraints can use the cells containing the x, y, and z 
+variables rather than be defined as separate formulae. </p>
+<p>The Solver is "com.sun.star.comp.Calc.NLPSolver.SCOSolverImpl", whose name I 
+found by listing the solver names with Calc.listSolvers(). </p>
+<p>The properties associated with the SCO solver are more extensive than for the linear 
+solvers. Props.showObjProps() reports: </p>
+<p>Solver Properties 
+  AssumeNonNegative == false 
+  EnhancedSolverStatus == true 
+  GuessVariableRange == true 
+  LearningCycles == 2000 
+  LibrarySize == 210 
+  StagnationLimit == 70 
+  SwarmSize == 70 
+  Tolerance == 1.0E-6 
+  UseACRComparator == false 
+  UseRandomStartingPoint == false 
+  VariableRangeThreshold == 3.0 </p>
+<p>These can also be viewed via the Options dialog in the Calc GUI, as in Figure 11. </p>
+<p><img alt="" src="images/27-Funcs_Analysis-11.png" /></p>
+<p>Figure 11. The Options Dialog for the SCO Solver. </p>
+<p>These parameters, most of which apply to the DEPS solver as well, are explained at 
+https://wiki.openoffice.org/wiki/NLPSolver#Options_and_Parameters. </p>
+<p>The correct solution reported by Calc.solverReport() is: </p>
+<p>Solver result: 
+  B4 == 10.0000 
+Solver variables: 
+  B1 == 6.0000 
+  B2 == 8.0000 
+  B3 == 4.0000 </p>
+<h3 id="43-a-nonlinear-problem-using-deps-and-sco">4.3.  A Nonlinear Problem (using DEPS and SCO)</h3>
+<p>SolverTest2.java defines a nonlinear optimization problem, so can only be solved by 
+the DEPS or SCO solver; I'll start with DEPS. </p>
+<p>The problem comes from the Wikipedia page on nonlinear programming 
+(https://en.wikipedia.org/wiki/Nonlinear_programming). There are four constraint 
+inequalities: 
+x ≥ 0 
+y ≥ 0 
+x
+2
+ + y
+2
+ ≥ 1 
+x
+2
+ + y
+2
+ ≤ 2 
+The 'profit' expression to be maximized is: 
+P = x + y 
+The maximum P value is 2, when x == 1 and y == 1, which can be represented 
+graphically in Figure 12 since we're once again using only two unknowns. </p>
+<p><img alt="" src="images/27-Funcs_Analysis-12.png" /></p>
+<p>Figure 12. Solution for the Nonlinear Optimization Problem. </p>
+<p>The code in SolverTest2.java is only slightly different from the previous two 
+examples: </p>
+<p>// part of main() in SolverTest2.java 
+      : 
+XSpreadsheet sheet = Calc.getSheet(doc, 0); </p>
+<p>// specify the variable cells 
+CellAddress xPos = Calc.getCellAddress(sheet, "B1");  // x 
+CellAddress yPos = Calc.getCellAddress(sheet, "B2");  // y 
+CellAddress[] vars = new CellAddress[]{ xPos, yPos }; </p>
+<p>// specify profit equation 
+Calc.setVal(sheet, "B3", "=B1+B2");    // x + y 
+CellAddress objective = Calc.getCellAddress(sheet, "B3"); </p>
+<p>// set up equation formula without inequality (only one needed) 
+Calc.setVal(sheet, "B4", "=B1<em>B1 + B2</em>B2");   // x^2 + y^2 </p>
+<p>// create two constraints from one equation 
+SolverConstraint sc1 =  Calc.makeConstraint(sheet, "B4", "&gt;=", 1); 
+                                    // x^2 + y^2 &gt;= 1 
+SolverConstraint sc2 = Calc.makeConstraint(sheet, "B4", "&lt;=", 2); 
+                                    // x^2 + y^2 &lt;= 2 </p>
+<p>SolverConstraint[] constraints = new SolverConstraint[]{ sc1, sc2 }; </p>
+<p>// initialize DEPS  nonlinear solver 
+XSolver solver = Lo.createInstanceMCF(XSolver.class, <br />
+                             "com.sun.star.sheet.Solver"); 
+        // uses "com.sun.star.comp.Calc.NLPSolver.DEPSSolverImpl" </p>
+<p>solver.setDocument(doc); 
+solver.setObjective(objective); 
+solver.setVariables(vars); 
+solver.setConstraints(constraints); 
+solver.setMaximize(true); </p>
+<p>Props.showObjProps("Solver", solver); 
+Props.setProperty(solver, "EnhancedSolverStatus", false); 
+          // switch off nonlinear dialog about current progress </p>
+<p>Props.setProperty(solver, "AssumeNonNegative", true); 
+         // restrict search to the top-right quadrant of graph </p>
+<p>// execute the solver; print the results 
+solver.solve(); 
+Calc.solverReport(solver); </p>
+<p>Only one inequality equation is defined: 
+Calc.setVal(sheet, "B4", "=B1<em>B1 + B2</em>B2");   // x^2 + y^2 
+because it can be used twice to define the nonlinear constraints: </p>
+<p>SolverConstraint sc1 =  Calc.makeConstraint(sheet, "B4", "&gt;=", 1); 
+                                    // x^2 + y^2 &gt;= 1 
+SolverConstraint sc2 = Calc.makeConstraint(sheet, "B4", "&lt;=", 2); 
+                                    // x^2 + y^2 &lt;= 2 </p>
+<p>No constraints are defined for x &gt;= 0 and y &gt;= 0. Instead, the solver's 
+"AssumeNonNegative" property is set to true, which achieves the same thing. </p>
+<p>The DEPS solver is used by default when a nonlinear optimization needs to be solved, 
+so the solver is instantiated using the general Solver service name: 
+XSolver solver = Lo.createInstanceMCF(XSolver.class, <br />
+                             "com.sun.star.sheet.Solver"); 
+Alternatively, it's possible to use the DEPS service name: 
+"com.sun.star.comp.Calc.NLPSolver.DEPSSolverImpl". </p>
+<p>The results printed by Calc.solverReport() are: </p>
+<p>Solver result: 
+  B3 == 2.0000 
+Solver variables: 
+  B1 == 1.0001 
+  B2 == 0.9999 </p>
+<p>If DEPS is replaced by the SCO solver: </p>
+<p>XSolver solver = Lo.createInstanceMCF(XSolver.class, 
+          "com.sun.star.comp.Calc.NLPSolver.SCOSolverImpl"); </p>
+<p>The printed result is slightly more accurate: </p>
+<p>Solver result: 
+  B3 == 2.0000 
+Solver variables: 
+  B1 == 1.0000 
+  B2 == 1.0000 </p>
+<p>but it takes a little bit longer to return. </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="26-Search_Replace.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 26. Search and Replace
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="28%20Part%205%20Chart.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Part 5 Chart
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2271 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 7. Text Content Other than Strings - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-7-text-content-other-than-strings" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 7. Text Content Other than Strings
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 7. Text Content Other than Strings
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="07-Non-text_Content.html" class="md-nav__link md-nav__link--active">
+        Chapter 7. Text Content Other than Strings
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-how-to-access-text-content" class="md-nav__link">
+    1.  How to Access Text Content
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-adding-a-text-frame-to-a-document" class="md-nav__link">
+    2.  Adding a Text Frame to a Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-adding-a-text-embedded-object-to-a-document" class="md-nav__link">
+    3.  Adding a Text Embedded Object to a Document
+  </a>
+  
+    <nav class="md-nav" aria-label="3.  Adding a Text Embedded Object to a Document">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-whats-a-formula-string" class="md-nav__link">
+    3.1.  What's a Formula String?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-building-formulae" class="md-nav__link">
+    3.2.  Building Formulae
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-text-fields" class="md-nav__link">
+    4.  Text Fields
+  </a>
+  
+    <nav class="md-nav" aria-label="4.  Text Fields">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-the-datetime-textfield" class="md-nav__link">
+    4.1.  The DateTime TextField
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-the-pagenumber-and-pagecount-text-fields" class="md-nav__link">
+    4.2.  The PageNumber and PageCount Text Fields
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-adding-a-text-table-to-a-document" class="md-nav__link">
+    5.  Adding a Text Table to a Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-adding-a-bookmark-to-the-document" class="md-nav__link">
+    6.  Adding a Bookmark to the Document
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="27-Funcs_Analysis.html" class="md-nav__link">
+        Chapter 27. Functions and Data Analysis
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="43-Using_the_Clipboard.html" class="md-nav__link">
+        Chapter 43. Using the Clipboard
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-how-to-access-text-content" class="md-nav__link">
+    1.  How to Access Text Content
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-adding-a-text-frame-to-a-document" class="md-nav__link">
+    2.  Adding a Text Frame to a Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-adding-a-text-embedded-object-to-a-document" class="md-nav__link">
+    3.  Adding a Text Embedded Object to a Document
+  </a>
+  
+    <nav class="md-nav" aria-label="3.  Adding a Text Embedded Object to a Document">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-whats-a-formula-string" class="md-nav__link">
+    3.1.  What's a Formula String?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-building-formulae" class="md-nav__link">
+    3.2.  Building Formulae
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-text-fields" class="md-nav__link">
+    4.  Text Fields
+  </a>
+  
+    <nav class="md-nav" aria-label="4.  Text Fields">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-the-datetime-textfield" class="md-nav__link">
+    4.1.  The DateTime TextField
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-the-pagenumber-and-pagecount-text-fields" class="md-nav__link">
+    4.2.  The PageNumber and PageCount Text Fields
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-adding-a-text-table-to-a-document" class="md-nav__link">
+    5.  Adding a Text Table to a Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-adding-a-bookmark-to-the-document" class="md-nav__link">
+    6.  Adding a Bookmark to the Document
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/07-Non-text_Content.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-7-text-content-other-than-strings">Chapter 7. Text Content Other than Strings</h1>
+<p>Chapter 5 looked at using text cursors to move around 
+inside text documents, adding or extracting text strings. </p>
+<p>That chapter utilized the XText inheritance hierarchy, 
+which is shown again in Figure 1. </p>
+<p><img alt="" src="images/07-Non-text_Content-1.png" /></p>
+<p>Figure 1. XText and its Superclasses. </p>
+<p>The documents manipulated in Chapter 5 only contained character-based text, but can 
+be a lot more varied, including text frames, embedded objects, graphics, shapes, text 
+fields, tables, bookmarks, text sections, footnotes and endnotes, and more.  </p>
+<p>From the XText service its possible to access the XTextContent interface (see Figure 
+1), which belongs to the TextContent service. As Figure 2 indicates, that service is the 
+parent of many subclasses which represent different kinds of text document content. </p>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Accessing Text </p>
+</div>
+<p>Content; Text  Frames; 
+Embedded Objects<br />
+(Math Formulae); Text<br />
+Fields; Text Tables; 
+Bookmarks 
+Example folders: "Text 
+Tests" and "Utils" </p>
+<p><img alt="" src="images/07-Non-text_Content-2.png" /></p>
+<p>Figure 2. The TextContent Service and Some Subclasses. </p>
+<p>A more complete hierarchy can be found in the documentation for TextContent 
+(lodoc TextContent service). </p>
+<p>The two services highlighted in orange relate to graphical content, which is explained 
+in the next chapter. </p>
+<p>Table 1 summarizes content types in terms of their services and access methods. Most 
+of the methods are in Supplier interfaces which are part of the GenericTextDocument 
+or OfficeDocument services in Figure 2 of Chapter 5.  </p>
+<p>If the service text is in bold then there's an example of how to manipulate its content 
+later in this chapter. </p>
+<p>Content Name 
+Service for Creating 
+Content 
+Access Method in Supplier 
+Text Frame TextFrame XNameAccess XTextFrameSupplier. </p>
+<p>getTextFrames() 
+Embedded 
+Object 
+TextEmbeddedObject XComponent XTextEmbeddedObjectSupplier2. </p>
+<p>getEmbeddedObject() 
+Graphic 
+Object 
+TextGraphicObject; </p>
+<p>XNameAccess XTextGraphicObjectsSupplier. </p>
+<p>getGraphicObjects() 
+Shape text.Shape, 
+drawing.Shape or a 
+subclass 
+XDrawPage XDrawPageSupplier. </p>
+<p>getDrawPage() 
+Text Field TextField XEnumerationAccess XTextFieldsSupplier. </p>
+<p>getTextFields() 
+Text Table TextTable XNameAccess XTextTablesSupplier. </p>
+<p>getTextTables() 
+Bookmark Bookmark XNameAccess XBookmarksSupplier. </p>
+<p>getBookmarks() 
+Paragraph Paragraph XEnumerationAccess on XText 
+Text Section </p>
+<p>TextSection XNameAccess XTextSectionsSupplier. </p>
+<p>getTextSections() 
+Footnote Footnote XIndexAccess XFootnotesSupplier. </p>
+<p>getFootnotes() 
+End Note Endnote XIndexAccess XEndnotesSupplier.getEndnotes() 
+Reference 
+Mark 
+ReferenceMark XNameAccess XReferenceMarksSupplier. </p>
+<p>getReferenceMarks() 
+Index  DocumentIndex XIndexAccess XDocumentIndexesSupplier. </p>
+<p>getDocumentIndexes() 
+Link Target LinkTarget XNameAccess XLinkTargetSupplier.getLinks() 
+Redline  RedlinePortion XEnumerationAccess XRedlinesSupplier. </p>
+<p>getRedlines() 
+Content 
+Metadata 
+InContentMetaData </p>
+<p>XDocumentMetadataAccess<br />
+Table 1. Creating and Accessing Text Content. </p>
+<p>Rows 3 and 4 are highlighted to indicate that graphical content is discussed in the next 
+chapter.  </p>
+<h2 id="1-how-to-access-text-content">1.  How to Access Text Content</h2>
+<p>Most of the examples in this chapter create text document content rather than access 
+it. This is mainly because the different access functions work in a similar way, so you 
+don’t need many examples to get the general idea.  </p>
+<p>First the document is converted into a supplier, then its getXXX() method is called 
+(see column 3 of Table 1). For example, accessing the graphic objects in a document 
+(see row 3 of Table 1) requires: </p>
+<p>// get the graphic objects supplier 
+XTextGraphicObjectsSupplier imsSupplier =<br />
+               Lo.qi(XTextGraphicObjectsSupplier.class, doc); </p>
+<p>// access the graphic objects collection 
+XNameAccess xNameAccess = imsSupplier.getGraphicObjects(); </p>
+<p>The names associated with the graphic objects in XNameAccess can be extracted with 
+XNameAccess.getElementNames(), and printed: </p>
+<p>String[] names = xNameAccess.getElementNames(); 
+System.out.println("Number of graphic names: " + names.length); 
+Arrays.sort(names);       // sort them, if you want 
+Lo.printNames(names);     // useful for printing long lists </p>
+<p>A particular object in an XNameAccess collection is retrieved with getByName(): 
+XInterface oGraphic = xNameAccess.getByName("foo");<br />
+                    // get graphic object called "foo" 
+XInterface is the Office equivalent of Java's Object: every interface subclasses 
+XInterface. </p>
+<p>A common next step is to convert the object into a property set, which makes it 
+possible to lookup the properties stored in the object's service. For instance, the 
+graphic object’s filename or URL can be retrieved using: </p>
+<p>XPropertySet props =  Lo.qi(XPropertySet.class, oGraphic); 
+String fnm = (String) props.getPropertyValue("GraphicURL"); </p>
+<p>I know the graphic object's URL is stored in the "GraphicURL" property from looking 
+at the documentation for the TextGraphicObject service. It can be (almost) directly 
+accessed by typing lodoc TextGraphicObject service; unfortunately 
+DuckDuckGo chooses the TextGraphicObjects service, and you need to click on the 
+"TextGraphicObject" link below the title to get to the required page.  </p>
+<p>It's possible to call setPropertyValue() to change a property: 
+props.setPropertyValue("Transparency", (short)50); </p>
+<p>What About the Text Content I Don't Cover? 
+Table 1 has many rows without bold entries, which means I won't be looking at them. </p>
+<p>except for the very brief descriptions here; for more please consult the Developer's 
+Guide at 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Working_with_Text_
+Documents (or type loGuide "Working with Text Documents"). All the examples 
+in that section are in TextDocuments.java at 
+http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Text.  </p>
+<p>Text Sections. A text section is a grouping of paragraphs which can be assigned their 
+own style settings. More usefully, a section may be located in another file, which is 
+the mechanism underlying master documents. See: 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Sections (or 
+type loGuide "Text Sections"). </p>
+<p>Footnotes and Endnotes. Footnotes and endnotes are blocks of text that appear in the 
+page footers and at the end of a document. They can be treated as XText objects, so 
+manipulated using the same techniques as the main document text. See: 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Footnotes_and_Endn
+otes (or type loGuide Footnotes). </p>
+<p>Reference Marks. Reference marks can be inserted throughout a document, and then 
+jumped to via GetReference text fields:<br />
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Reference_Marks (or 
+type loGuide "Reference Marks"). </p>
+<p>Indexes and Index Marks. Index marks, like reference marks, can be inserted 
+anywhere in a document, but are used to generate indices (collections of information) 
+inside the document. There are several types of index marks used for generating lists 
+of chapter headings (i.e. a book's index), lists of key words, illustrations, tables, and a 
+bibliography. For details see: 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Indexes_and_Index_
+Marks (or type loGuide Indexes). </p>
+<p>Link Targets. A link target (sometimes called a jump mark) labels a location inside a 
+document. These labels can be included as part of a filename so that the document can 
+be opened at that position. For information, see: 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Link_Targets (or 
+type loGuide "Link Targets"). </p>
+<p>Redlines. Redlines are the changes recorded when a user edits a document with track 
+changes turned on. Each of the changes is saved as a text fragment (also called a text 
+portion) inside a redline object. See: 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Redline (or type 
+loGuide Redline). </p>
+<h2 id="2-adding-a-text-frame-to-a-document">2.  Adding a Text Frame to a Document</h2>
+<p>The TextFrame service inherits many of its properties and interfaces, so its 
+inheritance hierarchy is shown in detail in Figure 3. </p>
+<p><img alt="" src="images/07-Non-text_Content-3.png" /></p>
+<p>Figure 3. The TextFrame Service Hierarchy. </p>
+<p>Figure 3 includes two sibling services of TextFrame: TextEmbeddedObject and 
+TextGraphicObject, which I'll discuss a bit later; infact, I'll only get around to 
+TextGraphicObject in the next chapter. </p>
+<p>The BaseFrameProperties service contains most of the frame size and positional 
+properties, such as "Width", "Height", and margin and border distance settings.  </p>
+<p>A TextFrame interface can be converted into a text content (i.e. XTextContent) or a 
+shape (i.e. XShape). Typically, the former is used when adding text to the frame, the 
+latter when manipulating the shape of the frame. </p>
+<p>In my BuildDoc.java example, text frame creation is done by Write.addTextFrame(), 
+with BuildDoc supplying the frame's y-axis coordinate position for its anchor: </p>
+<p>// code fragment in BuildDoc.java 
+XTextViewCursor tvc = Write.getViewCursor(doc); 
+int yPos = tvc.getPosition().Y;   // y-axis anchor position </p>
+<pre><code>    :  // other unrelated code
+</code></pre>
+<p>Write.appendPara(cursor, "A text frame"); </p>
+<p>Write.addTextFrame(cursor, yPos,<br />
+       "This is a newly created text frame.\n 
+        Which is over on the right of the page, next to the code.",<br />
+            4000, 1500);   // width x height of frame </p>
+<p>An anchor specifies how the text content is positioned relative to the ordinary text 
+around it. Anchoring can be relative to a character, paragraph, page, or another frame.  </p>
+<p>Write.addTextFrame() uses page anchoring, which means that BuildDoc must obtain 
+a view cursor, so that an on-screen page position can be calculated. As Figure 4 
+shows, the text frame is located on the right of the page, with its top edge level with 
+the start of the code listing. </p>
+<p><img alt="" src="images/07-Non-text_Content-4.png" /></p>
+<p>Figure 4. Text Frame Position in the Document. </p>
+<p>In the code fragment above, Write.getViewCursor() creates the view cursor, and 
+XTextViewCursor.getPosition() returns its (x, y) coordinate on the page. The y-
+coordinate is stored in yPos until after the code listing has been inserted into the 
+document, and then passed to Write.addTextFrame().  </p>
+<p>Write.addTextFrame() is defined as: </p>
+<p>public static void addTextFrame(XTextCursor cursor, int yPos, 
+                           String text, int width, int height) 
+{ 
+  try { 
+    XTextFrame xFrame = Lo.createInstanceMSF(XTextFrame.class,<br />
+                            "com.sun.star.text.TextFrame"); 
+    if (xFrame == null) { 
+      System.out.println("Could not create a text frame"); 
+      return; 
+    } </p>
+<pre><code>// convert frame to a shape interface; set size 
+XShape tfShape = Lo.qi(XShape.class, xFrame); 
+tfShape.setSize(new Size(width, height));
+
+// get properties of the frame 
+XPropertySet frameProps = Lo.qi(XPropertySet.class, xFrame);
+
+// anchor the text frame to the page 
+frameProps.setPropertyValue("AnchorType",  
+                      TextContentAnchorType.AT_PAGE); 
+frameProps.setPropertyValue("FrameIsAutomaticHeight", true);    
+                                  // will grow if necessary
+
+// add a red border around all 4 sides 
+BorderLine border = new BorderLine(); 
+border.OuterLineWidth = 1; 
+border.Color = 0xFF0000;  // red 
+frameProps.setPropertyValue("TopBorder", border); 
+frameProps.setPropertyValue("BottomBorder", border); 
+frameProps.setPropertyValue("LeftBorder", border); 
+frameProps.setPropertyValue("RightBorder", border);
+
+// make the text frame blue 
+frameProps.setPropertyValue("BackTransparent", false);   
+                                       // not transparent 
+frameProps.setPropertyValue("BackColor", 0xCCCCFF);   // blue
+
+// set the horizontal and vertical position 
+frameProps.setPropertyValue("HoriOrient",  
+                            HoriOrientation.RIGHT);
+
+frameProps.setPropertyValue("VertOrient",  
+                            VertOrientation.NONE); 
+frameProps.setPropertyValue("VertOrientPosition", yPos);    
+                                             // down from top
+
+// insert empty text frame into document 
+append(cursor, xFrame); 
+endParagraph(cursor);
+
+// add text to the text frame 
+XText xFrameText = xFrame.getText(); 
+XTextCursor xFrameCursor = xFrameText.createTextCursor(); 
+xFrameText.insertString(xFrameCursor, text, false);
+</code></pre>
+<p>} 
+  catch (Exception e) { 
+    System.out.println("Insertion of text frame failed: " + e); 
+  } 
+}  // end of addTextFrame() </p>
+<p>addTextFrame() starts by creating a TextFrame service, and accessing its XTextFrame 
+interface: </p>
+<p>XTextFrame xFrame = Lo.createInstanceMSF(XTextFrame.class,<br />
+                                "com.sun.star.text.TextFrame"); </p>
+<p>The service name for a text frame is listed as "TextFrame" in row 1 of Table 1, but 
+Lo.createInstanceMSF() requires a fully qualified name. Almost all the text content 
+services, including TextFrame, are in the com.sun.star.text package. </p>
+<p>The XTextFrame interface is converted into XShape so the frame's dimensions can be 
+set. The interface is also cast to XPropertySet so that various frame properties can be 
+initialized; these properties are defined in the TextFrame and BaseFrameProperties 
+services (see Figure 3).  </p>
+<p>The "AnchorType" property uses the AT_PAGE anchor constant to tie the frame to 
+the page. There are five anchor constants: AT_PARAGRAPH, AT_CHARACTER, 
+AS_CHARACTER, AT_PAGE, and AT_FRAME, which are defined in the 
+TextContentAnchorType enumeration.  </p>
+<p>The difference between AT_CHARACTER and AS_CHARACTER relates to how 
+the surrounding text is wrapped around the text content. "AS" means that the text 
+content is treated as a single (perhaps very large) character inside the text, while "AT" 
+means that the text frame's upper-left corner is positioned at that character location.  </p>
+<p>The frame's page position is dealt with a few lines later by the "HoriOrient" and 
+"VertOrient" properties. The HoriOrientation and VertOrientation constants are a 
+convenient way of positioning a frame at the corners or edges of the page. However, I 
+use "VertOrientPosition" to set the vertical position using the yPos coordinate, and 
+switch off the "VertOrient" vertical orientation. </p>
+<p>Towards the end of Write.addTextFrame(), the frame is added to the document by 
+calling a version of Write.append() that expects an XTextContent object: </p>
+<p>// in the Write class 
+public static int append(XTextCursor cursor,<br />
+                                 XTextContent textContent) 
+// append text content such as a text frame, table, text field 
+{ 
+  XText xText = cursor.getText(); 
+  xText.insertTextContent(cursor, textContent, false); 
+  cursor.gotoEnd(false); 
+  return getPosition(cursor); 
+} </p>
+<p>It utilizes the XText.insertTextContent() method. </p>
+<p>The last task of Write.addTextFrame(), is to insert some text into the frame. </p>
+<p>XTextFrame inherits XTextContent, and so has access to the getText() method (see 
+Figure 3). This means that all the text manipulations possible in a document are also 
+possible inside a frame. </p>
+<p>The ordering of the tasks at the end of addTextFrame() is important. Office prefers 
+that an empty text content be added to the document, and the data inserted afterwards.  </p>
+<h2 id="3-adding-a-text-embedded-object-to-a-document">3.  Adding a Text Embedded Object to a Document</h2>
+<p>Text embedded object content support OLE (Microsoft's Object Linking and 
+Embedding), and is typically used to create a frame linked to an external Office 
+document. Probably, its most popular use is to link to a chart, but I'll delay looking at 
+that until Chapter 33. </p>
+<p>The best way of getting an idea of what OLE objects are available is to go to the 
+Writer application's Insert menu  Object  "OLE Object" dialog. In my version of 
+Office, it lists Office spreadsheet, chart, drawing, presentation, and formula 
+documents, and a range of Microsoft and PDF types.  </p>
+<p>Note that text embedded objects arem't utilized for adding graphics to a document. </p>
+<p>That's easier to do using the TextGraphicObject or GraphicObjectShape services, 
+which I'll describe next. </p>
+<p>In this section I'll explain how to insert mathematical formulae into a text document. </p>
+<p>The example code is in MathQuestions.java, but most of the formula embedding is 
+performed by Write.addFormula(): </p>
+<p>public static void addFormula(XTextCursor cursor, String formula)<br />
+{ 
+  try { 
+    XTextContent embedContent =<br />
+              Lo.createInstanceMSF(XTextContent.class,<br />
+                      "com.sun.star.text.TextEmbeddedObject"); 
+    if (embedContent == null) { 
+      System.out.println("Could not create a formula"); 
+      return; 
+    } </p>
+<pre><code>// get property set for the embedded object 
+XPropertySet props =  Lo.qi(XPropertySet.class, embedContent);
+
+// set class ID (type) for object 
+props.setPropertyValue("CLSID", Lo.MATH_CLSID);
+
+// anchor object as a character 
+props.setPropertyValue("AnchorType",  
+                        TextContentAnchorType.AS_CHARACTER);
+
+// insert empty object into document 
+append(cursor, embedContent); 
+endLine(cursor);
+
+// access object's model 
+XEmbeddedObjectSupplier2 supp = Lo.qi( 
+             XEmbeddedObjectSupplier2.class, embedContent); 
+XComponent oEmbed = supp.getEmbeddedObject();
+
+// insert formula into the object 
+XPropertySet formulaProps = Lo.qi(XPropertySet.class, oEmbed); 
+formulaProps.setPropertyValue("Formula", formula);
+</code></pre>
+<p>} 
+  catch (Exception e) { 
+    System.out.println("\"" + formula + "\" failed: " + e); 
+  } 
+}  // end of addFormula() </p>
+<p>A math formula is passed to addFormula() as a string in a format I'll explain shortly. </p>
+<p>The method begins by creating a TextEmbeddedObject service, and referring to it 
+using the XTextContent interface: </p>
+<p>XTextContent embedContent =<br />
+     Lo.createInstanceMSF(XTextContent.class,<br />
+                   "com.sun.star.text.TextEmbeddedObject"); </p>
+<p>Details about embedded objects are given in row 2 of Table 1. </p>
+<p>Unlike TextFrame which has an XTextFrame interface, there's no 
+XTextEmbeddedObject interface for TextEmbeddedObject. This can be confirmed by 
+looking at the TextFrame inheritance hierarchy in Figure 3. There is an 
+XEmbeddedObjectSuppler, but that's for accessing objects, not creating them. Instead 
+I've utilized the XTextContent interface in Lo.createInstanceMSF() because it's the 
+most specific interface available. </p>
+<p>The XTextContent interface is converted to XPropertySet so the "CLSID" and 
+"AnchorType" properties can be set. "CLSID" is specific to TextEmbeddedObject – 
+its value is the OLE class ID for the embedded document. The Lo.java utility contains 
+the class ID constants for Office's documents: </p>
+<p>// in the Lo class 
+public static final String WRITER_CLSID =<br />
+                     "8BC6B165-B1B2-4EDD-aa47-dae2ee689dd6"; </p>
+<p>public static final String CALC_CLSID =<br />
+                     "47BBB4CB-CE4C-4E80-a591-42d9ae74950f"; </p>
+<p>public static final String DRAW_CLSID =<br />
+                     "4BAB8970-8A3B-45B3-991c-cbeeac6bd5e3"; </p>
+<p>public static final String IMPRESS_CLSID =<br />
+                     "9176E48A-637A-4D1F-803b-99d9bfac1047"; </p>
+<p>public static final String MATH_CLSID =<br />
+                     "078B7ABA-54FC-457F-8551-6147e776a997"; </p>
+<p>public static final String CHART_CLSID =<br />
+                     "12DCAE26-281F-416F-a234-c3086127382e"; </p>
+<p>The "AnchorType" property is set to AS_CHARACTER so the formula string will be 
+anchored in the document in the same way as a string of characters.  </p>
+<p>As with the text frame in Write.addTextFrame(), an empty text content is added to the 
+document first, then filled with the formula.  </p>
+<p>The embedded object's content is accessed via the XEmbeddedObjectSupplier2 
+interface which has a get method for obtaining the object: </p>
+<p>XEmbeddedObjectSupplier2 supp =<br />
+       Lo.qi(XEmbeddedObjectSupplier2.class, embedContent); 
+XComponent oEmbed = supp.getEmbeddedObject(); </p>
+<p>The properties for this empty object (oEmbed) are accessed, and the formula string is 
+assigned to the "Formula" property: </p>
+<p>XPropertySet formulaProps = Lo.qi(XPropertySet.class, oEmbed); 
+formulaProps.setPropertyValue("Formula", formula); </p>
+<h3 id="31-whats-a-formula-string">3.1.  What's a Formula String?</h3>
+<p>Although I've explained the working of Write.addFormula(), I haven't explained the 
+format of the formula string that's passed to it. There's a good overview of the 
+notation in the "Commands Reference" appendix of Office's "Math Guide", available 
+at https://www.libreoffice.org/get-help/documentation/ 
+For example, the formula string:<br />
+"1 {5}over{9} + 3 {5}over{9} = 5 {1}over{9}" 
+is rendered as: </p>
+<h3 id="32-building-formulae">3.2.  Building Formulae</h3>
+<p>MathQuestions.java is mainly a for-loop for randomly generating numbers and 
+constructing simple formulae strings. Ten formulae are added to the document, which 
+is saved as "mathQuestions.pdf". The main() function: </p>
+<p>public static void main(String[] args) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  XTextDocument doc = Write.createDoc(loader); 
+  if (doc == null) { 
+    System.out.println("Writer doc creation failed"); 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>XTextCursor cursor = Write.getCursor(doc); 
+  Write.appendPara(cursor, "Math Questions"); 
+  Write.stylePrevParagraph(cursor, "Heading 1"); 
+  Write.appendPara(cursor, "Solve the formulae for x:\n"); </p>
+<p>Random r = new Random(); 
+  String formula; 
+  for(int i=0; i &lt; 10; i++) {    // generate 10 formulae 
+    int iA = r.nextInt(8)+2;     // generate some integers 
+    int iB = r.nextInt(8)+2; 
+    int iC = r.nextInt(9)+1; 
+    int iD = r.nextInt(8)+2; 
+    int iE = r.nextInt(9)+1; 
+    int iF1 = r.nextInt(8)+2; </p>
+<pre><code>int choice = r.nextInt(3); // decide between 3 formulae 
+if (choice == 0) 
+  formula = "{{{sqrt{" + iA + "x}} over " + iB + "} +  
+              {" + iC + " over " + iD + 
+               "}={" + iE + " over " + iF1 + "}}"; 
+else if (choice == 1) 
+  formula = "{{{" + iA + "x} over " + iB + "} +  
+              {" + iC + " over " + iD + 
+              "}={" + iE + " over " + iF1 + "}}"; 
+else 
+  formula = "{" + iA + "x + " + iB + " =" + iC + "}";
+
+Write.addFormula(cursor, formula); 
+Write.endParagraph(cursor);
+</code></pre>
+<p>} </p>
+<p>Write.append(cursor, "Timestamp: " + Lo.getTimeStamp()  + "\n"); 
+  Lo.saveDoc(doc, "mathQuestions.pdf"); 
+  Lo.closeDoc(doc); 
+  Lo.closeOffice(); 
+} // end of main() </p>
+<p>Figure 5 shows a screenshot of part of mathQuestions.pdf. </p>
+<p><img alt="" src="images/07-Non-text_Content-5.png" /></p>
+<p>Figure 5. Math Formulae in a Text Document. </p>
+<h2 id="4-text-fields">4.  Text Fields</h2>
+<p>A text field differs from other text content in that its data is generated dynamically by 
+the document, or by an external source such as a database . Document-generated text 
+fields include text showing the current date, the page number, the total number of 
+pages in the document, and cross-references to other areas in the text. I'll look at three 
+examples: the DateTime, PageNumber, and PageCount text fields. </p>
+<p>When a text field depends on an external source, there are two fields to initialize: the 
+master field representing the external source, and the dependent field for the data used 
+in the document; only the dependent field is visible. I won't be giving any 
+dependent/master field examples, but there's one in the Development Guide section 
+on text fields, at: 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Fields (or type 
+loGuide "Text Fields"). </p>
+<p>It utilizes the User master field, which allows the external source to be user-defined 
+data. The code appears in the TextDocuments.java example at 
+http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Text. </p>
+<p>Different  kinds of text field are implemented as subclasses of the TextField service. </p>
+<p>You can see the complete hierarchy in the online documentation for TextField (lodoc 
+TextField service). Figure 6 presents a simplified version. </p>
+<p><img alt="" src="images/07-Non-text_Content-6.png" /></p>
+<p>Figure 6. Simplified Hierarchy for the TextField Service. </p>
+<h3 id="41-the-datetime-textfield">4.1.  The DateTime TextField</h3>
+<p>The BuildDoc.java example ends with a few lines that appear to do the same thing 
+twice: </p>
+<p>// code fragment from BuildDoc.java 
+Write.appendPara(cursor, "\nTimestamp: " + Lo.getTimeStamp()+"\n"); </p>
+<p>Write.append(cursor, "Time (according to office): ");<br />
+Write.appendDateTime(cursor); 
+Write.endParagraph(cursor); </p>
+<p>Lo.getTimeStamp() inserts a timestamp (which includes the date and time), and then 
+Write.appendDateTime() inserts the date and time. Although these may seem to be the 
+same, getTimeStamp() adds a string while appendDateTime() creates a text field. The 
+difference becomes apparent if you open the file some time after it was created. </p>
+<p>Figure 7 shows two screenshots of the time-stamped parts of the document taken after 
+it was first generated, and nearly 50 minutes later. </p>
+<p><img alt="" src="images/07-Non-text_Content-7.png" /></p>
+<p>Figure 7. Screenshots of the Timestamps. </p>
+<p>The text field timestamp is updated each time the file is opened in edit mode (which is 
+the default in Writer).  </p>
+<p>This dynamic updating occurs in all text fields. For example, if you add some pages to 
+a document, all the places in the document that use the PageCount text field will be 
+updated to show the new length. </p>
+<p>Write.appendDateTime() creates a DateTime service, and returns its XTextField 
+interface (see Figure 6). The TextField service only contains two properties, with 
+most being in the subclass (DateTime in this case). </p>
+<p>public static int appendDateTime(XTextCursor cursor) 
+{<br />
+  XTextField dtField = Lo.createInstanceMSF(XTextField.class,<br />
+                 "com.sun.star.text.TextField.DateTime"); 
+  Props.setProperty(dtField, "IsDate", true);   <br />
+                      // so date is reported 
+  append(cursor, dtField); 
+  append(cursor, "; "); </p>
+<p>dtField = Lo.createInstanceMSF(XTextField.class,<br />
+                 "com.sun.star.text.TextField.DateTime"); 
+  Props.setProperty(dtField, "IsDate", false);   <br />
+                      // so time is reported 
+  return append(cursor, dtField); 
+}  // end of appendDateTime() </p>
+<p>The method adds two DateTime text fields to the document. The first has its "IsDate" 
+property set to true, so that the current date is inserted; the second sets "IsDate" to 
+false so the current time is shown. </p>
+<h3 id="42-the-pagenumber-and-pagecount-text-fields">4.2.  The PageNumber and PageCount Text Fields</h3>
+<p>I discussed most of StoryCreator.java in Chapter 6 on styles, but skipped over how 
+page numbers were added to the document's page footer. The footer is shown in </p>
+<p><img alt="" src="images/07-Non-text_Content-8.png" /></p>
+<p>Figure 8. </p>
+<p><img alt="" src="images/07-Non-text_Content-8.png" /></p>
+<p>Figure 8. Page Footer using Text Fields. </p>
+<p>Write.setPageNumbers() inserts the PageNumber and PageCount text fields into the 
+footer's text area: </p>
+<p>// in the Write class 
+public static void setPageNumbers(XTextDocument textDoc) 
+{ 
+  // get 'standard' style for page style family 
+  XPropertySet props = Info.getStyleProps(textDoc, 
+                                    "PageStyles", "Standard"); 
+  if (props == null) { 
+    System.out.println("Could not access standard page style"); 
+    return; 
+  } </p>
+<p>try { 
+    props.setPropertyValue("FooterIsOn", Boolean.TRUE); 
+                  // footer must be turned on in the document </p>
+<pre><code>// access the footer as XText 
+XText footerText = Lo.qi(XText.class,  
+                       props.getPropertyValue("FooterText")); 
+XTextCursor footerCursor = footerText.createTextCursor();
+
+/* set footer text properties via its cursor: 
+   font, font size, paragraph orientation    */ 
+Props.setProperty(footerCursor, "CharFontName",  
+                                "Times New Roman"); 
+Props.setProperty(footerCursor, "CharHeight", 12.0f); 
+Props.setProperty(footerCursor, "ParaAdjust",  
+                                ParagraphAdjust.CENTER);
+
+// add text fields to the footer 
+append(footerCursor, getPageNumber()); 
+append(footerCursor, " of "); 
+append(footerCursor, getPageCount());
+</code></pre>
+<p>}<br />
+  catch (Exception ex)<br />
+  {  System.out.println(ex); } 
+}  // end of setPageNumbers() </p>
+<p>public static XTextField getPageNumber() 
+// return Arabic style number showing current page value 
+{ 
+  XTextField numField = Lo.createInstanceMSF(XTextField.class,<br />
+                           "com.sun.star.text.TextField.PageNumber"); 
+  Props.setProperty(numField, "NumberingType",<br />
+                               NumberingType.ARABIC); 
+  Props.setProperty(numField, "SubType", PageNumberType.CURRENT); 
+  return numField; 
+} </p>
+<p>public static XTextField getPageCount() 
+// return Arabic style number showing current page count 
+{ 
+  XTextField pcField = Lo.createInstanceMSF(XTextField.class,<br />
+                          "com.sun.star.text.TextField.PageCount"); 
+  Props.setProperty(pcField, "NumberingType",<br />
+                              NumberingType.ARABIC); 
+  return pcField; 
+} </p>
+<p>Write.setPageNumbers() starts by accessing the "Standard" property set (style) for the 
+page style family. Via its properties, the method turns on footer functionality and 
+accesses the footer text area as an XText object. </p>
+<p>An XTextCursor is created for the footer text area, and properties are configured:  </p>
+<p>XText footerText = Lo.qi(XText.class,<br />
+                      props.getPropertyValue("FooterText")); </p>
+<p>XTextCursor footerCursor = footerText.createTextCursor(); </p>
+<p>Props.setProperty(footerCursor, "CharFontName", "Times New Roman"); </p>
+<p>These properties will be applied to the text and text fields added afterwards: </p>
+<p>append(footerCursor, getPageNumber()); 
+append(footerCursor, " of "); 
+append(footerCursor, getPageCount()); </p>
+<p>getPageNumber() and getPageCount() deal with the properties for the PageNumber 
+and PageCount fields.  </p>
+<p>I found out about them by looking at the documentation for their services  (e.g. use 
+lodoc TextField.PageNumber service; "TextField." is needed due to PageNumber 
+being a common word). </p>
+<h2 id="5-adding-a-text-table-to-a-document">5.  Adding a Text Table to a Document</h2>
+<p>The MakeTable.java example reads in data about James Bond movies from 
+"bondMovies.txt" and stores it as a text table in "table.odt". The first few rows are 
+shown in Figure 9. </p>
+<p><img alt="" src="images/07-Non-text_Content-9.png" /></p>
+<p>Figure 9. A Bond Movies Table. </p>
+<p>The "bondMovies.txt" file is read by readTable() utilizing standard Java file 
+processing. It returns a list of String arrays: 
+ArrayList<String[]> rowsList = readTable("bondMovies.txt"); 
+Each line in "bondMovies.txt" is converted into a string array by pulling out the 
+substrings delimited by tab characters.  </p>
+<p>readTable() ignores blank lines in the file, and lines beginning with "//". Also, I 
+assume that the first row in the list contains the table's header text. </p>
+<p>The first few lines of "bondMovies.txt" are: </p>
+<p>// http://en.wikipedia.org/wiki/James_Bond#Ian_Fleming_novels </p>
+<p>Title  Year  Actor  Director </p>
+<p>Dr. No  1962  Sean Connery  Terence Young 
+From Russia with Love  1963  Sean Connery  Terence Young 
+Goldfinger  1964  Sean Connery  Guy Hamilton 
+Thunderball  1965  Sean Connery  Terence Young 
+You Only Live Twice  1967  Sean Connery  Lewis Gilbert 
+On Her Majesty's Secret Service 1969 George Lazenby  Peter R. Hunt 
+Diamonds Are Forever  1971  Sean Connery  Guy Hamilton 
+Live and Let Die  1973  Roger Moore  Guy Hamilton 
+The Man with the Golden Gun  1974  Roger Moore  Guy Hamilton 
+     : </p>
+<p>The main() function for MakeTable.java is: </p>
+<p>public static void main(String args[]) 
+{ </p>
+<p>ArrayList<String[]> rowsList = readTable("bondMovies.txt"); 
+  if (rowsList.size() == 0) { 
+    System.out.println("No data read from bondMovies.txt"); 
+    return; 
+  } </p>
+<p>XComponentLoader loader = Lo.loadOffice(); 
+  XTextDocument doc = Write.createDoc(loader); 
+  if (doc == null) { 
+    System.out.println("Writer doc creation failed"); 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>XTextCursor cursor = Write.getCursor(doc); 
+  Write.appendPara(cursor, "Table of Bond Movies"); 
+  Write.stylePrevParagraph(cursor, "Heading 1"); 
+  Write.appendPara(cursor,<br />
+     "The following table comes from \"bondMovies.txt\":\n"); </p>
+<p>Write.addTable(cursor, rowsList); </p>
+<p>Write.endParagraph(cursor); 
+  Write.append(cursor, "Timestamp: " + Lo.getTimeStamp() + "\n"); </p>
+<p>Lo.saveDoc(doc, "table.odt"); 
+  Lo.closeDoc(doc); 
+  Lo.closeOffice(); 
+} // end of main() </p>
+<p>Write.addTable() does the work of converting the list of rows into a text table. </p>
+<p>Figure 10 shows the hierarchy for the TextTable service: it's a subclass of 
+TextContent and supports the XTextTable interface.  </p>
+<p><img alt="" src="images/07-Non-text_Content-10.png" /></p>
+<p>Figure 10. The TextTable Hierarchy. </p>
+<p>XTextTable contains methods for accessing a table in terms of its rows, columns, and 
+cells. The cells are referred to using names, based on letters for columns and integers 
+for rows, as in Figure 11. </p>
+<p><img alt="" src="images/07-Non-text_Content-11.png" /></p>
+<p>Figure 11. The Cell Names in a Table. </p>
+<p>Write.addTable() uses this naming scheme in the XTextTable.getCellByName() 
+method to assign data to cells: </p>
+<p>public static void addTable(XTextCursor cursor,<br />
+                                 ArrayList<String[]> rowsList) 
+// part of the Write utility class 
+{<br />
+  try { 
+    // create a text table 
+    XTextTable table = Lo.createInstanceMSF(XTextTable.class,<br />
+                                  "com.sun.star.text.TextTable"); 
+    if (table == null) { 
+      System.out.println("Could not create a text table"); 
+      return; 
+    } </p>
+<pre><code>// initialize table dimensions 
+int numRows = rowsList.size(); 
+int numCols = (rowsList.get(0)).length; 
+if (numCols &gt; 26) {    // column labelling goes from 'A' to 'Z' 
+  System.out.println("Too many columns: " + numCols +  
+                                    "; using first 26"); 
+  numCols = 26; 
+} 
+table.initialize(numRows, numCols);
+
+// add the table to the document 
+append(cursor, table); 
+endParagraph(cursor);
+
+// set table properties 
+XPropertySet tableProps = Lo.qi(XPropertySet.class, table); 
+tableProps.setPropertyValue("BackTransparent", false);   
+                                     // not transparent 
+tableProps.setPropertyValue("BackColor", 0xCCCCFF);    
+                                     // light blue
+
+// set color of first row (i.e. the header) to dark blue 
+XTableRows rows = table.getRows(); 
+Props.setProperty(rows.getByIndex(0), "BackColor", 0x666694);  
+                                     // dark blue 
+// write table header 
+String[] rowData = rowsList.get(0); 
+for (int x=0; x &lt; numCols; x++) 
+  setCellHeader( mkCellName(x,1), rowData[x], table); 
+                     // e.g. "A1", "B1", "C1", etc.
+
+
+// insert table body 
+for (int y=1; y &lt; numRows; y++) {   // start in 2nd row of list 
+  rowData = rowsList.get(y); 
+  for (int x=0; x &lt; numCols; x++) 
+    setCellText( mkCellName(x,y+1), rowData[x], table); 
+                     // e.g. "A2", "B5", "C3", etc.
+
+}
+</code></pre>
+<p>} 
+  catch (Exception e) 
+  {  System.out.println("Table insertion failed:" + e);  } 
+}  // end of addTable() </p>
+<p>A TextTable service with an XTableText interface is created at the start of 
+addTable(). Then the required number of rows and columns is calculated so that 
+XTextTable.initialize() can be called to specify the table's dimensions. </p>
+<p>Table-wide properties are set (properties are listed in the TextTable documentation). </p>
+<p>Note that if "BackTransparent" isn't set to false then Office crashes when the program 
+tries to save the document. </p>
+<p>The color property of the header row is set to dark blue. This requires a call to 
+XTextTable.getRows() to return an XTableRows object representing all the rows. </p>
+<p>This object inherits XIndexAccess, so the first row is accessed with index 0. </p>
+<p>The filling of the table with data is performed by two loops. The first deals with 
+adding text to the header row, the second deals with all the other rows. </p>
+<p>mkCellName() converts an (x, y) integer pair into a cell name like those in Figure 11: </p>
+<p>public static String mkCellName(int x, int y) 
+{  return "" + ((char)('A' + x)) + y;  } </p>
+<p>Write.setCellHeader() uses TextTable.getCellByName() to access a cell, which is of 
+type XCell. We'll study XCell in Part 4 because it's used for representing cells in a 
+spreadsheet. </p>
+<p>The Cell service supports both the XCell and XText interfaces, as in Figure 12. </p>
+<p><img alt="" src="images/07-Non-text_Content-12.png" /></p>
+<p>Figure 12. The Cell Service. </p>
+<p>This means that Lo.qi() can convert an XCell instance into XText, which makes the 
+cell's text and properties accessible to a text cursor. Write.setCellHeader() implements 
+these features: </p>
+<p>private static void setCellHeader(String cellName,<br />
+                               String data, XTextTable table) 
+// puts text into the named cell of the table, colored white 
+{ 
+  // convert XCell to XText 
+  XText cellText = Lo.qi(XText.class, 
+                         table.getCellByName(cellName)); </p>
+<p>// create  a cursor inside the cell 
+  XTextCursor textCursor = cellText.createTextCursor(); </p>
+<p>Props.setProperty(textCursor, "CharColor", 0xFFFFFF); <br />
+                                         // use white text 
+  cellText.setString(data); 
+}  // end of setCellHeader() </p>
+<p>The cell's "CharColor" property is changed so the inserted text in the header row is 
+white, as in Figure 9. </p>
+<p>Write.setCellText() is shorter than setCellHeader() because there's no need to change 
+the text's color: </p>
+<p>private static void setCellText(String cellName,<br />
+                            String data, XTextTable table) 
+// puts text into the named cell of the table 
+{ 
+  XText cellText = Lo.qi(XText.class, 
+                         table.getCellByName(cellName)); 
+  cellText.setString(data); 
+}  // end of setCellText() </p>
+<h2 id="6-adding-a-bookmark-to-the-document">6.  Adding a Bookmark to the Document</h2>
+<p>Write.addBookmark() adds a named bookmark at the current cursor position:  </p>
+<p>public static void addBookmark(XTextCursor cursor, String name) 
+{ 
+  XTextContent bmkContent = Lo.createInstanceMSF( 
+                                XTextContent.class,<br />
+                                "com.sun.star.text.Bookmark"); 
+  if (bmkContent == null) { 
+    System.out.println("Could not create a bookmark"); 
+    return; 
+  } </p>
+<p>// convert bookmark content to a named collection 
+  XNamed bmksNamed = Lo.qi(XNamed.class, bmkContent); 
+  bmksNamed.setName(name); </p>
+<p>append(cursor, bmkContent); 
+  endParagraph(cursor); 
+}  // end of addBookmark() </p>
+<p>The Bookmark service doesn't have a specific interface (such as XBookmark), so 
+Lo.createInstanceMSF() returns an XTextContent interface. These services and 
+interfaces are summarized by Figure 13. </p>
+<p><img alt="" src="images/07-Non-text_Content-13.png" /></p>
+<p>Figure 13. The Bookmark Service and Interfaces. </p>
+<p>Bookmark supports XNamed, which allows it to be viewed as a named collection of 
+bookmarks (note the plural). This is useful when searching for a bookmark or adding 
+one, as in the BuildDoc.java example. It calls Write.addBookmark() to add a 
+bookmark called "ad-Bookmark" to the document: </p>
+<p>// code fragment from BuildDoc.java 
+Write.append(cursor, "This line ends with a bookmark"); 
+Write.addBookmark(cursor, "ad-bookmark"); </p>
+<p>Bookmarks, such as "ad-bookmark", are not rendered when the document is opened, 
+which means that nothing appears after the "The line ends with a bookmark." string in 
+"build.odt". </p>
+<p>However, bookmarks are listed in Writer's "Navigator" window (press F5), as in </p>
+<p><img alt="" src="images/07-Non-text_Content-14.png" /></p>
+<p>Figure 14. </p>
+<p><img alt="" src="images/07-Non-text_Content-14.png" /></p>
+<p>Figure 14. The Writer Navigator Window. </p>
+<p>Clicking on the bookmark causes Writer to jump to its location in the document. </p>
+<p>Using Bookmarks 
+One programming use of bookmarks is for moving a cursor around a document. Just 
+as with real-world bookmarks, you can add one at some important location in a 
+document and jump to that position at a later time. </p>
+<p>Write.findBookmark() finds a bookmark by name, returning it as an XTextContent 
+instance: </p>
+<p>public static XTextContent findBookmark(XTextDocument doc,<br />
+                                                String bmName) 
+{ XBookmarksSupplier supplier =<br />
+                       Lo.qi(XBookmarksSupplier.class, doc); 
+  if (supplier == null) { 
+    System.out.println("Bookmark supplier could not be created"); 
+    return null; 
+  } </p>
+<p>XNameAccess namedBookmarks = supplier.getBookmarks(); 
+  if (namedBookmarks == null)  { 
+    System.out.println("Name access to bookmarks not possible"); 
+    return null; 
+  } </p>
+<p>if (!namedBookmarks.hasElements())  { 
+    System.out.println("No bookmarks found"); 
+    return null; 
+  } </p>
+<p>// find the specified bookmark 
+  Object oBookmark = null; 
+  try { 
+    oBookmark = namedBookmarks.getByName(bmName); 
+  } 
+  catch(com.sun.star.uno.Exception e) {} </p>
+<p>if (oBookmark == null) { 
+    System.out.println("Bookmark \"" + bmName + "\" not found"); 
+    return null; 
+  } </p>
+<p>// there's no XBookmark, so return XTextContent 
+  return Lo.qi(XTextContent.class, oBookmark); 
+}  // end of findBookmark() </p>
+<p>findBookmark() can't return an XBookmark object since there's no such interface (see 
+Figure 13), but XTextContent is a good alternative. XTextContent has a getAnchor() 
+method which returns an XTextRange that can be used for positioning a cursor. The 
+following code fragment from BuildDoc.java illustrates the idea: </p>
+<p>// code fragment from BuildDoc.java 
+XTextContent bookmark = Write.findBookmark(doc, "ad-bookmark"); 
+XTextRange bmRange = bookmark.getAnchor(); </p>
+<p>XTextViewCursor viewCursor = Write.getViewCursor(doc); 
+viewCursor.gotoRange(bmRange, false); </p>
+<p>The call to gotoRange() moves the view cursor to the "ad-bookmark" position, which 
+causes an on-screen change. gotoRange() can be employed with any type of cursor. </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="06-Text_Styles.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 6. Text Styles
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="08-Graphic_Content.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Chapter 8. Graphic Content
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>
