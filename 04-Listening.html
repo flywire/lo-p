@@ -1,0 +1,1652 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 4. Listening, and Other Techniques - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-4-listening-and-other-techniques" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 4. Listening, and Other Techniques
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 4. Listening, and Other Techniques
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="04-Listening.html" class="md-nav__link md-nav__link--active">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-listening-to-a-window" class="md-nav__link">
+    1.  Listening to a Window
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-office-manipulation-with-jna" class="md-nav__link">
+    2.  Office Manipulation with JNA
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-detecting-office-termination" class="md-nav__link">
+    3.  Detecting Office Termination
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-bridge-shutdown-detection" class="md-nav__link">
+    4.  Bridge Shutdown Detection
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-dispatching" class="md-nav__link">
+    5.  Dispatching
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-robot-keys" class="md-nav__link">
+    6.  Robot Keys
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-listening-to-a-window" class="md-nav__link">
+    1.  Listening to a Window
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-office-manipulation-with-jna" class="md-nav__link">
+    2.  Office Manipulation with JNA
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-detecting-office-termination" class="md-nav__link">
+    3.  Detecting Office Termination
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-bridge-shutdown-detection" class="md-nav__link">
+    4.  Bridge Shutdown Detection
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-dispatching" class="md-nav__link">
+    5.  Dispatching
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-robot-keys" class="md-nav__link">
+    6.  Robot Keys
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/04-Listening.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-4-listening-and-other-techniques">Chapter 4. Listening, and Other Techniques</h1>
+<p>This chapter concludes the general introduction to Office 
+programming by looking at several techniques that will 
+reappear periodically in later chapters: the use of window 
+listeners, the manipulation of Office using the JNA library, 
+dispatching messages to the Office GUI, and the Java 
+Robot package.   </p>
+<p>Once again the examples come from the "Office Tests" directory in the code 
+download associated with this book, and make liberal use of the classes in the "Utils" 
+directory. For details please visit http://fivedots.coe.psu.ac.th/~ad/jlop/. </p>
+<h2 id="1-listening-to-a-window">1.  Listening to a Window</h2>
+<p>I haven't previously mentioned Office's listener interfaces (there are about 140 of 
+them), because they work in the same way as listeners in Java. </p>
+<p>Probably the easiest way of obtaining a list of them all is to visit the LibreOffice 
+documentation for XEventListener (use lodoc XEventListener). The tree diagram 
+at the top of the page shows that every listener interface is a subclass of 
+XEventListener, and you can click on a subclass box to jump to its documentation.  </p>
+<p>One nice syntactic feature of listeners is that almost all their names end with 
+“Listener”. This makes them easy to find when searching through indices of class 
+names, such as the “Class Index” page at 
+http://api.libreoffice.org/docs/idl/ref/classes.html. </p>
+<p>The top-level document window can be monitored for changes using 
+XTopWindowListener, which responds to modifications of the window’s state, such 
+as when it is opened, closed, minimized, and made active.  </p>
+<p>The DocWindow.java example illustrates how to use the listener: </p>
+<p>public class DocWindow implements XTopWindowListener 
+{ </p>
+<p>public DocWindow(String fnm) 
+  { 
+    XComponentLoader loader = Lo.loadOffice(); </p>
+<pre><code>XExtendedToolkit tk = Lo.createInstanceMCF( 
+            XExtendedToolkit.class, "com.sun.star.awt.Toolkit"); 
+if (tk != null) 
+  tk.addTopWindowListener(this);
+
+XComponent doc = Lo.openDoc(fnm, loader); 
+if (doc == null) { 
+  System.out.println("Could not open " + fnm); 
+  Lo.closeOffice();
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Window </p>
+</div>
+<p>Listeners; Office 
+Manipulation with JNA; 
+Dispatching; Robot 
+Keys 
+Example folders: "Office 
+Tests" and "Utils" 
+      return; 
+    } </p>
+<pre><code>GUI.setVisible(doc, true);
+
+ // various window manipulation code; see below 
+ //     :
+
+Lo.closeDoc(doc);  
+Lo.closeOffice();
+</code></pre>
+<p>} // end of DocWindow() </p>
+<p>// --------- 7 XTopWindowListener methods ----------- </p>
+<p>public void windowOpened(EventObject event)<br />
+  {<br />
+    System.out.println("WL: Opened"); <br />
+    XWindow xWin = Lo.qi(XWindow.class, event.Source); 
+    GUI.printRect( xWin.getPosSize()); <br />
+  }  // end of windowOpened() </p>
+<p>public void windowActivated(EventObject event) 
+  { System.out.println("WL: Activated"); <br />
+    System.out.println("  Title bar: \"" + GUI.getTitleBar() + "\""); 
+  }  // end of windowActivated() </p>
+<p>public void windowMinimized(EventObject event) 
+  { System.out.println("WL: Minimized");  } </p>
+<p>public void windowNormalized(EventObject event) 
+  { System.out.println("WL: Normalized");  } </p>
+<p>public void windowDeactivated(EventObject event) 
+  { System.out.println("WL: De-activated");  } </p>
+<p>public void windowClosing(EventObject event) // never called (?) 
+  { System.out.println("WL: Closing");  } </p>
+<p>public void windowClosed(EventObject event) 
+  { System.out.println("WL: Closed");  } </p>
+<p>// --------- XEventListener method ------------ </p>
+<p>public void disposing(EventObject event)   // never called (?) 
+  { System.out.println("WL: Disposing");  } </p>
+<p>}  // end of DocWindow class </p>
+<p>The class implements seven methods for XTopWindowListener, and disposing() 
+inherited from XEventListener. </p>
+<p>The DocWindow object is made the listener for the window by accessing the 
+XExtendedToolkit interface, which is part of the Toolkit service. Toolkit is utilized by 
+Office to create windows, and XExtendedToolkit adds three kinds of listeners: 
+XTopWindowListener, XFocusListener, and the XKeyHandler listener. </p>
+<p>When an event arrives at a listener method, one of the more useful things to do is to 
+transform it into an XWindow instance: 
+XWindow xWin = Lo.qi(XWindow.class, event.Source); 
+It's then possible to access details about the frame, such as its size. </p>
+<p>Events are fired when GUI.setVisible() is called in the DocWindow() constructor. An 
+opened event is issued, followed by an activated event, triggering calls to 
+windowOpened() and windowActivated(). Rather confusingly, both these methods are 
+called twice. </p>
+<p>When Lo.closeDoc() is called at the end of the constructor, a single de-activated event 
+is fired, but two closed events are issued. Consequently, there's a single call to 
+windowDeactivated() and two to windowClosed(). Strangely, there's no window 
+closing event trigger of windowClosing(), and Lo.closeOffice() doesn't cause 
+disposing() to fire. </p>
+<h2 id="2-office-manipulation-with-jna">2.  Office Manipulation with JNA</h2>
+<p>Although XTopWindowListener can detect the minimization and re-activation of the 
+document window, there's no way to trigger these changes from the Office API.  </p>
+<p>Fixing this requires a trip outside Office because I need a library that can manipulate a 
+window controlled by the OS. One very nice API that fits my needs is Java Native 
+Access (JNA, https://github.com/twall/jna), which supports OS programming without 
+writing anything but Java. JNA comes with numerous classes, representing OS data 
+structures, such as window handles and process IDs. </p>
+<p>The JNA-powered methods in my JNAUtils.java utilities class fall roughly into three 
+groups: functions for accessing windows via their handles, methods for accessing 
+buttons inside windows via their handles, and functions that map between handles and 
+process IDs.  </p>
+<p>In the DocWindow.java example, the document window’s handle is retrieved first, 
+then minimization and re-activation methods change the window: </p>
+<p>// part of DocWindow.java 
+HWND handle = JNAUtils.getHandle(); 
+System.out.println("Handle: \"" +<br />
+                       JNAUtils.handleString(handle) + "\""); </p>
+<p>JNAUtils.winMinimize(handle); <br />
+                  // triggers minimized and de-activated events 
+Lo.delay(3000); </p>
+<p>JNAUtils.winRestore(handle); <br />
+                 // triggers normalized and activated events 
+Lo.delay(3000); </p>
+<p>The calls to Lo.delay() slow down the window changes at run time so the user can see 
+what's happening. </p>
+<p>JNAUtils.getHandle() employs JNA's User32 library function FindWindow(). It finds 
+the handle associated with a specific application window's class name, which is 
+"SALFRAME" for both LibreOffice and OpenOffice. JNAUtils.handleString() 
+converts the HWND handle into a hexadecimal string, which prints nicely. </p>
+<p>JNAUtils.winMinimize() and JNAUtils.winRestore() call User32.ShowWindow() 
+with different state parameters.  </p>
+<p>The JNA User32 class contains many functions related to window manipulation. For 
+example, it's easy to implement window movement and resizing using 
+SetWindowPos(). However, that functionality is already available in Office's 
+XWindow.setPosSize().  </p>
+<p>Incidentally, it's possible for Office to access a window’s handle as an integer by 
+means of XSystemDependentWindowPeer (e.g. see the code in 
+GUI.getWindowHandle()), but there are no Office methods which utilize this integer. </p>
+<p>JNA methods require a HWND instance, so the handle needs to be obtained using 
+JNA.  </p>
+<h2 id="3-detecting-office-termination">3.  Detecting Office Termination</h2>
+<p>Office termination is most easily observed by attaching a listener to the Desktop 
+object, as in DocMonitor.java: </p>
+<p>public class DocMonitor 
+{ 
+  public DocMonitor(String fnm) 
+  { 
+    XComponentLoader loader = Lo.loadOffice();    </p>
+<pre><code>XDesktop xDesktop = Lo.getDesktop(); 
+xDesktop.addTerminateListener( new XTerminateListener() 
+{ 
+   public void queryTermination(EventObject e)  
+                            throws TerminationVetoException 
+   {  System.out.println("TL: Starting Closing");   }
+
+   public void notifyTermination(EventObject e) 
+   {  System.out.println("TL: Finished Closing"); }
+
+   public void disposing(EventObject e)  
+   {  System.out.println("TL: Disposing");  } 
+});
+
+XComponent doc = Lo.openDoc(fnm, loader); 
+if (doc == null) { 
+  System.out.println("Could not open " + fnm); 
+  Lo.closeOffice(); 
+  return; 
+}
+
+GUI.setVisible(doc, true);
+
+System.out.println("Waiting for 5 secs before closing doc…"); 
+Lo.delay(5000); 
+Lo.closeDoc(doc);
+
+System.out.println("Waiting for 5 secs before closing Office…"); 
+Lo.delay(5000); 
+Lo.closeOffice();
+</code></pre>
+<p>}  // end of DocMonitor() 
+} </p>
+<p>An XTerminateListener is attached to the XDesktop instance. The program's output 
+is: </p>
+<blockquote>
+<p>run DocMonitor algs.odp 
+Loading Office... </p>
+</blockquote>
+<p>Opening algs.odp 
+Waiting for 5 secs before closing doc... </p>
+<p>Closing the document 
+Waiting for 5 secs before closing Office... </p>
+<p>Closing Office 
+TL: Starting Closing 
+TL: Finished Closing 
+Office terminated </p>
+<p>XTerminateListener’s queryTermination() and notifyTermination() are called at the 
+start and end of the Office closing sequence. As in the DocWindow.java example, 
+disposing() is never triggered. </p>
+<h2 id="4-bridge-shutdown-detection">4.  Bridge Shutdown Detection</h2>
+<p>There's another way to detect Office closure: by listening for the shutdown of the 
+UNO bridge between the Java and Office processes. This can be useful if Office 
+crashes independently of your Java code. However, I was only able to get this 
+approach to work when using a socket-based link to Office. </p>
+<p>The modified parts of DocMonitor.java are: </p>
+<p>// in DocMonitor() 
+XComponentLoader loader = // Lo.loadOffice(); <br />
+                          Lo.loadSocketOffice(); 
+     :  // more code </p>
+<p>XComponent bridgeComp = Lo.getBridge(); 
+if (bridgeComp != null) { 
+  System.out.println("Found bridge"); 
+  bridgeComp.addEventListener( new XEventListener() 
+  { 
+    public void disposing(EventObject e) 
+    { /<em> remote bridge has gone down, because 
+         office crashed or was terminated. </em>/ 
+      System.out.println("Office bridge has gone!!"); 
+      System.exit(1); 
+    } 
+  }); 
+} </p>
+<p>XComponent doc = Lo.openDoc(fnm, loader); 
+     :   // more code </p>
+<p>Since the disappearance of the Office bridge is a fatal event, disposing() finishes by 
+calling System.exit() to kill Java. </p>
+<p>The output of the revised DocMonitor.java is: </p>
+<blockquote>
+<p>run DocMonitor algs.odp 
+Loading Office... </p>
+</blockquote>
+<p>Office process created 
+Found bridge 
+Opening algs.odp 
+Waiting for 5 secs before closing doc... </p>
+<p>Closing the document 
+Waiting for 5 secs before closing Office... </p>
+<p>Closing Office 
+TL: Starting Closing 
+TL: Finished Closing 
+Office terminated 
+Office bridge has gone!! </p>
+<p>This output shows that bridge closure follows the call to Lo.closeOffice(), as you'd 
+expect. However, if I make Office crash while DocMonitor is running, then the output 
+becomes: </p>
+<blockquote>
+<p>run DocMonitor algs.odp 
+Loading Office... </p>
+</blockquote>
+<p>Office process created 
+Found bridge 
+Opening algs.odp 
+Waiting for 5 secs before closing doc... </p>
+<p>Office bridge has gone!! </p>
+<p>I killed Office while the Java program was still running, so it never reached its 
+Lo.closeOffice() call which triggers the XTerminateListener methods. However, the 
+XEventListener attached to the bridge did fire. (If you're wondering, I killed Office by 
+opening the Task manager on my test machine, and stopped the soffice process.) </p>
+<h2 id="5-dispatching">5.  Dispatching</h2>
+<p>This book is about the Java Office API, which manipulates UNO data structures such 
+as services, interfaces, and components. There's an alternative programming style, 
+based on the dispatching of messages to Office. These messages are mostly related to 
+menu items, so, for example, the messages ".uno:Copy", ".uno:Cut", ".uno:Paste", and 
+".uno:Undo" duplicate commands in the "Edit" menu. The use of messages tends to be 
+most common when writing macros (scripts) in Basic, because Office's built-in Macro 
+recorder automatically converts a user's interaction with menus into dispatches. </p>
+<p>One drawback of dispatching is that it isn't a complete programming solution. For 
+instance, copying requires the selection of text, which has to be implemented with the 
+Office API.  </p>
+<p>LibreOffice has a comprehensive webpage listing all the dispatch commands 
+(https://wiki.documentfoundation.org/Development/DispatchCommands). An older 
+source is the UICommands.ods spreadsheet, put together by Ariel Constenla-Haile in 
+2010, at https://arielch.fedorapeople.org/devel/ooo/UICommands.ods.   </p>
+<p>Another resource is chapter 10 of "OpenOffice.org Macros Explained" by Andrew 
+Pitonyak (free online at http://www.pitonyak.org/book/)<br />
+Creating a dispatcher in Java is a little complicated since XDispatchProvider and 
+XDispatchHelper instances are needed. XDispatchProvider is obtained from the frame 
+(i.e. window) where the message will be delivered, which is almost always the 
+Desktop's frame (i.e. Office application's window). XDispatchHelper sends the 
+message via its executeDispatch() method. It's also possible to examine the result 
+status in an DispatchResultEvent object, but that seems a bit flakey – it reports failure 
+when the dispatch works, and raises an exception when the dispatch really fails. </p>
+<p>The code is wrapped up in Lo.dispatchCmd() , which is called twice in the 
+DispatchTest.java example: </p>
+<p>public DispatchTest(String fnm) 
+{ 
+  XComponentLoader loader = Lo.loadOffice();    </p>
+<p>XComponent doc = Lo.openDoc(fnm, loader); 
+  if (doc == null) { 
+    System.out.println("Could not open " + fnm); 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>GUI.setVisible(doc, true); 
+  Lo.delay(100); 
+  toggleSlidePane(); </p>
+<p>Lo.dispatchCmd("HelpIndex");     // show online Help </p>
+<p>Lo.dispatchCmd("Presentation");  // start slideshow </p>
+<p>//Lo.closeDoc(doc); 
+  //Lo.closeOffice(); 
+}  // end of DispatchTest() </p>
+<p>The Lo.dispatchCmd() string doesn't require an ".uno"" prefix. The first call sends 
+".uno:HelpIndex" to open Office's help window, and the second (".uno:Presentation") 
+starts an Impress slideshow. This latter message only works if the loaded file is an 
+Impress document. </p>
+<p>DispatchTest() doesn't close the document or Office at the end, so the user must 
+explicitly exit the slideshow and close the Office application himself by clicking on 
+its close box.  </p>
+<h2 id="6-robot-keys">6.  Robot Keys</h2>
+<p>Another menu-related approach to controlling Office is to programmatically send 
+menu shortcut key strokes to the currently active window. For example, a loaded 
+Impress document is often displayed with a slide selection pane. This can be closed 
+using the menu item View &gt; Slide Pane, which is assigned the shortcut keys ALT-v 
+ALT-l. </p>
+<p>toggleSlidePane() 'types' these key strokes with the help of Java's Robot class: </p>
+<p>// in DispatchTest.java </p>
+<p>private void toggleSlidePane() 
+// send ALT-v and then ALT-l to foreground window; 
+// makes slide pane appear/disappear in Impress 
+{ 
+  try { 
+    Robot robot = new Robot(); 
+    robot.setAutoDelay(250); 
+    robot.keyPress(KeyEvent.VK_ALT); </p>
+<pre><code>robot.keyPress(KeyEvent.VK_V); 
+robot.keyRelease(KeyEvent.VK_V);
+
+robot.keyPress(KeyEvent.VK_L); 
+robot.keyRelease(KeyEvent.VK_L);
+
+robot.keyRelease(KeyEvent.VK_ALT);
+</code></pre>
+<p>} 
+  catch(AWTException e) 
+  {  System.out.println("sendkeys slidePane exception: " + e); } 
+}   // end of toggleSlidePane() </p>
+<p>This technique has a few drawbacks – one is that Robot can only send key strokes to 
+the currently active window on the OS' desktop. I've assumed this is Office, because I 
+just made Office visible with a call to GUI.setVisible() back in the DispatchTest() 
+constructor. Of course, the OS can do whatever it likes, such as suddenly pop up an 
+instant messaging window or a software update alert, which would cause the 
+characters to head to the wrong place. </p>
+<p>Another problem is that toggleSlidePane() is in the dark about the current state of the 
+GUI. If the slide pane is visible then the keys will make it disappear, but if the pane is 
+not currently on-screen then these keys will bring it up. Also, what if the current GUI 
+isn't the one for Impress? Do these combination of keys do something deadly in one 
+of Office's other applications? 
+One nice feature is that there's lots of documentation on keyboard shortcuts for Office 
+in its User guides (downloadable from https://th.libreoffice.org/get-
+help/documentation/), and these can be easily translated into key presses and releases 
+in Robot. </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="03-Examining.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 3. Examining
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="05%20Part%202%20Writer.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Part 2 Writer
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

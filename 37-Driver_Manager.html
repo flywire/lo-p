@@ -1,0 +1,1800 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 37. Using the Driver Manager - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-37-using-the-driver-manager" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 37. Using the Driver Manager
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 37. Using the Driver Manager
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="37-Driver_Manager.html" class="md-nav__link md-nav__link--active">
+        Chapter 37. Using the Driver Manager
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-querying-a-csv-file" class="md-nav__link">
+    1.  Querying a CSV File
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-finding-out-about-tables" class="md-nav__link">
+    2.  Finding out about Tables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-querying-an-access-file" class="md-nav__link">
+    3.  Querying an Access File
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-querying-a-calc-spreadsheet" class="md-nav__link">
+    4.  Querying a Calc Spreadsheet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-querying-a-thunderbird-address-book" class="md-nav__link">
+    5.  Querying a Thunderbird Address Book
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-querying-a-csv-file" class="md-nav__link">
+    1.  Querying a CSV File
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-finding-out-about-tables" class="md-nav__link">
+    2.  Finding out about Tables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-querying-an-access-file" class="md-nav__link">
+    3.  Querying an Access File
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-querying-a-calc-spreadsheet" class="md-nav__link">
+    4.  Querying a Calc Spreadsheet
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-querying-a-thunderbird-address-book" class="md-nav__link">
+    5.  Querying a Thunderbird Address Book
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/37-Driver_Manager.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-37-using-the-driver-manager">Chapter 37. Using the Driver Manager</h1>
+<p>This chapter looks at programming with the 
+XDriveManager interface, which were labelled (4) in 
+Figure 5 of the Chapter 34. Figure 1 repeats that figure but 
+without the alternative query approaches (labels (1), (2) 
+and (3)). </p>
+<p><img alt="" src="images/37-Driver_Manager-1.png" /></p>
+<p>Figure 1. Querying a Document. </p>
+<p>XDriverManager offers a low-level driver approach for accessing databases, which is 
+similar to JDBC's DriverManager. It's rarely used to access Office databases, which 
+are more conveniently manipulated using XOfficeDatabaseDocument (see Chapter 
+35). More commonly XDriverManager is employed for non-Office databases, such as 
+MS Access files, and tabular data inside CSV files, Calc spreadsheets, and e-mail 
+address books. This chapter includes examples of how to query these kinds of files. </p>
+<p>The drawback of using a driver manager is the low-level information that the 
+programmer has to supply, including the driver name, the file's URL, and the 
+connection properties. A good source for this information is the Developer's Guide, in 
+the "Driver Specifics" section of chapter 12. It's also accessible online at 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics 
+(or use loGuide "Database Driver Specifics"). Unfortunately, the guide was last </p>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Querying a CSV </p>
+</div>
+<p>File; Querying an 
+Access File; Querying a 
+Calc Spreadsheet; 
+Querying a Thunderbird 
+Address Book 
+Example folders: "Base 
+Tests" and "Utils" 
+updated in 2008 for OpenOffice 3.1, and some details have changed since then. A 
+better approach is to query Base's DriverManager at run time which will supply data 
+for the version of Office that you're using. Figure 2 shows the relevant parts of the 
+DriverManager service and its interfaces. </p>
+<p><img alt="" src="images/37-Driver_Manager-2.png" /></p>
+<p>Figure 2. The DriveManager Service and Some of its Interfaces. </p>
+<p>The XEnumerationAccess interface offers a convenient way to list all the drivers 
+currently known to Base. When the programmer calls 
+XDriveAcccess.getDriverByURL(), one of these is selected based on the URL's 
+database protocol. XDriver.getPropertyInfo() gives access to the properties that can be 
+set in the driver's connection. </p>
+<p>These interfaces and methods are utilized by my Base.getSupportedDrivers() and 
+Base.printDriverProperties() functions, as seen in CSVQuery.java explained next. </p>
+<h2 id="1-querying-a-csv-file">1.  Querying a CSV File</h2>
+<p>CSVQuery.java opens a CSV file, examines its us-500 table, and prints the first 
+names of the people resident in New York City: </p>
+<p>// part of CSVQuery.java... </p>
+<p>XResultSet rs = Base.executeQuery("SELECT \"first_name\" FROM<br />
+                    \"us-500\" WHERE \"City\" = 'New York'", conn); 
+BaseTablePrinter.printResultSet(rs);   </p>
+<p>The novel parts of CSVQuery.java are how it sets up the database connection and 
+how it determines the table's format. The main() function: </p>
+<p>// global 
+private static final String FNM = "us-500.csv";  </p>
+<p>// in CSVQuery.java 
+public static void main(String[] args) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); </p>
+<p>XDriverManager dm = Base.getDriverManager(); 
+  if (dm == null) { 
+    System.out.println("Could not access Driver manager"); 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>ArrayList<String> driveNms = Base.getSupportedDrivers(); 
+  System.out.println("Drivers (" + driveNms.size() + "):"); 
+  for(String driveNm : driveNms) 
+    System.out.println("  " + driveNm); 
+  System.out.println(); </p>
+<p>String url = "sdbc:flat:" + FileIO.fnmToURL(FNM); 
+  System.out.println("Using URL: " + url); </p>
+<p>XDriver driver = Base.getDriverByURL(url); 
+  Base.printDriverProperties(driver, url); </p>
+<p>// set up properties for a CSV file with no password 
+  PropertyValue[] props = Props.makeProps( 
+        new String[] { "user", "password",<br />
+                       "JavaDriverClass", "Extension", 
+                       "HeaderLine", "FieldDelimiter",<br />
+                       "StringDelimiter" }, 
+        new Object[] { "", "",<br />
+               "com.sun.star.comp.sdbc.flat.ODriver", "csv", 
+                true, ",", "\"\"" } 
+          );  </p>
+<p>XConnection conn = null; 
+  try { 
+    conn = dm.getConnectionWithInfo(url, props); </p>
+<pre><code>// ArrayList&lt;String&gt; tableNames = Base.getTablesNames(conn); 
+ArrayList&lt;String&gt; tableNames = Base.getTablesNamesMD(conn); 
+System.out.println("No. of tables: " + tableNames.size()); 
+System.out.println( Arrays.toString(tableNames.toArray())); 
+            // reports all CSV tables ??
+
+XResultSet rs = Base.executeQuery("SELECT \"first_name\" FROM  
+        \"us-500\" WHERE \"City\" = 'New York'", conn); 
+BaseTablePrinter.printResultSet(rs);
+</code></pre>
+<p>} 
+  catch(Exception e) { 
+    System.out.println(e); 
+  } </p>
+<p>Base.closeConnection(conn); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+<p>The XDriverManager interface is obtained by Base.getDriverManager(): </p>
+<p>// in the Base class 
+public static XDriverManager getDriverManager() 
+{ return Lo.createInstanceMCF(XDriverManager.class,<br />
+                              "com.sun.star.sdbc.DriverManager"); 
+} </p>
+<p>Base.getSupportedDrivers() returns a list of all the Base drivers: </p>
+<p>// in the Base class 
+public static ArrayList<String> getSupportedDrivers() 
+{ 
+  XDriverManager dm = getDriverManager(); 
+  XEnumerationAccess enumAccess =<br />
+                   Lo.qi(XEnumerationAccess.class, dm); 
+  XEnumeration driversEnum = enumAccess.createEnumeration(); 
+  if (driversEnum == null) { 
+    System.out.println("No drivers found"); 
+    return null; 
+  } </p>
+<p>ArrayList<String> drivers = new ArrayList<String>(); 
+  while(driversEnum.hasMoreElements()) { 
+    try { 
+      drivers.add( Info.getImplementationName( 
+                          driversEnum.nextElement()) ); 
+    } 
+    catch(com.sun.star.uno.Exception e) {} 
+  } 
+  return drivers; 
+}  // end of getSupportedDrivers() </p>
+<p>The XDriverManager interface is cast to XEnumerationAccess, which can loop 
+through the drivers and access their names. The list on one of my test machines is: </p>
+<p>Drivers (11): 
+  com.sun.star.comp.sdbc.ODBCDriver 
+  com.sun.star.comp.sdbc.JDBCDriver 
+  com.sun.star.comp.sdbc.MorkDriver 
+  com.sun.star.comp.sdbc.ado.ODriver 
+  com.sun.star.comp.sdbc.calc.ODriver 
+  com.sun.star.comp.sdbc.dbase.ODriver 
+  com.sun.star.comp.sdbc.firebird.Driver 
+  com.sun.star.comp.sdbc.flat.ODriver 
+  com.sun.star.sdbcx.comp.hsqldb.Driver 
+  org.openoffice.comp.connectivity.pq.Driver.noext 
+  org.openoffice.comp.drivers.MySQL.Driver </p>
+<p>CSVQuery.java uses the "flat" driver to access the CSV file. Later examples in this 
+chapter employ the ADO, Calc, and Mork drivers for an Access database, a Calc 
+spreadsheet, and a Thunderbird address book.  </p>
+<p>There's no need for the programmer to explicitly load a driver, since Base does it 
+automatically based on the database protocol in the file's URL. The URL is 
+constructed with the following code: </p>
+<p>// part of CSVQuery.java... </p>
+<p>String url = "sdbc:flat:" + FileIO.fnmToURL(FNM); 
+System.out.println("Using URL: " + url); </p>
+<p>XDriver driver = Base.getDriverByURL(url); </p>
+<p>The database protocol is set to be "sdbc:flat", and the local file is converted to "file://" 
+URL form; the resulting URL is: 
+sdbc:flat:file:///C:/Users/Ad/Desktop/LibreOffice Tests/ 
+                                        Base Tests/us-500.csv 
+Base.getDriverByURL() is: </p>
+<p>// in the Base class 
+public static XDriver getDriverByURL(String url) 
+{ XDriverAccess driverAccess =<br />
+        Lo.createInstanceMCF(XDriverAccess.class,<br />
+                             "com.sun.star.sdbc.DriverManager"); 
+  return driverAccess.getDriverByURL(url); 
+}  // end of getDriverByURL() </p>
+<p>Base.printDriverProperties() prints the driver's name, and its properties: </p>
+<p>// in the Base class 
+public static void printDriverProperties(XDriver driver, String url) 
+{ 
+  if (driver == null) { 
+    System.out.println("Driver is null"); 
+    return; 
+  } 
+  try { 
+    System.out.println("Driver Name: " +<br />
+                    Info.getImplementationName(driver)); </p>
+<pre><code>DriverPropertyInfo[] dpInfo = driver.getPropertyInfo(url, null); 
+if (dpInfo == null) { 
+  System.out.println("Properties info for the driver is null"); 
+  return; 
+} 
+System.out.println("No. of Driver properties: " + dpInfo.length); 
+for(int i=0; i &lt; dpInfo.length; i++) 
+   System.out.println("  " + dpInfo[i].Name + " = " +  
+                             dpInfo[i].Value); 
+System.out.println();
+</code></pre>
+<p>} 
+  catch(SQLException e) { 
+    System.out.println("No properties info for the driver"); 
+  } 
+}  // end of printDriverProperties() </p>
+<p>The method utilizes XDriver.getPropertyInfo() (see Figure 2) to access an array of 
+DriverProperty objects. </p>
+<p>The information printed for the CSV file's "flat" driver is: </p>
+<p>Driver Name: com.sun.star.comp.sdbc.flat.ODriver 
+No. of Driver properties: 11 
+  CharSet = 
+  Extension = .* 
+  ShowDeleted = 0 
+  EnableSQL92Check = 0 
+  UseRelativePath = 0 
+  URL = 
+  FieldDelimiter = 
+  HeaderLine = 0 
+  StringDelimiter = 0 
+  DecimalDelimiter = 0 
+  ThousandDelimiter = 0 </p>
+<p>Knowing the property names is a good start, but what do they do? Connection 
+properties are defined across several classes which inherit the ConnectionProperties 
+class, as shown in Figure 3. </p>
+<p><img alt="" src="images/37-Driver_Manager-3.png" /></p>
+<p>Figure 3. Connection Properties and Subclasses. </p>
+<p>The most relevant class for the CSV flat file is FlatConnectionProperties, although 
+some properties are also inherited from FileConnectionProperties and 
+ConnectionProperties. </p>
+<p>Some experimentation is required to decide which properties to set, but a good source 
+of answers are the OpenOffice and LibreOffice forums where people have dealt with 
+similar questions before. The properties are passed to the connection by calling 
+XDriverManager.getConnectionWithInfo(): </p>
+<p>// part of CSVQuery.java... </p>
+<p>// set up properties for a CSV file with no password 
+PropertyValue[] props = Props.makeProps( 
+        new String[] { "user", "password",<br />
+                       "JavaDriverClass", "Extension", 
+                       "HeaderLine", "FieldDelimiter",<br />
+                       "StringDelimiter" }, 
+        new Object[] { "", "",<br />
+               "com.sun.star.comp.sdbc.flat.ODriver", "csv", 
+                true, ",", "\"\"" } 
+      );<br />
+XConnection conn = dm.getConnectionWithInfo(url, props); </p>
+<h2 id="2-finding-out-about-tables">2.  Finding out about Tables</h2>
+<p>A common need when querying databases is knowing their table schemas.  </p>
+<p>In my earlier ODB document examples, I used classes from the sdbcx module to get 
+schema information (see Figure 10). For example, Base.getTablesNames() accesses 
+information about all the tables in the database: </p>
+<p>// in the Base class 
+public static ArrayList<String> getTablesNames(XConnection conn) 
+{ 
+  XTablesSupplier tblsSupplier =<br />
+                    Lo.qi(XTablesSupplier.class, conn); 
+  XNameAccess tables = tblsSupplier.getTables(); 
+  String[] tableNms = tables.getElementNames(); 
+  return new ArrayList<String>(Arrays.asList(tableNms)); 
+}  // end of getTablesNames() </p>
+<p>This technique doesn't work with non-Office databases, such as CSV files, Access 
+databases, and spreadsheets. If Base.getTablesNames() is passed a connection to these 
+then the XTablesSupplier instance is set to null. </p>
+<p>Fortunately, there's an alternative, lower-level approach based on using the 
+DatabaseMetaData service (see Figure 1), as implemented in getTablesNamesMD(): </p>
+<p>// in the Base class 
+public static ArrayList<String> getTablesNamesMD(XConnection conn) 
+// get table names using DatabaseMetaData 
+{ 
+  ArrayList<String> names = new ArrayList<String>(); 
+  try { 
+     XDatabaseMetaData dm = conn.getMetaData(); 
+     XResultSet rs = dm.getTables(null, null, "%",<br />
+                                         new String[]{"TABLE"}); 
+     XRow xRow = Lo.qi(XRow.class, rs); 
+     while (rs.next()) 
+       names.add(xRow.getString(3));    // 3 == table name 
+   } 
+   catch(SQLException e) { 
+     System.out.println(e); 
+   } 
+   return names; 
+ }  // end of getTablesNamesMD() </p>
+<p>Table schema details are retrieved by querying XDatabaseMetaData, which lets<br />
+Base.getTablesNamesMD() return a list of table names. The bad news is that the 
+generated list is incorrect, including every CSV file name in the current directory. </p>
+<p>This meant that I had to hardwire the "us-500" table name into the query in 
+CSVQuery.java. rather than use the Base.getTablesNamesMD() data. </p>
+<h2 id="3-querying-an-access-file">3.  Querying an Access File</h2>
+<p>AccessQuery.java is almost the same as CSVQuery.java, except for the change in 
+driver and the connection properties. </p>
+<p>The list of drivers printed by Base.getSupportedDrivers() suggests that I should use 
+the ADO driver to connect to Microsoft Access files since ActiveX Data Objects 
+(ADO) is one of Microsoft's technologies for database access.  </p>
+<p>The documentation on how to use this driver is quite sparse and out of date. The URL 
+protocol is given as "sdbc:ado:<ADO specific connection string>", with two 
+examples: 
+ sdbc:ado:PROVIDER=Microsoft.Jet.OLEDB.4.0; 
+DATA SOURCE= c:\northwind.mdb 
+ sdbc:ado:Provider=msdaora;data source=testdb 
+The first is the most relevant, but only supports the old Access file format (MDB). For 
+ACCDB files (Access 2007 and later), it must be revised to: 
+"sdbc:ado:PROVIDER=Microsoft.ACE.OLEDB.12.0;DATA SOURCE=".  </p>
+<p>Base.getTablesNamesMD() returns slightly incorrect results when it examines Access 
+files. For example, a database with four tables is reported to have five, one of them 
+the empty string: </p>
+<p>No. of tables: 5 
+[AuthorISBN, Authors, Publishers, Titles, ] </p>
+<p>The main() function for AccessQuery.java: </p>
+<p>//private static final String FNM = "Books.mdb";<br />
+private static final String FNM = "Books.accdb";  </p>
+<p>// in AccessQuery.java 
+public static void main(String[] args) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); </p>
+<p>XDriverManager dm = Base.getDriverManager(); 
+  if (dm == null) { 
+    System.out.println("Could not access Driver manager"); 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>String url = "sdbc:ado:PROVIDER=Microsoft.ACE.OLEDB.12.0; 
+                DATA SOURCE=" +<br />
+                FileIO.getAbsolutePath(FNM); 
+                         // for accdb <em>and</em> mdb files 
+  System.out.println("Using URL: " + url); </p>
+<p>XConnection conn = null; 
+  try { 
+    conn = dm.getConnectionWithInfo(url, null); 
+                  // no connection properties needed </p>
+<pre><code>ArrayList&lt;String&gt; tableNames = Base.getTablesNamesMD(conn); 
+System.out.println("No. of tables: " + tableNames.size()); 
+System.out.println( Arrays.toString(tableNames.toArray())); 
+         // table list includes an empty string
+
+XResultSet rs = Base.executeQuery( 
+                  "SELECT * FROM \"Authors\"", conn); 
+BaseTablePrinter.printResultSet(rs);
+</code></pre>
+<p>} 
+  catch(Exception e) { 
+    System.out.println(e); 
+  } </p>
+<p>Base.closeConnection(conn); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+<h2 id="4-querying-a-calc-spreadsheet">4.  Querying a Calc Spreadsheet</h2>
+<p>CalcQuery.java examines the "Marks" spreadsheet in totals.ods. </p>
+<p>The Calc driver treats each named sheet in the spreadsheet as a separate table. This 
+time, Base.getTablesNamesMD() returns a correct list of the sheet names. </p>
+<p>private static final String FNM = "totals.ods";  </p>
+<p>// in CalcQuery.java 
+public static void main(String[] args) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  XDriverManager dm = Base.getDriverManager(); 
+  if (dm == null) { 
+    System.out.println("Could not access Driver manager"); 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>String url = "sdbc:calc:" + FileIO.fnmToURL(FNM); 
+  System.out.println("Using URL: " + url); </p>
+<p>XConnection conn = null; 
+  try { 
+    conn = dm.getConnectionWithInfo(url, null); 
+                  // no connection properties needed </p>
+<pre><code>ArrayList&lt;String&gt; tableNames = Base.getTablesNamesMD(conn); 
+System.out.println("No. of tables: " + tableNames.size()); 
+System.out.println( Arrays.toString(tableNames.toArray()));
+
+XResultSet rs = Base.executeQuery( 
+       "SELECT \"Stud. No.\", \"Fin/45\" FROM \"Marks\"  
+        WHERE \"Fin/45\" &lt; 20", conn); 
+BaseTablePrinter.printResultSet(rs);
+</code></pre>
+<p>} 
+  catch(Exception e) { 
+    System.out.println(e); 
+  } </p>
+<p>Base.closeConnection(conn); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+<h2 id="5-querying-a-thunderbird-address-book">5.  Querying a Thunderbird Address Book</h2>
+<p>One reason for Office being able to access the address books of e-mail software is for 
+implementing mail merge applications. ThunderbirdQuery.java examines the personal 
+addresses in Thunderbird (https://www.mozilla.org/en-US/thunderbird/). </p>
+<p>The Office documentation at 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics 
+mentions support for Mozilla, Outlook, Outlook Express and LDAP, but several 
+forum posts describe updates and changes.  </p>
+<p>"sdbc:address:mozilla" supports SeaMonkey Mail, the 2006 replacement for the 
+Mozilla e-mail reader (http://www.seamonkey-project.org/), and 
+"sdbc:address:thunderbird" connects to Thunderbird. Base uses the Mork driver 
+(com.sun.star.comp.sdbc.MorkDriver) to access both SeaMonkey and Thunderbird. </p>
+<p>The Thunderbird e-mail reader on my test machine has two address books, called 
+"Personal Address Book" and "Collected Addresses", as shown in Figure 4. </p>
+<p><img alt="" src="images/37-Driver_Manager-4.png" /></p>
+<p>Figure 4. My Thunderbird Address Books. </p>
+<p>When I use Base.getTablesNamesMD() to list the 'tables' inside Thunderbird, it 
+reports slightly different names : 
+[AddressBook, CollectedAddressBook] 
+These changes made me suspicious about the rest of the table's schema, including the 
+names of the table's columns. Inside Thunderbird, the e-mail column is labeled 
+"Email" (as shown in Figure 4), but is that what Base sees? 
+Base.displayTablesSchema() lists the table and column information for the connected 
+database, using sdbcx to get the table names. However, there's a meta data variant 
+which utilizes Base.getTablesNamesMD(), as shown below: </p>
+<p>// in the Base class 
+public static void displayTablesSchema(XConnection conn) 
+{  displayTablesSchema(conn, true);  } </p>
+<p>public static void displayTablesSchema(XConnection conn,<br />
+                                       boolean useSDBCX) 
+{ 
+  ArrayList<String> tableNames = (useSDBCX) ? getTablesNames(conn) : 
+                                            getTablesNamesMD(conn); 
+    // choose to use SDBCX or DatabaseMetaData 
+  if (tableNames == null)<br />
+    System.out.println("No tables found in database"); 
+  else { 
+    System.out.println("No. of tables: " + tableNames.size()); 
+    ArrayList<String> columnNames; 
+    for(String tableName : tableNames) { 
+      System.out.print("  " + tableName + ":"); 
+      columnNames = getColumnNames(conn, tableName); 
+      if (columnNames == null) 
+        System.out.println(" -- no column names --"); 
+      else { 
+        for(String colName : columnNames) 
+          System.out.print(" \"" + colName + "\""); 
+        System.out.println("\n"); 
+      } 
+    } 
+  } 
+}  // end of displayTablesSchema() </p>
+<p>public static ArrayList<String> getColumnNames( 
+                     XConnection conn, String tableName) 
+{ 
+  ArrayList<String> names = new ArrayList<String>(); 
+  try { 
+    XDatabaseMetaData dm = conn.getMetaData(); 
+    XResultSet rs = dm.getColumns(null, null, tableName, "%"); 
+    XRow xRow = Lo.qi(XRow.class, rs); 
+    while (rs.next()) 
+      names.add(xRow.getString(4));    // 4 == column name 
+  } 
+  catch(SQLException e) { 
+    System.out.println(e); 
+  } 
+  return names; 
+}  // end of getColumnNames() </p>
+<p>A Base.displayTablesSchema(conn,false) call produces the following 
+information when the connection is linked to Thunderbird: </p>
+<p>No. of tables: 2 
+  AddressBook: "Department" "Last Name" "Comments" "Mobile" "Phone 
+(Work)" "City (Work)" "City" "Job Title" "Custom 3" "Work Address 2" 
+"Custom 2" "Birth Month" "Company" "ZIP/Postal (Home)" "Custom 1" 
+"Custom 4" "Birth Day" "Web Page (Work)" "Nickname" "Web Page (Home)" 
+"Birth Year" "Fax" "First Name" "Address 1" "Phone (Home)" "State" 
+"State (Work)" "Display Name" "Country" "Pager" "E-mail (2)" "Work 
+Address" "Country (Work)" "Zip/Postal (Work)" "Address 2" "E-mail" 
+"Mail Format" </p>
+<p>CollectedAddressBook: "Department" "Last Name" "Comments" "Mobile" 
+"Phone (Work)" "City (Work)" "City" "Job Title" "Custom 3" "Work 
+Address 2" "Custom 2" "Birth Month" "Company" "ZIP/Postal (Home)" 
+"Custom 1" "Custom 4" "Birth Day" "Web Page (Work)" "Nickname" "Web 
+Page (Home)" "Birth Year" "Fax" "First Name" "Address 1" "Phone 
+(Home)" "State" "State (Work)" "Display Name" "Country" "Pager" "E-
+mail (2)" "Work Address" "Country (Work)" "Zip/Postal (Work)" 
+"Address 2" "E-mail" "Mail Format" </p>
+<p>The "AddressBook" table contains two e-mail related column names: "E-mail" and 
+"E-mail (2)". As a consequence, I wrote the query to retrieve all the e-mail addresses 
+from the Personal Address Book as: </p>
+<p>XResultSet rs = Base.executeQuery( 
+        "SELECT \"E-mail\" FROM \"AddressBook\"", conn); 
+BaseTablePrinter.printResultSet(rs);   </p>
+<p>This produces textual output which matches that in Figure 4: </p>
+<p>Printing 8 rows from table AddressBook 
++------------------------------+ 
+|            E-mail            | 
++------------------------------+ 
+| timgarner@compuserve.com     | 
++------------------------------+ 
+| Rohini.Deb@cenveo.com        | 
++------------------------------+ 
+| Patty_Mon@mcgraw-hill.com    | 
++------------------------------+ 
+| nutteen@gmail.com            | 
++------------------------------+ 
+| lors.davison@googlemail.com  | 
++------------------------------+ 
+| lordkiller.davison@gmail.com | 
++------------------------------+ 
+| lecturer@coe.psu.ac.th       | 
++------------------------------+ 
+| engteacher@eng.psu.ac.th     | 
++------------------------------+ </p>
+<p>The main() function of ThunderbirdQuery.java: </p>
+<p>// in ThunderbirdQuery.java 
+public static void main(String[] args) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); </p>
+<p>XDriverManager dm = Base.getDriverManager(); 
+  if (dm == null) { 
+    System.out.println("Could not access Driver manager"); 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>XConnection conn = null; 
+  try { 
+    conn = dm.getConnectionWithInfo( 
+                    "sdbc:address:thunderbird", null); </p>
+<pre><code>ArrayList&lt;String&gt; tableNames = Base.getTablesNamesMD(conn); 
+System.out.println("No. of tables: " + tableNames.size()); 
+System.out.println( Arrays.toString(tableNames.toArray()));
+
+Base.displayTablesSchema(conn, false); // use getTablesNamesMD()
+
+XResultSet rs = Base.executeQuery( 
+        "SELECT \"E-mail\" FROM \"AddressBook\"", conn); 
+BaseTablePrinter.printResultSet(rs);
+</code></pre>
+<p>} 
+  catch(Exception e) { 
+    System.out.println(e); 
+  } </p>
+<p>Base.closeConnection(conn); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="36-RowSets_DB_Context.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 36. Using RowSets and Database
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="38-ODB_as_Zip.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Chapter 38. Treating an ODB File as a
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

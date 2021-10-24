@@ -1,0 +1,1536 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 26. Search and Replace - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-26-search-and-replace" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 26. Search and Replace
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 26. Search and Replace
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="26-Search_Replace.html" class="md-nav__link md-nav__link--active">
+        Chapter 26. Search and Replace
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-searching-iteratively" class="md-nav__link">
+    1.  Searching Iteratively
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-searching-for-all-matches" class="md-nav__link">
+    2.  Searching For All Matches
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-replacing-all-matches" class="md-nav__link">
+    3.  Replacing All Matches
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-searching-iteratively" class="md-nav__link">
+    1.  Searching Iteratively
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-searching-for-all-matches" class="md-nav__link">
+    2.  Searching For All Matches
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-replacing-all-matches" class="md-nav__link">
+    3.  Replacing All Matches
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/26-Search_Replace.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-26-search-and-replace">Chapter 26. Search and Replace</h1>
+<p>The increaseGarlicCost() method in GarlicSecrets.java 
+(Chapter 23, section 3) illustrates how to use loops and if-
+tests to search for and replace data. Another approach is to 
+employ the XSearchable and XReplaceable interfaces, as 
+in the ReplaceAll.java example shown below: </p>
+<p>// global array 
+private static final String[] animals = 
+     { "ass", "cat", "cow", "cub", "doe", "dog", "elk",<br />
+       "ewe", "fox", "gnu", "hog", "kid", "kit", "man", 
+       "orc", "pig", "pup", "ram", "rat", "roe", "sow", "yak" }; </p>
+<p>public static void main(String args[]) 
+{ 
+  // read search animal from command line 
+  if (args.length != 1) { 
+    System.out.println("Usage: run ReplaceAll <animal>"); 
+    return; 
+  } 
+  XComponentLoader loader = Lo.loadOffice(); 
+  XSpreadsheetDocument doc = Calc.createDoc(loader); 
+  if (doc == null) { 
+    System.out.println("Document creation failed"); 
+    Lo.closeOffice(); 
+    return; 
+  } 
+  GUI.setVisible(doc, true); 
+  XSpreadsheet sheet = Calc.getSheet(doc, 0); </p>
+<p>// randomly fill a grid of 6 x 15 cells with animal names 
+  Random rand = new Random(); 
+  for (int i=0; i &lt; 6; i++) 
+    for (int j=0; j &lt; 15; j++) 
+      Calc.setVal(sheet, i, j,<br />
+                animals[ rand.nextInt(animals.length)] ); </p>
+<p>// create a cell range that covers the animals grid 
+  XCellRange cellRange = Calc.getCellRange(sheet, 0, 0, 5, 14); 
+                           // colStart, rowStart, colEnd, rowEnd </p>
+<p>// two ways to search for an animal 
+  // searchIter(sheet, cellRange, args[0]); 
+  searchAll(sheet, cellRange, args[0]); </p>
+<p>/<em> replace all occurrences of the args[0] animal<br />
+     with a randonly chosen one </em>/ 
+  replaceAll(cellRange, args[0],<br />
+                       animals[ rand.nextInt(animals.length)] ); </p>
+<p>Lo.saveDoc(doc, "replace.ods"); 
+  Lo.waitEnter(); </p>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>XSearchable; </p>
+</div>
+<p>XReplaceable; 
+SearchDescriptor; 
+ReplaceDescriptor;<br />
+Searching Iteratively; 
+Searching For All 
+Matches; Replacing All 
+Matches   <br />
+Example folders: "Calc 
+Tests" and "Utils" 
+  Lo.closeDoc(doc); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+<p>A blank sheet is filled with a 15 x 6 grid of randomly chosen animal names, such as 
+the one shown in Figure 1.  </p>
+<p><img alt="" src="images/26-Search_Replace-1.png" /></p>
+<p>Figure 1. A Grid Of Animals for Searching and Replacing. </p>
+<p>The SheetCellRange supports the XReplaceable interface, which is a subclass of 
+XSearchable, as in Figure 2. </p>
+<p><img alt="" src="images/26-Search_Replace-2.png" /></p>
+<p>Figure 2. The XReplaceable and XSearchable Interfaces. </p>
+<p>A cell range's XSearchable interface is accessed through casting: </p>
+<p>XCellRange cellRange = //... </p>
+<p>XSearchable srch = Lo.qi(XSearchable.class, cellRange); </p>
+<p>The XReplaceable interface for the range is obtained in the same way: 
+XReplaceable repl = Lo.qi(XReplaceable.class, cellRange); 
+XSearchable offers iterative searching using its findFirst() and findNext() methods, 
+which I'll demonstrate shortly in the searchIter() method in ReplaceAll.java. </p>
+<p>XSearchable can also search for all matches at once with findAll(), which I employ in<br />
+ReplaceAll.java's searchAll(). Only one of these methods is needed by the program, 
+so the other is commented out in the main() function shown above. </p>
+<p>XReplaceable only offers replaceAll() which searches for and replaces all of its 
+matches in a single call. It's utilized by ReplaceAll.java's replaceAll(). </p>
+<p>Before a search can begin, it's usually necessary to tweak the search properties, e.g. to 
+employ regular expressions, be case sensitive, or use search similarity. Similarity 
+allows a text match to be a certain number of characters different from the search text. </p>
+<p>These search properties are stored in the SearchDescriptor service, which is accessed 
+by calling XSearchable.createSearchDescriptor(). For example: </p>
+<dl>
+<dt>// in searchIter() in ReplaceAll.java</dt>
+<dd>XSearchable srch = Lo.qi(XSearchable.class, cellRange); 
+XSearchDescriptor sd = srch.createSearchDescriptor(); </dd>
+</dl>
+<p>sd.setPropertyValue("SearchWords", true); 
+                     // only complete words will be found 
+sd.setPropertyValue("SearchRegularExpression", true);  // use regexs </p>
+<p>XSearchDescriptor is the interface for the SearchDescriptor service, as shown in </p>
+<p><img alt="" src="images/26-Search_Replace-3.png" /></p>
+<p>Figure 3. </p>
+<p><img alt="" src="images/26-Search_Replace-3.png" /></p>
+<p>Figure 3. The ReplaceDescriptor and SearchDescriptor Services. </p>
+<p>Aside from being used to set search properties, XSearchDescriptor  is also where the 
+search string is stored: 
+sd.setSearchString("dog");   // search for "dog" 
+If regular expressions have been enabled, then the search string can utilize them: </p>
+<p>sd.setSearchString("[a-z]+");  <br />
+      // search for a non-empty series of lower-case letters </p>
+<p>The regular expression syntax is standard, and documented online at 
+https://help.libreoffice.org/Common/List_of_Regular_Expressions. </p>
+<h2 id="1-searching-iteratively">1.  Searching Iteratively</h2>
+<p>The searchIter() method in ReplaceAll.java is passed the cell range for the 15 x 6 grid 
+of animals, and creates a search based on finding complete words. It uses 
+XSearchable.findFirst() and XSearchable.findNext() to incrementally move through 
+the grid: </p>
+<p>// in ReplaceAll.java 
+private static void searchIter(XSpreadsheet sheet, 
+                              XCellRange cellRange, String srchStr) 
+{<br />
+  System.out.println("Searching for \"" + srchStr + "\""); 
+  try { 
+    XSearchable srch = Lo.qi(XSearchable.class, cellRange); </p>
+<pre><code>// set up search string and properties 
+XSearchDescriptor sd = srch.createSearchDescriptor(); 
+sd.setSearchString(srchStr); 
+sd.setPropertyValue("SearchWords", true); 
+                     // only complete words will be found
+
+// search iteratively 
+XCellRange cr = Lo.qi(XCellRange.class, srch.findFirst(sd)); 
+int count = 0; 
+while (cr != null) { 
+  highlightMatch(cr); 
+  System.out.println("  Match " + (count+1) + ": " +   
+                                     Calc.getRangeStr(cr)); 
+  cr = Lo.qi(XCellRange.class, srch.findNext(cr, sd)); 
+  count++; 
+}
+</code></pre>
+<p>} 
+  catch(Exception e) 
+  {  System.out.println(e);  } 
+}  // end of searchIter() </p>
+<p>private static void highlightMatch(XCellRange cr) 
+// highlight the matching of the cell range 
+{<br />
+  Props.setProperty(cr, "CharWeight",<br />
+                         com.sun.star.awt.FontWeight.BOLD); 
+  Props.setProperty(cr, "CharColor", Calc.DARK_BLUE); 
+  Props.setProperty(cr, "CellBackColor", Calc.LIGHT_BLUE); 
+}  // end of highlightMatch() </p>
+<p>XSearchable.findNext() requires a reference to the previous match as its first input 
+argument, so it can resume the search after that match. </p>
+<p>The Office documentation for XSearchable.findFirst() and XSearchable.findNext() 
+specify that they return an XInterface reference, which seems to be incorrect (use 
+lodoc XSearchable to look for yourself). In my code, the result had to be assigned 
+to an Object variable or a runtime type exception occurs.  </p>
+<p>Another surprise was when I listed the services supported by the references returned 
+by XSearchable.findFirst() and XSearchable.findNext() by calling 
+Info.showServices(): </p>
+<p>Object oFirst = srch.findFirst(sd); 
+Info.showServices("Find First", oFirst); </p>
+<p>As I'd expected, the main service supported by the findFirst() result is SheetCell. This 
+makes sense since the search is looking for a cell containing the search string. As a 
+consequence, the oFirst reference can be converted to XCell: 
+    XCell cr = Lo.qi(XCell.class, srch.findFirst(sd)); 
+However, checking out XSearchable.findNext() in the same way showed an 
+occasional problem: </p>
+<p>Object oNext = srch.findNext(oFirst , sd); 
+Info.showServices("Find Next", oNext); </p>
+<p>The reference returned by findNext() usually supports the SheetCell service, but 
+sometimes represents SheetCellRange instead! When that occurs, code that attempts 
+to convert oNext to XCell will return null: 
+XCell cell = Lo.qi(XCell.class, srch.findNext(oFirst, sd)); 
+My solution is shown in the searchIter() listing above – instead of converting the 
+XSearchable.findFirst() and XSearchable.findNext() results to XCell, they're changed 
+into XCellRange references, which always succeeds. </p>
+<p>searchIter() calls highlightMatch() on each match so the user can see the results more 
+clearly, as in Figure 4. </p>
+<p><img alt="" src="images/26-Search_Replace-4.png" /></p>
+<p>Figure 4. The Results of searchIter() when Looking for "dog". </p>
+<h2 id="2-searching-for-all-matches">2.  Searching For All Matches</h2>
+<p>The searchAll() method in ReplaceAll.java utilizes XSearchable.findAll() to return all 
+the search matches at once, in the form of an indexed container. Calc.findAll() adds 
+an extra conversion step, creating an array of XCellRange objects from the values in 
+the container: </p>
+<p>// in the Calc class 
+public static XCellRange[] findAll(XSearchable srch,<br />
+                                   XSearchDescriptor sd) 
+{ 
+  XIndexAccess con = srch.findAll(sd); 
+  if (con == null) { 
+    System.out.println("Match result is null"); 
+    return null; 
+  } 
+  if (con.getCount() == 0)  { 
+    System.out.println("No matches found"); 
+    return null; 
+  } </p>
+<p>// put container contents into an array 
+  XCellRange[] crs = new XCellRange[con.getCount()]; 
+  for (int i=0; i &lt; con.getCount(); i++) { 
+    try { 
+      crs[i] = Lo.qi(XCellRange.class, con.getByIndex(i)); 
+    } 
+    catch(Exception e) 
+    {  System.out.println("Could not access match index " + i);  } 
+  } 
+  return crs; 
+}  // end of findAll() </p>
+<p>searchAll() iterates through the XCellRange array returned by Calc.findAll(), 
+highlighting each match in the same way as the searchIter() function: </p>
+<p>// in ReplaceAll.java 
+private static void searchAll(XSpreadsheet sheet, 
+                              XCellRange cellRange, String srchStr) 
+{<br />
+  System.out.println("Searching for all of \"" + srchStr + "\""); 
+  try { 
+    XSearchable srch = Lo.qi(XSearchable.class, cellRange); </p>
+<pre><code>// set up search string and properties 
+XSearchDescriptor sd = srch.createSearchDescriptor(); 
+sd.setSearchString(srchStr); 
+sd.setPropertyValue("SearchWords", true);
+
+XCellRange[] matchCrs = Calc.findAll(srch, sd); 
+if (matchCrs == null)  
+  return;
+
+System.out.println("Search text found " +  
+                         matchCrs.length + " times"); 
+// highlight each match in the array 
+for (int i=0; i &lt; matchCrs.length; i++) { 
+  highlightMatch(matchCrs[i]); 
+  System.out.println("  Index " + i + ": " +   
+                              Calc.getRangeStr(matchCrs[i])); 
+}
+</code></pre>
+<p>} 
+  catch(Exception e) 
+  {  System.out.println(e);  } 
+}  // end of searchAll() </p>
+<h2 id="3-replacing-all-matches">3.  Replacing All Matches</h2>
+<p>The XReplaceable interface only contains a replaceAll() method (see Figure 2), so 
+there's no way to implement an iterative replace function. In addition, 
+XReplaceable.replaceAll() returns a count of the number of changes, not a container 
+of the matched cells like XSearchable.findAll(). This means that its not possible to 
+code a replace-like version of my searchAll() method which highlights all the changed 
+cells. </p>
+<p>The best that can be done is to execute two searches over the grid of animal names. </p>
+<p>The first looks only for the search string so it can highlight the matching cells. The 
+second search calls XReplaceabl.replaceAll() to make the changes.  </p>
+<p>My replaceAll() method is: </p>
+<p>// in ReplaceAll.java 
+private static void replaceAll(XCellRange cellRange, 
+                                String srchStr, String replStr) 
+{<br />
+  System.out.println("Replacing \"" + srchStr +<br />
+                                "\" with \"" + replStr + "\""); 
+  Lo.delay(2000);   // wait a bit before search &amp; replace 
+  try { 
+    XReplaceable repl = Lo.qi(XReplaceable.class, cellRange); </p>
+<pre><code>// set up search and replace strings and properties 
+XReplaceDescriptor rd = repl.createReplaceDescriptor(); 
+rd.setSearchString(srchStr); 
+rd.setReplaceString(replStr); 
+rd.setPropertyValue("SearchWords", true); 
+// rd.setPropertyValue("SearchRegularExpression", true);
+
+int count = repl.replaceAll(rd); 
+System.out.println("Search text replaced " +  
+                              count + " times\n");
+</code></pre>
+<p>} 
+  catch(Exception e) 
+  {  System.out.println(e);  } 
+}  // end of replaceAll() </p>
+<p>The coding style is similar to my searchAll() method from above. One difference is 
+that XReplaceDescriptor is used to setup the search and replacement strings. </p>
+<p>One way of calling replaceAll() is to use regular expressions in the function: </p>
+<p>replaceAll(cellRange, "[a-z]+", 
+                    animals[ rand.nextInt(animals.length)] ); </p>
+<p>The search string ("[a-z]+") will match every cell's text, and change all the animal 
+names to one chosen at random. Typical output is shown in Figure 5. </p>
+<p><img alt="" src="images/26-Search_Replace-5.png" /></p>
+<p>Figure 5. All Animals Become One. </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="25-Monitoring_Sheets.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 25. Monitoring Sheets
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="28%20Part%205%20Chart.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Part 5 Chart
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

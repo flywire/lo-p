@@ -1,0 +1,2275 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 48. Event Macros - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-48-event-macros" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 48. Event Macros
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 48. Event Macros
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="48-Event_Macros.html" class="md-nav__link md-nav__link--active">
+        Chapter 48. Event Macros
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-fantastic-macros-and-where-to-find-them" class="md-nav__link">
+    1.  Fantastic Macros and Where to Find Them
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-where-are-macros-stored" class="md-nav__link">
+    2.  Where are Macros Stored?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-naming-macro-functions" class="md-nav__link">
+    3.  Naming Macro Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-calling-the-hello-macros" class="md-nav__link">
+    4.  Calling the "hello" Macros
+  </a>
+  
+    <nav class="md-nav" aria-label="4.  Calling the "hello" Macros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-macro-security-levels" class="md-nav__link">
+    4.1.  Macro Security Levels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-implementing-the-helloworld-java-macro" class="md-nav__link">
+    4.2.  Implementing the HelloWorld Java Macro
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-the-librelogo-macro" class="md-nav__link">
+    5.  The LibreLogo Macro
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-writing-a-simple-event-macro" class="md-nav__link">
+    6.  Writing a Simple Event Macro
+  </a>
+  
+    <nav class="md-nav" aria-label="6.  Writing a Simple Event Macro">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-installing-a-simple-event-macro" class="md-nav__link">
+    6.1.  Installing a Simple Event Macro
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-using-showeventshow-in-a-form" class="md-nav__link">
+    6.2.  Using ShowEvent.show in a Form
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-automating-the-assigning-of-event-macros" class="md-nav__link">
+    7.  Automating the Assigning of Event Macros
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-fantastic-macros-and-where-to-find-them" class="md-nav__link">
+    1.  Fantastic Macros and Where to Find Them
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-where-are-macros-stored" class="md-nav__link">
+    2.  Where are Macros Stored?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-naming-macro-functions" class="md-nav__link">
+    3.  Naming Macro Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-calling-the-hello-macros" class="md-nav__link">
+    4.  Calling the "hello" Macros
+  </a>
+  
+    <nav class="md-nav" aria-label="4.  Calling the "hello" Macros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-macro-security-levels" class="md-nav__link">
+    4.1.  Macro Security Levels
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-implementing-the-helloworld-java-macro" class="md-nav__link">
+    4.2.  Implementing the HelloWorld Java Macro
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-the-librelogo-macro" class="md-nav__link">
+    5.  The LibreLogo Macro
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-writing-a-simple-event-macro" class="md-nav__link">
+    6.  Writing a Simple Event Macro
+  </a>
+  
+    <nav class="md-nav" aria-label="6.  Writing a Simple Event Macro">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-installing-a-simple-event-macro" class="md-nav__link">
+    6.1.  Installing a Simple Event Macro
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-using-showeventshow-in-a-form" class="md-nav__link">
+    6.2.  Using ShowEvent.show in a Form
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-automating-the-assigning-of-event-macros" class="md-nav__link">
+    7.  Automating the Assigning of Event Macros
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/48-Event_Macros.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-48-event-macros">Chapter 48. Event Macros</h1>
+<p>Event macros are functions triggered by the occurrence of 
+events, either within Office or in Office documents. I'll be 
+using event macros with forms, by attaching them to controls 
+such as buttons and textfields.  </p>
+<p>A key difference between event macros and Java listeners is 
+that macros are attached to Office or to documents rather 
+than being part of an external Java program. In practical 
+terms this means that the macro code becomes part of the 
+Office installation or is embedded inside a document's ODF file. </p>
+<p>I'll spend two chapters discussing event macros: this chapter focuses on how to use 
+existing Office macros, and how to write a simple event macro that's installed by 
+copying it to a specific Office directory. This approach is obviously not ideal, and so 
+the next chapter looks at installing macros as extensions, and by attaching them to 
+documents. </p>
+<p>The Developer's Guide discusses macros in chapter 18, "Scripting Framework", but 
+macro programming has changed since the guide was produced (e.g. macros can now 
+be written in Python), so it's better to read the more current OpenOffice wiki, starting 
+at 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Scripting/Scripting_Frame
+work (or use loGuide "Scripting Framework"). </p>
+<p>Most macro programming resources employ Office Basic, and Java rarely gets 
+mentioned, as in chapter 13, "Getting Started with Macros", of the "Getting Started 
+Guide" (available at http://www.libreoffice.org/get-help/documentation/). That 
+chapter ends with a useful list of online resources, and printed and eBook materials.  </p>
+<p>Probably the best source for Office Basic macro coding is Andrew Pitonyak's website 
+at http://www.pitonyak.org/oo.php; I recommend starting with his book, 
+"OpenOffice.org Macros Explained" (OOME), which is free to download. There's 
+also a separate book of collected macros, called AndrewMacros.pdf. </p>
+<p>Another excellent introduction to Office Basic Macros (written in French) is:<br />
+ Programmation OpenOffice.org et LibreOffice: Macros OOoBasic et API 
+Bernard Marcelly and Laurent Godard 
+Eyrolles, 2011 
+http://www.editions-eyrolles.com/Livre/9782212132472/programmation-
+openoffice-org-et-libreoffice 
+Two textbooks that focus on Office Basic macros in a particular Office application: 
+ Learn OpenOffice.org Spreadsheet Macro Programming: OOoBasic and Calc 
+Automation 
+Mark Alexander Bain 
+Packt Publishing, 2006 </p>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+</div>
+<p>Macro Locations; 
+Naming Macro 
+Functions; Calling 
+Existing Macros; The 
+LibreLogo Macro; 
+Writing a Simple Event 
+Macro; Automating the 
+Assigning of Event 
+Macros 
+Example folders: 
+"EvMacro Tests" and 
+"Utils" 
+https://www.packtpub.com/hardware-and-creative/learn-openofficeorg-
+spreadsheet-macro-programming-ooobasic-and-calc-automation 
+ Database Programming with OpenOffice.org Base and Basic 
+Roberto Benitez 
+Lulu.com, 2011 
+http://www.lulu.com/shop/roberto-benitez/database-programming-with-
+openofficeorg-base-basic/paperback/product-3568728.html </p>
+<h2 id="1-fantastic-macros-and-where-to-find-them">1.  Fantastic Macros and Where to Find Them</h2>
+<p>There are four categories of macros:<br />
+ user: user macros are available only to the user who added them to Office; 
+ share: share macros can be called by all users of that copy of Office; 
+ extension: extension macros are added to office as an extension, and may be 
+available only to the user or be shared (these are discussed in the next chapter); 
+ document: these macros are added to a document rather than to Office, and so are 
+useable only in that document (see the next chapter). </p>
+<p>These categories are reflected in how the Office GUI displays installed macros in the 
+Macro Selector dialog of Figure 1 (accessible via the Tools &gt; Macros &gt; "Run Macros" 
+menu item). </p>
+<p><img alt="" src="images/48-Event_Macros-1.png" /></p>
+<p>Figure 1. The "Tools &gt; Macros &gt; Run Macros" Dialog. </p>
+<p>The top-level folders in Figure 1 are library containers: "My Macros" and 
+"LibreOffice Macros" are always present, and store user and share macros 
+respectively. If the currently loaded document contains document macros then there 
+will be a third container with the same name as the file (e.g. "build.odt" in Figure 1). </p>
+<p>Extension macros are grouped under the name of the extension file (e.g. </p>
+<p>"FormMacros.oxt"), and may occur in either "My Macros" or "LibreOffice Macros" 
+depending on if the extension contains user or share macros. </p>
+<p>Each library container (e.g. "My Macros") can hold multiple libraries; each library 
+can contain multiple modules; each module can store multiple macros. For example, 
+Figure 1 shows that the "My Macros" container holds three libraries called 
+"FormMacros.oxt", "Standard", and "WikiEditor". The "FormMacros.oxt" library 
+(which holds extension macros) consists of a single "Utils" module with two macros 
+called "GetNumber.get" and "GetText.show". I'll be explaining how to create and 
+install this extension in the next chapter. </p>
+<p>In addition, the Tools &gt; Macros &gt; "Organize Macros" menu gives access to macros 
+according to some of the programming languages supported by Office, but Java isn't 
+included (see Figure 2). As a consequence, I'll use the Macro Selector dialog of 
+Figure 1 from now on. </p>
+<p><img alt="" src="images/48-Event_Macros-2.png" /></p>
+<p>Figure 2. The Tools &gt; Macros &gt; "Organize Macros" Menu. </p>
+<h2 id="2-where-are-macros-stored">2.  Where are Macros Stored?</h2>
+<p>Aside from accessing macros through the Office GUI, it's useful to know where 
+they're located in the directory structure. This is especially true for user and share 
+macros since the easiest way to install them is to copy them into Office's designated 
+folders. However, extension macros are installed using the extension manager, and 
+document macros are added to their document using unzipping and zipping.  </p>
+<p>Finding Office's macro folders can be a bit tricky, since their location varies 
+depending on if the macros are user or share, coded in Office Basic or another 
+language, and on the version of Office and OS.  </p>
+<p>The folders for share macros are probably the easiest to find – they're located inside 
+<OFFICE>\share\ (e.g. C:\Program Files\LibreOffice 5\share\ on my machine). Basic 
+macros are in share\basic\ while macros in other languages, such as Java, are in 
+subfolders of share\Scripts\ (e.g. see Figure 3). </p>
+<p><img alt="" src="images/48-Event_Macros-3.png" /></p>
+<p>Figure 3. The Non-Basic share\Scripts\ Macros Folders. </p>
+<p>In other words, Java share macros will be in: 
+C:\Program Files\LibreOffice 5\share\Scripts\java 
+User macros are stored in an 'application data' subfolder for LibreOffice. On 
+Windows, application data starts at the location stored in the APPDATA environment 
+variable, which you can print out: 
+echo %APPDATA% 
+On my work test machine this prints "C:\Users\Ad\AppData\Roaming". You need to 
+locate the LibreOffice subdirectory in the Roaming\ folder and then its user\ 
+subdirectory, which will be inside LibreOffice\5\ or perhaps LibreOffice\4. For 
+instance, on one of my test machines the user\ folder is: 
+C:\Users\Ad\AppData\Roaming\LibreOffice\4\user 
+If you haven't previously downloaded or created Java user macros, then you'll have to 
+create a Scripts\ folder inside user\, and a java\ folder inside Scripts. In other words, 
+the Java user macros will be in: 
+C:\Users\Ad\AppData\Roaming\LibreOffice\4\user\Scripts\java </p>
+<h2 id="3-naming-macro-functions">3.  Naming Macro Functions</h2>
+<p>The "Macro Selector dialog displays a list of macros in its right hand window (e.g. </p>
+<p>"GetNumber.get" and "GetText.show" in Figure 1), but more detailed function names 
+are required when calling macros from code.  </p>
+<p>A function name is specified as a URI of the form: 
+vnd.sun.star.script:MACROPARAM?language=LANGPARAM 
+                              &amp;location=LOCPARAM 
+LANGPARAM identifies the macro's programming language, which may be "Basic", 
+"BeanShell", "Java", "JavaScript", or "Python".  </p>
+<p>LOCPARAM is the macro category, which for Java macros can be "user", "share", or 
+"document". Extension macros use the label "user:uno_packages/" or<br />
+"share:uno_packages/" followed by the name of the extension file (e.g. </p>
+<p>"user:uno_packages/FormMacros.oxt"). </p>
+<p>MACROPARAM takes the form: 
+FOLDER.[PACKAGE_NAME.]CLASS_NAME.FUNCTION_NAME 
+FOLDER is the subdirectory holding the compiled Java code in the user or share java\ 
+folder, and the package name is optional. The class and function names are displayed 
+by the Macro Selector dialog (see Figure 1). For example, "GetNumber.get" refers to 
+the static function get() in the GetNumber class. </p>
+<p>Information about the URI formats for other languages is given on the "Scripting 
+Framework URI Specification" page at 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Scripting/Scripting_Frame
+work_URI_Specification (or use loGuide "Scripting Framework URI 
+Specification"). </p>
+<p>Listing and Finding Macro Names 
+Knowing a macro's full name is essential, so I've added some helper functions to the 
+Macros.java utilities class. The ListMacros.java and FindMacros.java examples show 
+how to use them. </p>
+<p>ListMacros.java calls Macros.getLangScripts() to print the names of the macros 
+written in a given language: </p>
+<p>// in ListMacros.java 
+public static void main(String[] args) 
+{ 
+  String lang = "Java"; 
+  if (args.length != 1) { 
+    System.out.println("Usage: run ListMacros [Java | Python |<br />
+                BeanShell | Basic | JavaScript]"); 
+    System.out.println("Using \"Java\""); 
+  } 
+  else<br />
+    lang = args[0]; </p>
+<p>XComponentLoader loader = Lo.loadOffice(); </p>
+<p>ArrayList<String> scriptURIs = Macros.getLangScripts(lang); 
+  System.out.println(lang + " Macros in Office: (" +<br />
+                           scriptURIs.size() + ")"); 
+  for(String scriptURI : scriptURIs) 
+    System.out.println("  " + scriptURI); </p>
+<p>Lo.closeOffice(); 
+} // end of main() </p>
+<p>Macros.getLangScripts() obtains a list of all the macro names by calling 
+Macros.getScripts(), then filters out names based on a "language=LANGPARAM&amp;" 
+substring: </p>
+<p>// in the Macros class 
+public static ArrayList<String> getLangScripts(String lang) 
+{ 
+  if (!isMacroLanguage(lang)) { 
+    System.out.println("Not a Macro language; try \"Java\""); 
+    return null; 
+  } 
+  ArrayList<String> fScripts = new ArrayList&lt;&gt;(); 
+  ArrayList<String> scriptURIs = getScripts(); 
+  for(String scriptURI : scriptURIs) 
+    if (scriptURI.contains("language=" + lang + "&amp;")) <br />
+      fScripts.add(scriptURI); 
+  return fScripts; 
+} // end of getLangScripts() </p>
+<p>Macros.getScripts() utilizes services and interfaces in the com.sun.star.script.browse 
+module to examine a scripts tree structure consisting of CONTAINER and SCRIPT 
+nodes – the CONTAINER nodes are the internal branches of the tree representing 
+libraries and modules, while SCRIPT nodes are the leaves holding macro information.  </p>
+<p>Macros.getScripts() accesses the root of the MACROORGANIZER tree, and collects 
+script names by having getLibScripts() recursively traverse the tree, adding names to 
+a scripts ArrayList: </p>
+<p>// in the Macros class 
+public static ArrayList<String> getScripts() 
+{ 
+  ArrayList<String> scripts = new ArrayList&lt;&gt;(); </p>
+<p>XComponentContext xcc = Lo.getContext(); 
+  XBrowseNodeFactory bnf = Lo.qi(XBrowseNodeFactory.class,<br />
+           xcc.getValueByName( 
+              "/singletons/com.sun.star.script. </p>
+<pre><code>               browse.theBrowseNodeFactory"));
+</code></pre>
+<p>XBrowseNode rootNode = Lo.qi(XBrowseNode.class, 
+     bnf.createView( BrowseNodeFactoryViewTypes.MACROORGANIZER) ); <br />
+                     // for scripts </p>
+<p>XBrowseNode[] typeNodes = rootNode.getChildNodes(); 
+  for(int i=0; i &lt; typeNodes.length; i++) { 
+    XBrowseNode typeNode = typeNodes[i]; <br />
+    XBrowseNode[] libraryNodes = typeNode.getChildNodes(); 
+    for(int j=0; j &lt; libraryNodes.length; j++) 
+      getLibScripts(libraryNodes[j], 0,<br />
+                            typeNode.getName(), scripts); 
+  } 
+  System.out.println(); 
+  return scripts; 
+} // end of getScripts() </p>
+<p>public static void getLibScripts(XBrowseNode browseNode, int level, 
+                        String path, ArrayList<String> scripts)<br />
+{ 
+  XBrowseNode[] scriptNodes = browseNode.getChildNodes(); 
+  if ((scriptNodes.length == 0) &amp;&amp; (level &gt; 1)) <br />
+    // not a top-level library 
+    System.out.println("No scripts in " + path); 
+  for(int i=0; i &lt; scriptNodes.length; i++) { 
+    XBrowseNode scriptNode = scriptNodes[i]; <br />
+    if (scriptNode.getType() == BrowseNodeTypes.SCRIPT) { 
+      XPropertySet props = Lo.qi(XPropertySet.class, scriptNode); 
+      if (props != null) { 
+        try { 
+          scripts.add((String)props.getPropertyValue("URI")); 
+        } 
+        catch(com.sun.star.uno.Exception e)<br />
+        { System.out.println(e); } 
+      } 
+      else<br />
+        System.out.println("No props for " + scriptNode.getName()); 
+    } 
+    else if (scriptNode.getType() == BrowseNodeTypes.CONTAINER) 
+      getLibScripts(scriptNode, level+1, path + "&gt;" +<br />
+                                scriptNode.getName(), scripts); 
+    else 
+      System.out.println("Unknown node type"); 
+  } 
+}  // end of getLibScripts() </p>
+<p>All the Java macros can be listed by calling: 
+run ListMacros Java 
+It will print something like: </p>
+<p>Java Macros in Office: (6) </p>
+<p>vnd.sun.star.script:Utils.GetNumber.get?language=Java&amp; 
+                       location=user:uno_packages/FormMacros.oxt </p>
+<p>vnd.sun.star.script:Utils.GetText.show?language=Java&amp; 
+                       location=user:uno_packages/FormMacros.oxt </p>
+<p>vnd.sun.star.script:HelloWorld.org.libreoffice.example.java_scripts. </p>
+<pre><code>   HelloWorld.printHW?language=Java&amp;location=share
+</code></pre>
+<p>vnd.sun.star.script:Highlight.org.libreoffice.example.java_scripts. </p>
+<pre><code>   HighlightText.showForm?language=Java&amp;location=share
+</code></pre>
+<p>vnd.sun.star.script:MemoryUsage.org.libreoffice.example.java_scripts. </p>
+<pre><code>   MemoryUsage.updateMemoryUsage?language=Java&amp;location=share
+</code></pre>
+<p>vnd.sun.star.script:ShowEvent.ShowEvent.show?language=Java&amp; 
+                       location=share </p>
+<p>Six Java macros were found: two are user macros from the FormMacros.oxt 
+extension, and four are share macros. The first three share macros 
+(HelloWorld.printHW, HighlightText.showForm, and 
+MemoryUsage.updateMemoryUsage) are LibreOffice examples; I'll explain the first 
+one: </p>
+<p>vnd.sun.star.script:HelloWorld.org.libreoffice.example.java_scripts. </p>
+<pre><code>  HelloWorld.printHW?language=Java&amp;location=share
+</code></pre>
+<p>The macro's location parameter is "location=share", which means that it appears in the 
+"LibreOffice Macros" section of the Macro Selector dialog in Figure 4. </p>
+<p><img alt="" src="images/48-Event_Macros-4.png" /></p>
+<p>Figure 4. The HelloWorld.printHW Macro. </p>
+<p>The four components of 
+"HelloWorld.org.libreoffice.example.java_scripts.HelloWorld.printHW" are: 
+ folder: HelloWorld 
+ package: org.libreoffice.example.java_scripts 
+ class name: HelloWorld 
+ function name: printHW 
+The HelloWorld\ folder is inside C:\Program Files\LibreOffice 5\share\Scripts\java\, 
+as confirmed by Figure 5. </p>
+<p><img alt="" src="images/48-Event_Macros-5.png" /></p>
+<p>Figure 5. The HelloWorld Folder in share\Scripts\java. </p>
+<p>Figure 5 also shows Highlight\, MemoryUsage\ and ShowEvent\ folders which hold 
+the other three share macros listed by ListMacros.java. </p>
+<p>The HelloWorld\ folder contains the compiled HelloWorld class in a JAR file, and a 
+parcel-descriptor.xml configuration file, which I'll explain later. It also has the source 
+code for HelloWorld, which isn’t required by Office, but included as an example for 
+developers. Figure 6 shows the contents of HelloWorld. </p>
+<p><img alt="" src="images/48-Event_Macros-6.png" /></p>
+<p>Figure 6. The Contents of the HelloWorld\ Folder. </p>
+<p>The format of the HelloWorld class in the JAR file is: </p>
+<p>package org.libreoffice.example.java_scripts; </p>
+<p>public class HelloWorld<br />
+{ 
+  public static void printHW(XScriptContext xSc)<br />
+  {  /<em> code not shown </em>/  } 
+} </p>
+<p>HelloWorld implements a single printHW() function. </p>
+<p>My FindMacros.java example calls Macros.findScripts() with a substring, and all the 
+macro names containing that string are printed. For example, a search for "hello" 
+returns five matches: </p>
+<p>Matching Macros in Office: (5) </p>
+<p>vnd.sun.star.script:Utils.HelloWorld.hello? 
+             language=Java&amp;location=user:uno_packages/FormMacros.oxt </p>
+<p>vnd.sun.star.script:HelloWorld.helloworld.bsh? 
+             language=BeanShell&amp;location=share </p>
+<p>vnd.sun.star.script:HelloWorld.org.libreoffice.example.java_scripts. </p>
+<pre><code>         HelloWorld.printHW?language=Java&amp;location=share
+</code></pre>
+<p>vnd.sun.star.script:HelloWorld.helloworld.js? 
+             language=JavaScript&amp;location=share </p>
+<p>vnd.sun.star.script:HelloWorld.py$HelloWorldPython? 
+             language=Python&amp;location=share </p>
+<p>Four of the hello-related scripts are share macros written in BeanShell, Java, 
+JavaScript, and Python. </p>
+<h2 id="4-calling-the-hello-macros">4.  Calling the "hello" Macros</h2>
+<p>The TextMacros.java example creates a text document, and calls the four "hello" 
+share macros listed above by FindMacros.java. They each add a short piece of text to 
+the document, as displayed on lines 2-5 in Figure 7. </p>
+<p><img alt="" src="images/48-Event_Macros-7.png" /></p>
+<p>Figure 7. A Document with "hello" Macros Text. </p>
+<p>TextMacros.java utilizes Macros.execute() to call the macros: </p>
+<p>// in TextMacros.java 
+public static void main(String[] args) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  XTextDocument doc = Write.createDoc(loader); 
+  if (doc == null) { 
+    System.out.println("Writer doc creation failed"); 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>if (Macros.getSecurity() == Macros.LOW) 
+    Macros.setSecurity(Macros.MEDIUM); </p>
+<p>XTextCursor cursor = Write.getCursor(doc); 
+  GUI.setVisible(doc, true); 
+  Lo.wait(1000);   // make sure the document is visible<br />
+                   // before sending it dispatches </p>
+<p>Write.appendPara(cursor, "Hello LibreOffice"); </p>
+<p>Macros.execute("HelloWorld.helloworld.bsh",<br />
+                                     "BeanShell", "share"); 
+  Write.endParagraph(cursor); </p>
+<p>Macros.execute("HelloWorld.py$HelloWorldPython",<br />
+                                     "Python", "share"); 
+  Write.endParagraph(cursor); </p>
+<p>Macros.execute("HelloWorld.helloworld.js",<br />
+                                     "JavaScript", "share"); 
+  Write.endParagraph(cursor); </p>
+<p>Macros.execute("HelloWorld.org.libreoffice.example. </p>
+<pre><code>                            java_scripts.HelloWorld.printHW",  
+                                   "Java", "share");
+</code></pre>
+<p>Write.endParagraph(cursor); 
+  Write.appendPara(cursor, "Timestamp: " + Lo.getTimeStamp()); </p>
+<p>Lo.waitEnter(); 
+  Lo.closeDoc(doc); 
+  Lo.closeOffice(); 
+} // end of main() </p>
+<p>The arguments of Macros.execute() are the MACROPARAM, LANGPARAM, and 
+LOCPARAM parts of the macro's URI; they're separated out to make the macro's 
+name a little easier to read. </p>
+<p>Macros.execute() uses the theMasterScriptProviderFactory service to obtain a 
+XScriptProviderFactory It creates a XScriptProvider which can load the named macro 
+as an XScript object; the script is executed by XScript.invoke(): </p>
+<p>// in the Macros class 
+public static Object execute(String macroName, String language,<br />
+                                                  String location) 
+{  return execute(macroName, null, language, location);   } </p>
+<p>public static Object execute(String macroName, Object[] params,<br />
+                                 String language, String location) 
+{ 
+  if (!isMacroLanguage(language)) { 
+    System.out.println("\"" + language +<br />
+                   "\" is not a macro language name"); 
+    return null; 
+  } </p>
+<p>try { 
+    /<em> deprecated approach 
+       XScriptProviderFactory spFactory =  Lo.createInstanceMCF(<br />
+                  XScriptProviderFactory.class, 
+        "com.sun.star.script.provider.MasterScriptProviderFactory"); 
+    </em>/ 
+    XComponentContext xcc = Lo.getContext(); 
+    XScriptProviderFactory spFactory = <br />
+        Lo.qi(XScriptProviderFactory.class,<br />
+            xcc.getValueByName( 
+                  "/singletons/com.sun.star.script.provider. </p>
+<pre><code>               theMasterScriptProviderFactory"));
+
+XScriptProvider sp = spFactory.createScriptProvider("");  
+XScript xScript = sp.getScript("vnd.sun.star.script:" +  
+         macroName + "?language=" + language +  
+                     "&amp;location=" + location);
+
+// minimal inout/out parameters 
+short[][] outParamIndex = { { 0 } }; 
+Object[][] outParam = { { null } }; 
+return xScript.invoke(params, outParamIndex, outParam);
+</code></pre>
+<p>}<br />
+  catch (Exception e) {<br />
+    System.out.println("Could not execute macro " +<br />
+                 macroName + ": " + e);<br />
+    return null; 
+  }<br />
+}  // end of execute() </p>
+<p>Input parameters can be passed to invoke(), but the three-argument version of 
+Macros.execute() sets them to null. It's also possible to have the script set output 
+parameters, but my call to XScript.invoke() doesn't use them either. </p>
+<p>There's no need to pass Macros.execute() a reference to the document. An executing 
+script only requires Office's current context which is retrieved by Lo.getContext(). </p>
+<h3 id="41-macro-security-levels">4.1.  Macro Security Levels</h3>
+<p>Prior to the macro calls in TextMacros.java, there's a call to Macros.getSecurity(). It 
+reports Office's macro execution setting, which is changed to Macros.MEDIUM if the 
+current value is Macros.LOW: </p>
+<p>// part of TextMacros.java... </p>
+<p>if (Macros.getSecurity() == Macros.LOW) 
+  Macros.setSecurity(Macros.MEDIUM); </p>
+<p>The Macros class defines four security constants: LOW, MEDIUM, HIGH, 
+VERY_HIGH, which correspond to the levels used in Office's "Macro Security" 
+dialog shown in Figure 8. It is reached via Tools &gt; Options &gt; Security, and the 
+"Macro Security" button. </p>
+<p><img alt="" src="images/48-Event_Macros-8.png" /></p>
+<p>Figure 8. The Macro Security Dialog. </p>
+<p>The Office API has a MacroExecMode class (see lodoc MacroExecMode) which 
+defines many more security levels, but the four levels in the GUI seem sufficient.  </p>
+<p>Macros.getSecurity() uses Info.getConfig() to access the 
+"/org.openoffice.Office.Common/Security/Scripting" configuration node, and look up 
+its "MacroSecurityLevel" property: </p>
+<p>// in the Macros class 
+public static int getSecurity() 
+{ 
+  System.out.println("Macro security level:"); 
+  Integer val = (Integer) Info.getConfig( 
+        "/org.openoffice.Office.Common/Security/Scripting", 
+        "MacroSecurityLevel"); </p>
+<p>// various tests of val, before returning its int value 
+  // : 
+  return val.intValue(); 
+} </p>
+<p>Macros.setSecurity() manipulates the same configuration node but supplies a new 
+value for the "MacroSecurityLevel" property: </p>
+<p>// in the Macros class 
+public static boolean setSecurity(int level) 
+{ 
+  if ((level == Macros.LOW) || (level == Macros.MEDIUM) ||<br />
+      (level == Macros.HIGH) || (level == Macros.VERY_HIGH)) { 
+    System.out.println("Setting macro security level to " + level); 
+    return Info.setConfig( 
+                "/org.openoffice.Office.Common/Security/Scripting", 
+                "MacroSecurityLevel", Integer.valueOf(level)); 
+  } 
+  else { 
+    System.out.println("Use Macros class constants:<br />
+                           LOW, MEDIUM, HIGH, or VERY_HIGH"); 
+    return false; 
+  } 
+}  // end of setSecurity() </p>
+<h3 id="42-implementing-the-helloworld-java-macro">4.2.  Implementing the HelloWorld Java Macro</h3>
+<p>The four macros called by TextMacros.java add text to the document, but how 
+exactly? The Java macro is called using: </p>
+<p>// part of TextMacros.java... </p>
+<p>Macros.execute("HelloWorld.org.libreoffice.example. </p>
+<pre><code>                            java_scripts.HelloWorld.printHW",  
+                                   "Java", "share");
+</code></pre>
+<p>This invokes the printHW() static method in the HelloWorld class in the 
+org.libreoffice.example.java_scripts package shown back in Figure 4. The complete 
+code for the class (minus some comments) is: </p>
+<p>// the HelloWorld class 
+package org.libreoffice.example.java_scripts; </p>
+<p>import com.sun.star.script.provider.XScriptContext; 
+import com.sun.star.uno.<em>; 
+import com.sun.star.text.</em>; </p>
+<p>public class HelloWorld<br />
+{ 
+  public static void printHW(XScriptContext xSc)<br />
+  { 
+    XTextDocument xtextdocument =<br />
+        (XTextDocument) UnoRuntime.queryInterface( 
+                XTextDocument.class, xSc.getDocument()); 
+    XText xText = xtextdocument.getText(); 
+    XTextRange xTextRange = xText.getEnd(); 
+    xTextRange.setString("Hello World (in Java)"); 
+  } // end of printHW() </p>
+<p>} // end of HelloWorld class </p>
+<p>XScript.invoke() constructs a one-argument call to printHW(), passing it a 
+XScriptContext object. As we'll see later, a function can be called with different 
+arguments depending on what event triggers the macro. </p>
+<p>The XScriptContext interface defines four methods which allow the current context, 
+the desktop, and document to be accessed (see lodoc XScriptContext). printHW() 
+utilizes XScriptContext.getDocument() to retrieve the document, and casts it to 
+XTextDocument. This allows the end of the text to be accessed with XTextRange, so 
+a string (""Hello World (in Java)") can be appended to it. </p>
+<h2 id="5-the-librelogo-macro">5.  The LibreLogo Macro</h2>
+<p>HelloWorld isn't the most exciting of macro examples. LibreLogo is a fun (and 
+educational) share macro for LibreOffice (see Figure 9), which has been a standard 
+Office add-on since version 4.0.  </p>
+<p><img alt="" src="images/48-Event_Macros-9.png" /></p>
+<p>Figure 9. The LibreLogo Macro Module. </p>
+<p>Normally LibreLogo is accessed through its own View &gt; Toolbars &gt; Logo toolbar, 
+which is just as well since the Macro selector doesn't list any macros in the LibreLogo 
+module (see the empty area on the right of Figure 9). I had to examine the module's 
+Python code in <OFFICE>\share\Scripts\python\LibreLogo\LibreLogo.py to work out 
+how to call it as a function. </p>
+<p>My UseLogo.java example creates a text document, writes the logo program text onto 
+the page, followed by LibreLogo's rendering of that program, as in Figure 10. </p>
+<p><img alt="" src="images/48-Event_Macros-10.png" /></p>
+<p>Figure 10. The Page Generated by UseLogo.java. </p>
+<p>UseLogo.java is: </p>
+<p>public class UseLogo 
+{ </p>
+<p>public static void main(String[] args) 
+  { 
+    XComponentLoader loader = Lo.loadOffice(); 
+    XTextDocument doc = Write.createDoc(loader); </p>
+<pre><code>if (doc == null) { 
+  System.out.println("Writer doc creation failed"); 
+  Lo.closeOffice(); 
+  return; 
+}
+
+GUI.setVisible(doc, true); 
+Lo.wait(1000);   // make sure doc is visible
+
+XTextCursor cursor = Write.getCursor(doc);
+
+String logoCmds = "repeat 88 [ fd 200 left 89 ] fill"; 
+Write.appendPara(cursor, logoCmds); 
+Macros.executeLogoCmds(logoCmds);
+
+Lo.waitEnter(); 
+Lo.closeDoc(doc); 
+Lo.closeOffice();
+</code></pre>
+<p>} // end of main() </p>
+<p>}  // end of UseLogo class </p>
+<p>Macros.executeLogoCmds() is a small wrapper around Macros.execute() which calls 
+the commandline() function inside LibreLogo.py: </p>
+<p>// in the Macros class 
+public static Object executeLogoCmds(String cmdsStr) 
+{ <br />
+  Object[] params = new String[2]; 
+  params[0] = "";        // based on looking at commandline()<br />
+  params[1] = cmdsStr;   // in LibreLogo.py 
+  return execute("LibreLogo/LibreLogo.py$commandline",<br />
+                               params, "Python", "share"); <br />
+} </p>
+<p>The params[] array is treated as two arguments by XScript.invoke() and passed to 
+commandline(). </p>
+<p>The quick-start and resources pages at librelogo.org are the places to start learning 
+LibreLogo (http://librelogo.org/quick-start/ and http://librelogo.org/resources/). </p>
+<p>There's also a help page of commands at 
+https://help.libreoffice.org/Writer/LibreLogo_Toolbar.  </p>
+<p>A good source of examples, slides, and code is http://www.numbertext.org/logo/. The 
+best introductory talk at that site is "LibreLogo – Turtle vector graphics for 
+everybody" from 2012 (http://www.numbertext.org/logo/librelogo.pdf), and there are 
+more recent presentations which update the project. One of its aims was to create a 
+textbook for Hungarian primary and secondary schools (the project lead, László 
+Németh, is Hungarian), which is free to download from 
+http://szabadszoftver.kormany.hu/wp-
+content/uploads/librelogo_oktatasi_segedanyag_v4.pdf. </p>
+<h2 id="6-writing-a-simple-event-macro">6.  Writing a Simple Event Macro</h2>
+<p>It's time to start coding our own macros. I'll start by writing a ShowEvent class which 
+reports when various events occur. It does this by implementing several versions of a 
+static show() method: </p>
+<p>// in ShowEvent.java 
+public class ShowEvent<br />
+{ 
+  public static void show(XScriptContext sc, ActionEvent e)<br />
+  // triggered by a action event (usually a button press) 
+  {  display("action", getSource(e));  } </p>
+<p>public static void show(XScriptContext sc, TextEvent e) 
+  // called when text changes inside a text component 
+  {  display("text", getSource(e));  } </p>
+<p>public static void show(XScriptContext sc, FocusEvent e) 
+  // called when the focus changes 
+  {  display("focus");  } </p>
+<p>public static void show(XScriptContext sc, Short val) 
+  // called from a toolbar 
+  { display("toolbar (" + val + ")");  }  </p>
+<p>public static void show(XScriptContext sc, KeyEvent e) 
+  // called because of a key 
+  {  display("key " + e.KeyChar, getSource(e)); } </p>
+<p>public static void show(XScriptContext sc, MouseEvent e) 
+  // called because of the mouse 
+  { display("mouse"); } </p>
+<p>public static void show(XScriptContext sc,<br />
+                        com.sun.star.document.DocumentEvent e)<br />
+  // triggered by a document event 
+  {  display("document", e.EventName);  } </p>
+<p>public static void show(XScriptContext sc, EventObject e) 
+  { if (e != null) 
+      display("object", getSource(e));<br />
+    else 
+      display("object ()");<br />
+  } </p>
+<p>public static void show(XScriptContext sc) 
+  // called from a menu or the "Run Macro..." menu 
+  {  display("menu/run");   } </p>
+<p>// support methods; explained shortly 
+  //   : </p>
+<p>}  // end of ShowEvent class </p>
+<p>A particular show() function is called depending on the event, and more versions of 
+show() could easily be added since Office supports a wide range of events. Probably 
+the best summary of them is in the online documentation for EventObject (see lodoc 
+EventObject); EventObject is the superclass for most event types. </p>
+<p>When I first wrote ShowEvent, I mistakenly assumed that the show() function with 
+the EventObject argument (i.e. the second to last one in the code above) would be the 
+default method called when no other version of show() was suitable. That isn't the 
+case; instead, the single argument show() (i.e. the last function, 
+show(XScriptContext sc)) is executed. </p>
+<p>The show() methods utilize display() and showDialog(): </p>
+<p>// part of the ShowEvent class... </p>
+<p>private static void display(String msg) 
+{ <br />
+  showDialog(msg + " event");<br />
+  // JOptionPane.showMessageDialog(null, msg + " event"); <br />
+} </p>
+<p>private static void display(String msg, String info) 
+{ <br />
+  showDialog(msg + " event: " + info);<br />
+  // JOptionPane.showMessageDialog(null, msg + " event: " + info); <br />
+} </p>
+<p>private static void showDialog(String msg) 
+{ 
+  JDialog dlg = new JDialog((java.awt.Frame)null, "Show Event"); 
+  dlg.getContentPane().setLayout(new GridLayout(3,1)); 
+  dlg.add(new JLabel("")); 
+  dlg.add(new JLabel(msg, SwingConstants.CENTER)); // centered text 
+  dlg.pack(); </p>
+<p>Random r = new Random(); 
+  dlg.setLocation(100 + r.nextInt(50), 100 + r.nextInt(50)); </p>
+<p>dlg.setVisible(true); 
+  dlg.setResizable(false); 
+  dlg.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE); 
+}   // end of showDialog() </p>
+<p>A modeless dialog is displayed using Java's JDialog rather than 
+JOptionPane.showMessageDialog(), which means that the dialog won't cause Office 
+to suspend until the user closes the window. </p>
+<p>Each dialog is placed at a slightly random position, so that multiple dialogs created by 
+several events will all hopefully be visible. Another issue is that the dialog's parent is 
+null which means that the dialog may not appear in front of the Office window.  </p>
+<p>No use is made of my utility classes, such as Macros.java or GUI.java. Although this 
+makes the code longer, it also makes this example self-contained, and easier to install. </p>
+<p>I'll use my support classes in the extension and document examples in the next 
+chapter. </p>
+<p>Events which are usually triggered by GUI components, such as ActionEvent and 
+TextEvent, are passed to getSource() which attempts to find the name of the 
+component that sent the event: </p>
+<p>// part of the ShowEvent class... </p>
+<p>private static String getSource(EventObject event) 
+{ 
+  XControl control = UnoRuntime.queryInterface( 
+                             XControl.class, event.Source); 
+  XPropertySet xProps =  UnoRuntime.queryInterface( 
+                  XPropertySet.class, control.getModel()); 
+  try { 
+    return (String)xProps.getPropertyValue("Name"); 
+  } 
+  catch (com.sun.star.uno.Exception e) { 
+    return "Exception?"; 
+  } 
+  catch (com.sun.star.uno.RuntimeException e) { 
+    return "RuntimeException?"; 
+  } 
+} // end of getSource() </p>
+<h3 id="61-installing-a-simple-event-macro">6.1.  Installing a Simple Event Macro</h3>
+<p>A Java macro is installed as a JAR file, so ShowEvent.class is packaged as 
+ShowEvent.jar after compilation: </p>
+<p>compile ShowEvent.java 
+jar cvf ShowEvent.jar ShowEvent.class </p>
+<p>The JAR is added to a new folder called ShowEvent\ beneath 
+<OFFICE>\share\Scripts\java\, thereby making it a share macro. It's also necessary to 
+include a parcel-descriptor.xml file: </p>
+<?xml version="1.0" encoding="UTF-8"?>
+<p><parcel language="Java" xmlns:parcel="scripting.dtd"> 
+    <script language="Java"> </p>
+<pre><code>    &lt;locale lang="en"&gt; 
+        &lt;displayname value="ShowEvent.show"/&gt; 
+        &lt;description&gt; 
+            Shows a dialog with basic event information.
+
+        &lt;/description&gt; 
+    &lt;/locale&gt;
+
+    &lt;functionname value="ShowEvent.show"/&gt; 
+    &lt;logicalname value="ShowEvent.show"/&gt; 
+    &lt;languagedepprops&gt; 
+        &lt;prop name="classpath" value="ShowEvent.jar"/&gt; 
+    &lt;/languagedepprops&gt; 
+&lt;/script&gt;
+</code></pre>
+<p></parcel> </p>
+<p>Of the three 'name' attributes in the XML file, only <functionname> seems to be used 
+by Office. The <description> text appears in the Macro selector dialog (e.g. see 
+Figure 12 below) when the macro is selected, and <languagedepprops> adds the JAR 
+to Office's classpath.  </p>
+<p>The final contents of the ShowEvent\ folder are a JAR and XML file, as shown in </p>
+<p><img alt="" src="images/48-Event_Macros-11.png" /></p>
+<p>Figure 11. </p>
+<p><img alt="" src="images/48-Event_Macros-11.png" /></p>
+<p>Figure 11. The ShowEvent Share Macro Folder. </p>
+<p>It's a good idea to check that this new macro can be seen by Office. Office should be 
+restarted and the "LibreOffice Macros" subsection of the Macro Selector dialog 
+examined. Figure 12 shows the ShowEvent.show macro in the ShowEvent module. </p>
+<p><img alt="" src="images/48-Event_Macros-12.png" /></p>
+<p>Figure 12. Checking for the Presence of ShowEvent.show. </p>
+<h3 id="62-using-showeventshow-in-a-form">6.2.  Using ShowEvent.show in a Form</h3>
+<p>build.odt is a simple form using textfields and buttons shown in Figure 13. </p>
+<p><img alt="" src="images/48-Event_Macros-13.png" /></p>
+<p>Figure 13. The "build.odt" Form. </p>
+<p>The event handling properties of a control are accessed by changing to form design 
+mode (click the "OK hand" icon, second from the left in the toolbar at the bottom of 
+Figure 13). Subsequently, the mouse is right-clicked over a control, such as the 
+FIRSTNAME textfield selected in Figure 13. The resulting pop-up menu includes a 
+"Control" menu item which displays the control's Properties dialog (see Figure 14). </p>
+<p><img alt="" src="images/48-Event_Macros-14.png" /></p>
+<p>Figure 14. The Properties Dialog for the FIRSTNAME Textfield Control. </p>
+<p>The Events tab (shown in Figure 14) lists all the events associated with the control, 
+and a macro is attached by pressing on the right-hand "…" button for an event. An 
+"Assign Action" dialog appears, like the one in Figure 15. </p>
+<p><img alt="" src="images/48-Event_Macros-15.png" /></p>
+<p>Figure 15. The "Assign Action" Dialog. </p>
+<p>Figure 15 shows that the user has selected the "Key pressed" event. </p>
+<p>Clicking on the "Macro…" button brings forth the Macro Selector dialog, and a macro 
+can be chosen. Upon returning to the "Assign Action" dialog, the event will list the 
+macro in the "Assigned Action" column. Clicking "Ok" again returns to the properties 
+dialog which now shows the macro name next to the "Key pressed" event, as in </p>
+<p><img alt="" src="images/48-Event_Macros-16.png" /></p>
+<p>Figure 16. </p>
+<p><img alt="" src="images/48-Event_Macros-16.png" /></p>
+<p>Figure 16. The Properties Dialog with an Assigned Macro. </p>
+<p>The macro's arguments ("share" and "Java") are its category and implementation 
+language. </p>
+<p>The event/macro link can be tested by returning to the default mode in the form by 
+clicking the "Ok hand" icon again. When the user types three letters into the 
+FIRSTNAME textfield (e.g. "and"), three dialogs appear, as in Figure 17. </p>
+<p><img alt="" src="images/48-Event_Macros-17.png" /></p>
+<p>Figure 17. Reporting Key Events. </p>
+<p>I've rearranged the three dialogs in Figure 17 so they're all visible. They're generated 
+by the KeyEvent version of ShowEvent.show: </p>
+<p>// part of the ShowEvent class... </p>
+<p>public static void show(XScriptContext sc, KeyEvent e) 
+// Called from a key 
+{  display("key " + e.KeyChar, getSource(e)); } </p>
+<p>As each letter ("a', 'n', and 'd') is typed, this version of show() is called. </p>
+<h2 id="7-automating-the-assigning-of-event-macros">7.  Automating the Assigning of Event Macros</h2>
+<p>The preceding section illustrates that the assignment of macros to events is 
+straightforward, but time-consuming, especially if you have many controls in your 
+form. Fortunately, macros can be assigned programmatically. </p>
+<p>I first used the "build.odt" form of Figure 13 back in Chapter 40 on forms; it wasn't 
+created by hand but generated by BuildForm.java. That program is extended in this 
+section with calls to Forms.assignScript() which assigns a macro to an event in a 
+control.  </p>
+<p>I'll employ Forms.assignScript() so that the FIRSTNAME textfield calls 
+ShowEvent.show whenever its text changes, focus is lost, or a key is pressed. Also, 
+the six buttons at the bottom of the form (see Figure 13) will execute 
+ShowEvent.show when they're pressed. </p>
+<p>The new code is highlighted in bold in createForm(): </p>
+<p>// part of BuildForm.java... </p>
+<p>private void createForm(XTextDocument doc) 
+{ 
+  XPropertySet props = 
+       Forms.addLabelledControl(doc, "FIRSTNAME", "TextField", 11); 
+  textEvents(props);  // only the FIRSTNAME textfield has a listener </p>
+<p>Forms.addLabelledControl(doc, "LASTNAME", "TextField",  19); </p>
+<p>props = Forms.addLabelledControl(doc, "AGE", "NumericField", 43); 
+  Props.setProperty(props, "DecimalAccuracy", (short) 0); </p>
+<p>Forms.addLabelledControl(doc, "BIRTHDATE", "FormattedField", 51); </p>
+<p>// buttons, all with listeners 
+  props = Forms.addButton(doc, "first", "&lt;&lt;", 2, 63, 8); 
+  buttonEvent(props); </p>
+<p>props = Forms.addButton(doc, "prev", "&lt;", 12, 63, 8); 
+  buttonEvent(props); </p>
+<p>props = Forms.addButton(doc, "next", "&gt;", 22, 63, 8); 
+  buttonEvent(props); </p>
+<p>props = Forms.addButton(doc, "last", "&gt;&gt;", 32, 63, 8); 
+  buttonEvent(props); </p>
+<p>props = Forms.addButton(doc, "new", "&gt;*", 42, 63, 8); 
+  buttonEvent(props); </p>
+<p>props = Forms.addButton(doc, "reload", "reload", 58, 63, 13); 
+  buttonEvent(props); 
+}  // end of createForm() </p>
+<p>The property set for the FIRSTNAME textfield is passed to textEvents(), which calls 
+Forms.assignScript() three times: </p>
+<p>// part of BuildForm.java... </p>
+<p>public void textEvents(XPropertySet props) 
+{ 
+  // listen for text change 
+  Forms.assignScript(props, "XTextListener", "textChanged",<br />
+                       "ShowEvent.ShowEvent.show", "share");  </p>
+<p>// listen for focus loss 
+  Forms.assignScript(props, "XFocusListener", "focusLost",<br />
+                       "ShowEvent.ShowEvent.show", "share");  </p>
+<p>// listen for a key press 
+  Forms.assignScript(props, "XKeyListener", "keyPressed",<br />
+                       "ShowEvent.ShowEvent.show", "share");<br />
+}  // end of textEvents() </p>
+<p>The buttonEvent() method is a (long) one-liner: </p>
+<p>// part of BuildForm.java... </p>
+<p>public void buttonEvent(XPropertySet props) 
+{ <br />
+  Forms.assignScript(props, "XActionListener", "actionPerformed",<br />
+                      "ShowEvent.ShowEvent.show", "share");<br />
+} </p>
+<p>It's surprisingly tricky to decide which class and method names should be passed to 
+Forms.assignScript() since the only information about control events are the labels in 
+the Properties dialog (e.g. "Key pressed" in Figure 16). It can be hard to map these 
+labels onto suitable class and method names, especially since Office supports so many 
+event types. The best source for suitable listener classes is the online documentation 
+for XEventListener (see lodoc XEventListener); XEventListener is the superclass 
+of most listeners. </p>
+<p>After the generated form has been saved, it should be opened in Office so its controls' 
+properties can be inspected. For example, the FIRSTNAME textfield's event 
+properties are now as in Figure 18. </p>
+<p><img alt="" src="images/48-Event_Macros-18.png" /></p>
+<p>Figure 18. The Properties Dialog for the FIRSTNAME textfield. </p>
+<p>Figure 18 confirms that the class/method names used in textEvents() are correct. </p>
+<p>Forms.assignScript() utilizes the XEventAttacherManager interface which offers 
+multiple methods for attaching and removing scripts from events. The code for 
+Forms.assignScript(): </p>
+<p>// in the Forms class 
+public static void assignScript(XPropertySet controlProps,<br />
+                    String interfaceName, String methodName,<br />
+                    String scriptName, String loc) 
+{ 
+  try { 
+    XChild propsChild = Lo.qi(XChild.class, controlProps); 
+    XIndexContainer parentForm =<br />
+       Lo.qi(XIndexContainer.class, propsChild.getParent()); 
+    int pos = -1; 
+    for (int i = 0; i &lt; parentForm.getCount(); i++) { 
+      XPropertySet child = Lo.qi(XPropertySet.class,<br />
+                              parentForm.getByIndex(i) ); 
+      if (UnoRuntime.areSame(child, controlProps)) { 
+        pos = i; 
+        break; 
+      } 
+    } </p>
+<pre><code>if (pos == -1) 
+  System.out.println("Could not find contol's pos in form"); 
+else { 
+  XEventAttacherManager manager =  
+        Lo.qi(XEventAttacherManager.class, parentForm); 
+  manager.registerScriptEvent(pos,  
+       new ScriptEventDescriptor(interfaceName, methodName, 
+               "", "Script", 
+               "vnd.sun.star.script:"+scriptName +  
+                   "?language=Java&amp;location=" + loc)); 
+}
+</code></pre>
+<p>} 
+  catch( com.sun.star.uno.Exception e )<br />
+  { System.out.println(e);  } 
+}  // end of assignScript() </p>
+<p>The first half of assignScript() calculates the control's index position inside the 
+parent's form. An index is used by most XEventAttacherManager methods to refer to 
+a control. </p>
+<p>The last part of assignScript() uses XEventAttacherManager.registerScriptEvent() to 
+attach the script to the control's event. A ScriptEventDescriptor object is constructed 
+from five arguments: the listener's class name, the method to be called in the listener, 
+any extra data for the method (which is "" here), the script type (which can be "Script" 
+or "Basic"), and the macro's full name. </p>
+<p>If you're unsure about the full name, then use my ListMacros.java or FindMacros.java 
+to display macro details. For example: 
+run FindMacros ShowEvent 
+produces: 
+Matching Macros in Office: (1) 
+  vnd.sun.star.script:ShowEvent.ShowEvent.show? 
+                                language=Java&amp;location=share </p>
+<p>"ShowEvent.ShowEvent.show" and "share" are passed to Forms.assignScript() as its 
+last two arguments: </p>
+<p>// part of BuildForm.java... </p>
+<p>Forms.assignScript(props, "XTextListener", "textChanged",<br />
+                       "ShowEvent.ShowEvent.show", "share");  </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="47-Calc_Add-ins.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 47. Calc Add-ins
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="49-Ext_Doc_Event_Macros.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Chapter 49. Extension and Document
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

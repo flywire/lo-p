@@ -6,6 +6,8 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
       
       
       
@@ -14,7 +16,7 @@
     
     
       
-        <title>My Docs</title>
+        <title>LibreOffice Programming</title>
       
     
     
@@ -36,6 +38,8 @@
     
     
     
+      <link rel="stylesheet" href="/css/extra.css">
+    
     
       
     
@@ -48,7 +52,9 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
       
   
     
@@ -64,7 +70,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/." title="My Docs" class="md-header__button md-logo" aria-label="My Docs" data-md-component="logo">
+    <a href="/index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -77,7 +83,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            My Docs
+            LibreOffice Programming
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -124,6 +130,19 @@
 </div>
     
     
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
   </nav>
 </header>
     
@@ -145,14 +164,27 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs" data-md-component="logo">
+    <a href="/index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
 
     </a>
-    My Docs
+    LibreOffice Programming
   </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -164,8 +196,863 @@
   
   
     <li class="md-nav__item">
-      <a href="/." class="md-nav__link">
-        Welcome to MkDocs
+      <a href="/index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="/51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
       </a>
     </li>
   

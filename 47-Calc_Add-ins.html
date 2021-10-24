@@ -1,0 +1,1643 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 47. Calc Add-ins - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-47-calc-add-ins" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 47. Calc Add-ins
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 47. Calc Add-ins
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="47-Calc_Add-ins.html" class="md-nav__link md-nav__link--active">
+        Chapter 47. Calc Add-ins
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-implementing-a-calc-add-in" class="md-nav__link">
+    1.  Implementing a Calc Add-in
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-the-idl-definitions-of-the-functions" class="md-nav__link">
+    2.  The IDL definitions of the Functions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-implementing-a-calc-add-in" class="md-nav__link">
+    1.  Implementing a Calc Add-in
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-the-idl-definitions-of-the-functions" class="md-nav__link">
+    2.  The IDL definitions of the Functions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/47-Calc_Add-ins.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-47-calc-add-ins">Chapter 47. Calc Add-ins</h1>
+<p>Calc Add-ins are extensions containing spreadsheet 
+functions; my Doubler add-in contains three: doubler() for 
+doubling a supplied value, doublerSum() for summing a 
+cell range after doubling each cell value, and 
+sortByFirstCol() which sorts a supplied cell range returning an array sorted into 
+ascending order based on the first column. </p>
+<p>Figure 1 shows the Doubler add-in as the first entry in the extension manger after it's 
+been installed in Office. </p>
+<p><img alt="" src="images/47-Calc_Add-ins-1.png" /></p>
+<p>Figure 1. The Doubler Calc Add-in, and other Extensions. </p>
+<p>I created a small spreadsheet in calcTest.ods using doubler(), doublerSum(), and 
+sortByFirstCol(), which is displayed in Figure 2. </p>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+</div>
+<p>Implementing a 
+Calc Add-in; The IDL 
+definitions of the 
+Functions; XCU creation 
+Example folders: "Addin 
+Tests" and "Utils" </p>
+<p><img alt="" src="images/47-Calc_Add-ins-2.png" /></p>
+<p>Figure 2. Calc Add-in Functions Used in a Spreadsheet. </p>
+<p>doubler() is called six times to double the values in the "A" column, storing them in 
+the "B" column. doublerSum() is called twice to double and sum the "A" and "B" 
+columns, placing the results in C2 and C3. sortByFirstCol() sorts the cell range A1:B6 
+into ascending order by the values in the "A" column, and stores the resulting array in 
+D1:E6. </p>
+<p>sortByFirstCol() is as an example of an Array function (or formula) because it returns 
+an array which is written into a block of cells (i.e. D1:E6). The slightly tricky way of 
+doing that is to select the block before typing "=sortByFirstCol(A1:B6)" into the 
+formula text bar, and then press Shift+Ctrl+Enter instead of the Enter key. The cell 
+range output is denoted by curly braces surrounding the function, which are just 
+visible in the bottom screenshot in Figure 2. </p>
+<p>Alternatively, the Function Wizard can be called, and its Array box checked as the 
+function's inputs are specified, as in Figure 3.  </p>
+<p><img alt="" src="images/47-Calc_Add-ins-3.png" /></p>
+<p>Figure 3. The Function Wizard and sortByFirstCol() </p>
+<p>The add-in functions from the Doubler extension, and other Office extensions, are 
+listed under the Add-in" category of the Function Wizard, as shown in Figure 4. </p>
+<p><img alt="" src="images/47-Calc_Add-ins-4.png" /></p>
+<p>Figure 4. The Function Wizard's Add-in Category. </p>
+<p>If you're unfamiliar with the Function Wizard, then you should download the Calc 
+Guide from https://th.libreoffice.org/get-help/documentation/. Chapter 7 is about 
+formulas and functions, and Appendix B lists the functions by categories, including 
+the add-ins which come with Calc. The functions-by-category data is also online at 
+https://help.libreoffice.org/Calc/Functions_by_Category 
+An interesting wiki page comparing the features of the current version of LibreOffice 
+and MS Office can be found at 
+https://wiki.documentfoundation.org/Feature_Comparison:<em>LibreOffice</em>-
+_Microsoft_Office. The spreadsheet section states that LibreOffice Calc has 500 
+functions versus 468 in MS Excel, with a large overlap between them but with 25 
+functions unique to Calc 5.2 and 14 unique to Excel 2016. Another interesting 
+comparison is offered by Zeki Bildirici as a spreadsheet at 
+https://wiki.documentfoundation.org/images/c/c6/Excel2013_Calc_Functions_Compa
+rison.ods, which matches functions in Excel 2013 to their equivalents in Calc 3.x. </p>
+<h2 id="1-implementing-a-calc-add-in">1.  Implementing a Calc Add-in</h2>
+<p>The writing of a Calc add-in became much easier after OpenOffice 2.0.4 was released 
+in 2005, when it became possible to define an add-in as an IDL type, and use the 
+UNO component tools (e.g. idlc, regmerge, javamaker, and uno-skeletonmaker) to 
+generate the add-in's boiler-plate code. Prior to this, the programmer had to write a 
+class that implemented several interfaces including XAddin, XServiceName, and 
+XServiceInfo.  </p>
+<p>I mention this 'ancient' history because the Developer's Guide (no spring chicken 
+itself, having been released in 2009) only explains the pre-2005 approach. There's a 
+lengthy example in chapter 8, which can also be found online at 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Spreadsheets/Spreadsheet
+_Add-Ins (or use loGuide "Spreadsheet Add-Ins"). The code (called 
+ExampleAddIn) can be downloaded from 
+http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Spreadsheet 
+According to forum posts, the old approach still works, but I haven’t checked; I'm 
+only going to use the 'new' way of implementing add-ins (post-2005), using IDL types 
+and the UNO component tools. Figure 5 shows the required steps. </p>
+<p><img alt="" src="images/47-Calc_Add-ins-5.png" /></p>
+<p>Figure 5. Implementing a Calc Add-in. </p>
+<p>One point in favor of this approach is that it's almost identical to the stages needed to 
+create an UNO component, as described in Chapter 45. Figure 5 is very similar to 
+Figure 1 in that chapter, and the batch scripts labeling the arrows are unchanged, 
+except for skelAddin.bat. skelAddin.bat only differs from skelComp.bat of Chapter 45 
+in a single argument passed to uno-skeletonmaker.exe, which tells it to generate an 
+add-in skeleton rather than a component. </p>
+<p>The other, more significant, change in Figure 5 is the addition of an XML 
+configuration file called CalcAddin.xcu. It defines the GUI elements for the functions, 
+used by the Function Wizard in Figure 3. </p>
+<p>A great write-up of this way of coding Calc add-ins by Jan Holst Jensen can be found 
+at http://biochemfusion.com/doc/Calc_addin_howto.html. He explains how to create a 
+DoobieDoo add-in consisting of four Python functions, with the code available at 
+https://wiki.openoffice.org/wiki/Calc/Add-In/Python_How-To. </p>
+<p>There's another good example in the OpenOffice NetBeans integration documentation 
+at https://wiki.openoffice.org/wiki/Calc/Add-In/Project_Type. If you skip past the 
+description of NetBeans' project wizard, the generated add-in code section is quite 
+informative. Unlike  my example, the add-in can be localized to show documentation 
+in English or German.  </p>
+<p>The specification document for the NetBeans add-in wizard is at 
+https://www.openoffice.org/specs/sdk/tools/spec_openoffice-netbeans-integration-
+calc-addin-wizard.odt. In amongst details about dialog structuring, there's some good 
+material on the format of CalcAddin.xcu. I'll explain the XCU format in section 2.5. </p>
+<h2 id="2-the-idl-definitions-of-the-functions">2.  The IDL definitions of the Functions</h2>
+<p>My Doubler functions (doubler(), doublerSum(), and sortByFirstCol()) are defined in 
+Doubler.idl: </p>
+<h1 id="ifndef-org_openoffice_doubler_xdoubler">ifndef <em>org_openoffice_doubler_XDoubler</em></h1>
+<h1 id="define-org_openoffice_doubler_xdoubler">define <em>org_openoffice_doubler_XDoubler</em></h1>
+<h1 id="include">include <com/sun/star/uno/XInterface.idl></h1>
+<p>module org { module openoffice { module doubler { </p>
+<p>interface XDoubler { 
+    double doubler([in] double value); </p>
+<pre><code>double doublerSum([in] sequence&lt; sequence&lt; double &gt; &gt; vals);
+
+sequence&lt; sequence&lt; double &gt; &gt; sortByFirstCol( 
+                  [in] sequence&lt; sequence&lt; double &gt; &gt; vals);
+</code></pre>
+<p>}; 
+}; }; }; </p>
+<p>module org { module openoffice { module doubler<br />
+{ 
+  service Doubler : XDoubler; 
+}; }; }; </p>
+<h1 id="endif">endif</h1>
+<p>The IDL defines an XDoubler interface and Doubler service, both in the 
+org.openoffice.doubler module; XDoubler supports three functions. </p>
+<p>As mentioned in Chapter 45, the main source for information about IDL types is 
+chapter 3 of the Developer's Guide. The subsection "Using UNOIDL to Specify New 
+Components" explains how to define an interface, and the same information is online 
+at 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Using_UNO
+IDL_to_Specify_New_Components (or use loGuide "Using UNOIDL"). However, 
+add-in functions only support a subset of the IDL input and return types.  </p>
+<p>Input arguments must use "[in]", and are restricted to the types long, double, string, 
+and any. Sequences must be two-dimensional (e.g. sequence&lt; sequence<double>&gt;), 
+because they're used to represent cell ranges in the spreadsheet. It's possible to use the 
+XCellRange and XPropertySet as input types, and use sequence<any> as the type of 
+the last argument so it will be assigned the inputs not used by previous arguments. </p>
+<p>Return types can be long, double, string, and any, or a 2D sequence (e.g. sequence&lt; 
+sequence<double>&gt;) which can be assigned to a cell range in the spreadsheet. </p>
+<p>XVolatileResult is a special return type which represents a result that may change 
+over time; its value is automatically updated in the cell containing the function. </p>
+<p>Details on how IDL types are mapped to Java can be found in chapter 2 of the guide, 
+starting at the "Type Mapping" subsection (online at 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/ProUNO/Java/Type_Mapp
+ings, or via loGuide "Type Mappings"). The Java versions of the add-in function 
+types are also detailed in the online documentation for the AddIn service (use lodoc 
+Addin to find the page). </p>
+<h3 id="21-converting-idl-into-java-code">2.1.  Converting IDL into Java Code</h3>
+<p>Figure 5 shows the steps needed to convert Doubler.idl into partial Java code for the 
+add-in functions. The idlc.bat, regmerge.bat, and javamaker.bat scripts are unchanged 
+from Chapter 45, and skelAddin.bat only differs from that chapter's skelComp.bat by 
+calling javamaker.exe with a "calc-add-in" argument rather than "component". The 
+four calls used to generate the Java code are: </p>
+<blockquote>
+<p>idlc.bat Doubler 
+regmerge.bat Doubler 
+javamaker.bat Doubler 
+skelAddin.bat Doubler </p>
+</blockquote>
+<p>or they can be called collectively through genCode.bat: </p>
+<blockquote>
+<p>genCode Doubler 
+Since idlc.bat and skelAddin.bat copy files into "Program Files/", they must be run 
+with Administrative privileges, as in Chapter 45. </p>
+</blockquote>
+<p>The end result is DoublerImpl.java, which contains all the necessary boiler-plate code, 
+and three stub functions: </p>
+<p>// part of DoublerImpl.java... </p>
+<p>public double doubler(double value) 
+{ 
+  return 0; 
+} </p>
+<p>public double doublerSum(double[][] vals) 
+{ 
+  return 0; 
+} </p>
+<p>public double[][] sortByFirstCol(double[][] vals) 
+{ 
+  return new double[0][0]; 
+} </p>
+<p>In a spreadsheet, doublerSum() and sortByFirstCol() can be passed cell range 
+arguments (e.g. =doublerSum(A1:A6)), which are treated as 2D arrays. The 
+transformation retains the row ordering of the cells in the array, as illustrated by </p>
+<p><img alt="" src="images/47-Calc_Add-ins-6.png" /></p>
+<p>Figure 6. </p>
+<p><img alt="" src="images/47-Calc_Add-ins-6.png" /></p>
+<p>Figure 6. From Cell Range to Input Array,<br />
+and Output Array to Cell Range. </p>
+<p>The same mapping is used in reverse if the function returns a 2D array, as in the case 
+of sortByFirstCol(). </p>
+<h3 id="22-implementing-the-add-in-functions">2.2.  Implementing the Add-in Functions</h3>
+<p>Implementing doubler() and doublerSum() is easy, but I had some problems with 
+sortByFirstCol() when using Java's Arrays.sort(). The code was initially: </p>
+<p>// added at the start of DoublerImpl.java... </p>
+<p>import java.util.*;    // import for Arrays and Comparator classes </p>
+<p>private static final String LOG_FNM = "c:\arrayInfo.txt"; 
+                       // for debugging </p>
+<p>// : 
+// completed function stubs 
+public double doubler(double value) 
+{  return value*2;  }  </p>
+<p>public double doublerSum(double[][] vals) 
+{<br />
+  double sum = 0; 
+  for (int i = 0; i &lt; vals.length; i++) 
+    for (int j = 0; j &lt; vals[i].length; j++) 
+      sum += vals[i][j]*2; 
+  return sum; 
+} // end of doublerSum() </p>
+<p>public double[][] sortByFirstCol(double[][] vals) 
+{<br />
+  FileIO.appendTo(LOG_FNM, Lo.getTimeStamp() + ": sortByFirstCol()"); 
+  selectionSort(vals); </p>
+<p>for (int i = 0; i &lt; vals.length; i++) 
+    FileIO.appendTo(LOG_FNM, "  " + Arrays.toString(vals[i])); </p>
+<p>return vals; 
+}  // end of sortByFirstCol() </p>
+<p>private void selectionSort(double[][] vals) 
+// ascending order based on first column of vals; FAILS ?? 
+{ 
+  Arrays.sort(vals, new Comparator<double[]>() { 
+    public int compare(double[] row1, double[] row2)<br />
+    // compare first column of each row 
+    { <br />
+      FileIO.appendTo(LOG_FNM, "compared");   // never reached ?? 
+      return Double.compare(row1[0], row2[0]); 
+    } 
+  }); 
+}  // end of selectionSort() </p>
+<p>FileIO.appendTo() is my way of debugging add-in functions by appending messages 
+to a file. Its  main drawback is the lack of a UNIX-like tail command in Windows for 
+monitoring the end of a file; I use tail.exe from the Gow UNIX utilities for Windows 
+(https://github.com/bmatzelle/gow/wiki). </p>
+<p>The above version of sortByFirstCol() fails without returning an array for the cell 
+range D1:E6, as can be seen by the block of #VALUE! text in Figure 7. </p>
+<p><img alt="" src="images/47-Calc_Add-ins-7.png" /></p>
+<p>Figure 7. sortByFirstCol() Failing in calcTest.ods. </p>
+<p>The debugging text written to the log (c:/arrayInfo.txt) shows that Arrays.sort() fails, 
+although why is a mystery. </p>
+<p>I replaced selectionSort() with my own insertion sort: </p>
+<p>// part of DoublerImpl.java... </p>
+<p>private void selectionSort(double[][] vals) 
+// ascending order based on first column of vals; WORKS! 
+{ 
+  double[] temp;<br />
+  for(int i = vals.length-1; i &gt; 0; i--) { 
+    int first = 0;<br />
+    for(int j = 1; j &lt;= i; j ++) {<br />
+      if(vals[j][0] &gt; vals[first][0]) // compare first col values 
+        first = j; 
+    } 
+    temp = vals[first]; // swap rows 
+    vals[first] = vals[i]; 
+    vals[i] = temp;<br />
+  } 
+}  // end of selectionSort() </p>
+<p>This version of sortByFirstCol() works correctly, and the spreadsheet looks like the 
+screenshot at the bottom of Figure 2. The debugging text confirms the sorting: </p>
+<p>2016-11-02 14:04:21: sortByFirstCol() 
+  [1.0, 2.0] 
+  [3.0, 6.0] 
+  [5.0, 10.0] 
+  [6.0, 12.0] 
+  [8.0, 16.0] 
+  [12.0, 24.0] </p>
+<p>The add-in functions in DoublerImpl.java make use of two of my utility functions, 
+namely Lo.getTimeStamp() and FileIO.appendTo(), so the add-in extension must 
+include utils.jar. </p>
+<h3 id="23-functions-that-use-global-state-a-bad-idea">2.3.  Functions that use Global State (a Bad Idea)</h3>
+<p>The Java code generated by uno-skeletonmaker.exe includes a reference to Office's 
+component context, stored as a XComponentContext reference: </p>
+<p>private final XComponentContext m_xContext;  // in DoublerImpl.java </p>
+<p>The variable is initialized in the constructor: </p>
+<p>public DoublerImpl( XComponentContext context ) 
+{  m_xContext = context;  } </p>
+<p>This reference can be used to initialize the globals used by my Lo utility library and 
+other support classes, by calling Lo.addonInitialize(): </p>
+<p>// part of DoublerImpl()... </p>
+<p>doc = Lo.addonInitialize(m_xContext); </p>
+<p>Lo.addonInitialize() returns an XComponent instance, which refers to the spreadsheet.  </p>
+<p>These additions to DoublerImpl.java make it possible for doubler(), doublerSum(), 
+and sortByFirstCol() to access and change the spreadsheet independently of their 
+input arguments. For example, it's possible to access document information such as 
+the title bar text, and the supported services: </p>
+<p>// in DoubleImpl.java 
+// global 
+private XComponent doc; </p>
+<p>public double doubler(double value) 
+{ <br />
+  FileIO.appendTo(LOG_FNM, "Window title: " + GUI.getTitleBar()); 
+  FileIO.appendTo(LOG_FNM, "Services for this document:"); 
+  for(String service : Info.getServices(doc)) 
+    FileIO.appendTo(LOG_FNM, "  " + service); </p>
+<p>return value*2; <br />
+}  </p>
+<p>Calls to FileIO.appendTo() are the only way to 'print' information. The lines appended 
+to the log are: </p>
+<p>Window title: calcTest.ods - LibreOffice Calc 
+Services for this document: 
+  com.sun.star.document.OfficeDocument 
+  com.sun.star.sheet.SpreadsheetDocument 
+  com.sun.star.sheet.SpreadsheetDocumentSettings </p>
+<p>However, this way of using add-in functions is poor programming style because it 
+becomes hard to know what a function is doing without checking its implementation. </p>
+<p>For that reason, I'd avoid this kind of coding unless absolutely necessary. </p>
+<h3 id="24-problems-with-office-types">2.4.  Problems with Office Types</h3>
+<p>The input argument types for add-in functions are usually long, double, string, any, or 
+a sequence, but it's also possible to use XCellRange and XPropertySet. Return types 
+are typically long, double, string, any, or a sequence, but a special case is 
+XVolatileResult. </p>
+<p>I tried using XCellRange as an input type and XVolatileResult as a return type in two 
+functions in Doubler.idl: </p>
+<h1 id="ifndef-org_openoffice_doubler_xdoubler_1">ifndef <em>org_openoffice_doubler_XDoubler</em></h1>
+<h1 id="define-org_openoffice_doubler_xdoubler_1">define <em>org_openoffice_doubler_XDoubler</em></h1>
+<h1 id="include_1">include <com/sun/star/uno/XInterface.idl></h1>
+<h1 id="include_2">include <com/sun/star/table/XCellRange.idl></h1>
+<h1 id="include_3">include <com/sun/star/sheet/XVolatileResult.idl></h1>
+<p>module org { module openoffice { module doubler { </p>
+<p>interface XDoubler { 
+    double doubler([in] double value); </p>
+<pre><code>double doublerSum([in] sequence&lt; sequence&lt; double &gt; &gt; vals);
+
+sequence&lt; sequence&lt; double &gt; &gt; sortByFirstCol( 
+                  [in] sequence&lt; sequence&lt; double &gt; &gt; vals);
+
+long usedCells([in] com::sun::star::table::XCellRange cr); 
+                // javamaker cannot process this function
+
+com::sun::star::sheet::XVolatileResult counter(  
+                 [in] string aName, [in] double value); 
+                // javamaker cannot process this function
+</code></pre>
+<p>}; 
+}; }; }; </p>
+<h1 id="endif_1">endif</h1>
+<p>Office's idlc.exe and regmerge.exe tools are happy to process these types, but 
+javamaker.exe always fails to recognize 'com.sun.star.table.XCellRange' and 
+'com.sun.star.sheet.XVolatileResult', reporting an "Unknown entity" error. I tried 
+calling javamaker with the inclusion of extra Office RDB files, such as services.rdb 
+and offapi.rdb, but with no success. </p>
+<p>I was unable to find an add-in example online that uses XCellRange, perhaps because 
+it's more natural to pass a cell range to a function as an array.  </p>
+<p>XVolatileResult is utilized by the example in the Developer's Guide (ExampleAddIn 
+at http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Spreadsheet), 
+but it employs the old add-in coding style based on implementing the XAddIn 
+interface. </p>
+<h3 id="25-creating-calcaddinxcu">2.5.  Creating CalcAddIn.xcu</h3>
+<p>The second half of the Calc add-in development process shown in Figure 5 starts 
+when the programmer has finished writing the add-in functions. It uses the same batch 
+scripts as in Chapter 45: compileOrg.bat, toJar.bat, makeOxt.bat, and pkg.bat. The 
+only difference is that the Doubler/ directory zipped up as an OXT file contains a 
+configuration file, CalcAddIn.xcu.. The folder's structure is: </p>
+<p>Doubler 
+|   CalcAddIn.xcu 
+|   description.xml 
+|   double.png 
+|   license.txt 
+|   package-description.txt 
+|   Utils.jar 
+|  <br />
+---META-INF 
+        manifest.xml </p>
+<p>makeOxt.bat moves the Doubler.rdb type data and DoublerImpl.jar into Doubler/, and 
+zips the contents into Doubler.oxt. </p>
+<p>CalcAddin.xcu contains an XML description for each function in Doubler. For 
+example, sortByFirstCol() is represented by: </p>
+<p><node oor:name="sortByFirstCol" oor:op="replace"> 
+  <prop oor:name="DisplayName"> 
+        <value xml:lang="en">sortByFirstCol</value></prop> </p>
+<p><prop oor:name="Description"> 
+        <value xml:lang="en">sorts a cell range into ascending<br />
+                             order using the first column values<br />
+                             of the range</value></prop> </p>
+<p><prop oor:name="Category"> 
+        <value>Add-In</value></prop> </p>
+<p><prop oor:name="CompatibilityName"> 
+        <value xml:lang="en">sortByFirstCol</value></prop> </p>
+<p><node oor:name="Parameters"> 
+    <node oor:name="vals" oor:op="replace"> 
+      <prop oor:name="DisplayName"> 
+            <value xml:lang="en">cell range</value></prop> 
+      <prop oor:name="Description"> 
+            <value xml:lang="en">range of doubles</value></prop> 
+    </node> 
+  </node> </p>
+<p></node> </p>
+<p>There are five fields: "DisplayName", "Description", "Category", 
+"CompatibilityName", and "Parameters", most of which are utilized by Office's 
+Function Wizard, as shown in Figure 3.  </p>
+<p>The "Category" value can be any of the wizard's pop-down list categories, but "Add-
+In" seems the best choice. If you want to use one of the others, a complete list is given 
+in the documentation for getProgrammaticCategoryName() in the XAddin class (use 
+lodoc XAddin to access the page). </p>
+<p>The simplest value to use for "CompatibilityName" is the function's name. This 
+becomes important when the spreadsheet is exported as an Excel XLS file, when the 
+function's name is replaced by this string.  </p>
+<p>According to Jan Holst Jensen in his "Calc Add-in How-to" article 
+(http://biochemfusion.com/doc/Calc_addin_howto.html), it's possible to supply the 
+name of a .NET or COM Automation function in this field, and have the exported 
+spreadsheet correctly call that Excel function, but I haven't tried that myself. </p>
+<p>The "Parameters" field may contain several sub-nodes, one for each function 
+argument. Each node maps the argument's name in the IDL definition to text shown 
+by the Function Wizard. For example, the IDL definition for sortByFirstCol() is: </p>
+<p>sequence&lt; sequence&lt; double &gt; &gt; sortByFirstCol( 
+                  [in] sequence&lt; sequence&lt; double &gt; &gt; vals); </p>
+<p>The "vals" argument is mapped to a display name and description used by the 
+Function Wizard in Figure 3. </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="46-Addons.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 46. Add-ons
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="48-Event_Macros.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Chapter 48. Event Macros
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

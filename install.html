@@ -1,0 +1,127 @@
+
+<html>
+
+<head>
+<title>Installing the code for "Java LibreOffice Programming"</title>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type>
+</head>
+
+<body bgcolor=#ffffff text=#000000>
+<center>
+<H1><img src="images/install.png" border=1 align="right" alt="[install PIC]">
+<FONT color=#666633>Installing the code for "Java LibreOffice Programming"</i>
+</FONT></H1>
+</center>
+
+
+<pre>
+&nbsp;
+</pre>
+
+<P>This page explains how to get the
+"Java LibreOffice Programming" code
+examples to work. There are three main steps: 
+<ol>
+<li>download LibreOffice <b>and</b> other Java libraries,</li>
+<li>download my utility classes, and</li>
+<li>download the chapter examples.</li>
+</ol>
+</P>
+
+<P>I've only tested my code on Windows machines, so
+this page will limit itself to that platform.</P><br>
+
+
+
+<H2>1. Downloading LibreOffice and Other libraries</H2>
+
+<P>
+<ul>
+  <li>Check if your machine is 64-bit or 32-bit (e.g. by calling <tt>systeminfo</tt>
+  from the command line, and looking at the "System Type" entry). If you
+  have a 64-bit machine then you'll have to decide whether to download the
+  64-bit or 32-bit versions of the JDK and LibreOffice, but make sure
+  the pair you choose have the same "bitness". If you've got a 32-bit
+  machine, then you'll have to get the 32-bit pair of JDK and LibreOffice.
+  </li><br>
+
+  <li>Download a <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank">Java SE Development Kit</a> (JDK).
+  The Java site uses "x86" as another name for 32-bit.
+  Install it in its default position on your machine. Add the
+  full directory path holding
+  the Java compiler and runtime executables to Window's <tt>PATH</tt> 
+  environment variable.
+  The directory path typically ends with <tt>Java\jdk1.8.0_XXX\bin</tt>.</li><br>
+
+
+  <li>Download <a href="https://www.libreoffice.org/download/libreoffice-fresh/" target="_blank">LibreOffice</a>. 
+  Install it in its default position on your machine. Add the full directory path
+  containing
+  the LibreOffice executable (<tt>soffice.exe</tt>) to Window's <tt>PATH</tt> 
+  environment variable. 
+  The directory path typically ends with <tt>LibreOffice 5/program</tt>.<br>
+  By the way, there are two versions of LibreOffice to choose from, called
+  'still' and 'fresh'. I usually download 'fresh', but the 'still' version is
+  available <a href="https://www.libreoffice.org/download/libreoffice-still/" target="_blank">here</a>.
+  By the way, if you want to download LibreOffice version 4 instead of the new
+  version 5, that's fine as well.
+  </li><br>
+
+
+  <li>Download the <a href="https://www.libreoffice.org/download/libreoffice-fresh/" target="_blank">SDK</a>
+  from the same webpage as LibreOffice (for Windows, it's an MSI file). 
+  There's no need to get
+  the source code. The installed SDK will appear
+  as an <tt>sdk</tt> subdirectory in the LibreOffice directory.
+  Optionally download the built in Help as well, but LibreOffice will
+  default to using the online version if Help isn't installed.  </li><br>
+ 
+
+  <li>Download <a href="https://github.com/twall/jna" target="_blank">JNA</a>. 
+  There are two files to download (<tt>jna.jar</tt> and 
+  <tt>jna-platform.jar</tt>) which are listed 
+  in the <b>Download</b> section some way down the JNA webpage.
+  Install these files in the directory <tt>D:\jna</tt> on your machine. This
+  location is used by my compile and run batch files.</li><br>
+</ul>
+</P>
+<br>
+
+
+<H2>2. Installing my Utility Classes</H2>
+
+<P>The utility classes are in a folder <tt>Utils</tt>, which can be downloaded
+as a <a href="code/utils.zip">zipped file</a>. It should be unzipped and placed in a
+new subdirectory for your LibreOffice programs. This directory can be called
+anything; mine is called <tt>LibreOffice Tests</tt>.
+</P>
+<br>
+
+<H2>3. Installing my Examples</H2>
+
+<P>Links going to the zipped examples can be found in the chapter sections
+on the <a href="index-2.html">main page of this site</a></P>
+
+<P>Download the zip file, extract the directory (e.g. <tt>Writer Tests</tt>), and store
+in the same directory as the one holding the <tt>Utils</tt> directory 
+(e.g. in <tt>LibreOffice Tests</tt>). This organization is used
+by my compile and run batch files. There is a <tt>readme.txt</tt> file in each
+directory, explaining how to compile and run the examples.</P><br>
+
+
+
+<hr>
+<P><b>Navigation:</b>
+<ul>
+<li>Up to the <a href="index-2.html"><i>Java LibreOffice Programming</i> Index Page</a>
+</ul>
+</P>
+
+<hr>
+<P>Dr. Andrew Davison<br>
+E-mail: <a href="mailto:ad@fivedots.coe.psu.ac.th">ad@fivedots.coe.psu.ac.th</a><br>
+Back to <a href="http://fivedots.coe.psu.ac.th/~ad/index.html">my home page</a></P>
+
+</body>
+
+</html>

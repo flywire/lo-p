@@ -1,0 +1,2741 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 35. Examining Base Documents - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-35-examining-base-documents" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 35. Examining Base Documents
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 35. Examining Base Documents
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link md-nav__link--active">
+        Chapter 35. Examining Base Documents
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-querying-an-embedded-hsqldb-database" class="md-nav__link">
+    1.  Querying an Embedded HSQLDB Database
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-using-metadata-when-querying-a-base-document" class="md-nav__link">
+    2.  Using Metadata when Querying a Base Document
+  </a>
+  
+    <nav class="md-nav" aria-label="2.  Using Metadata when Querying a Base Document">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-the-datasource-service" class="md-nav__link">
+    2.1.  The DataSource Service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-the-databasedefinition-services" class="md-nav__link">
+    2.2.  The DatabaseDefinition Services
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-the-databasemetadata-service" class="md-nav__link">
+    2.3.  The DatabaseMetaData Service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-the-resultsetmetadata-service" class="md-nav__link">
+    2.4.  The ResultSetMetaData Service
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#courseid-subjectid-coursenumber-title-numofcredits" class="md-nav__link">
+    courseId,  subjectId, courseNumber,      title, numOfCredits
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-debugging-database-code" class="md-nav__link">
+    3.  Debugging Database Code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-creating-a-base-document" class="md-nav__link">
+    4.  Creating a Base Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-processing-multiple-sql-commands" class="md-nav__link">
+    5.  Processing Multiple SQL Commands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-displaying-table-relationships" class="md-nav__link">
+    6.  Displaying Table Relationships
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-prepared-statements" class="md-nav__link">
+    7.  Prepared Statements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-scrollable-and-updatable-result-sets" class="md-nav__link">
+    8.  Scrollable and Updatable Result Sets
+  </a>
+  
+    <nav class="md-nav" aria-label="8.  Scrollable and Updatable Result Sets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-a-firebird-date-bug" class="md-nav__link">
+    8.1.  A Firebird Date Bug
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-using-a-scrollable-result-set" class="md-nav__link">
+    8.2.  Using a Scrollable Result Set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-using-an-updatable-result-set" class="md-nav__link">
+    8.3.  Using an Updatable Result Set
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-converting-a-database-to-text" class="md-nav__link">
+    9.  Converting a Database to Text
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-querying-an-embedded-hsqldb-database" class="md-nav__link">
+    1.  Querying an Embedded HSQLDB Database
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-using-metadata-when-querying-a-base-document" class="md-nav__link">
+    2.  Using Metadata when Querying a Base Document
+  </a>
+  
+    <nav class="md-nav" aria-label="2.  Using Metadata when Querying a Base Document">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-the-datasource-service" class="md-nav__link">
+    2.1.  The DataSource Service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-the-databasedefinition-services" class="md-nav__link">
+    2.2.  The DatabaseDefinition Services
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-the-databasemetadata-service" class="md-nav__link">
+    2.3.  The DatabaseMetaData Service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-the-resultsetmetadata-service" class="md-nav__link">
+    2.4.  The ResultSetMetaData Service
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#courseid-subjectid-coursenumber-title-numofcredits" class="md-nav__link">
+    courseId,  subjectId, courseNumber,      title, numOfCredits
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-debugging-database-code" class="md-nav__link">
+    3.  Debugging Database Code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-creating-a-base-document" class="md-nav__link">
+    4.  Creating a Base Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-processing-multiple-sql-commands" class="md-nav__link">
+    5.  Processing Multiple SQL Commands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-displaying-table-relationships" class="md-nav__link">
+    6.  Displaying Table Relationships
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-prepared-statements" class="md-nav__link">
+    7.  Prepared Statements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-scrollable-and-updatable-result-sets" class="md-nav__link">
+    8.  Scrollable and Updatable Result Sets
+  </a>
+  
+    <nav class="md-nav" aria-label="8.  Scrollable and Updatable Result Sets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-a-firebird-date-bug" class="md-nav__link">
+    8.1.  A Firebird Date Bug
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-using-a-scrollable-result-set" class="md-nav__link">
+    8.2.  Using a Scrollable Result Set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-using-an-updatable-result-set" class="md-nav__link">
+    8.3.  Using an Updatable Result Set
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-converting-a-database-to-text" class="md-nav__link">
+    9.  Converting a Database to Text
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/35-Examining_Base_Docs.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-35-examining-base-documents">Chapter 35. Examining Base Documents</h1>
+<p>This chapter looks at programming with Base documents 
+using the XOfficeDatabaseDocument interface, which was 
+labelled with a (1) in Figure 5 of the previous chapter. </p>
+<p>Figure 1 repeats that figure but without the alternative 
+query approaches (labels (2), (3), and (4)). </p>
+<p><img alt="" src="images/35-Examining_Base_Docs-1.png" /></p>
+<p>Figure 1.  Querying a Base Document. </p>
+<p>XOfficeDatabaseDocument accesses a database via the ODB document that's 
+connected to the database. The connection can take two forms – the database can be 
+embedded inside the ODB file, or the connection can be a URL which links to an 
+external database. Most of my examples will utilize ODB files that contain embedded 
+databases. </p>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Querying an </p>
+</div>
+<p>Embedded HSQLDB 
+Database; Using 
+Metadata when 
+Querying; Debugging 
+Database Code; Creating 
+a Base Document; 
+Processing Multiple 
+SQL Commands; 
+Displaying Table 
+Relationships; Prepared 
+Statements; Scrollable 
+and Updatable Result 
+Sets; Converting a 
+Database to Text 
+Example folders: "Base 
+Tests" and "Utils" </p>
+<h2 id="1-querying-an-embedded-hsqldb-database">1.  Querying an Embedded HSQLDB Database</h2>
+<p>The following SimpleQuery.java example shows how to query a HSQLDB database 
+embedded inside an ODB file called liangTables.odb. It has three tables, called 
+Course, Enrollment, and Student. Figure 2 shows the data in the Course table, 
+displayed by Base. The filename reflects the fact that the database is based on one in 
+Y. Daniel Liang's "Introduction to Java Programming" textbook. </p>
+<p><img alt="" src="images/35-Examining_Base_Docs-2.png" /></p>
+<p>Figure 2. The Course Table in liangTables.odb. </p>
+<p>Although SimpleQuery.java only queries liangTables.odb, the support methods it 
+utilizes are capable of accessing other kinds of ODB document, including ones 
+containing embedded Firebird databases, and database URLs.  </p>
+<p>The main() method for SimpleQuery.java is given below: </p>
+<p>private static final String FNM = "liangTables.odb"; </p>
+<p>// in SimpleQuery.java 
+public static void main(String[] args) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  XOfficeDatabaseDocument dbDoc = Base.openBaseDoc(FNM, loader); 
+  if (dbDoc == null) { 
+    System.out.println("Could not open database " + FNM); 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>XConnection conn = null; 
+  try { 
+    XDataSource dataSource = dbDoc.getDataSource(); 
+    conn = dataSource.getConnection("", "");  // no login/password 
+    XStatement statement = conn.createStatement(); </p>
+<pre><code>// first query 
+XResultSet rs =  
+      statement.executeQuery("SELECT * FROM \"Course\"");
+
+XRow xRow = Lo.qi(XRow.class, rs);
+
+System.out.println("CourseID \tSubjectID \tCourseNumber  
+                             \tTitle  \tNumOfCredits"); 
+System.out.println("========================="); 
+while(rs.next()) 
+  System.out.println( xRow.getString(1) + ",   \t" +  
+                      xRow.getString(2) + ",   \t" + 
+                      xRow.getInt(3) + ",   \t" +  
+                      xRow.getString(4) + ",   " + 
+                      xRow.getInt(5) ); 
+System.out.println("=========================");
+
+// second query 
+rs = statement.executeQuery( 
+       "SELECT \"courseNumber\", \"title\" FROM \"Course\""); 
+xRow = Lo.qi(XRow.class, rs); 
+XColumnLocate xLoc = Lo.qi( XColumnLocate.class, rs);
+
+System.out.println("CourseNumber \tTitle"); 
+System.out.println("===================================="); 
+while(rs.next()) 
+  System.out.println(  
+        xRow.getString( xLoc.findColumn("courseNumber")) +  
+        ",   \t" +  
+        xRow.getString( xLoc.findColumn("title")) ); 
+System.out.println("====================================");
+</code></pre>
+<p>} 
+  catch(SQLException e) { 
+    System.out.println(e); 
+  } </p>
+<p>Base.closeConnection(conn); 
+  Base.closeBaseDoc(dbDoc); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+<p>The code is similar to the JDBC program described in the previous chapter, but uses 
+the sdbc interface, starting with XOfficeDatabaseDocument.  </p>
+<p>Base.openBaseDoc() loads the document as an instance of XComponent, then casts it 
+to XOfficeDatabaseDocument. The relationship between XOfficeDatabaseDocument<br />
+and XComponent is shown in Figure 5. </p>
+<p><img alt="" src="images/35-Examining_Base_Docs-5.png" /></p>
+<p>Figure 5. Obtaining an OfficeDataBaseDocument Instance. </p>
+<p>The Base.openBaseDoc() method: </p>
+<p>// in the Base class 
+public static XOfficeDatabaseDocument openBaseDoc( 
+                        String fnm, XComponentLoader loader) 
+{ 
+  XComponent doc = Lo.openDoc(fnm, loader); 
+  if (doc == null) { 
+    System.out.println("Document is null"); 
+    return null; 
+  } </p>
+<p>if (Info.reportDocType(doc) != Lo.BASE) { 
+    System.out.println("Not a database doc; closing " + fnm); 
+    Lo.closeDoc(doc); 
+    return null; 
+  } </p>
+<p>// cast XComponent to XOfficeDatabaseDocument 
+  XOfficeDatabaseDocument dbDoc =<br />
+             Lo.qi(XOfficeDatabaseDocument.class, doc); 
+  if (dbDoc == null) { 
+    System.out.println("Not a database doc; closing " + fnm); 
+    Lo.closeDoc(doc); 
+    return null; 
+  } 
+  return dbDoc; 
+}  // end of openDoc() </p>
+<p>Database details, such as whether it's embedded inside or linked to the ODB file, and 
+its type (e.g. HSQLDB, Firebird), are stored in the DataSource service, which is 
+accessed by XOfficeDatabaseDocument.getDataSource(): 
+// in SimpleQuery.java... </p>
+<p>XDataSource dataSource = dbDoc.getDataSource(); 
+The simplest way of using the data source is to connect to the database by calling 
+getConnection(): 
+XConnection conn = dataSource.getConnection("", ""); <br />
+                                     // no login/password 
+XConnection.createStatement() returns an XStatement reference, which can be used 
+to send SQL queries to the database. A query's result set is stored in an XResultSet 
+instance: </p>
+<p>// in SimpleQuery.java... </p>
+<p>XStatement statement = conn.createStatement(); 
+XResultSet rs = statement.executeQuery("SELECT * FROM \"Course\""); </p>
+<p>Sdbc differs a little from JDBC in how the rows of a result set are examined. A row is 
+represented by a XRow instance which is a cast of XResultSet. However, the set's 
+cursor is still moved through the rows using XResultSet.next(): </p>
+<p>// in SimpleQuery.java... </p>
+<p>XRow xRow = Lo.qi(XRow.class, rs); 
+while(rs.next()) 
+  System.out.println( xRow.getString(1) + ",   \t" +<br />
+                      xRow.getString(2) + ",   \t" + 
+                      xRow.getInt(3)    + ",   \t" +<br />
+                      xRow.getString(4) + ",   " + 
+                      xRow.getInt(5) ); </p>
+<p>Access to data through XRow.getXXX() methods is only possible with column 
+indices. Column names can be used indirectly via XColumnLocate.findColumn() 
+which maps names to indices: </p>
+<p>// in SimpleQuery.java... </p>
+<p>rs = statement.executeQuery( 
+       "SELECT \"courseNumber\", \"title\" FROM \"Course\""); </p>
+<p>xRow = Lo.qi(XRow.class, rs); 
+XColumnLocate xLoc = Lo.qi( XColumnLocate.class, rs); </p>
+<p>System.out.println("CourseNumber \tTitle"); 
+System.out.println("===================================="); 
+while(rs.next()) 
+  System.out.println(<br />
+         xRow.getString( xLoc.findColumn("courseNumber")) +<br />
+         ",   \t" +<br />
+         xRow.getString( xLoc.findColumn("title")) ); 
+System.out.println("===================================="); </p>
+<p>The output from SimpleQuery.java is shown in Figure 6. </p>
+<p><img alt="" src="images/35-Examining_Base_Docs-6.png" /></p>
+<p>Figure 6. SimpleQuery.java Output. </p>
+<p>The program ends by closing the connection to the database (with 
+Base.closeConnection()) and the ODB file (with Base.closeBaseDoc()). Both methods 
+cast their arguments to XCloseable, and then call XCloseable.close(). </p>
+<h2 id="2-using-metadata-when-querying-a-base-document">2.  Using Metadata when Querying a Base Document</h2>
+<p>Metadata is information about a database, such as a table's schema, and driver and 
+database engine details. There are four sources of such information in the Base API: 
+ the DataSource service; 
+ the DatabaseDefinition services; 
+ the sdbc metadata services, DatabaseMetaData and ResultSetMetaData. </p>
+<p>SimpleQuery.java is hardwired to query the Course table in the liangTables.odb 
+database, and prints rather ugly looking output (see Figure 6). Both these issues can 
+be addressed by utilizing database metadata information, as in DBQuery.java 
+described next. I'll use the program to illustrate how the four metadata services can be 
+employed. </p>
+<h3 id="21-the-datasource-service">2.1.  The DataSource Service</h3>
+<p>The DataSource service is depicted in Figure 7. </p>
+<p><img alt="" src="images/35-Examining_Base_Docs-7.png" /></p>
+<p>Figure 7. The DataSource Service and Interface. </p>
+<p>A simple way to access a data source's properties is with my Props.java utility class. </p>
+<p>For example, the following code prints all of its properties: </p>
+<p>// part of DBQuery.java... </p>
+<p>XOfficeDatabaseDocument dbDoc =  ... // reference to a Base doc; 
+XDataSource dataSource = dbDoc.getDataSource(); 
+Props.showObjProps("Data Source", dataSource); </p>
+<p>This information includes the data source type (e.g. whether it is an embedded 
+HSQLDB or Firebird database), whether a password is required to access the tables, 
+and whether the database is read-only. My Base utility class includes several methods 
+that access this information individually. For example: </p>
+<p>// part of DBQuery.java... </p>
+<p>System.out.println("Database type: " +<br />
+                     Base.getDataSourceType(dbDoc)); 
+System.out.println("Is embedded? " + Base.isEmbedded(dbDoc)); </p>
+<p>XDataSource dataSource = dbDoc.getDataSource(); 
+Base.printDataSourceInfo(dataSource); </p>
+<p>System.out.println("Is password required: " +<br />
+                     Base.isPasswordRequired(dataSource)); 
+System.out.println("Is read-only: " + Base.isReadOnly(dataSource)); </p>
+<p>For the liangTables.odb file, the listed details are: </p>
+<p>Database type: sdbc:embedded:hsqldb 
+Is embedded? true </p>
+<p>Data Source Properties 
+  Info == [Lcom.sun.star.beans.PropertyValue;@cf768c 
+  IsPasswordRequired == false 
+  IsReadOnly == false 
+  // ... many more lines 
+  // : </p>
+<p>Is password required: false 
+Is read-only: false </p>
+<h3 id="22-the-databasedefinition-services">2.2.  The DatabaseDefinition Services</h3>
+<p>After a database connection is established, metadata about the structure of the 
+database, its tables, columns, user and group permissions, becomes available. It's 
+accessible through services in the sdbcx module, starting from DatabaseDefinition 
+shown in Figure 8. </p>
+<p><img alt="" src="images/35-Examining_Base_Docs-8.png" /></p>
+<p>Figure 8. Accessing Database MetaData via a Connection. </p>
+<p>For example, Base.getTablesNames() casts an XConnection reference to a 
+XTablesSupplier, which gives access to information about the database's tables: </p>
+<p>// in the Base class 
+public static ArrayList<String> getTablesNames(XConnection conn) 
+{ 
+  XTablesSupplier tblsSupplier =<br />
+                    Lo.qi(XTablesSupplier.class, conn); 
+  XNameAccess tables = tblsSupplier.getTables(); 
+  String[] tableNms = tables.getElementNames(); 
+  return new ArrayList<String>(Arrays.asList(tableNms)); 
+}  // end of getTablesNames() </p>
+<p>Base.getTablesNames() is called in DBQuery.java like so: </p>
+<p>// part of DBQuery.java... </p>
+<p>XConnection conn =<br />
+        dataSource.getConnection("", ""); // no login/password </p>
+<p>ArrayList<String> tableNames = Base.getTablesNames(conn); 
+System.out.println("No. of tables: " + tableNames.size()); 
+System.out.println( Arrays.toString(tableNames.toArray())); </p>
+<p>The names of the three tables in liangTables.odb are reported as: </p>
+<p>No. of tables: 3 
+[Course, Enrollment, Student] </p>
+<p>Just as XTablesSupplier is for supplying table information, there are similarly named 
+'Supplier' interfaces for retrieving details about the database's views, groups, and user 
+accounts. Base.displayTablesInfo() prints all of this information, but the output can be 
+very large if there are more than one or two tables in the database. </p>
+<h3 id="23-the-databasemetadata-service">2.3.  The DatabaseMetaData Service</h3>
+<p>Another way to obtain metadata is to utilize the JDBC-inspired XDatabaseMetaData 
+interface by calling XConnection.getMetaData(): </p>
+<p>XConnection conn =  ... // a connection to the database; 
+XDatabaseMetaData md = conn.getMetaData(); </p>
+<p>The metadata includes database engine and driver details, as reported by 
+Base.reportDBInfo(): </p>
+<p>// in the Base class 
+public static void reportDBInfo(XConnection conn) 
+{ 
+  try { 
+    XDatabaseMetaData md = conn.getMetaData(); </p>
+<pre><code>String productName = md.getDatabaseProductName(); 
+String productVersion = md.getDatabaseProductVersion(); 
+if ((productName == null) || productName.equals("")) 
+  System.out.println("No database info found"); 
+else 
+  System.out.println("DB:  " + productName +  
+                          " v." + productVersion);
+
+String driverName = md.getDriverName(); 
+String driverVersion = md.getDriverVersion(); 
+if ((driverName == null) || driverName.equals("")) 
+  System.out.println("No driver info found"); 
+else 
+  System.out.println("SDBC driver:  " + driverName +  
+                             " v." + driverVersion);
+</code></pre>
+<p>}<br />
+  catch (SQLException e)<br />
+  {  System.out.println(e);  } 
+}  // end of reportDBInfo() </p>
+<p>The output for liangTables.odb shows that it utilizes HSQLDB: </p>
+<p>DB:  HSQL Database Engine v.1.8.0 
+SDBC driver:  HSQL Database Engine Driver v.1.8.0 </p>
+<p>Unfortunately the XDatabaseMetaData methods don't return anything useful for 
+embedded Firebird databases. The output is: </p>
+<p>No database info found 
+No driver info found </p>
+<p>However, data source metadata is available for Firebird via 
+Base.getDataSourceType(): </p>
+<p>System.out.println("Database type: " +<br />
+                     Base.getDataSourceType(dbDoc)); 
+For the same Firebird database, it reports: 
+Database type: sdbc:embedded:firebird 
+This illustrates that the functionalities of the HSQLDB and Firebird engines aren't 
+identical, and that the DataSource (section 2.1) and DataDefinition services (section 
+2.2) may produce more information than the sdbc metadata approach (this section).  </p>
+<p>Base.reportSQLTypes() and Base.reportFunctionSupport() utilize 
+XDatabaseMetaData. The former returns a list of SQL types, and the latter a list of 
+functions supported by the database engine; their use is illustrated in DBQuery.java. </p>
+<h3 id="24-the-resultsetmetadata-service">2.4.  The ResultSetMetaData Service</h3>
+<p>XResultSetMetaData data allows a result set to be better formatted. It's used in 
+Base.printResultSet() to print results sets and in Base.displayResultSet() to fill a 
+scrollable JTable displayed inside a JFrame. </p>
+<p>The following query prints a result set to standard output: </p>
+<p>// part of DBQuery.java... </p>
+<p>ArrayList<String> tableNames = Base.getTablesNames(conn); 
+XResultSet rs = Base.executeQuery("SELECT * FROM \"" +<br />
+                            tableNames.get(0) + "\"", conn); 
+Base.printResultSet(rs); </p>
+<p>The query employs the first string from the tableNames list as the SELECT's table. </p>
+<p>The output for liangTables.odb is: </p>
+<h2 id="courseid-subjectid-coursenumber-title-numofcredits">courseId,  subjectId, courseNumber,      title, numOfCredits</h2>
+<pre><code> 11111,       CSCI,       1301, Introduction to Java I,          4 
+ 11112,       CSCI,       1302, Introduction to Java II,          3 
+ 11113,       CSCI,       3720, Database Systems,          4
+</code></pre>
+<p>The formatting isn't perfect since its quite tricky to determine the maximum width 
+required for a column. Base.printResultSet() uses XResultSetMetaData to determine 
+the number of columns and their names: </p>
+<p>// in the Base class 
+public static void printResultSet(XResultSet rs) 
+{ 
+  if (rs == null) { 
+    System.out.println("No results set to print"); 
+    return; 
+  } </p>
+<p>try { 
+    XResultSetMetaDataSupplier rsMetaSupp =<br />
+             Lo.qi(XResultSetMetaDataSupplier.class, rs); 
+    XResultSetMetaData rsmd = rsMetaSupp.getMetaData(); </p>
+<pre><code>int tableWidth = 0; 
+int numCols = rsmd.getColumnCount();
+
+String colName; 
+for (int i = 0; i &lt; numCols; i++) { 
+  if (i &gt; 0) { 
+    System.out.print(", "); 
+    tableWidth += 2; 
+  } 
+  colName = rsmd.getColumnName(i+1); 
+  System.out.printf("%10s", colName); 
+  tableWidth += Math.max(colName.length(), 10); 
+} 
+System.out.println();
+
+for (int i=0; i &lt; tableWidth; i++) 
+  System.out.print("-"); 
+System.out.println();
+
+XRow xRow = Lo.qi(XRow.class, rs); 
+while (rs.next()) { 
+  for (int i = 0; i &lt; numCols; i++) { 
+    if (i &gt; 0)  
+      System.out.print(", "); 
+    System.out.printf("%10s", xRow.getString(i+1) ); 
+  } 
+  System.out.println();   
+} 
+System.out.println();
+</code></pre>
+<p>} 
+  catch(SQLException e) { 
+    System.out.println(e); 
+  } 
+}  // end of printResultSet() </p>
+<p>Fortunately, the hard work of writing a good ASCII-based table printer has already 
+been done by Hami Galip Torun with his DBTablePrinter class, available from 
+https://github.com/htorun/dbtableprinter. It offers printTable() and printResultSet() for 
+printing a JDBC table and result set in beautiful ASCII.  </p>
+<p>I made a few small changes to his class to allow it to handle sdbc tables and result 
+sets, which consisted mainly of changing the Connection, Statement, and ResultSet 
+names to XConnection, XStatement, and XResultSet. I've also renamed the class as 
+BaseTablePrinter so I could keep using Torun's original DBTablePrinter for printing 
+JDBC results. </p>
+<p>The result set shown above is printed by: 
+// part of DBQuery.java... </p>
+<p>BaseTablePrinter.printResultSet(rs); <br />
+The output: </p>
+<p>Printing 3 rows from table Course 
++----------+-----------+--------------+-------------------------+--------------+ 
+| courseId | subjectId | courseNumber |          title          | numOfCredits | 
++----------+-----------+--------------+-------------------------+--------------+ 
+| 11111    | CSCI      |         1301 | Introduction to Java I  |            4 | 
++----------+-----------+--------------+-------------------------+--------------+ 
+| 11112    | CSCI      |         1302 | Introduction to Java II |            3 | 
++----------+-----------+--------------+-------------------------+--------------+ 
+| 11113    | CSCI      |         3720 | Database Systems        |            4 | 
++----------+-----------+--------------+-------------------------+--------------+ </p>
+<p>A graphical display is implemented by my Base.displayResultSet(), which uses the 
+result set to fill a JTable GUI component inside a JFrame. This result set from above 
+is displayed by: 
+// part of DBQuery.java... </p>
+<p>Base.displayResultSet(rs); 
+Figure 9 shows the JFrame. </p>
+<p><img alt="" src="images/35-Examining_Base_Docs-9.png" /></p>
+<p>Figure 9. The Result Set Displayed in a Window. </p>
+<p>There are some problems with the layout: too much vertical space below the table, 
+and column formatting which shows all the data, but not all the headings. However, 
+the user can resize the window and columns, so these drawbacks aren't serious. </p>
+<p>displayResultSet() is coded as: </p>
+<p>// in the Base class 
+public static void displayResultSet(XResultSet rs) 
+{  displayResultSet(rs, "Result set", 0);  } </p>
+<p>public static void displayResultSet(XResultSet rs,<br />
+                                  String title, int offset) 
+{ if (rs == null) { 
+    System.out.println("No results set to display"); 
+    return; 
+  } </p>
+<p>try { 
+    XResultSetMetaDataSupplier rsMetaSupp =<br />
+             Lo.qi(XResultSetMetaDataSupplier.class, rs); 
+    XResultSetMetaData rsmd = rsMetaSupp.getMetaData(); </p>
+<pre><code>// names of columns 
+int numCols = rsmd.getColumnCount(); 
+String[] headers = new String[numCols]; 
+for (int i=0; i &lt; numCols; i++) { 
+  headers[i] = rsmd.getColumnName(i+1); 
+} 
+// create table with column heads 
+DefaultTableModel tableModel = new DefaultTableModel(headers, 0); 
+JTable table = new JTable(tableModel);
+
+// fill table with XResultSet contents, one row at a time 
+XRow xRow = Lo.qi(XRow.class, rs); 
+while (rs.next()) 
+  tableModel.addRow( getRow(xRow, numCols));
+
+// resize columns so data is visible 
+table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS); 
+resizeColumnWidth(table);
+
+SwingUtilities.invokeLater( new Runnable() { 
+  public void run()  
+  {  JFrame frame = new JFrame(); 
+     frame.setBounds(offset, offset, 400, 200); 
+     frame.setTitle(title); 
+     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);   
+             // so JFrame closure doesn't kill the main prog 
+     frame.add(new JScrollPane(table), BorderLayout.CENTER); 
+     frame.setVisible(true);  
+  } 
+});
+</code></pre>
+<p>} 
+  catch(SQLException e) { 
+    System.out.println(e); 
+  } 
+}  // end of displayResultSet() </p>
+<p>This sdbc display code is different from the JDBC version in only two ways. The first 
+is the use of XResultSetMetaDataSupplier to access the result set's metadata: </p>
+<p>// part of Base.displayResultSet()... </p>
+<p>XResultSetMetaDataSupplier rsMetaSupp =<br />
+                 Lo.qi(XResultSetMetaDataSupplier.class, rs); 
+XResultSetMetaData rsmd = rsMetaSupp.getMetaData(); </p>
+<p>The second is the utilization of an XRow instance to refer to each row in the result 
+set: </p>
+<p>// part of Base.displayResultSet()... </p>
+<p>XRow xRow = Lo.qi(XRow.class, rs); 
+while (rs.next()) 
+  tableModel.addRow( getRow(xRow, numCols));  </p>
+<h2 id="3-debugging-database-code">3.  Debugging Database Code</h2>
+<p>A useful way to debug larger programs is to display the database tables they're 
+manipulating. The simplest way of doing this is to open the tables inside Base. </p>
+<p>A call to GUI.setVisible() makes Base and the loaded file visible. However, Base's 
+default behavior is to display its Forms view rather than the Tables view. Even after 
+changing to the Tables view, only the names of the tables are listed not their contents. </p>
+<p>Base.showTables() deals with these issues, so that the following call: </p>
+<p>// part of DBQuery.java... </p>
+<p>Base.showTables(dbDoc);   <br />
+Lo.waitEnter(); </p>
+<p>produces the windows shown in Figure 10 when liangTables.odb is being processed. </p>
+<p><img alt="" src="images/35-Examining_Base_Docs-10.png" /></p>
+<p>Figure 10. The liangTables.odb Tables in Base. </p>
+<p>The call to Lo.waitEnter() gives the user a chance to examine the tables before the 
+program continues. </p>
+<p>A drawback of this approach is that having open table windows at the end of the 
+program often causes Office to crash after Lo.closeOffice() is called.  </p>
+<p>Base.showTables() utilizes a series of dispatch commands to make the GUI visible, 
+show the Tables view, and open the tables in separate windows: </p>
+<p>// in the Base class 
+public static void showTables(XOfficeDatabaseDocument dbDoc) 
+// open windows for all the tables in the doc 
+{ 
+  showTablesView(dbDoc); 
+  Lo.delay(500);  // wait for Tables View to appear 
+  Lo.dispatchCmd("SelectAll"); 
+  Lo.dispatchCmd("DBTableOpen");  // open all tables 
+}  // end of showTables() </p>
+<p>public static void showTablesView(XOfficeDatabaseDocument dbDoc) 
+// make Base visible, and switch to its Table view 
+{ 
+  XComponent doc = Lo.qi(XComponent.class, dbDoc); 
+  GUI.setVisible(doc, true); 
+  Lo.delay(500);  // wait for GUI to appear 
+  Lo.dispatchCmd("DBViewTables"); 
+}  // end of showTablesView() </p>
+<p>As usual, using dispatches makes the code very fragile. For example, consider the 
+"SelectAll" dispatch which causes Office to select all the table names in the Tables 
+View. To be more precise, "SelectAll" selects everything in the active window, which 
+should be the Tables view, but could easily be something else if the user clicked on 
+another window at the wrong time. </p>
+<p>My Base class offers two alternatives to showTables(): Base.printDatabase() and 
+Base.displayDatabase(); the first builds upon Hami Galip Torun's class to generate 
+textual output of every table in the database, while the second uses my 
+Base.displayResultSet() to render each table in its own JFrame. They are called like 
+so: 
+// part of DBQuery.java... </p>
+<p>Base.printDatabase(conn); </p>
+<p>Base.displayDatabase(conn); </p>
+<p>Base.displayDatabase() is a better choice for displaying large databases since each 
+JFrame can be resized and is scrollable, as in Figure 11. </p>
+<p><img alt="" src="images/35-Examining_Base_Docs-11.png" /></p>
+<p>Figure 11.  The liangTables.odb Tables shown in JFrames. </p>
+<h2 id="4-creating-a-base-document">4.  Creating a Base Document</h2>
+<p>The DBCreate.java example creates a new document called spies.odb which holds a 
+single table of "top-secret" information on spies. Figure 12 shows the table inside 
+Base. </p>
+<p><img alt="" src="images/35-Examining_Base_Docs-12.png" /></p>
+<p>Figure 12. The SPIES Table inside spies.odb. </p>
+<p>The example employs Base.createBaseDoc() to create an embedded database (which 
+can be either HSQLDB or Firebird). </p>
+<p>The main() function for DBCreate.java is: </p>
+<p>private static final String FNM = "spies.odb"; </p>
+<p>// in DBCreate.java 
+public static void main(String[] args) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  XOfficeDatabaseDocument dbDoc = Base.createBaseDoc(FNM, 
+                                        Base.HSQLDB, loader); 
+                                     // Base.FIREBIRD, loader); 
+  if (dbDoc == null) { 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>XConnection conn = null; 
+  try { 
+    XDataSource dataSource = dbDoc.getDataSource(); 
+    conn = dataSource.getConnection("", "");  </p>
+<pre><code>// create a table in the database 
+Base.exec("CREATE TABLE SPIES " + 
+     "( FIRSTNAME VARCHAR(50), LASTNAME VARCHAR(50),  
+        ID VARCHAR(50), PRIMARY KEY (ID) )", conn);
+
+Base.exec("INSERT INTO SPIES VALUES(  
+                     'James', 'Bond', '007')", conn); 
+Base.exec("INSERT INTO SPIES VALUES(  
+                     'Johnny', 'English', '013')", conn); 
+Base.exec("INSERT INTO SPIES VALUES(  
+                     'Maxwell', 'Smart', 'Agent 86')", conn);
+
+XFlushable flusher = Lo.qi(XFlushable.class, dataSource); 
+flusher.flush();    
+  // needed or data not saved to file; can only be called once
+
+// test the database with a query 
+System.out.println(); 
+XResultSet rs = Base.executeQuery("SELECT * FROM SPIES", conn); 
+BaseTablePrinter.printResultSet(rs);
+</code></pre>
+<p>} 
+  catch(SQLException e) { 
+    System.out.println(e); 
+  } </p>
+<p>Base.closeConnection(conn); 
+  Base.closeBaseDoc(dbDoc); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+<p>There's something missing from main() – there's no call to a 'save' function to save the 
+new spies.odb file before the program exits. There's no need because of how the 
+spies.odb file and database are created in two phases.  </p>
+<p>First, Base.createBaseDoc() creates an ODB file with an empty embedded database. </p>
+<p>The file is saved by createBaseDoc(), then reloaded, and a reference returned by the 
+method. This unusual behavior is necessary or no link (an XConnection) can be 
+opened to the new database. </p>
+<p>The second phase employs SQL DDL and DML commands to create and populate a 
+table inside the file. The unusual part of this phase is the need to finish off with a call 
+to XFlushable.flush(). This ensures that the table is written out to the embedded 
+database in the file. </p>
+<p>The final part of the try-catch block is a test to see if the SPIES table can be 
+successfully queried. The BaseTablePrinter.printResultSet() output is: </p>
+<p>Printing 3 rows from table SPIES 
++-----------+----------+----------+ 
+| FIRSTNAME | LASTNAME |    ID    | 
++-----------+----------+----------+ 
+| James     | Bond     | 007      | 
++-----------+----------+----------+ 
+| Johnny    | English  | 013      | 
++-----------+----------+----------+ 
+| Maxwell   | Smart    | Agent 86 | 
++-----------+----------+----------+ </p>
+<p>Base.createBaseDoc() is defined as: </p>
+<p>// in the Base class 
+// globals<br />
+public static final int UNKNOWN = 0; 
+public static final int HSQLDB = 1; 
+public static final int FIREBIRD = 2; </p>
+<p>public static final String HSQL_EMBEDDED = "sdbc:embedded:hsqldb"; 
+public static final String FIREBIRD_EMBEDDED =<br />
+                                         "sdbc:embedded:firebird"; </p>
+<p>public static XOfficeDatabaseDocument createBaseDoc( 
+               String fnm, int dbType, XComponentLoader loader) 
+{ <br />
+  if ((dbType != HSQLDB) &amp;&amp; (dbType != FIREBIRD)) { 
+    System.out.println("Unknown db type; using HSQLDB"); 
+    dbType = HSQLDB; 
+  } </p>
+<p>XComponent doc = Lo.createDoc("sdatabase", loader); 
+  if (doc == null) { 
+    System.out.println("Document creation failed"); 
+    return null; 
+  } </p>
+<p>XOfficeDatabaseDocument dbDoc =<br />
+          Lo.qi(XOfficeDatabaseDocument.class, doc); 
+  XDataSource dataSource = dbDoc.getDataSource(); </p>
+<p>String sourceStr = (dbType == FIREBIRD) ? FIREBIRD_EMBEDDED :<br />
+                                            HSQL_EMBEDDED; 
+  Props.setProperty(dataSource, "URL", sourceStr); </p>
+<p>System.out.println("Created a \"" + sourceStr +<br />
+                         "\" Base document in " + fnm); </p>
+<p>// save, close, reopen, <br />
+  // or no subsequent connection can be made to database 
+  Base.saveBaseDoc(dbDoc, fnm); 
+  Base.closeBaseDoc(dbDoc); 
+  return openBaseDoc(fnm, loader); 
+}  // end of createBaseDoc() </p>
+<p>public static void saveBaseDoc(XOfficeDatabaseDocument dbDoc,<br />
+                               String fnm) 
+{  XComponent doc = Lo.qi(XComponent.class, dbDoc); 
+   Lo.saveDoc(doc, fnm); 
+} </p>
+<p>Base.createBaseDoc() utilizes Lo.createDoc() to create an empty ODB document, and 
+then sets its data source to be an embedded HSQLDB or Firebird database. The URL 
+property in the DataSource service is assigned "sdbc:embedded:hsqldb" or 
+"sdbc:embedded:firebird". </p>
+<p>Viewing Database Creation 
+It's sometimes useful to observe the stages in a database's creation, and that's most 
+easily achieved by making Base's GUI visible during DBCreate.java's execution.  </p>
+<p>GUI.setVisible() is called at the start of the program: 
+// part of DBCreate.java... </p>
+<p>GUI.setVisible(dbDoc, true); 
+Of course, Base's tables view will not show anything initially since the database  is 
+empty. More surprisingly, the view remains empty after the SQL commands have 
+finished and XFlushable.flush() has been called. The table view must be 'refreshed' in 
+order for the new tables to be listed, which is done by Base.refreshTables(): </p>
+<p>// part of DBCreate.java... </p>
+<p>Base.refreshTables(conn); <br />
+      // place after the call to XFlushable.flush() 
+Base.showTablesView(dbDoc); </p>
+<p>Base.refreshTables() is implemented as: </p>
+<p>// in the Base class 
+public static void refreshTables(XConnection conn) 
+{ 
+  XTablesSupplier suppTables = Lo.qi(XTablesSupplier.class, conn); 
+  XRefreshable refresh =<br />
+           Lo.qi(XRefreshable.class, suppTables.getTables()); 
+  refresh.refresh(); 
+}  // end of refreshTables() </p>
+<h2 id="5-processing-multiple-sql-commands">5.  Processing Multiple SQL Commands</h2>
+<p>The simplest way to build databases with more tables and data is by storing the 
+necessary DDL and DML commands in a text file. This can be loaded by 
+Base.readCmds(), as in the DBCmdsQuery.java example. </p>
+<p>main() creates an ODB document with an empty embedded HSQLDB database, 
+builds its tables by executing the commands loaded by Base.readCmds(), and displays 
+the tables inside Base: </p>
+<p>// in DBCmdsCreate.java 
+public static void main(String[] args) 
+{ 
+  if (args.length != 1) { 
+    System.out.println("Usage: java DBCmdsCreate <cmds fnm>"); 
+    return; 
+  } 
+  String fnm = Info.getName(args[0]) + ".odb"; </p>
+<p>XComponentLoader loader = Lo.loadOffice(); 
+  XOfficeDatabaseDocument dbDoc = Base.createBaseDoc(fnm,<br />
+                                   Base.HSQLDB, loader); 
+                                // Base.FIREBIRD, loader); 
+  if (dbDoc == null) { 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>ArrayList<String> cmds = Base.readCmds(args[0]); 
+  if (cmds == null) { 
+    System.out.println("No commands to process"); 
+    Lo.closeOffice(); 
+    return; 
+  } 
+  System.out.println("Read in " + cmds.size() + " commands"); </p>
+<p>XConnection conn = null; 
+  try { 
+    XDataSource dataSource = dbDoc.getDataSource(); 
+    conn = dataSource.getConnection("", "");  // no login/password 
+    processCmds(cmds, conn); </p>
+<pre><code>XFlushable flusher = Lo.qi(XFlushable.class, dataSource); 
+flusher.flush();   // needed or data not saved to file
+
+// must refresh the connection or the tables  
+// will not be visible inside Base 
+Base.refreshTables(conn); 
+Base.showTables(dbDoc);   
+      // Office may not close cleanly while showing tables 
+Lo.waitEnter();
+</code></pre>
+<p>} 
+  catch(SQLException e) { 
+    System.out.println(e); 
+  } </p>
+<p>Base.closeConnection(conn); 
+  Base.closeBaseDoc(dbDoc); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+<p>private static void processCmds(ArrayList<String> cmds,<br />
+                                XConnection conn) 
+// filter out SELECTs since only creating in this example 
+{ for(String cmd : cmds) { 
+    if (cmd.startsWith("SELECT")) 
+      System.out.println("Ignoring: \"" + cmd + "\""); 
+    else 
+      Base.exec(cmd, conn); 
+  } 
+}  // end of processCmds() </p>
+<p>Base.readCmds() is a standard piece of Java for reading lines from a file, returning 
+them in a list. Each line is assumed to start with "CREATE", "INSERT", "UPDATE", 
+"DELETE", or SELECT". processCmds() in DBCmdsCreate.java skips over 
+"SELECT" queries. </p>
+<p>Base.exec() hides the details of creating an Statement object, and deciding whether to 
+call XStatement.execute() for "CREATE" commands, XStatement.executeUpdate() 
+for "INSERT", "UPDATE", and DELETE", or XStatement.executeQuery() for 
+"SELECT". </p>
+<p>After the commands have been processed, it's necessary to flush the newly created 
+tables to the file and refresh Base's Table view. </p>
+<p>The call:<br />
+run DBCmdsCreate liangTables.txt<br />
+creates liangTables.odb and populates it with three tables called Course, Enrollment, 
+and Student, which can be seen in Figure 10. </p>
+<p>The DBCmdsQuery.java example uses the same Base.readCmds() to read in queries 
+applied to a database. The only difference from DBCmdsCreate.java is that a database 
+is opened with Base.openBaseDoc() rather than created from scratch. </p>
+<h2 id="6-displaying-table-relationships">6.  Displaying Table Relationships</h2>
+<p>A  good way to understand the relationships between multiple tables in a database is 
+with a relation design diagram, which is generated by the Tools &gt;&gt; Relationships 
+menu item in Base. For example, the diagram for the three tables in liangTables.odb is 
+shown in Figure 13. </p>
+<p><img alt="" src="images/35-Examining_Base_Docs-13.png" /></p>
+<p>Figure 13. The Relation Design Diagram for liangTables.odb. </p>
+<p>Unfortunately, there's no way to generate relation design diagrams programmatically 
+except via dispatch commands. Another problem is that there's no API or Base menu 
+item for saving a diagram as an image. My solution uses Java's Robot class to send 
+the <alt> <print screen> keys to Windows to trigger a screenshot of the currently 
+active window. My code reads the image from the clipboard and saves it to a file.  </p>
+<p>This programming mishmash is demoed by DBRels.java: </p>
+<p>// in DBRels.java 
+public static void main(String[] args) 
+{ 
+  if (args.length != 1) { 
+    System.out.println("Usage: run DBRels <fnm>"); 
+    return; 
+  } </p>
+<p>XComponentLoader loader = Lo.loadOffice(); 
+  XOfficeDatabaseDocument dbDoc =<br />
+                   Base.openBaseDoc(args[0], loader); 
+  if (dbDoc == null) { 
+    System.out.println("Could not open database " + args[0]); 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>if (Base.isFirebirdEmbedded(dbDoc)) 
+    System.out.println("Embedded Firebird does not<br />
+                                  support relation design"); 
+  else { 
+    GUI.setVisible(dbDoc, true); 
+    Lo.delay(500);  // wait for GUI to appear </p>
+<pre><code>Lo.dispatchCmd("DBRelationDesign"); 
+    // open the relation design diagram window in Base 
+Lo.delay(1000);
+
+JNAUtils.shootWindow();   
+    // take a screenshot of the currently active window 
+Lo.delay(1000);
+
+// read an image from the clipboard, and save it 
+BufferedImage im = Clip.readImage(); 
+if (im != null) 
+  Images.saveImage(im, "relations.png");
+
+Lo.dispatchCmd("CloseWin");  // close relation design window 
+Lo.delay(500);
+</code></pre>
+<p>} </p>
+<p>Base.closeBaseDoc(dbDoc); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+<p>JNAUtils.shootWindow() doesn't utilize the JNA library, but its use of OS-level 
+functionality means it doesn't really belong in any of my other Office support classes. </p>
+<p>The code: </p>
+<p>// in the JNA class 
+public static void shootWindow() 
+// take a screenshot of the window in focus 
+{ 
+  EventQueue.invokeLater(new Runnable() { 
+    public void run() { 
+      try { 
+        Robot r = new Robot(); 
+        r.keyPress(KeyEvent.VK_ALT); // press <alt> <print screen> 
+        r.keyPress(KeyEvent.VK_PRINTSCREEN); 
+        r.keyRelease(KeyEvent.VK_ALT); 
+        System.out.println("Screenshot of window completed"); 
+      } 
+      catch(AWTException e) 
+      {  System.out.println("Unable to do screenshot: " + e); } 
+    } 
+  }); 
+}  // end of shootWindow() </p>
+<p>Of course, there's a danger that the user (or OS) will move the window focus away 
+from the relation design window, causing the wrong window to be screenshot and 
+stored on the clipboard. </p>
+<p>Clip.readImage() converts the first Bitmap it finds on the system clipboard into a 
+BufferedImage. I'll talk about my Clipboard support class in Chapter 43. </p>
+<p>The image is saved to relations.png, which is shown in Figure 14. </p>
+<p><img alt="" src="images/35-Examining_Base_Docs-14.png" /></p>
+<p>Figure 14. Part of the relations.png Image. </p>
+<p>Figure 14 isn't the same as Figure 13 because I rearranged and resized the boxes 
+before snapping the image. Figure 14 shows the original layout produced by Base. </p>
+<p>Another issue with Base's relation design tool is that it's currently not implemented for 
+embedded Firebird databases. This explains the call to Base.isFirebirdEmbedded() in 
+DBRels.java which lets the diagram creation be skipped. </p>
+<p>isFirebirdEmbedded() examines the document's DataSource "URL" property to see if 
+it contains the string "sdbc:embedded:firebird": </p>
+<p>// in the Base class 
+// globals<br />
+public static final String HSQL_EMBEDDED = "sdbc:embedded:hsqldb"; 
+public static final String FIREBIRD_EMBEDDED =<br />
+                                         "sdbc:embedded:firebird"; </p>
+<p>public static boolean isFirebirdEmbedded( 
+                           XOfficeDatabaseDocument dbDoc) 
+{ String embedFnm = getDataSourceType(dbDoc); 
+  if (embedFnm == null) 
+    return false; 
+  return (embedFnm.equals(FIREBIRD_EMBEDDED)); <br />
+} </p>
+<p>public static boolean isHSQLEmbedded( 
+                          XOfficeDatabaseDocument dbDoc) 
+{ String embedFnm = getDataSourceType(dbDoc); 
+  if (embedFnm == null) 
+    return false; 
+  return (embedFnm.equals(HSQL_EMBEDDED)); 
+} </p>
+<p>public static String getDataSourceType(XOfficeDatabaseDocument dbDoc) 
+{ 
+  if (dbDoc == null) { 
+    System.out.println("Database is null"); 
+    return null; 
+  } </p>
+<p>XDataSource dataSource = dbDoc.getDataSource(); 
+  if (dataSource == null) { 
+    System.out.println("DataSource is null"); 
+    return null; 
+  } 
+  else 
+    return (String) Props.getProperty(dataSource, "URL"); 
+}  // end of getDataSourceType() </p>
+<p>There's also an isHSQLEmbedded() method for checking if the document contains an 
+embedded HSQLDB database. </p>
+<h2 id="7-prepared-statements">7.  Prepared Statements</h2>
+<p>Sdbc supports prepared statements, which are SQL commands with Java-level 
+parameters (denoted by '?'s). The PreparedStatement service stores properties related 
+to how the result set is created, and XPreparedStatement contains the methods. </p>
+<p>PreparedSales.java shows how prepared statements are created and used. It starts by 
+creating a salesman.odb file containing a SALESMAN table with 5 rows of data. </p>
+<p>Figure 15 shows the table inside Base. </p>
+<p><img alt="" src="images/35-Examining_Base_Docs-15.png" /></p>
+<p>Figure 15. The Initial SALESMAN Table in salesman.odb. </p>
+<p>At this point, PreparedSales.java calls updatePs(): </p>
+<p>// in PreparedSales.java 
+private static void updatePs(XConnection conn) throws SQLException 
+// update the table with a prepared statement; 4 changes made 
+{ 
+  XPreparedStatement preStmt = conn.prepareStatement( 
+                "UPDATE SALESMAN SET STREET = ? WHERE SNR = ?"); </p>
+<p>// change STREET for Joseph (SNR == 1) to 34 Main Road 
+  XParameters ps = Lo.qi(XParameters.class, preStmt); 
+  ps.setString(1, "34 Main Road"); 
+  ps.setInt(2, 1); 
+  preStmt.executeUpdate(); </p>
+<p>// change STREET for George (SNR == 4) to Marryland 
+  ps.setString(1, "Marryland"); 
+  ps.setInt(2, 4); 
+  preStmt.executeUpdate(); </p>
+<p>// 2nd change of STREET of George to Michigan road<br />
+  // (since SNR is still == 4) 
+  ps.setString(1, "Michigan road"); 
+  preStmt.executeUpdate(); </p>
+<p>// change STREET for Jane (SNR == 3) to Bond Street 
+  ps.setString(1, "Bond Street"); 
+  ps.setInt(2, 3); 
+  int numRowsChanged = preStmt.executeUpdate(); 
+  System.out.println("No. of rows changed by executeUpdate(): " +<br />
+                               numRowsChanged);  // == 1 
+  }  // end of updatePs() </p>
+<p>The prepared statement is an UPDATE command which can change the STREET 
+entry for a given SNR value, but the street and SNR values are specified as "?"s. </p>
+<p>updatePs() changes rows 1, 4, and 2 of SNR a total of four times (row 4 is changed 
+twice). The final result is shown in Figure 16. </p>
+<p>Figure 16. The Updated SALESMAN Table in salesman.odb. </p>
+<p>Office's XPreparedStatement methods are similar to those in JDBC's 
+PreparedStatement, except that the set() methods for the "?"s are in the XParameters 
+interface. </p>
+<h2 id="8-scrollable-and-updatable-result-sets">8.  Scrollable and Updatable Result Sets</h2>
+<p>Sdbc's scrollable and updatable result set features are borrowed from JDBC. </p>
+<p>Scrollability lets the result set's cursor move backwards and jump to a particular row. </p>
+<p>It can be combined with sensitivity, which allows the set to be automatically updated 
+when the database is modified. </p>
+<p>An updatable result set means that changes made to the result set's data will trigger 
+updates to the database. </p>
+<p>Before you become too excited, there's some bad news. Result sets in the current 
+version of Base's HSQLDB (v.1.8) support scrollability, but not sensitivity or 
+updatability. The situation is worse for the current version of Base's Firebird (v. 2.5.2) 
+which doesn't support any of these features; only forward movement of the cursor 
+through the result set is possible.  </p>
+<p>The engine's capabilities are likely to improve in the future, so it's a good idea to 
+check their status when you want to use them. Base.reportResultSetSupport() prints 
+relevant information by examining the XDatabaseMetaData interface: </p>
+<p>// in the Base class 
+public static void reportResultSetSupport(XConnection conn) 
+{ 
+  try { 
+    XDatabaseMetaData md = conn.getMetaData(); 
+    System.out.println("Resultset Capabilities:"); 
+    printTypeConcurrency(md, ResultSetType.FORWARD_ONLY,<br />
+                             "forward only"); 
+    printTypeConcurrency(md, ResultSetType.SCROLL_INSENSITIVE,<br />
+                             "scrollable; db insensitive"); 
+    printTypeConcurrency(md, ResultSetType.SCROLL_SENSITIVE,<br />
+                             "scrollable; db sensitive"); 
+  } 
+  catch(SQLException e) { 
+    System.out.println(e); 
+  } 
+}  // end of reportResultSetSupport() </p>
+<p>private static void printTypeConcurrency(XDatabaseMetaData md,<br />
+                 int type, String typeStr) throws SQLException 
+/*<br />
+  Possible ResultSet Type Values:<br />
+     FORWARD_ONLY: The result set is not scrollable (default) 
+     SCROLL_INSENSITIVE: The result set is scrollable but not<br />
+                         sensitive to database changes.  </p>
+<pre><code> SCROLL_SENSITIVE: The result set is scrollable and sensitive to  
+                   database changes.
+</code></pre>
+<p>Possible 'Concurrency' Values:<br />
+      READ_ONLY: The result set cannot be used to update<br />
+                 the database (default) 
+      UPDATABLE: The result set can be used to update the database.  </p>
+<p>*/ 
+{ 
+  if (md.supportsResultSetType(type)) { 
+    System.out.print("  Supports " + typeStr); 
+    if (md.supportsResultSetConcurrency(type,<br />
+                               ResultSetConcurrency.READ_ONLY)) 
+      System.out.print(" + read-only"); </p>
+<pre><code>if (md.supportsResultSetConcurrency(type,  
+                           ResultSetConcurrency.UPDATABLE)) 
+  System.out.print(" + updatable"); 
+System.out.println();
+</code></pre>
+<p>} 
+}  // end of printTypeConcurrency() </p>
+<p>FancyRS.java contains an example call: 
+// part of FancyRS.java... </p>
+<p>Base.reportResultSetSupport(conn); 
+The output for an embedded HSQLDB database is: </p>
+<p>Supports forward only + read only 
+Supports scrollable; db insensitive + read-only </p>
+<p>The following is printed for an embedded Firebird database: 
+Supports forward only + read-only </p>
+<p>FancyRS.java shows how scrollable and updatable result sets might be utilized if they 
+were available. The program begins by creating a sales.odb document which can 
+either hold an embedded HSQLDB or Firebird database with a small SALES table. </p>
+<p>The table printed in ASCII is: </p>
+<p>+--------+--------+-----+--------+------------+---------+ 
+| SALENR | COS_NR | SNR |  NAME  |  SALEDATE  |  PRICE  | 
++--------+--------+-----+--------+------------+---------+ 
+|      1 |    100 |   1 | Linux  | 2016-02-12 |  15.000 | 
++--------+--------+-----+--------+------------+---------+ 
+|      2 |    101 |   2 | Beef   | 2016-10-18 |  15.780 | 
++--------+--------+-----+--------+------------+---------+ 
+|      3 |    104 |   4 | Juice  | 2016-08-09 |   1.500 | 
++--------+--------+-----+--------+------------+---------+ </p>
+<p>The database and table are constructed in main(): </p>
+<p>// global 
+private static final String FNM = "sales.odb"; </p>
+<p>// in FancyRS.java 
+public static void main(String[] args) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  XOfficeDatabaseDocument dbDoc = Base.createBaseDoc(FNM,<br />
+                                       Base.HSQLDB, loader); 
+                                    // Base.FIREBIRD, loader); 
+                                    // date bug with Firebird 
+  if (dbDoc == null) { 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>XConnection conn = null; 
+  try { 
+    XDataSource dataSource = dbDoc.getDataSource(); 
+    conn = dataSource.getConnection("", ""); </p>
+<pre><code>Base.exec("CREATE TABLE SALES " + 
+    "(SALENR INTEGER NOT NULL, " + 
+    " COS_NR INTEGER,  SNR INTEGER, NAME VARCHAR(50)," + 
+    " SALEDATE DATE, PRICE FLOAT(10), PRIMARY KEY(SALENR) )",  
+         conn);
+
+Base.exec("INSERT INTO SALES " + 
+    "VALUES (1, '100', '1','Linux','2016-02-12',15)", conn); 
+Base.exec("INSERT INTO SALES " + 
+    "VALUES (2, '101', '2','Beef','2016-10-18',15.78)", conn); 
+Base.exec("INSERT INTO SALES " + 
+    "VALUES (3, '104', '4','Juice','2016-08-09',1.5)", conn);
+
+XFlushable flusher = Lo.qi(XFlushable.class, dataSource); 
+flusher.flush();  
+System.out.println();
+
+System.out.println("DataSource type: " +  
+                 Base.getDataSourceType(dbDoc)); 
+Base.reportDBInfo(conn); 
+Base.reportResultSetSupport(conn); 
+System.out.println();
+
+XResultSet rs = Base.executeQuery("SELECT * FROM SALES", conn); 
+BaseTablePrinter.printResultSet(rs);
+
+useScrollable(conn); 
+useUpdatable(conn);
+</code></pre>
+<p>} 
+  catch(SQLException e) { 
+    System.out.println(e); 
+  } </p>
+<p>Base.closeConnection(conn); 
+ Base.closeBaseDoc(dbDoc); 
+ Lo.closeOffice(); 
+}  // end of main() </p>
+<h3 id="81-a-firebird-date-bug">8.1.  A Firebird Date Bug</h3>
+<p>FancyRS.java creates the correct embedded HSQLDB database printed above, but if 
+the database type is changed to embedded Firebird (i.e. by changing the second 
+argument of Base.createBaseDoc()), then a well-known LibreOffice/Firebird bug 
+reveals itself. The SALESDATE column of the table will contain the wrong year and 
+month, as shown below: </p>
+<p>+--------+--------+-----+--------+------------+---------+ 
+| SALENR | COS_NR | SNR |  NAME  |  SALEDATE  |  PRICE  | 
++--------+--------+-----+--------+------------+---------+ 
+|      1 |    100 |   1 | Linux  | 0116-01-12 |  15.000 | 
++--------+--------+-----+--------+------------+---------+ 
+|      2 |    101 |   2 | Beef   | 0116-09-18 |  15.780 | 
++--------+--------+-----+--------+------------+---------+ 
+|      3 |    104 |   4 | Juice  | 0116-07-09 |   1.500 | 
++--------+--------+-----+--------+------------+---------+ </p>
+<p>The century is set to 01, and each month is decremented by one. </p>
+<p>This bug is discussed at http://libreoffice-
+bugs.freedesktop.narkive.com/fPfsZXpa/bug-91324-new-embedded-firebird-current-
+date-gives-wrong-date-back. </p>
+<h3 id="82-using-a-scrollable-result-set">8.2.  Using a Scrollable Result Set</h3>
+<p>useScrollable() in FancyRS.java creates a scrollable result set which is neither 
+sensitive to database changes nor can update the underlying database. In other words, 
+its result set type is assigned ResultSetType.SCROLL_INSENSITIVE and its 
+concurrency is ResultSetConcurrency.READ_ONLY. (For JDBC programmers, these 
+are equivalent to the JDBC constants TYPE_SCROLL_INSENSITIVE and 
+CONCUR_READ_ONLY.) 
+useScrollable() obtains a result set for the NAME and PRICE columns of the SALES 
+table, and prints them in reverse by moving backwards through the result set. The 
+output for the embedded HSQLDB version of the database is: </p>
+<p>Report name and price backwards: 
+  Juice: 1.5 
+  Beef: 15.78 
+  Linux: 15.0 </p>
+<p>The output when the database is embedded Firebird: </p>
+<p>Report name and price backwards: 
+useScrollable(): The driver does not support the function 'afterLast 
+not supported in firebird'. </p>
+<p>The useScrollable() function: </p>
+<p>// in FancyRS.java 
+private static void useScrollable(XConnection conn) 
+{ 
+  try { 
+    XStatement stmt = conn.createStatement(); 
+    Props.setProperty(stmt, "ResultSetType",<br />
+                    ResultSetType.SCROLL_INSENSITIVE); 
+          // does not update if there are changes to the database </p>
+<pre><code>Props.setProperty(stmt, "ResultSetConcurrency",  
+                ResultSetConcurrency.READ_ONLY); 
+      // does not update the database
+
+XResultSet srs = stmt.executeQuery( 
+                  "SELECT NAME, PRICE FROM SALES"); 
+System.out.println("\nReport name and price backwards:");
+
+// report in reverse order (works for HSQLDB, but  
+// not supported by Firebird) 
+XRow row = Lo.qi(XRow.class, srs); 
+srs.afterLast();  
+while (srs.previous())   // name: price printed 
+  System.out.println("  " + row.getString(1) +  
+                     ": " + row.getFloat(2)); 
+System.out.println();
+</code></pre>
+<p>} 
+  catch(SQLException e) { 
+    System.out.println("useScrollable(): " +<br />
+                              e.getMessage() + "\n"); 
+  } 
+}  // end of useScrollable() </p>
+<h3 id="83-using-an-updatable-result-set">8.3.  Using an Updatable Result Set</h3>
+<p>useUpdatable() in FancyRS.java tries to create a result set that is insensitive to 
+database changes but can write its own changes to the database.  In other words, its 
+result set type is assigned ResultSetType.SCROLL_INSENSITIVE and its 
+concurrency is ResultSetConcurrency.UPDATABLE. (For JDBC programmers, these 
+are equivalent to TYPE_SCROLL_INSENSITIVE and CONCUR_UPDATABLE.) 
+Since neither of the embedded databases support updating result sets, the code will 
+raise an exception when the XResultSetUpdate methods are called. </p>
+<p>The code for useUpdatable(): </p>
+<p>// in FancyRS.java 
+private static void useUpdatable(XConnection conn) 
+{ 
+  try { 
+    XStatement stmt = conn.createStatement(); 
+    Props.setProperty(stmt, "ResultSetType",<br />
+                        ResultSetType.SCROLL_INSENSITIVE); 
+         // does not update if there are changes to the database </p>
+<pre><code>Props.setProperty(stmt, "ResultSetConcurrency",  
+                    ResultSetConcurrency.UPDATABLE); 
+     // tries to update the database
+
+XResultSet srs = stmt.executeQuery( 
+                         "SELECT NAME, PRICE FROM SALES"); 
+srs.next(); 
+XRowUpdate updateRow = Lo.qi(XRowUpdate.class,srs); 
+updateRow.updateFloat(2, 25); 
+  // not possible since UPDATABLE downgraded to read-only;  
+  // an exception occurs
+
+XResultSetUpdate updateRs = Lo.qi(XResultSetUpdate.class, srs); 
+updateRs.updateRow();       
+  // this call tries to update the data in DBMS;  
+  // an exception would occur if execution reached here
+
+XResultSet rs = Base.executeQuery("SELECT * FROM SALES", conn); 
+BaseTablePrinter.printResultSet(rs);
+</code></pre>
+<p>} 
+  catch(SQLException e) { 
+    System.out.println("useUpdatable(): " + e.getMessage() + "\n"); 
+  } 
+}  // end of useUpdatable() </p>
+<p>The database is updated in two steps: first a row in the result set is updated, by casting 
+the current row to XRowUpdate, and calling one of its update() methods. Then the 
+modified row is written back to the database by casting the row to XResultSetUpdate 
+and calling updateRow().  </p>
+<p>An exception is raised when XRowUpdate.updateXXX() is called since sdbc (and 
+JDBC) react to the non-support of updating result sets by downgrading the 
+concurrency setting to ResultSetConcurrency.READ_ONLY. </p>
+<h2 id="9-converting-a-database-to-text">9.  Converting a Database to Text</h2>
+<p>Base doesn't have an export feature for saving a database as text. One solution is to 
+utilize the "INTO TEXT" form of the SELECT command, as in: 
+SELECT * INTO TEXT FOO FROM SALES 
+This will store the SALES table as comma-separated rows in the FOO.csv file. </p>
+<p>Unfortunately, although "INTO TEXT" is in HSQLDB (e.g. see 
+http://hsqldb.org/doc/guide/ch06.html), it isn't currently part of the embedded Firebird 
+engine. </p>
+<p>A more general approach is to obtain the result set for SELECT * FROM SALES, 
+then use Java to write each row into a text file in CSV format. This is implemented by 
+Base.saveDatabase() and Base.saveTable(): </p>
+<p>// in the Base class 
+public static void saveDatabase(XConnection conn) 
+{ 
+  if (conn == null) { 
+    System.out.println("Connection is null"); 
+    return; 
+  } </p>
+<p>ArrayList<String> tableNames = getTablesNames(conn); 
+  if (tableNames == null) 
+    System.out.println("No tables found in database"); 
+  else { 
+    for(String tableName : tableNames) 
+      saveTable(tableName, conn); 
+  } 
+}  // end of saveDatabase() </p>
+<p>public static void saveTable(String tableName, XConnection conn) 
+{ 
+  try {<br />
+    XStatement statement = conn.createStatement(); 
+    XResultSet rs = statement.executeQuery( 
+                       "SELECT * FROM " + tableName); 
+    System.out.println("Saving table: " + tableName); 
+    saveResultSet(rs, tableName + ".csv"); 
+  } 
+  catch(com.sun.star.uno.Exception e) { 
+    System.out.println("Unable to save table: " + tableName); 
+    System.out.println(e); 
+  } 
+}  // end of saveTable() </p>
+<p>Base.saveDatabase() uses Base.getTablesNames() to get a list of table names, and 
+saveTable() is called for each one. saveTable() creates a CSV file for its table by 
+calling saveResultSet(), which writes the column headers and each row of the table 
+data to the file: </p>
+<p>// in the Base class 
+public static void saveResultSet(XResultSet rs, String fnm) 
+{ 
+  System.out.println("  Writing result set to " + fnm); 
+  try { 
+    BufferedWriter bw = new BufferedWriter( new FileWriter(fnm)); </p>
+<pre><code>XResultSetMetaDataSupplier rsMetaSupp =  
+         Lo.qi(XResultSetMetaDataSupplier.class, rs); 
+XResultSetMetaData rsmd = rsMetaSupp.getMetaData(); 
+int numCols = rsmd.getColumnCount();
+
+// include the headers row  
+StringBuilder sb = new StringBuilder(); 
+for (int i = 0; i &lt; numCols; i++) { 
+  if (i &gt; 0)  
+    sb.append(","); 
+  sb.append( rsmd.getColumnName(i+1) ); 
+} 
+bw.write(sb.toString()); 
+bw.newLine();
+
+// add data rows 
+XRow xRow = Lo.qi(XRow.class, rs); 
+while (rs.next()) { 
+  sb = new StringBuilder(); 
+  for (int i = 0; i &lt; numCols; i++) { 
+    if (i &gt; 0)  
+      sb.append(","); 
+    sb.append(xRow.getString(i+1)); 
+  } 
+  bw.write(sb.toString()); 
+  bw.newLine(); 
+}     
+bw.close();
+</code></pre>
+<p>}<br />
+  catch (java.lang.Exception e) { 
+    System.out.println("Unable to store result set to " + fnm); 
+    System.out.println(e); 
+  } 
+}  // end of saveResultSet(); </p>
+<p>SaveToCSV.java shows how to call Base.saveDatabase(): </p>
+<p>// in SaveToCSV.java 
+XOfficeDatabaseDocument dbDoc = Base.openBaseDoc(args[0], loader); 
+XDataSource dataSource = dbDoc.getDataSource(); 
+XConnection  conn = dataSource.getConnection("", ""); 
+Base.saveDatabase(conn); </p>
+<p>There are third-party libraries for reading and writing CSV files. For example, 
+OpenCSV (http://opencsv.sourceforge.net/) includes a CSVWriter.writeAll() method 
+for storing a JDBC result set. I can't utilize it (without changes) since the sdbc result 
+set is a different type. </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="34-JDBC_to_Base_API.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 34. From JDBC to the Base API
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="36-RowSets_DB_Context.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Chapter 36. Using RowSets and Database
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

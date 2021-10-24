@@ -1,0 +1,1558 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 34. From JDBC to the Base API - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-34-from-jdbc-to-the-base-api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 34. From JDBC to the Base API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 34. From JDBC to the Base API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link md-nav__link--active">
+        Chapter 34. From JDBC to the Base API
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-three-database-modules" class="md-nav__link">
+    1.  Three Database Modules
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-a-little-jdbc" class="md-nav__link">
+    2.  A Little JDBC
+  </a>
+  
+    <nav class="md-nav" aria-label="2.  A Little JDBC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-using-jdbc" class="md-nav__link">
+    2.1.  Using JDBC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-a-simple-jdbc-program" class="md-nav__link">
+    2.2.  A Simple JDBC Program
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-a-more-detailed-execution-diagram" class="md-nav__link">
+    2.3.  A More Detailed Execution Diagram
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-from-jdbc-to-sdbc" class="md-nav__link">
+    3.  From JDBC to sdbc
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-three-database-modules" class="md-nav__link">
+    1.  Three Database Modules
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-a-little-jdbc" class="md-nav__link">
+    2.  A Little JDBC
+  </a>
+  
+    <nav class="md-nav" aria-label="2.  A Little JDBC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-using-jdbc" class="md-nav__link">
+    2.1.  Using JDBC
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-a-simple-jdbc-program" class="md-nav__link">
+    2.2.  A Simple JDBC Program
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-a-more-detailed-execution-diagram" class="md-nav__link">
+    2.3.  A More Detailed Execution Diagram
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-from-jdbc-to-sdbc" class="md-nav__link">
+    3.  From JDBC to sdbc
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/34-JDBC_to_Base_API.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-34-from-jdbc-to-the-base-api">Chapter 34. From JDBC to the Base API</h1>
+<p>Base offers a graphical interface for the building and 
+manipulation of relational databases, including tools for 
+the creation of forms and reports based on the tabular data. </p>
+<p>These features are explained at length in the Base 
+Handbook, available at https://www.libreoffice.org/get-help/documentation/. </p>
+<p>Base can access many types of SQL databases, including Microsoft Access, MySQL, 
+Oracle, and PostgreSQL, and is able to create its own HSQLDB databases embedded 
+inside Office ODB documents.  </p>
+<p>HSQLDB (also known as HyperSQL) is coded in Java (http://hsqldb.org/), a 
+dependency that caused the LibreOffice development team to look for a replacement 
+database engine in 2013. They decided on Firebird (http://www.firebirdsql.org/) 
+which was coded in C until version 2.5, then moved to C++. A detailed rationale for 
+the change is available as a series of links at http://en.libreofficeforum.org/node/6062. </p>
+<p>Currently (in LibreOffice 5.3), the default embedded database for ODB documents is 
+still HSQLDB, with Firebird available as an 'experimental feature', turned on via 
+Office's Tools &gt;&gt; Options &gt;&gt; Advanced menu dialog. This adds a "Firebird 
+Embedded" option so either kind of database can be created by Base. The Firebird 
+feature is labeled as 'unsafe', but seems perfectly reliable on Windows, although some 
+HSQLDB functionality isn't available yet in embedded Firebird databases. This Part 
+contains examples using both HSQLDB and Firebird. </p>
+<p>Base's API is explained in chapter 12 of the Developer's Guide  available at 
+https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf. </p>
+<p>Alternatively, you can read the chapter online, starting at 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Database_Acces
+s (use loGuide "Database Access"). The guide's database examples are at 
+http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Database. </p>
+<h2 id="1-three-database-modules">1.  Three Database Modules</h2>
+<p>The API is spread across three modules: sdbc, sdbcx, and sdb, whose structure is 
+summarized in Figure 1. </p>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Three Database </p>
+</div>
+<p>Modules: sdbc, sdbcx, 
+sdb; A Little JDBC; 
+From JDBC to sdbc 
+Example folders: "Base 
+Tests" and "Utils" </p>
+<p><img alt="" src="images/34-JDBC_to_Base_API-1.png" /></p>
+<p>Figure 1. The Database Modules in LibreOffice. </p>
+<p>Office's core database functionality is in the sdbc module, which can be thought of as 
+an Office version of Java's JDBC (Java Database Connectivity) API. This means that 
+JDBC classes such as Connection, Statement, and ResultSet appear in the sdbc 
+module, but are generally split in two to become Office service and interface classes. </p>
+<p>For example, sdbc contains services called Connection, Statement, and ResultSet, and 
+interfaces called XConnection, XStatement, and XResultSet.  </p>
+<p>The sdbcx module holds classes related to the schema (metadata) associated with 
+databases, catalogs, tables, views, groups, users, columns, indexes, and keys. Much of 
+this kind of data can also be manipulated at the SQL level, via DDL (Data Definition 
+Language) statements such as CREATE and ALTER, or via the MetaDatabase classes 
+borrowed from JDBC in the sdbc module. </p>
+<p>The sdb module offers higher-level abstractions, allowing the manipulation of other 
+kinds of tabular data aside from databases. It makes it easy to manipulate databases 
+embedded inside ODB documents, and also supports features such as row sets, 
+persistent queries, and database authentication.  </p>
+<p>One drawback of this hierarchy is the appearance of same-named services across 
+modules. For instance, there are three ResultSet services, one each in the sdbc, sdbcx, 
+and sdb modules. Fortunately, the interactive inheritance diagrams used in the 
+LibreOffice documentation (e.g. at 
+http://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1sdbc_1_1Result
+Set.html) makes it quite easy to jump between the services (e.g. see lodoc 
+ResultSet). </p>
+<h2 id="2-a-little-jdbc">2.  A Little JDBC</h2>
+<p>The easiest way to understand the sdbc module is to have a reasonable knowledge of 
+Java's JDBC, which is simpler and contains similar functionality. This short section 
+on JDBC is only meant to be a refresher; if you haven’t encountered the API before, 
+you should refer to longer explanations found in beginner/intermediate Java texts. </p>
+<p>Three that I like are: 
+ Introduction to Java Programming, Comprehensive Version 
+Y. Daniel Liang, Pearson, 2014, 10th Edition 
+http://www.cs.armstrong.edu/liang/ 
+(Chapters 32 and 35 relate to JDBC; chapter 35 is online, behind a 
+login/password. However the material was printed in earlier versions, up to the 6th 
+edition in 2007.) 
+ Java How To Program (Early Objects) 
+Paul Deitel, Harvey Deitel, Pearson, 2014, 10th Edition 
+http://www.deitel.com/Books/Java/JavaHowtoProgram10eEarlyObjects/tabid/365
+6/Default.aspx 
+(Chapter 24 is about JDBC) 
+ Core Java, Volume II – Advanced Features<br />
+Cay S. Horstmann, Gary Cornell, Prentice Hall, 2016, 10th Edition 
+http://www.informit.com/store/core-java-volume-ii-advanced-features-
+9780137081608 
+(Chapter 4 is about JDBC. It covers more topics than the Liang and Deitel 
+chapters.) 
+All these chapters introduce SQL, but it's worthwhile studying it separately since it 
+utilizes a very different programming model from Java, based on relational algebra 
+and tuples. One book I've used recently is: 
+ Sams Teach Yourself SQL in 10 Minutes 
+Ben Forta,  Sams, 2012, 4th edition 
+http://forta.com/books/0672336073/ 
+I'll be using a small subset of SQL: CREATE TABLE and INSERT to build tables, 
+and simple SELECT statements to query them. </p>
+<h3 id="21-using-jdbc">2.1.  Using JDBC</h3>
+<p>Figure 2 shows the main stages in how JDBC is used to access a database. </p>
+<p><img alt="" src="images/34-JDBC_to_Base_API-2.png" /></p>
+<p>Figure 2. Using JDBC. </p>
+<p>The first step involves loading the database driver, which registers it with JDBC's 
+DriveManager. JDBC 4 introduced the ability to automatic detect and load a driver if 
+its JAR file includes configuration information. This capability isn't part of sdbc 
+though, perhaps because Base was developed in 2003-2005, and JDBC 4 was released 
+at the end of 2006. </p>
+<p>Class.forName() is used to load the driver, as in: 
+Class.forName("org.firebirdsql.jdbc.FBDriver"); 
+A communications link through the driver to a database is represented by a 
+Connection object, which is created by calling DriverManager.getConnection() with a 
+the database's URL. For instance: </p>
+<p>Connection conn = DriverManager.getConnection( 
+                     "jdbc:firebirdsql:embedded:crossrate.fdb"); </p>
+<p>The URL's format varies from one driver to the next, but always starts with "jdbc:" 
+followed by the driver protocol name. The address may include a machine hostname 
+and port number if the database is located across the network. The example above 
+specifies the crossrate.fdb Firebird database in the same directory as the Java 
+program. If a database requires a login and password, they can be included as extra 
+arguments in the getConnection() call. </p>
+<p>A SQL statement is sent across the link via a Statement object, which is created by 
+Connection.createStatement(): 
+Statement statement = conn.createStatement(); 
+The SQL statement is written as a string, and sent to the database using one of 
+Statement's execute methods. For example: 
+ResultSet rs = statement.executeQuery("SELECT * FROM Crossrate"); 
+The results are returned as a ResultSet object, which can be thought of as a table of 
+answers with a cursor pointing to a particular row in that table. The cursor is initially 
+assigned to just before the first row, and can be moved down a row with 
+ResultSet.next(). Typical code for iterating through all the rows  is: </p>
+<p>while (rs.next()) { 
+   // look at a row of the result set 
+} </p>
+<p>A particular cell on a row is accessed using the table's corresponding column name, or 
+the column index (which starts at 1). For example: </p>
+<p>while(rs.next()) 
+  System.out.println( rs.getString("FromCurrency")); </p>
+<p>This loop prints all the data in the "FromCurrency" column of the result set.  </p>
+<p>The ResultSet class offers a large collection of getXXX() methods that return SQL 
+data as Java types. </p>
+<h3 id="22-a-simple-jdbc-program">2.2.  A Simple JDBC Program</h3>
+<p>All the preceding code snippets come together in SimpleJDBC.java: </p>
+<p>// SimpleJDBC.java 
+public static void main(String[] args) 
+{ 
+  try { 
+    Class.forName("org.firebirdsql.jdbc.FBDriver");   <br />
+                            // requires Jaybird and Firebird </p>
+<pre><code>// connect to the database 
+Connection conn = DriverManager.getConnection( 
+           "jdbc:firebirdsql:embedded:crossrate.fdb", 
+           "sysdba", "masterkeys");  // login, password
+
+Statement statement = conn.createStatement();
+
+// Execute a SQL query 
+ResultSet rs = statement.executeQuery( 
+                           "SELECT * FROM Crossrate");
+
+// Print the result set 
+SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy"); 
+System.out.println("FromCurrency \tToCurrency \t 
+                                     ConvRate \tUpdateDate"); 
+System.out.println("=============================");
+
+while(rs.next()) 
+  System.out.println( rs.getString("FromCurrency") + ",   \t" + 
+                      rs.getString("ToCurrency") + ",   \t" + 
+                      rs.getFloat("ConvRate") + ",   \t" + 
+                 sdf.format( rs.getTimestamp("UpdateDate")) ); 
+                    // 4th column returns java.sql.Timestamp
+
+System.out.println("=============================");
+
+// Close down (should really be in a finally block) 
+rs.close(); 
+statement.close(); 
+conn.close();
+</code></pre>
+<p>}<br />
+  catch (ClassNotFoundException e)   // for Class.forName()<br />
+  {  System.out.println("Failed to load driver: \n  " + e); } 
+  catch (SQLException e)<br />
+  {  for (Throwable t : e) 
+       System.out.println(t); // to handle a 'chain' of SQLExceptions 
+  } 
+} // end of main() </p>
+<p>Figure 3 shows the command window output of this program. </p>
+<p><img alt="" src="images/34-JDBC_to_Base_API-3.png" /></p>
+<p>Figure 3. Compiling and Running SimpleJDBC.java. </p>
+<p>One of the harder parts of using JDBC is including the driver in the compilation and 
+execution steps for a program. I've done it by writing two Windows batch scripts, 
+called compile.bat and run.bat, which can be seen in action in Figure 3. These scripts 
+hide the arguments of the javac.exe and java.exe commands which tell Java where to 
+look for the driver's JAR. compile.bat is: 
+javac -cp "D:\jaybird\jaybird-full-2.2.5.jar;." %<em> 
+run.bat is: 
+java -cp "D:\jaybird\jaybird-full-2.2.5.jar;."<br />
+     -Djava.library.path="D:\jaybird" %</em> 
+Jaybird is the JDBC driver for Firebird (available from 
+http://www.firebirdsql.org/en/jdbc-driver/). </p>
+<p>The java.library.path argument in the call to java.exe locates the directory holding 
+Jaybird's DLL.  </p>
+<p>Fortunately, this driver location issue won't concern us when using sdbc, since the 
+Office API already includes the necessary drivers.  </p>
+<h3 id="23-a-more-detailed-execution-diagram">2.3.  A More Detailed Execution Diagram</h3>
+<p>Now that I've introduced the classes and methods used in a simple JDBC program, its 
+possible to draw a more technical version of Figure 2, as Figure 4. </p>
+<p><img alt="" src="images/34-JDBC_to_Base_API-4.png" /></p>
+<p>Figure 4. The Classes and Methods used in Typical JDBC Programs. </p>
+<p>Figure 4's blue boxes represent JDBC classes, and the arrows are labeled with the 
+methods used to create objects. SimpleJDBC.java uses the DriveManager, 
+Connection, Statement, and ResultSet classes shown in the figure, but there are a few 
+other useful ones.  </p>
+<p>DataSource allows the low-level details used to address a database in 
+DriveManager.getConection() to be hidden behind a JNDI logical name. DataSource 
+also hides how a connection is created, or perhaps reused if there are a pool of 
+connections.  </p>
+<p>RowSet abstracts away from manipulating databases to allowing access to more 
+general tabular data, covering such things as CSV text files and spreadsheets. RowSet 
+combines the functionality of DriveManager, Connection, and Statement, and is a 
+subclass of ResultSet. </p>
+<p>The two metadata classes in Figure 4 hold schema data for database and result sets. </p>
+<p>ResultSetMetaData is particularly useful when instantiating a Swing JTable 
+component to display results graphically. </p>
+<p>PreparedStatement lets SQL statements include Java-level parameters (denoted by 
+'?'s). A PreparedStatement can be compiled and perhaps cached for speed, but is still 
+open to changes so different queries can be sent to the database. </p>
+<h2 id="3-from-jdbc-to-sdbc">3.  From JDBC to sdbc</h2>
+<p>There's a mostly direct mapping from Figure 4's JDBC Class/method diagram to sdbc 
+interface classes, which is depicted in Figure 5. </p>
+<p><img alt="" src="images/34-JDBC_to_Base_API-5.png" /></p>
+<p>Figure 5. The Interfaces and Methods used in Typical sdbc Programs. </p>
+<p>Figure 5's blue boxes are interfaces in the sdbc module which, following the Office 
+style, all start with "X". Not shown are the corresponding services which hold the 
+data/properties associated with the interface methods.  The service names are almost 
+always the same as the interfaces but without the "X". For instance, the services for 
+XConnection, XStatement, and XResultSet are Connection, Statement, and ResultSet.  </p>
+<p>Figure 5 uses interface names rather than services since the interfaces contain the 
+methods, and so it’s their documentation that should be searched for method details. </p>
+<p>Recall that this can be done with my "lodoc" batch utility. For example, lodoc 
+XConnection loads the LibreOffice documentation webpage for XConnection. </p>
+<p>Another drawback of service names is that many aren't unique. For example, there are 
+two Connection services – one in sdbc and another in the sdb module. </p>
+<p>I'm going to spend several chapters explaining Figure 5. The examples will access 
+databases using XOfficeDatabaseDocument, XRowSet, XDatabaseContext, and 
+XDriverManager, in the order denoted by the numbers along the top of Figure 5. </p>
+<p>XOfficeDatabase documents are covered first, in Chapter 35, XRowSet and 
+XDatabaseContext in Chapter 36, and XDriverManager in Chapter 37. </p>
+<p>In Chapter 38,  I'll describe a fifth technique, based on the fact that an ODB file is a 
+zipped folder. It's possible to employ zip-related classes (located in the java.util.zip 
+package) to extract the folder's database files, and use HSQLDB or Firebird to access 
+them through JDBC.  This approach side-steps Office's API but requires JDBC 
+drivers for HyperSQL and Firebird. </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="34%20Part%206%20Base.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Part 6 Base
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="35-Examining_Base_Docs.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Chapter 35. Examining Base Documents
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

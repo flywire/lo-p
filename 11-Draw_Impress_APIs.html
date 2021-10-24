@@ -1,0 +1,1529 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 11. Draw/Impress APIs Overview - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-11-drawimpress-apis-overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 11. Draw/Impress APIs Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 11. Draw/Impress APIs Overview
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link md-nav__link--active">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-draw-pages-and-master-pages" class="md-nav__link">
+    1.  Draw Pages and Master Pages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-draw-page-details" class="md-nav__link">
+    2.  Draw Page Details
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-api-hierarchy-code-examples" class="md-nav__link">
+    3.  API Hierarchy Code Examples
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-shapes-in-a-drawing" class="md-nav__link">
+    4.  Shapes in a Drawing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-shapes-in-a-presentation" class="md-nav__link">
+    5.  Shapes in a Presentation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-the-slide-show-apis" class="md-nav__link">
+    6.  The Slide Show APIs
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-draw-pages-and-master-pages" class="md-nav__link">
+    1.  Draw Pages and Master Pages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-draw-page-details" class="md-nav__link">
+    2.  Draw Page Details
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-api-hierarchy-code-examples" class="md-nav__link">
+    3.  API Hierarchy Code Examples
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-shapes-in-a-drawing" class="md-nav__link">
+    4.  Shapes in a Drawing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-shapes-in-a-presentation" class="md-nav__link">
+    5.  Shapes in a Presentation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-the-slide-show-apis" class="md-nav__link">
+    6.  The Slide Show APIs
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/11-Draw_Impress_APIs.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-11-drawimpress-apis-overview">Chapter 11. Draw/Impress APIs Overview</h1>
+<p>This part discusses the APIs for both Draw and Impress 
+since the presentations API is an extension of Office's 
+drawing functionality, adding such things as slide-related 
+shapes (e.g. for the title, subtitle, header, and footer), more 
+data views (e.g. an handout mode), and slide shows. </p>
+<p>You'll get a good feel for the APIs' capabilities by reading 
+the Draw and Impress user guides, downloadable from 
+https://www.libreoffice.org/get-help/documentation/.   </p>
+<p>Details about the APIs can be found in Chapter 9 of the Developer's Guide, starting at 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Drawings/Drawing_Docu
+ments_and_Presentation_Documents (or type loGuide draw). The guide can also be 
+retrieved as a PDF file from 
+https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf.  </p>
+<p>The guide's drawing and presentation examples are online at 
+http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Drawing, and 
+there's a short Draw example in 
+http://api.libreoffice.org/examples/examples.html#Java_examples. </p>
+<p>This chapter gives a broad overview of the drawing and presentation APIs, with some 
+small code snippets to illustrate the ideas. Subsequent chapters will return to these 
+features in much more detail. </p>
+<p>The APIs are organized around three services which subclass OfficeDocument, as 
+depicted in Figure 1. </p>
+<p><img alt="" src="images/11-Draw_Impress_APIs-1.png" /></p>
+<p>Figure 1. The Drawing and Presentation Document Services. </p>
+<p>The DrawingDocument service, and most of its related services and interfaces are in 
+Office's com.sun.star.drawing package (or module), which is documented at 
+http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1drawing.ht
+ml. Or you can reach it using lodoc drawing module reference.  </p>
+<p>The presentation API is mostly located in Office's com.sun.star.presentation package 
+(or module), which is documented at 
+http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1presentation
+.html. You can also find it with lodoc presentation module reference. </p>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Draw Pages and </p>
+</div>
+<p>Master Pages; Draw 
+Page Details; API 
+Hierarchy Code 
+Examples; Shapes in a 
+Drawing; Shapes in a 
+Presentation ; The Slide 
+Show APIs 
+Example folders: "Draw 
+Tests" and "Utils" 
+Figure 2 shows a more detailed version of Figure 1 which includes some of the 
+interfaces defined by the services. </p>
+<p><img alt="" src="images/11-Draw_Impress_APIs-2.png" /></p>
+<p>Figure 2. Drawing and Presentation Document Services and Interfaces. </p>
+<p>The interfaces highlighted in bold in Figure 2 will be discussed in this chapter. </p>
+<p>The DrawingDocument service is pretty much empty, with the real drawing 'action' in 
+GenericDrawingDocument (which is in the com.sun.star.drawing package). </p>
+<p>PresentationDocument subclasses GenericDrawingDocument to inherit its drawing 
+capabilities, and adds features for slide shows (via the XPresentationSupplier and 
+XCustomPresntationSupplier interfaces).  </p>
+<p>The word "presentation" is a little overloaded in the API – PresentationDocument 
+corresponds to the slide deck, while XPresentationSupplier.getPresentation() returns 
+an XPresentation object which represents a slide show. </p>
+<h2 id="1-draw-pages-and-master-pages">1.  Draw Pages and Master Pages</h2>
+<p>A drawing (or presentation) document consists of a series of draw pages, one for each 
+page (or slide) inside the document. Perhaps the most surprising aspect of this is that a 
+Draw document can contain multiple pages. </p>
+<p>A document can also contain one or more master pages. A master page contains 
+drawing/slide elements which appear on multiple draw page. This idea is probably 
+most familiar from slide presentations where a master page holds the header, footer, 
+and graphics that appear on every slide. </p>
+<p>As illustrated in Figure 2, GenericDrawingDocument supports an 
+XDrawPagesSupplier interface whose getDrawPages() returns an XDrawPages object. </p>
+<p>It also has an XMasterPagesSupplier whose getMasterPages() returns the master 
+pages as an object. Office views master pages as special kinds of draw pages, and so 
+getMasterPages() also returns an XDrawPages object. </p>
+<p>Note the "s" in "XDrawPages": an XDrawPages object is an indexed container of 
+XDrawPage (no "s") objects, as illustrated by Figure 3. </p>
+<p><img alt="" src="images/11-Draw_Impress_APIs-3.png" /></p>
+<p>Figure 3. The XDrawPages Interface </p>
+<p>Since XDrawPages inherit XIndexAccess, its elements (pages) can be accessed using 
+index-based lookup (i.e. to return page 0, page 1, etc.). </p>
+<h2 id="2-draw-page-details">2.  Draw Page Details</h2>
+<p>A draw page is a collection of shapes: often text shapes, such as a title box or a box 
+holding bulleted points. But a shape can be many more things: an ellipse, a polygon, a 
+bitmap, an embedded video, and so on. </p>
+<p>This "page as shapes" notion is implemented by the API hierarchy shown in Figure 4. </p>
+<p><img alt="" src="images/11-Draw_Impress_APIs-4.png" /></p>
+<p>Figure 4. The API Hierarchy for a Draw Page. </p>
+<p>XPresentationPage is the interface for a slide's page, but most of its functionality 
+comes from XDrawPage (see loDoc XPresentationPage). The XDrawPage 
+interface doesn't do much either, except for inheriting XShapes (note the "s"). </p>
+<p>XShapes inherits XIndexAccess, which means that an XShapes object can be 
+manipulated as an indexed sequence of XShape objects.  </p>
+<p>The XDrawPage and XPresentationPage interfaces are supported by services, some of 
+which are shown in Figure 5. These services are in some ways more important than 
+the interfaces, since they contain many properties related to pages and slides. </p>
+<p><img alt="" src="images/11-Draw_Impress_APIs-5.png" /></p>
+<p>Figure 5. Some of the Draw Page Services. </p>
+<p>There are two DrawPage services in the Office API, one in the drawing package, and 
+another in the presentation package. This is represented in Figure 5 by including the 
+package names in brackets after the service names. You can access the documentation 
+for these services by typing lodoc drawpage service drawing and lodoc 
+drawpage service presentation.  </p>
+<p>No properties are defined in the drawing DrawPage, instead everything is inherited 
+from GenericDrawPage. </p>
+<p>I've put "(??)" next to the XDrawPage and XPresentationPage interfaces in Figure 5 
+because they're not listed in the GenericDrawPage and presentation DrawPage 
+services in the documentation, but must be there because of the way that the code 
+works. Also, the documentation for GenericDrawPage lists XShapes as an interface, 
+rather than XDrawPage. </p>
+<h2 id="3-api-hierarchy-code-examples">3.  API Hierarchy Code Examples</h2>
+<p>Some code snippets will help clarify the hierarchies shown in Figures 2-5. The 
+following lines load a Draw (or Impress) document called "foo" as an XComponent 
+object. </p>
+<p>XComponentLoader loader = Lo.loadOffice(); 
+XComponent doc = Lo.openDoc("foo", loader); </p>
+<p>A common next step is to access the draw pages in the document using the 
+XDrawPagesSupplier interface shown in Figure 2: </p>
+<p>XDrawPagesSupplier supplier = Lo.qi(XDrawPagesSupplier.class, doc); 
+XDrawPages pages = supplier.getDrawPages(); </p>
+<p>This code works whether the document is a sequence of draw pages (i.e. a Draw 
+document) or slides (i.e. an Impress document). </p>
+<p>Using the ideas shown in Figure 3, a particular draw page is accessed based on its 
+index position. The first draw page in the document is retrieved with: </p>
+<p>XDrawPage page = Lo.qi(XDrawPage.class, pages.getByIndex(0)); </p>
+<p>Pages are numbered from 0, and a newly created document always contains one page. </p>
+<p>The XDrawPage interface is supported by the GenericDrawPage service (see Figure 
+5), which holds the page's properties. The following snippet returns the width of the 
+page and its page number: </p>
+<p>int width =  (Integer)Props.getProperty(page, "Width"); 
+int pageNumber = (Short)Props.getProperty(page, "Number");  </p>
+<p>The "Width" and "Number" properties are documented in the GenericDrawPage 
+service page at 
+http://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1drawing_1_1Ge
+nericDrawPage.html (or use lodoc GenericDrawPage service). </p>
+<p>Once a single page has been retrieved, it's possible to access its shapes (as shown in 
+Figure 4). The following code converts the XDrawPage object to XShapes, and 
+accesses the first XShape in its indexed container: </p>
+<p>XShapes shapes = Lo.qi(XShapes.class, page); 
+XShape shape = Lo.qi(XShape.class, shapes.getByIndex(0)) </p>
+<h2 id="4-shapes-in-a-drawing">4.  Shapes in a Drawing</h2>
+<p>Shapes fall into two groups – drawing shapes that subclass the Shape service in 
+com.sun.star.drawing, and presentation-related shapes which subclass the Shape 
+service in com.sun.star.presentation. The first type are described here, and the 
+presentation shapes in section 5. </p>
+<p>Figure 6 shows the com.sun.star.drawing Shape service and some of its subclasses. </p>
+<p><img alt="" src="images/11-Draw_Impress_APIs-6.png" /></p>
+<p>Figure 6. Some of the Drawing Shapes. </p>
+<p>I'll be explaining many of these shapes in Chapters 13 and 15, but you can probably 
+guess what most of them do – EllipseShape is for drawing ellipses and circles, 
+LineShape is for lines and arrows, RectangleShape is for rectangles.  </p>
+<p>The two "??"s in Figure 6 indicate that those services aren't shown in the online 
+documentation, but appear in examples.  </p>
+<p>The hardest aspect of this hierarchy is searching it for information on a shape's 
+properties. Many general properties are located in the Shape service, so are 
+documented on the Shape page (use lodoc shape service drawing to reach it). </p>
+<p>More specialized properties are located in the specific shape's service. For instance, 
+RectangleShape has a "CornerRadius" property which allows  a rectangle's corners to 
+be rounded to make it more button-like. </p>
+<p>Unfortunately, most shapes inherit a lot more properties than just those in Shape. </p>
+<p>Figure 7 shows a typical example – RectangleShape inherits properties from at least 
+eight services (I've not shown the complete hierarchy)! </p>
+<p><img alt="" src="images/11-Draw_Impress_APIs-7.png" /></p>
+<p>Figure 7. RectangleShape's Properties. </p>
+<p>Aside from RectangleShape inheriting properties from Shape, it also obtains its fill, 
+shadow, line, and rotation attributes from the FillProperties, ShadowProperties, 
+LineProperties, and RotationDescriptor services. For instance, to make the rectangle 
+red, the "FillColor" property, defined in the FillProperties service, must be set. The 
+code for doing this is not complex: </p>
+<p>Props.setProperty(shape, "FillColor", 0xFF0000); 
+                              // hexadecimal for red </p>
+<p>The complication comes in knowing that a property called "FillColor" exists. Visit the 
+shape's service documentation (e.g. the RectangleShape page at 
+http://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1drawing_1_1Re
+ctangleShape.html, or use  lodoc RectangleShape service), and look inside each 
+inherited Property service until you find the relevant property.  </p>
+<p>If the shape contains some text (e.g. the rectangle has a label inside it), and you want 
+to change one of the text's properties, then you'll need to look in the three property 
+services above the Text service (see Figure 7). </p>
+<p>Changing text requires that the text be selected first, which takes us back XText and 
+Chapter 5. For example, the text height is changed to 18pt by: </p>
+<p>XText xText = Lo.qi(XText.class, shape); 
+XTextCursor cursor = xText.createTextCursor(); 
+cursor.gotoStart(false); 
+cursor.gotoEnd(true);   // select all text 
+Props.setProperty(cursor, "CharHeight", 18); </p>
+<p>First the shape is converted into an XText reference so that text selection can be done 
+using a cursor. </p>
+<p>The "CharHeight" property is inherited from the CharacterProperties service. </p>
+<p>Figure 7 doesn't show all the text property services. For instance, there are also 
+services called CharacterPropertiesComplex and ParagraphPropertiesComplex. </p>
+<h2 id="5-shapes-in-a-presentation">5.  Shapes in a Presentation</h2>
+<p>If the document is a slide deck, then presentation-related shapes will be subclasses of 
+the com.sun.star.presentation.Shape service (see the documentation with lodoc 
+shape service presentation). Some of those shapes are shown in Figure 8. </p>
+<p><img alt="" src="images/11-Draw_Impress_APIs-8.png" /></p>
+<p>Figure 8. Some of the Presentation Shapes. </p>
+<p>The com.sun.star.presentation.Shape service doesn't subclass the 
+com.sun.star.drawing.Shape service. Instead, every presentation shape inherits the 
+presentation Shape service and a drawing shape (usually TextShape). This means that 
+all the presentation shapes can be treated as drawing shapes when being manipulated 
+in code. </p>
+<p>Most of the presentation shapes are special kinds of text shapes. For instance, 
+TitleTextShape and OutlinerShape are text shapes which usually appear automatically 
+when you create a new slide inside Impress – the slide's title is typed into the 
+TitleTextShape, and bulleted points added to OutlinerShape. This is shown in Figure 
+9. </p>
+<p><img alt="" src="images/11-Draw_Impress_APIs-9.png" /></p>
+<p>Figure 9. Two Presentation Shapes in a Slide. </p>
+<p>Using OutlinerShape as an example, its 'simplified' inheritance hierarchy looks like </p>
+<p><img alt="" src="images/11-Draw_Impress_APIs-10.png" /></p>
+<p>Figure 10. </p>
+<p><img alt="" src="images/11-Draw_Impress_APIs-10.png" /></p>
+<p>Figure 10. The OutlinerShape Hierarchy. </p>
+<p>OutlinerShape has at least nine property services that it inherits. </p>
+<h2 id="6-the-slide-show-apis">6.  The Slide Show APIs</h2>
+<p>One difference between slides and drawings is that the presentations API supports 
+slide shows. This extra functionality can be seen in Figure 2 since the 
+PresentationDocument service offers an XPresntationSupplier interface which has a 
+getPresentation() method for returning an XPresentation object. Don't be confused by 
+the name – an XPresentation object represents a slide show.   </p>
+<p>XPresentation offers start() and end() methods for starting and ending a slide show, 
+and the Presentation service contains properties for affecting how the show 
+progresses, as illustrated by Figure 11. </p>
+<p><img alt="" src="images/11-Draw_Impress_APIs-11.png" /></p>
+<p>Figure 11. The Slide Show Presentation Services. </p>
+<p>Code for starting a slide show for the "foo" document: </p>
+<p>XComponentLoader loader = Lo.loadOffice(); 
+XComponent doc = Lo.openDoc("foo", loader); </p>
+<p>XPresentationSupplier ps = Lo.qi(XPresentationSupplier.class, doc); 
+XPresentation show = Lo.qi(XPresentation.class,<br />
+                                         ps.getPresentation()); 
+show.start(); </p>
+<p>The Presentation service is a bit lacking, so an extended service, Presentation2, was 
+added more recently. It can access an XSlideShowController interface which gives 
+finer-grained control over how the show progresses; I'll give examples later. </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Part 3 Draw & Impress
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="12-Examining_DrawImpress.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Chapter 12. Examining a Draw/Impress
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

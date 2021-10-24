@@ -1,0 +1,1794 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 1. LibreOffice API Concepts - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-1-libreoffice-api-concepts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 1. LibreOffice API Concepts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 1. LibreOffice API Concepts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="01-Concepts.html" class="md-nav__link md-nav__link--active">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-sources-for-api-information" class="md-nav__link">
+    1.  Sources for API Information
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-office-as-a-process" class="md-nav__link">
+    2.  Office as a Process
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-api-data-structures-interface-property-service-and-component" class="md-nav__link">
+    3.  API Data Structures: interface, property, service, and component
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-two-inheritance-hierarchies-for-services-and-interfaces" class="md-nav__link">
+    4.  Two Inheritance Hierarchies for Services and interfaces
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-the-fcm-relationship" class="md-nav__link">
+    5.  The FCM Relationship
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-components-again" class="md-nav__link">
+    6.  Components Again
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-a-component-that-supports-both-the-xmodel-and-xcontroller-interfaces-is-usually" class="md-nav__link">
+    1.  A component that supports both the XModel and XController interfaces is usually
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-a-component-with-a-controller-but-no-model-is-typically-used-to-implement-library" class="md-nav__link">
+    2.  A component with a controller but no model is typically used to implement library
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-a-component-with-no-model-or-controller-ie-just-an-xwindow-object-is-used" class="md-nav__link">
+    3.  A component with no model or controller (i.e. just an XWindow object) is used
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-whats-an-extension" class="md-nav__link">
+    7.  What's an Extension?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-a-comparison-with-the-basic-api" class="md-nav__link">
+    8.  A Comparison with the Basic API
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-sources-for-api-information" class="md-nav__link">
+    1.  Sources for API Information
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-office-as-a-process" class="md-nav__link">
+    2.  Office as a Process
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-api-data-structures-interface-property-service-and-component" class="md-nav__link">
+    3.  API Data Structures: interface, property, service, and component
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-two-inheritance-hierarchies-for-services-and-interfaces" class="md-nav__link">
+    4.  Two Inheritance Hierarchies for Services and interfaces
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-the-fcm-relationship" class="md-nav__link">
+    5.  The FCM Relationship
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-components-again" class="md-nav__link">
+    6.  Components Again
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-a-component-that-supports-both-the-xmodel-and-xcontroller-interfaces-is-usually" class="md-nav__link">
+    1.  A component that supports both the XModel and XController interfaces is usually
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-a-component-with-a-controller-but-no-model-is-typically-used-to-implement-library" class="md-nav__link">
+    2.  A component with a controller but no model is typically used to implement library
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-a-component-with-no-model-or-controller-ie-just-an-xwindow-object-is-used" class="md-nav__link">
+    3.  A component with no model or controller (i.e. just an XWindow object) is used
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-whats-an-extension" class="md-nav__link">
+    7.  What's an Extension?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-a-comparison-with-the-basic-api" class="md-nav__link">
+    8.  A Comparison with the Basic API
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/01-Concepts.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-1-libreoffice-api-concepts">Chapter 1. LibreOffice API Concepts</h1>
+<p>This chapter describes LibreOffice API concepts without 
+resorting to code (that comes along in the next chapter). </p>
+<p>These concepts include Office as a (possibly networked) 
+process, the interface, property, service, and component 
+structures, the two API inheritance hierarchies, and the 
+Frame-Controller-Model (FCM) relationship. </p>
+<p>LibreOffice is an open source, cross-platform, office suite, 
+made up of six main applications, and lots of other useful 
+stuff. The applications are: Writer (a word processor), 
+Draw (vector graphics drawing), Impress (for slide 
+presentations), Calc (spreadsheets), Base (a database front-
+end), and Math (for writing formulae). Some of the lesser-
+known features include a charting library, spell checker, forms designer, thesaurus, e-
+mail package, and support for extensions (e.g. new menu items and libraries). Aside 
+from Open Document Format (ODF) files, LibreOffice can import, convert, and 
+export a vast number of text, graphic, and other formats, including Microsoft Office 
+documents, PDF, HTML, SWF (Flash), and SQL databases. </p>
+<p>LibreOffice is managed and developed by The Document Foundation 
+(https://www.libreoffice.org/), and was first released in 2010. However, earlier Office 
+versions date back to the 1980's, and traces of this heritage are visible in many parts 
+of its API. Figure 1 shows a simplified timeline of how StarOffice begat OpenOffice, 
+and so on to LibreOffice. </p>
+<p><img alt="" src="images/01-Concepts-1.jpg" /></p>
+<p>Figure 1. Office's Timeline. </p>
+<p>This book is not about how to use LibreOffice's GUI (e.g. where to find the menu 
+item for italicizing text). I'm also not going to discuss how to compile the LibreOffice </p>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Some History; </p>
+</div>
+<p>Help and Rxamples  for 
+the LibreOffice SDK 
+(lodoc, loguide); Office 
+as a Process; Common 
+Structures (Interface, 
+Property, Service, and 
+Component); Service 
+and Interface Inheritance 
+Hierarchies; the Frame-
+Controller-Model (FCM) 
+Relationship; 
+Extensions; Comparison 
+with Basic 
+Example folder: "Utils" 
+source, which is a focus of LibreOffice's development webpage 
+(https://wiki.documentfoundation.org/Development). My intention is to explain the 
+Java API that comes as part of the LibreOffice SDK, which you can obtain from 
+https://www.libreoffice.org/download/libreoffice-still/. </p>
+<p>If you're unsure how to install the SDK then please refer to the website accompanying 
+this book (http://fivedots.coe.psu.ac.th/~ad/jlop/). The "Installing the code for Java 
+LibreOffice Programming" page at http://fivedots.coe.psu.ac.th/~ad/jlop/install.html 
+gives step-by-step instructions, and also explains how to download the book's utility 
+classes and examples. </p>
+<h2 id="1-sources-for-api-information">1.  Sources for API Information</h2>
+<p>Rather amazingly, today's API in LibreOffice is almost 100% compatible with 
+OpenOffice, which means that code developed 10-15 years ago (i.e. during the Sun 
+and Oracle stewardships of Office) still works with no (or very minor) changes.  </p>
+<p>It also means that a programmer can choose to read the LibreOffice Java API 
+documentation or the older OpenOffice material since, apart from formatting 
+differences, they're virtually the same. However, my preference is for the LibreOffice 
+pages because of the clickable inheritance diagrams, as I'll explain later. </p>
+<p>Indeed, the examples at the LibreOffice API website (http://api.libreoffice.org/) link 
+to the OpenOffice Developer's Guide at 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/OpenOffice.org_Develope
+rs_Guide. Sadly, that rather old manual (for OpenOffice v3.1 released in 2009) is the 
+only long description of the Java Office API, and is overly technical in places. It can 
+be downloaded as a single PDF file from 
+https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf. The PDF 
+version has two drawbacks – its sections and sub-sections are unnumbered, making 
+the overall structure of each chapter somewhat confusing. Another problem is that 
+many of the code examples are missing newline characters, so are hard to read. </p>
+<p>This book is my attempt to write a more gradual, modern introduction to the API. </p>
+<p>I'm going to refer to the LibreOffice and OpenOffice APIs collectively as the Office 
+API due to their similarities. I believe that everything I say about LibreOffice Java 
+programming applies to OpenOffice. But, to be honest, I've only tested my examples 
+in LibreOffice on Windows 7. If you do find any inconsistencies, then please contact 
+me at ad@fivedots.coe.psu.ac.th with details. </p>
+<p>I hope this book will make the more esoteric materials in the developer's guide easier 
+to understand. One of the ways I'll be flattening the learning curve is by hiding parts 
+of the API behind my own collection of utility classes. This is far from being a novel 
+idea, as it seems that every programmer who has ever written more than a few pages 
+of Office code ends up developing support functions. I've gratefully borrowed very 
+liberally from those intrepid programmers, but I take full responsibility for my coding 
+choices. </p>
+<p>There's a lot of Java Office API examples and code snippets online (as you might 
+expect after 15+ years of existence). Your first stop should be the two groups of 
+examples at http://api.libreoffice.org/examples/examples.html (in the Java and 
+Developer's Guide subdirectories). They can also be found in the Office download in 
+<OFFICE>/sdk/examples; Basic, C++ and Python code is there as well. By the way, 
+<OFFICE> is my way of writing the path to the LibreOffice directory, which for 
+example is "C:\Program Files\LibreOffice 5" on my 32-bit test machine. </p>
+<p>You should also browse the LibreOffice development forums 
+(http://www.imaccanici.org/en.libreofficeforum.org/) and the corresponding ones for 
+OpenOffice (https://forum.openoffice.org/en/forum/). Look for the sub-forums that 
+talk about the UNO API and/or macros. Sadly, imaccanici.org is an archive of the 
+defunct http://en.libreofficeforum.org/ site, but the OpenOffice forum is still going 
+strong, and very relevant. LibreOffice has a question-posing page, at 
+https://ask.libreoffice.org/en/questions/, which is a good source of information. </p>
+<p>http://www.oooforum.org/ is an older forum site, which has the unfortunate habit of 
+periodically disappearing from the Web. Often the only way to access one of its posts 
+or threads is via cached pages maintained by Google. </p>
+<p>The Office API has been ported to many programming languages. The API was first 
+coded in C++, and later converted to Java, Basic, Python, C#, Perl, JavaScript, 
+OORexx, and many more. The most popular language is probably Basic, which is 
+principally used for writing macros (also called scripts) embedded in Office 
+documents, or in the Office application. A big advantage of Basic is its lack of typing, 
+which simplifies its version of the API. Basic macros utilize a similar set of Office 
+API functions as Java, so can be a useful source of ideas.  </p>
+<p>Perhaps the best place for learning about Office macro programming is Andrew 
+Pitonyak's website (http://www.pitonyak.org/), which includes an excellent free-to-
+download book: "OpenOffice.org Macros Explained", a macros cookbook, and a 
+document focusing on database macros. </p>
+<p>Another great site is http://openoffice3.web.fc2.com/, which is mostly written in 
+Japanese. This shouldn't put off non-Japanese readers since Google is quite happy to 
+translate the pages for you, and the code examples are mostly ASCII. </p>
+<p>Finding API Documentation Online 
+The online API documentation can be time-consuming to search due to its great size. </p>
+<p>If you want to have a browse, start at 
+http://api.libreoffice.org/docs/idl/ref/namespaces.html, which takes a while to load. </p>
+<p>Each Office application (e.g. Writer, Draw, Impress, Calc, Base, Math) is supported 
+by multiple modules (similar to Java packages). For example, most of Writer's API is 
+in Office's "text" module, while Impress' functionality comes from the "presentation" 
+and "drawing" modules. These modules are located in com.sun.star package, which is 
+documented at 
+http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star.html. </p>
+<p>Rather than searching manually through a module for a given class, it's a lot quicker 
+to get a search engine to do it for you. This is the purpose of my lodoc.bat batch file, 
+which utilizes DuckDuckGo (https://duckduckgo.com/). For instance, at the command 
+line, you can type: 
+lodoc xtext 
+and the Office API documentation on the XText interface will open in your browser. </p>
+<p>lodoc.bat is 'almost' always returns the right page, mainly because Office interfaces, 
+and many of its services, have long unique names. (I'll explain what a service is 
+shortly.)<br />
+loDoc.bat can be found in the Utils/ folder listed at the start of this chapter, and its 
+also included in every example folder used in later chapters. </p>
+<p>Service names are less unusual, and so you should probably add the word "service" to 
+your search. For instance, if you're looking for the Text service, type: 
+lodoc text service 
+Module names are also quite common words, so add "module" to the search. If you 
+want to reach the "text" module (which implements most of Writer), search for: 
+lodoc text module 
+You can call lodoc with Office application names, which are mapped to API module 
+names. For instance: 
+lodoc Impress 
+brings up the "presentation" module page.  </p>
+<p>You may be wondering why I chose to implement this script using DuckDuckGo 
+rather than Google? Google doesn't seem to like me querying it from the command 
+line. It periodically keeps asking me to type in a captcha string when I call it from 
+lodoc.bat. Another problem is that Google likes to replace my search strings with<br />
+'more likely' strings. </p>
+<p>Searching the Online Developer's Guide 
+The online Developer's Guide can also be time-consuming to search because it's both 
+long (around 1650 pages), and poorly organized. To help, I've written a small batch 
+file called loGuide.bat which is quite similar to loDoc.bat. It calls DuckDuckGo, 
+limiting the search to the Developer's Guide web pages, and loads the first matching 
+page into your web browser. </p>
+<p>For example: 
+loguide "Lifetime of UNO Objects" 
+loads the guide page with that heading into the browser. A less precise query will 
+probably produce the same page, but even when the result is 'wrong' it'll still be 
+somewhere in the guide.  </p>
+<p>loGuide.bat can be found in the Utils/ folder mentioned at the start of this chapter, and 
+is also included in every example folder used in later chapters. </p>
+<p>The first argument of loGuide.bat can be an Office application name, which restricts 
+the search to the part of the guide focusing on that application's API. For instance: 
+loguide Calc "Data Validation" 
+and 
+loguide impress "Page Formatting" 
+search the Calc and Impress parts of the guide. </p>
+<p>Calling loGuide.bat with just an application name, opens the guide at the start of the 
+chapter on that topic. For example: 
+loguide writer 
+opens the guide at the start of the "Text Documents" chapter. </p>
+<p>Calling loGuide.bat with no arguments, makes the browser load the first page of the 
+guide. </p>
+<h2 id="2-office-as-a-process">2.  Office as a Process</h2>
+<p>Office is started as an OS process, and a Java program communicates with it via a 
+socket or named pipe. This necessarily complicates the Java/Office link, which is 
+illustrated in Figure 2. </p>
+<p><img alt="" src="images/01-Concepts-2.png" /></p>
+<p>Figure 2. A Java Program Using Office. </p>
+<p>The invocation of Office and the setup of a named pipe link can be achieved with a 
+single call to the SDK's Bootstrap.bootstrap() method. Its source code is available 
+online, and makes for interesting reading. (Probably the most reliable way of finding 
+it is to google using the terms Bootstrap libreoffice filetype:java.) 
+bootstrap() starts the Office executable (called soffice.exe) with several command line 
+arguments, the most important being "-accept" which specifies the use of pipes or 
+sockets for the interprocess link. </p>
+<p>A call to XUnoUrlResolver.resolve() inside bootstrap() creates a remote component 
+context, which acts as proxy for the 'real' component context over in the Office 
+process (see Figure 2). The context is a container/environment for components and 
+UNO objects which I'll explain below. When a Java program refers to components 
+and UNO objects in the remote component context, the interprocess bridge maps 
+those references across the process boundaries to the corresponding components and 
+objects on the Office side. </p>
+<p>Underpinning this mapping is the Universal Network Object (UNO) model which 
+links objects in different environments using the UNO remote protocol (URP). For 
+example, a method call is converted into a byte stream, sent across the bridge and 
+reconstructed. Method results are returned in the same way. </p>
+<p>Thankfully, this network communication is hidden by the Office API. The only place 
+a beginner might encounter UNO mechanisms is when loading or saving documents. </p>
+<p>Every document (more generally called a resource) is referred to using a Uniform 
+Resource Identifier (URI); URIs are employed by Office’s Universal Content Broker 
+(UCB) and Universal Content Providers (UCPs) to load and save a wide range of data 
+formats.  </p>
+<p>Bootstrap.bootstrap() sets up a remote component context based on named pipes, but 
+if you want to utilize sockets, then the coding is left to you. My Lo utility class 
+contains a socketContext() method that does the necessary work, and I'll show some 
+examples of its use in the next chapter. </p>
+<p>Obtaining a remote component context is not the end of Office’s initialization. </p>
+<p>Typically, at least three UNO objects are needed over on the Java side for most 
+programming tasks: a service manager, a Desktop object, and a component loader.  </p>
+<p>The service manager is used to load additional services into Office at runtime. The 
+Desktop object has nothing to do with the OS'es desktop – it refers to the top-level of 
+the Office application, particularly to its GUI. The component loader is used to load 
+or create Office documents.  </p>
+<p>Other UNO objects might be more useful depending on your programming task. For 
+example, for historical reasons, Office supports two slightly different service 
+managers (one that requires an explicit component context argument, and an older one 
+that doesn't). I've chosen to add both of them to the component context, as a 
+convenience to the programmer; this detail is hidden by my Lo util class. </p>
+<h2 id="3-api-data-structures-interface-property-service-and-component">3.  API Data Structures: interface, property, service, and component</h2>
+<p>There are four main data structures used by the API: interface, property, service, and 
+component.  </p>
+<p>The use of the word 'interface' is obviously influenced by its meaning in Java, but it's 
+probably best to keep it separate in your mind. An Office interface is a collection of 
+method prototypes (i.e. method names, input arguments, and return types) without any 
+implementation or associated data. A property is a name-value pair, used to store data. </p>
+<p>A service comprises a set of interfaces and properties needed to support an Office 
+feature.  </p>
+<p>Figure 3 illustrates how interface, property, and service are related. </p>
+<p><img alt="" src="images/01-Concepts-3.png" /></p>
+<p>Figure 3. Services, Interfaces, Properties. </p>
+<p>The Office documentation often talks about property structs (e.g. the Point and 
+KeyEvent structs). These are coded in Java as classes, and their names often clash 
+with classes in the standard JDK which can complicate their usage. </p>
+<p>Since interfaces contain no code, a service is a specification for an Office feature. </p>
+<p>When a service is implemented (i.e. its interfaces are implemented), it becomes a 
+component. This distinction means that the Office API can be implemented in 
+different languages (as components) but always employs the same specifications 
+(services), as represented in Figure 4. </p>
+<p><img alt="" src="images/01-Concepts-4.png" /></p>
+<p>Figure 4. Components and Services. </p>
+<p>The developer's guide uses a notation like that shown in Figure 5 to draw a service 
+and its interfaces. </p>
+<p><img alt="" src="images/01-Concepts-5.png" /></p>
+<p>Figure 5. The OfficeDocument service. </p>
+<p>I haven't drawn all the interfaces for OfficeDocument, since they're quite numerous, 
+and I haven’t listed the methods defined by each interface. </p>
+<p>The developer's guide drawing for the SpellChecker service is shown in Figure 6. </p>
+<p><img alt="" src="images/01-Concepts-6.png" /></p>
+<p>Figure 6. The SpellChecker service. </p>
+<p>The two figures illustrate a useful naming convention: all interface names start with 
+the letter "X".  </p>
+<p>The developer's guide notation leaves out information about the properties managed 
+by the services. Also, the services webpages at the LibreOffice site don't use the 
+guide’s notation.  </p>
+<p>The URLs for these pages are somewhat difficult to remember. The best thing is to 
+use my loDoc.bat tool to find them. For instance, you can access the office document 
+and spell checker services with:<br />
+lodoc officedocument service 
+and 
+lodoc spellchecker service 
+Note that the "officedocument" search result isn't ideal – it takes you to the IDL page 
+for the service. You need to click on the "OfficeDocument" link under the "Classes" 
+heading to get to the actual service details. </p>
+<p>The LibreOffice service webpages usually list properties, but sometimes refer to them 
+as 'attributes'. If the service documentation doesn't describe the properties, then they're 
+probably being managed by a separate “Supplier” interface (e.g. </p>
+<p>XDocumentPropertiesSupplier for OfficeDocument in Figure 5). The supplier will 
+include methods for accessing the properties as an XPropertySet object.  </p>
+<p>One great feature of the LibreOffice webpages is the inheritance diagrams on each 
+service and interface page. Part of the diagram for the OfficeDocument service is 
+shown in Figure 7. </p>
+<p><img alt="" src="images/01-Concepts-7.png" /></p>
+<p>Figure 7. Part of the Inheritance Diagram for the OfficeDocument Service. </p>
+<p>Each box in the diagram can be clicked upon to jump to the documentation for that 
+subclass or superclass. </p>
+<h2 id="4-two-inheritance-hierarchies-for-services-and-interfaces">4.  Two Inheritance Hierarchies for Services and interfaces</h2>
+<p>Services and interfaces both use inheritance, as shown by the UML diagram in Figure 
+8. </p>
+<p><img alt="" src="images/01-Concepts-8.png" /></p>
+<p>Figure 8. Service and Interface Relationships and Hierarchies. </p>
+<p>For example, OfficeDocument is the superclass service of all other document formats, 
+as illustrated in Figure 9. </p>
+<p><img alt="" src="images/01-Concepts-9.png" /></p>
+<p>Figure 9. OfficeDocument as a Superclass Service. </p>
+<p>Part of this hierarchy can also be seen in Figure 7. </p>
+<p>An interface can also be part of an inheritance hierarchy. For instance, the XModel 
+interface inherits XComponent and XInterface, as in Figure 10. </p>
+<p><img alt="" src="images/01-Concepts-10.png" /></p>
+<p>Figure 10. The Superclasses of XModel. </p>
+<p>The LibreOffice documentation graphically displays these hierarchies (e.g. see Figure 
+7), but makes no visual distinction between the service and interface hierarchies. It 
+also represents the "contains" relationship between services and interfaces as 
+inheritance, rather than as lines with circles as in the developer's guide (e.g. see 
+Figures 5 and 6). </p>
+<h2 id="5-the-fcm-relationship">5.  The FCM Relationship</h2>
+<p>The Frame-Controller-Model (FCM) relationship (or design pattern) is a part of 
+Office which programmers will encounter frequently. It appears in the API as 
+connections between the XFrame, XController, and XModel interfaces, as shown in </p>
+<p><img alt="" src="images/01-Concepts-11.png" /></p>
+<p>Figure 11. </p>
+<p><img alt="" src="images/01-Concepts-11.png" /></p>
+<p>Figure 11. The FCM Relationship. </p>
+<p>Every Office document inherits the OfficeDocument service (see Figure 9), and 
+Figure 5 shows that OfficeDocument supports the XModel interface. This means that 
+every document will include XModel methods for accessing the document's 
+resources, such as its URL, file name, type, and meta information. Via 
+XModel.getCurrentController(), a document's controller can be accessed.  </p>
+<p>A controller manages the visual presentation of a document. For instance, the Office 
+GUI interacts with the controller to position the cursor in a document, to control 
+which page is displayed, and to highlight selections. The XController interface 
+belongs to the Controller service, which is a superclass for viewing documents; 
+subclasses include TextDocumentView, DrawingDocumentDrawView, and 
+PresentationView.  </p>
+<p>From XController, it's possible to reach XFrame, which contains information about 
+the document's display window. A document utilizes two XWindow objects, called 
+the component and container windows. The component window represents the 
+rectangular area on screen that displays the document. It also handles GUI events, 
+such as window activation or minimization. The container window is the component's 
+parent. For example, a component window displaying a chart might be contained 
+within a spreadsheet window 
+A frame can contain child frames, allowing the Office GUI to be thought of as a tree 
+of frames. The root frame of this tree is the Desktop object, which you may recall is 
+one of the first three objects stored in the remote component context when we start 
+Office. This means that we can move around the frames in the Office GUI starting 
+from the loaded document, or from the root frame referred to from XDesktop. For 
+example, XDesktop provides getCurrentFrame() to access the currently active frame. </p>
+<h2 id="6-components-again">6.  Components Again</h2>
+<p>A knowledge of the FCM relationship, and its XFrame, XController, and XModel 
+interfaces, lets me give a more detailed definition of a component. Back in section 3 
+(and in Figure 4), I said a component was an implemented service. Another way of 
+understanding a component is in terms of how much of the FCM relationship it 
+supports, which allows the 'component' idea to be divided into three: </p>
+<h2 id="1-a-component-that-supports-both-the-xmodel-and-xcontroller-interfaces-is-usually">1.  A component that supports both the XModel and XController interfaces is usually</h2>
+<p>an Office document. </p>
+<h2 id="2-a-component-with-a-controller-but-no-model-is-typically-used-to-implement-library">2.  A component with a controller but no model is typically used to implement library</h2>
+<p>functionality that doesn't need to load data. Examples include the spell checker, 
+and Office tools for creating database forms. </p>
+<h2 id="3-a-component-with-no-model-or-controller-ie-just-an-xwindow-object-is-used">3.  A component with no model or controller (i.e. just an XWindow object) is used</h2>
+<p>for simple GUI elements, such as Office's help windows. </p>
+<p>Of these three types, the component-as-document (number 1) is the most important 
+for our needs. In particular, I'll be using the component loader in the remote 
+component context to load Office documents. </p>
+<h2 id="7-whats-an-extension">7.  What's an Extension?</h2>
+<p>The Office developer's guide often uses the words 'extension', 'add-on', and 'add-in'. </p>
+<p>I'll be spending four chapters on these features in Part 8 (along with macro 
+programming in Java), but it's worth briefly explaining them now. </p>
+<p>An extension is a code library that extends Office's functionality. For Java 
+programmers, an extension usually takes the form of a JAR file containing a service, 
+its interfaces, properties, and their implementations. Since an extension implements 
+the service, it may also be referred to as a component. </p>
+<p>An add-on is an extension with additional XML files defining a GUI for the extension 
+(e.g. a menu bar, menu item, or toolbar icon). An add-on is rendered in Office's GUI 
+in the same way as standard Office elements.  </p>
+<p>An add-in or, to use its full name, a Calc Add-in, is an extension that adds a new 
+function to Calc.  </p>
+<h2 id="8-a-comparison-with-the-basic-api">8.  A Comparison with the Basic API</h2>
+<p>If you start searching the forums, newsgroups, blogs, and web sites for Office 
+examples, it soon becomes clear that Java is not the language of choice for most 
+Office programmers. Basic (sometimes called StarBasic, OpenOffice.org Basic, 
+LibreOffice Basic, or even Visual Basic or VB by mistake) is the darling of the 
+coding crowd.  </p>
+<p>This is understandable since Office (both LibreOffice and OpenOffice) includes an 
+IDE for editing and debugging Basic macros. Also, there's a lot of good resources on 
+how to utilize these tools (e.g. start browsing the LibreOffice wiki page "LibreOffice 
+Basic Help", https://help.libreoffice.org/Basic/Basic_Help). The few books that have 
+been written about programming the Office API have all used Basic (e.g. Pitonyak's 
+"OpenOffice.org Macros Explained" at http://www.pitonyak.org/book/). </p>
+<p>There are two styles of Basic macro programming – scripts can be attached to specific 
+documents, or to the Office application. In a document, a macro can respond to Office 
+events, such as the loading of the document, or its modification. The macro can 
+monitor the user's key presses or menu button presses, and can utilize Office dialogs. </p>
+<p>This isn't the place for a language war between Java and Basic, but it's fair to say that 
+the Basic Office API is simpler than the Java version! This is partly due to the fact 
+that Basic has a weaker typing system than Java, but also that the Office abstractions 
+used by Basic are simpler than those in Java. </p>
+<p>The main difference is that the Basic API doesn't use interfaces. Instead of a service 
+containing a collection of interfaces, each of which has methods, a Basic service 
+directly contains all the methods. This means that an Office service can be understood 
+as a plain-old object containing methods and data (in the form of properties).  </p>
+<p>I'm at a loss why this abstraction wasn't used in Java. One use of interfaces is to<br />
+employ interface typing, but most of the typing protection is applied at runtime when 
+one interface is cast to another. This means that one of the big benefits of typing 
+(compile-time error detection) is lost. </p>
+<p>Another advantage of Basic is its hiding of the complexities of accessing Office at 
+start-up, and for requesting services. In comparison, for many years, there was no 
+Bootstrap class in the Java Office API. This meant that every Java programmer had to 
+grapple with difficult code for linking to Office and obtaining a remote component 
+context.  </p>
+<p>In the Basic API, there's no remote component context since the macros run inside 
+Office or inside a document that is loaded into Office. Incidentally, this means that 
+Basic code doesn't need those few extra microseconds for every operation to 
+communicate across process boundaries. </p>
+<p>The Basic programmer still utilizes a service manager, Desktop object, and perhaps a 
+loader. This means that the first few lines of a macro might be: </p>
+<p>Dim oSM, oDesk, oDoc As Object 
+Set oSM = CreateObject("com.sun.star.ServiceManager") 
+Set oDesk = oSM.createInstance("com.sun.star.frame.Desktop") 
+Set oDoc = oDesk.loadComponentFromURL( 
+             "file:///C:/tmp/testdoc.odt", "_blank", 0, noArgs()) </p>
+<p>However, if the script is part of a loaded document, then the call to 
+loadComponentFromURL() isn't needed, reducing the code to: </p>
+<p>Set oSM = CreateObject("com.sun.star.ServiceManager") 
+Set oDesk = oSM.createInstance("com.sun.star.frame.Desktop") 
+Set oDoc = oDesk.CurrentComponent </p>
+<p>Also, Office's Basic runtime environment automatically creates a service manager and 
+Desktop object, so it's unnecessary to create them explicitly. This reduces the code to 
+a one-liner: 
+Set oDoc = StarDesktop.CurrentComponent 
+or even: 
+Set oDoc = ThisComponent 
+If other services are needed, Basic programmers call the createUnoService() function 
+which transparently requests the named service from the service manager. For 
+instance: </p>
+<p>set sfAcc = CreateUnoService("com.sun.star.ucb.SimpleFileAccess") 
+sfAcc.CreateFolder(dirName)  </p>
+<p>Recall that a Basic service contains all the methods from its interfaces, so once the 
+service reference has been obtained, methods can be called directly. </p>
+<p>One of the aims of my utilities is to hide as much of the complexity of Office as the 
+Basic version of the API.  </p>
+<p>Having just reread this section, I may have just convinced myself to become a Basic 
+programmer . The reason I'm going to stick with Java is that it's a full-featured 
+language, with massive numbers of standard and third-part APIs which can augment 
+the Office API.  </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="01%20Part%201%20Basics.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Part 1 Basics
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="02-Starting_and_Stopping.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Chapter 2. Starting and Stopping
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

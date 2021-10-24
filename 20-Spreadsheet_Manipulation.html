@@ -1,0 +1,2084 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 20. Spreadsheet Displaying and - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-20-spreadsheet-displaying-and" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 20. Spreadsheet Displaying and
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 20. Spreadsheet Displaying and
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link md-nav__link--active">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-displaying-a-document" class="md-nav__link">
+    1.  Displaying a Document
+  </a>
+  
+    <nav class="md-nav" aria-label="1.  Displaying a Document">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-read-only-and-protected-viewing" class="md-nav__link">
+    1.1.  Read-only and Protected Viewing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-changing-the-active-sheet" class="md-nav__link">
+    1.2.  Changing the Active Sheet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-sheet-names" class="md-nav__link">
+    1.3.  Sheet Names
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-zooming" class="md-nav__link">
+    1.4.  Zooming
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-creating-a-document" class="md-nav__link">
+    2.  Creating a Document
+  </a>
+  
+    <nav class="md-nav" aria-label="2.  Creating a Document">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-switching-between-cell-names-cell-ranges-and-positions" class="md-nav__link">
+    2.1.  Switching between Cell Names, Cell Ranges, and Positions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-changing-cell-values" class="md-nav__link">
+    2.2.  Changing Cell Values
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-storing-2d-arrays-of-data" class="md-nav__link">
+    2.3.  Storing 2D Arrays of Data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-storing-rows-of-data" class="md-nav__link">
+    2.4.  Storing Rows of Data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-storing-columns-of-data" class="md-nav__link">
+    2.5.  Storing Columns of Data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-adding-a-picture" class="md-nav__link">
+    2.6.  Adding a Picture
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-adding-a-chart" class="md-nav__link">
+    2.7.  Adding a Chart
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-displaying-a-document" class="md-nav__link">
+    1.  Displaying a Document
+  </a>
+  
+    <nav class="md-nav" aria-label="1.  Displaying a Document">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-read-only-and-protected-viewing" class="md-nav__link">
+    1.1.  Read-only and Protected Viewing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-changing-the-active-sheet" class="md-nav__link">
+    1.2.  Changing the Active Sheet
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-sheet-names" class="md-nav__link">
+    1.3.  Sheet Names
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-zooming" class="md-nav__link">
+    1.4.  Zooming
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-creating-a-document" class="md-nav__link">
+    2.  Creating a Document
+  </a>
+  
+    <nav class="md-nav" aria-label="2.  Creating a Document">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-switching-between-cell-names-cell-ranges-and-positions" class="md-nav__link">
+    2.1.  Switching between Cell Names, Cell Ranges, and Positions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-changing-cell-values" class="md-nav__link">
+    2.2.  Changing Cell Values
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-storing-2d-arrays-of-data" class="md-nav__link">
+    2.3.  Storing 2D Arrays of Data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-storing-rows-of-data" class="md-nav__link">
+    2.4.  Storing Rows of Data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-storing-columns-of-data" class="md-nav__link">
+    2.5.  Storing Columns of Data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-adding-a-picture" class="md-nav__link">
+    2.6.  Adding a Picture
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#27-adding-a-chart" class="md-nav__link">
+    2.7.  Adding a Chart
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/20-Spreadsheet_Manipulation.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-20-spreadsheet-displaying-and">Chapter 20. Spreadsheet Displaying and</h1>
+<p>Creation </p>
+<p>This chapter looks at two main topics: the display of an 
+existing spreadsheet document, and the creation of a new 
+document, based around two examples, ShowSheet.java 
+and BuildTable.java. </p>
+<p>As part of displaying a document, I'll also describe how to 
+use read-only and protected viewing, change the active 
+sheet, use sheet names, and adjust the window view size 
+by zooming. </p>
+<p>Document creation illustrates the use of cell names and 
+ranges, the setting of cell data using arrays, rows, and columns, and adding a picture 
+and a chart to a sheet. </p>
+<h2 id="1-displaying-a-document">1.  Displaying a Document</h2>
+<p>The ShowSheet.java example shows how to open a spreadsheet document, and 
+display its first sheet. If the program is called with a filename argument, then the 
+document is saved to that file before the program closes. The extension of the output 
+filename is used to determine the exported file type.  For example: 
+run ShowSheet totals.ods show.pdf 
+displays the totals.ods spreadsheet, and saves it as a PDF file. Alternatively: 
+run ShowSheet sorted.csv sorted.html <br />
+opens the CSV file as a Calc document, and saves it as HTML. </p>
+<p>The main() function of ShowSheet.java: </p>
+<p>// in ShowSheet.java 
+public static void main(String args[]) 
+{ <br />
+  String outFnm = null; 
+  if ((args.length &lt; 1) || (args.length &gt; 2)) { 
+    System.out.println("Usage: run ShowSheet fnm [out-fnm]"); 
+    return; 
+  } 
+  if (args.length == 2) 
+    outFnm = args[1]; </p>
+<p>XComponentLoader loader = Lo.loadOffice(); 
+  XSpreadsheetDocument doc = Calc.openDoc(args[0], loader); 
+  if (doc == null) { 
+    System.out.println("Could not open " + args[0]); 
+    Lo.closeOffice(); 
+    return; </p>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Displaying a </p>
+</div>
+<p>Document; Read-only 
+and Protected Viewing; 
+Active Sheets; Sheet 
+Names; Zooming; 
+Creating a Document; 
+Cell Names and Ranges; 
+Cell Values; Data 
+Arrays; Rows and 
+Columns of Data; 
+Adding a Picture and a 
+Chart 
+Example folders: "Calc 
+Tests" and "Utils" 
+  } </p>
+<p>GUI.setVisible(doc, true); 
+  Calc.gotoCell(doc, "A1");   // move view to top of sheet </p>
+<p>// XSpreadsheet sheet = Calc.getSheet(doc, 0);  // not needed here </p>
+<p>Lo.waitEnter();  // wait for user to press <ENTER> </p>
+<p>if (outFnm != null) 
+    Lo.saveDoc(doc, outFnm); 
+  Lo.closeDoc(doc); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+<p>Calc.openDoc() opens the document, returning an XSpreadsheetDocument reference: </p>
+<p>// in the Calc class 
+public static XSpreadsheetDocument openDoc(String fnm,<br />
+                         XComponentLoader loader) 
+{ 
+  XComponent doc = Lo.openDoc(fnm, loader); 
+  if (doc == null) { 
+    System.out.println("Document is null"); 
+    return null; 
+  } 
+  return getSSDoc(doc); 
+}  // end of openDoc() </p>
+<p>public static XSpreadsheetDocument getSSDoc(XComponent doc) 
+{ <br />
+  if (!Info.isDocType(doc, Lo.CALC_SERVICE)) { 
+    System.out.println("Not a spreadsheet doc; closing"); 
+    Lo.closeDoc(doc); 
+    return null; 
+  } 
+  XSpreadsheetDocument ssDoc =<br />
+                  Lo.qi(XSpreadsheetDocument.class, doc); 
+  if (ssDoc == null) { 
+    System.out.println("Not a spreadsheet doc; closing"); 
+    Lo.closeDoc(doc); 
+    return null; 
+  } 
+  return ssDoc; 
+}  // end of getSSDoc() </p>
+<p>First Lo.openDoc() returns an XComponent reference, then getSSDoc() converts it to 
+XSpreadsheetDocument. This conversion will fail if the input document isn't a 
+spreadsheet. </p>
+<p>GUI.setVisible(true) causes Office to display the spreadsheet's active sheet, which is 
+the one that was being worked on when the file was previously saved. In addition, the 
+application will display the cell or cells selected in the sheet at that time. The selection 
+can be changed by calling Calc.gotoCell(): </p>
+<p>// in the Calc class 
+public static void gotoCell(XSpreadsheetDocument doc,<br />
+                                               String cellName) 
+{ XFrame frame = getController(doc).getFrame(); 
+  gotoCell(frame, cellName); 
+} </p>
+<p>public static XController getController(XSpreadsheetDocument doc) 
+{ XModel model = Lo.qi(XModel.class, doc); 
+  return model.getCurrentController(); 
+} </p>
+<p>public static void gotoCell(XFrame frame, String cellName) 
+{  Lo.dispatchCmd(frame, "GoToCell",<br />
+            Props.makeProps("ToPoint", cellName));  } </p>
+<p>Any changes to the document's view requires a reference to its controller. The active 
+cell is changed by sending a "GoToCell" dispatch to the controller's frame. </p>
+<p>"GoToCell" requires a cell name argument, which is encoded as a property array 
+containing a single "ToPoint" property. </p>
+<p>Calc.getSheet() returns a reference to the currently active sheet. but that line is 
+commented out in ShowSheet.java, since it's not needed. getSheet() is implemented 
+using code similar to that described in the previous chapter: </p>
+<p>// in the Calc class 
+public static XSpreadsheet getSheet(XSpreadsheetDocument doc,<br />
+                                              int index) 
+{ XSpreadsheets sheets = doc.getSheets(); 
+  XSpreadsheet sheet = null; 
+  try { 
+    XIndexAccess xSheetsIdx = Lo.qi(XIndexAccess.class, sheets); 
+    sheet = Lo.qi(XSpreadsheet.class,<br />
+                                xSheetsIdx.getByIndex(index)); 
+  } 
+  catch (Exception e) { 
+    System.out.println("Could not access spreadsheet: " + index); 
+  } 
+  return sheet; 
+}  // end of getSheet() </p>
+<p>If the user calls ShowSheet.java with a filename argument, then Lo.saveDoc() 
+performs a save to that file. saveDoc() utilizes Lo.ext2Format() to map the filename's 
+extension (e.g. "pdf", "html", "xhtml") and the document type (in this case, a 
+spreadsheet) to a suitable output format. The function consists of a long switch 
+statement which decides on the most suitable mapping, as illustrated by the code 
+fragment: </p>
+<p>// in the Lo class 
+public static String ext2Format(int docType, String ext) 
+{ 
+  switch (ext) { 
+    case "doc": return "MS Word 97"; 
+    case "docx": return "Office Open XML Text"; 
+       : 
+       :   // many more cases </p>
+<pre><code>case "pdf":  
+  if (docType == Lo.WRITER) 
+    return "writer_pdf_Export"; 
+  else if (docType == Lo.IMPRESS) 
+    return "impress_pdf_Export"; 
+  else if (docType == Lo.DRAW) 
+    return "draw_pdf_Export"; 
+  else if (docType == Lo.CALC) 
+    return "calc_pdf_Export"; 
+  else if (docType == Lo.MATH) 
+    return "math_pdf_Export"; 
+  else  
+    return "writer_pdf_Export"; 
+    :  // many more cases
+</code></pre>
+<p>}   // end of ext2Format() </p>
+<p>The "pdf" case is selected when the output file extension is "pdf", but the export 
+format also depends on the Office document. For ShowSheet.java, the docType value 
+will be Lo.CALC, which causes ext2Format() to return "calc_pdf_Export". </p>
+<p>Lo.ext2Format() is very far from comprehensive, but understands Office and MS 
+spreadsheet formats, CSV, RTF, text, HTML, XHTML, and PDF. Other mappings 
+can be added as required. </p>
+<h3 id="11-read-only-and-protected-viewing">1.1.  Read-only and Protected Viewing</h3>
+<p>One variant of ShowSheet.java prevents a user from changing the spreadsheet. </p>
+<p>Unfortunately, implementing this by opening the document read-only isn't particularly 
+robust because Office always displays a message asking if the user wants to override 
+the read-only setting. Nevertheless, the code is short: </p>
+<p>// commented out in ShowSheet.java 
+XComponent cDoc = Lo.openReadOnlyDoc(args[0], loader); 
+XSpreadsheetDocument doc = Calc.getSSDoc(cDoc); </p>
+<p>openReadOnlyDoc() calls Lo.openDoc() with the "ReadOnly" property set to true: </p>
+<p>// in the Calc class 
+public static XComponent openReadOnlyDoc(String fnm,<br />
+                                         XComponentLoader loader) 
+{  return openDoc(fnm, loader,<br />
+                Props.makeProps("Hidden", true, "ReadOnly", true) );<br />
+} </p>
+<p>If you want to actually stop the user from changing the spreadsheet, then it must be 
+protected, using the XProtectable interface: </p>
+<p>XProtectable pro = Lo.qi(XProtectable.class, doc); 
+pro.protect("foobar"); </p>
+<p>XProtectable.protect() assigns a password to the sheet (in this example, "foobar"), 
+which the user must supply in order to change any data . </p>
+<p>Document-level protection isn't supported in the current version of Office. The best 
+we can do is to apply protection to individual sheets. Namely: </p>
+<p>// commented out in ShowSheet.java 
+XSpreadsheet sheet = Calc.getSheet(doc, 0); // get sheet 1 
+XProtectable pro = Lo.qi(XProtectable.class, sheet); 
+pro.protect("foobar"); </p>
+<p>// query the user for the password 
+String pwd = GUI.getPassword("Sheet protection", "Supply password:"); 
+if ((pwd != null) &amp;&amp; pwd.equals("foobar")) {  // check input 
+  System.out.println("Password correct"); 
+  pro.unprotect("foobar"); 
+} 
+else { 
+  System.out.println("Password incorrect"); 
+  GUI.showJMessageBox("Password Status", "Password incorrect"); 
+} </p>
+<p>The code fragment above shows how to query the user for the password. </p>
+<p>GUI.getPassword() displays a dialog window which includes a Java JPasswordField 
+component for hiding the entered data: </p>
+<p>// in the GUI class 
+public static String getPassword(String title, String inputMsg)<br />
+{ 
+  JLabel jl = new JLabel(inputMsg); 
+  JPasswordField jpf = new JPasswordField(24); 
+  Object[] ob = {jl, jpf}; 
+  int result = JOptionPane.showConfirmDialog(null, ob, title,<br />
+                                    JOptionPane.OK_CANCEL_OPTION); 
+  if (result == JOptionPane.OK_OPTION) 
+    return new String(jpf.getPassword()); 
+  else<br />
+    return null; 
+}  // end of getPassword() </p>
+<h3 id="12-changing-the-active-sheet">1.2.  Changing the Active Sheet</h3>
+<p>Another variation of ShowSheet allows the user to specify which sheet to make 
+active, and so be displayed in Office. It's not enough to execute Calc.getSheet() with a 
+sheet index; Calc.setActiveSheet() must also be called to make that sheet active: </p>
+<p>// in the Calc class 
+public static void setActiveSheet(XSpreadsheetDocument doc,<br />
+                                     XSpreadsheet sheet) 
+{ XSpreadsheetView ssView =<br />
+          Lo.qi(XSpreadsheetView.class, getController(doc)); 
+  ssView.setActiveSheet(sheet); 
+}  // end of setActiveSheet() </p>
+<p>Calc.setActiveSheet() converts the controller interface for the document into an 
+XSpreadsheetView, which is the main interface for the SpreadsheetView service (see 
+Figure 1). </p>
+<p><img alt="" src="images/20-Spreadsheet_Manipulation-1.png" /></p>
+<p>Figure 1. The SpreadsheetView Services and Interfaces. </p>
+<p>SpreadsheetView implements a number of interfaces for affecting the user's view of a 
+document. View-related properties are stored in the inherited 
+SpreadsheetViewSettings class, which can be listed by calling Props.showObjProps(): </p>
+<p>// commented out in ShowSheet.java 
+XSpreadsheetView ssView =<br />
+          Lo.qi(XSpreadsheetView.class, getController(doc)); 
+Props.showObjProps("Spreadsheet view", ssView); </p>
+<h3 id="13-sheet-names">1.3.  Sheet Names</h3>
+<p>Default spreadsheet names use "Sheet" followed by a positive integer. For example, a 
+new document will name its first sheet "Sheet1". Calc.getSheet() can accept a sheet 
+name, as in the following code which makes "Sheet1" active: </p>
+<p>// in ShowSheet.java 
+XSpreadsheet sheet = Calc.getSheet(doc, "Sheet1"); 
+Calc.setActiveSheet(doc, sheet); </p>
+<p>All the sheet names in a document can be accessed via Calc.getSheetNames(), and a 
+sheet's name can be changed by Calc.setSheetName(): </p>
+<p>// in the Calc class 
+public static String[] getSheetNames(XSpreadsheetDocument doc) 
+{ XSpreadsheets sheets = doc.getSheets(); 
+  return sheets.getElementNames(); 
+} </p>
+<p>public static void setSheetName(XSpreadsheet sheet, String name) 
+{ 
+  XNamed xNamed = Lo.qi(XNamed.class, sheet); 
+  if (xNamed == null) 
+    System.out.println("Could not access spreadsheet"); 
+  else 
+    xNamed.setName(name); 
+}  // end of setSheetName() </p>
+<h3 id="14-zooming">1.4.  Zooming</h3>
+<p>Zooming the view of a document is done by adjusting properties in 
+SpreadsheetViewSettings (see Figure 1 above). The "ZoomType" property specifies 
+the kind of zooming, which may be a size percentage or a constant indicating a 
+particular zooming amount. The constants are defined in Calc.java: </p>
+<p>// in the Calc class 
+public static final short OPTIMAL = 0; 
+public static final short PAGE_WIDTH = 1; 
+public static final short ENTIRE_PAGE = 2; 
+public static final short BY_VALUE = 3; 
+public static final short PAGE_WIDTH_EXACT = 4; </p>
+<p>The constants are understood by Calc.zoom():  </p>
+<p>// in the Calc class 
+public static void zoom(XSpreadsheetDocument doc, short type) 
+{ XController ctrl = getController(doc); 
+  Props.setProperty(ctrl, "ZoomType", type); <br />
+} </p>
+<p>For example, the entire sheet can be made visible by calling: 
+Calc.zoom(doc, Calc.ENTIRE_PAGE); 
+For percentage zooming, the value must be assigned to the "ZoomValue" property. </p>
+<p>This is handled by Calc.zoomValue(): </p>
+<p>// in the Calc class 
+public static void zoomValue(XSpreadsheetDocument doc, int value) 
+{ 
+  XController ctrl = getController(doc); 
+  Props.setProperty(ctrl, "ZoomType", BY_VALUE); 
+  Props.setProperty(ctrl, "ZoomValue", (short)value);        <br />
+} </p>
+<h2 id="2-creating-a-document">2.  Creating a Document</h2>
+<p>The BuildTable.java example shows how to create a new spreadsheet document, 
+populate it with data, apply cell styling, and save it to a file. I'll look at styling in the 
+next chapter, and will concentrate here on the different ways to add data to a sheet. </p>
+<p>The main() function of BuildTable.java is: </p>
+<p>// in BuildTable.java 
+public static void main(String args[]) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  XSpreadsheetDocument doc = Calc.createDoc(loader); 
+  if (doc == null) { 
+    System.out.println("Document creation failed"); 
+    Lo.closeOffice(); 
+    return; 
+  } 
+  GUI.setVisible(doc, true); 
+  XSpreadsheet sheet = Calc.getSheet(doc, 0); </p>
+<p>convertAddresses(sheet); </p>
+<p>// uncomment one of these build methods 
+  // buildCells(sheet); 
+  // buildRows(sheet); 
+  // buildCols(sheet); 
+  buildArray(sheet); </p>
+<p>Lo.saveDoc(doc, "buildTable.ods"); </p>
+<p>Lo.waitEnter(); 
+  Lo.closeDoc(doc); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+<p>main() can call one of four different build methods to demonstrate various Calc.java 
+functions for filling cells and cell ranges. convertAddresses() illustrates the Calc.java 
+methods for converting between cell names and positions, and between cell range 
+names and position intervals. </p>
+<h3 id="21-switching-between-cell-names-cell-ranges-and-positions">2.1.  Switching between Cell Names, Cell Ranges, and Positions</h3>
+<p>Although the Calc.java get/set methods for cells, columns, rows, and cell ranges 
+support both name and position based addressing (e.g. "D5" and (3, 4)), it's still 
+sometimes necessary to convert between the different formats. convertAddresses() 
+demonstrates those methods: </p>
+<p>// in BuildTable.java 
+private static void convertAddresses(XSpreadsheet sheet) 
+{ 
+  // cell name &lt;--&gt; position 
+  java.awt.Point pos = Calc.getCellPosition("AA2"); 
+  System.out.println("Position of AA2: (" +pos.x+", "+pos.y+")"); </p>
+<p>XCell cell = Calc.getCell(sheet, pos.x, pos.y); 
+  Calc.printCellAddress(cell); </p>
+<p>System.out.println("AA2: " + Calc.getCellStr(pos.x, pos.y)); 
+  System.out.println(); </p>
+<p>// cell range name &lt;--&gt; position 
+  java.awt.Point[] range = Calc.getCellRangePositions("A1:D5"); 
+  System.out.println("Range of A1:D5: (" +<br />
+                      range[0].x + ", " +  range[0].y + <br />
+           ") -- (" + range[1].x + ", " +  range[1].y +  ")"); </p>
+<p>XCellRange cellRange = Calc.getCellRange(sheet,<br />
+           range[0].x, range[0].y, range[1].x, range[1].y); 
+  Calc.printAddress(cellRange); 
+  System.out.println("A1:D5: " +<br />
+             Calc.getRangeStr(range[0].x, range[0].y, <br />
+                                range[1].x, range[1].y)); 
+  System.out.println(); 
+}  // end of convertAddresses() </p>
+<p>convertAddresses() prints the following: </p>
+<p>Position of AA2: (26, 1) 
+Cell: Sheet1.AA2 
+AA2: AA2 </p>
+<p>Range of A1:D5: (0, 0) -- (3, 4) 
+Range: Sheet1.A1:D5 
+A1:D5: A1:D5 </p>
+<p>Cell Name Manipulation 
+Calc.getCellPosition() converts a cell name, such as "AA2", into a (column, row) 
+position coordinate, which it returns as a Java Point object. For "AA2" the result is 
+(26, 1), since the column labeled "AA" follows "Z" in a spreadsheet. The 
+implementation uses regular expression parsing of the input string to separate out the 
+alphabetic and numerical parts before processing them: </p>
+<p>// in the Calc class 
+public static Point getCellPosition(String cellName) 
+{ 
+   Pattern p = Pattern.compile( "([a-zA-Z]+)([0-9]+)" ); 
+   Matcher m = p.matcher(cellName); 
+   if (m.matches()) {<br />
+     int nColumn = columnStringToNumber( m.group(1).toUpperCase() ); 
+     int nRow = rowStringToNumber(m.group(2)); 
+     return new Point(nColumn, nRow); 
+   } 
+   else { 
+     System.out.println("No match found"); 
+     return null; 
+   } 
+ }  // end of getCellPosition() </p>
+<p>Calc.getCell() converts a position into an XCell reference to the cell: 
+XCell cell = Calc.getCell(sheet, 26, 1); 
+The function is a wrapper around XCellRange.getCellByPosition(): </p>
+<p>// first version of Calc.getCell() 
+public static XCell getCell(XSpreadsheet sheet, int column, int row) 
+{<br />
+  try { 
+    return sheet.getCellByPosition(column, row); 
+  } 
+  catch (Exception e) { 
+    System.out.println("Could not access cell at: " +<br />
+                               column + " - " + row); 
+    return null; 
+  } 
+}  // end of getCell() </p>
+<p>A second version of getCell() refers to a cell by name: 
+XCell cell = Calc.getCell(sheet, "AA2"); 
+The code: </p>
+<p>// 2nd version of Calc.getCell() 
+public static XCell getCell(XSpreadsheet sheet, String cellName) 
+{<br />
+  XCellRange cellRange = sheet.getCellRangeByName(cellName); 
+  return getCell(cellRange, 0, 0);   // calls 1st getCell() 
+}  </p>
+<p>The call to XCellRange.getCellRangeByName() with a single cell name returns a cell 
+range made up of one cell. This XCellRange reference can be passed to Calc.getCell() 
+since XCellRange is a superclass of XSpreadsheet. The first version of getCell() is 
+called, and XCellRange.getCellByPosition() treats (0, 0) as a position relative to the 
+cell range. There's only one cell in this range, so getCellByPosition() returns a 
+reference to the "AA2" cell. </p>
+<p>Cell Range Manipulation 
+The second half of convertAddresses() shows off some of the cell range addressing 
+methods. Calc.getCellRangePositions() returns an array of two Java Point objects 
+corresponding to the top-left and bottom-right cells of the range: </p>
+<p>// in convertAddresses() in BuildTable.java 
+    : 
+java.awt.Point[] range = Calc.getCellRangePositions("A1:D5"); 
+System.out.println("Range of A1:D5: (" +<br />
+                       range[0].x + ", " +  range[0].y + <br />
+            ") -- (" + range[1].x + ", " +  range[1].y +  ")"); </p>
+<p>Only simple cell range names of the form <cell name> ':' <cell name> are understood 
+by my functions. Range operators, such as "~", "!", and absolute references using "$" 
+aren't supported. </p>
+<p>Calc.getCellRange() converts a range address into an XCellRange reference: 
+XCellRange cellRange = Calc.getCellRange(sheet, "A1:D5"); 
+This method wraps a call to XCellRange.getCellRangeByName(): </p>
+<p>// in the Calc class 
+public static XCellRange getCellRange(XSpreadsheet sheet,<br />
+                                              String rangeName) 
+{ XCellRange cellRange = sheet.getCellRangeByName(rangeName); 
+  if (cellRange == null) 
+    System.out.println("Could not access: \"" + rangeName + "\"" ); 
+  return cellRange; 
+} </p>
+<h3 id="22-changing-cell-values">2.2.  Changing Cell Values</h3>
+<p>Back in BuildTable.java, the buildCells() methods shows how individual cells can be 
+assigned values. The code uses two versions of Calc.setVal(), one that accepts a cell 
+position, the other a cell name. For example: </p>
+<dl>
+<dt>// in buildCells() in BuildTable.java</dt>
+<dd>Calc.setVal(sheet, "B2", 31.45);    // name 
+Calc.setVal(sheet, 1, 0, "JAN");    // (column, row) </dd>
+</dl>
+<p>Both methods store a number or a string in a cell, by processing the input value as an 
+Object: </p>
+<p>// in the Calc class 
+public static void setVal(XSpreadsheet sheet,<br />
+                               String cellName, Object value) 
+// save value using cell name 
+{ Point pos = getCellPosition(cellName); 
+  setVal(sheet, pos.x, pos.y, value);  // column, row 
+}  </p>
+<p>public static void setVal(XSpreadsheet sheet,<br />
+                           int column, int row, Object value) 
+// save value using cell position 
+{ XCell cell = getCell(sheet, column, row); 
+  setVal(cell, value); 
+}  </p>
+<p>public static void setVal(XCell cell, Object value) 
+// decide how to save value based on its type 
+{<br />
+  if (value instanceof Number) 
+    cell.setValue( convertToDouble(value)); 
+  else if (value instanceof String) 
+    cell.setFormula((String)value); 
+  else 
+    System.out.println("Value is not a number/string: " + value); 
+}  // end of setVal() </p>
+<p>The third setVal() function examines the type of the value to decide whether to call 
+XCell.setValue() or XCell.setFormula(). </p>
+<h3 id="23-storing-2d-arrays-of-data">2.3.  Storing 2D Arrays of Data</h3>
+<p>The buildArray() method in BuildTables.java shows how a block of data can be stored 
+by Calc.setArray(): </p>
+<p>// in BuildTable.java 
+private static void buildArray(XSpreadsheet sheet) 
+{ 
+  Object[][] vals = { 
+               {"", "JAN", "FEB", "MAR", "APR", "MAY", "JUN", 
+                     "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"}, 
+               {"Smith", 42, 58.9, -66.5, 43.4, 44.5, 45.3,<br />
+                        -67.3, 30.5, 23.2, -97.3, 22.4, 23.5}, 
+               {"Jones", 21, 40.9, -57.5, -23.4, 34.5, 59.3,<br />
+                         27.3, -38.5, 43.2, 57.3, 25.4, 28.5}, 
+               {"Brown", 31.45, -20.9, -117.5, 23.4, -114.5, 115.3,<br />
+                         -171.3, 89.5, 41.2, 71.3, 25.4, 38.5} 
+            }; 
+  Calc.setArray(sheet, "A1:M4", vals); </p>
+<p>Calc.setVal(sheet, "N1", "SUM"); 
+  Calc.setVal(sheet, "N2", "=SUM(B2:M2)"); 
+  Calc.setVal(sheet, "N3", "=SUM(B3:M3)"); 
+  Calc.setVal(sheet, "N4", "=SUM(A4:L4)"); 
+}  // end of buildArray() </p>
+<p>Calc.setArray() accepts a 2D array of Object values (which means it can contain a 
+mix of strings and doubles) with the data arranged in row-order. For example, the data 
+shown above is stored in the sheet as in Figure 2. </p>
+<p><img alt="" src="images/20-Spreadsheet_Manipulation-2.png" /></p>
+<p>Figure 2. A Block of Data Added to a Sheet. </p>
+<p>The second argument of Calc.setArray() can be a cell range or a single cell name 
+representing the top-left corner of the range. In the latter case, the cell range is 
+calculated from the size of the array. This means that the call used above could be 
+rewritten as: 
+Calc.setArray(sheet, "A1", vals);  // string was "A1:M4" 
+Calc.setArray() is defined as: </p>
+<p>// in the Calc class 
+public static void setArray(XSpreadsheet sheet,<br />
+                         String name, Object[][] values) 
+// decide how sheet area is referred to by name 
+{ 
+  if (isCellRangeName(name)) 
+    setArrayRange(sheet, name, values); 
+  else   // is a cell name 
+    setArrayCell(sheet, name, values); 
+}  // end of setArray() </p>
+<p>public static void setArrayRange(XSpreadsheet sheet,<br />
+                        String rangeName, Object[][] values) 
+// store array using cell range name 
+{ XCellRange cellRange = getCellRange(sheet, rangeName); 
+  setCellRangeArray(cellRange, values); 
+}  // end of setArrayRange() </p>
+<p>public static void setArrayCell(XSpreadsheet sheet,<br />
+                           String cellName, Object[][] values) 
+// store array using cell name 
+{ 
+  // calculate cell range name using array size 
+  Point pos = getCellPosition(cellName); 
+  int colEnd = pos.x + values[0].length-1; 
+  int rowEnd = pos.y + values.length-1; 
+  XCellRange cellRange =<br />
+            getCellRange(sheet, pos.x, pos.y, colEnd, rowEnd); 
+  setCellRangeArray(cellRange, values); 
+}  // end of setArrayCell() </p>
+<p>public static void setCellRangeArray(XCellRange cellRange,<br />
+                                     Object[][] values) 
+// store the array as data in the cell range 
+{ XCellRangeData crData = Lo.qi(XCellRangeData.class, cellRange); 
+  crData.setDataArray(values); 
+}  // end of setCellRangeArray() </p>
+<p>The storage of the array is performed by Calc.setCellRangeArray() which is passed an 
+XCellRange object and a 2D array. XCellRange is converted into XCellRangeData 
+which has a setDataArray() method. </p>
+<h3 id="24-storing-rows-of-data">2.4.  Storing Rows of Data</h3>
+<p>Calc.setRow() lets the programmer store a 1D array as a row of data: </p>
+<p>Calc.setRow(sheet, "B2", <br />
+           new Object[] {42, 58.9, -66.5, 43.4, 44.5, 45.3,<br />
+                         -67.3, 30.5, 23.2, -97.3, 22.4, 23.5}); </p>
+<p>Calc.setRow() employs XCellRangeData.setDataArray(), which requires an 
+XCellRange object and a 2D array: </p>
+<p>// in the Calc class 
+public static void setRow(XSpreadsheet sheet,<br />
+                           String cellName, Object[] values) 
+// store values in row using cell name 
+{ Point pos = getCellPosition(cellName); 
+  setRow(sheet, pos.x, pos.y, values);    // column, row 
+} </p>
+<p>public static void setRow(XSpreadsheet sheet, 
+                       int colStart, int rowStart, Object[] values) 
+// store values in row starting at (colstart, rowstart) 
+{ 
+  XCellRange cellRange = getCellRange(sheet, colStart, rowStart, 
+                            colStart + values.length-1, rowStart); 
+      // calculate cell range based on array size 
+  XCellRangeData crData = Lo.qi(XCellRangeData.class, cellRange); 
+  crData.setDataArray( new Object[][]{values});  <br />
+       // store the row as a 2D array containing one row of data 
+}  // end of setRow() </p>
+<h3 id="25-storing-columns-of-data">2.5.  Storing Columns of Data</h3>
+<p>Calc.setCol() lets the programmer store a column of data, as shown in 
+BuildTable.java in its buildCols() method: </p>
+<p>// in BuildTable.java 
+private static void buildCols(XSpreadsheet sheet) 
+{ 
+  Calc.setCol(sheet, "A2",<br />
+        new Object[] {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", 
+                      "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"}); 
+  Calc.setVal(sheet, "A14", "SUM"); </p>
+<p>Calc.setVal(sheet, "B1", "Smith"); 
+  Calc.setCol(sheet, "B2", <br />
+        new Object[] {42, 58.9, -66.5, 43.4, 44.5, 45.3,<br />
+                     -67.3, 30.5, 23.2, -97.3, 22.4, 23.5}); 
+  Calc.setVal(sheet, "B14", "=SUM(B2:M2)"); </p>
+<p>Calc.setVal(sheet, 2, 0, "Jones"); 
+  Calc.setCol(sheet, 2, 1, <br />
+        new Object[] {21, 40.9, -57.5, -23.4, 34.5, 59.3,<br />
+                      27.3, -38.5, 43.2, 57.3, 25.4, 28.5}); 
+  Calc.setVal(sheet, 2, 13, "=SUM(B3:M3)"); </p>
+<p>Calc.setVal(sheet, 3, 0, "Brown"); 
+  Calc.setCol(sheet, 3, 1, <br />
+        new Object[] {31.45, -20.9, -117.5, 23.4, -114.5, 115.3,<br />
+                     -171.3, 89.5, 41.2, 71.3, 25.4, 38.5}); 
+  Calc.setVal(sheet, 3, 13, "=SUM(A4:L4)"); 
+}  // end of buildCols() </p>
+<p>buildCols() creates the spreadsheet shown in Figure 3. </p>
+<p><img alt="" src="images/20-Spreadsheet_Manipulation-3.png" /></p>
+<p>Figure 3. Columns of Data in a Sheet. </p>
+<p>Column creation is a little harder than row building since it's not possible to use 
+XCellRangeData.setDataArray() which assumes that data is row-ordered. Instead 
+Calc.setCol() calls Calc.setVal() in a loop: </p>
+<p>// in the Calc class 
+public static void setCol(XSpreadsheet sheet,<br />
+                       String cellName, Object[] values) 
+// store values in column using cell name 
+{ Point pos = getCellPosition(cellName); 
+  setCol(sheet, pos.x, pos.y, values);    // column, row 
+} </p>
+<p>public static void setCol(XSpreadsheet sheet, 
+                    int colStart, int rowStart, Object[] values) 
+// store values down a column starting at (colstart, rowstart) 
+{ 
+ XCellRange cellRange = getCellRange(sheet, colStart, rowStart, 
+                            colStart, rowStart + values.length-1); 
+    // calculate cell range from data size 
+  XCell xCell = null; 
+  for (int i = 0; i &lt; values.length; i++) { 
+    xCell = getCell(cellRange, 0, i);     // column -- row 
+    setVal(xCell, values[i]); 
+  } 
+}  // end of setCol() </p>
+<h3 id="26-adding-a-picture">2.6.  Adding a Picture</h3>
+<p>Adding an image to a spreadsheet is straightforward since every sheet is also a draw 
+page. The Spreadsheet service has an XDrawPageSupplier interface, which has a 
+getDrawPage() method. The returned XDrawPage reference points to a transparent 
+drawing surface that lies over the top of the sheet.  </p>
+<p>Adding a picture is done by calling Draw.drawImage(): </p>
+<p>// in addPic() in BuildTables.java 
+XDrawPageSupplier dpSupp = Lo.qi(XDrawPageSupplier.class, sheet); 
+XDrawPage page = dpSupp.getDrawPage(); 
+Draw.drawImage(page, "skinner.png", 50, 40); 
+    : </p>
+<p>The (50, 40) passed to Draw.drawImage() is the (x, y) offset from the top-left corner 
+of the sheet, specified in millimeters. This method comes from my Draw.java support 
+class, explained in Part 3. </p>
+<p>Warning when Drawing 
+Many of the Draw.java methods take a document argument, such as 
+Draw.getSlidesCount() which returns the number of draw pages in the document: </p>
+<p>System.out.println("No of draw pages: " +<br />
+                             Draw.getSlidesCount(doc)); </p>
+<p>These methods assume that the document argument can be cast to XComponent. For 
+instance, the function prototype for getSlidesCount() is: 
+int getSlidesCount(XComponent doc); 
+Unfortunately, this casting will not work with spreadsheet documents because 
+XSpreadsheetDocument doesn't inherit XComponent. Instead the 
+XSpreadsheetDocument interface must be explicitly converted to XComponent first, 
+as in: </p>
+<p>// in addPic() in BuildTables.java 
+XComponent compDoc = Lo.qi(XComponent.class, doc); 
+System.out.println("No of draw pages: " +<br />
+                             Draw.getSlidesCount(compDoc)); </p>
+<h3 id="27-adding-a-chart">2.7.  Adding a Chart</h3>
+<p>I'll be discussing charting at length in Part 5, but I'll give a taster of it here since a 
+CellRangeAddress object is used to pass data to the charting methods. For example, 
+the cell range for "A1:N4" is passed to Chart2.insertChart(): </p>
+<p>// commented out code in BuildTables.java 
+CellRangeAddress rangeAddr =  Calc.getAddress(sheet, "A1:N4"); 
+Chart2.insertChart(sheet, rangeAddr, "D6", 21, 11, "Column"); </p>
+<p>The other arguments used by Chart2.insertChart() are a cell name, the millimeter 
+width and height of the generated chart, and a chart type string. The named cell acts as 
+an anchor point for the top-left corner of the chart. Figure 4 shows what the resulting 
+chart looks like. </p>
+<p><img alt="" src="images/20-Spreadsheet_Manipulation-4.png" /></p>
+<p>Figure 4. A Column Chart in a Spreadsheet. </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="19-Calc_API_Overview.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 19. Calc API Overview
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="21-Extracting_Data.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Chapter 21. Extracting Data
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

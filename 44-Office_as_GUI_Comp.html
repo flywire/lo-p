@@ -1,0 +1,2586 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 44. Office as a GUI Component - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-44-office-as-a-gui-component" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 44. Office as a GUI Component
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 44. Office as a GUI Component
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link md-nav__link--active">
+        Chapter 44. Office as a GUI Component
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-ooobean" class="md-nav__link">
+    1.  OOoBean
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-wrapping-ooobean-in-a-jpanel" class="md-nav__link">
+    2.  Wrapping OOoBean in a JPanel
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-using-the-obeanpanel" class="md-nav__link">
+    3.  Using the OBeanPanel
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-using-an-undecorated-office-window" class="md-nav__link">
+    4.  Using an Undecorated Office Window
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-augmenting-the-user-interface-a-new-toolbar-item" class="md-nav__link">
+    5.  Augmenting the User Interface: a New Toolbar Item
+  </a>
+  
+    <nav class="md-nav" aria-label="5.  Augmenting the User Interface: a New Toolbar Item">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-intercepting-dispatches" class="md-nav__link">
+    5.1.  Intercepting Dispatches
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-displaying-a-message-box" class="md-nav__link">
+    5.2.  Displaying a Message Box
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-adding-hello-to-the-toolbar" class="md-nav__link">
+    5.3.  Adding "Hello" to the Toolbar
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-augmenting-the-user-interface-a-new-menu-item" class="md-nav__link">
+    6.  Augmenting the User Interface: a New Menu Item
+  </a>
+  
+    <nav class="md-nav" aria-label="6.  Augmenting the User Interface: a New Menu Item">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-creating-a-new-menubar" class="md-nav__link">
+    6.1.  Creating a New Menubar
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-adding-to-the-existing-menubar" class="md-nav__link">
+    6.2.  Adding to the Existing Menubar
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-ooobean" class="md-nav__link">
+    1.  OOoBean
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-wrapping-ooobean-in-a-jpanel" class="md-nav__link">
+    2.  Wrapping OOoBean in a JPanel
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-using-the-obeanpanel" class="md-nav__link">
+    3.  Using the OBeanPanel
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-using-an-undecorated-office-window" class="md-nav__link">
+    4.  Using an Undecorated Office Window
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-augmenting-the-user-interface-a-new-toolbar-item" class="md-nav__link">
+    5.  Augmenting the User Interface: a New Toolbar Item
+  </a>
+  
+    <nav class="md-nav" aria-label="5.  Augmenting the User Interface: a New Toolbar Item">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-intercepting-dispatches" class="md-nav__link">
+    5.1.  Intercepting Dispatches
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-displaying-a-message-box" class="md-nav__link">
+    5.2.  Displaying a Message Box
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-adding-hello-to-the-toolbar" class="md-nav__link">
+    5.3.  Adding "Hello" to the Toolbar
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-augmenting-the-user-interface-a-new-menu-item" class="md-nav__link">
+    6.  Augmenting the User Interface: a New Menu Item
+  </a>
+  
+    <nav class="md-nav" aria-label="6.  Augmenting the User Interface: a New Menu Item">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-creating-a-new-menubar" class="md-nav__link">
+    6.1.  Creating a New Menubar
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-adding-to-the-existing-menubar" class="md-nav__link">
+    6.2.  Adding to the Existing Menubar
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/44-Office_as_GUI_Comp.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-44-office-as-a-gui-component">Chapter 44. Office as a GUI Component</h1>
+<p>This chapter looks at two ways to use Office as a GUI 
+component for displaying documents in a program.  </p>
+<p>The first employs Office's OOoBean class: I'll wrap it in a 
+JPanel to utilize it as part of a Swing application.  </p>
+<p>The second approach invokes Office in a separate window 
+from the program, a technique I've used many times in 
+earlier chapters. The difference this time is that I'll hide 
+Office's GUI (i.e. its toolbars, menu, and sidebars), leaving 
+only the document visible. I'll also explore two variations 
+of this 'blank look': adding a item to a toolbar, and creating 
+a new menu. These GUI entities aren't permanently added to Office, and are 
+controlled and monitored by the program. </p>
+<h2 id="1-ooobean">1.  OOoBean</h2>
+<p>The OOoBean class and its com.sun.star.comp.beans package aren't documented in 
+LibreOffice, but there's an entire chapter about them in the Developer's Guide 
+(chapter 16, "JavaBean for Office Components"), at 
+https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf, and<br />
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/JavaBean/JavaBean_for_
+Office_Components (or use loGuide JavaBean). The chapter's example, 
+OOoBeanViewer, wraps OOoBean in an old-style Applet (not a JApplet), and can be 
+downloaded from 
+http://api.libreoffice.org/examples/DevelopersGuide/examples.html#OfficeBean. </p>
+<p>Another source of information is the OOoBean code at 
+https://github.com/LibreOffice/core/blob/master/bean/com/sun/star/comp/beans/OOo
+Bean.java. It's also possible to decompile OOoBean 's JAR file, which you'll find in<br />
+<Office>\program\classes\officebean.jar. </p>
+<p>As you browse the documentation and source code, you may get the feeling that 
+OOoBean has been abandoned. It's true that some functionality have been deprecated, 
+but OOoBean still mostly works. Setting it up is tricky, requiring an undocumented 
+UNO_PATH environment variable to be set when Office is invoked. Also, integrating 
+OOoBean with Swing and my LibreOffice support classes required some work. </p>
+<p>OOoBean utilizes many parts of the Office API, since it starts Office, loads a 
+document, and displays it on a Java Canvas. Some of that can be seen in Figure 1 
+which gives a simplified view of its classes and interfaces. </p>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>OOoBean; </p>
+</div>
+<p>Wrapping OOoBean in a 
+JPanel; Using the 
+OBeanPanel; Using an 
+Undecorated Office 
+Window; Augmenting 
+the User Interface: a 
+New Toolbar Item; 
+Augmenting the User 
+Interface: a New Menu 
+Item<br />
+Example folders: "GUI 
+Tests" and "Utils" </p>
+<p><img alt="" src="images/44-Office_as_GUI_Comp-1.png" /></p>
+<p>Figure 1. Some of the OOoBean Classes and Interfaces. </p>
+<p>The classes without package prefixes are from com.sun.star.comp.beans. For 
+example, LocalOfficeConnection invokes and connects to Office, while 
+LocalOfficeWindow renders Office and the loaded document. LocalOfficeWindow's 
+use of java.awt.Canvas means that the view is a heavyweight, native peer, which 
+doesn't work well with lightweight Swing components such as drop-down menus, text 
+fields, and buttons. One solution is to wrap the heavyweight component (i.e. the 
+Canvas) in a JPanel, which I've done in my OOBeanPanel class described in the next 
+section. </p>
+<p>Frame, Controller, and OfficeDocument are wrappers around com.sun.star.frame's 
+XFrame, XController, and  XModel, the three elements of Office's Frame-Controller-
+Model (FCM) relationship (described in Chapter 1, section 5). </p>
+<p>Figure 2 shows OOoBean's public methods, with the deprecated ones highlighted in 
+light orange and blue. </p>
+<p><img alt="" src="images/44-Office_as_GUI_Comp-2.png" /></p>
+<p>Figure 2. The Public Methods of OOoBean. </p>
+<p>Nearly half the methods are deprecated, but only one of them 
+(releaseSystemWindow()) is required in my code, to deal with a focus switching bug. </p>
+<p>The methods marked in light blue all relate to toolbar visibility, and can be handled 
+better by the LayoutManager service explained later. </p>
+<p>There's a table of one-line descriptions of OOoBean's methods in chapter 16 of the 
+Developer's Guide, and online at 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/JavaBean/API_Overview 
+(or use loGuide JavaBean "API Overview"). I'll only explain the methods used in 
+my OBeanPanel class. </p>
+<h2 id="2-wrapping-ooobean-in-a-jpanel">2.  Wrapping OOoBean in a JPanel</h2>
+<p>OBeanPanel wraps an OOoBean instance inside a JPanel so its heavyweight canvas<br />
+doesn't affect the rendering of lightweight components in the surrounding application.  </p>
+<p>The class diagram for OBeanPanel in Figure 3 shows that it's a JPanel subclass, and 
+implements Office mouse and keyboard listeners. </p>
+<p><img alt="" src="images/44-Office_as_GUI_Comp-3.png" /></p>
+<p>Figure 3. The OBeanPanel Class Diagram. </p>
+<p>The key handling is necessary for coding around a keyboard focus bug. The mouse 
+handler is included to show how to monitor mouse presses and releases in the 
+document. </p>
+<p>OBeanPanel 's constructor sets up some JPanel attributes (its background color, 
+dimensions, and start-up  message), calls the OOoBean constructor, and adds the bean 
+to the panel: </p>
+<p>// in the OBeanPanel class 
+private int pWidth, pHeight;    // of panel 
+private OOoBean oob = null; </p>
+<p>private Font msgFont; 
+private FontMetrics fontMetric; 
+private String message; </p>
+<p>public OBeanPanel(int w, int h) 
+{ 
+  pWidth = w; 
+  pHeight = h; </p>
+<p>setBackground(Color.WHITE); 
+  setPreferredSize(new Dimension(w, h)); 
+  setLayout(new BorderLayout()); </p>
+<p>// start-up and finishing message used by panel 
+  msgFont = new Font("SansSerif", Font.BOLD, 36); 
+  fontMetric = getFontMetrics(msgFont); 
+  message = "Waiting for Office..."; </p>
+<p>oob = new OOoBean();   // doesn't connect to Office; 
+                         // actually an empty method 
+  add(oob, BorderLayout.CENTER); 
+} // end of OBeanPanel() </p>
+<p>The surprising thing about the OOoBean() method is that its body is empty. In other 
+words, at this stage, the bean is not connected to Office. </p>
+<p>paintComponent() draws the start-up message assigned in OBeanPanel(), which 
+remains visible until the document is loaded and drawn over that area: </p>
+<p>// in the OBeanPanel class 
+public void paintComponent(Graphics g) 
+// display a message while OOoBean is loaded/unloaded 
+{ 
+  super.paintComponent(g); 
+  Graphics2D g2 = (Graphics2D) g; 
+  g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, 
+                      RenderingHints.VALUE_ANTIALIAS_ON); </p>
+<p>int x = (pWidth - fontMetric.stringWidth(message)) / 2; 
+  int y = (pHeight - fontMetric.getHeight()) / 2; </p>
+<p>g2.setColor(Color.BLUE); 
+  g2.setFont(msgFont); 
+  g2.drawString(message, x, y); 
+}  // end of paintComponent() </p>
+<p>Figure 4 shows the message before a document is loaded. </p>
+<p><img alt="" src="images/44-Office_as_GUI_Comp-4.png" /></p>
+<p>Figure 4. The OBeanPanel without a Document. </p>
+<p>The buttons along the right-hand side of Figure 4 and the fields at the bottom are part 
+of the SwingViewer.java application described later. OBeanPanel manages the large 
+white rectangle with the "Waiting for Office…" text. </p>
+<p>OBeanPanel.loadDoc() calls OOoBean.loadFromURL() to start Office and load and 
+display the document: </p>
+<p>// in the OBeanPanel class 
+//globals 
+private XComponent doc = null; </p>
+<p>public XComponent loadDoc(String fnm) 
+{ 
+  PropertyValue[] props = Props.makeProps("ReadOnly", true); 
+  try  { 
+    String fileURL = FileIO.fnmToURL(fnm); 
+    oob.loadFromURL(fileURL, props);  // real work done here! </p>
+<pre><code>Lo.setOOoBean(oob);   // initialize Lo class so 
+                      // support classes are useable 
+doc = getDoc(); 
+int docType = Info.reportDocType(doc);
+
+if (docType == Lo.BASE) 
+  Lo.dispatchCmd(getFrame(), "DBViewTables", null);     
+                          // switch to tables view in Base docs
+
+XLayoutManager lm = GUI.getLayoutManager(doc); 
+lm.setVisible(false);  // hide all toolbars
+
+// add mouse click &amp; key handlers to the doc 
+XUserInputInterception uii = GUI.getUII(doc); 
+uii.addMouseClickHandler(this); 
+uii.addKeyHandler(this);
+
+revalidate();   // needs a refresh to appear 
+Lo.delay(1000);
+</code></pre>
+<p>} 
+  catch(java.lang.Exception e) 
+  {  System.out.println(e);  } </p>
+<p>return doc; 
+}   // end of loadDoc() </p>
+<p>OOoBean.loadFromURL()'s two arguments are the document's URL and a <br />
+"ReadOnly" property since the bean is being used as a viewer.  </p>
+<p>I want to keep using my support classes, which require the setting of four global 
+variables in the Lo class. They are normally initialized by Lo.loadOffice() and 
+Lo.openDoc(), but are copied from OOoBean by Lo.setOOoBean() in this case. </p>
+<p>// in the Lo class 
+//globals 
+// remote component context 
+private static XComponentContext xcc = null; </p>
+<p>// remote desktop UNO service 
+private static XDesktop xDesktop = null; </p>
+<p>// remote service managers 
+private static XMultiComponentFactory mcFactory = null;  <br />
+private static XMultiServiceFactory msFactory = null; </p>
+<p>@SuppressWarnings("deprecation") 
+public static void setOOoBean(OOoBean oob) 
+{ 
+  try { 
+    OfficeConnection conn = oob.getOOoConnection();  <br />
+               // the OfficeConnection class is deprecated 
+    if (conn == null) 
+      System.out.println("No office connection found in OOoBean"); 
+    else { 
+      xcc = conn.getComponentContext(); 
+      if (xcc == null) 
+        System.out.println("No component context in OOoBean"); 
+      else 
+        mcFactory = xcc.getServiceManager(); </p>
+<pre><code>  xDesktop = oob.getOOoDesktop(); 
+  msFactory = oob.getMultiServiceFactory(); 
+}
+</code></pre>
+<p>} 
+  catch (java.lang.Exception e) { 
+    System.out.println("Couldn't init LO using OOoBean: " + e); 
+  } 
+}  // end of setOOoBean() </p>
+<p>The suppressed warning annotation stops the Java compiler complaining about 
+OOoBean's deprecated OfficeConnection class. </p>
+<p>Back in OBeanPanel.loadDoc(), a reference to the loaded document is retrieved by 
+calling OBeanPanel.getDoc(): </p>
+<p>// in the OBeanPanel class 
+public XComponent getDoc() 
+{ 
+  XComponent doc = null; 
+  try { 
+    XModel xModel = (XModel)oob.getDocument(); 
+    doc = Lo.qi( XComponent.class, xModel); 
+  } 
+  catch(java.lang.Exception e)<br />
+  { System.out.println("OOBean document could not be accessed");  } 
+  return doc; 
+}  // end of getDoc() </p>
+<p>OOoBean contains many deprecated methods that affect the visibility of Office's 
+menu bar, standard bar, tools bar, and status bar. The preferred, and more powerful, 
+approach is to use the LayoutManager service, which is accessed with 
+GUI.getLayoutManager(): </p>
+<p>// in the GUI class 
+public static XLayoutManager getLayoutManager(XComponent doc) 
+{ 
+  XLayoutManager lm = null; 
+  try { 
+    XPropertySet propSet =<br />
+             Lo.qi(XPropertySet.class, getFrame(doc)); 
+    lm =  Lo.qi( XLayoutManager.class, <br />
+                propSet.getPropertyValue("LayoutManager")); 
+  } 
+  catch (Exception e)<br />
+  {   System.out.println("Could not access layout manager");  } 
+  return lm; 
+}  // end of getLayoutManager() </p>
+<p>The XLayoutManager reference is stored in the "LayoutManager" property of the 
+document's frame. All the toolbars known to the layout manager can be hidden with a 
+call to XLayoutManager.setVisible(): </p>
+<p>// part of loadDoc()... </p>
+<p>XLayoutManager lm = GUI.getLayoutManager(doc); 
+lm.setVisible(false);  // hide all toolbars </p>
+<p>loadDoc() also assigns the monitoring of the keyboard and mouse to OBeanPanel: </p>
+<p>// part of loadDoc()... </p>
+<p>XUserInputInterception uii = GUI.getUII(doc); 
+uii.addMouseClickHandler(this); 
+uii.addKeyHandler(this); </p>
+<p>The mouse methods don't do much: </p>
+<p>// in the OBeanPanel class 
+public boolean mousePressed(com.sun.star.awt.MouseEvent e) 
+{ System.out.println("Mouse pressed (" + e.X + ", " + e.Y + ")"); 
+  return false;    // send event on, or use true not to send 
+} </p>
+<p>public boolean mouseReleased(com.sun.star.awt.MouseEvent e) 
+{ System.out.println("Mouse released (" + e.X + ", " + e.Y + ")"); 
+  return false; 
+} </p>
+<p>Unlike Java listeners, these Office handlers return a boolean to indicate whether the 
+event should be passed on to other listeners; false means the event should be sent on, 
+true causes it to be consumed. </p>
+<p>The key release handler is similarly short, but the key press handler deals with a 
+keyboard focus bug: </p>
+<p>// in the OBeanPanel class 
+public boolean keyReleased(com.sun.star.awt.KeyEvent e) 
+{ return false; } </p>
+<p>@SuppressWarnings("deprecation") 
+public boolean keyPressed(com.sun.star.awt.KeyEvent e) 
+{<br />
+  if (oob == null) 
+    return false; 
+  try { 
+    oob.releaseSystemWindow();<br />
+           // force focus away from bean; 
+           // must suppress deprecation warning 
+    oob.aquireSystemWindow(); </p>
+<pre><code>// Impress redisplays toolbars; remove them again 
+XLayoutManager lm = GUI.getLayoutManager(doc); 
+lm.setVisible(false);
+
+Lo.dispatchCmd("LeftPaneImpress",  
+            Props.makeProps("LeftPaneImpress", false) );     
+            // hide slides pane
+</code></pre>
+<p>} 
+  catch(java.lang.Exception ex) {} 
+  return false; 
+}  // end of keyPressed() </p>
+<p>keyPressed() calls OOoBean.releaseSystemWindow() and then 
+OOoBean.aquireSystemWindow() to force the bean to release the keyboard focus; 
+this allows the user to select and type text into other text fields, such as the page jump 
+field in the SwingViewer.java example described below. I found this trick in a forum 
+post by Martin Illguth at 
+https://forum.openoffice.org/en/forum/viewtopic.php?f=20&amp;t=63008. </p>
+<p>keyPressed() also deals with a side-effect of displaying Impress slides – clicking on a 
+slide inside the bean causes hidden toolbars and the slides pane to be made visible. </p>
+<p>Another call to the layout manager deals with the toolbars, but the slides pane, which 
+isn't a toolbar, is hidden with a ".uno:LeftPaneImpress" dispatch. </p>
+<h2 id="3-using-the-obeanpanel">3.  Using the OBeanPanel</h2>
+<p>Figure 4 shows SwingViewer.java at start-up; the buttons on the right are for quickly 
+moving through a multi-page (or multi-slide) document, and for zooming in and out 
+on a document. The controls at the bottom show the number of pages (or slides) in the 
+document, and allow the user to jump to a specified page/slide number. Figure 5 
+shows the controls in close-up. </p>
+<p><img alt="" src="images/44-Office_as_GUI_Comp-5.png" /></p>
+<p>Figure 5. The Buttons and Page Controls in SwingViewer. </p>
+<p>Aside from text documents and slide decks, SwingViewer can load Draw, Calc, and 
+Base files; Figure 6 shows a sample. </p>
+<p><img alt="" src="images/44-Office_as_GUI_Comp-6.jpg" /></p>
+<p>Figure 6. Different Documents Displayed by SwingViewer. </p>
+<p>The SwingViewer constructor is passed the document's filename, creates an 
+OBeanPanel in a JFrame with buttons and other controls, and loads the document: </p>
+<p>// globals 
+private OBeanPanel officePanel; 
+private XComponent doc = null; 
+private int docType = Lo.UNKNOWN; </p>
+<p>public SwingViewer(String fnm) 
+{ 
+  super("SwingViewer"); 
+  Container c = getContentPane(); </p>
+<p>officePanel = new OBeanPanel(850, 600); 
+                   // OOoBean inside a JPanel 
+  c.add(officePanel, BorderLayout.CENTER); 
+  if (officePanel.getBean() == null) { 
+    System.out.println("OOoBean not created"); 
+    System.exit(1); 
+  } </p>
+<p>c.add(makeButtons(), BorderLayout.EAST); 
+  c.add(makePageControls(), BorderLayout.SOUTH); </p>
+<p>addWindowListener(new WindowAdapter() { 
+    public void windowClosing(WindowEvent e){ 
+      officePanel.closeDown(); 
+      System.exit(0); 
+    } 
+  }); </p>
+<p>pack(); <br />
+  setLocationRelativeTo(null);  // center the window<br />
+  setResizable(false); 
+  setVisible(true); 
+  Lo.delay(200);    // give time for the OOBean to appear </p>
+<p>doc = officePanel.loadDoc(fnm);   </p>
+<p>docType = Info.reportDocType(doc); 
+  if (doc == null) { 
+    officePanel.closeDown(); 
+    System.exit(0); 
+  } </p>
+<p>// initialize loaded document 
+  if (docType == Lo.WRITER) 
+    initTextDoc(); 
+  else if (docType == Lo.IMPRESS) 
+    initDrawDoc(); 
+}  // end of SwingViewer() </p>
+<p>OOoBean termination is done by OBeanPanel.closeDown() in a window listener. It 
+calls OOoBean.stopOOoConnection(), but this sometimes hangs, so it also invokes 
+Lo.killOffice(): </p>
+<p>// in the OBeanPanel class 
+public void closeDown() 
+{ 
+  if (oob != null) { 
+    System.out.println("Closing connection to office"); 
+    oob.stopOOoConnection(); 
+  } 
+  Lo.delay(1000);   // wait for close down to finish 
+  Lo.killOffice();  // make sure office processes are gone 
+}  // end of closeDown() </p>
+<p>The loading of a Writer or Impress document causes several globals to be initialized 
+by initTextDoc() or initDrawDoc(). initTextDoc() stores the page count and creates a 
+visible text cursor for moving through the document's pages: </p>
+<p>// in the SwingViewer class 
+// globals 
+private int pageCount = -1; 
+private XTextViewCursor tvCursor = null;   // for text docs </p>
+<p>private void initTextDoc() 
+{ 
+  // report the number of pages in the doc 
+  XTextDocument textDoc = Lo.qi(XTextDocument.class, doc); 
+  pageCount = Write.getPageCount(textDoc); 
+  setLastPage(pageCount); </p>
+<p>try {  // get the document's visible cursor 
+    XController xc = officePanel.getController(); 
+    XTextViewCursorSupplier tvcSupplier = 
+                  Lo.qi(XTextViewCursorSupplier.class, xc); 
+    tvCursor = tvcSupplier.getViewCursor(); 
+  } 
+  catch(java.lang.Exception e) { 
+    System.out.println("Could not access document cursor"); 
+  } <br />
+}  // end of initTextDoc() </p>
+<p>initTextDoc() calls setLastPage() to write the pageCount value into the "Last Page" 
+field shown in Figure 5. </p>
+<p>initDrawDoc() also initializes the global pageCount variable, but with the number of 
+slides in the document. However, instead of a text cursor, it create XDrawPages and 
+XDrawView instances for moving through the slides on-screen. </p>
+<p>// globals 
+private int pageCount = -1; 
+private XDrawView xDrawView = null;     // for slide docs 
+private XDrawPages xDrawPages = null; </p>
+<p>private void initDrawDoc() 
+{ 
+  try { 
+    // report the number of slides in the doc 
+    xDrawPages = Draw.getSlides(doc); 
+    pageCount = Draw.getSlidesCount(doc); 
+    setLastPage(pageCount); </p>
+<pre><code>// get a slide view 
+xDrawView = Lo.qi(XDrawView.class, officePanel.getController());
+</code></pre>
+<p>} 
+  catch(java.lang.Exception e)<br />
+  {  System.out.println("Could not access document pages");  } <br />
+}  // end of initDrawDoc() </p>
+<p>The globals are utilized when the user presses one of SwingViewer's button. For 
+example, clicking on the "Up" and "Down" buttons triggers calls to pageChange(): </p>
+<dl>
+<dt>// part of SwingViewer.makeButtons()</dt>
+<dd>JButton upButton = new JButton("Up"); 
+upButton.addActionListener(new ActionListener() { 
+  public void actionPerformed(ActionEvent ev) 
+  {  pageChange(false);  }   // isDown is false, i.e. move up 
+}); </dd>
+<dt>JButton downButton = new JButton("Down");</dt>
+<dt>downButton.addActionListener(new ActionListener() {</dt>
+<dt>public void actionPerformed(ActionEvent ev)</dt>
+<dt>{  pageChange(true);  }   // isDown is true, i.e. move down</dt>
+<dt>});</dt>
+<dd></dd>
+</dl>
+<p>pageChange() uses the document's type to decide whether to change pages or slides: </p>
+<p>public void pageChange(boolean isDown) 
+{ 
+  if (docType == Lo.WRITER) 
+    textChange(isDown); 
+  else if (docType == Lo.IMPRESS) 
+    slideChange(isDown); 
+}  // end of pageChange() </p>
+<p>textChange() utilizes the visible text cursor, while slideChange() uses the 
+XDrawPages and XDrawView variables. If the document isn't textual or a slide deck, 
+then pageChange() returns without doing anything. </p>
+<h2 id="4-using-an-undecorated-office-window">4.  Using an Undecorated Office Window</h2>
+<p>As I mentioned at the start, there are two ways of employing Office as a GUI 
+component: one is to use OOoBean inside a JPanel, as just explained. The other is to 
+have the program make Office visible on-screen, which I've done many times in 
+earlier examples. The main difference in my OffViewer.java example is that most of 
+Office's GUI is hidden, so the document appears in an undecorated window.  </p>
+<p>Figure 7 shows the five documents from Figure 6, this time loaded by OffViewer: </p>
+<p><img alt="" src="images/44-Office_as_GUI_Comp-7.png" /></p>
+<p>Figure 7. Different Documents Displayed by OffViewer. </p>
+<p>There are a few differences between SwingViewer's display and OffViewer. For 
+instance, OffViewer uses some of Office's toolbars and tool panes, depending on the 
+document type. The "Find" bar is visible underneath the Writer, Draw, and Impress 
+documents, and the slide pane is present to the left of the current slide. The Draw, 
+Impress, and Calc documents also include a yellow pane along their tops containing a 
+button for enabling editing of the read-only document. I've not been able to find a way 
+to hide that pane. </p>
+<p>The OffViewer constructor loads Office, loads the document, attaches listeners, and 
+displays some toolbars and panes depending on the document's type: </p>
+<p>// global 
+private XComponent doc = null; </p>
+<p>public OffViewer(String fnm) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  doc = Lo.openReadOnlyDoc(fnm, loader); 
+  if (doc == null) { 
+    System.out.println("Could not open " + fnm); 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>// attach listeners 
+  doc.addEventListener(this);  </p>
+<p>XWindow win = GUI.getWindow(doc); 
+  win.addWindowListener(this); 
+  win.setVisible(true); 
+  Lo.delay(500);   // give window time to appear </p>
+<p>XUserInputInterception uii = GUI.getUII(doc); 
+  uii.addMouseClickHandler(this); 
+  uii.addKeyHandler(this); </p>
+<p>// modify UI visibility 
+  ArrayList<String> showElems = new ArrayList<String>(); 
+  showElems.add(GUI.FIND_BAR); 
+  showElems.add(GUI.STATUS_BAR); 
+  GUI.showOnly(doc, showElems); </p>
+<p>// call dispatches <em>after</em> the window is visible 
+  Lo.dispatchCmd("Sidebar", 
+          Props.makeProps("Sidebar", false));      // hide sidebar </p>
+<p>// modify UI based on the document type 
+  int docType = Info.reportDocType(doc); 
+  if (docType == Lo.DRAW) 
+    Lo.dispatchCmd("LeftPaneDraw",<br />
+       Props.makeProps("LeftPaneDraw", false) );  // hide Pages pane </p>
+<p>if (docType == Lo.IMPRESS) 
+    Lo.dispatchCmd("LeftPaneImpress",<br />
+       Props.makeProps("LeftPaneImpress", true) );// show Slides pane </p>
+<p>if (docType == Lo.CALC) 
+    Lo.dispatchCmd("InputLineVisible",<br />
+       Props.makeProps("InputLineVisible", false) );   <br />
+                                                 // hide formula bar 
+  if (docType == Lo.BASE) 
+    Lo.dispatchCmd("DBViewTables");    // switch to tables view 
+}  // end of OffViewer() </p>
+<p>Several common toolbar resource names are defined as constants in the GUI class: </p>
+<p>// in the GUI class 
+public static final String MENU_BAR =<br />
+                      "private:resource/menubar/menubar"; 
+public static final String STATUS_BAR =<br />
+                      "private:resource/statusbar/statusbar"; 
+public static final String FIND_BAR =<br />
+                      "private:resource/toolbar/findbar"; 
+public static final String STANDARD_BAR =<br />
+                      "private:resource/toolbar/standardbar"; 
+public static final String TOOL_BAR =<br />
+                      "private:resource/toolbar/toolbar"; </p>
+<p>A lengthy list of all the toolbars in LibreOffice is stored in TOOLBAR_NMS[] in 
+GUI.java, and can be accessed by calling GUI.getToobarResource() with a partial 
+string; the first matching toolbar resource name is returned. For example: 
+GUI.getToobarResource("zoom"); 
+returns the string "private:resource/toolbar/zoombar". </p>
+<p>The visibility of Office's toolbars is managed by the LayoutManager service as 
+before, but in a somewhat more complex way because OffViewer can both hide and 
+show toolbars.  </p>
+<p>GUI.showOnly() hides all the toolbars accessible to the layout manager, except for 
+those in its showElems argument. The difficulty is that some of these visible toolbars 
+may not currently exist, and so need to be created and then made visible. </p>
+<p>GUI.showOnly() is: </p>
+<p>// in the GUI class 
+public static void showOnly(XComponent doc,<br />
+                                   ArrayList<String> showElems) 
+// leave only the toolbars in showElems visible 
+{ 
+  XLayoutManager lm = getLayoutManager(doc); 
+  if (lm == null)<br />
+    System.out.println("No layout manager found"); 
+  else { 
+    XUIElement[] uiElems = lm.getElements(); 
+    hideExcept(lm, uiElems, showElems); 
+    for(String elemName : showElems) { // these elems are not in lm 
+      lm.createElement(elemName);  // so need to be created &amp; shown 
+      lm.showElement(elemName); 
+      System.out.println(elemName + " made visible"); 
+    } 
+  } 
+}  // end of showOnly() </p>
+<p>public static void hideExcept(XLayoutManager lm,<br />
+           XUIElement[] uiElems, ArrayList<String> showElems) 
+// hide all of uiElems toolbars, except ones in showElems; 
+// delete any showElems toolbar strings that match 
+{ 
+  for(XUIElement uiElem : uiElems) { 
+    String elemName = uiElem.getResourceURL(); 
+    boolean toHide = true; 
+    for (int i = 0;  i &lt; showElems.size(); i++){ 
+      if (showElems.get(i).equals(elemName)) { 
+        showElems.remove(i); <br />
+                     // this elem is in lm so remove from showElems 
+        toHide = false;       // since the toolbar is already shown 
+        break; 
+      } 
+    } 
+    if (toHide) { 
+      lm.hideElement(elemName); 
+      System.out.println(elemName + " hidden"); 
+    } 
+  } 
+}  // end of hideExcept() </p>
+<p>GUI.showOnly() hides toolbars by calling hideExcept(), which calls 
+XLayoutManager.hideElement() on all the layout manager's toolbars except ones in 
+the showElems list, which are meant to stay visible. If a showElems toolbar is left 
+unhidden then its name is deleted from the list because it's not needed in the next step 
+back in GUI.showOnly() 
+When hideExcept() returns, showOnly() iterates through the remaining toolbars in 
+showElems which are there because they were  unknown to the layout manager.Each 
+of these toolbars must be created (with XLayoutManager.createElement()) before 
+being made visible by XLayoutManager.showElement(). </p>
+<p>In OffViewer, several tool panes, such as the slides pane in Impress, have to be 
+enabled or disabled, but they're not accessible through the layout manager. Instead, I 
+use dispatch commands which only work if the Office window is visible and active. </p>
+<p>I couldn't find any documentation about dispatch commands for UI panes, but it 
+appears that a pane can be made visible or invisible by including its name as a 
+property with the value true or false. For example: </p>
+<p>Lo.dispatchCmd("LeftPaneImpress",<br />
+      Props.makeProps("LeftPaneImpress", true) ); // show Slides pane </p>
+<p>This call sends a ".uno:LeftPanelImpress" dispatch to Office to make the slides pane 
+visible. </p>
+<p>The easiest way to find dispatch names is to browse through the long list at 
+https://wiki.documentfoundation.org/Development/DispatchCommands. It's divided 
+into application and tool subcategories, which narrows the search a little. Also, each 
+entry includes a "Label value" field which for UI elements (i.e. toolbars, panes, and 
+menus) corresponds to its name in Office's GUI. </p>
+<p>Another approach is to search Office's source code – dispatches are defined inside 
+".xcu" files, and the UI related files are mostly in the subdirectory 
+<OFFICE>\officecfg\registry\schema\org\openoffice\Office\UI. </p>
+<p>Listening to User Input and the Window 
+OffViewer implements four listeners for mouse presses, keyboard handling, window 
+changes, and document events: </p>
+<p>public class OffViewer implements<br />
+               XMouseClickHandler, XKeyHandler, XWindowListener,<br />
+               com.sun.star.document.XEventListener 
+{ ... } </p>
+<p>The listeners are attached in the constructor for OffViewer, which implements all the 
+methods itself: </p>
+<p>// part of OffViewer()... </p>
+<p>doc.addEventListener(this);  </p>
+<p>XWindow win = GUI.getWindow(doc); 
+win.addWindowListener(this); 
+win.setVisible(true); 
+Lo.delay(500); </p>
+<p>XUserInputInterception uii = GUI.getUII(doc); 
+uii.addMouseClickHandler(this); 
+uii.addKeyHandler(this); </p>
+<p>The event listener's disposing() method is triggered as the document is closed, and 
+uses Lo.killOffice() to terminate Office. As with SwingViewer.java, only calling 
+Lo.closeOffice() is insufficient, causing Office to hang. </p>
+<p>// in the OffViewer class </p>
+<p>public void disposing(com.sun.star.lang.EventObject e) 
+{ System.out.println("Document is closing"); <br />
+  if (doc != null) 
+    Lo.closeDoc(doc); 
+  // Lo.closeOffice();   // Office hangs, so kill it instead 
+  Lo.killOffice(); 
+  System.exit(0); 
+}  </p>
+<p>The window, mouse, and keyboard handlers print simple information: </p>
+<p>// XWindow listener methods 
+public void windowShown(com.sun.star.lang.EventObject e)<br />
+{  System.out.println("Doc window has become visible");  }  </p>
+<p>public void windowHidden(com.sun.star.lang.EventObject e)<br />
+{  System.out.println("Doc window has been hidden");  }  </p>
+<p>public void windowResized(WindowEvent e) 
+{  System.out.println("Resized to " +e.Width +" x " +e.Height); }  </p>
+<p>public void windowMoved(WindowEvent e) 
+{  System.out.println("Moved to (" + e.X + ", " + e.Y + ")");  }  </p>
+<p>// XMouseClickHandler methods 
+public boolean mousePressed(MouseEvent e) 
+{ System.out.println("Mouse pressed (" + e.X + ", " + e.Y + ")"); 
+  return false;    // send event on, or use true not to send 
+} </p>
+<p>public boolean mouseReleased(MouseEvent e) 
+{ System.out.println("Mouse released (" + e.X + ", " + e.Y + ")"); 
+  return false; 
+} </p>
+<p>// XKeyHandler methods 
+public boolean keyPressed(KeyEvent e) 
+{ System.out.println("Key pressed: " + e.KeyCode + "/" + e.KeyChar); 
+  return true; 
+} </p>
+<p>public boolean keyReleased(KeyEvent e) 
+{ System.out.println("Key released: " + e.KeyCode +"/" + e.KeyChar); 
+  return true; 
+} </p>
+<p>The mouse handlers allow their events to be used by other handlers (i.e. they return 
+false), but the keyboard handlers consume their inputs. </p>
+<h2 id="5-augmenting-the-user-interface-a-new-toolbar-item">5.  Augmenting the User Interface: a New Toolbar Item</h2>
+<p>TBViewer.java is a variant of OffViewer which adds a toolbar item called "Hello" to 
+the "Find" toolbar, as shown in Figure 8 on the left. </p>
+<p><img alt="" src="images/44-Office_as_GUI_Comp-8.png" /></p>
+<p>Figure 8. The "Find" Toolbar with the "Hello" Item. </p>
+<p>When the user clicks on "Hello", ToolbarItemListener is woken up, and its clicked() 
+method called. clicked() displays a message box (see Figure 9). </p>
+<p><img alt="" src="images/44-Office_as_GUI_Comp-9.png" /></p>
+<p>Figure 9. The Message Box that Appears when "Hello" is Clicked. </p>
+<p>This toolbar extension technique is similar to Office's Add-ons, which I'll be 
+discussing in Chapter 46. However, the item isn't permanently added to the toolbar, 
+existing only while TBViewer is executing.  </p>
+<p>The TBViewer constructor: </p>
+<p>// global 
+private XComponent doc = null; </p>
+<p>public TBViewer(String fnm) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  doc = Lo.openReadOnlyDoc(fnm, loader); 
+  if (doc == null) { 
+    System.out.println("Could not open " + fnm); 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>XWindow win = GUI.getWindow(doc); 
+  win.addWindowListener(this); 
+  win.setVisible(true); 
+  Lo.delay(500);   // give window time to appear </p>
+<p>GUI.showOne(doc, GUI.FIND_BAR); </p>
+<p>Lo.dispatchCmd("Sidebar", 
+          Props.makeProps("Sidebar", false));    // hide sidebar </p>
+<p>GUI.addItemToToolbar(doc, GUI.FIND_BAR, "Hello", "h.png"); </p>
+<p>// add an dispatch interceptor for the "Hello" item 
+  XDispatchProviderInterception dpi = GUI.getDPI(doc); 
+  if (dpi != null) 
+    dpi.registerDispatchProviderInterceptor( 
+                         new ItemInterceptor(this, "Hello")); 
+}  // end of TBViewer() </p>
+<p>GUI.showOne() utilizes GUI.showOnly() to leave only the "Find" toolbar visible: </p>
+<p>// in the GUI class 
+public static void showOne(XComponent doc, String showElem) 
+{ 
+  ArrayList<String> showElems = new ArrayList<String>(); 
+  showElems.add(showElem); 
+  showOnly(doc, showElems); 
+}  // end of showOne() </p>
+<p>GUI.addItemToToolbar() creates the toolbar item: 
+GUI.addItemToToolbar(doc, GUI.FIND_BAR, "Hello", "h.png"); 
+Its arguments are the document, the toolbar's resource name, the item name, and the 
+filename of an image icon. </p>
+<p>A dispatch interceptor (an ItemInterceptor object) is registered to catch clicks 
+(dispatches) on the "Hello" item, and redirect them to TBViewer: </p>
+<p>XDispatchProviderInterception dpi = GUI.getDPI(doc); 
+if (dpi != null) 
+  dpi.registerDispatchProviderInterceptor( 
+                       new ItemInterceptor(this, "Hello")); </p>
+<p>ItemInterceptor processes each click by calling ToolbarItemListener.clicked() which 
+is implemented by TBViewer as: </p>
+<p>// in the TBViewer class 
+public void clicked(String itemName, URL cmdURL,<br />
+                                     PropertyValue[] props) 
+{ GUI.showMessageBox("Item Dialog", "Processing the \"" +<br />
+                                        itemName + "\" command"); 
+}  // end of clicked() </p>
+<h3 id="51-intercepting-dispatches">5.1.  Intercepting Dispatches</h3>
+<p>ItemInterceptor implements XDispatchProviderInterceptor and XDispatch so it can 
+both intercept dispatches and process them: </p>
+<p>public class ItemInterceptor implements<br />
+                     XDispatchProviderInterceptor, XDispatch 
+{ 
+  private XDispatchProvider slaveDP, masterDP; 
+        // pointers to next and previous dispatch providers in list </p>
+<p>private ToolbarItemListener viewer;   // object sent dispatch info 
+  private String itemName;  // toolbar item name 
+  private String cmd;       // toolbar item's dispatch command </p>
+<p>public ItemInterceptor(ToolbarItemListener v, String itemName)<br />
+  {  viewer = v; <br />
+     this.itemName = itemName; 
+     cmd = Lo.makeUnoCmd(itemName); 
+  } </p>
+<p>// : more XDispatchProviderInterceptor and XDispatch methods;<br />
+  // : see below </p>
+<p>}  // end of ItemInterceptor class </p>
+<p>The ItemInterceptor() arguments are a reference to ToolbarItemListener (which 
+implements clicked()), and the toolbar item name ("Hello") which is converted into a 
+UNO command string by Lo.makeUnoCmd(): </p>
+<p>// in the Lo class 
+public static String makeUnoCmd(String itemName) 
+// use a dummy Java class name, Foo 
+{  return "vnd.sun.star.script:Foo/Foo." + itemName +<br />
+                         "?language=Java&amp;location=share";  } </p>
+<p>The returned command string is mostly make-believe – there's no 
+vnd.sun.star.script:Foo/Foo class, but that doesn't matter so long as the string is 
+unique, and matches the command string in the toolbar item (which is set up by 
+GUI.addItemToToolbar(), as shown below). </p>
+<p>Office adds the ItemInterceptor object to an interceptors list, which is doubly-linked 
+so that each node points to the previous (master) and next (slave) list element. These 
+are accessible through get/set master/slave methods: </p>
+<p>// in ItemInterceptor class 
+public void setMasterDispatchProvider(XDispatchProvider dp) 
+{  masterDP = dp;  } </p>
+<p>public void setSlaveDispatchProvider(XDispatchProvider dp) 
+{  slaveDP = dp;  } </p>
+<p>public XDispatchProvider getMasterDispatchProvider() 
+{  return masterDP;  } </p>
+<p>public XDispatchProvider getSlaveDispatchProvider() 
+{  return slaveDP;  } </p>
+<p>XDispatchProviderInterceptor also requires implementations for queryDispatches() 
+and queryDispatch(). queryDispatches() iterates through the array of dispatch 
+descriptors passed to it, and calls queryDispatch() on each one: </p>
+<p>// in ItemInterceptor class 
+public XDispatch[] queryDispatches(DispatchDescriptor[] descrs)<br />
+{<br />
+  int count = descrs.length;<br />
+  XDispatch[] xDispatch = new XDispatch[count];<br />
+  for (int i = 0; i &lt; count; i++)<br />
+    xDispatch[i] = queryDispatch(descrs[i].FeatureURL,<br />
+                                 descrs[i].FrameName,<br />
+                                 descrs[i].SearchFlags);<br />
+  return xDispatch;<br />
+}  // end of queryDispatches() </p>
+<p>If the dispatch passed to queryDispatch() is recognized by this interceptor then an 
+XDispatch object is returned; otherwise the dispatch is sent to the next interceptor in 
+the list: </p>
+<p>// in ItemInterceptor class 
+public XDispatch queryDispatch(URL cmdURL, String target,<br />
+                               int srchFlags) 
+{ if (cmdURL.Complete.equalsIgnoreCase(cmd))  { 
+    System.out.println(itemName + " seen");<br />
+    return this;   // this will cause dispatch() to be called 
+  } </p>
+<p>if (slaveDP != null) 
+    return slaveDP.queryDispatch(cmdURL, target, srchFlags);<br />
+      // pass command to next interceptor in list 
+  else 
+    return null; 
+}  // end of queryDispatch() </p>
+<p>Office processes the returned XDispatch object by calling its dispatch() method, 
+which is implemented by ItemInterceptor: </p>
+<p>// in ItemInterceptor class 
+// global 
+private ToolbarItemListener viewer;   // object sent dispatch info </p>
+<p>public void dispatch(URL cmdURL, PropertyValue[] props)<br />
+{  viewer.clicked(itemName, cmdURL, props);  } </p>
+<p>Control is passed to the listener's clicked() method, which is in TBViewer. </p>
+<p>For more information on dispatch interception, see chapter 6 of the Developer's 
+Guide, which is also online at 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Dispatch_Inter
+ception (or use loGuide "Dispatch Interception"). </p>
+<h3 id="52-displaying-a-message-box">5.2.  Displaying a Message Box</h3>
+<p>TBViewer's clicked() creates an Office message dialog (see Figure 10) by calling 
+GUI.showMessageBox(). This dialog requires some complicated coding, and you may 
+wonder why I didn't just use Java's dialogs. For example, as in 
+GUI.showJMessageBox(): </p>
+<p>// in the GUI class 
+public static void showJMessageBox(String title, String message) 
+{  JOptionPane.showMessageDialog(null, message, title,<br />
+                          JOptionPane.INFORMATION_MESSAGE); 
+} 
+I did try this, and it works fine most of the time, but sometimes the dialog appears 
+behind Office's window, and so is hidden from the user. The problem lies with the 
+null first argument of JOptionPane.showMessageDialog() which leaves the dialog's 
+parent window unspecified. </p>
+<p>An Office message dialog is created in two main steps, as shown in 
+GUI.showMessageBox(): </p>
+<p>// in the GUI class 
+public static void showMessageBox(String title, String message) 
+{ 
+  XToolkit xToolkit = Lo.createInstanceMCF(XToolkit.class,<br />
+                                  "com.sun.star.awt.Toolkit"); 
+  XWindow xWindow = getWindow(); 
+  if ((xToolkit == null) || (xWindow == null)) 
+    return; </p>
+<p>XWindowPeer xPeer = Lo.qi(XWindowPeer.class, xWindow); </p>
+<p>// initialize window description 
+  WindowDescriptor desc = new WindowDescriptor(); 
+  desc.Type = WindowClass.MODALTOP; 
+  desc.WindowServiceName = new String("infobox"); 
+  desc.ParentIndex = -1; 
+  desc.Parent = xPeer; 
+  desc.Bounds = new Rectangle(0, 0, 300, 200); 
+  desc.WindowAttributes = WindowAttribute.BORDER |<br />
+                          WindowAttribute.MOVEABLE | 
+                          WindowAttribute.CLOSEABLE; </p>
+<p>// create message box using the description 
+  XWindowPeer descPeer = xToolkit.createWindow(desc); 
+  if (descPeer != null) { 
+    XMessageBox msgBox = Lo.qi(XMessageBox.class, descPeer); 
+    if (msgBox != null) { 
+      msgBox.setCaptionText(title); 
+      msgBox.setMessageText(message); 
+      msgBox.execute();   // show the box 
+    } 
+  } 
+}  // end of showMessageBox() </p>
+<p>A WindowDescriptor object is initialized to specify the type of window that will be 
+created, including its parent (the Office window). The descriptor is used to create a 
+XWindowPeer object, which is converted into an XMessageBox. </p>
+<h3 id="53-adding-hello-to-the-toolbar">5.3.  Adding "Hello" to the Toolbar</h3>
+<p>GUI.addItemToToolbar() adds the "Hello" item to the "Find" toolbar: 
+GUI.addItemToToolbar(doc, GUI.FIND_BAR, "Hello", "h.png"); 
+The code: </p>
+<p>// in the GUI class 
+public static void addItemToToolbar(XComponent doc,<br />
+                          String toolbarName, 
+                          String itemName, String imFnm) 
+{<br />
+  String cmd = Lo.makeUnoCmd(itemName); 
+  XUIConfigurationManager confMan = GUI.getUIConfigManagerDoc(doc); 
+  if (confMan == null) { 
+    System.out.println("Cannot create configuration manager"); 
+    return; 
+  } </p>
+<p>try { 
+    // add icon for the command 
+    XImageManager imageMan =  Lo.qi(XImageManager.class,<br />
+                                   confMan.getImageManager()); 
+    String[] cmds = {cmd}; 
+    XGraphic[] pics = new XGraphic[1]; 
+    pics[0] = Images.loadGraphicFile(imFnm); 
+    imageMan.insertImages((short)0, cmds, pics); </p>
+<pre><code>// add item to toolbar 
+XIndexAccess settings = confMan.getSettings(toolbarName, true); 
+XIndexContainer conSettings =  
+                        Lo.qi(XIndexContainer.class, settings); 
+PropertyValue[] itemProps = Props.makeBarItem(cmd, itemName); 
+conSettings.insertByIndex(0, itemProps);    
+                       // place first in the toolbar 
+confMan.replaceSettings(toolbarName, conSettings);
+</code></pre>
+<p>} 
+  catch (java.lang.Exception e) 
+  {  System.out.println(e);  } 
+}  // end of addItemToToolbar() </p>
+<p>It accesses the toolbar with XUIConfigurationManager. A toolbar item is created (as 
+an array of properties), and added to the bar at the specified index position.  </p>
+<p>The icon that should be drawn next to "Hello" on the toolbar is loaded by 
+XImageManager. As Figure 8 shows, this image doesn't appear, although it has been 
+loaded since it's listed in the "Visible Buttons" window in Figure 10. </p>
+<p><img alt="" src="images/44-Office_as_GUI_Comp-10.png" /></p>
+<p>Figure 10. The "Visible Buttons" Window for the Toolbar. </p>
+<h2 id="6-augmenting-the-user-interface-a-new-menu-item">6.  Augmenting the User Interface: a New Menu Item</h2>
+<p>MenuViewer.java is a variant of OffViewer which either adds a menu at the end of 
+Office's menubar (see Figure 11a), or creates a new menubar for the menu (see Figure 
+11b). </p>
+<p><img alt="" src="images/44-Office_as_GUI_Comp-11.png" /></p>
+<p>Figure 11.  Adding an Item to a Menubar. </p>
+<p>The same menu is created in both cases, and is shown in pop-down form in Figure 12. </p>
+<p><img alt="" src="images/44-Office_as_GUI_Comp-12.png" /></p>
+<p>Figure 12. The "My_menu" Menu. </p>
+<p>The menu includes a "Hello" item with an icon, "Quit" for quitting Office, and some<br />
+radio button and checkbox items that do nothing. When "Hello" is clicked, the same 
+Office message box appears as in Figure 10.  </p>
+<p>The MenuViewer constructor creates a new menubar (see Figure 11b), but contains 
+commented out code for adding the menu to Office's menubar (as in Figure 11a): </p>
+<p>// in MenuViewer.java 
+// globals 
+private XComponent doc = null; 
+private short id = 0;   // used for menu IDs </p>
+<p>public MenuViewer(String fnm) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  doc = Lo.openReadOnlyDoc(fnm, loader); 
+  if (doc == null) { 
+    System.out.println("Could not open " + fnm); 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>XWindow win = GUI.getWindow(doc); 
+  win.addWindowListener(this); 
+  win.setVisible(true); 
+  Lo.delay(500);   // wait for window to appear </p>
+<p>// create new menubar 
+  GUI.showNone(doc);  // hide all toolbars 
+  makeMenubar(win); </p>
+<p>/<em> 
+  // or modify the existing menubar 
+  GUI.showOne(doc, GUI.MENU_BAR); <br />
+             // hide all toolbars except the menubar 
+  setMenubar(doc); 
+</em>/ 
+}  // end of MenuViewer() </p>
+<p>This MenuViewer example is based on one in the "Creating Menus" section at the end 
+of chapter 19, "Graphical user Interfaces", in the Developer's Guide; it can be found 
+online at 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/GUI/Creating_Menus (or 
+use  loGuide "Creating Menus"). The corresponding code is at 
+http://api.libreoffice.org/examples/DevelopersGuide/examples.html#GraphicalUserInt
+erfaces, and includes the use of a context menu, which I don't consider here. </p>
+<h3 id="61-creating-a-new-menubar">6.1.  Creating a New Menubar</h3>
+<p>makeMenubar() attaches an XMenubar instance to the Office window using 
+XTopWindow.setMenuBar(): </p>
+<p>// in MenuViewer.java 
+private void makeMenubar(XWindow win) 
+{ 
+  XTopWindow topWin = Lo.qi(XTopWindow.class, win); 
+  XMenuBar menubar = Lo.createInstanceMCF(XMenuBar.class,<br />
+                                       "com.sun.star.awt.MenuBar"); 
+  if (menubar == null) 
+    System.out.println("Could not create a menu bar");<br />
+  else { 
+    addMenu(menubar, (short)0); 
+    topWin.setMenuBar(menubar); 
+  } 
+}  // end of makeMenubar() </p>
+<p>addMenu() labels the menu, which is generated by makePopupMenu(): </p>
+<p>// in MenuViewer.java 
+// globals 
+private short id = 0;   // used for menu IDs </p>
+<p>private void addMenu(XMenuBar bar, short mPos) 
+{ 
+  short menuID = id; 
+  bar.insertItem(menuID, "My ~Menu", 
+                         MenuItemStyle.AUTOCHECK, mPos); 
+  id++; 
+  bar.setPopupMenu(menuID, makePopupMenu());  <br />
+                          // add menu to menubar 
+}  // end of addMenu() </p>
+<p>The three important menu interfaces are shown in Figure 13. </p>
+<p><img alt="" src="images/44-Office_as_GUI_Comp-13.png" /></p>
+<p>Figure 13. The Menu Services and Interfaces. </p>
+<p>Although addMenu() initializes an XMenuBar instance, the interface doesn't contain 
+any methods, inheriting its functionality from XMenu, as indicated in Figure 13.  </p>
+<p>The menu methods, such as XMenu.insertItem() used by addMenu(), can be a little 
+confusing because of their use of shorts in different ways. Every menu and menu item 
+is assigned an ID, which is useful in listener code for identifying which item was 
+clicked. In my code, each menu ID is initialized using a global id variable, which is 
+incremented after each use. </p>
+<p>Every menu and item also uses a position short value which determines where the 
+menu appears in the bar, and where an item appears in the menu. For example, 
+addMenu() is called by makeMenubar() with a position value set to 0, which will 
+place the menu first on the bar.  </p>
+<p>The third use of short is as MenuItemStyle constants, which specify behavior for 
+menu items acting as check and radio boxes. </p>
+<p>Creating the Menu 
+The menu in Figure 12 is created by makePopupMenu(): </p>
+<p>// in MenuViewer.java 
+// globals 
+private static final String CMD_HELLO = "Cmd_Hello"; 
+private static final String CMD_QUIT = "Cmd_Quit"; </p>
+<p>private short id = 0;   // used for menu IDs </p>
+<p>public XPopupMenu makePopupMenu() 
+/<em> Popup menu consists of: 
+            * Hello + image 
+            * three radio buttons (only one on) 
+            * a separator 
+            * two check boxes 
+            * Quit 
+</em>/ 
+{ XPopupMenu pum = Lo.createInstanceMCF(XPopupMenu.class,<br />
+                                 "com.sun.star.awt.PopupMenu"); 
+  if (pum == null) { 
+    System.out.println("Could not create a menu"); 
+    return null; 
+  } </p>
+<p>short mPos = 0; 
+  pum.insertItem(id, "Hello", (short)0, mPos++); 
+      // first short is an ID for the new menu item;<br />
+      // the second is the style for the item, 0 means none/ordinary; 
+      // the third is the items' position on the menu </p>
+<p>pum.setItemImage(id, Images.loadGraphicFile("H.png"), false); 
+  pum.setCommand(id++, CMD_HELLO); </p>
+<p>pum.insertItem(id, "First Radio", 
+             (short) (MenuItemStyle.RADIOCHECK +<br />
+                      MenuItemStyle.AUTOCHECK), mPos++); 
+  pum.enableItem(id++, false);   // grayed out </p>
+<p>pum.insertItem(id, "Second Radio", 
+             (short) (MenuItemStyle.RADIOCHECK +<br />
+                      MenuItemStyle.AUTOCHECK), mPos++); 
+  pum.checkItem(id++, true);  // selected </p>
+<p>pum.insertItem(id++, "Third Radio", 
+             (short) (MenuItemStyle.RADIOCHECK +<br />
+                      MenuItemStyle.AUTOCHECK), mPos++); </p>
+<p>pum.insertSeparator(mPos++); </p>
+<p>pum.insertItem(id++, "Check 1", 
+             (short) (MenuItemStyle.CHECKABLE +<br />
+                      MenuItemStyle.AUTOCHECK), mPos++); </p>
+<p>pum.insertItem(id++, "Check 2", 
+             (short) (MenuItemStyle.CHECKABLE +<br />
+                      MenuItemStyle.AUTOCHECK), mPos++); </p>
+<p>pum.insertItem(id, "Quit", (short)0, mPos++); 
+  pum.setCommand(id++, CMD_QUIT); </p>
+<p>pum.addMenuListener(this); 
+  return pum; 
+}  // end of makePopupMenu() </p>
+<p>Ordinary menu items (in my case, "Hello" and "Quit") are assigned a style value of 0. </p>
+<p>Menu items activation by the user are detected by attaching a listener to the menu. </p>
+<p>When an item is pressed, an event containing its ID is sent to the listener. Optionally 
+items can be assigned command strings (as for the "Hello" and "Quit" items) to better 
+distinguish them. </p>
+<p>MenuViewer.java implements XMenuListener, which requires four methods – 
+itemSelected(), itemHighlighted(), itemActivated(), and itemDeactivated(). Only 
+itemSelected() does anything of note: </p>
+<p>// in MenuViewer.java </p>
+<p>public void itemSelected(MenuEvent menuEvent) 
+{ <br />
+  short id = menuEvent.MenuId; 
+  XPopupMenu pum = Lo.qi(XPopupMenu.class, menuEvent.Source); 
+  if (pum == null) 
+    System.out.println("Menu item " + id +<br />
+                            " selected; popupmenu is null"); 
+  else { 
+    String itemName = pum.getItemText(id); 
+    String cmd = pum.getCommand(id); 
+    System.out.println("Menu item \"" + pum.getItemText(id) +<br />
+                                  "\" selected"); 
+    System.out.println("  is checked? " + pum.isItemChecked(id)); 
+    processCmd(cmd); 
+  } 
+}  // end of itemSelected() </p>
+<p>public void itemHighlighted(MenuEvent menuEvent) 
+{ // System.out.println(menuEvent.MenuId + " highlighted"); 
+}  </p>
+<p>public void itemDeactivated(MenuEvent menuEvent) 
+{ // System.out.println(menuEvent.MenuId + " deactivated"); 
+} </p>
+<p>public void itemActivated(MenuEvent menuEvent) 
+{ // System.out.println(menuEvent.MenuId + " activated"); 
+} </p>
+<p>Each MenuEvent object includes the menu item's ID and a reference to its menu, 
+which are accessed at the start of itemSelected(): </p>
+<p>short id = menuEvent.MenuId; 
+XPopupMenu pum = Lo.qi(XPopupMenu.class, menuEvent.Source); </p>
+<p>itemSelected() uses the ID and menu to access details, including the menu item's label 
+and command string. Item processing is handled by processCmd(): </p>
+<p>public void processCmd(String cmd) 
+{ 
+  if ((cmd == null) || cmd.equals("")) { 
+    System.out.println("  No command"); 
+    return; 
+  } </p>
+<p>if (cmd.equals(CMD_HELLO)) 
+    GUI.showMessageBox("Item Dialog",<br />
+                       "Processing the \"Hello\" command"); 
+  else if (cmd.equals(CMD_QUIT)) { 
+    System.out.println("  Quiting the Application"); <br />
+    if (doc != null) 
+      Lo.closeDoc(doc);   // will trigger a call to disposing() 
+  } 
+  else 
+    System.out.println("  Got command: " + cmd); <br />
+}  // end of processCmd() </p>
+<p>Clicking on "Hello" results in a call to GUI.showMessageBox() which was used 
+earlier in ItemViewer. Clicking on "Quit" causes the document to be closed by 
+Lo.closeDoc() which in turn triggers a call to XWindowListener.disposing() which 
+MenuViewer.java also implements: </p>
+<p>// in MenuViewer.java 
+public void disposing(com.sun.star.lang.EventObject e) 
+{ <br />
+   System.out.println("Doc window is closing"); <br />
+   if (doc != null) 
+      Lo.closeDoc(doc); 
+   // Lo.closeOffice();  // Office hangs, so kill it instead 
+   Lo.killOffice();<br />
+   System.exit(0); 
+}  </p>
+<h3 id="62-adding-to-the-existing-menubar">6.2.  Adding to the Existing Menubar</h3>
+<p>MenuViewer.java can be edited to add the menu to Office's menubar rather than 
+create a new one. The end of the constructor becomes: </p>
+<p>// end of MenuViewer()... </p>
+<p>/<em> 
+  // create new menu bar 
+  GUI.showNone(doc); 
+  makeMenubar(win); 
+</em>/ 
+  // or modify the existing menubar 
+  GUI.showOne(doc, GUI.MENU_BAR); 
+  setMenubar(doc); </p>
+<p>setMenuBar() uses the layout manager to obtain a reference to Office's menubar, and 
+calculates a unique ID for the new menu and its position on the bar: </p>
+<p>// in MenuViewer.java 
+// globals 
+private short id = 0;   // used for menu IDs </p>
+<p>private void setMenubar(XComponent doc) 
+{ 
+  XLayoutManager lm = GUI.getLayoutManager(doc); 
+  XMenuBar menubar = GUI.getMenubar(lm); 
+  if (menubar == null) 
+    System.out.println("Menubar not found");<br />
+  else { 
+    short menuCount = menubar.getItemCount(); <br />
+            // count along the menu bar to get no. of menus 
+    short maxID = GUI.getMenuMaxID(menubar);  <br />
+            // find the largest menu item ID 
+    id = (short)(maxID + (short)100);    // hacky 
+      /<em> add a big number to account for the IDs used by 
+         menu items in the menu  </em>/ </p>
+<pre><code>addMenu(menubar, menuCount);
+</code></pre>
+<p>} 
+}  // end of setMenubar() </p>
+<p>The XMenuBar reference is retrieved from a property in the XUIElement for the bar: </p>
+<p>// in the GUI class 
+//globals 
+public static final String MENU_BAR =<br />
+                         "private:resource/menubar/menubar"; </p>
+<p>public static XMenuBar getMenubar(XLayoutManager lm) 
+{<br />
+  if (lm == null) { 
+    System.out.println("No layout manager available"); 
+    return null; 
+  } </p>
+<p>XMenuBar bar = null; 
+  try { 
+    XUIElement oMenuBar = lm.getElement(GUI.MENU_BAR);<br />
+    XPropertySet props = Lo.qi(XPropertySet.class, oMenuBar);<br />
+    bar = Lo.qi(XMenuBar.class, <br />
+                            props.getPropertyValue("XMenuBar"));<br />
+    if (bar == null) 
+      System.out.println("Menubar reference not found"); 
+  } 
+  catch (Exception e) 
+  {  System.out.println("Could not access menubar");  } 
+  return bar; 
+}  // end of getMenubar() </p>
+<p>Back in setMenubar(), XMenuBar.getItemCount() returns the number of menus 
+already on the bar, which can be used as the position of the new menu. </p>
+<p>Deciding on a unique menu ID is a little difficult since the IDs of all the items on the 
+existing menus, including submenus, should be examined. A simpler, and faster, 
+solution is implemented by GUI.getMenuMaxID(), which only finds the largest ID of 
+the menus (items in the menus aren't considered): </p>
+<p>// in the GUI class 
+public static short getMenuMaxID(XMenuBar bar) 
+{ 
+  if (bar == null) 
+    return -1; 
+  short itemCount = bar.getItemCount(); 
+  System.out.println("No items in menu bar: " + itemCount); 
+  short maxID = -1; 
+  for (short i=0; i &lt; itemCount; i++) { 
+    short id =  bar.getItemId(i); 
+    if (id &gt; maxID) 
+      maxID = id; 
+  } 
+  return maxID; 
+}  // end of getMenuMaxID() </p>
+<p>The drawback is that the menu with the largest ID will probably contain some items 
+with larger IDs. setMenubar() deals with this by adding 100 to the ID returned by 
+getMenuMaxID(), in the hope that this exceeds the largest item ID. </p>
+<p>setMenubar() finished with a call to addMenu(), the same function used by 
+makeMenubar() from earlier; it creates the menu and adds it to the bar. </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="42-Sending_E-mail.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 42. Sending E-mail
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Part 8 Extending LibreOffice
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

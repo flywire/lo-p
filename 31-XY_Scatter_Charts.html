@@ -1,0 +1,1933 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 31. XY (Scatter) Charts - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-31-xy-scatter-charts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 31. XY (Scatter) Charts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 31. XY (Scatter) Charts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link md-nav__link--active">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-a-scatter-chart-with-regressions" class="md-nav__link">
+    1.  A Scatter Chart (with Regressions)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-calculating-regressions" class="md-nav__link">
+    2.  Calculating Regressions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-drawing-a-regression-curve" class="md-nav__link">
+    3.  Drawing a Regression Curve
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-changing-axis-scales" class="md-nav__link">
+    4.  Changing Axis Scales
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-adding-error-bars" class="md-nav__link">
+    5.  Adding Error Bars
+  </a>
+  
+    <nav class="md-nav" aria-label="5.  Adding Error Bars">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-creating-new-chart-data" class="md-nav__link">
+    5.1.  Creating New Chart Data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-creating-the-data-sink" class="md-nav__link">
+    5.2.  Creating the Data Sink
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-linking-the-data-sink-to-the-chart" class="md-nav__link">
+    5.3.  Linking the Data Sink to the Chart
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-bringing-it-all-together" class="md-nav__link">
+    5.4.  Bringing it All Together
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-a-scatter-chart-with-regressions" class="md-nav__link">
+    1.  A Scatter Chart (with Regressions)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-calculating-regressions" class="md-nav__link">
+    2.  Calculating Regressions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-drawing-a-regression-curve" class="md-nav__link">
+    3.  Drawing a Regression Curve
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-changing-axis-scales" class="md-nav__link">
+    4.  Changing Axis Scales
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-adding-error-bars" class="md-nav__link">
+    5.  Adding Error Bars
+  </a>
+  
+    <nav class="md-nav" aria-label="5.  Adding Error Bars">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-creating-new-chart-data" class="md-nav__link">
+    5.1.  Creating New Chart Data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-creating-the-data-sink" class="md-nav__link">
+    5.2.  Creating the Data Sink
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-linking-the-data-sink-to-the-chart" class="md-nav__link">
+    5.3.  Linking the Data Sink to the Chart
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-bringing-it-all-together" class="md-nav__link">
+    5.4.  Bringing it All Together
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/31-XY_Scatter_Charts.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-31-xy-scatter-charts">Chapter 31. XY (Scatter) Charts</h1>
+<p>This chapter continues using the Chart2Views.java 
+example from previous chapters, but looks at how various 
+kinds of scatter charts can be generated from spreadsheet 
+data.  </p>
+<p>A scatter chart is a good way to display (x, y) coordinate 
+data since the x-axis values are treated as numbers not 
+categories. In addition, regression functions can be calculated and displayed, the axis 
+scales can be changed, and error bars added. </p>
+<p>The relevant lines of Chart2Views.java are: </p>
+<p>// part of Chart2Views.java 
+public static void main(String args[]) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  XSpreadsheetDocument doc = Calc.openDoc(CHARTS_DATA, loader); </p>
+<p>GUI.setVisible(doc, true); 
+  XSpreadsheet sheet = Calc.getSheet(doc, 0); </p>
+<p>// ---- use different chart templates ---- </p>
+<p>scatterChart(doc, sheet);               // see sections 1-3 
+  // scatterLineLogChart(doc, sheet);     // section 4 
+  // scatterLineErrorChart(doc, sheet);   // section 5 </p>
+<pre><code>     :  // more chart examples
+</code></pre>
+<p>Lo.waitEnter(); 
+  Lo.closeDoc(doc); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+<h2 id="1-a-scatter-chart-with-regressions">1.  A Scatter Chart (with Regressions)</h2>
+<p>scatterChart() in Chart2Views.java utilizes the "Ice Cream Sales vs. Temperature" 
+table in "chartsData.ods" (see Figure 1) to generate the scatter chart in Figure 2. </p>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+</div>
+<p>A Scatter Chart 
+(with Regressions); 
+Calculating Regressions; 
+Drawing a Regression 
+Curve; Changing Axis 
+Scales; Adding Error 
+Bars 
+Example folders: 
+"Chart2 Tests" and 
+"Utils" </p>
+<p><img alt="" src="images/31-XY_Scatter_Charts-1.png" /></p>
+<p>Figure 1. The  "Ice Cream Sales vs. Temperature" Table. </p>
+<p><img alt="" src="images/31-XY_Scatter_Charts-2.png" /></p>
+<p>Figure 2. Scatter Chart for the Table in Figure 1. </p>
+<p>Note that the x-axis in Figure 1 is numerical, showing values ranging between 10.0 
+and 26.0. This range is calculated automatically by the template. </p>
+<p>scatterChart() is: </p>
+<p>// in Chart2Views.java 
+private static void scatterChart(XSpreadsheetDocument doc, 
+                                       XSpreadsheet sheet) 
+{ 
+  CellRangeAddress rangeAddr = Calc.getAddress(sheet, "A110:B122"); 
+  XChartDocument chartDoc = Chart2.insertChart(sheet,<br />
+              rangeAddr, "C109", 16, 11, "ScatterSymbol"); 
+                 // ScatterSymbol, ScatterLine, ScatterLineSymbol 
+  Calc.gotoCell(doc, "A104"); </p>
+<p>Chart2.setTitle(chartDoc, Calc.getString(sheet, "A109")); 
+  Chart2.setXAxisTitle(chartDoc, Calc.getString(sheet, "A110")); 
+  Chart2.setYAxisTitle(chartDoc, Calc.getString(sheet, "B110")); 
+  Chart2.rotateYAxisTitle(chartDoc, 90); 
+  Chart2.setDataPointLabels(chartDoc, Chart2.DP_NONE);  <br />
+                                       // reduce clutter </p>
+<p>// Chart2.calcRegressions(chartDoc); 
+  // Chart2.drawRegressionCurve(chartDoc, Chart2.LINEAR); 
+}  // end of scatterChart() </p>
+<p>If the Chart2.calcRegressions() line is uncommented then several different regression 
+functions are calculated using the chart's data. Their equations and R
+2
+ values are 
+printed as shown below: </p>
+<p>Linear regression curve: 
+  Curve equation: f(x) = 30.09x - 159.5 
+  R^2 value: 0.917 </p>
+<p>Logarithmic regression curve: 
+  Curve equation: f(x) = 544.1 ln(x) - 1178 
+  R^2 value: 0.921 </p>
+<p>Exponential regression curve: 
+  Curve equation: f(x) = 81.62 exp( 0.0826 x ) 
+  R^2 value: 0.865 </p>
+<p>Power regression curve: 
+  Curve equation: f(x) = 4.545 x^1.525 
+  R^2 value: 0.906 </p>
+<p>Polynomial regression curve: 
+  Curve equation: f(x) =  - 0.5384x^2 + 50.24x - 340.1 
+  R^2 value: 0.921 </p>
+<p>Moving average regression curve: 
+  Curve equation: Moving average trend line with period = %PERIOD 
+  R^2 value: NaN </p>
+<p>A logarithmic or quadratic polynomial are the best matches, but linear is a close third. </p>
+<p>The "moving average" R
+2
+ result is NaN (Not-a-Number) since no average of period 2 
+matches the data. </p>
+<p>If the Chart2.drawRegressionCurve() call is uncommented, the chart drawing will 
+include a linear regression line and its equation and R
+2
+ value (see Figure 3). </p>
+<p><img alt="" src="images/31-XY_Scatter_Charts-3.png" /></p>
+<p>Figure 3. Scatter Chart with Linear Regression Line for the Table in Figure 1. </p>
+<p>The regression function is f(x) = 30.09x - 159.47, and the R
+2
+ value is 0.92 (to 2 dp). If 
+the constant is changed to Chart2.LOGARITHMIC in the call to 
+Chart2.drawRegressionCurve() then the generated function is f(x) = 544.1 ln(x) – 
+1178 with an R
+2
+ value of 0.92. Other regression curves are represented by the Chart2 
+constants EXPONENTIAL, POWER, POLYNOMIAL, and MOVING_AVERAGE. </p>
+<h2 id="2-calculating-regressions">2.  Calculating Regressions</h2>
+<p>Chart2.calcRegressions() is: </p>
+<p>// in the Chart2 class 
+// globals 
+private static final int[] CURVE_KINDS =<br />
+      { LINEAR, LOGARITHMIC, EXPONENTIAL, POWER,<br />
+        POLYNOMIAL, MOVING_AVERAGE }; </p>
+<p>private static final String[] CURVE_NAMES =<br />
+      { "Linear", "Logarithmic", "Exponential", "Power",<br />
+        "Polynomial", "Moving average" }; </p>
+<p>public static void calcRegressions(XChartDocument chartDoc) 
+{ 
+  for(int i=0; i &lt; CURVE_KINDS.length; i++) { 
+    XRegressionCurve curve = createCurve(CURVE_KINDS[i]); 
+    System.out.println(CURVE_NAMES[i] + " regression curve:"); 
+    evalCurve(chartDoc, curve); 
+    System.out.println(); 
+  } 
+}  // end of calcRegressions() </p>
+<p>createCurve() matches the regression constants defined in CURVE_KINDS[] to 
+regression services offered by the API: </p>
+<p>// in the Chart2 class 
+public static XRegressionCurve createCurve(int curveKind) 
+{ 
+  if (curveKind == LINEAR) 
+    return Lo.createInstanceMCF(XRegressionCurve.class,<br />
+                "com.sun.star.chart2.LinearRegressionCurve"); 
+  else if (curveKind == LOGARITHMIC) 
+    return Lo.createInstanceMCF(XRegressionCurve.class,<br />
+                "com.sun.star.chart2.LogarithmicRegressionCurve"); 
+  else if (curveKind == EXPONENTIAL) 
+    return Lo.createInstanceMCF(XRegressionCurve.class,<br />
+                "com.sun.star.chart2.ExponentialRegressionCurve"); 
+  else if (curveKind == POWER) 
+    return Lo.createInstanceMCF(XRegressionCurve.class,<br />
+                "com.sun.star.chart2.PotentialRegressionCurve"); 
+  else if (curveKind == POLYNOMIAL)        // assume degree == 2 
+    return Lo.createInstanceMCF(XRegressionCurve.class,<br />
+                "com.sun.star.chart2.PolynomialRegressionCurve"); 
+  else if (curveKind == MOVING_AVERAGE)    // assume period == 2 
+    return Lo.createInstanceMCF(XRegressionCurve.class,<br />
+         "com.sun.star.chart2.MovingAverageRegressionCurve"); 
+  else {  <br />
+    System.out.println("Did not recognize regression line kind: " +<br />
+                       curveKind + "; using linear"); 
+    return Lo.createInstanceMCF(XRegressionCurve.class,<br />
+                "com.sun.star.chart2.LinearRegressionCurve"); 
+  } 
+}  // end of createCurve() </p>
+<p>There are seven regression curve services in the chart2 module, all of which support 
+the XRegressionCurve interface, as shown in Figure 4. </p>
+<p><img alt="" src="images/31-XY_Scatter_Charts-4.png" /></p>
+<p>Figure 4. The Regression Curve Services </p>
+<p>The RegressionCurve service shown in Figure 4 is not a superclass for the other 
+services. Also note that the regression curve service for power functions is called 
+"PotentialRegressionCurve". </p>
+<p>Chart2.evalCurve() uses XRegressionCurve.getCalculator() to access the 
+XRegressionCurveCalculator interface. It sets up the data and parameters for a 
+particular curve, and prints the results of curve fitting: </p>
+<p>// in the Chart2 class 
+public static void evalCurve(XChartDocument chartDoc,<br />
+                             XRegressionCurve curve) 
+{ 
+  XRegressionCurveCalculator curveCalc = curve.getCalculator(); </p>
+<p>int degree = 1; 
+  if (getCurveType(curve) != LINEAR) 
+    degree = 2;   // assumes POLYNOMIAL curve has degree == 2 
+  curveCalc.setRegressionProperties(degree, false, 0, 2); 
+          // args: degree, forceIntercept, interceptValue, period </p>
+<p>XDataSource dataSource = getDataSource(chartDoc); 
+  // printLabeledSeqs(dataSource); </p>
+<p>double[] xVals = getChartData(dataSource, 0); 
+  double[] yVals = getChartData(dataSource, 1); 
+  curveCalc.recalculateRegression(xVals, yVals); </p>
+<p>System.out.println("  Curve equation: " +<br />
+                            curveCalc.getRepresentation()); 
+  double cc = curveCalc.getCorrelationCoefficient(); 
+  System.out.printf("  R^2 value: %.3f\n", (cc*cc));   // 3 dp 
+}  // end of evalCurve() </p>
+<p>The calculation is configured by calling 
+XRegressionCurveCalculator.setRegressionProperties(), and carried out by 
+XRegressionCurveCalculator.recalculateRegression().  </p>
+<p>The degree argument of setRegressionProperties() specifies the polynomial curve's 
+degree, which I've hardwired to be quadratic (i.e. a degree of 2). The period argument 
+is used when a moving average curve is being fitted. </p>
+<p>recalculateRegression() requires two arrays of x- and y- axis values for the scatter 
+points. These are obtained from the chart's data source by calling 
+Chart2.getDataSource() which returns the XDataSource interface for the DataSeries 
+service. </p>
+<p>Figure 5 shows the XDataSource, XRegressionCurveContainer, and XDataSink 
+interfaces of the DataSeries service. </p>
+<p><img alt="" src="images/31-XY_Scatter_Charts-5.png" /></p>
+<p>Figure 5. More Detailed DataSeries Service. </p>
+<p>In previous chapters, I've only used the XDataSeries interface, which offers access to 
+the data points in the chart. The XDataSource interface, which is read-only, gives 
+access to the underlying data that was used to create the points. The data is stored as 
+an array of XLabeledDataSequence objects; each object contains a label and a 
+sequence of data.  </p>
+<p>Chart2.getDataSource() is defined as: </p>
+<p>// in the Chart2 class 
+public static XDataSource getDataSource(XChartDocument chartDoc) 
+{ 
+  XDataSeries[] dataSeriesArr = getDataSeries(chartDoc);<br />
+  return Lo.qi(XDataSource.class, dataSeriesArr[0]); // get first 
+}   </p>
+<p>This method assumes that the programmer wants the first data source in the data 
+series. This is adequate for most charts which only use one data source. </p>
+<p>Chart2.printLabeledSeqs() is a diagnostic function for printing all the labeled data 
+sequences stored in an XDataSource: </p>
+<p>// in the Chart2 class 
+public static void printLabeledSeqs(XDataSource dataSource) 
+{<br />
+  XLabeledDataSequence[] dataSeqs = dataSource.getDataSequences(); 
+  System.out.println("No. of sequences in data source: " +<br />
+                                         dataSeqs.length); 
+  for (int i=0; i &lt; dataSeqs.length; i++) { 
+    Object[] labelSeq = dataSeqs[i].getLabel().getData(); 
+    System.out.print(labelSeq[0] + " :"); 
+    Object[] valsSeq = dataSeqs[i].getValues().getData(); 
+    for (Object val : valsSeq) 
+      System.out.print("  " + val); 
+    System.out.println(); 
+    String srRep = dataSeqs[i].getValues(). </p>
+<pre><code>                        getSourceRangeRepresentation(); 
+System.out.println("  Source range: " + srRep);
+</code></pre>
+<p>} 
+}  // end of printLabeledSeqs() </p>
+<p>When these function is applied to the data source for the scatter chart, the following is 
+printed: </p>
+<p>No. of sequences in data source: 2 
+Temperature °C :  14.2  16.4  11.9  15.2  18.5  22.1  19.4 <br />
+                  25.1  23.4  18.1  22.6  17.2 
+Source range: $examples.$A$111:$A$122 </p>
+<p>Ice Cream Sales :  215.0  325.0  185.0  332.0  406.0  522.0 <br />
+                   412.0  614.0  544.0  421.0  445.0  408.0 
+Source range: $examples.$B$111:$B$122 </p>
+<p>This output shows that the data source consists of two XLabeledDataSequence 
+objects, representing the x- and y- values in the data source (see Figure 1). These 
+objects' data are extracted as arrays by calls to Chart2.getChartData(): </p>
+<p>// in the Chart2 class 
+// part of evalCurve() 
+     : 
+XDataSource dataSource = getDataSource(chartDoc); 
+printLabeledSeqs(dataSource); </p>
+<p>double[] xVals = getChartData(dataSource, 0); 
+double[] yVals = getChartData(dataSource, 1); 
+curveCalc.recalculateRegression(xVals, yVals); </p>
+<p>When recalculateRegression() has finished, various results about the fitted curve can 
+be extracted from the XRegressionCurveCalculator variable, curveCalc. evalCurve() 
+prints the function string (using getRepresentation()) and the R
+2
+ value (using 
+getCorrelationCoefficient()). </p>
+<h2 id="3-drawing-a-regression-curve">3.  Drawing a Regression Curve</h2>
+<p>One of the surprising things about drawing a regression curve is that there's no need to 
+explicitly calculate the curve's function with XRegressionCurveCalculator. Instead 
+Chart2.drawRegressionCurve() only has to initialize the curve via the data series' 
+XRegressionCurveContainer interface (see Figure 5). drawRegressionCurve() is: </p>
+<p>// in the Chart2 class 
+public static void drawRegressionCurve(XChartDocument chartDoc,<br />
+                                       int curveKind) 
+{ 
+  XDataSeries[] dataSeriesArr = getDataSeries(chartDoc); 
+  XRegressionCurveContainer rcCon = Lo.qi( 
+             XRegressionCurveContainer.class, dataSeriesArr[0]); </p>
+<p>XRegressionCurve curve = createCurve(curveKind); 
+  rcCon.addRegressionCurve(curve);  // calculates the curve </p>
+<p>// show equation and R^2 value 
+  XPropertySet props = curve.getEquationProperties(); 
+  Props.setProperty(props, "ShowCorrelationCoefficient", true); 
+  Props.setProperty(props, "ShowEquation", true); </p>
+<p>int key = getNumberFormatKey(chartDoc, "0.00");   // 2 dp 
+  if (key != -1) 
+    Props.setProperty(props, "NumberFormat", key); 
+}  // end of drawRegressionCurve() </p>
+<p>The XDataSeries interface for the first data series in the chart is converted to 
+XRegressionCurveContainer, and an XRegressionCurve instance added to it. This 
+triggers the calculation of the curve's function. The rest of drawRegressionCurve() 
+deals with how the function information is displayed on the chart. </p>
+<p>XRegressionCurve.getEquationProperties() returns a property set which is an instance 
+of the RegressionCurveEquation class, shown in Figure 6. </p>
+<p><img alt="" src="images/31-XY_Scatter_Charts-6.png" /></p>
+<p>Figure 6. The RegressionCurveEquation Property Class. </p>
+<p>RegressionCurveEquation inherits properties related to character, fill, and line, since 
+it controls how the curve, function string, and R
+2
+ value are drawn on the chart. These 
+last two are made visible by setting the "ShowEquation" and 
+"ShowCorrelationCoefficient" properties to true, which are defined in 
+RegressionCurveEquation. Online documentation on this class can be accessed using 
+lodoc RegressionCurveEquation. </p>
+<p>Another useful property is "NumberFormat" which can be used to reduce the number 
+of decimal places used when printing the function and R
+2
+ value. </p>
+<p>Chart2.getNumberFormatKey() converts a number format string into a number format 
+key, which is assigned to the "NumberFormat" property: </p>
+<p>// in the Chart2 class 
+public static int getNumberFormatKey(XChartDocument chartDoc,<br />
+                                     String nfStr) 
+{ 
+  XNumberFormatsSupplier xfs = <br />
+                Lo.qi(XNumberFormatsSupplier.class, chartDoc); 
+  XNumberFormats nFormats = xfs.getNumberFormats(); 
+  int key = (int) nFormats.queryKey(nfStr,<br />
+              new com.sun.star.lang.Locale("en", "us", ""), false); 
+  if (key == -1) 
+    System.out.println("Could not access key for format: \"" +<br />
+                                                    nfStr + "\""); 
+  return key; 
+}  // end of getNumberFormatKey() </p>
+<p>The string-to-key conversion is straight forward if you know what number format 
+string to use, but there's little documentation on them. Probably the best approach is to 
+use the Format  Cells menu item in a spreadsheet document, and examine the 
+dialog in Figure 7. </p>
+<p><img alt="" src="images/31-XY_Scatter_Charts-7.png" /></p>
+<p>Figure 7. The Format Cells Dialog. </p>
+<p>When you select a given category and format, the number format string is shown in 
+the "Format Code" field at the bottom of the dialog. Figure 7 shows that the format 
+string for two decimal place numbers is "0.00". This string should be passed to 
+getNumberFormatKey() in drawRegressionCurve(): 
+int key = getNumberFormatKey(chartDoc, "0.00");  </p>
+<h2 id="4-changing-axis-scales">4.  Changing Axis Scales</h2>
+<p>Another way to understand scatter data is by changing the chart's axis scaling. </p>
+<p>Alternatives to linear are logarithmic, exponential, or power, although I've found that 
+the latter two cause the chart to be drawn incorrectly.  </p>
+<p>scatterLineLogChart() in Chart2Views.java utilizes the "Power Function Test" table 
+in "chartsData.ods" (see Figure 8).  </p>
+<p><img alt="" src="images/31-XY_Scatter_Charts-8.png" /></p>
+<p>Figure 8. The "Power Function Test" Table. </p>
+<p>I used the formula "=4.1*POWER(E<number>, 3.2)" (i.e.        ) to generate the 
+"Actual" column from the "Input" column's cells. Then I manually rounded the results 
+and copied them into the "Output" column. </p>
+<p>The data range passed to the Chart.insertChart() uses the "Input" and "Output" 
+columns of the table in Figure 8. The generated scatter chart in Figure 9 uses log 
+scaling for the axes, and fits a power function to the data points. </p>
+<p><img alt="" src="images/31-XY_Scatter_Charts-9.png" /></p>
+<p>Figure 9. Scatter Chart for the Table in Figure 8. </p>
+<p>The power  function fits the data so well that the black regression line lies over the 
+blue data curve. The regression function is f(x) = 3.89 x^2.32 (i.e.          ) with R
+2</p>
+<p>= 1.00, which is close to the power formula I used to generate the "Actual" column 
+data. </p>
+<p>scatterLineLogChart() is: </p>
+<p>// in Chart2Views.java 
+private static void scatterLineLogChart(XSpreadsheetDocument doc, 
+                                        XSpreadsheet sheet) 
+{ 
+  CellRangeAddress rangeAddr = Calc.getAddress(sheet, "E110:F120"); 
+  XChartDocument chartDoc = 
+         Chart2.insertChart(sheet, rangeAddr,<br />
+                         "A121", 20, 11, "ScatterLineSymbol"); 
+  Calc.gotoCell(doc, "A121"); </p>
+<p>Chart2.setTitle(chartDoc, Calc.getString(sheet, "E109")); 
+  Chart2.setXAxisTitle(chartDoc, Calc.getString(sheet, "E110")); 
+  Chart2.setYAxisTitle(chartDoc, Calc.getString(sheet, "F110")); 
+  Chart2.rotateYAxisTitle(chartDoc, 90); </p>
+<p>// change x- and y- axes to log scaling 
+  Chart2.scaleXAxis(chartDoc, Chart2.LOGARITHMIC); 
+  Chart2.scaleYAxis(chartDoc, Chart2.LOGARITHMIC); 
+              // LINEAR, LOGARITHMIC, (EXPONENTIAL, POWER) </p>
+<p>Chart2.drawRegressionCurve(chartDoc, Chart2.POWER); 
+}  // end of scatterLineLogChart() </p>
+<p>Chart2.scaleXAxis() and Chart2.scaleYAxis() call the more general 
+Chart2.scaleAxis() function: </p>
+<p>// in the Chart2 class 
+public static XAxis scaleXAxis(XChartDocument chartDoc,<br />
+                                               int scaleType) 
+{  return scaleAxis(chartDoc, Chart2.X_AXIS, 0, scaleType);  } </p>
+<p>public static XAxis scaleYAxis(XChartDocument chartDoc,<br />
+                                               int scaleType) 
+{  return scaleAxis(chartDoc, Chart2.Y_AXIS, 0, scaleType);  } </p>
+<p>Chart2.scaleAxis() utilizes XAxis.getScaleData() and XAxis.setScaleData() to access 
+and modify the axis scales: </p>
+<p>// in the Chart2 class 
+public static XAxis scaleAxis(XChartDocument chartDoc, int axisVal,<br />
+                                          int idx, int scaleType) 
+/<em> scaleTypes: LINEAR, LOGARITHMIC, EXPONENTIAL, POWER, but 
+   latter two seem unstable </em>/ 
+{<br />
+  XAxis axis = getAxis(chartDoc, axisVal, idx); 
+  if (axis == null) 
+    return null; </p>
+<p>ScaleData sd = axis.getScaleData(); 
+  if (scaleType == LINEAR) 
+    sd.Scaling = Lo.createInstanceMCF(XScaling.class, 
+                       "com.sun.star.chart2.LinearScaling"); 
+  else if (scaleType == LOGARITHMIC) 
+    sd.Scaling = Lo.createInstanceMCF(XScaling.class, 
+                       "com.sun.star.chart2.LogarithmicScaling"); 
+  else if (scaleType == EXPONENTIAL) 
+    sd.Scaling = Lo.createInstanceMCF(XScaling.class, 
+                       "com.sun.star.chart2.ExponentialScaling"); 
+  else if (scaleType == POWER) 
+    sd.Scaling = Lo.createInstanceMCF(XScaling.class, 
+                       "com.sun.star.chart2.PowerScaling"); 
+  else 
+    System.out.println("Did not recognize scaling: " + scaleType); 
+  axis.setScaleData(sd); 
+  return axis; 
+}  // end of scaleAxis() </p>
+<p>The different scaling services all support the XScaling interface, as illustrated by </p>
+<p><img alt="" src="images/31-XY_Scatter_Charts-10.png" /></p>
+<p>Figure 10. </p>
+<p><img alt="" src="images/31-XY_Scatter_Charts-10.png" /></p>
+<p>Figure 10. The Scaling Services. </p>
+<h2 id="5-adding-error-bars">5.  Adding Error Bars</h2>
+<p>scatterLineErrorChart() in Chart2Views.java employs the "Impact Data : 1018 Cold 
+Rolled" table in "chartsData.ods" (see Figure 11).  </p>
+<p><img alt="" src="images/31-XY_Scatter_Charts-11.png" /></p>
+<p>Figure 11. The "Impact Data : 1018 Cold Rolled" Table. </p>
+<p>The data range passed to the Chart.insertChart() uses the "Temperature" and "Mean" 
+columns of the table; the "Stderr" column is added separately to generate error bars 
+along the y-axis. The resulting scatter chart is shown in Figure 12. </p>
+<p><img alt="" src="images/31-XY_Scatter_Charts-12.png" /></p>
+<p>Figure 12. Scatter Chart with Error Bars for the Table in Figure 11. </p>
+<p>scatterLineLogChart() is: </p>
+<p>// in Chart2Views.java 
+private static void scatterLineErrorChart(XSpreadsheetDocument doc, 
+                                          XSpreadsheet sheet) 
+{ 
+  CellRangeAddress rangeAddr = Calc.getAddress(sheet, "A142:B146"); 
+  XChartDocument chartDoc = Chart2.insertChart(sheet,<br />
+              rangeAddr, "F115", 14, 16, "ScatterLineSymbol"); 
+  Calc.gotoCell(doc, "A123"); </p>
+<p>Chart2.setTitle(chartDoc, Calc.getString(sheet, "A141")); 
+  Chart2.setXAxisTitle(chartDoc, Calc.getString(sheet, "A142")); 
+  Chart2.setYAxisTitle(chartDoc, "Impact Energy (Joules)"); 
+  Chart2.rotateYAxisTitle(chartDoc, 90); </p>
+<p>// y-axis error bars 
+  String sheetName = Calc.getSheetName(sheet); 
+  String errorLabel = sheetName + "." + "C142"; 
+  String errorRange = sheetName + "." + "C143:C146"; 
+  Chart2.setYErrorBars(chartDoc, errorLabel, errorRange); 
+}  // end of scatterLineErrorChart() </p>
+<p>The new feature in scatterLineErrorChart() is the call to Chart2.setYErrorBars(), 
+which I'll explain over the next four subsections. </p>
+<h3 id="51-creating-new-chart-data">5.1.  Creating New Chart Data</h3>
+<p>The secret to adding extra data to a chart is XDataSink.setData(). XDataSink is yet 
+another interface for the DataSeries service (see Figure 5). </p>
+<p>There are several stages required, which are depicted in Figure 13. </p>
+<p><img alt="" src="images/31-XY_Scatter_Charts-13.png" /></p>
+<p>Figure 13.  Using XDataSink to Add Data to a Chart. </p>
+<p>The DataProvider service produces two XDataSequence objects which are combined 
+to become a XLabeledDataSequence object. An array of these objects is passed to 
+XDataSink.setData(). </p>
+<p>The DataProvider service is accessed with one line of code: 
+XDataProvider dp = chartDoc.getDataProvider(); 
+Chart2.createLDSeq() creates a XLabeledDataSequence instance from two 
+XDataSequence objects, one acting as a label the other as data. The XDataSequence<br />
+object representing the data must have its "Role" property set to indicate the type of 
+the data. </p>
+<p>// in the Chart2 class 
+public static XLabeledDataSequence createLDSeq(XDataProvider dp,<br />
+            String role, String dataLabel, String dataRange) 
+// create labeled data sequence using label and data; 
+// the data has the specified role 
+{ 
+  // create data sequence for the label 
+  XDataSequence labelSeq = <br />
+       dp.createDataSequenceByRangeRepresentation(dataLabel); </p>
+<p>// create data sequence for the data 
+  XDataSequence dataSeq = <br />
+       dp.createDataSequenceByRangeRepresentation(dataRange); 
+  XPropertySet dsProps = Lo.qi(XPropertySet.class, dataSeq); 
+  Props.setProperty(dsProps, "Role", role); <br />
+                       //specify data role (type) </p>
+<p>// create labeled data sequence using label and data seqs 
+  XLabeledDataSequence ldSeq = <br />
+         Lo.createInstanceMCF(XLabeledDataSequence.class,<br />
+                 "com.sun.star.chart2.data.LabeledDataSequence"); 
+  ldSeq.setLabel(labelSeq);  // add label 
+  ldSeq.setValues(dataSeq);  // add data 
+  return ldSeq; 
+}  // end of createLDSeq() </p>
+<p>Four arguments are passed to createLDSeq(): a reference to the XDataProvider 
+interface, a role string, a label, and a data range. For example: </p>
+<p>// part of Chart2.setYErrorBars(); see section 5.4 below 
+    : 
+String label = sheetName + "." + "C142"; 
+String dataRange = sheetName + "." + "C143:C146"; 
+XLabeledDataSequence lds =<br />
+  Chart2.createLDSeq(dp, "error-bars-y-positive", label, dataRange); </p>
+<p>Role strings are defined in DataSequenceRole, which is documented on the page that 
+describes chart2's data submodule (call lodoc chart2 data module, and scroll to 
+the bottom). </p>
+<p>XDataSink.setData() can accept multiple XLabeledDataSequence objects in an array, 
+making it possible to add several kinds of data to the chart at once. This is just as well 
+since I need to add two XLabeledDataSequence objects, one for the error bars above 
+the data points (i.e. up the y-axis), and another for the error bars below the points (i.e. </p>
+<p>down the y-axis). The code for doing this: </p>
+<p>// part of Chart2.setYErrorBars(); see section 5.4 below 
+    : 
+XDataSink dataSink = ...    // create the data sink </p>
+<p>XDataProvider dp = chartDoc.getDataProvider(); </p>
+<p>XLabeledDataSequence posErrSeq =    // bars above data points 
+    createLDSeq(dp, "error-bars-y-positive", dataLabel, dataRange); </p>
+<p>XLabeledDataSequence negErrSeq =    // bars below the data points 
+    createLDSeq(dp, "error-bars-y-negative", dataLabel, dataRange); </p>
+<p>XLabeledDataSequence[] ldSeqArr = { posErrSeq, negErrSeq }; 
+     // build array </p>
+<p>// add the two error bars to the data sink 
+dataSink.setData(ldSeqArr); </p>
+<p>// add the data sink to the chart ... </p>
+<p>This code fragment leaves two topics unexplained: how the data sink is initially 
+created, and how the data sink is linked to the chart. </p>
+<h3 id="52-creating-the-data-sink">5.2.  Creating the Data Sink</h3>
+<p>The data sink for error bars relies on the ErrorBar service, which is shown in Figure 
+14. </p>
+<p><img alt="" src="images/31-XY_Scatter_Charts-14.png" /></p>
+<p>Figure 14. The ErrorBar Service </p>
+<p>The ErrorBar service stores error bar properties and implements the XDataSink 
+interface. The following code fragment creates an instance of the ErrorBar service, 
+sets some of its properties, and converts it to an XDataSink: </p>
+<p>// part of Chart2.setYErrorBars(); see section 5.4 below 
+    : 
+XPropertySet props = Lo.createInstanceMCF(XPropertySet.class,<br />
+                              "com.sun.star.chart2.ErrorBar"); 
+Props.setProperty(props, "ShowPositiveError", true); 
+Props.setProperty(props, "ShowNegativeError", true); 
+Props.setProperty(props, "ErrorBarStyle", ErrorBarStyle.FROM_DATA); </p>
+<p>XDataSink dataSink = Lo.qi(XDataSink.class, props); </p>
+<p>For details on the ErrorBar service, execute lodoc chart2 ErrorBar. </p>
+<h3 id="53-linking-the-data-sink-to-the-chart">5.3.  Linking the Data Sink to the Chart</h3>
+<p>Once the data sink has been filled with XLabeledDataSequence objects, it can be 
+linked to the data series in the chart. For error bars this is done via the properties 
+"ErrorBarX" and "ErrorBarY". For example, the following code assigns a data sink to 
+the data series' "ErrorBarY" property: </p>
+<p>// part of Chart2.setYErrorBars(); see section 5.4 below 
+    : 
+XDataSeries[] dsa = getDataSeries(chartDoc); 
+XDataSeries ds = dsa[0]; 
+Props.setProperty(ds, "ErrorBarY", props); </p>
+<p>Note that the value assigned to "ErrorBarY" is not an XDataSink interface (e.g. not 
+dataSink from the earlier code fragment) but its property set (i.e. props). </p>
+<h3 id="54-bringing-it-all-together">5.4.  Bringing it All Together</h3>
+<p>Chart2.setYErrorBars() combines the previous code fragments into a single method: 
+the data sink is created (as a property set), XLabeledDataSequence data is added to it, 
+and then the sink is linked to the chart's data series: </p>
+<p>// in the Chart2 class 
+public static void setYErrorBars(XChartDocument chartDoc,<br />
+                                String dataLabel, String dataRange) 
+// see sections 5.1 – 5.3. for details of this code 
+{ 
+  // initialize error bar properties 
+  XPropertySet errorBarProps =<br />
+      Lo.createInstanceMCF(XPropertySet.class,<br />
+                           "com.sun.star.chart2.ErrorBar"); 
+  Props.setProperty(errorBarProps, "ShowPositiveError", true); 
+  Props.setProperty(errorBarProps, "ShowNegativeError", true); 
+  Props.setProperty(errorBarProps, "ErrorBarStyle",<br />
+                                       ErrorBarStyle.FROM_DATA); </p>
+<p>// convert into data sink 
+  XDataSink dataSink = Lo.qi(XDataSink.class, errorBarProps); </p>
+<p>// use data provider to create labeled data sequences 
+  // for the +/- error ranges 
+  XDataProvider dp = chartDoc.getDataProvider(); </p>
+<p>XLabeledDataSequence posErrSeq =<br />
+      createLDSeq(dp, "error-bars-y-positive", dataLabel, dataRange); 
+  XLabeledDataSequence negErrSeq =<br />
+      createLDSeq(dp, "error-bars-y-negative", dataLabel, dataRange); 
+  XLabeledDataSequence[] ldSeqArr = { posErrSeq, negErrSeq }; </p>
+<p>// store the error bar data sequences in the data sink 
+  dataSink.setData(ldSeqArr); </p>
+<p>// store error bar in data series 
+  XDataSeries[] dataSeriesArr = getDataSeries(chartDoc); 
+  XDataSeries dataSeries = dataSeriesArr[0]; 
+  Props.setProperty(dataSeries, "ErrorBarY", errorBarProps); 
+}  // end of setYErrorBars() </p>
+<p>This is not our last visit to DataSink and XDataSink. I'll use their features again in the 
+next chapter. </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 30. Bar, Pie, Area, Line Charts
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="32-Bubble_Net_Stock_Charts.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Chapter 32. Bubble, Net, Stock Charts
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

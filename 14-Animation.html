@@ -1,0 +1,1561 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 14. Animation - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-14-animation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 14. Animation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 14. Animation
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="14-Animation.html" class="md-nav__link md-nav__link--active">
+        Chapter 14. Animation
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-animating-a-circle-and-a-line" class="md-nav__link">
+    1.  Animating a Circle and a Line
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-animating-an-image" class="md-nav__link">
+    2.  Animating an Image
+  </a>
+  
+    <nav class="md-nav" aria-label="2.  Animating an Image">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-drawing-the-image" class="md-nav__link">
+    2.1.  Drawing the Image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-updating-the-bikes-position-and-orientation" class="md-nav__link">
+    2.2.  Updating the Bike’s Position and Orientation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-another-way-to-access-the-gallery" class="md-nav__link">
+    3.  Another Way to Access the Gallery
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-animating-a-circle-and-a-line" class="md-nav__link">
+    1.  Animating a Circle and a Line
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-animating-an-image" class="md-nav__link">
+    2.  Animating an Image
+  </a>
+  
+    <nav class="md-nav" aria-label="2.  Animating an Image">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-drawing-the-image" class="md-nav__link">
+    2.1.  Drawing the Image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-updating-the-bikes-position-and-orientation" class="md-nav__link">
+    2.2.  Updating the Bike’s Position and Orientation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-another-way-to-access-the-gallery" class="md-nav__link">
+    3.  Another Way to Access the Gallery
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/14-Animation.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-14-animation">Chapter 14. Animation</h1>
+<p>DrawPicture.java contains a commented-out call to 
+animShapes() which shows how to animate a circle and a 
+line. There's a second animation example in 
+AnimBicycle.java which translates and rotates a bicycle 
+image. The chapter ends with a brief outline of the 
+com.sun.star.gallery module. </p>
+<h2 id="1-animating-a-circle-and-a-line">1.  Animating a Circle and a Line</h2>
+<p>animShapes() in DrawPicture.java implements two animation loops that work in a 
+similar manner. Inside a loop, a shape is drawn, the function (and program) sleeps for 
+a brief period, then the shape's position, size, or properties are updated, and the loop 
+repeats. </p>
+<p>The first animation loop moves a circle across the page from left to right, reducing its 
+radius at the same time. The second loop rotates a line counter-clockwise while 
+changing its length. The animShapes() code: </p>
+<p>// in DrawPicture.java 
+private static void animShapes(XDrawPage currSlide) 
+{ 
+  // reduce circle size and move to the right 
+  int xc = 40; 
+  int yc = 150; 
+  int radius = 40; 
+  XShape circle = null; 
+  for (int i=0; i &lt; 20; i++) {<br />
+    if (circle != null) 
+      currSlide.remove(circle); 
+    circle = Draw.drawCircle(currSlide, xc, yc, radius); 
+                               // (x-center, y-center, radius) 
+    Lo.delay(200); 
+    xc += 5;         // move right 
+    radius *= 0.95;  // reduce size 
+  } </p>
+<p>// rotate line counter-clockwise, and change length 
+  int x2 = 140; 
+  int y2 = 110; 
+  XShape line = null; 
+  for (int i=0; i &lt;= 25; i++) { 
+    if (line != null) 
+      currSlide.remove(line); 
+    line = Draw.drawLine(currSlide, 40, 100, x2, y2); 
+    Lo.delay(200); 
+    x2 -= 4; 
+    y2 -= 4; 
+  } 
+}  // end of animShapes() </p>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Circle </p>
+</div>
+<p>Movement; Line 
+Rotation; Animating an 
+Image; The Gallery 
+Module  </p>
+<p>Example folders: "Draw 
+Tests" and "Utils" 
+The shape (circle or line) is changed by removing the current version from the page 
+and inserting a new updated instance. This means that a lot of objects are created and 
+removed in a short amount of time. The alternative approach, which retains the shape 
+and only update its properties, is used in the bicycle animation explained next.  </p>
+<h2 id="2-animating-an-image">2.  Animating an Image</h2>
+<p>The AnimBicycle.java example moves a bicycle image to the right and rotates it 
+counter-clockwise. Figure 1 shows the page after the animation has finished. </p>
+<p><img alt="" src="images/14-Animation-1.png" /></p>
+<p>Figure 1. Animated Bicycle and Shapes. </p>
+<p>The animation is performed by animateBike(): </p>
+<p>private static void animateBike(XDrawPage currSlide) 
+{ 
+  String fnm = Info.getGalleryDir() +<br />
+                   "/transportation/Bicycle-Blue.png";  <br />
+  XShape shape = Draw.drawImage(currSlide, fnm, 60, 100, 90, 50); 
+                                      // (x,y), width, height 
+  if (shape == null) { 
+    System.out.println("Bike shape not created"); 
+    return; 
+  } </p>
+<p>Point pt = Draw.getPosition(shape); 
+  int angle = Draw.getRotation(shape); 
+  for (int i=0; i &lt;= 18; i++) { 
+     Draw.setPosition(shape, pt.X+(i<em>5), pt.Y); // move right 
+     Draw.setRotation(shape, angle+(i</em>5));   // rotates 
+     Lo.delay(200); 
+  } </p>
+<p>System.out.println("Final Angle: " + Draw.getRotation(shape)); 
+  Draw.printMatrix( Draw.getTransformation(shape)); 
+}  // end of animateBike() </p>
+<p>The image comes from Office’s Gallery collection whose location is returned by 
+Info.getGalleryDir(). There are several gallery locations that Office might use, but 
+getGalleryDir() returns the main one, which is <OFFICE>/share/gallery/. This 
+directory divides the collection into a number of subdirectories, and the bicycle is in<br />
+transportation/Bicycle-Blue.png. </p>
+<p>The animation loop in animateBike() is similar to the ones in animShapes(), using 
+Lo.delay() to space out changes over time. However, instead of creating a new shape 
+on each iteration, a single GraphicObjectShape is created by Draw.drawImage() 
+before the loop starts. Inside the loop, that shape’s position and orientation are 
+repeatedly updated by Draw.setPosition() and Draw.setRotation(). </p>
+<h3 id="21-drawing-the-image">2.1.  Drawing the Image</h3>
+<p>There are several versions of Draw.drawImage(); the main one is: </p>
+<p>// in the Draw class 
+public static XShape drawImage(XDrawPage slide,String imFnm,<br />
+                          int x, int y, int width, int height) 
+// units in mm's 
+{ 
+  System.out.println("Adding the picture \"" + imFnm + "\""); 
+  XShape imShape = addShape(slide, "GraphicObjectShape",<br />
+                                            x, y, width, height); 
+  setImage(imShape, imFnm); 
+  setLineStyle(imShape, LineStyle.NONE);   <br />
+                     // so no border around the image 
+  return imShape; 
+}  // end of drawImage() </p>
+<p>public static void setImage(XShape shape, String imFnm) 
+{ 
+  String bitmap = Images.getBitmap(imFnm); 
+  Props.setProperty(shape, "GraphicURL", bitmap); 
+              // embed bitmap from image file 
+}  // end of setImage() </p>
+<p>drawImage() uses the supplied (x, y) position, width, and  height to create an empty 
+GraphicObjectShape. An image is added by setImage(), which loads a bitmap from a 
+file, and assigns it to the shape's "GraphicURL" property. By using a bitmap, the 
+image is embedded in the document.  </p>
+<p>Alternatively, a URL could be assigned to "GraphicURL", causing the document's 
+image to be a link back to its original file. That version is coded using: </p>
+<p>Props.setProperty(shape, "GraphicURL", FileIO.fnmToURL(imFnm)); 
+                              // link to image file </p>
+<p>A second version of Draw.drawImage() doesn't require width and height arguments – 
+they're obtained from the image’s dimensions: </p>
+<p>// in the Draw class 
+public static XShape drawImage(XDrawPage slide, String imFnm,<br />
+                                                   int x, int y) 
+// units in mm's 
+{ 
+  Size imSize = Images.getSize100mm(imFnm);   // in 1/100 mm units 
+  if (imSize == null) { 
+    System.out.println("Could not calculate size of " + imFnm); 
+    return null; 
+  } 
+  else 
+    return drawImage(slide, imFnm, x, y,<br />
+                  imSize.Width/100, imSize.Height/100); 
+}  // end of drawImage() </p>
+<p>The image’s size is returned in 1/100 mm units by Images.getSize100mm(). It loads 
+the image as an XGraphic object so that its "Size100thMM" property can be 
+examined: </p>
+<p>// in the Images class 
+public static Size getSize100mm(String imFnm) 
+{ 
+  XGraphic graphic = loadGraphicFile(imFnm); 
+  if (graphic == null) 
+    return null; 
+  return (Size) Props.getProperty(graphic, "Size100thMM"); 
+}  // end of getSize100mm() </p>
+<p>This approach isn’t very efficient since it means that the image is being loaded twice, 
+once as an XGraphic object by getSize100mm(), and also as a bitmap by setImage().  </p>
+<h3 id="22-updating-the-bikes-position-and-orientation">2.2.  Updating the Bike’s Position and Orientation</h3>
+<p>The animateBike() animation uses Draw methods for getting and setting the shape’s 
+position and orientation: </p>
+<p>// in the Draw class 
+public static Point getPosition(XShape shape) 
+{ Point pt = shape.getPosition(); 
+  return new Point(pt.X/100, pt.Y/100);  // convert to mm 
+} </p>
+<p>public static void setPosition(XShape shape, int x, int y) 
+{   shape.setPosition(new Point(x<em>100, y</em>100));  }  </p>
+<p>public static int getRotation(XShape shape) 
+{ return ((Integer)Props.getProperty(shape, "RotateAngle"))/100;  } </p>
+<p>public static void setRotation(XShape shape, int angle) 
+{  Props.setProperty(shape, "RotateAngle", angle*100);  }  </p>
+<p>The position is accessed and changed using the XShape methods getPosition() and 
+setPosition(), with the only complication being the changes of millimeters into 1/100 
+mm units, and vice versa.  </p>
+<p>Rotation is handled by getting and setting the shape's"RotateAngle" property, which is 
+inherited from the RotationDescriptor class. The angle is expressed in "1/100 of a 
+degree" units (e.g. 4500 rather than 45 degrees), and a positive rotation is counter-
+clockwise. </p>
+<p>One issue is that RotationDescriptor is deprecated; the modern programmer is 
+encouraged to rotate a shape using the matrix associated with the "Transformation" 
+property. </p>
+<p>The Draw class has are two support functions for "Transformation": one extracts the 
+matrix from a shape, and the other prints it: </p>
+<p>public static HomogenMatrix3 getTransformation(XShape shape) 
+/<em> Returns a transformation matrix, which seems to<br />
+   represent a clockwise rotation: 
+      cos(t)  sin(t) x 
+     -sin(t)  cos(t) y 
+        0       0    1      </em>/ 
+{ return (HomogenMatrix3)<br />
+              Props.getProperty(shape, "Transformation"); 
+} // end of getTransformation() </p>
+<p>public static void printMatrix(HomogenMatrix3 mat) 
+{ 
+  System.out.println("Transformation Matrix:"); 
+  System.out.printf("\t%10.2f\t%10.2f\t%10.2f\n",<br />
+      mat.Line1.Column1, mat.Line1.Column2, mat.Line1.Column3); 
+  System.out.printf("\t%10.2f\t%10.2f\t%10.2f\n",<br />
+      mat.Line2.Column1, mat.Line2.Column2, mat.Line2.Column3); 
+  System.out.printf("\t%10.2f\t%10.2f\t%10.2f\n",<br />
+      mat.Line3.Column1, mat.Line3.Column2, mat.Line3.Column3); </p>
+<p>double radAngle = Math.atan2(mat.Line2.Column1,<br />
+                               mat.Line1.Column1); 
+                            // sin(t), cos(t) 
+  int currAngle = (int)Math.round( Math.toDegrees(radAngle)); 
+  System.out.println("  Current angle: " + currAngle); 
+  System.out.println(); 
+}  // end of printMatrix() </p>
+<p>These methods are called at the end of animateBike(): </p>
+<p>// in animateBike() in AnimBicycle.java 
+Draw.printMatrix( Draw.getTransformation(shape)); </p>
+<p>The output is: </p>
+<p>Transformation Matrix: 
+              0.00         5001.00        15383.00 
+          -9001.00            0.00        10235.00 
+              0.00            0.00            1.00 
+  Current angle: -90 </p>
+<p>These numbers suggests that the transformation was a clockwise rotation, but the calls 
+to Draw.setRotation() in the earlier animation loop made the bicycle turn counter-
+clockwise. This discrepancy led me to stay with the deprecated approach for shape 
+rotation. </p>
+<h2 id="3-another-way-to-access-the-gallery">3.  Another Way to Access the Gallery</h2>
+<p>There's an alternative way to obtain gallery images based around themes and items, 
+implemented by the com.sun.star.gallery module (see lodoc Gallery module). </p>
+<p>Subdirectories of gallery/ are themes (e.g. there's a transportation theme), and the files 
+in those directories are items.  </p>
+<p>The three interfaces in the module are: XGalleryThemeProvider, XGalleryTheme, and 
+XGalleryItem. XGalleryThemeProvider represents the gallery/ directory as a 
+sequence of named XGalleryTheme objects, as shown in Figure 2. </p>
+<p><img alt="" src="images/14-Animation-2.png" /></p>
+<p>Figure 2. The GalleryThemeProvider Service. </p>
+<p>A XGalleryTheme represents the file contents of a subdirectory (such as 
+transportation/) as a container of indexed XGalleryItem objects, which is depicted in </p>
+<p><img alt="" src="images/14-Animation-3.png" /></p>
+<p>Figure 3. </p>
+<p><img alt="" src="images/14-Animation-3.png" /></p>
+<p>Figure 3. The GalleryTheme Service. </p>
+<p>Each XGalleryItem represents a file, which may be a graphic or some other resource, 
+such as an audio file. The details about each item (file) are stored as properties which 
+are defined in the GalleryItem service (see lodoc GalleryItem service). </p>
+<p>The Gallery.java utility class helps access the gallery in this way, and 
+GalleryInfo.java contains some examples of its use: </p>
+<p>public static void main(String args[]) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); </p>
+<p>// list all gallery themes (i.e. the sub-dirs below gallery/) 
+  Gallery.reportGallerys(); 
+  System.out.println(); </p>
+<p>// list all items for the Transportation theme 
+  // i.e. list all the files in gallery/transportation 
+  Gallery.reportGalleryItems("Transportation"); 
+  System.out.println(); </p>
+<p>// find an item that has "bicycle" as part of its name<br />
+  // in the Transportation theme 
+  XGalleryItem gItem =<br />
+       Gallery.findGalleryItem("Transportation", "bicycle"); 
+  System.out.println(); </p>
+<p>// print out the item's properties 
+  Gallery.reportGalleryItem(gItem); </p>
+<p>Lo.closeOffice(); 
+} // end of main() </p>
+<p>Gallery.reportGallerys() gives details about 14 themes, Gallery.reportGalleryItems() 
+prints the names of the 14 items (files) in the transportation theme. </p>
+<p>Gallery.findGalleryItem() searches that theme for an item name containing "bicycle", 
+and  Gallery.reportGalleryItem() reports its details: </p>
+<p>Gallery item information: 
+  Fnm: "Bicycle-Blue.png" 
+  Path: "C:\Program Files\LibreOffice 5\share\gallery 
+                           \transportation\Bicycle-Blue.png" 
+  Title: "" 
+  Type: graphic </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="13-Basic_Shapes.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 13. Drawing Basic Shapes
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="15-Complex_Shapes.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Chapter 15. Complex Shapes
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

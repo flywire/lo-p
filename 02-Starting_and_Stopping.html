@@ -1,0 +1,1801 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 2. Starting and Stopping - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-2-starting-and-stopping" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 2. Starting and Stopping
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 2. Starting and Stopping
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link md-nav__link--active">
+        Chapter 2. Starting and Stopping
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-starting-office" class="md-nav__link">
+    1.  Starting Office
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-closing-downkilling-office" class="md-nav__link">
+    2.  Closing Down/Killing Office
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-opening-a-document" class="md-nav__link">
+    3.  Opening a Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-creating-a-document" class="md-nav__link">
+    4.  Creating a Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-saving-a-document" class="md-nav__link">
+    5.  Saving a Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-closing-a-document" class="md-nav__link">
+    6.  Closing a Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-a-general-purpose-converter" class="md-nav__link">
+    7.  A General Purpose Converter
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-bug-detection-and-reporting" class="md-nav__link">
+    8.  Bug Detection and Reporting
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-starting-office" class="md-nav__link">
+    1.  Starting Office
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-closing-downkilling-office" class="md-nav__link">
+    2.  Closing Down/Killing Office
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-opening-a-document" class="md-nav__link">
+    3.  Opening a Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-creating-a-document" class="md-nav__link">
+    4.  Creating a Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-saving-a-document" class="md-nav__link">
+    5.  Saving a Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-closing-a-document" class="md-nav__link">
+    6.  Closing a Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-a-general-purpose-converter" class="md-nav__link">
+    7.  A General Purpose Converter
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-bug-detection-and-reporting" class="md-nav__link">
+    8.  Bug Detection and Reporting
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/02-Starting_and_Stopping.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-2-starting-and-stopping">Chapter 2. Starting and Stopping</h1>
+<p>Chapter 1 introduced some of the core ideas of Office. </p>
+<p>Now it's time to show how these data structures and 
+relationships (e.g. service, interfaces, FCM, inheritance) 
+are programmed in Office's Java API.  </p>
+<p>This chapter will focus on the most fundamental tasks: 
+starting Office, loading (or creating) a document, saving 
+and closing the document, and shutting down Office. The 
+DocConverter.java example at the end pulls these together to show how to convert a 
+document into another format. </p>
+<p>All the examples come from the "Office Tests" directory in the code download 
+associated with this book, and make liberal use of the classes in the "Utils" directory. </p>
+<p>For details please visit http://fivedots.coe.psu.ac.th/~ad/jlop/. </p>
+<p>My aim with these utilities is to hide some of the verbiage of Office. When (if?) a 
+programmer feels ready for more detail, then my code is documented. I'll only explain 
+functions here that illustrate Office ideas, such as service managers and components. </p>
+<p>This is the first chapter with code, and so the first where programs could crash! 
+Section 8 gives a few tips on bug detection and reporting. </p>
+<h2 id="1-starting-office">1.  Starting Office</h2>
+<p>Every program must load Office before working with a document, and shut it down 
+before exiting. These tasks are handled by loadOffice() and closeOffice() from the Lo 
+utility class. A typical program will look like the following: </p>
+<p>import com.sun.star.uno.<em>; 
+import com.sun.star.lang.</em>; 
+import com.sun.star.frame.*; </p>
+<p>public class OfficeInfo 
+{ 
+  public static void main(String[] args) 
+  { 
+    XComponentLoader loader = Lo.loadOffice(); </p>
+<pre><code>// load, manipulate and close a document
+
+Lo.closeOffice();
+</code></pre>
+<p>} // end of main() </p>
+<p>}  // end of OfficeInfo class </p>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Starting Office; </p>
+</div>
+<p>Closing Down/Killing 
+Office; Opening a 
+Document; Creating a 
+Document; Saving; 
+Closing; Document 
+Conversion; Bug 
+Detection and Reporting 
+Example folders: "Office 
+Tests" and "Utils" 
+Lo.loadOffice() invokes Office and sets up a UNO bridge using named pipes. There's 
+also a Lo.loadSocketOffice() which uses sockets instead of pipes. Both functions 
+return a reference to a component loader which can be used to load a document.  </p>
+<p>loadOffice() and loadSocketOffice() call a one-argument version of loadOffice() 
+which uses a boolean to decide whether to use pipes or sockets to link to Office. In 
+both cases, a remote component context is created on the Java side (see Chapter 1, 
+Figure 2) and then a service manager, Desktop object, and component loader are 
+initialized. The code below shows some details: </p>
+<p>// in the Lo class 
+// globals<br />
+private static XComponentContext xcc = null; 
+private static XDesktop xDesktop = null; 
+private static XMultiComponentFactory mcFactory = null;    </p>
+<p>public static XComponentLoader loadOffice(boolean usingPipes) 
+{ 
+  System.out.println("Loading Office..."); 
+  if (usingPipes) 
+    xcc = bootstrapContext(); // connects to office via pipes 
+  else 
+    xcc = socketContext();    // connects to office via a socket 
+  if (xcc == null) { 
+    System.out.println("Office context could not be created"); 
+    System.exit(1); 
+  } </p>
+<p>// get the remote office service manager 
+  mcFactory = xcc.getServiceManager(); 
+  if (mcFactory == null) { 
+    System.out.println("Office Service Manager is unavailable"); 
+    System.exit(1); 
+  } </p>
+<p>// desktop service handles application windows and documents 
+  xDesktop = createInstanceMCF(XDesktop.class,<br />
+                               "com.sun.star.frame.Desktop"); 
+  if (xDesktop == null) { 
+    System.out.println("Could not create a desktop service"); 
+    System.exit(1); 
+  } </p>
+<p>// XComponentLoader provides ability to load components 
+  return Lo.qi(XComponentLoader.class, xDesktop); 
+}  // end of loadOffice() </p>
+<p>loadOffice() probably illustrates my most significant coding decisions – the use of 
+global static variables inside the Lo class. In particular, the XComponentContext, 
+XDesktop, and XMultiComponentFactory objects created by loadOffice() are stored 
+globally for later use. I chose this approach since it allows other support functions to 
+be called with simpler arguments because the objects can be accessed without the user 
+having to explicitly pass around references to them. The main drawback is that 
+loadOffice() cannot be safely called more than once (i.e. it is non-reentrant) since a 
+second call will overwrite the globals set during the first call. </p>
+<p>The creation of the XDesktop interface object uses createInstanceMCF(): </p>
+<p>// in the Lo class 
+public static <T> T createInstanceMCF(Class<T> aType,<br />
+                                            String serviceName) 
+{ if ((xcc == null) || (mcFactory == null)) { 
+    System.out.println("No office connection found"); 
+    return null; 
+  } </p>
+<p>T interfaceObj = null; 
+  try {   // get service, then interface 
+    Object o = mcFactory.createInstanceWithContext(serviceName, xcc); 
+    interfaceObj = Lo.qi(aType, o);   <br />
+  } 
+  catch (Exception e) { 
+    System.out.println("Couldn't create interface for \"" +<br />
+                                      serviceName + "\": " + e); 
+  } 
+  return interfaceObj; 
+}  // end of createInstanceMCF() </p>
+<p>public static <T> T qi(Class<T> aType, Object o) 
+// the "Loki" function -- reduces typing 
+{  return UnoRuntime.queryInterface(aType, o);  } </p>
+<p>If you ignore the error-checking, createInstanceMCF() does two things. The call to 
+XMultiComponentFactory.createInstanceWithContext() asks the service manager 
+(mcFactory) to create a service object inside the remote component context (xcc). </p>
+<p>Then the call to UnoRuntime.queryInterface() looks inside the service instance for the 
+specified interface (aType), returning an instance of the interface as its result.  </p>
+<p>My Lo.qi() function's only purpose is to reduce programmer typing, since calls to 
+UnoRuntime.queryInterface() are very common. </p>
+<p>The use of generics makes createInstanceMCF() useful for creating any type of 
+interface object. Unfortunately, generics aren't utilized in the Office API, which relies 
+instead on Object, Office's Any class, or the XInterface class which is inherited by all 
+interfaces.  </p>
+<p>A Quick Look at Sockets 
+Note: you can skip this section if socket communication with Office isn't of interest. </p>
+<p>loadOffice() starts by calling bootstrapContext() or socketContext() to create a remote 
+component context. bootstrapContext() is very short since it build a UNO bridge 
+based on named pipes using Office's Bootstrap class. However, I also implemented a 
+socket-based bridge, in Lo.socketContext(). The steps it performs are: 
+ invoke Office as a process using sockets; 
+ create a local component context and service manager (local in the sense of 
+being in the Java process); 
+ connect to Office via its socket. I use the Connector service, but another 
+approach is to employ the UnoUrlResolver service; 
+ layer a UNO bridge on top of the socket link; 
+ retrieve a reference to the remote component context via the UNO bridge 
+(remote in the sense that it refers across process boundaries to Office). </p>
+<p>Office's own Bootstrap class implements a similar sequence of steps for linking to 
+Office via pipes. It starts Office by calling Java's Runtime.exec(), and I've used the 
+same approach, but assumed that soffice.exe is part of Window's PATH environment 
+variable. The relevant code fragment is: </p>
+<p>String[] cmdArray = new String[3]; 
+cmdArray[0] = "soffice"; 
+cmdArray[1] = "-headless"; 
+cmdArray[2] = "-accept=socket,host=localhost,port=" + 
+                                       SOCKET_PORT + ";urp;"; 
+Process p = Runtime.getRuntime().exec(cmdArray); </p>
+<p>SOCKET_PORT has the value 8100. Since this port number is fixed, it’s possible to 
+check the socket’s status outside Office. For example, on Windows, I type: 
+netstat | grep 8100 
+If you wondering where grep comes from, I got it from gow 
+(https://github.com/bmatzelle/gow), a light-weight installer of UNIX command line 
+utilities for Windows. </p>
+<h2 id="2-closing-downkilling-office">2.  Closing Down/Killing Office</h2>
+<p>Lo.closeOffice() shuts down Office by calling terminate() on the XDesktop instance 
+created inside loadOffice(): 
+boolean isDead = xDesktop.terminate() 
+This is usually sufficient but occasionally I've found it necessary to delay the 
+terminate() call for a few milliseconds in order to give Office components time to 
+finish. I noticed this especially when using an OfficeBean panel for displaying 
+documents (which I'll describe much later in Chapter 44). As a consequence, 
+Lo.closeDown() may actually call terminate() a few times, until it returns true. </p>
+<p>While developing/debugging code, it's quite easy to inadvertently trigger a runtime 
+exception in the Office API. In the worst case, this can cause your program to exit 
+without calling Lo.closeDown(). This will leave an extraneous Office process running 
+in the OS, which should be killed. The easiest way is with a Windows batch file 
+containing: 
+taskkill /f /t /im soffice.exe 
+This uses the fact that the office process is called soffice.exe. Another useful batch 
+script is one that checks only if the process is running: 
+tasklist /FI "IMAGENAME eq soffice.exe" 
+These are packaged up as lokill.bat and lolist.bat in my code. So if you're unsure if 
+Office is really dead, type: 
+lokill 
+at a command prompt. </p>
+<p>The Unix shell script versions of these files could use killall, pkill, ps, or kill. </p>
+<p>Lo.killOffice() inelegantly terminates Office by calling the lokill.bat script from 
+inside Java: </p>
+<p>// part of the Lo class 
+public static void killOffice() 
+{ 
+  try { 
+    Runtime.getRuntime().exec("cmd /c lokill.bat"); 
+    System.out.println("Killed Office"); 
+  } 
+  catch (java.lang.Exception e) { 
+    System.out.println("Unable to kill Office: " + e); 
+  } 
+}  // end of killOffice() </p>
+<p>The code is nasty since it relies on there being a cmd.exe OS tool and a lokill.bat 
+batch file in the current directory. </p>
+<h2 id="3-opening-a-document">3.  Opening a Document</h2>
+<p>The general format of a program that opens a document, manipulates it in some way, 
+and then saves it, is: </p>
+<p>public static void main(String[] args) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  XComponent doc = Lo.openDoc(args[0], loader); 
+  if (doc == null) { 
+    System.out.println("Could not open " + args[0]); 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>// use the Office API to manipulate doc... </p>
+<p>Lo.saveDoc(doc, "foo.docx");  // save as a Word file 
+  Lo.closeDoc(doc); 
+  Lo.closeOffice(); 
+} // end of main() </p>
+<p>The new methods are Lo.openDoc(), Lo.saveDoc(), and Lo.closeDoc(). </p>
+<p>openDoc() calls XComponentLoader.loadComponentFromURL(), which requires a 
+document URL, the type of Office frame used to display the document, optional 
+search flags, and an array of document properties. For example: </p>
+<p>String fileURL = FileIO.fnmToURL(fnm); 
+PropertyValue[] props = Props.makeProps("Hidden", true); 
+XComponent doc =<br />
+         loader.loadComponentFromURL(fileURL, "_blank", 0, props); </p>
+<p>The frame type is almost always "_blank" which indicates that a new window will be 
+created for the newly loaded document. (Other possibilities are listed in the 
+XComponentLoader documentation which you can access with lodoc 
+XComponentLoader.) The search flags are usually set to 0, and document properties 
+are stored in the PropertyValue array, props. </p>
+<p>loadComponentFromURL()'s return type is XComponent, which refers to the 
+document. </p>
+<p>FileIO.fnmToURL() converts an ordinary filename (e.g. “foo.doc”) into a URL (a full 
+path prefixed with file:///).  </p>
+<p>Props.makeProps() takes a property name and value and returns a PropertyValue 
+array; there are several variants which accept different numbers of property name-
+value pairs. </p>
+<p>A complete list of document properties can be found in the MediaDescriptor 
+documentation (accessed with lodoc MediaDescriptor service), but some of the 
+important ones are listed in Table 1. </p>
+<p>Property Name  Use 
+AsTemplate Creates a new document using a specified template. </p>
+<p>Hidden Determines if the document is invisible after being 
+loaded. </p>
+<p>ReadOnly Opens the document read-only. </p>
+<p>StartPresentation Starts showing a slide presentation immediately after 
+loading the document. </p>
+<p>Table 1. Some Document Properties. </p>
+<h2 id="4-creating-a-document">4.  Creating a Document</h2>
+<p>A new document is created by calling 
+XComponentLoader.loadComponentFromURL() with a special URL string for the 
+document type. The possible strings are listed in Table 2. </p>
+<p>URL String Document Type 
+"private:factory/swriter" Writer 
+"private:factory/sdraw" Draw 
+"private:factory/simpress" Impress 
+"private:factory/scalc" Calc 
+"private:factory/sdatabase" Base 
+"private:factory/swriter/web" HTML document in Writer 
+"private:factory/swriter/GlobalDocument" A Master document in Writer 
+"private:factory/schart" Chart 
+"private:factory/smath" Math Formulae 
+".component:Bibliography/View1" Bibliography Entries 
+".component:DB/QueryDesign" 
+".component:DB/TableDesign" 
+".component:DB/RelationDesign" 
+".component:DB/DataSourceBrowser" 
+".component:DB/FormGridView" 
+Database User Interfaces 
+Table 2. URLs for Creating New Documents. </p>
+<p>For instance, a Writer document is created by: 
+XComponent doc =<br />
+     loader.loadComponentFromURL("private:factory/swriter",<br />
+                                 "_blank", 0, props); 
+The utility classes include code for simplifying the creation of Writer, Draw, Impress, 
+Calc, and Base documents, which I'll be looking at in later chapters.  </p>
+<p>A Second Service Manager 
+Lo.loadDoc() and Lo.createDoc() do a bit of additional work after document 
+loading/creation – they instantiate a XMultiServiceFactory service manager which is 
+stored in the Lo class. This is done by applying Lo.qi() to the document: </p>
+<p>// global in Lo.java 
+private static XMultiServiceFactory msFactory = null; </p>
+<p>// in loadDoc() 
+XComponent doc =<br />
+      loader.loadComponentFromURL(fileURL, "_blank", 0, props); 
+msFactory =  Lo.qi(XMultiServiceFactory.class, doc); </p>
+<p>I first employed Lo.qi() in createInstanceMCF() to access an interface inside a 
+service. This time qi() is casting one interface (XComponent) to another 
+(XMultiServiceFactory). </p>
+<p>The XMultiServiceFactory object is the second service manager we've encountered; 
+the first was an XMultiComponentFactory instance, created during Office's loading.  </p>
+<p>The reasons for Office having two service managers are historical: the 
+XMultiServiceFactory manager is older, and creates a service object without the need 
+for an explicit reference to the remote component context.  </p>
+<p>As Office developed, it was decided that service object creation should always be 
+relative to an explicit component context, and so the newer XMultiComponentFactory 
+service manager came into being. A lot of older code still uses the 
+XMultiServiceFactory service manager, so both are supported in the Lo class.  </p>
+<p>Another difference between the managers is that the XMultiComponentFactory 
+manager is available as soon as Office is loaded, while the XMultiServiceFactory 
+manager is initialized only when a document is loaded or created. </p>
+<h2 id="5-saving-a-document">5.  Saving a Document</h2>
+<p>One of the great strengths of Office is that it can export a document in a vast number 
+of formats, but the programmer must specify the output format (which is called a filter 
+in the Office documentation). </p>
+<p>XStorable.storeToURL() takes the name of the output file (in URL format), and an 
+array of properties, one of which should be "FilterName". Two other useful output 
+properties are "Overwrite" and "Password". Input and output document properties are 
+listed in the MediaDescriptor service documentation (lodoc MediaDescriptor 
+service).  </p>
+<p>If "Overwrite" is set to true then the file will be saved without prompting the user if 
+the file already exists. The "Password" property contains a string which must be 
+entered into an Office dialog by the user before the file can be opened again. </p>
+<p>The steps in saving a file are: </p>
+<p>String saveFileURL = FileIO.fnmToURL(fnm); 
+String[] nms = new String[] {"Overwrite", "FilterName", "Password"}; 
+Object[] vals = new Object[] {true, format, password}; 
+PropertyValue[] storeProps = Props.makeProps(nms, vals); </p>
+<p>XStorable store = Lo.qi(XStorable.class, doc); 
+store.storeToURL(saveFileURL, storeProps); </p>
+<p>I've used a variant of the Props.makeProps() method to create an array of three 
+properties. If you don't want a password, then the third property should be left out. </p>
+<p>Lo.qi() is used again to cast an interface, this time from XComponent to XStoreable. </p>
+<p>Figure 5 in Chapter 1 shows that XStoreable is part of the OfficeDocument service, 
+which means that it's inherited by all Office document types. </p>
+<p>What's a Filter Name? 
+XStorable.storeToURL() needs a "FilterName" property value, but what should the 
+string be to export the document in Word format for example? 
+Info.getFilterNames() returns an array of all the filter names supported by Office. </p>
+<p>There's an example call in OfficeInfo.java, but is commented out because it returns a 
+250+ element list! 
+Rather than force a programmer to search through this list for the correct name, 
+Lo.saveDoc() allows him to supply just the name and extension of the output file. For 
+example, in section 3, Lo.saveDoc() was called like so: 
+Lo.saveDoc(doc, "foo.docx"); 
+saveDoc() extracts the file extension (i.e. "docx") and maps it to a corresponding filter 
+name in Office (in this case, "Office Open XML Text"). One concern is that it's not 
+always clear which extension-to-filter mapping should be utilized. For instance, 
+another suitable filter name for "docx" is "MS Word 2007 XML". I've essentially 
+ignored this problem, by hardwiring a fixed selection into saveDoc(). </p>
+<p>Another issue is that the choice of filter sometimes depends on the extension and the 
+document type. For example, a Writer document saved as a PDF file should use the 
+filter "writer_pdf_Export", but if the document is a spreadsheet then 
+"calc_pdf_Export" is the correct choice. Consequently, saveDoc() examines both the 
+extension and the document's service name, which is accessed via the XServiceInfo 
+interface: </p>
+<p>XServiceInfo xInfo = Lo.qi(XServiceInfo.class, doc); 
+boolean isWriter =     // is it a Writer doc? 
+        xInfo.supportsService("com.sun.star.text.TextDocument"); </p>
+<p>The main document service names are listed in Table 3. </p>
+<p>Document Type Service Name 
+Writer com.sun.star.text.TextDocument 
+Draw com.sun.star.drawing.DrawingDocument 
+Impress com.sun.star.presentation.PresentationDocument 
+Calc com.sun.star.sheet.SpreadsheetDocument 
+Base com.sun.star.sdb.OfficeDatabaseDocument 
+Table 3. Document Service Names. </p>
+<p>We encountered these service names back in Chapter 1, Figure 8 – they're subclasses 
+of the OfficeDocument service. </p>
+<p>A third problem is incompletness; I've only implemented saveDoc() mappings for a 
+small subset of Office's 250+ filter names, so if you try to save a file with an exotic 
+extension then my code will most likely break. </p>
+<p>If you want to study the details, start with Lo.saveDoc(), and burrow down; the 
+trickiest part is Lo.ext2Format(). </p>
+<h2 id="6-closing-a-document">6.  Closing a Document</h2>
+<p>Closing a document is a pain if you want to check with the user beforehand: should a 
+modified file be saved, thereby overwriting the old version? My solution is not to 
+bother the user, so the file is closed without saving, irrespective of any modifications. </p>
+<p>In other words, it's essential to explicitly save a changed document with 
+Lo.saveDoc() before calling Lo.closeDoc().  </p>
+<p>The code for closing employs Lo.qi() to cast the document's XComponent interface to 
+XCloseable: </p>
+<p>XCloseable closeable =  Lo.qi(XCloseable.class, doc); 
+closeable.close(false);   // doc. closed without saving </p>
+<h2 id="7-a-general-purpose-converter">7.  A General Purpose Converter</h2>
+<p>The DocConverter.java example in "Office Tests/" takes two command line 
+arguments: the name of an input file and the extension that should be used when 
+saving the loaded document. For instance: 
+run DocConverter points.ppt odp 
+will save slides in MS PowerPoint format as an Impress presentation. The following 
+converts a JPEG image into PNG: 
+run DocConverter skinner.jpg png 
+The code for DocConverter is short: </p>
+<p>import com.sun.star.uno.<em>;<br />
+import com.sun.star.lang.</em>;<br />
+import com.sun.star.frame.*;  </p>
+<p>public class DocConverter <br />
+{<br />
+  public static void main(String args[]) <br />
+  {<br />
+    if (args.length != 2) {<br />
+      System.out.println("Usage: DocConverter fnm extension");<br />
+      return;<br />
+    }  </p>
+<pre><code>XComponentLoader loader = Lo.loadOffice();  
+XComponent doc = Lo.openDoc(args[0], loader);  
+if (doc == null) {  
+  System.out.println("Could not open " + args[0]);  
+  Lo.closeOffice();  
+  return;  
+}
+
+String name = Info.getName(args[0]);  
+Lo.saveDoc(doc, name + "." + args[1]);  
+Lo.closeDoc(doc);  
+Lo.closeOffice();
+</code></pre>
+<p>} // end of main()  </p>
+<p>}  // end of DocConverter class  </p>
+<h2 id="8-bug-detection-and-reporting">8.  Bug Detection and Reporting</h2>
+<p>This chapter began our coding with the Office API, and so the possibility of bugs also 
+becomes an issue. If you find a problem with one of my support classes (e.g. in 
+Lo.java) or one of my examples (e.g. in DocConverter.java), then please contact me at 
+ad@fivedots.coe.psu.ac.th, supplying as much detail as possible.  </p>
+<p>Another source of bugs is the LibreOffice API itself, which is hardly a surprise 
+considering its complexity and age. If you find a problem, then you should first search 
+LibreOffice's Bugzilla site at https://bugs.documentfoundation.org/ to see if the 
+problem has been reported previously (it probably has). Various types of search are 
+explained in the Bugzilla documentation at 
+https://bugs.documentfoundation.org/docs/en/html/using/ 
+If you want to report a new bug, then you'll need to set up an account, which is quite 
+simple, and also explained by the documentation.  </p>
+<p>Often when people report bugs they don't include enough information, perhaps 
+because the error window displayed by Windows is somewhat lacking. For example, a 
+typical crash report window  is shown in Figure 1. </p>
+<p><img alt="" src="images/02-Starting_and_Stopping-1.png" /></p>
+<p>Figure 1. The LibreOffice Crash Reported by Windows 7. </p>
+<p>If you're going to make an official report, you should first read the article "How to 
+Report Bugs in LibreOffice" (https://wiki.documentfoundation.org/QA/BugReport). </p>
+<p>Expert forum members and Bugzilla maintainers sometimes point people towards 
+WinDbg for Windows as a tool for producing good debugging details. The wiki has a 
+detailed explanation of how to install and use it 
+(https://wiki.documentfoundation.org/How_to_get_a_backtrace_with_WinDbg), 
+which is a bit scary in its complexity.  </p>
+<p>A much easier alternative is the WinCrashReport application from NirSoft 
+(http://www.nirsoft.net/utils/application_crash_report.html). It presents the Windows 
+Error Reporting (WER) data generated by a crash in a readable form.  </p>
+<p>When a crash window appears (like the one in Figure 1), start WinCrashReport to 
+examine the automatically-generated error report, as in Figure 2. </p>
+<p><img alt="" src="images/02-Starting_and_Stopping-2.png" /></p>
+<p>Figure 2. WinCrashReport GUI </p>
+<p>Figure 2 indicates that the problem lies inside mergedlo.dll, an access violation (the 
+exception code 0xC0000005) to a memory address.  </p>
+<p>mergedlo.dll is part of LibreOffice which probably means that you can find the DLL 
+in <OFFICE>/program. Most Office DLLs are located in that directory, but it's useful 
+to have a fast file search utility on your machine to find files that might be in third-
+party libraries or in Windows. I use SwiftSearch 
+(https://sourceforge.net/projects/swiftsearch/). </p>
+<p>WinCrashReport generates two alternative call stacks, with slightly more information 
+in the second in this case. mergedlo.dll is called by the uno_getCurrentEnvironment() 
+function in cppu3.dll, as indicated in Figure 3. </p>
+<p><img alt="" src="images/02-Starting_and_Stopping-3.png" /></p>
+<p>Figure 3. The Second Call Stack in WinCrashReport. </p>
+<p>This narrows the problem to a specific function and two DLLs, which is very helpful.  </p>
+<p>If you want to better understand the DLLs, they can be examined using DLL Export 
+Viewer, another NirSoft tool (http://www.nirsoft.net/utils/dll_export_viewer.html), 
+which lists a DLL's exported functions. Running it on mergedlo.dll turns up nothing, 
+but the details for cppu3.dll are shown in Figure 4. </p>
+<p><img alt="" src="images/02-Starting_and_Stopping-4.png" /></p>
+<p>Figure 4. DLL Export Viewer's view of cppu3.dll </p>
+<p>mergedlo.dll appears to be empty inside DLL Export Viewer because it exports no 
+functions. That probably means it's being used as a store for resources, such as icons, 
+cursors, and images. There's another NirSoft tool for looking at DLL resources, called 
+ResourcesExtract (http://www.nirsoft.net/utils/resources_extract.html). </p>
+<p>The offending function must be uno_getCurrentEnvironment() which Figure 4 
+confirms to be in cppu3.dll. </p>
+<p>Looking at the Source Code 
+You might want to narrow the problem down further by looking at 
+uno_getCurrentEnvironment()'s source. This is easy with  the "OpenGrok for 
+LibreOffice" website (http://opengrok.libreoffice.org/) for searching the gigantic code 
+base. Figure 5 shows the results for an "uno_getCurrentEnvironment" search. </p>
+<p><img alt="" src="images/02-Starting_and_Stopping-5.png" /></p>
+<p>Figure 5. OpenGrok Results for "uno_getCurrentEnvironment" </p>
+<p>The function's code is in EnvStack.cxx, which can be examined by clicking on the 
+linked function name shown at the bottom of Figure 5. </p>
+<p>If you're interested in exploring the code base more widely, there are some very good 
+blog posts about it by Eilidh McAdam: "Exploring the LibreOffice code base" 
+(http://www.lanedo.com/exploring-the-libreoffice-code-base/) and "LibreOffice 
+Development Howto" (http://www.lanedo.com/libreoffice-development-howto/). </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="01-Concepts.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 1. LibreOffice API Concepts
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="03-Examining.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Chapter 3. Examining
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

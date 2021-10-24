@@ -1,0 +1,3109 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 41. Printing - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-41-printing" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 41. Printing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 41. Printing
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="41-Printing.html" class="md-nav__link md-nav__link--active">
+        Chapter 41. Printing
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-java-print-service-jps" class="md-nav__link">
+    1.  The Java Print Service (JPS)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-selection-of-a-print-service-ie-a-printer-or-print-driver-represented-by-a" class="md-nav__link">
+    1.  Selection of a print service (i.e. a printer or print driver), represented by a
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-creation-of-a-doc-object-for-the-document-thats-to-be-printed" class="md-nav__link">
+    2.  Creation of a Doc object for the document that's to be printed.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-creation-of-a-print-job-combining-the-doc-object-and-print-request-attributes-a" class="md-nav__link">
+    3.  Creation of a print job combining the Doc object and print request attributes. A
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-the-printing-is-started-and-performed-asynchronously" class="md-nav__link">
+    4.  The printing is started, and performed asynchronously.
+  </a>
+  
+    <nav class="md-nav" aria-label="4.  The printing is started, and performed asynchronously.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-listing-the-printers" class="md-nav__link">
+    1.1.  Listing the Printers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-send-to-onenote-2010" class="md-nav__link">
+    1.  "Send To OneNote 2010"
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ricoh-aficio-mp-2000-pclblack-office-room" class="md-nav__link">
+    2.  "Ricoh Aficio MP 2000 PCL(Black Office Room)"
+  </a>
+  
+    <nav class="md-nav" aria-label="2.  "Ricoh Aficio MP 2000 PCL(Black Office Room)"">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#12-discovering-print-services" class="md-nav__link">
+    1.2.  Discovering Print Services
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-printing-using-java" class="md-nav__link">
+    1.3.  Printing Using Java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-more-information-on-javaxprint" class="md-nav__link">
+    1.4.  More Information on javax.print
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-printing-in-office" class="md-nav__link">
+    2.  Printing in Office
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-printing-any-document" class="md-nav__link">
+    3.  Printing any Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-viewing-a-documents-print-properties" class="md-nav__link">
+    4.  Viewing a Document's Print Properties
+  </a>
+  
+    <nav class="md-nav" aria-label="4.  Viewing a Document's Print Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-additional-writer-print-properties" class="md-nav__link">
+    4.1.  Additional Writer Print Properties
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-additional-calc-print-properties" class="md-nav__link">
+    4.2.  Additional Calc Print Properties
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-specialized-printing" class="md-nav__link">
+    5.  Specialized Printing
+  </a>
+  
+    <nav class="md-nav" aria-label="5.  Specialized Printing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-printing-a-text-document" class="md-nav__link">
+    5.1.  Printing a Text Document
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-printing-an-impress-document" class="md-nav__link">
+    5.2.  Printing an Impress Document
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-printing-a-calc-document" class="md-nav__link">
+    5.3.  Printing a Calc Document
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-printing-a-single-sheet" class="md-nav__link">
+    5.4.  Printing a Single Sheet
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-a-bad-idea-hacking-the-gui" class="md-nav__link">
+    6.  A Bad Idea: Hacking the GUI
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-command-prompt-printing" class="md-nav__link">
+    7.  Command Prompt Printing
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-the-java-print-service-jps" class="md-nav__link">
+    1.  The Java Print Service (JPS)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-selection-of-a-print-service-ie-a-printer-or-print-driver-represented-by-a" class="md-nav__link">
+    1.  Selection of a print service (i.e. a printer or print driver), represented by a
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-creation-of-a-doc-object-for-the-document-thats-to-be-printed" class="md-nav__link">
+    2.  Creation of a Doc object for the document that's to be printed.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-creation-of-a-print-job-combining-the-doc-object-and-print-request-attributes-a" class="md-nav__link">
+    3.  Creation of a print job combining the Doc object and print request attributes. A
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-the-printing-is-started-and-performed-asynchronously" class="md-nav__link">
+    4.  The printing is started, and performed asynchronously.
+  </a>
+  
+    <nav class="md-nav" aria-label="4.  The printing is started, and performed asynchronously.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-listing-the-printers" class="md-nav__link">
+    1.1.  Listing the Printers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-send-to-onenote-2010" class="md-nav__link">
+    1.  "Send To OneNote 2010"
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ricoh-aficio-mp-2000-pclblack-office-room" class="md-nav__link">
+    2.  "Ricoh Aficio MP 2000 PCL(Black Office Room)"
+  </a>
+  
+    <nav class="md-nav" aria-label="2.  "Ricoh Aficio MP 2000 PCL(Black Office Room)"">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#12-discovering-print-services" class="md-nav__link">
+    1.2.  Discovering Print Services
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-printing-using-java" class="md-nav__link">
+    1.3.  Printing Using Java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-more-information-on-javaxprint" class="md-nav__link">
+    1.4.  More Information on javax.print
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-printing-in-office" class="md-nav__link">
+    2.  Printing in Office
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-printing-any-document" class="md-nav__link">
+    3.  Printing any Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-viewing-a-documents-print-properties" class="md-nav__link">
+    4.  Viewing a Document's Print Properties
+  </a>
+  
+    <nav class="md-nav" aria-label="4.  Viewing a Document's Print Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-additional-writer-print-properties" class="md-nav__link">
+    4.1.  Additional Writer Print Properties
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-additional-calc-print-properties" class="md-nav__link">
+    4.2.  Additional Calc Print Properties
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-specialized-printing" class="md-nav__link">
+    5.  Specialized Printing
+  </a>
+  
+    <nav class="md-nav" aria-label="5.  Specialized Printing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-printing-a-text-document" class="md-nav__link">
+    5.1.  Printing a Text Document
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-printing-an-impress-document" class="md-nav__link">
+    5.2.  Printing an Impress Document
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-printing-a-calc-document" class="md-nav__link">
+    5.3.  Printing a Calc Document
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-printing-a-single-sheet" class="md-nav__link">
+    5.4.  Printing a Single Sheet
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-a-bad-idea-hacking-the-gui" class="md-nav__link">
+    6.  A Bad Idea: Hacking the GUI
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-command-prompt-printing" class="md-nav__link">
+    7.  Command Prompt Printing
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/41-Printing.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-41-printing">Chapter 41. Printing</h1>
+<p>Java's Print Service (JPS) and Office's printing APIs 
+nicely compliment each other. For example, since Java 1.4 
+(February 2002), JPS has included printer discovery based 
+on document types and printer attributes. but Office's API<br />
+lacks such capabilities. JPS cannot easily print much 
+beyond text and images; binary data can be sent to a 
+printer, but it's left to the device to interpret and render it, 
+which is only possible in high-end printers, not ordinary 
+inkjets and laser printers. In contrast, Office can print a 
+very wide range of document formats, including ODF, 
+Microsoft, and PDF files.   </p>
+<p>This chapter starts by describing JPS's PrintService, which I'll use later to select a 
+printer for the Office API. Then there's an overview of the printing capabilities of the 
+Office API, with examples of how to print Writer, Impress, and Calc files.  </p>
+<p>The bad news is that Office's printing API has a few bugs and missing features. By 
+'missing' I mean parts of Office's printing GUI with no equivalents in the API. Also, 
+buggy features in the API, such as the printing of multiple pages/sheet and slide 
+handouts, work flawlessly in the GUI. </p>
+<p>I'll finish with a short discussion of command line printing in Windows. The OS has 
+several print utilities that are a little hard to find and use. Also, Office can be started 
+from the command line in order to print documents. </p>
+<h2 id="1-the-java-print-service-jps">1.  The Java Print Service (JPS)</h2>
+<p>Java 1.4 saw the introduction of the Java Print service (JPS) API which allows a 
+printer to be selected based on document types and attributes such as color output, 
+paper sizes, and double-sided printing. </p>
+<p>JPS printing passes through four stages: </p>
+<h2 id="1-selection-of-a-print-service-ie-a-printer-or-print-driver-represented-by-a">1.  Selection of a print service (i.e. a printer or print driver), represented by a</h2>
+<p>PrintService instance. The programmer can supply document types and printer 
+attributes to limit the search. </p>
+<h2 id="2-creation-of-a-doc-object-for-the-document-thats-to-be-printed">2.  Creation of a Doc object for the document that's to be printed.</h2>
+<h2 id="3-creation-of-a-print-job-combining-the-doc-object-and-print-request-attributes-a">3.  Creation of a print job combining the Doc object and print request attributes. A</h2>
+<p>listener can be attached to monitor what's happening during the printing. </p>
+<h2 id="4-the-printing-is-started-and-performed-asynchronously">4.  The printing is started, and performed asynchronously.</h2>
+<p>Document types are encoded as DocFlavor objects which contain data source details 
+(e.g. whether the document comes from an input stream or a URL), and a MIME type 
+(e.g. image/gif, application/pdf). A common misconception about DocFlavor is that it </p>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>The Java Print </p>
+</div>
+<p>Service (JPS); Printing 
+in Office Writer, 
+Impress, Calc; Viewing 
+a Document's Print 
+Properties; Specialized 
+Printing: Writer, 
+Impress, Calc; Hacking 
+the GUI; Command 
+Prompt Printing 
+Example folders: 
+"Printing Tests" and 
+"Utils" 
+means that Java can print that kind of document. A DocFlavor is used to check 
+whether a printer supports a document type, and the answer may be "no". </p>
+<p>The following code locates print services that support GIF documents sent from a file: </p>
+<p>// stage 1: find print services for GIF files 
+DocFlavor gifFlavor = DocFlavor.INPUT_STREAM.GIF; 
+PrintService[] services =<br />
+       PrintServiceLookup.lookupPrintServices(gifFlavor, null); </p>
+<p>The matching print services are returned in a PrintService[] array. </p>
+<p>lookupPrintServices()'s second argument (which is null here) could be a set of print 
+request attributes (PRAs). </p>
+<p>There are four kinds of print attributes. The first two are requests sent from a program 
+to the printer, which may be accepted or rejected: 
+ Print request attributes (PRA) ask for particular printing features, such as two-
+sided output, or a paper size. </p>
+<p> Doc attributes (DA) supply information about a document, such as its page size, 
+use of color, or page ranges for printing. </p>
+<p>The two other attributes types are used by the printer service to convey information 
+about the printer and job back to the program. </p>
+<p> Print service attributes (PSA) give information about the print service, such as the 
+printer's make and model or whether it is currently accepting jobs. </p>
+<p> Print job attributes (PJA) give information about the status of a particular print 
+job, such as whether it has successfully finished. </p>
+<p>The following code fragment looks for printer services that can print on both sides of 
+A4 paper: </p>
+<p>// stage 1 example using attributes 
+AttributeSet attrs = new HashAttributeSet(); 
+attrs.add(MediaSizeName.ISO_A4); 
+attrs.add(Sides.DUPLEX); 
+PrintService[] services =<br />
+         PrintServiceLookup.lookupPrintServices(null, attrs); </p>
+<p>AttributeSet is an interface and HashAttributeSet an implementation which supports 
+the four kinds of attributes. </p>
+<p>The easiest way to find out about particular attribute  is via the Attribute interface 
+documentation at 
+https://docs.oracle.com/javase/8/docs/api/index.html?java/util/jar/Attributes.html, 
+which lists the attribute subclasses, such as MediaSizeName and Sides used in the 
+example above. </p>
+<p>The next fragment creates a Doc object for a GIF file, a stage 2 task in JPS printing: </p>
+<p>// stage 2 : create a Doc object for a GIF file 
+FileInputStream in = new FileInputStream(fileName); 
+Doc doc = new SimpleDoc(in, gifFlavor, null);  </p>
+<p>The third argument of the SimpleDoc constructor can be a set of document attributes 
+(DAs). </p>
+<p>JPS stage 3 involves the creation of a print job, and perhaps a listener: </p>
+<p>// stage 3: print job creation 
+DocPrintJob job = service[0].createPrintJob(); 
+job.addPrintJobListener(new PrintJobAdapter() {...} ); </p>
+<p>The listener will receive information about the print job's progress as print job 
+attributes (PJAs). </p>
+<p>Stage 4 starts the printing: 
+job.print(doc, null);<br />
+The second argument of print() can be a set of print request attributes (PRAs). </p>
+<h3 id="11-listing-the-printers">1.1.  Listing the Printers</h3>
+<p>The ListPrinters.java example in this section focuses on JPS stage 1. It prints short 
+details about all the available printers, fuller information about the default printer, and 
+a list of printer names. The main() function: </p>
+<p>// in ListPrinters.java 
+public static void main(String [] args) 
+{ 
+  JPrint.listServices();         // short info 
+  // JPrint.listServices(true);  // full info, but slow to generate </p>
+<p>PrintService ps = PrintServiceLookup.lookupDefaultPrintService(); 
+  System.out.println("Default printer \"" + ps.getName() + "\":"); 
+  JPrint.listService(ps, true);  // full info on default printer </p>
+<p>String[] pNames = JPrint.getPrinterNames(); 
+  System.out.println("Printer names (" + pNames.length + "):"); 
+  for(String pName : pNames) 
+    System.out.println("  " + pName); 
+}  // end of main() </p>
+<p>Most of the functionality is implemented by the JPrint.java utility class.  </p>
+<p>JPrint.listServices() on one of my test machines prints the following: </p>
+<p>-------- Print services (16) ---------- </p>
+<h2 id="1-send-to-onenote-2010">1.  "Send To OneNote 2010"</h2>
+<p>color-supported:supported 
+  printer-name:Send To OneNote 2010 
+  queued-job-count:0 
+  printer-is-accepting-jobs:accepting-jobs 
+  Supported doc types:  image/gif image/jpeg image/png<br />
+                        application/octet-stream </p>
+<h2 id="2-ricoh-aficio-mp-2000-pclblack-office-room">2.  "Ricoh Aficio MP 2000 PCL(Black Office Room)"</h2>
+<dl>
+<dt>color-supported:not-supported </dt>
+<dt>  printer-name:Ricoh Aficio MP 2000 PCL(Black Office Room) </dt>
+<dt>  queued-job-count:0 </dt>
+<dt>  printer-is-accepting-jobs:accepting-jobs </dt>
+<dt>  Supported doc types:  image/gif image/jpeg image/png  </dt>
+<dt>                       application/octet-stream </dt>
+<dd></dd>
+<dd></dd>
+</dl>
+<ol>
+<li>"CutePDF Writer" 
+  color-supported:supported 
+  printer-name:CutePDF Writer 
+  queued-job-count:0 
+  printer-is-accepting-jobs:accepting-jobs 
+  Supported doc types:  image/gif image/jpeg image/png<br />
+           application/octet-stream application/postscript </li>
+</ol>
+<p>The information for each printer consists of four attributes, including its name and the 
+MIME types that it can process. For example, the Ricoh Aficio MP 2000 printer can 
+deal with standard graphics formats and "application/octet-stream". This latter type 
+means that the printer will accept binary printer data, but doesn't mean that it can 
+correctly print it. For instance, it may be output as a mishmash of ASCII characters. </p>
+<p>The service listing methods in JPrint.java: </p>
+<p>// in the JPrint class 
+public static void listServices(boolean showAll) 
+{ PrintService[] psa =<br />
+      PrintServiceLookup.lookupPrintServices(null, null); 
+  listServices(psa, showAll); 
+} </p>
+<p>public static void listServices(PrintService[] psa,<br />
+                                         boolean showAll) 
+{ if (psa != null &amp;&amp; psa.length &gt; 0) { 
+    System.out.println("\n-------- Print services (" +<br />
+                           psa.length + ") ----------\n"); 
+    for (int i = 0; i &lt; psa.length; i++) { 
+      System.out.println((i+1) + ". \"" + psa[i].getName() + "\"");<br />
+      listService(psa[i], showAll); 
+    } 
+    System.out.println("------------------\n"); 
+  } 
+  else 
+    System.out.println("No print services found"); 
+}  // end of listServices() </p>
+<p>public static void listService(PrintService ps, boolean showAll) 
+{ 
+  // print basic attributes 
+  Attribute[] attrs = ps.getAttributes().toArray(); 
+  for(Attribute attr : attrs) 
+    System.out.println("  " + attr.getName() + ":" + attr); </p>
+<p>// print the supported MIME types 
+  System.out.print("  Supported doc types: "); 
+  DocFlavor[] flavors = ps.getSupportedDocFlavors(); 
+  for (int j = 0; j &lt; flavors.length; j++) { 
+    // Filter out DocFlavors that have a representation class other 
+    // than java.io.InputStream.   </p>
+<pre><code>String repclass = flavors[j].getRepresentationClassName(); 
+if (!repclass.equals("java.io.InputStream")) // restrict to files 
+  continue; 
+System.out.print(" " + flavors[j].getMimeType());
+</code></pre>
+<p>} 
+  System.out.println(); </p>
+<p>// print every printer attribute 
+  if (showAll) { 
+    System.out.println("  ----"); 
+    ArrayList<NamedAttribute> attrList = getAttributes(ps); 
+    Collections.sort(attrList); 
+    for (NamedAttribute attr : attrList) 
+      printAttr(ps, attr.getAttribute()); 
+  } 
+  System.out.println(); 
+}  // end of listService() </p>
+<p>The lookupPrintServices() call in listServices(): 
+PrintServiceLookup.lookupPrintServices(null, null) 
+has no DocFlavor or attribute arguments, so every printer service will be returned in 
+the array. listServices() iterates through each PrintService object, and prints its basic 
+attributes, the supported MIME types for files, and optionally a list of every printer 
+attribute. </p>
+<p>The four attributes returned by PrintService.getAttributes() are the tip of a very large 
+iceberg. Java supports a multitude of attributes as seen if you look at the Java 8 
+Attribute documentation at 
+https://docs.oracle.com/javase/8/docs/api/javax/print/attribute/Attribute.html. Over 70 
+subclasses are listed, including PrinterName, Sides, and Chromacity. A taste of what 
+can be printed occurs when the default printer's details are listed: </p>
+<p>// in ListPrinters.java... </p>
+<p>PrintService ps = PrintServiceLookup.lookupDefaultPrintService(); 
+System.out.println("Default printer \"" + ps.getName() + "\":"); 
+JPrint.listService(ps, true);  // full info </p>
+<p>The default printer for my test machine is an old laser printer. ListPrinter.java reports 
+the following: </p>
+<p>Default printer "HP LaserJet 1200 Series PCL 6": 
+  color-supported:not-supported 
+  printer-name:HP LaserJet 1200 Series PCL 6 
+  queued-job-count:0 
+  printer-is-accepting-jobs:accepting-jobs 
+  Supported doc types:  image/gif image/jpeg image/png 
+application/octet-stream </p>
+<hr />
+<p>chromaticity: color 
+  copies-supported: null 
+  ipp-attribute-fidelity: false 
+  job-name: Java Printing 
+  media: iso-a4 
+  media-printable-area: (4.233,4.233)-&gt;(197.951,288.459)mm 
+  orientation-requested: portrait 
+  page-ranges: 1-2147483647 
+  printer-resolution: 60000x60000 dphi 
+  requesting-user-name: Ad 
+  sheet-collate: uncollated 
+  sides: one-sided 
+  spool-data-destination: 
+file:/C:/Users/Ad/Desktop/LibreOffice%20Tests/Printing%20Tests/o 
+ut.prn 
+  sun-alternate-media: null </p>
+<p>The "chromacity" attribute states how color and monochrome documents are mapped 
+to each other. Probably the attribute the user really wants to examne is "color-
+supported" which shows that this printer only offers grayscales.  </p>
+<p>The main drawback of printing all these attributes is the time required to collect them, 
+sort them, and remove duplicates; each printer may take several seconds to process. </p>
+<h3 id="12-discovering-print-services">1.2.  Discovering Print Services</h3>
+<p>PrintServiceLookup.lookupPrintServices() should be called with DocFlavor and/or 
+print request attributes to narrow down the search. Some examples can be found in 
+Discovery.java. For instance, the following fragment looks for printers that can 
+process JPEG files: </p>
+<p>// in Discovery.java... </p>
+<p>DocFlavor flavor = DocFlavor.INPUT_STREAM.JPEG; 
+PrintService[] psa = <br />
+         PrintServiceLookup.lookupPrintServices(flavor, null); </p>
+<p>System.out.println("\nServices that support " + flavor); 
+String[] pNames = JPrint.getPrinterNames(psa); 
+if (pNames != null) 
+  for (String pName : pNames) 
+    System.out.println("  " + pName); </p>
+<p>It's very likely that the printers listed by this search can also output PDF, Word, 
+PowerPoint and other file formats printable from Office, since Office delivers pages 
+to a printer rendered as images. </p>
+<p>However, if a search is made for printers that can process PDF files: </p>
+<p>DocFlavor flavor = DocFlavor.INPUT_STREAM.PDF; 
+PrintService[] psa = <br />
+         PrintServiceLookup.lookupPrintServices(flavor, null); </p>
+<p>then no matches are found. This means that none of the printers can process PDF by 
+themselves. </p>
+<p>JPrint.findPrinterNames() lets printers be selected based on partial names. The 
+following call collects all the printers whose names include "HP": 
+String[] pNames = JPrint.findPrinterNames("HP"); 
+Multiple attributes can be used in a search. The following looks for all the "HP" 
+printer services that support color: </p>
+<p>// in Discovery.java... </p>
+<p>AttributeSet attrs = new HashAttributeSet(); 
+System.out.println("\nHP Services that support color:"); 
+PrintService[] psa; </p>
+<p>for (String pName : pNames) {   // from the "HP" search above 
+  attrs.clear(); 
+  attrs.add(new PrinterName(pName, null));   // must be included 
+  attrs.add(ColorSupported.SUPPORTED); 
+  psa = PrintServiceLookup.lookupPrintServices(null, attrs); 
+  if (psa.length &gt; 0) 
+    System.out.println("  " + pName); 
+} </p>
+<p>It's possible to look for color printers with less code: </p>
+<p>// in Discovery.java... </p>
+<p>AttributeSet attrs = new HashAttributeSet(); 
+attrs.add(ColorSupported.SUPPORTED); 
+PrintService[] psa =<br />
+    PrintServiceLookup.lookupPrintServices(null, attrs); </p>
+<p>Unfortunately the returned print services include non-color printers. It seems that the 
+printer name must be part of the attribute set to get a correct match. </p>
+<p>DocFlavors and attributes can be combined, as in the following that looks for a printer 
+that supports JPEG and A4 paper: </p>
+<p>// in Discovery.java... </p>
+<p>DocFlavor flavor = DocFlavor.INPUT_STREAM.JPEG; 
+AttributeSet attrs = new HashAttributeSet(); 
+attrs.add(MediaSizeName.ISO_A4); 
+PrintService[] psa =<br />
+    PrintServiceLookup.lookupPrintServices(flavor, attrs); </p>
+<p>A quite different printer selection approach is to display a dialog box at run time to let 
+the user set the search criteria. Java offers ServiceUI.printDialog() for this, which I've 
+wrapped inside JPrint.dialogSelect(): </p>
+<p>// in the JPrint class 
+public static PrintService dialogSelect() 
+{ 
+  GUI.setLookFeel(); 
+  PrintService psa[] =<br />
+              PrintServiceLookup.lookupPrintServices(null, null); 
+  PrintService defaultService =<br />
+              PrintServiceLookup.lookupDefaultPrintService(); 
+  PrintRequestAttributeSet attrs =<br />
+              new HashPrintRequestAttributeSet();  // none </p>
+<p>PrintService service = ServiceUI.printDialog(null, 100, 100, 
+                               psa, defaultService, null, attrs); 
+  if (service == null) 
+    System.out.println("No print service selected"); 
+  return service; 
+}  // end of dialogSelect() </p>
+<p>dialogSelect() initializes ServiceUI.printDialog() with a list of printer services, the 
+default printer, and an empty print request attribute set. </p>
+<p>In Discovery.java, JPrint.dialogSelect() is called like so: </p>
+<p>// in Discovery.java... </p>
+<p>PrintService ps = JPrint.dialogSelect(); 
+if (ps != null) { 
+  System.out.println("\nYou selected " + ps.getName()); 
+  JPrint.listService(ps, true);  // full info 
+} </p>
+<p>The dialog looks like Figure 1.  </p>
+<p><img alt="" src="images/41-Printing-1.png" /></p>
+<p>Figure 1. The ServiceUI.printDialog() Dialog. </p>
+<p>Pressing the "Print" button returns a PrintService reference; pressing "Cancel" returns 
+null. </p>
+<h3 id="13-printing-using-java">1.3.  Printing Using Java</h3>
+<p>After a print service has been selected, JPS stages 2-4 involve instantiating a Doc 
+object, creating a print job, and starting the printing. These are managed by my 
+JPrint.printFile(): </p>
+<p>// in the JPrint class 
+public static void printFile(PrintService ps, String fnm) 
+{ 
+  if (ps == null) { 
+    System.out.println("Print service is null"); 
+    return; 
+  } </p>
+<p>DocPrintJob printJob = ps.createPrintJob();   // stage 2 
+  try { 
+    InputStream is = new FileInputStream(fnm); <br />
+    DocFlavor flavor = getFlavor(ps, fnm); 
+    Doc doc = new SimpleDoc(is, flavor, null);  // stage 3 
+    printJob.print(doc, null);                  // stage 4 
+    is.close(); 
+  } 
+  catch(Exception e) { 
+    System.out.println("Unable to print " + fnm); 
+    System.out.println(e); 
+  } 
+}  // end of printFile() </p>
+<p>The user supplies a PrintService and a filename. A DocFlavor for the file is obtained 
+by JPrint.getFlavor(): </p>
+<p>// in the JPrint class 
+public static DocFlavor getFlavor(PrintService ps, String fnm) 
+{ 
+   DocFlavor flavor = getFlavorFromFnm(fnm); 
+   System.out.println("File-based DocFlavor: " + flavor); 
+   if (!ps.isDocFlavorSupported(flavor)) { 
+     System.out.println("Not supported by printer;<br />
+                                      using autosense"); 
+     flavor = DocFlavor.INPUT_STREAM.AUTOSENSE; 
+   } 
+   return flavor; 
+}  // end of getFlavor() </p>
+<p>public static DocFlavor getFlavorFromFnm(String fnm) 
+{ 
+  String ext = fnm.substring(fnm.lastIndexOf('.') + 1). </p>
+<pre><code>                                  toLowerCase();
+</code></pre>
+<p>if (ext.equals("gif")) 
+    return DocFlavor.INPUT_STREAM.GIF; 
+  else if (ext.equals("jpeg")) 
+    return DocFlavor.INPUT_STREAM.JPEG; 
+  else if (ext.equals("jpg")) 
+    return DocFlavor.INPUT_STREAM.JPEG; 
+  else if (ext.equals("png")) 
+    return DocFlavor.INPUT_STREAM.PNG; 
+  else if (ext.equals("ps")) 
+    return DocFlavor.INPUT_STREAM.POSTSCRIPT; 
+  else if (ext.equals("pdf")) 
+    return DocFlavor.INPUT_STREAM.PDF; 
+  else if (ext.equals("txt")) 
+    return DocFlavor.INPUT_STREAM.TEXT_PLAIN_HOST; 
+  else     // try to determine flavor from file content 
+    return DocFlavor.INPUT_STREAM.AUTOSENSE; 
+}  // end of getFlavorFromFnm </p>
+<p>getFlavorFromFnm() uses the file's extension to choose a 
+DocFlavor.INPUT_STREAM constant, which is checked by the print service in 
+PrintService.isDocFlavorSupported(). </p>
+<p>JPrint.printFile() is utilized in my JDocPrinter.java example: </p>
+<p>// in JDocPrinter.java 
+public static void main(String[] args) 
+{ 
+  if ((args.length &lt; 1) || (args.length &gt; 2)) { 
+    System.out.println("Usage: java JDocPrinter <filename><br />
+                   [&lt;(partial)printer-name&gt;]"); 
+    return; 
+  } </p>
+<p>String fnm = args[0]; 
+  String pName = null; 
+  if (args.length == 2) {<br />
+    String[] pNames = JPrint.findPrinterNames(args[1]); 
+    if (pNames != null) { 
+      System.out.println("Using first match: \"" + pNames[0] + "\""); 
+      pName = pNames[0]; 
+    } 
+  } 
+  if (pName != null) 
+    JPrint.print(pName, fnm); 
+  else { 
+    PrintService ps = JPrint.dialogSelect(); 
+    if (ps != null) 
+      // JPrint.printMonitorFile(ps, fnm); 
+      JPrint.printFile(ps, fnm); 
+  } 
+}  // end of main() </p>
+<p>JPrint.printMonitorFile() is fancier version of JPrint.printFile() which attaches a 
+PrintJobListener to the print job. The listener's methods are triggered as the job passes 
+through its printing states such as its delivery to the printer, completion, cancellation, 
+or printing error. </p>
+<p>The lines in JPrint.printMonitorFile() that add the listener to the print job are: </p>
+<p>// in JPrint.printMonitorFile()... </p>
+<p>DocPrintJob printJob = ps.createPrintJob(); 
+printJob.addPrintJobListener(new PJWatcher()); </p>
+<p>PJWatcher implements the PrintJobListener interface: </p>
+<p>// in the JPrint class 
+private static class PJWatcher implements PrintJobListener 
+{ 
+  public void printDataTransferCompleted(PrintJobEvent pje) 
+  {  System.out.println(" &gt;&gt; Data transferred to printer"); } </p>
+<p>public void printJobCanceled(PrintJobEvent pje) 
+  {  System.out.println(" &gt;&gt; Print job was cancelled");  } </p>
+<p>public void printJobCompleted(PrintJobEvent pje) 
+  {  System.out.println(" &gt;&gt; Print job completed successfully");  } </p>
+<p>public void printJobFailed(PrintJobEvent pje) 
+  {  System.out.println(" &gt;&gt; Print job failed");  } </p>
+<p>public void printJobNoMoreEvents(PrintJobEvent pje) 
+  {  System.out.println(" &gt;&gt; No more events will be delivered");  } </p>
+<p>public void printJobRequiresAttention(PrintJobEvent pje) 
+  {  System.out.println(" &gt;&gt; Print job needs attention"); } </p>
+<p>}  // end of PJWatcher class </p>
+<h3 id="14-more-information-on-javaxprint">1.4.  More Information on javax.print</h3>
+<p>Good sources of information on Java printing include the tutorial at 
+https://docs.oracle.com/javase/tutorial/2d/printing/ which covers JPS and the older 
+Java 2D printing API, and the JPS API user guide at 
+https://docs.oracle.com/javase/8/docs/technotes/guides/jps/spec/JPSTOC.fm.html. </p>
+<p>Two books I've found useful: 
+ Core Java, Volume II -- Advanced Features 
+Cay S. Horstmann; Gary Cornell 
+Prentice Hall, 2016, 10th ed.  </p>
+<p>http://horstmann.com/corejava.html 
+Chapter 7 includes a section on printing, including a table of attributes. </p>
+<p> Pro Java 8 Programming 
+Terrill Brett Spell 
+Apress, 2015, 3rd ed. </p>
+<p>http://www.apress.com/9781484206423 
+Chapter 11 is about printing. </p>
+<h2 id="2-printing-in-office">2.  Printing in Office</h2>
+<p>In this section I'll employ the print service search methods in JPrint.java to find a 
+printer for Office. The service name is passed to functions that use the Office API to 
+send a document to the printer.  </p>
+<p>Only a handful of Office methods are required to print a document; the real 
+complexity of the API is the multitude of properties which configure how the 
+document is output. Not surprisingly, these properties are spread across many 
+modules since different document types (i.e. Writer, Draw, Impress, and Calc) are 
+managed by different parts of the API. </p>
+<p>Figure 2 shows the OfficeDocument services and their print-related interfaces. The 
+words in brackets are the modules where the services are located. The rounded 
+rectangles refer to print property tables explained later in this chapter. </p>
+<p><img alt="" src="images/41-Printing-2.png" /></p>
+<p>Figure 2. The OfficeDocument Interface and its Print-related Interfaces. </p>
+<p>The XPrintable interface is used when printing Writer, Draw, Impress, or Calc 
+documents since their services all inherit OfficeDocument. Writer documents can also 
+employ XPagePrintable for printing. Note that it isn't possible to print databases using 
+XPrintable. </p>
+<p>OfficeDocument also has XPrintJobBroadcaster and XPrintableBroadcaster interfaces 
+for attaching listeners to a print job. However, XPrintableBroadcaster is no longer 
+supported, having been superseded by XPrintJobBroadcaster . </p>
+<p>The tricky aspects of XPrintable, XPrintJobBroadcaster, and XPagePrintable are the 
+properties used to configure how they work. XPrintable.getPrinter() and 
+XPrintable.setPrinter() utilize PrintDescriptor properties, the XPrintJobListener 
+created by XPrintJobBroadcaster uses PrintableState properties, XPrintable.print() 
+uses PrintOptions, and XPagePrintable employs PagePrintSettings. I'll be explaining 
+all of these in due course, with the aid of the tables referred to in Figure 2. </p>
+<p>We're not finished with properties yet. There's also several "XXXSettings" services 
+which configure printing properties within a document. These are summarized by </p>
+<p><img alt="" src="images/41-Printing-3.png" /></p>
+<p>Figure 3. </p>
+<p><img alt="" src="images/41-Printing-3.png" /></p>
+<p>Figure 3. The Setting Services. </p>
+<p>The rounded rectangles refer to property tables described later in this chapter. </p>
+<h2 id="3-printing-any-document">3.  Printing any Document</h2>
+<p>At this point you may be thinking that Office printing is rather complex. In fact, if 
+you're happy to print a document using the default printing settings then it's fairly 
+simple. The DocPrinter.java example illustrates this by printing any Office document 
+supplied on its command line to the default printer or to the one named in the second 
+command line argument. The complete code: </p>
+<p>// in DocPrinter.java 
+public static void main(String args[]) 
+{ <br />
+  if ((args.length &lt; 1) || (args.length &gt; 3)) { 
+    System.out.println("Usage: DocPrinter fnm<br />
+                        [printer-name [no-of-pages]]"); 
+    return; 
+  } </p>
+<p>String fnm = args[0]; 
+  String pName = JPrint.getDefaultPrinterName();  // default </p>
+<p>if (args.length &gt; 1) {   // 2 or 3 args 
+    String[] printerNames = JPrint.findPrinterNames(args[1]); 
+    if (printerNames == null) 
+      System.out.println("Using default printer: \"" +<br />
+                                            pName + "\""); 
+    else { 
+      pName = printerNames[0]; 
+      System.out.println("Using first matching printer: \"" +<br />
+                                              pName + "\""); 
+    } 
+  } </p>
+<p>String pagesStr = "1-";   // default is print all pages 
+  if (args.length == 3)<br />
+    pagesStr = args[2]; </p>
+<p>XComponentLoader loader = Lo.loadOffice(); 
+  XComponent doc = Lo.openDoc(fnm, loader); 
+  if (doc == null) { 
+    System.out.println("Could not open " + fnm); 
+    Lo.closeOffice(); 
+    return; 
+  } 
+  int docType = Info.reportDocType(doc); </p>
+<p>XPrintable xp = Lo.qi(XPrintable.class, doc); 
+  if (xp == null) 
+    System.out.println("Cannot print; XPrintable is null"); 
+  else if (!Print.isPrintable(docType)) 
+    System.out.println("Cannot print that document type"); 
+  else { 
+    Print.usePrinter(xp, pName); 
+    Print.reportPrinterProps(xp); 
+    Print.print(xp, pagesStr); 
+  } 
+  Lo.closeDoc(doc); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+<p>An optional third command line argument is a page range, given in string form. For 
+instance, "2-4;6" will print pages 2 to 4 and 6 (with the page numbering starting at 1). </p>
+<p>The printer name is obtained using methods from my JPrint.java class. The Office 
+API takes over after the document has been loaded, and utilizes support functions in 
+my Print.java class (note: no "J" in the name). </p>
+<p>The document type is printed and returned by Info.reportDocType() as one of: 
+Lo.UNKNOWN, Lo.WRITER, Lo.BASE, Lo.CALC, Lo.DRAW, Lo.IMPRESS, or 
+Lo.MATH. </p>
+<p>The loaded document is cast to XPrintable (see Figure 1), and Print.isPrintable() tests 
+for those document types that can be printed using XPrintable.print(): </p>
+<p>// in the Print class 
+public static boolean isPrintable(int docType) 
+{ return ((docType == Lo.WRITER) || (docType == Lo.CALC) || 
+          (docType == Lo.DRAW) || (docType == Lo.IMPRESS));  } </p>
+<p>Print.usePrinter() adds the printer's name and paper format to the XPrintable 
+properties by calling XPrintable.setPrinter() with an array of PrintDescriptor 
+properties (see Figure 1): </p>
+<p>// in the Print.java class 
+public static void usePrinter(XPrintable xp, String printer) 
+{ 
+  if (xp == null) { 
+    System.out.println("Cannot set printer XPrintable is null"); 
+    return; 
+  } 
+  System.out.println("Using printer \"" + printer + "\""); 
+  xp.setPrinter( Props.makeProps("Name", printer,<br />
+                                 "PaperFormat", PaperFormat.A4) ); 
+  setListener(xp); 
+}  </p>
+<p>Table 1 lists the PrintDescriptor properties, or use my lodoc.bat script to access the 
+class' documentation online (type "lodoc PrinterDescriptor"). </p>
+<p>Property Description 
+Name Name of the printer. </p>
+<p>PaperOrientation Paper orientation 
+(com.sun.star.view.PaperOrientation:<br />
+PORTRAIT, LANDSCAPE) 
+PaperFormat Paper size formats 
+(com.sun.star.view.PaperFormat: A3, A4, 
+A5, B4, B5, LETTER, LEGAL, 
+TABLOID, USER) 
+PaperSize Paper size in 100th mm 
+(com.sun.star.awt.Size). </p>
+<p>IsBusy Is the printer busy? 
+CanSetPaperOrientation Can the paper orientation be set? 
+CanSetPaperFormat Are other paper formats supported? 
+CanSetPaperSize Are other paper sizes supported? 
+Table 1. Properties in com.sun.star.view.PrinterDescriptor. </p>
+<p>Print.setListener() inside Print.usePrinter() attaches an XPrintJobListener listener to 
+the print job by casting XPrintable to XPrintJobBroadcaster (see Figure 1). </p>
+<p>// in the Print class 
+public static void setListener(XPrintable xp) 
+{ 
+  if (xp == null) { 
+    System.out.println("Cannot set listener; XPrintable is null"); 
+    return; 
+  } </p>
+<p>XPrintJobBroadcaster pb = Lo.qi(XPrintJobBroadcaster.class, xp); 
+  if (pb == null) { 
+    System.out.println("Cannot obtain print job broadcaster"); 
+    return; 
+  } </p>
+<p>pb.addPrintJobListener( new XPrintJobListener() 
+  { 
+     public void printJobEvent(PrintJobEvent e)<br />
+     { System.out.println("Print Job status: " +<br />
+                              printableState(e.State));  } </p>
+<pre><code> public void disposing(com.sun.star.lang.EventObject e) 
+ {  System.out.println("Disposing of print job: " + e);  }
+</code></pre>
+<p>}); 
+}  // end of setListener() </p>
+<p>XPrintJobListener.printJobEvent() is called at different stages during the job's 
+execution, and Print.printableState() converts the retrieved PrintableState constant 
+into a more readable string: </p>
+<p>// in the Print class 
+public static String printableState(PrintableState val) 
+{ 
+ if (val == PrintableState.JOB_STARTED ) 
+   return "JOB_STARTED"; 
+ else if (val == PrintableState.JOB_COMPLETED ) 
+   return "JOB_COMPLETED"; 
+ else if (val == PrintableState.JOB_SPOOLED ) 
+   return "JOB_SPOOLED"; 
+ else if (val == PrintableState.JOB_ABORTED ) 
+   return "JOB_ABORTED"; 
+ else if (val == PrintableState.JOB_FAILED ) 
+   return "JOB_FAILED"; 
+ else if (val == PrintableState.JOB_SPOOLING_FAILED ) 
+   return "JOB_SPOOLING_FAILED"; 
+ else { 
+   System.out.println("Unknown printable state"); 
+   return "??"; 
+ } 
+}  // end of printableState() </p>
+<p>The PrintableState constants are summarized in Table 2. </p>
+<p>Enumerator Constant Description 
+JOB_STARTED  Printing/rendering has begun. </p>
+<p>JOB_COMPLETED<br />
+Printing/rendering has finished; spooling 
+has begun. </p>
+<p>JOB_SPOOLED<br />
+Spooling has finished successfully. This 
+is the "success" state for a print job.  </p>
+<p>JOB_ABORTED<br />
+Printing was aborted (e.g., by the user) 
+during printing or spooling.  </p>
+<p>JOB_FAILED  The printing ran into an error.  </p>
+<p>JOB_SPOOLING_FAILED<br />
+The document could be printed but not 
+spooled.  </p>
+<p>Table 2. Properties in com.sun.star.view.PrintableState enum. </p>
+<p>Back in the main() function of DocPrinter.java, Print.reportPrinterProps() outputs the 
+printer's PrintDescriptor settings (listed in Table 1). It loops through the properties 
+array returned by XPrintable.getPrinter(): </p>
+<p>// in the Print class 
+public static void reportPrinterProps(XPrintable xp) 
+{ 
+  if (xp == null) { 
+    System.out.println("Cannot report printer props"); 
+    return; 
+  } </p>
+<p>PropertyValue[] printProps = xp.getPrinter(); 
+  if (printProps == null) 
+    System.out.println("No Printer properties found");<br />
+  else { 
+    System.out.println("Printer properties:");<br />
+    String name; 
+    for (PropertyValue prop : printProps) { 
+      name = prop.Name; 
+      if (name.equals("PaperOrientation")) 
+        System.out.println("  " + name + ": " +<br />
+               paperOrientation((PaperOrientation)prop.Value));<br />
+      else if (name.equals("PaperFormat")) 
+        System.out.println("  " + name + ": " +<br />
+                       paperFormat((PaperFormat)prop.Value));<br />
+      else if (name.equals("PaperSize")) { 
+        Size sz = (Size)prop.Value; 
+        System.out.println("  " + name + ": (" +<br />
+                            sz.Width + ", " + sz.Height + ")");<br />
+      } 
+      else 
+        System.out.println("  " + name + ": " + prop.Value);<br />
+    } 
+    System.out.println();<br />
+  } 
+}  // end of reportPrinterProps() </p>
+<p>The constants in the PaperOrientation and PaperFormat classes are mapped to more 
+easily understood strings.  </p>
+<p>Typical output from Print.reportPrinterProps() is: </p>
+<p>Printer properties: 
+  Name: FinePrint 
+  PaperOrientation: PORTRAIT 
+  PaperFormat: A4 
+  PaperSize: (11906, 16838) 
+  IsBusy: false 
+  CanSetPaperOrientation: true 
+  CanSetPaperFormat: true 
+  CanSetPaperSize: true </p>
+<p>At last it's time to print the document. As Figure 1 indicates, the call to 
+XPrintable.print() is configured using PrintOptions properties, which are listed in 
+Table 3. </p>
+<p>Property Description 
+CopyCount Number of copies to print. </p>
+<p>FileName Send the output to a file rather than to the 
+printer. </p>
+<p>Collate Collate the printed pages (set to true or 
+false). </p>
+<p>Sort Sort the pages (deprecated; use Collate) 
+Pages A string that specifies pages and page 
+ranges to print.  For example, "1-4;10" to 
+print the pages 1 to 4 and 10. </p>
+<p>Wait Wait for the print request to be 
+completed. </p>
+<p>DuplexMode Set duplex constant (using 
+com.sun.star.view.DuplexMode) 
+PrinterName The name of the printer. </p>
+<p>Table 3. Properties in com.sun.star.view.PrintOptions. </p>
+<p>The configuration and printing is carried out by Print.print(): </p>
+<p>// in the Print class 
+public static void print(XPrintable xp) 
+{  print(xp, "1-");  }   // print all the pages </p>
+<p>public static void print(XPrintable xp, String pagesStr) 
+{ 
+  if (xp == null) { 
+    System.out.println("Cannot print; XPrintable is null"); 
+    return; 
+  } 
+  System.out.println("Print range: " + pagesStr); 
+  System.out.println("Sending document..."); </p>
+<p>PropertyValue[] props =<br />
+           Props.makeProps("Pages", pagesStr, "Wait", true); <br />
+                                          // synchronous 
+                 // see com.sun.star.view.PrintOptions 
+  xp.print(props);    // print the document 
+  System.out.println("Delivered"); 
+}  // end of print() </p>
+<p>Two properties are set: "Pages" and "Wait". "Pages" could be left out if all of the 
+document is to printed, but "Wait" is necessary; it forces the print() call to wait until 
+the job has been delivered to the driver, and so has left the Office process. If "Wait" 
+wasn't included then DocPrinter could continue and perhaps close Office before it had 
+fully transmitted the document to the printer. This would cause a crash. </p>
+<p>Note that there's no need to set the "PrinterName" property since its already been 
+supplied as one of the PrintDescriptor properties. </p>
+<h2 id="4-viewing-a-documents-print-properties">4.  Viewing a Document's Print Properties</h2>
+<p>The previous section looked at printer-related properties stored in PrinterDescriptor 
+(Table 1) and PrintOptions (Table 2). But the real property mother lode are those 
+related to documents, which are stored in the many subclasses below the Settings 
+service (see Figure 3). The ShowPrintProps.java example prints out those properties 
+for a given input document. The relevant lines are: </p>
+<p>// in ShowPrintProps.java... </p>
+<p>int docType = Info.reportDocType(doc); 
+XProperty Set docProps = Print.getDocSettings(docType); </p>
+<p>Props.showProps("Document Settings", docProps); </p>
+<p>The document type returned by Info.reportDocType() is employed by 
+Print.getDocSettings() to decide which of the subclasses of the Settings service (once 
+again, see Figure 3) should be instantiated: </p>
+<p>// in the Print class 
+public static XPropertySet getDocSettings(int docType) 
+{ 
+  XPropertySet props = null; 
+  if (docType == Lo.WRITER) 
+    props = Lo.createInstanceMSF(XPropertySet.class, 
+                  "com.sun.star.text.DocumentSettings"); 
+  else if (docType == Lo.IMPRESS) 
+    props = Lo.createInstanceMSF(XPropertySet.class, 
+                  "com.sun.star.presentation.DocumentSettings"); 
+  else if (docType == Lo.DRAW) 
+    props = Lo.createInstanceMSF(XPropertySet.class, 
+                  "com.sun.star.drawing.DocumentSettings"); 
+  else if (docType == Lo.CALC) 
+    props = Lo.createInstanceMSF(XPropertySet.class, 
+                  "com.sun.star.sheet.DocumentSettings"); 
+  else if (docType == Lo.BASE) 
+    System.out.println("No document settings for a base doc"); 
+  else if (docType == Lo.MATH) 
+    System.out.println("No document settings for a math doc"); 
+  else<br />
+    System.out.println("Unknown document type"); </p>
+<p>return props; 
+}  // end of getDocSettings() </p>
+<p>All these setting services support XPropertySet, which is returned as 
+Print.getDocSettings()'s result. </p>
+<p>The printing-related properties defined in the Settings superclass are listed in Table 4, 
+but it contains  many more properties for different aspects of a document. For a full 
+list, use "lodoc Settings document" to look at the online documentation. The Settings 
+webpage is also a good starting point for examining its DocumentSettings subclasses.  </p>
+<p>Property  Description<br />
+PrinterName Printer used by the document. </p>
+<p>PrinterSetup 
+A byte array containing driver-specific 
+data. </p>
+<p>IsPrintBooklet 
+Put two document pages on one physical 
+page, such that you can fold the output 
+into a booklet. </p>
+<p>IsPrintBookletFront Only print the fronts of a booklet 
+IsPrintBookletBack Only print the backs of a booklet 
+PrintQuality 
+Normal (0); Grayscale (1), Black and 
+white (2). </p>
+<p>PrinterIndependentLayout Forbid use of printer metrics for layout. </p>
+<p>EmbedFonts 
+Whether to embed fonts used by the 
+document. </p>
+<p>EmbedSystemFonts 
+Whether to embed system fonts used by 
+the document. </p>
+<p>Table 4. Printing-related Properties in<br />
+com.sun.star.document.Settings. </p>
+<p>Writer documents utilize the DocumentSettings service in the text module which 
+doesn't contain any printing properties, but is far from empty. Again, use "lodoc 
+DocumentSettings text" to visit its documentation in the text module. Instead, the 
+print properties are inherited from the PrintSettings service in the text module, which 
+are listed in Table 5. Use "lodoc PrintSettings text" to visit its documentation. </p>
+<p>Property  Description<br />
+PrintGraphics If true, print graphic objects. </p>
+<p>PrintTables If true, print text tables. </p>
+<p>PrintDrawings If true, print shapes. </p>
+<p>PrintLeftPages If true, print left pages. </p>
+<p>PrintRightPages If true, print right pages. </p>
+<p>PrintControls If true, then control shapes in the 
+document (usually inside forms) are 
+printed. </p>
+<p>PrintReversed If true, print the pages in reverse order, 
+starting with the last page. </p>
+<p>PrintPaperFromSetup If true, use the paper tray specified for 
+the system printer. If false, use the paper 
+tray specified by the page style. </p>
+<p>PrintFaxName Name of the fax machine. </p>
+<p>PrintAnnotationMode Specify how notes are printed. Uses 
+com.sun.star.text.NotePrintMode: NOT, 
+ONLY, DOC_END, or PAGE_END). </p>
+<p>PrintProspect If true, prospect printing is used. Related 
+to brochures (I think). </p>
+<p>PrintPageBackground 
+Determines if the background color / 
+background graphic of pages is printed. </p>
+<p>PrintBlackFonts Determines if characters are printed in 
+black. </p>
+<p>PrintEmptyPages 
+Determines if automatically inserted 
+empty pages are printed. </p>
+<p>Table 5. Properties in com.sun.star.text.PrintSettings. </p>
+<dl>
+<dt>Back in ShowPrintProps.java, the properties are printed with Props.showProps(). The </dt>
+<dt>output is quite lengthy since every setting is printed, not just the printing-related ones </dt>
+<dt>in my tables. Typical output when a Writer file is examined includes: </dt>
+<dd>
+<dl>
+<dt>PrintAnnotationMode == 0</dt>
+<dt>PrintBlackFonts == false</dt>
+<dt>PrintControls == true</dt>
+<dt>PrintDrawings == true</dt>
+<dt>PrintEmptyPages == false</dt>
+<dt>PrintFaxName ==</dt>
+<dt>PrintGraphics == true</dt>
+<dt>PrintHiddenText == false</dt>
+<dt>PrintLeftPages == true</dt>
+<dt>PrintPageBackground == true</dt>
+<dt>PrintPaperFromSetup == false</dt>
+<dt>PrintProspect == false</dt>
+<dt>PrintProspectRTL == false</dt>
+<dt>PrintReversed == false</dt>
+<dt>PrintRightPages == true</dt>
+<dt>PrintSingleJobs == false</dt>
+<dt>PrintTables == true</dt>
+<dt>PrintTextPlaceholder == false</dt>
+<dt>PrinterIndependentLayout == 3</dt>
+<dt>PrinterName ==</dt>
+<dt>PrinterSetup == [B@1222c14</dt>
+<dt>PropLineSpacingShrinksFirstLine == true</dt>
+<dt>ProtectForm == false</dt>
+<dt>RedlineProtectionKey == [B@6d8acf</dt>
+<dt>Rsid == 537223</dt>
+<dd></dd>
+</dl>
+</dd>
+</dl>
+<p>A Calc file uses the DocumentSettings service in the sheet module (use "lodoc 
+DocumentSettings sheet" to examine its documentation). However, printing-related 
+properties are stored elsewhere, in the GlobalSheetSettings and PageStyle services, 
+which need additional code to access them as I'll explain later. </p>
+<p>An Impress file uses DocumentSettings in the presentation module (see "lodoc 
+DocumentSettings service presentation"); its printing-related properties are given in 
+Table 6. </p>
+<p>Property  Description<br />
+IsPrintDrawing Enables or disables the printing of the 
+drawing pages. </p>
+<p>IsPrintNotes Enables or disables the printing of the 
+notes pages. </p>
+<p>IsPrintHandout Enables or disables the printing of the 
+handout pages. </p>
+<p>IsPrintOutline Enables or disables the printing of the 
+outline pages. </p>
+<p>IsPrintHiddenPages Enables or disables the printing of draw 
+pages that are marked as hidden. </p>
+<p>IsPrintFitPage Enables or disables the fitting of the page 
+to the printable area during printing. </p>
+<p>IsPrintTilePage If this is true and the paper size for 
+printing is larger than the paper size of 
+the printer than the content is tiled over 
+multiple pages. </p>
+<p>Table 6. Printing-related Properties in<br />
+com.sun.star.presentation.DocumentSettings. </p>
+<p>Draw documents are similar to presentations, and this is reflected in the 
+DocumentSettings service in the drawing module (see "lodoc DocumentSettings 
+service drawing") which offers a subset of the slide properties. The printing-related 
+ones are listed in Table 7.  </p>
+<p>Property  Description<br />
+IsPrintFitPage Enables or disables the fitting of the page 
+to the printable area during printing. </p>
+<p>IsPrintTilePage If this is true and the paper size for 
+printing is larger than the paper size of 
+the printer than the content is tiled over 
+multiple pages. </p>
+<p>Table 7. Printing-related Properties in<br />
+com.sun.star.drawing.DocumentSettings. </p>
+<p>The drawing and presentation DocumentSettings services inherit the Settings service, 
+and a HeaderFooterSettings service in the documents folder (see "lodoc 
+HeaderFooterSettings"), which add the properties in Table 8. </p>
+<p>Property  Description<br />
+IsPrintPageName Enables or disables the printing of the 
+page name in the header or footer. </p>
+<p>IsPrintDate Enables or disables the printing of the 
+date in the header or footer. </p>
+<p>IsPrintTime Enables or disables the printing of the 
+current time in the header or footer. </p>
+<p>Table 8. Properties in<br />
+com.sun.star.document.HeaderFooterSettings. </p>
+<h3 id="41-additional-writer-print-properties">4.1.  Additional Writer Print Properties</h3>
+<p>As Figure 2 indicates, Writer Documents have access to an XPagePrintable interface 
+offered by the GenericTextDocument service (see "lodoc XPagePrintable"). It has a 
+print method, XPagePrintable.printPages() which utilizes properties stored in the 
+PagePrintSettings service (see Table 9). These relate to the document's margins and 
+printing multiple pages on a single sheet. </p>
+<p>Property  Description<br />
+PageRows 
+Number of page rows on each 
+printed page. </p>
+<p>PageColumns 
+Number of page columns on each 
+printed page. </p>
+<p>LeftMargin Left margin of the printed page. </p>
+<p>RightMargin Right margin. </p>
+<p>TopMargin Top margin. </p>
+<p>BottomMargin Bottom margin. </p>
+<p>HoriMargin Margin between page rows. </p>
+<p>VertMargin Margin between page columns. </p>
+<p>IsLandscape Print in landscape format? 
+Table 9. Properties in com.sun.star.text.PagePrintSettings. </p>
+<p>These properties are printed by casting the document to XPagePrintable: </p>
+<p>// part of ShowPrintProps.java... </p>
+<p>if (docType == Lo.WRITER) { 
+  XPagePrintable xpp = Lo.qi(XPagePrintable.class, doc); 
+  PropertyValue[] printProps = xpp.getPagePrintSettings(); 
+  Props.showProps("Page print settings", printProps); 
+} </p>
+<p>Typical output is: </p>
+<p>Properties for "Page print settings": 
+  PageRows: 1 
+  PageColumns: 1 
+  LeftMargin: 0 
+  RightMargin: 0 
+  TopMargin: 0 
+  BottomMargin: 0 
+  HoriMargin: 0 
+  VertMargin: 0 
+  IsLandscape: false </p>
+<h3 id="42-additional-calc-print-properties">4.2.  Additional Calc Print Properties</h3>
+<p>Figure 3 indicates that a Calc document has three sources of printing-related 
+properties: DocumentSettings in the sheet module, GlobalSheetSettings also in the 
+sheet module, and PageStyle in the style module. </p>
+<p>In a break with usual Office conventions, the GlobalSheetService service (see "lodoc 
+GlobalSheetSettings") doesn’t store the properties; instead they're maintained by its 
+XGlobalSheetSettings interface (see "lodoc XGlobalSheetSettings). The printing-
+related properties are listed in Table 10. </p>
+<p>Property  Description<br />
+PrintAllSheets Specifies whether all sheets or only 
+selected sheets are printed. </p>
+<p>PrintEmptyPages Specifies whether empty pages are 
+printed. </p>
+<p>UsePrinterMetrics Specifies whether printer metrics are used 
+for display. </p>
+<p>Table 10. Printing-related Properties in<br />
+com.sun.star.sheet.XGlobalSheetSettings. </p>
+<p>This organization of the documentation may be an error, since the 
+XGlobalSheetSettings properties are accessed in the usual way, by instantiating the 
+GlobalSheetSettings service, and casting it to XPropertySet: </p>
+<p>XPropertySet globalSheetProps =<br />
+      Lo.createInstanceMCF(XPropertySet.class, 
+             "com.sun.star.sheet.GlobalSheetSettings"); </p>
+<p>Props.showProps("Global Sheet Settings", globalSheetProps); </p>
+<p>GlobalSheetSettings properties are applied to all sheets, so you may want to reset a 
+changed property to its original value after a print. There's an example of using global 
+sheet settings in PrintSheet.java later in this chapter.  </p>
+<p>Another source of spreadsheet properties is the PageStyle service. I explained page 
+styles in Chapter 22, so I refer you back there for the details. A page style is 
+associated with a sheet, and so it's necessary to first choose a sheet to examine, and 
+then access its "PageStyle" property: </p>
+<p>XSpreadsheetDocument ssDoc = Calc.getSSDoc(doc); 
+XSpreadsheet sheet = Calc.getSheet(ssDoc, 0);   // first sheet </p>
+<p>String styleName = (String) Props.getProperty(sheet, "PageStyle"); 
+System.out.println("\nPageStyle of first sheet: " + styleName); </p>
+<p>The page style name is used to lookup the properties for that particular style: </p>
+<p>XPropertySet props = Info.getStyleProps(doc, "PageStyles",<br />
+                                                     styleName); 
+Props.showProps(styleName + " PageStyles", props); </p>
+<p>Props.showProps() prints an extensive list of properties, drawn form several services 
+in the PageStyle hierarchy. A simplified version of that hierarchy is shown in Figure 
+4. </p>
+<p><img alt="" src="images/41-Printing-4.png" /></p>
+<p>Figure 4. Part of the PageStyle Service Hierarchy. </p>
+<p>I'm only interested in printing-related properties in this chapter. Some come from the 
+PageProperties service in the style module (see "lodoc PageProperties style"), as listed 
+in Table 11. </p>
+<p>Property  Description<br />
+Lots of border props…<br />
+Lots of margin props…<br />
+IsLandscape Determines if the page format is 
+landscape. </p>
+<p>PrinterPaperTray Contains the name of a paper 
+tray of the selected printer. </p>
+<p>Lots of header props…<br />
+Lots of footer props…<br />
+Lots of grid props…<br />
+GridPrint Determines whether text grid 
+lines are printed. </p>
+<p>Table 11. Printing-related Properties in<br />
+com.sun.star.style.PageProperties. </p>
+<p>Many more print properties come from TablePageStyle in the sheet module (see 
+"lodoc TablePageStyle", which are given in Table 12. </p>
+<p>Property  Description<br />
+PrintAnnotations Enables printing of cell annotations. </p>
+<p>PrintGrid Enables printing of the cell grid. </p>
+<p>PrintHeaders Enables printing of column and row 
+headers.  </p>
+<p>PrintCharts Enables printing of charts.  </p>
+<p>PrintObjects Enables printing of embedded objects.  </p>
+<p>PrintDrawing Enables printing of drawing objects. </p>
+<p>PrintFormulas Enables printing of formulas instead of their 
+results.  </p>
+<p>PrintZeroValues Enables printing of zero-values. </p>
+<p>PrintDownFirst Specifies the print order for the pages within 
+each sheet. </p>
+<p>PageScale Contains the scaling factor (in percent) for 
+printing the sheet. </p>
+<p>ScaleToPages Contains the number of pages the sheet will 
+use for printing.  </p>
+<p>ScaleToPagesX Contains the number of horizontal pages the 
+sheet will be printed on. </p>
+<p>ScaleToPagesY Contains the number of vertical pages the 
+sheet will be printed on. </p>
+<p>LeftPageHeaderContent Contains the content of the header for the 
+left pages 
+(com.sun.star.sheet.XHeaderFooterContent). </p>
+<p>RightPageHeaderContent Contains the content of the header for the 
+right pages 
+(com.sun.star.sheet.XHeaderFooterContent). </p>
+<p>LeftPageFooterContent Contains the content of the footer for the left 
+pages 
+(com.sun.star.sheet.XHeaderFooterContent). </p>
+<p>RightPageFooterContent Contains the content of the footer for the 
+right pages 
+(com.sun.star.sheet.XHeaderFooterContent). </p>
+<p>Table 12. Printing-related Properties in<br />
+com.sun.star.sheet.TablePageStyle. </p>
+<h2 id="5-specialized-printing">5.  Specialized Printing</h2>
+<p>In this section I'll use some of the document properties just described to control how 
+Writer, Impress, and Calc documents are printed. The example code is in 
+TextPrinter.java, ImpressPrinter.java, SheetPrinter.java, and PrintSheet.java. </p>
+<p>The sad news is that although TextPrinter.java and ImpressPrinter.java successfully 
+print their documents, the API ignores most of the changes to the properties. Perhaps 
+even sadder (from a programming perspective) is the fact that these same documents 
+are correctly printed if the properties are set via Office's GUI. </p>
+<p>Aside from this, the print GUI in Office offers more functionality than the API. For 
+example, it's possible to output multiple slides and sheets on a single page through the 
+print dialog but not with API calls. </p>
+<h3 id="51-printing-a-text-document">5.1.  Printing a Text Document</h3>
+<p>TextPrinter.java sends a text document to a specified printer, with two pages printed 
+on each sheet. </p>
+<p>After the document has been loaded, the printing is carried out by: </p>
+<p>// part of TextPrinter.java... </p>
+<p>XPrintable xp = Lo.qi(XPrintable.class, doc); 
+Print.usePrinter(xp, pName); </p>
+<p>XPagePrintable xpp = Lo.qi(XPagePrintable.class, doc); 
+PropertyValue[] props = xpp.getPagePrintSettings(); 
+Props.setProp(props, "IsLandscape", true); 
+Props.setProp(props, "PageColumns", (short)2); </p>
+<p>xpp.setPagePrintSettings(props); 
+xpp.printPages(new PropertyValue[1]);    // empty array of props </p>
+<p>To help understand what the code is doing, refer back to Figure 2. The document is 
+cast to XPrintable so the printer settings can be initialized by Print.usePrinter(). Then 
+the document is cast to XPagePrintable so its PagePrintSettings properties can be 
+configured. That's done via XPagePrintable.setPagePrintSettings() and finally 
+XPagePrintable.printPages() is called with an empty array.  </p>
+<p>The document is printed but unfortunately the two pages/sheet and landscape settings 
+are ignored.  </p>
+<p>This bug has been known for many years, and some people have suggested an 
+alternative implementation where the properties are passed to 
+XPagePrintable.printPages() rather than to XPagePrintable.setPagePrintSettings(). </p>
+<p>The last two lines from above would be replaced by: 
+xpp.printPages(props);<br />
+Unfortunately this produces the same output in my tests. </p>
+<p>If the Writer document is printed through the Office GUI, then the print dialog looks 
+something like Figure 5. </p>
+<p><img alt="" src="images/41-Printing-5.png" /></p>
+<p>Figure 5. The Writer application's Print Dialog. </p>
+<p>The pages/sheet settings are on the "Page Layout" tab, as in Figure 6. </p>
+<p><img alt="" src="images/41-Printing-6.png" /></p>
+<p>Figure 6. The "Page Layout" Tabbed Window in the Print Dialog. </p>
+<p>When "Ok" is pressed, the document is printed correctly. </p>
+<h3 id="52-printing-an-impress-document">5.2.  Printing an Impress Document</h3>
+<p>ImpressPrinter.java prints an Impress document to the specified printer in handout 
+format, six slides per sheet, in black and white. A4 paper in landscape mode is 
+utilized. </p>
+<p>After the document has been loaded, the printing is carried out by the following code: </p>
+<p>// part of ImpressPrinter.java... </p>
+<p>// set document props 
+XPropertySet props = Lo.createInstanceMSF(XPropertySet.class, 
+                   "com.sun.star.presentation.DocumentSettings"); 
+Props.setProperties(props, 
+  new String[] {"IsPrintHandout","SlidesPerHandout","IsPrintFitPage", 
+                "IsPrintDate", "PrintQuality", "PrinterName" }, 
+  new Object[] { true, (short)6, true, true, 2, pName}   // 2 == B&amp;W 
+);<br />
+Props.showProps("Document Settings", props); </p>
+<p>// set printer props 
+XPrintable xp = Lo.qi(XPrintable.class, doc); 
+Print.usePrinter(xp, pName); 
+xp.setPrinter( Props.makeProps( 
+              "PaperOrientation", PaperOrientation.LANDSCAPE, 
+              "PaperFormat", PaperFormat.A4) ); 
+Print.reportPrinterProps(xp); </p>
+<p>Print.print(xp); </p>
+<p>To help understand what the code is doing, refer back to Figure 2. A presentation 
+DocumentSettings service is created, and its printing properties set. The 
+"PrintQuality" and "PrinterName" properties are from the Settings service (see Table 
+4), "IsPrintHandout" and "IsPrintFitPage" are from DocumentSettings (see table 6), 
+and "IsPrintDate" from HeaderFooterSettings (see Table 8). This leaves the 
+"SlidesPerHandout" property, which isn't documented anywhere. I discovered it by 
+looking at the print-out of that service's properties with: 
+Props.showProps("Document Settings", props); 
+The printer properties are set as in earlier examples, but with the addition of 
+"PaperOrientation" and "PaperFormat" which are PrintDescriptor properties (see table 
+1).  </p>
+<p>The document is printed but as one color slide per sheet; the handout and black and 
+white settings are ignored.  </p>
+<p>If the same Impress document is printed through the Office GUI, then the print dialog 
+looks like Figure 7. </p>
+<p><img alt="" src="images/41-Printing-7.png" /></p>
+<p>Figure 7. The Impress application's Print Dialog. </p>
+<p>This is much closer to what I want to output, although I couldn't print the handouts in 
+landscape mode. </p>
+<h3 id="53-printing-a-calc-document">5.3.  Printing a Calc Document</h3>
+<p>SheetPrinter.java prints the first sheet of a Calc document, scaled so that two pages 
+are used in the vertical direction. Also, the paper is set to landscape mode and A4 
+size, and the header's central field is modified. In addition, commented-out code 
+restricts the printed area of the sheet to be a single column. </p>
+<p>The good news is that all of these setting are correctly processed at print-time.  </p>
+<p>After the document has been loaded, the printing is carried out by: </p>
+<p>// part of SheetPrinter.java... </p>
+<p>XSpreadsheet sheet = Calc.getSheet(doc, 0);  // first sheet 
+String styleName = (String) Props.getProperty(sheet, "PageStyle"); </p>
+<p>// get the properties set for the sheet's page style 
+XPropertySet props =<br />
+              Info.getStyleProps(doc, "PageStyles", styleName); 
+Props.setProperty(props, "ScaleToPagesY", (short)2); 
+                 // use a max of 2 pages on the y-axis 
+Props.showProps(styleName, props); </p>
+<p>showTotalsHeader(props); </p>
+<p>/* 
+  // print only the "E" column 
+  XPrintAreas printAreas = Lo.qi(XPrintAreas.class, sheet); 
+  printAreas.setPrintAreas(new CellRangeAddress[] {});  <br />
+                 // reset print areas </p>
+<p>CellRangeAddress addr = Calc.getAddress(sheet, "E1:E111"); 
+  printAreas.setPrintAreas(new CellRangeAddress[]{ addr });  <br />
+                 // set area 
+*/ </p>
+<p>// set printer settings 
+XPrintable xp = Lo.qi(XPrintable.class, doc); 
+Print.usePrinter(xp, pName); 
+PropertyValue[] printProps = 
+    Props.makeProps("PaperOrientation", PaperOrientation.LANDSCAPE, 
+                    "PageFormat", PaperFormat.A4); 
+xp.setPrinter(printProps); 
+Print.reportPrinterProps(xp); </p>
+<p>Print.print(xp); </p>
+<p>The scaling is done by accessing the sheet's page style properties, and setting the 
+"ScaleToPagesY" value. This is one of the TablePageStyle properties listed in Table 
+12. </p>
+<p>Headers and Footers 
+The headers and footers are manipulated by showTotalsHeader(): </p>
+<p>// in SheetPrinter.java 
+private static void showTotalsHeader(XPropertySet props) 
+// change the header of the sheet 
+{ 
+  //  get the right-hand header and footer 
+  XHeaderFooterContent header =<br />
+            Calc.getHeadFoot(props, "RightPageHeaderContent"); 
+  XHeaderFooterContent footer =<br />
+            Calc.getHeadFoot(props, "RightPageFooterContent"); </p>
+<p>// print details about them 
+  Calc.printHeadFoot("Right Header", header); 
+  Calc.printHeadFoot("Right Footer", footer); </p>
+<p>// modify the header center text to be "Totals" 
+  Calc.setHeadFoot(header, Calc.HF_CENTER, "Totals"); </p>
+<p>// turn on headers and make left and right page headers the same 
+  Props.setProperty(props, "HeaderIsOn", true); 
+  Props.setProperty(props, "HeaderIsShared", true); 
+                              // from style.PageProperties<br />
+  Props.setProperty(props, "RightPageHeaderContent", header); 
+  }  // end of showTotalsHeader() </p>
+<p>A sheet may have two headers (one for the left hand page, one for the right) and two 
+footers, which are accessed as XHeaderFooterContent objects (see "lodoc 
+XHeaderFooterContent"). XHeaderFooterContent  is a collection of three XText 
+instances representing the left, center, and right of the content area. </p>
+<p>The headers and footers are accessed via the sheet's page style properties, stored as 
+the properties "LeftPageHeaderContent", "RightPageHeaderContent", 
+"LeftPageFooterContent", and "RightPageFooterContent" in the TablePageStyle 
+service (see Table 12). </p>
+<p>Calc.getHeadFoot() retrieves the page style properties, and returns the requested 
+XHeaderFooterContent: </p>
+<p>// in the Calc class 
+public static XHeaderFooterContent getHeadFoot(XPropertySet props,<br />
+                                               String content) 
+{  return Lo.qi( XHeaderFooterContent.class,<br />
+                            Props.getProperty(props, content));  } </p>
+<p>Calc.printHeadFoot() prints the three text fields inside the XHeaderFooterContent 
+object: </p>
+<p>// in the Calc class 
+public static void printHeadFoot(String title,<br />
+                                 XHeaderFooterContent hfc) 
+{ XText left = hfc.getLeftText(); 
+  XText center = hfc.getCenterText(); 
+  XText right = hfc.getRightText(); 
+  System.out.println(title + ": \"" + left.getString() + "\" : \"" +<br />
+                                center.getString() + "\" : \"" +<br />
+                                right.getString() + "\""); 
+}  // end of showHeadFoot() </p>
+<p>Calc.setHeadFoot() can change the text in the left, center, or right of a 
+XHeaderFooterContent instance: </p>
+<p>// in the Calc class 
+public static void setHeadFoot(XHeaderFooterContent hfc,<br />
+                                     int region, String text) 
+{ XText xText = getRegion(hfc, region); 
+  if (xText == null) { 
+    System.out.println("Could not set text"); 
+    return; 
+  } 
+  XTextCursor headerCursor = xText.createTextCursor(); 
+  headerCursor.gotoStart(false); 
+  headerCursor.gotoEnd(true); 
+  headerCursor.setString(text); 
+}  // end of setHeadFoot() </p>
+<p>public static XText getRegion(XHeaderFooterContent hfc, int region) 
+{ 
+  if (hfc == null) { 
+    System.out.println("Header/footer content is null"); 
+    return null; 
+  } 
+  if (region == HF_LEFT)<br />
+    return hfc.getLeftText(); 
+  else if (region == HF_CENTER) 
+    return hfc.getCenterText(); 
+  else if (region == HF_RIGHT) 
+    return hfc.getRightText(); 
+  else { 
+    System.out.println("Unknown header/footer region"); 
+    return null; 
+  } 
+}  // end of getRegion() </p>
+<p>Back in SheetPrinter.java, showTotalsHeader() changes the central text field of the 
+right header to "Totals". It then switches on the display of headers, makes the left and 
+right headers the same, and inserts the modified XHeaderFooterContent instance back 
+into the page styles: </p>
+<p>// part of showTotalsHeader() in SheetPrinter.java... </p>
+<p>Props.setProperty(props, "HeaderIsOn", true); 
+Props.setProperty(props, "HeaderIsShared", true); 
+                          // from style.PageProperties<br />
+Props.setProperty(props, "RightPageHeaderContent", header); </p>
+<p>Print Areas 
+A sheet is usually manipulated via the XSpreadsheet interface in the Spreadsheet 
+service. However, Spreadsheet supports a number of other interfaces, including 
+XPrintAreas for specifying printable areas within a sheet. This interface is illustrated 
+in Figure 8. </p>
+<p><img alt="" src="images/41-Printing-8.png" /></p>
+<p>Figure 8. The Spreadsheet XPrintAreas Interface. </p>
+<p>Aside from defining printable areas, XPrintAreas also has methods for setting which 
+rows and/or columns are repeated if a sheet spans several pages. </p>
+<p>The commented out code in SheetPrinter.java does two things: it cancels any existing 
+print areas, and specifies that only the "E" column will be printed: </p>
+<p>// part of SheetPrinter.java... </p>
+<p>XPrintAreas printAreas = Lo.qi(XPrintAreas.class, sheet); 
+printAreas.setPrintAreas(new CellRangeAddress[] {});  <br />
+                     // cancel print areas </p>
+<p>CellRangeAddress addr = Calc.getAddress(sheet, "E1:E111"); 
+printAreas.setPrintAreas(new CellRangeAddress[]{ addr });  <br />
+                    // set area to be the "E" column </p>
+<h3 id="54-printing-a-single-sheet">5.4.  Printing a Single Sheet</h3>
+<p>My thanks to user "villeroy" on the OpenOffice forums for suggesting this example: 
+how is a single sheet of a multi-sheet spreadsheet printed? 
+One part of the solution is to set the "PrintAllSheets" property to false in the 
+GlobalSheetSettings service (see Table 10). The other is to make the current sheet 
+explicitly active in the XSpreadsheetView interface, which is equivalent to bringing 
+the sheet to the foreground in the Calc application. </p>
+<p>The PrintSheet.java example shows how to do this for a spreadsheet of three sheets, 
+where only "Sheet2" is printed: </p>
+<p>// in PrintSheet.java 
+public static void main(String args[]) 
+{ <br />
+  // hardwired spreadsheet and printer choice 
+  String fnm = "tables.ods";  <br />
+  String pName = "FinePrint"; </p>
+<p>// load the spreadsheet 
+  XComponentLoader loader = Lo.loadOffice(); 
+  XComponent cDoc = Lo.openReadOnlyDoc(fnm, loader); 
+  XSpreadsheetDocument doc = Calc.getSSDoc(cDoc); 
+  if (doc == null) { 
+    System.out.println("Could not open " + fnm); 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>// what are the sheets called? 
+  String[] sheetNms = Calc.getSheetNames(doc); 
+  System.out.println("Names of sheets (" + sheetNms.length + "):"); 
+  for(String sheetNm : sheetNms) 
+    System.out.println("  " + sheetNm); </p>
+<p>// make "Sheet2" active 
+  XSpreadsheet sheet = Calc.getSheet(doc, "Sheet2"); 
+  Calc.setActiveSheet(doc, sheet); </p>
+<p>// set Global Sheet settings 
+  // changes are remembered 
+  XPropertySet gsProps =<br />
+              Lo.createInstanceMCF(XPropertySet.class, 
+                   "com.sun.star.sheet.GlobalSheetSettings"); 
+  Props.setProperty(gsProps, "PrintAllSheets", false); 
+  System.out.println(); 
+  Props.showProps("Global Sheet Settings", gsProps); </p>
+<p>// set printer settings 
+  XPrintable xp = Lo.qi(XPrintable.class, doc); 
+  Print.usePrinter(xp, pName); 
+  PropertyValue[] printProps = 
+      Props.makeProps("PaperOrientation", PaperOrientation.LANDSCAPE, 
+                      "PageFormat", PaperFormat.A4); 
+  xp.setPrinter(printProps); </p>
+<p>Print.print(xp); </p>
+<p>// reset global settings 
+  Props.setProperty(gsProps, "PrintAllSheets", true); </p>
+<p>Lo.closeDoc(doc); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+<p>One issue with changing GlobalSheet settings is that they are remembered after Office 
+has closed, and will be used by default during future prints. In that case, it's a good 
+idea to reset the "PrintAllSheets" to true after the Print.print() call. </p>
+<h2 id="6-a-bad-idea-hacking-the-gui">6.  A Bad Idea: Hacking the GUI</h2>
+<p>A recurring observation of the last few sections is that printer dialogs inside Office are 
+less buggy and more feature-rich than the API. In previous chapters, I've sometimes 
+resorted to using Office's GUI by sending dispatch messages, and key presses to the 
+window. I decided not to follow that approach here since it's too unreliable. </p>
+<p>Getting to the print dialog is straightforward. The document window is made visible, 
+and an ".uno:Print" dispatch opens the print dialog: </p>
+<p>GUI.setVisible(doc, true); 
+Lo.delay(1000);   // give the Office window time to appear 
+Lo.dispatchCmd("Print");<br />
+Lo.delay(500);    // give the Print dialog time to appear </p>
+<p>The first problem is that the print dialog uses tabbed windows, and the window that's 
+foremost can vary. Usually it's the "General" window (e.g. see Figure 5), but if the 
+user has previously clicked the "Ok" button in another tabbed window (such as the 
+"Page Layout" window in Figure 6) then that window will be foremost when the print 
+dialog is next invoked. This means that my code cannot be sure which tabbed window 
+is active after the "Print" dispatch. </p>
+<p>There's also the issue of moving around the tabbed windows and their fields. This can 
+be implemented using Java's Robot class to send TAB and CTRL-TAB characters, as 
+in: </p>
+<p>private static void ctrlTab() 
+// send a CTRL-TAB character combination 
+{ try { 
+    Robot robot = new Robot(); 
+    robot.keyPress(KeyEvent.VK_CONTROL); 
+    robot.keyPress(KeyEvent.VK_TAB); 
+    robot.delay(100); 
+    robot.keyRelease(KeyEvent.VK_TAB); 
+    robot.keyRelease(KeyEvent.VK_CONTROL); 
+  } 
+  catch(AWTException e) 
+  { System.out.println(e); } 
+}   // end of ctrlTab()  </p>
+<p>The difficulty is knowing how many TABs and CTRL-TABs are needed, which 
+depends on the tab ordering of each window. </p>
+<p>Even if my code somehow managed to get to the correct field in the correct tabbed 
+window, there's still the problem of entering data and 'pressing' the "Ok" button 
+afterwards.  </p>
+<p>On balance, I decided not to bother implementing this 'solution'. </p>
+<h2 id="7-command-prompt-printing">7.  Command Prompt Printing</h2>
+<p>Another approach to printing documents, which avoids the use of Java, is to utilize 
+command line utilities. </p>
+<p>There's no shortage of command line printing tools in Linux and the Mac OS, based 
+around the CUPS printing system ( http://www.cups.org/), and plenty of sites 
+explaining how to use lp, lpq, lpstat and others (e.g. </p>
+<p>http://www.computerhope.com/unix/ulp.htm, 
+http://www.eecs.utk.edu/resources/it/kb/printing/linux-command-line).  </p>
+<p>Perhaps less well known are the printing utilities in Windows, listed in Table 13. </p>
+<p>VBScript  Purpose<br />
+Prnmngr.vbs Printer management. Adds, deletes, and 
+lists printers or printer connections, in 
+addition to setting and displaying the 
+default printer.  </p>
+<p>Used by printersList.bat 
+Prncnfg.vbs Configures or displays configuration 
+information about a printer. </p>
+<p>Used by printerStatus.bat 
+Prnjobs.vbs Pauses, resumes, cancels, and lists print 
+jobs.  </p>
+<p>Used by printerJobs.bat 
+Prnqctl.vbs Printer queue management. Prints a test 
+page, pauses or resumes a printer, and 
+clears a printer queue. </p>
+<p>Used by printerClean.bat 
+Prndrvr.vbs Adds, deletes, and lists printer drivers. </p>
+<p>Prnport.vbs Printer port management. </p>
+<p>Pubprn.vbs Publish a printer to Active Directory. </p>
+<p>Table 13. Windows 7's VBScript Printing Utilities. </p>
+<p>The utilities are Visual Basic scripts, located in the 
+C:\Windows\System32\Printing_Admin_Scripts\en-US\ folder which isn't a standard 
+part of Window's PATH environment variable. </p>
+<p>One way of finding documentation on these tools is by starting "Windows Help" and 
+then following the links to the commands reference section. This will eventually take 
+you to Microsoft's TechNet website. A slightly easier alternative is the TechRepublic 
+article "How to take advantage of the hidden VBScript print utilities in Windows 10" 
+by Greg Shultz at http://www.techrepublic.com/article/how-to-take-advantage-of-the-
+hidden-vbscript-print-utilities-in-windows-10/. </p>
+<p>In my "Printing Tests" examples folder, there are four Batch files (printersList.bat, 
+printerStatus.bat, printerJobs.bat, and printerClean.bat) which use these VBScripts in 
+simple ways. </p>
+<p>printersList.bat lists the names of all the print services visible to Windows, and also 
+the name of the default printer. For example: </p>
+<blockquote>
+<p>printersList 
+Printer name Send To OneNote 2010 
+Printer name Ricoh Aficio MP 2000 PCL(Black Office Room) 
+Printer name PrinterShare 
+Printer name Print to Evernote 
+Printer name Microsoft XPS Document Writer 
+Printer name HPLJM806 (HP LaserJet M806) 
+Printer name HP LaserJet9040DN PCL 6(Office) 
+Printer name HP LaserJet M806 PCL 6 
+Printer name HP LaserJet 1200 Series PCL 6 
+Printer name Foxit PhantomPDF Printer 
+Printer name FinePrint 
+Printer name Fax </p>
+</blockquote>
+<p>The default printer is FinePrint </p>
+<p>These names can be used as printer name arguments in my earlier Java programs. </p>
+<p>printerStatus.bat reports the status of a printer: </p>
+<blockquote>
+<p>printerStatus "HP LaserJet 1200 Series PCL 6" 
+Printer status Idle 
+Extended printer status Unknown </p>
+</blockquote>
+<p>printerJobs.bat lists all the print jobs currently on a printer's queue: </p>
+<blockquote>
+<p>printerJobs "HP LaserJet 1200 Series PCL 6" 
+Number of print jobs enumerated 0 </p>
+</blockquote>
+<p>printerClean.bat deletes all the jobs on a printer queue: </p>
+<blockquote>
+<p>printerClean "HP LaserJet 1200 Series PCL 6" 
+Microsoft (R) Windows Script Host Version 5.8 
+Copyright (C) Microsoft Corporation. All rights reserved. </p>
+</blockquote>
+<p>Success Purge Printer HP LaserJet 1200 Series PCL 6 </p>
+<p>Notably missing from the VBScripts is a way to print a document, perhaps because 
+Windows already has an awesome "print" command: </p>
+<blockquote>
+<p>print /? 
+Prints a text file. </p>
+</blockquote>
+<p>PRINT [/D:device] [[drive:][path]filename[...]] 
+   /D:device   Specifies a print device. </p>
+<p>An alternative is "printui" which starts Window's printui.dll 
+(https://technet.microsoft.com/en-us/library/ee624057(v=ws.11).aspx).  </p>
+<p>However, I'd not recommend "print" or "printui" since Office is a much better 
+command line printing tool. </p>
+<p>If you open a command prompt in the Office directory (e.g. in C:\Program 
+Files\LibreOffice 5), you can get a list of its command line options by typing: </p>
+<blockquote>
+<p>soffice.exe –h 
+Figure 9 shows the top half of a long window. </p>
+</blockquote>
+<p><img alt="" src="images/41-Printing-9.png" /></p>
+<p>Figure 9. Some of Office Command Line Arguments. </p>
+<p>Another information source is the "Starting the LibreOffice Software With 
+Parameters" webpage at 
+https://help.libreoffice.org/Common/Starting_the_Software_With_Parameters. </p>
+<p>The relevant parameters for printing are "-p" and "--pt", which can be seen near the 
+bottom of Figure 9. "-p" prints a file to the default printer, while "--pt" (note the two '-
+'s)  sends the document to the named printer. A suitable name can be obtained from 
+the printersList.bat script. </p>
+<p>I've utilized these parameters in a loprint.bat script in the "Printing Tests" folder. If 
+loprint is called with no arguments, then Figure 9's help window is displayed. If a 
+filename argument is supplied then the document is sent to the default printer using 
+the '-p' parameter. Two arguments are assumed to be a printer name and filename, and 
+are processed by "--pt". For example: </p>
+<blockquote>
+<p>loprint "HP LaserJet 1200 Series PCL 6" cover.odg 
+prints the cover.odg Draw file to the HP laserjet. </p>
+</blockquote>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="40-Building_a_Form.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 40. Building a Form
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="42-Sending_E-mail.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Chapter 42. Sending E-mail
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

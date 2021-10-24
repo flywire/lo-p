@@ -1,0 +1,1685 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 21. Extracting Data - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-21-extracting-data" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 21. Extracting Data
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 21. Extracting Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="21-Extracting_Data.html" class="md-nav__link md-nav__link--active">
+        Chapter 21. Extracting Data
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-getting-a-cell-value" class="md-nav__link">
+    1.  Getting a Cell Value
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-getting-the-data-from-a-cell-range" class="md-nav__link">
+    2.  Getting the Data from a Cell Range
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-getting-rows-and-columns-of-data" class="md-nav__link">
+    3.  Getting Rows and Columns of Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-obtaining-cell-ranges-by-using-queries" class="md-nav__link">
+    4.  Obtaining Cell Ranges by Using Queries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-finding-the-used-area-with-sheet-cursors" class="md-nav__link">
+    5.  Finding the Used Area with Sheet Cursors
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-getting-a-cell-value" class="md-nav__link">
+    1.  Getting a Cell Value
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-getting-the-data-from-a-cell-range" class="md-nav__link">
+    2.  Getting the Data from a Cell Range
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-getting-rows-and-columns-of-data" class="md-nav__link">
+    3.  Getting Rows and Columns of Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-obtaining-cell-ranges-by-using-queries" class="md-nav__link">
+    4.  Obtaining Cell Ranges by Using Queries
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-finding-the-used-area-with-sheet-cursors" class="md-nav__link">
+    5.  Finding the Used Area with Sheet Cursors
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/21-Extracting_Data.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-21-extracting-data">Chapter 21. Extracting Data</h1>
+<p>This chapter is about extracting data from a spreadsheet. </p>
+<p>Two types of extraction are described: methods which are 
+supplied with a predetermined cell range in order to obtain 
+data from cells, rows, columns, and 2D regions. The other 
+type of extraction uses cell ranges generated at run time 
+based on content queries applied to the entire used area of 
+the sheet. This approach requires the use of sheet cursors. </p>
+<p>All the example code comes from ExtractNums.java, 
+which examines the "small totals.ods" spreadsheet shown in Figure 1. </p>
+<p><img alt="" src="images/21-Extracting_Data-1.png" /></p>
+<p>Figure 1. The "small totals.ods" Spreadsheet. </p>
+<p>Numerical data is stored in the cell range A2:D7 and the rest of the values are 
+calculated using formulae. </p>
+<p>ExtracNums.java starts by accessing cells and cell ranges by name: </p>
+<p>// in ExtractNums.java 
+public static void main(String args[]) 
+{ <br />
+  String outFnm = null; 
+  if (args.length != 1) { 
+    System.out.println("Usage: run ExtractNums fnm"); 
+    return; 
+  } </p>
+<p>XComponentLoader loader = Lo.loadOffice(); 
+  XSpreadsheetDocument doc = Calc.openDoc(args[0], loader); 
+  if (doc == null) { </p>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Getting a Cell </p>
+</div>
+<p>Value; Getting the Data 
+from a Cell Range; 
+Getting Rows and 
+Columns of Data;<br />
+Obtaining Cell Ranges 
+by Using Queries; 
+Finding the Used Area 
+with Sheet Cursors 
+Example folders: "Calc 
+Tests" and "Utils" 
+    System.out.println("Could not open " + args[0]); 
+    Lo.closeOffice(); 
+    return; 
+  } 
+  GUI.setVisible(doc, true); 
+  XSpreadsheet sheet = Calc.getSheet(doc, 0); </p>
+<p>System.out.println("\nA1 string: " + Calc.getVal(sheet, "A1")); </p>
+<p>XCell cell = Calc.getCell(sheet, "A2"); 
+  System.out.println("A2 type: " + Calc.getTypeString(cell)); 
+  System.out.println("A2 value: " + Calc.getNum(sheet, "A2")); </p>
+<p>cell = Calc.getCell(sheet, "E2"); 
+  System.out.println("E2 type: " + Calc.getTypeString(cell)); 
+  System.out.println("E2 formula: " + Calc.getVal(sheet, "E2")); 
+  System.out.println(); </p>
+<p>Object[][] data = Calc.getArray(sheet, "A1:E10"); 
+  Calc.printArray(data); </p>
+<p>double[][] ids = Calc.getDoublesArray(sheet, "A2:A7"); 
+  Calc.printArray(ids); </p>
+<p>double[] projs = Calc.convertToDoubles(<br />
+                             Calc.getCol(sheet, "B2:B7")); 
+  System.out.println("Project scores"); 
+  for(double proj : projs) 
+    System.out.println("  " + proj); </p>
+<dl>
+<dt>double[] stud = Calc.convertToDoubles(  </dt>
+<dt>                             Calc.getRow(sheet, "A4:E4")); </dt>
+<dt>  System.out.println("\nStudent scores"); </dt>
+<dt>  for(double v : stud) </dt>
+<dt>    System.out.println("  " + v); </dt>
+<dd>
+<p>// more complex extraction code, explained later </p>
+</dd>
+</dl>
+<p>Lo.waitEnter(); 
+  Lo.closeDoc(doc); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+<p>The output is: </p>
+<p>A1 string: Stud. No. </p>
+<p>A2 type: VALUE 
+A2 value: 22001.0 
+E2 type: FORMULA 
+E2 formula: =SUM(B2:D2)/100 </p>
+<p>Row x Column size: 10 x 5 
+  Stud. No.  Proj/20  Mid/35  Fin/45  Total% 
+  22001.0  16.4583333333333  30.9166666666667  37.0125  0.843875 
+  22028.0  11.875  23.0416666666667  25.4625  0.6037916666666671 
+  22048.0  13.9583333333333  19.25  25.9875  0.591958333333333 
+  23715.0  12.0833333333333  18.6666666666667  20.475  0.51225 
+  23723.0  17.2916666666667  27.7083333333333  36.225  0.81225 
+  24277.0  0.0  16.0416666666667  19.6875  0.357291666666667 
+    11.9444444444444  22.6041666666667  27.475  0.6202361111111111 
+    0.5972222222222221  0.645833333333334  0.6105555555555561 
+    Proj/20  Mid/35  Fin/45  Total% </p>
+<p>Row x Column size: 6 x 1 
+  22001.0 
+  22028.0 
+  22048.0 
+  23715.0 
+  23723.0 
+  24277.0 </p>
+<p>Project scores 
+  16.4583333333333 
+  11.875 
+  13.9583333333333 
+  12.0833333333333 
+  17.2916666666667 
+  0.0 </p>
+<p>Student scores 
+  22048.0 
+  13.9583333333333 
+  19.25 
+  25.9875 
+  0.591958333333333 </p>
+<p>I'll explain the highlighted get methods in the following sections. </p>
+<h2 id="1-getting-a-cell-value">1.  Getting a Cell Value</h2>
+<p>There are three versions of Calc.getVal() which access a value by cell name or 
+position: </p>
+<p>// in the Calc class 
+public static Object getVal(XSpreadsheet sheet, String cellName) 
+// get value by cell name 
+{ Point pos = getCellPosition(cellName); 
+  return getVal(sheet, pos.x, pos.y);  // column, row 
+}  // end of getVal() </p>
+<p>public static Object getVal(XSpreadsheet sheet,<br />
+                                       int column, int row) 
+// get value by cell position 
+{ XCell xCell = getCell(sheet, column, row); 
+  return getVal(xCell, column, row);<br />
+}  // end of getVal() </p>
+<p>public static Object getVal(XCell cell, int column, int row) 
+// get value based on the type of the data in the cell 
+{<br />
+  CellContentType type = cell.getType(); 
+  if (type == CellContentType.EMPTY) 
+    return null; 
+  else if (type == CellContentType.VALUE) 
+    return new Double( cell.getValue()); 
+  else if ((type == CellContentType.TEXT) ||<br />
+           (type == CellContentType.FORMULA)) 
+    return cell.getFormula(); 
+  else { 
+    System.out.println("Unknown cell type; returning null"); 
+    return null; 
+  } 
+}  // end of getVal() </p>
+<p>The third getVal() utilizes XCell.getType() to decide how to extract the value. A cell 
+may contain four different data types: a number, text, a formula, or be empty. When 
+the data is numerical, the double value is accessed by calling XCell.getValue(), while 
+for text or a formula XCell.getFormula() is employed. getVal() returns these different 
+types of data cast to Object.  </p>
+<p>This return type may be inconvenient for a user, who might have to cast the result to 
+something more specific, such as a double. The support functions include<br />
+Calc.getNum() which does this task.  </p>
+<p>There's also Calc.getTypeString() which returns cell type information as a string: </p>
+<p>// in the Calc class 
+public static String getTypeString(XCell cell) 
+{<br />
+  CellContentType type = cell.getType(); 
+  if (type == CellContentType.EMPTY) 
+    return "EMPTY"; 
+  else if (type == CellContentType.VALUE) 
+    return "VALUE"; 
+  else if (type == CellContentType.TEXT) 
+    return "TEXT"; 
+  else if (type == CellContentType.FORMULA) 
+    return "FORMULA"; 
+  else { 
+    System.out.println("Unknown cell type"); 
+    return "??"; 
+  } 
+}  // end of getTypeString() </p>
+<h2 id="2-getting-the-data-from-a-cell-range">2.  Getting the Data from a Cell Range</h2>
+<p>Calc.getArray() extracts the data from a cell range as a 2D array of Objects. It utilizes 
+XCellRangeData.getDataArray(): </p>
+<p>// in the Calc class 
+public static Object[][] getArray(XSpreadsheet sheet,<br />
+                                         String rangeName) 
+{ XCellRange cellRange = getCellRange(sheet, rangeName); 
+  XCellRangeData crData  = Lo.qi(XCellRangeData.class, cellRange); 
+  return crData.getDataArray(); 
+}  // end of getArray() </p>
+<p>XCellRangeData.getDataArray() evaluates any formulae it encounters. This can be 
+seen in the output from: 
+// part of ExtractNum.java 
+Object[][] data = Calc.getArray(sheet, "A1:E10"); 
+The cell range includes several formulae (e.g. in "E8" and "E9"), but the data array 
+contains their numerical values. </p>
+<p>If you don't want formulae to be evaluated then you'll need to implement your own 
+version of getArray() which uses XCellRangeFormula. Its getDataArray() method 
+doesn't process formulae. The code would look something like: </p>
+<p>XCellRange cellRange = getCellRange(sheet, rangeName); 
+XCellRangeFormula crForm  =<br />
+                 Lo.qi(XCellRangeFormula.class, cellRange); 
+return crForm.getDataArray(); </p>
+<p>Calc.getArray() returns a 2D array of Objects. Calc.getDoublesArray() can be 
+employed to cast them to an array of doubles. </p>
+<h2 id="3-getting-rows-and-columns-of-data">3.  Getting Rows and Columns of Data</h2>
+<p>Calc.getRow() extracts a row of data by utilizing Calc.getArray() since the array is in 
+row-major order: </p>
+<p>// in the Calc class 
+public static Object[] getRow(XSpreadsheet sheet, String rangeName) 
+{ 
+  Object[][] vals = getArray(sheet, rangeName); 
+  return extractRow(vals, 0);   // assumes user wants 1st row 
+}  // end of getRow() </p>
+<p>public static Object[] extractRow(Object[][] vals, int rowIdx) 
+// get specified row index from vals 
+{ 
+  int rowSize = vals.length; 
+  if ((rowIdx &lt; 0) || (rowIdx &gt; rowSize-1)) { 
+    System.out.println("Row index out of range"); 
+    return null; 
+  } 
+  else<br />
+    return vals[rowIdx]; 
+}  // end of extractRow() </p>
+<p>Calc.getRow() defaults to extracting the first row in the 2D array returned by 
+Calc.getArray(), but it's possible to obtain other rows by directly calling 
+Calc.extractRow(). </p>
+<p>Extracting a column from a sheet is more tricky since Calc.extractCol() must navigate 
+the row-ordered array returned by Calc.getArray(). The retrieved column is returned 
+as a 1D array: </p>
+<p>// in the Calc class 
+public static Object[] getCol(XSpreadsheet sheet, String rangeName) 
+{ 
+  Object[][] vals = getArray(sheet, rangeName); 
+  return extractCol(vals, 0);      // assumes user wants 1st column 
+}  // end of getCol() </p>
+<p>public static Object[] extractCol(Object[][] vals, int colIdx) 
+// extract the specified column index from vals 
+{ 
+  int rowSize = vals.length; 
+  int colSize = vals[0].length;   <br />
+          // assumes all columns are this length </p>
+<p>if ((colIdx &lt; 0) || (colIdx &gt; colSize-1)) { 
+    System.out.println("Column index out of range"); 
+    return null; 
+  } 
+  else { 
+    Object[] colVals = new Object[rowSize]; 
+    for (int row = 0; row &lt; rowSize; row++) 
+      colVals[row] = vals[row][colIdx]; 
+    return colVals; 
+  } 
+}  // end of extractCol() </p>
+<h2 id="4-obtaining-cell-ranges-by-using-queries">4.  Obtaining Cell Ranges by Using Queries</h2>
+<p>A drawback of extracting data from a spreadsheet with getVal(), getArray(), 
+getRow(), and getCol() is that they require the programmer to supply cell names or 
+ranges. In other words, the location of the data must be known beforehand. For 
+example, the call: 
+double[][] ids = Calc.getDoublesArray(sheet, "A2:A7"); 
+assumes that the data is located in the "A2:A7" range. </p>
+<p>A more flexible approach is offered by the SheetRangesQuery service, which can 
+search for a cell range (or ranges) satisfying a content query. For example, it can 
+return a sequence of cell ranges that cover all the numerical data in the sheet, or cell 
+ranges for all the formulae. </p>
+<p>The search area for these queries is usually the entire used part of a sheet, which are 
+all the cells containing numbers, text, or formulae. Obtaining this area involves sheet 
+cursors, but the details are hidden inside Calc.findUsedRange().  </p>
+<p>The following code fragment illustrates how Calc.findUsedRange() and the 
+SheetRangesQuery service can be used together : </p>
+<p>// the second half of ExtractNums.java 
+      : 
+// get the cell range which spans the used area of the sheet 
+XCellRange usedCellRange = Calc.findUsedRange(sheet); </p>
+<p>// find cell ranges that cover all the numerical cells 
+XCellRangesQuery crQuery =<br />
+                Lo.qi(XCellRangesQuery.class, usedCellRange); 
+XSheetCellRanges cellRanges = <br />
+                crQuery.queryContentCells((short) CellFlags.VALUE); </p>
+<p>The cell range returned by Calc.findUsedRange() is converted to XCellRangesQuery, 
+which contains the SheetRangesQuery methods. </p>
+<p>XCellRangesQuery.queryContentCells() is passed the CellFlags.VALUE constant so 
+that the search will returns ranges that cover all the numerical data.  </p>
+<p>The SheetRangesQuery service is inherited by SheetCell, SheetCellRange, and 
+SheetCellRanges, as summarized in Figure 2. </p>
+<p><img alt="" src="images/21-Extracting_Data-2.png" /></p>
+<p>Figure 2. The SheetRangesQuery Services and Interfaces. </p>
+<p>The XFormulaQuery interface is used to find cells that are used by a formula, or cells 
+that utilize a formula's result. </p>
+<p>The CellFlags constants used in XCellRangesQuery.queryContentCells() are 
+documented at 
+http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1sheet_1_1C
+ellFlags.html#a0f9444c5a241b2cd5f34553b05a18ca8, or use lodoc cellflags. </p>
+<p>The constants can be combined with bit operations, such as "|". For instance, the 
+query: </p>
+<p>XSheetCellRanges cellRanges =  crQuery.queryContentCells( 
+                (short) (CellFlags.VALUE | CellFlags.FORMULA)); </p>
+<p>finds all the cell ranges that contain numbers or formulae. </p>
+<p>The XSheetCellRanges object is most easily processed as an array of cell range 
+addresses: 
+CellRangeAddress[] addrs = cellRanges.getRangeAddresses(); 
+The following code prints out each range address and the numerical data in the range: </p>
+<p>// part of ExtractNums.java 
+     : 
+ if (cellRanges == null) 
+   System.out.println("No cell ranges found"); 
+ else { 
+   System.out.println("Found cell ranges: " + 
+                   cellRanges.getRangeAddressesAsString() + "\n"); </p>
+<p>CellRangeAddress[] addrs = cellRanges.getRangeAddresses(); 
+   System.out.println("Cell ranges (" + addrs.length + "):"); 
+   for(CellRangeAddress addr : addrs) { 
+     Calc.printAddress(addr); 
+     double[][] vals = Calc.getDoublesArray(sheet,<br />
+                                     Calc.getRangeStr(addr)); 
+    Calc.printArray(vals); 
+  } 
+} </p>
+<p>For the "small totals.ods" spreadsheet shown in Figure 1, the output is: </p>
+<p>Found cell ranges: Marks.A2:D7 </p>
+<p>Cell ranges (1): 
+Range: Sheet1.A2:D7 
+Row x Column size: 6 x 4 
+  22001.0  16.4583333333333  30.9166666666667  37.0125 
+  22028.0  11.875  23.0416666666667  25.4625 
+  22048.0  13.9583333333333  19.25  25.9875 
+  23715.0  12.0833333333333  18.6666666666667  20.475 
+  23723.0  17.2916666666667  27.7083333333333  36.225 
+  24277.0  0.0  16.0416666666667  19.6875 </p>
+<p>The query found the range A2:D7, which excludes the labels on the first row, and the 
+formula down the "E column and along rows "8" and "9" (see Figure 1). These 
+formulae could be included by modifying the query: </p>
+<p>XSheetCellRanges cellRanges =  crQuery.queryContentCells( 
+                  (short) (CellFlags.VALUE | CellFlags.FORMULA)); </p>
+<p>The output changes to: </p>
+<p>Found cell ranges: Marks.A2:A7,Marks.B2:D9,Marks.E2:E8 </p>
+<p>Cell ranges (3): 
+Range: Sheet1.A2:A7 
+Row x Column size: 6 x 1 
+  22001.0 
+  22028.0 
+  22048.0 
+  23715.0 
+  23723.0 
+  24277.0 </p>
+<p>Range: Sheet1.B2:D9 
+Row x Column size: 8 x 3 
+  16.4583333333333  30.9166666666667  37.0125 
+  11.875  23.0416666666667  25.4625 
+  13.9583333333333  19.25  25.9875 
+  12.0833333333333  18.6666666666667  20.475 
+  17.2916666666667  27.7083333333333  36.225 
+  0.0  16.0416666666667  19.6875 
+  11.9444444444444  22.6041666666667  27.475 
+  0.5972222222222221  0.645833333333334  0.6105555555555561 </p>
+<p>Range: Sheet1.E2:E8 
+Row x Column size: 7 x 1 
+  0.8438749999999999 
+  0.6037916666666671 
+  0.591958333333333 
+  0.5122500000000001 
+  0.81225 
+  0.357291666666667 
+  0.6202361111111111 </p>
+<p>The query returned three cell ranges. I thought they would be the numerical region (as 
+before) and two ranges covering the formulae down the "E" column and along rows 
+"8" and "9". Instead, the regions are those highlighted in Figure 3. </p>
+<p><img alt="" src="images/21-Extracting_Data-3.png" /></p>
+<p>Figure 3. The Cell Ranges Returned by the Value+Formula Query. </p>
+<p>The shape of these ranges suggests that they're chosen to maximize column length. </p>
+<p>Also searching for two content types (e.g. numbers and formulae) means that a single 
+cell range may contain both types of data. </p>
+<h2 id="5-finding-the-used-area-with-sheet-cursors">5.  Finding the Used Area with Sheet Cursors</h2>
+<p>The previous section relied on Calc.findUsedRange() to retrieve the sheet's used area; 
+this section explains how that method is implemented using sheet cursors. </p>
+<p>A sheet cursor is analogous to a text cursor but moves across cells in a spreadsheet. </p>
+<p>As the cursor is moved, its cell range can be expanded or collapsed in a variety of 
+ways, which parallels the selection of text by a text cursor. </p>
+<p>Calc.findUsedRange() creates a cursor and then calls findUsedCursor() to expand its 
+cell range over the used area: </p>
+<p>// in the Calc class 
+public static XCellRange findUsedRange(XSpreadsheet sheet) 
+{ XSheetCellCursor cursor = sheet.createCursor(); 
+  return findUsedCursor(cursor); 
+} </p>
+<p>public static XCellRange findUsedCursor(XSheetCellCursor cursor) 
+{ 
+  // use the cursor to select the used area 
+  XUsedAreaCursor uaCursor = Lo.qi(XUsedAreaCursor.class, cursor); 
+  uaCursor.gotoStartOfUsedArea(false);  // find start of area 
+  uaCursor.gotoEndOfUsedArea(true);     // select to end </p>
+<p>XCellRange usedRange = Lo.qi(XCellRange.class, uaCursor); 
+  return usedRange; 
+}   // end of findUsedCursor() </p>
+<p>Figure 4 shows the services and interfaces related to sheet cursors. </p>
+<p>Calc.findUsedRange() employs the XSheetCellCursor interface. </p>
+<p><img alt="" src="images/21-Extracting_Data-4.png" /></p>
+<p>Figure 4. The SheetCellCursor Services and Interfaces. </p>
+<p>An XSheetCellCursor cursor is assigned to a sheet by calling 
+XSpreadsheet.createCursor() or XSpreadsheet.createCursorByRange().  </p>
+<p>Calc.findUsedRange() needs the ability to find the sheet's used area, which is obtained 
+by converting XSheetCellCursor into XUsedAreaCursor (see Figure 4): </p>
+<p>// in Calc.findUsedCursor() 
+XUsedAreaCursor uaCursor = Lo.qi(XUsedAreaCursor.class, cursor); 
+uaCursor.gotoStartOfUsedArea(false); 
+uaCursor.gotoEndOfUsedArea(true); </p>
+<p>The goto methods move the cursor to the start and end of the used area, and by calling 
+gotoEndOfUsedArea() with a true flag, the cursor's cell range is extended from the 
+start of the used area to its end.  </p>
+<p>The cell range is retrieved by converting the cursor into a XCellRange: 
+XCellRange usedRange = Lo.qi(XCellRange.class, uaCursor); </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="20-Spreadsheet_Manipulation.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 20. Spreadsheet Displaying and
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="22-Styles.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Chapter 22. Styles
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2265 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 46. Add-ons - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-46-add-ons" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 46. Add-ons
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 46. Add-ons
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="46-Addons.html" class="md-nav__link md-nav__link--active">
+        Chapter 46. Add-ons
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-an-add-on" class="md-nav__link">
+    1.  What is an Add-on?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-creating-the-ezhighlight-add-on" class="md-nav__link">
+    2.  Creating the EzHighlight Add-on
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-creating-a-partial-add-on-implementation" class="md-nav__link">
+    3.  Creating a Partial Add-on Implementation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-the-freemarker-generated-ezhighlightaddonimpl" class="md-nav__link">
+    4.  The FreeMarker-generated EzHighlightAddonImpl
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-creating-the-dialog" class="md-nav__link">
+    5.  Creating the Dialog
+  </a>
+  
+    <nav class="md-nav" aria-label="5.  Creating the Dialog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-the-ezhighlight-dialog" class="md-nav__link">
+    5.1.  The EzHighlight Dialog
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-listening-to-the-dialog" class="md-nav__link">
+    5.2.  Listening to the Dialog
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-completing-the-implementation-of-ezhighlightaddoninpl" class="md-nav__link">
+    6.  Completing the Implementation of EzHighlightAddonInpl
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-configuring-the-add-on" class="md-nav__link">
+    7.  Configuring the Add-on
+  </a>
+  
+    <nav class="md-nav" aria-label="7.  Configuring the Add-on">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-protocolhandlerxcu" class="md-nav__link">
+    7.1.  ProtocolHandler.xcu
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-addonxcs" class="md-nav__link">
+    7.2.  Addon.xcs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-building-and-installing-the-oxt-file" class="md-nav__link">
+    8.  Building and Installing the OXT File
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-an-add-on" class="md-nav__link">
+    1.  What is an Add-on?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-creating-the-ezhighlight-add-on" class="md-nav__link">
+    2.  Creating the EzHighlight Add-on
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-creating-a-partial-add-on-implementation" class="md-nav__link">
+    3.  Creating a Partial Add-on Implementation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-the-freemarker-generated-ezhighlightaddonimpl" class="md-nav__link">
+    4.  The FreeMarker-generated EzHighlightAddonImpl
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-creating-the-dialog" class="md-nav__link">
+    5.  Creating the Dialog
+  </a>
+  
+    <nav class="md-nav" aria-label="5.  Creating the Dialog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-the-ezhighlight-dialog" class="md-nav__link">
+    5.1.  The EzHighlight Dialog
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-listening-to-the-dialog" class="md-nav__link">
+    5.2.  Listening to the Dialog
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-completing-the-implementation-of-ezhighlightaddoninpl" class="md-nav__link">
+    6.  Completing the Implementation of EzHighlightAddonInpl
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-configuring-the-add-on" class="md-nav__link">
+    7.  Configuring the Add-on
+  </a>
+  
+    <nav class="md-nav" aria-label="7.  Configuring the Add-on">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-protocolhandlerxcu" class="md-nav__link">
+    7.1.  ProtocolHandler.xcu
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-addonxcs" class="md-nav__link">
+    7.2.  Addon.xcs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-building-and-installing-the-oxt-file" class="md-nav__link">
+    8.  Building and Installing the OXT File
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/46-Addons.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-46-add-ons">Chapter 46. Add-ons</h1>
+<p>Add-ons build upon the UNO component techniques 
+described in the last chapter to make a component 
+accessible via an Office menu and/or toolbar item.  </p>
+<p>I'll implement the EzHighlight add-on, which allows word 
+occurrences to be highlighted in a Writer document. </p>
+<p>EzHighlight is installed in Office as an extension in the 
+same way as an UNO component, and is listed by the 
+Extension Manger in Figure 1. </p>
+<p><img alt="" src="images/46-Addons-1.png" /></p>
+<p>Figure 1. The EzHighlight Add-on Extension. </p>
+<p>When the Writer application is running, EzHighlight is accessible either through 
+Office's Tools &gt; Add-Ons menu item (see Figure 2) or as a toolbar created by View &gt; 
+Toolbars &gt; Add-on 2 (see Figure 3). This 'floating' toolbar can be attached to an 
+existing toolbar. </p>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+</div>
+<p>What is an Add-
+on?; Creating the 
+EzHighlight Add-on; 
+Creating a Partial Add-
+on Implementation; The 
+FreeMarker-generated 
+EzHighlightAddonImpl; 
+Creating the Dialog; 
+Configuring the Add-on; 
+Building and Installing 
+the OXT File 
+Example folders: 
+"AddOn Tests", "Utils" </p>
+<p><img alt="" src="images/46-Addons-2.png" /></p>
+<p>Figure 2. The EzHighlight Add-on on the Tools Menu. </p>
+<p><img alt="" src="images/46-Addons-3.png" /></p>
+<p>Figure 3. The EzHighlighter Add-on as a Toolbar. </p>
+<p>When the user clicks on "EzHighlight Text", either through the menu or toolbar, the 
+dialog shown in Figure 4 appears. </p>
+<p><img alt="" src="images/46-Addons-4.png" /></p>
+<p>Figure 4. The EzHighlighter Dialog. </p>
+<p>The user enters a word, and either types <ENTER> or presses the "Highlight" button. </p>
+<p>Every matching word in the currently loaded Writer document is redrawn in red, and 
+the number of changes reported in the "Count:" field.  </p>
+<p>EzHighlight also has basic help support, accessible from Office's Help menu as the 
+"About EzHighlight" item (see Figure 5). </p>
+<p><img alt="" src="images/46-Addons-5.png" /></p>
+<p>Figure 5. The EzHighlight Help Menu Item. </p>
+<p>Clicking on the help item causes a simple message box to appear, as in Figure 6. </p>
+<p><img alt="" src="images/46-Addons-6.png" /></p>
+<p>Figure 6. The EzHighlight Help Message Box. </p>
+<h2 id="1-what-is-an-add-on">1.  What is an Add-on?</h2>
+<p>Office supports two kinds of add-on: job add-ons and ProtocolHandler add-ons.  </p>
+<p>A job add-on is a component triggered by events inside Office, such as when the 
+application is first opened or about to terminate, or when a document is loaded, 
+printed, or closed.  </p>
+<p>This chapter is about Protocol handler add-ons, which link menu and/or toolbar items 
+to a component using Office's dispatch framework. Every GUI element is assigned a 
+'command URL', a unique name made of two or three parts:<br />
+<protocol string>:<command string>[?<command string argument>+ ] 
+A protocol string can be almost anything, and I'll be using the extension's ID 
+("org.openoffice.ezhighlightAddon").   </p>
+<p>There is a different command string for each GUI-triggered action, and I'll utilize two: 
+"EzHighlight" and "help". "EzHighlight" is associated with the EzHighlight menu and 
+toolbar items (Figures 2 and 3), and makes the dialog in Figure 4 appear. "help" is 
+assigned to the "About EzHighlight" help menu item, and causes the message box in 
+Figure 6 to be displayed. </p>
+<p>I won't be using command string arguments. </p>
+<p>When a user chooses an item in the user interface, its command URL is passed along 
+a list of dispatch handlers until one accepts the command and processes it by creating 
+a dispatch object. Fortunately, most of the dispatch handling behavior in an add-on 
+can be generated automatically. </p>
+<p>The main source of information for job and ProtocolHandler add-ons is chapter 3 of 
+the Developer's Guide (available at 
+https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf), or<br />
+online at 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Integrating_
+Components_into_OpenOffice.org and 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/AddOns/Ad
+d-Ons (or use loGuide "Integrating Components" and loGuide add-ons). </p>
+<p>The Developer's Guide add-on example can be found at <br />
+http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Components </p>
+<h2 id="2-creating-the-ezhighlight-add-on">2.  Creating the EzHighlight Add-on</h2>
+<p>There's an overlap between the steps required to create an UNO component and an 
+add-on. The main similarity is the need for an OXT file containing a JAR and a 
+description.xml. However, there's no need for an IDL file or type database (a RDB 
+file), but there are extra details concerning the GUI and dispatch handling.  </p>
+<p>The main steps in creating an add-on are illustrated by Figure 7. </p>
+<p><img alt="" src="images/46-Addons-7.png" /></p>
+<p>Figure 7. Toolchain for Creating an Add-on. </p>
+<p>The UNO component toolchain in the previous chapter used my skelComp.bat script 
+to generate a partial Java implementation. The script utilizes Office's uno-
+skeletonmaker which can also be employed to generate add-ons and Calc addins. </p>
+<p>Unfortunately, I was unable to get its add-on features to work.  </p>
+<p>This was not a great loss since I'd already been thinking about replacing uno-
+skeletonmaker with FreeMarker, a powerful template processing library 
+(http://freemarker.org/). FreeMarker can easily duplicate all the features of  uno-
+skeletonmaker, creating a Java class with the boilerplate code for creating a service 
+and handling command URLs. Also, by switching to FreeMarker, I was able to add 
+more automatic code generation, including code for a user input dialog and a 
+debugging window.  </p>
+<p>The OXT file requires three configuration files: a description of  the dialog in Figure 
+4, Addon.xcs which defines the add-on's GUI (e.g. the menu and toolbar items in 
+Figures 2 and 3), and ProtocolHandler.xcu which says which command URLs are 
+processed by the add-on's dispatch handler. </p>
+<p>The toolchain in Figure 7 will be explained in more detail in the rest of this chapter. </p>
+<h2 id="3-creating-a-partial-add-on-implementation">3.  Creating a Partial Add-on Implementation</h2>
+<p>Figure 8 shows the main elements needed to use the FreeMarker template library: a 
+FTL template file, and a program that instantiates the template by employing a 
+collection of FreeMarker variables and their bindings.  </p>
+<p><img alt="" src="images/46-Addons-8.png" /></p>
+<p>Figure 8. Using FreeMarker. </p>
+<p>The simplest FreeMarker program replaces all the FreeMarker variables in the 
+template by their associated bindings, generating a new text file (a Java program in 
+this case). However, FreeMarker contains additional programming features, including 
+for-loops and if-statements, which can generate more complex blocks of text. </p>
+<p>The add-on template is stored in addonImpl.ftl, and is processed by 
+CreateAddonImpl.java. It reads in the add-on's name, and initializes a HashMap of 
+three FreeMarker variables called "className", "extensionID, and "cmdNames". </p>
+<p>For example, CreateAddonImpl can be called like so: </p>
+<blockquote>
+<p>run CreateAddonImpl EzHighlight 
+The three variables are assigned: 
+ "className"   : "EzHighlightAddonImpl" 
+ "extensionID  :  "org.openoffice.ezhighlightAddon" 
+ "cmdNames"    : [ "EzHighlight", "help" ] 
+"className" is assigned the name of the generated Java class. "extensionID" contains 
+the protocol string used by the command URLs. "cmdNames" holds a list of 
+command URL names: "EzHighlight" is linked to the add-on's menu and toolbar 
+items, and "help" is attached to the add-on's help menu item. </p>
+</blockquote>
+<p>CreateAddonImpl outputs a class called EzHighlightAddonImpl, a fully functional 
+add-on, which displays a dialog like the one in Figure 4 and the help message in </p>
+<p><img alt="" src="images/46-Addons-6.png" /></p>
+<p>Figure 6. However, after the user has typed <ENTER> in the dialog or pressed the 
+"Ok" button, no processing is carried out on the Office document.  </p>
+<p>First I'll give an overview of the features in the generated EzHighlightAddonImpl 
+class, then explain the additional highlighting code in a later section. </p>
+<h2 id="4-the-freemarker-generated-ezhighlightaddonimpl">4.  The FreeMarker-generated EzHighlightAddonImpl</h2>
+<p>The template in addonImpl.ftl represents a single Java class, which extends 
+WeakBase and implements seven interfaces: </p>
+<p>public class ${className} extends WeakBase implements 
+         XInitialization, XServiceInfo,<br />
+         XDispatchProvider, XDispatch,   // for the add-on 
+         XActionListener, XTopWindowListener,<br />
+         XKeyListener                    // for the dialog 
+{ 
+ //  ... add-on code 
+}  </p>
+<p>WeakBase is the base class used by all components (which includes add-ons and Calc 
+Addins). XServiceInfo and XInitialization handle the creation and initialization of the 
+service at run time. </p>
+<p>The XDispatchProvider method, queryDispatch(), implements the dispatch handler 
+for the add-on – it accepts the command URLs associated with the add-on: </p>
+<p>// in EzHighlightAddonInpl.java 
+public XDispatch queryDispatch(URL commandURL,<br />
+                      String targetFrameName, int searchFlags) 
+{ 
+  if (commandURL.Protocol.compareTo( 
+                 "org.openoffice.ezhighlightAddon:") == 0) { 
+    if (commandURL.Path.compareTo("EzHighlight") == 0) { 
+      System.out.println("queryDispatch() for \"EzHighlight\""); 
+      return this; 
+    } 
+    if (commandURL.Path.compareTo("help") == 0) { 
+      System.out.println("queryDispatch() for \"help\""); 
+      return this; 
+    } 
+  } 
+  return null; 
+}  // end of queryDispatch() </p>
+<p>The handler signals its acceptance of a command URL by returning a dispatch object 
+which Office uses to process the command. EzHighlightAddonImpl also implements 
+the XDispatch interface, so returns a reference to itself. This means that Office calls 
+EzHighlightAddonImpl.dispatch(), passing it the command URL and other properties: </p>
+<p>// in EzHighlightAddonInpl.java 
+public void dispatch(URL commandURL, PropertyValue[] props) 
+{ 
+  if (commandURL.Protocol.compareTo( 
+               "org.openoffice.ezhighlightAddon:") == 0) { 
+    if (commandURL.Path.compareTo("EzHighlight") == 0) 
+      processCmd("EzHighlight");  <br />
+    if (commandURL.Path.compareTo("help") == 0) 
+      processCmd("help");  <br />
+  } 
+}  // end of dispatch() </p>
+<p>The template-generated code inside dispatch() distinguishes between the possible 
+command names ("EzHighlight" and "help") by calling processCmd() with different 
+arguments. </p>
+<p>If processCmd()'s input argument is "help", then GUI.showMessageBox() is called to 
+display the window shown in Figure 6, while "EzHighlight" triggers the dialog in </p>
+<p><img alt="" src="images/46-Addons-4.png" /></p>
+<p>Figure 4. The processCmd() code is: </p>
+<p>// in EzHighlightAddonInpl.java... </p>
+<p>// globals 
+private XDialog dialog = null; </p>
+<p>private Console console;    // for debugging output 
+private int printCount = 1; </p>
+<p>private void processCmd(String cmd) 
+{ 
+  XComponent doc = Lo.addonInitialize(xcc);  <br />
+                   // so my utils can be used safely </p>
+<p>System.out.println("Window title: " + GUI.getTitleBar()); 
+  System.out.println(printCount++ +<br />
+                 ". dispatch() called for \"" + cmd + "\""); </p>
+<p>if (cmd.equals("help")) { 
+    GUI.showMessageBox("Add-on Help",<br />
+          "Type in the text, then press return or<br />
+           click the Ok button."); 
+    return; 
+  } </p>
+<p>// "EzHighlight" is processed by the following code... </p>
+<p>console.setVisible(true); </p>
+<p>dialog = Dialogs.loadAddonDialog( 
+                    "org.openoffice.ezhighlightAddon", 
+                    "dialogLibrary/" + cmd + ".xdl"); 
+  if (dialog == null) { 
+    System.out.println("Could not load " + cmd + " dialog"); 
+    return; 
+  } </p>
+<p>XControl dialogControl = Dialogs.getDialogControl(dialog); 
+  initDialog(dialogControl); 
+  Dialogs.execute(dialogControl); </p>
+<p>console.setVisible(false); 
+}  // end of processCmd() </p>
+<p>Lo.addonInitialize() initializes the globals used by my Lo utility library and other 
+support classes: </p>
+<p>// in the Lo class 
+// globals 
+private static XComponentContext xcc = null; 
+private static XDesktop xDesktop = null; 
+private static XMultiComponentFactory mcFactory = null;  <br />
+private static XMultiServiceFactory msFactory = null; </p>
+<p>public static XComponent addonInitialize( 
+                             XComponentContext addonXcc) 
+{ xcc = addonXcc; 
+  if (xcc == null)  { 
+    System.out.println("Could not access component context"); 
+    return null; 
+  } </p>
+<p>mcFactory = xcc.getServiceManager(); 
+  if (mcFactory == null) { 
+    System.out.println("Office Service Manager is unavailable"); 
+    return null; 
+  } </p>
+<p>try { 
+    Object oDesktop = mcFactory.createInstanceWithContext( 
+                         "com.sun.star.frame.Desktop", xcc); 
+    xDesktop = Lo.qi(XDesktop.class, oDesktop); 
+  } 
+  catch (Exception e) { 
+    System.out.println("Could not access desktop"); 
+    return null; 
+  } </p>
+<p>XComponent doc = xDesktop.getCurrentComponent(); 
+  if (doc == null)  { 
+    System.out.println("Could not access document"); 
+    return null; 
+  } </p>
+<p>msFactory =  Lo.qi(XMultiServiceFactory.class, doc); 
+  return doc; 
+}  // end of addonInitialize() </p>
+<p>addonInitialize() returns an instance of XComponent, which refers to the document 
+currently loaded into Office. Later this will be used to highlight the document's text. </p>
+<p>processCmd() calls Console.setVisible() before and after the processing of the 
+"EzHighlight" command. The first call makes a Console debugging window visible, 
+and the call at the end hides it. These lines should be commented out of the completed 
+add-on, so the window doesn't appear. </p>
+<p>The dialog is handled by methods from my Dialogs support class, and by listeners set 
+up in initDialog().  </p>
+<h2 id="5-creating-the-dialog">5.  Creating the Dialog</h2>
+<p>There are two approaches for dialog creation: the easy way uses Office's dialog editor, 
+and the hard way calls functions in my Dialogs support class to programmatically 
+create the dialog's components. I'll use the editor in this chapter, and employ Dialogs 
+methods in my macros in Chapter 48. </p>
+<p>The Developer's Guide has some information on the dialog editor in chapter 11, 
+"OpenOffice.org Basic". The relevant sub-sections are online at 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Dialog_Editor and 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Creating_Dialogs 
+(or use loGuide "Dialog Editor" and loGuide "Creating Dialogs").  </p>
+<p>The editor utilizes drag-and-drop to place GUI elements in a dialog drawing area, 
+with property windows for specializing each element. The editor is reached via 
+Office's menu item Tools &gt; Macros &gt; Organize Dialogs (see Figure 9). </p>
+<p><img alt="" src="images/46-Addons-9.png" /></p>
+<p>Figure 9. Creating a new Dialog. </p>
+<p>Figure 10 shows the dialog editor window after the creation of a new dialog called 
+"Basic"; the GUI controls run along the bottom of the window. </p>
+<p><img alt="" src="images/46-Addons-10.png" /></p>
+<p>Figure 10. The Dialog Editor Window for a new Dialog. </p>
+<p>The simplest useful dialog is probably the version of the "Basic" dialog in Figure 11, 
+consisting of a label, text field, and "Ok" button. </p>
+<p><img alt="" src="images/46-Addons-11.png" /></p>
+<p>Figure 11. The "Basic" Dialog. </p>
+<p>A dialog can be exported as XML using the "Export Dialog" icon above the drawing 
+area (the icon includes a floppy disk which will leave young programmers mystified).  </p>
+<p>The resulting XDL file contains text something like: </p>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dlg:window  
+       PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" 
+       "dialog.dtd">
+<p><dlg:window xmlns:dlg="http://openoffice.org/2000/dialog" 
+            xmlns:script="http://openoffice.org/2000/script" 
+         dlg:id="Basic" 
+         dlg:left="52" dlg:top="44" dlg:width="173" dlg:height="34" 
+         dlg:closeable="true" dlg:moveable="true" 
+         dlg:title="Basic Dialog"> </p>
+<p><dlg:styles> 
+    <dlg:style dlg:style-id="0" 
+               dlg:background-color="0xeeeeee" 
+               dlg:font-height="10"/> 
+  </dlg:styles> </p>
+<p><dlg:bulletinboard> 
+    <dlg:text dlg:style-id="0" dlg:id="Label1" 
+          dlg:tab-index="0" 
+          dlg:left="6" dlg:top="11" dlg:width="38" dlg:height="8" 
+          dlg:value="Enter input:"/> </p>
+<pre><code>&lt;dlg:textfield dlg:id="TextField1" 
+      dlg:tab-index="1" 
+      dlg:left="41" dlg:top="7" dlg:width="83" dlg:height="14"/&gt;
+
+&lt;dlg:button dlg:id="CommandButton1" 
+      dlg:tab-index="2" 
+      dlg:left="137" dlg:top="9" dlg:width="28" dlg:height="12" 
+      dlg:value="Ok"/&gt;
+</code></pre>
+<p></dlg:bulletinboard> 
+</dlg:window> </p>
+<p>The code in EzHighlightAddonInpl assumes that the dialog contains a text field called 
+"TextField1" and a button called "CommandButton1", which is true of the XDL 
+shown above. Of course, it's possible to add more GUI components, as in the next 
+section. </p>
+<h3 id="51-the-ezhighlight-dialog">5.1.  The EzHighlight Dialog</h3>
+<p>The dialog editor has an import icon to the left of the export icon, which can be used 
+to load an XDL file for modification.  </p>
+<p>I copied the "Basic" XDL file, renaming it to "EzHighlight.xdl", and imported it; a 
+few changes and additions later, it looked as shown in Figure 12. </p>
+<p><img alt="" src="images/46-Addons-12.png" /></p>
+<p>Figure 12. The EzHighlight.xdl Dialog. </p>
+<p>The exported XML is: </p>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dlg:window  
+               PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" 
+               "dialog.dtd">
+<p><dlg:window xmlns:dlg="http://openoffice.org/2000/dialog" 
+            xmlns:script="http://openoffice.org/2000/script" 
+      dlg:id="EzHighlight" 
+      dlg:left="109" dlg:top="73" dlg:width="184" dlg:height="44" 
+      dlg:closeable="true" dlg:moveable="true" 
+      dlg:title="EzHighlight Text Selector"> </p>
+<p><dlg:styles> 
+  <dlg:style dlg:style-id="0" 
+             dlg:background-color="0xeeeeee"/> 
+ </dlg:styles> </p>
+<p><dlg:bulletinboard> 
+  <dlg:text dlg:style-id="0" dlg:id="Label1" 
+          dlg:tab-index="0" 
+          dlg:left="8" dlg:top="11" dlg:width="26" dlg:height="10" 
+          dlg:value="Enter text:" 
+          dlg:align="right"/> </p>
+<p><dlg:textfield dlg:id="TextField1" 
+          dlg:tab-index="1" 
+          dlg:left="39" dlg:top="9" dlg:width="83" dlg:height="12"/> </p>
+<p><dlg:textfield dlg:id="TextField2" 
+          dlg:tab-index="2" 
+          dlg:left="39" dlg:top="26" dlg:width="46" dlg:height="12" 
+          dlg:readonly="true"/> </p>
+<p><dlg:text dlg:style-id="0" dlg:id="Label2" 
+          dlg:tab-index="3" 
+          dlg:left="8" dlg:top="27" dlg:width="26" dlg:height="10" 
+          dlg:value="Count:" 
+          dlg:align="right"/> </p>
+<p><dlg:button dlg:id="CommandButton1" 
+          dlg:tab-index="4" 
+          dlg:left="131" dlg:top="9" dlg:width="46" dlg:height="12" 
+          dlg:value="Highlight"/> </p>
+<p></dlg:bulletinboard> 
+</dlg:window> </p>
+<p>The dialog loading code in EzHighlightAddonInpl.java assumes that the dialog's 
+filename is the same as the command URL name, as can be seen in processCmd(): </p>
+<p>// part of processCmd() in EzHighlightAddonInpl.java... </p>
+<p>dialog = Dialogs.loadAddonDialog("org.openoffice.ezhighlightAddon", 
+                            "dialogLibrary/" + cmd + ".xdl"); </p>
+<p>processCmd() also assumes that the XDL file is in a dialogLibrary/ sub-directory. I'll 
+explain how this is part of the add-on's OXT file in a later section. </p>
+<p>Dialogs.loadAddonDialog() is defined as: </p>
+<p>// in the Dialogs class 
+public static XDialog loadAddonDialog(String extensionID,<br />
+                                      String dialogFnm) 
+{ XDialogProvider dp =<br />
+           Lo.createInstanceMCF(XDialogProvider.class,<br />
+                         "com.sun.star.awt.DialogProvider"); 
+  if (dp == null) { 
+    System.out.println("Could not access the Dialog Provider"); 
+    return null; 
+  } 
+  try { 
+    return dp.createDialog("vnd.sun.star.extension://" +<br />
+                                extensionID + "/" + dialogFnm); 
+  } 
+  catch (java.lang.Exception e) { 
+    System.out.println("Could not load the dialog: \"" +<br />
+                                   dialogFnm + "\": " + e); 
+    return null; 
+  } 
+}  // end of loadAddonDialog() </p>
+<p>The crucial line is the call to XDialogProvider.createDialog(), which constructs the 
+dialog name: 
+vnd.sun.star.extension://org.openoffice.ezhighlightAddon/ 
+                                       dialogLibrary/EzHighlight 
+The dialog is loaded from the ezhighlightAddon extension. </p>
+<h3 id="52-listening-to-the-dialog">5.2.  Listening to the Dialog</h3>
+<p>Back in processCmd(), listeners are attached to the loaded dialog, and the dialog is 
+made visible on-screen: </p>
+<p>// in processCmd() in EzHighlightAddonInpl.java... </p>
+<p>XControl dialogControl = Dialogs.getDialogControl(dialog); 
+initDialog(dialogControl); 
+Dialogs.execute(dialogControl); </p>
+<p>Dialogs.getDialogControl() casts the XDialog into an XControl: </p>
+<p>// in the Dialogs class 
+public static XControl getDialogControl(XDialog dialog) 
+{  return Lo.qi(XControl.class, dialog);  }   </p>
+<p>The initDialog() method inside EzHighlightAddonInpl.java attaches three listeners to 
+the dialog: a window listener, an action listener for the "CommandButton1" button, 
+and a key listener for the "TextField1" text field: </p>
+<p>// in the EzHighlightAddonInpl class 
+// globals 
+private XTextComponent textBox;  <br />
+             // the text in the dialog's text field </p>
+<p>private void initDialog(XControl dialogControl) 
+{ 
+  // listen to the dialog window 
+  XTopWindow topWin = Dialogs.getDialogWindow(dialogControl); 
+  topWin.addTopWindowListener(this); </p>
+<p>// Dialogs.showControlInfo(dialogControl); </p>
+<p>// set listener for Ok button 
+  XButton button = Lo.qi(XButton.class, 
+      Dialogs.findControl(dialogControl, "CommandButton1")); 
+  button.addActionListener(this); </p>
+<p>// set listener for text box 
+  textBox = Lo.qi(XTextComponent.class,<br />
+      Dialogs.findControl(dialogControl, "TextField1")); 
+  XWindow xTFWindow = (XWindow) Lo.qi(XWindow.class, textBox); 
+  xTFWindow.addKeyListener(this); 
+  xTFWindow.setFocus(); 
+}  // end of initDialog() </p>
+<p>These controls and listeners are all from Office's com.sun.star.awt module. The dialog 
+and listeners will be invoked by Office at run time, and so should use its API, not 
+Java's Swing. </p>
+<p>The call to Dialogs.showControlInfo() is commented out in initDialog(), but is a 
+useful way to double-check the dialog's internal construction, and particularly the IDs 
+of its components. showControlInfo() prints to standard output which will be 
+displayed in the Console window. Figure 13 reports the structure of the 
+EzHighlight.xdl dialog from Figure 12. </p>
+<p><img alt="" src="images/46-Addons-13.png" /></p>
+<p>Figure 13. The Console Window Showing Dialog Details. </p>
+<p>The dialog contains five components: two labels, two text fields, and a button. </p>
+<p>Dialogs.findControl() uses a control's name to find it inside a dialog: </p>
+<p>// in Dialogs class 
+public static XControl findControl(XControl dialogCtrl,<br />
+                                  String name) 
+{ XControlContainer ctrlCon =<br />
+                  Lo.qi(XControlContainer.class, dialogCtrl); 
+  return ctrlCon.getControl(name); 
+}  </p>
+<p>initDialog() converts the returned "CommandButton1" control into an XButton, and 
+the "TextField1" control into an XTextComponent so that listeners can be attached to 
+them. </p>
+<p>EzHighlightAddonInpl implements all of the listener interfaces used by the dialog: 
+XActionListener, XTopWindowListener, and XKeyListener.  </p>
+<p>XActionListener.actionPerformed() deals with button presses, 
+XTopWindowListener.windowClosing() listens for the closing of the dialog, and 
+XKeyListener.keyPressed() captures the user typing <ENTER> into the text field: </p>
+<p>// in the EzHighlightAddonInpl class 
+// globals 
+private XDialog dialog = null; 
+private XTextComponent textBox; </p>
+<p>public void actionPerformed(ActionEvent e) 
+{ 
+  String info = textBox.getText(); 
+  if (info.equals("")) 
+    return; 
+  System.out.println("Info: \"" + info +"\""); 
+  textBox.setText(""); 
+  // ADD code here 
+}  // end of actionPerformed() </p>
+<p>public void windowClosing(EventObject event) 
+{  dialog.endExecute();   } </p>
+<p>public void keyPressed(KeyEvent event) 
+{ <br />
+  if (event.KeyCode == Key.RETURN) {<br />
+    String info = textBox.getText(); 
+    if (info.equals("")) 
+      return; 
+    System.out.println("Info: \"" + info +"\""); 
+    textBox.setText(""); 
+    // ADD code here 
+  } 
+}  // end of keyPressed() </p>
+<p>The template generated code for actionPerformed() and keyPressed() only print 
+information to the Console window. Add-on specific functionality is added next. </p>
+<h2 id="6-completing-the-implementation-of-ezhighlightaddoninpl">6.  Completing the Implementation of EzHighlightAddonInpl</h2>
+<p>The completion of EzHighlightAddonInpl.java takes the form of new code in 
+processCmd(), initDialog(), actionPerformed(), and keyPressed(), and a few new 
+global variables. </p>
+<p>processCmd() converts the XComponent document returned by Lo.addonInitialize() 
+into an XTextDocument, assuming that the currently loaded document is text-based. </p>
+<p>If it isn't then there's no point continuing: </p>
+<p>// in the EzHighlightAddonInpl class 
+// globals 
+private XTextDocument textDoc; </p>
+<p>// in processCmd() 
+    : 
+XComponent doc = Lo.addonInitialize(xcc);<br />
+// added 
+textDoc = Write.getTextDoc(doc); 
+if (textDoc == null) 
+  return; 
+    : </p>
+<p>initDialog() is extended to access the word count text field. It's only used to report the 
+number of changes, so doesn't need a listener: </p>
+<p>// in the EzHighlightAddonInpl class 
+// globals 
+private XTextComponent countTextBox; </p>
+<p>// in initDialog() 
+    : 
+// get a reference to the count text field; added 
+countTextBox = Lo.qi(XTextComponent.class,<br />
+          Dialogs.findControl(dialogControl, "TextField2")); 
+    : </p>
+<p>actionPerformed() and keyPressed() must trigger the highlighting code, which is 
+implemented in applyEzHighlighting(): </p>
+<p>// added to actionPerformed() 
+    : 
+int count = applyEzHighlighting(info); 
+countTextBox.setText(""+count); </p>
+<p>// added to keyPressed() 
+    : 
+int count = applyEzHighlighting(info); 
+countTextBox.setText(""+count); </p>
+<p>applyEzHighlighting() is passed the text entered by the user through the dialog. It uses 
+the XReplaceable and XReplaceDescriptor interfaces to perform a search and replace 
+through the document. This technique, and very similar code, was explained in 
+Chapter 9. applyEzHighlighting() is: </p>
+<p>// in the EzHighlightAddonInpl class 
+// globals 
+private XTextDocument textDoc; </p>
+<p>private int applyEzHighlighting(String searchKey) 
+/* Matches whole words and is case sensitive.  </p>
+<p>Highlights in bold and red;  */ 
+{ 
+  System.out.println("applyEzHighlighting(): " + searchKey); </p>
+<p>XReplaceable repl = Lo.qi(XReplaceable.class, textDoc); 
+  XReplaceDescriptor desc = repl.createReplaceDescriptor(); </p>
+<p>/<em> Get a XPropertyReplace object for altering the properties 
+     of the replaced text </em>/ 
+  XPropertyReplace propReplace = Lo.qi(XPropertyReplace.class, desc); </p>
+<p>// Set the replaced text to bold and red 
+  PropertyValue wv = new PropertyValue("CharWeight", -1,<br />
+              FontWeight.BOLD, PropertyState.DIRECT_VALUE); 
+  PropertyValue cv = new PropertyValue("CharColor", -1,<br />
+          Color.RED.getRGB(), PropertyState.DIRECT_VALUE); 
+  PropertyValue[] props = new PropertyValue[] {cv, wv}; </p>
+<p>try { 
+    propReplace.setReplaceAttributes(props); </p>
+<pre><code>// Only match whole words and be case sensitive 
+desc.setPropertyValue("SearchCaseSensitive", true); 
+desc.setPropertyValue("SearchWords", true);
+</code></pre>
+<p>} 
+  catch (com.sun.star.uno.Exception ex) { 
+    System.out.println("Error setting up search properties"); 
+    return -1; 
+  } </p>
+<p>/<em> Replaces all instances of searchKey with new Text properties 
+     and gets the number of changed instances </em>/ 
+  desc.setSearchString(searchKey); 
+  desc.setReplaceString(searchKey); 
+  return repl.replaceAll(desc); 
+}  // end of applyEzHighlighting() </p>
+<h2 id="7-configuring-the-add-on">7.  Configuring the Add-on</h2>
+<p>An add-on OXT file requires two configuration files not used by an UNO component: 
+ProtocolHandler.xcu and Addon.xcs. </p>
+<h3 id="71-protocolhandlerxcu">7.1.  ProtocolHandler.xcu</h3>
+<p>ProtocolHandler.xcu specifies which command URLs will be handled by the 
+component. The contents of the file for EzHighlight are: </p>
+<?xml version='1.0' encoding='UTF-8'?>
+
+<p><oor:component-data oor:name="ProtocolHandler"<br />                    oor:package="org.openoffice.Office"<br />      xmlns:oor="http://openoffice.org/2001/registry"<br />      xmlns:xs="http://www.w3.org/2001/XMLSchema"<br />      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> 
+  <node oor:name="HandlerSet"> </p>
+<pre><code>&lt;node oor:name="EzHighlightAddonImpl" oor:op="replace"&gt; 
+  &lt;prop oor:name="Protocols" oor:type="oor:string-list"&gt; 
+    &lt;value&gt;org.openoffice.ezhighlightAddon:*&lt;/value&gt; 
+  &lt;/prop&gt; 
+&lt;/node&gt;
+</code></pre>
+<p></node> 
+</oor:component-data> </p>
+<p>The "EzHighlightAddonImpl" component will handle all command URLs that begin 
+with the "org.openoffice.ezhighlightAddon" extension ID. The "all" is specified using 
+the * wildcard. The component name is the name of the generated Java class. </p>
+<h3 id="72-addonxcs">7.2.  Addon.xcs</h3>
+<p>Addon.xcs defines the add-on's GUI elements, such as its menu and toolbar items (i.e. </p>
+<p>as seen in Figures 2, 3, and 5). Figure 14 illustrates how the file may set up to five 
+attributes: </p>
+<p><img alt="" src="images/46-Addons-14.png" /></p>
+<p>Figure 14. The Addon.xcs GUI Elements. </p>
+<p>The "AddonMenu" attribute defines the look of the menu item that appears at the end 
+of Office's Tool &gt; Add-ons menu, as in Figure 2.  </p>
+<p>The "OfficeToolbar" attribute specifies the appearance of the floating toolbar reached 
+via View &gt; Toolbars &gt; Add-on <number>, as in Figure 3. </p>
+<p>The "OfficeMenubar" attribute is used to add a menu item to Office's main menu bar, 
+which seems a rather poor GUI design choice, so I've chosen not to use it. </p>
+<p>The OfficeHelp" attribute creates the add-on's help menu item on Office's Help menu, 
+as in Figure 5. </p>
+<p>The "Images" attribute defines the icons that appear next to the text in the menu and 
+toolbar items. If you look back at Figures 2 and 3, you'll see that no icons appear, but 
+this isn't for want of me trying. This feature seems to be broken, but I'll still explain 
+how to set it up. </p>
+<p>Aside from "Images", the attributes have a similar structure: a menu or toolbar item 
+with five sub-attributes: URL, Title, ImageIdentifier, Context, and Target; I'll not be 
+using sub-menu attributes. </p>
+<p>The best explanation of Addon.xcs' structure is "How to distribute your macros with 
+an Addon" by Bernard Marcelly at 
+http://www.openoffice.org/documentation/HOW_TO/various_topics/Addons1_1en.pd
+f, which dates from 2003. </p>
+<p>The "AddonMenu" Attribute 
+The "AddonMenu" attribute used by the EzHighlight add-on is: </p>
+<p><node oor:name="AddonMenu"> 
+  <node oor:name="org.openoffice.ezhighlightAddon"<br />        oor:op="replace"> </p>
+<pre><code>&lt;prop oor:name="URL" oor:type="xs:string"&gt; 
+  &lt;value&gt;org.openoffice.ezhighlightAddon:EzHighlight&lt;/value&gt; 
+&lt;/prop&gt;
+
+&lt;prop oor:name="Title" oor:type="xs:string"&gt; 
+  &lt;value&gt;EzHighlight Text&lt;/value&gt; 
+&lt;/prop&gt;
+
+&lt;prop oor:name="ImageIdentifier" oor:type="xs:string"&gt; 
+    &lt;value/&gt; 
+&lt;/prop&gt;
+
+&lt;prop oor:name="Context" oor:type="xs:string"&gt; 
+  &lt;value&gt;com.sun.star.text.TextDocument&lt;/value&gt; 
+&lt;/prop&gt;
+
+&lt;prop oor:name="Target" oor:type="xs:string"&gt; 
+  &lt;value&gt;_self&lt;/value&gt; 
+&lt;/prop&gt;
+</code></pre>
+<p></node> 
+</node> </p>
+<p>The "URL" attribute holds the command URL which is dispatched by Office when 
+the menu item is clicked.  </p>
+<p>The "Title" attribute contains the menu item's text, and "ImageIdentifier" can be 
+assigned the path to a PNG or BMP file for the text's icon. "ImageIdentifier" is left 
+empty here since all the images are defined in the "Images" attribute, explained 
+below.  </p>
+<p>The "Context" attribute is assigned the document service for the Office application 
+utilizing the add-on. EzHighlight is accessible only from Writer, so "Context"'s value 
+is "com.sun.star.text.TextDocument". Other application/service mappings are shown 
+in Table 1. </p>
+<p>Office Application Document Service 
+Writer  com.sun.star.text.TextDocument 
+Calc  com.sun.star.sheet.SpreadsheetDocument 
+Impress      com.sun.star.presentation.PresentationDocument 
+Draw         com.sun.star.drawing.DrawingDocument 
+Formula      com.sun.star.formula.FormulaProperties 
+Chart   com.sun.star.chart.ChartDocument 
+Bibliography   com.sun.star.frame.Bibliography 
+Table 1. Office Application/Service Mappings Used by "Context" </p>
+<p>If the "Context" field isn't assigned a value, then the add-on will be available in all of 
+Office's applications. </p>
+<p>The "Target" field can be assigned four values: "_top", "_parent", "_blank", and 
+"_self", but I've never seen any other value used but "_self". </p>
+<p>The "OfficeToolbar" Attribute 
+Figure 2 (EzHighlight's menu item) and Figure 3 (its toolbar item) look the same, and 
+respond in the same way when clicked, so it's no great surprise that the 
+"OfficeToolbar" attribute in Addon.xcs is almost exactly the same as "AddonMenu": </p>
+<p><node oor:name="OfficeToolBar"> 
+  <node oor:name="org.openoffice.ezhighlightAddon"<br />        oor:op="replace"> 
+    <node oor:name="m1" oor:op="replace"> </p>
+<pre><code>  &lt;prop oor:name="URL" oor:type="xs:string"&gt; 
+    &lt;value&gt;org.openoffice.ezhighlightAddon:EzHighlight&lt;/value&gt; 
+  &lt;/prop&gt;
+
+  &lt;prop oor:name="Title" oor:type="xs:string"&gt; 
+    &lt;value&gt;EzHighlight Text&lt;/value&gt; 
+  &lt;/prop&gt;
+
+  &lt;prop oor:name="ImageIdentifier" oor:type="xs:string"&gt; 
+     &lt;value/&gt; 
+  &lt;/prop&gt;
+
+  &lt;prop oor:name="Context" oor:type="xs:string"&gt; 
+    &lt;value&gt;com.sun.star.text.TextDocument&lt;/value&gt; 
+  &lt;/prop&gt;
+
+  &lt;prop oor:name="Target" oor:type="xs:string"&gt; 
+    &lt;value&gt;_self&lt;/value&gt; 
+  &lt;/prop&gt; 
+&lt;/node&gt;
+</code></pre>
+<p></node> 
+</node> </p>
+<p>The difference is an extra <node> attribute which allows a toolbar to hold several 
+items. In the description above, there's one item labeled as "m1". The labels can be 
+any unique string, but "m" followed by a number is used in most examples. </p>
+<p>The "OfficeHelp" Attribute 
+The "OfficeHelp" attribute is similar to "OfficeToolbar" and "AddonMenu", but 
+dispatches a different command URL ("org.openoffice.ezhighlightAddon:help") and 
+its menu item uses a different title ("About EzHighlight"). </p>
+<p><node oor:name="OfficeHelp"> 
+  <node oor:name="org.openoffice.ezhighlightAddon"<br />        oor:op="replace"> </p>
+<pre><code> &lt;prop oor:name="URL" oor:type="xs:string"&gt; 
+    &lt;value&gt;org.openoffice.ezhighlightAddon:help&lt;/value&gt; 
+ &lt;/prop&gt;
+
+ &lt;prop oor:name="Title" oor:type="xs:string"&gt; 
+    &lt;value xml:lang="en-US"&gt;About EzHighlight&lt;/value&gt; 
+ &lt;/prop&gt;
+
+ &lt;prop oor:name="ImageIdentifier" oor:type="xs:string"&gt; 
+    &lt;value/&gt; 
+ &lt;/prop&gt;
+
+  &lt;prop oor:name="Context" oor:type="xs:string"&gt; 
+    &lt;value&gt;com.sun.star.text.TextDocument&lt;/value&gt; 
+  &lt;/prop&gt;
+
+ &lt;prop oor:name="Target" oor:type="xs:string"&gt; 
+    &lt;value&gt;_self&lt;/value&gt; 
+ &lt;/prop&gt;
+</code></pre>
+<p></node> 
+</node> </p>
+<p>The "Images" Attribute 
+The "Images" attribute specifies the icons used by the GUI elements. An image can be 
+either big or small (26x26 or 16x16 pixels), high contrast or normal, and loaded from 
+a file or coded as hexadecimal text. These different combinations mean there are eight 
+variants to choose from, each with a different property name, which are listed in Table 
+2. </p>
+<p>Size in 
+Pixels 
+Contrast 
+Property Name 
+Hexadecimal text File name 
+16x16 normal ImageSmall ImageSmallURL 
+16x16 high ImageSmallHC ImageSmallHCURL 
+26x26 normal ImageBig ImageBigURL 
+26x26 high ImageBigHC ImageBigHCURL 
+Table 2. Image Property Names. </p>
+<p>The "Images" attribute for EzHighlight is: </p>
+<p><node oor:name="Images"> 
+  <node oor:name="org.openoffice.ezhighlightAddon"<br />        oor:op="replace"> </p>
+<pre><code>&lt;prop oor:name="URL" oor:type="xs:string"&gt; 
+  &lt;value&gt;org.openoffice.ezhighlightAddon:EzHighlight&lt;/value&gt; 
+&lt;/prop&gt;
+
+&lt;node oor:name="UserDefinedImages"&gt; 
+  &lt;prop oor:name="ImageSmallURL"&gt; 
+    &lt;value&gt;%origin%/images/ezhighlight16.png&lt;/value&gt; 
+  &lt;/prop&gt; 
+  &lt;prop oor:name="ImageBigURL"&gt; 
+    &lt;value&gt;%origin%/images/ezhighlight26.png&lt;/value&gt; 
+  &lt;/prop&gt; 
+&lt;/node&gt;
+</code></pre>
+<p></node> 
+</node> </p>
+<p>The "UserDefinedImages" sub-attribute specifies two sizes of normal contrast image, 
+supplied as filenames. %origin% stands for the OXT file, so the two icons are stored 
+in the images/ subdirectory inside that zipped file. </p>
+<p>The images will be used for the menu and toolbar items associated with the 
+"org.openoffice.ezhighlightAddon:EzHighlight" command URL. Unfortunately, the 
+images don't appear, as shown in Figures 2 and 3. </p>
+<p>The hexadecimal text definition of a small image would be something like: </p>
+<p><prop oor:name="ImageSmall"> 
+    <value>89504E470D0A1A0A0000000D494844520000001000000 
+           01008060000001FF3FF610000024F494 ... // more numbers 
+    </value> 
+  </prop> </p>
+<p>One way to obtain an image's hexadecimal text is to call my ImageHex.java program 
+which prints it to stdout. Unfortunately, the icon still doesn't appear, even when 
+specified in this form. </p>
+<h2 id="8-building-and-installing-the-oxt-file">8.  Building and Installing the OXT File</h2>
+<p>Figure 7 shows the stages in building and installing the add-on as an extension. These 
+steps are carried out by my installAddon.bat script, which assumes that the various 
+configuration files have already been created and are in certain locations. </p>
+<p>The completed EzHighlightAddonImpl.java file is compiled, then added to 
+EzHighlight.jar with a manifest that refers to Utils.jar: </p>
+<p>RegistrationClassName: EzHighlightAddonImpl 
+Class-Path: Utils.jar </p>
+<p>Utils.jar contains my support classes, which may be required by the add-on at run-
+time. installAddon.bat will add it to the OXT file along with EzHighlight.jar. </p>
+<p>installAddon.bat assumes that the add-on configuration files are in a sub-directory 
+with the same name as the add-on. For example, when it's processing the EzHighlight 
+add-on, it looks for a EzHighlight/ folder with the following structure: </p>
+<p>EzHighlight 
+    |   Addons.xcu 
+    |   description.xml 
+    |   license.txt 
+    |   package-description.txt 
+    |   ProtocolHandler.xcu 
+    |   Utils.jar 
+    |  <br />
+    +---dialogLibrary 
+    |       EzHighlight.xdl 
+    |      <br />
+    +---images 
+    |       ezhighlight.png 
+    |       ezhighlight16.png 
+    |       ezhighlight26.png 
+    |      <br />
+    ---META-INF 
+            manifest.xml </p>
+<p>EzHighlight.jar is moved into EzHighlight/, and the folder is zipped into 
+EzHighlight.oxt. The extension is installed into Office using the unopkg tool, in the 
+same way as the UNO component of the last chapter. </p>
+<p>EzHighlight/ contains three configuration files: ProtocolHandler.xcu, Addons.xcu, 
+and description.xml. description.xml plays the same role as the same-named file for 
+UNO components. Its contents use the same XML attributes: </p>
+<?xml version="1.0" encoding="UTF-8"?>
+<p><description 
+xmlns="http://openoffice.org/extensions/description/2006"<br />xmlns:d="http://openoffice.org/extensions/description/2006"<br />xmlns:xlink="http://www.w3.org/1999/xlink"> </p>
+<p><identifier value="org.openoffice.ezhighlightAddon"/> 
+  <version value="0.1"/> </p>
+<p><display-name> 
+    <name lang="en">EzHighlight Addon</name> 
+  </display-name> </p>
+<p><publisher> 
+    <name xlink:href="http://fivedots.coe.psu.ac.th/~ad/jlop/"<br />          lang="en">Andrew Davison</name> 
+  </publisher> </p>
+<p><registration> 
+    <simple-license accept-by="user" > 
+      <license-text xlink:href="license.txt" lang="en"/> 
+    </simple-license> 
+  </registration> </p>
+<p><extension-description> 
+    <src lang="en-US" xlink:href="package-description.txt"/> 
+  </extension-description> </p>
+<p><icon> 
+    <default xlink:href="images/ezhighlight.png" /> 
+  </icon> </p>
+<p><update-information> 
+    <src xlink:href="http://fivedots.coe.psu.ac.th/~ad/jlop/"/> 
+  </update-information> </p>
+<p><dependencies><br />
+   <OpenOffice.org-minimal-version value="3.4"<br />                      d:name="OpenOffice.org 3.4"/><br />
+  </dependencies>  </p>
+<p><platform value="all" /> 
+</description> </p>
+<p>The biggest difference is that the extension icon is located in the images/ subdirectory 
+inside EzHighlight/. license.txt and package-description.txt are referenced in the 
+description, which explains why those files are in EzHighlight/. </p>
+<p>The dialog description (EzHighlight.xdl) is stored in its own subdirectory, 
+dialogLibrary/, to match the dialog loading code in EzHighlightAddonInpl.java: </p>
+<p>// in processCmd() 
+dialog = Dialogs.loadAddonDialog("org.openoffice.ezhighlightAddon", 
+                            "dialogLibrary/" + cmd + ".xdl"); </p>
+<p>The images/ subdirectory contains the extension manager icon (ezhighlight.png) and 
+two sizes of GUI icons (ezhighlight16.png and ezhighlight26.png). The GUI icons 
+must be inside images/ to match the locations specified in the "Images" attribute in 
+Addon.xcs. </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="45-UNO_Components.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 45. Coding UNO Components
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="47-Calc_Add-ins.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Chapter 47. Calc Add-ins
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

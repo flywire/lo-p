@@ -1,0 +1,1847 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 29. Column Charts - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-29-column-charts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 29. Column Charts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 29. Column Charts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="29-Column_Charts.html" class="md-nav__link md-nav__link--active">
+        Chapter 29. Column Charts
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-creating-a-chart-title" class="md-nav__link">
+    1.  Creating a Chart Title
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-creating-axis-titles" class="md-nav__link">
+    2.  Creating Axis Titles
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-rotating-axis-titles" class="md-nav__link">
+    3.  Rotating Axis Titles
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-what-chart-templates-are-available" class="md-nav__link">
+    4.  What Chart Templates are Available?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-multiple-columns" class="md-nav__link">
+    5.  Multiple Columns
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-3d-pizazz" class="md-nav__link">
+    6.  3D Pizazz
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-the-column-and-line-chart" class="md-nav__link">
+    7.  The Column and Line Chart
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-creating-a-chart-title" class="md-nav__link">
+    1.  Creating a Chart Title
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-creating-axis-titles" class="md-nav__link">
+    2.  Creating Axis Titles
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-rotating-axis-titles" class="md-nav__link">
+    3.  Rotating Axis Titles
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-what-chart-templates-are-available" class="md-nav__link">
+    4.  What Chart Templates are Available?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-multiple-columns" class="md-nav__link">
+    5.  Multiple Columns
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-3d-pizazz" class="md-nav__link">
+    6.  3D Pizazz
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-the-column-and-line-chart" class="md-nav__link">
+    7.  The Column and Line Chart
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/29-Column_Charts.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-29-column-charts">Chapter 29. Column Charts</h1>
+<p>All the chart examples in the next four chapters come from 
+the same program, Chart2Views.java, which loads a 
+spreadsheet from "chartsData.ods". Depending on the 
+function, a different table in the sheet is used to create a 
+chart from a template. The main() function is: </p>
+<p>// in Chart2Views.java 
+private static final String CHARTS_DATA = 
+"chartsData.ods"; </p>
+<p>public static void main(String args[]) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  XSpreadsheetDocument doc = Calc.openDoc(CHARTS_DATA, loader); 
+  if (doc == null) { 
+    System.out.println("Could not open " + CHARTS_DATA); 
+    Lo.closeOffice(); 
+    return; 
+  } 
+  GUI.setVisible(doc, true); 
+  XSpreadsheet sheet = Calc.getSheet(doc, 0); </p>
+<p>// ---- use different chart templates ---- </p>
+<p>XChartDocument chartDoc = colChart(doc, sheet); 
+                                // see sections 1-3 </p>
+<p>// String[] templateNames = Chart2.getChartTemplates(chartDoc); 
+                                // section 4 
+  // Lo.printNames(templateNames, 1); </p>
+<p>// multColChart(doc, sheet);  // sections 5 &amp; 6 
+  // colLineChart(doc, sheet);  // section 7 </p>
+<p>// barChart(doc, sheet); </p>
+<p>// pieChart(doc, sheet); 
+  // pie3DChart(doc, sheet); 
+  // donutChart(doc, sheet); </p>
+<p>// areaChart(doc, sheet); </p>
+<p>// lineChart(doc, sheet); 
+  // linesChart(doc, sheet); </p>
+<p>// scatterChart(doc, sheet); 
+  // scatterLineLogChart(doc, sheet); 
+  // scatterLineErrorChart(doc, sheet); </p>
+<p>// labeledBubbleChart(doc, sheet); </p>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Creating a Chart </p>
+</div>
+<p>Title; Creating Axis 
+Titles; Rotating Axis 
+Titles; What Chart 
+Templates are 
+Available?; Multiple 
+Columns; 3D Pizazz; 
+The Column and Line 
+Chart 
+Example folders: 
+"Chart2 Tests" and 
+"Utils" 
+  // netChart(doc, sheet); </p>
+<p>// happyStockChart(doc, sheet); 
+  // stockPricesChart(doc, sheet); </p>
+<p>Lo.waitEnter(); 
+  Lo.closeDoc(doc); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+<p>colChart() utilizes the "Sneakers Sold this Month" table in "chartsData.ods" (see 
+Figure 1) to generate the column chart in Figure 2. </p>
+<p><img alt="" src="images/29-Column_Charts-1.png" /></p>
+<p>Figure 1. The "Sneakers Sold this Month" Table. </p>
+<p><img alt="" src="images/29-Column_Charts-2.png" /></p>
+<p>Figure 2. The Column Chart for the Table in Figure 1. </p>
+<p>colChart() is: </p>
+<p>// in Chart2Views.java 
+private static XChartDocument colChart(XSpreadsheetDocument doc, 
+                                       XSpreadsheet sheet) 
+{ 
+  CellRangeAddress rangeAddr = Calc.getAddress(sheet, "A2:B8"); 
+  XChartDocument chartDoc = 
+      Chart2.insertChart(sheet, rangeAddr, "C3", 15, 11, "Column"); 
+  Calc.gotoCell(doc, "A1"); </p>
+<p>Chart2.setTitle(chartDoc, Calc.getString(sheet, "A1")); 
+  Chart2.setXAxisTitle(chartDoc, Calc.getString(sheet, "A2")); 
+  Chart2.setYAxisTitle(chartDoc, Calc.getString(sheet, "B2")); 
+  Chart2.rotateYAxisTitle(chartDoc, 90); 
+  return chartDoc; 
+}  // end of colChart() </p>
+<p>The column chart created by Chart2.insertChart() utilizes the cell range A2:B8, which 
+spans the two columns of the table, but not the title in cell A1. The "C3" argument 
+specifies where the top-left corner of the chart will be positioned in the sheet, and 
+15x11 are the dimensions of the image in millimeters.  </p>
+<p>Calc.gotoCell() causes the application window's view of the spreadsheet to move so 
+that cell "A1" is visible, which lets the user see the sneakers table and the chart 
+together.  </p>
+<p>If the three set methods and rotateYAxisTitle() are left out of colChart(), then the 
+generated chart will have no titles as in Figure 3. </p>
+<p><img alt="" src="images/29-Column_Charts-3.png" /></p>
+<p>Figure 3. The Column Chart for the Table in Figure 1, with no Titles. </p>
+<h2 id="1-creating-a-chart-title">1.  Creating a Chart Title</h2>
+<p>Chart2.setTitle() is passed a string which becomes the chart's title. For example: </p>
+<p>// part of colChart() in Chart2Views.java... </p>
+<p>Chart2.setTitle(chartDoc, Calc.getString(sheet, "A1")); </p>
+<p>utilizes the string from cell "A1" of the spreadsheet (see Figure 1). </p>
+<p>Setting a title requires three interfaces: XTitled, XTitle, and XFormattedString. </p>
+<p>XTitled is utilized by several chart services, as shown in Figure 4. </p>
+<p><img alt="" src="images/29-Column_Charts-4.png" /></p>
+<p>Figure 4. Services Using the XTitled Interface. </p>
+<p>The XChartDocument interface is converted into XTitled by Chart2.setTitle(), so an 
+XTitle object can be assigned to the chart: </p>
+<p>// in the Chart2 class 
+public static void setTitle(XChartDocument chartDoc, String title) 
+/<em> set the title, and use Arial, 14 pt style </em>/ 
+{ <br />
+  System.out.println("Chart title: \"" + title + "\""); 
+  XTitled xTitled = Lo.qi(XTitled.class, chartDoc); 
+  XTitle xtitle = createTitle(title); 
+  if (xtitle != null) { 
+    xTitled.setTitleObject(xtitle); 
+    setXTitleFont(xtitle, "Arial", 14); 
+  } 
+}  // end of setTitle() </p>
+<p>The XTitle object is an instance of the Title service which inherits a wide assortment 
+of properties related to the text's paragraph, fill, and line styling, as shown in Figure 5. </p>
+<p><img alt="" src="images/29-Column_Charts-5.png" /></p>
+<p>Figure 5. The Title Service. </p>
+<p>Text is added to the XTitle object by Chart2.createTitle(), as an XFormattedString 
+array: </p>
+<p>// in the Chart2 class 
+public static XTitle createTitle(String titleString) 
+{ 
+  XTitle xtitle = Lo.createInstanceMCF(XTitle.class,<br />
+                            "com.sun.star.chart2.Title"); 
+  if (xtitle == null) { 
+    System.out.println("Unable to create xtitle interface"); 
+    return null; 
+  }  </p>
+<p>XFormattedString xtitleStr =<br />
+       Lo.createInstanceMCF(XFormattedString.class,<br />
+           "com.sun.star.chart2.FormattedString"); 
+  if (xtitleStr == null) { 
+    System.out.println("Unable to create formatted string"); 
+    return null; 
+  }  </p>
+<p>xtitleStr.setString(titleString); 
+  XFormattedString[] titleArray =<br />
+             new XFormattedString[] {xtitleStr}; 
+  xtitle.setText(titleArray); 
+  return xtitle; 
+}  // end of createTitle() </p>
+<p>The use of an XFormatttedString[] array may seem to be overkill when the title is a 
+single string, but it also allows character properties to be associated with the string 
+through XFormattedString2, as shown in Figure 6. </p>
+<p><img alt="" src="images/29-Column_Charts-6.png" /></p>
+<p>Figure 6. The FormattedString Service. </p>
+<p>Character properties allow the font and point size of the title to be changed to Arial 
+14pt by Chart2.setXTitleFont(): </p>
+<p>// in the Chart2 class 
+public static void setXTitleFont(XTitle xtitle,<br />
+                                 String fontName, int ptSize) 
+{ 
+  XFormattedString[] foStrs = xtitle.getText(); 
+  if (foStrs != null) { 
+    Props.setProperty(foStrs[0], "CharFontName", fontName); 
+    Props.setProperty(foStrs[0], "CharHeight", ptSize); 
+  } 
+}  // end of setXTitleFont() </p>
+<p>The "CharFontName" and "CharHeight" properties come from the 
+CharacterProperties class. </p>
+<h2 id="2-creating-axis-titles">2.  Creating Axis Titles</h2>
+<p>Setting the axes titles needs a reference to the XAxis interface. Incidentally, this 
+interface name is a little misleading since "X" is the naming convention for interfaces, 
+not a reference to the x-axis.  </p>
+<p>Figure 9 in Chapter 28 shows that the XAxis interface is available via the 
+XCoordinateSystem interface, which can be obtained by calling 
+Chart2.getCoordSystem(). XCoordinateSystem.getAxisByDimension() can then be 
+employed to get an axis reference. This is implemented by Chart2.getAxis(): </p>
+<p>// in the Chart2 class 
+// globals: axis values 
+public static final int X_AXIS = 0; 
+public static final int Y_AXIS = 1; 
+public static final int Z_AXIS = 2; </p>
+<p>public static XAxis getAxis(XChartDocument chartDoc,<br />
+                                  int axisVal, int idx) 
+{<br />
+  XCoordinateSystem coordSys = getCoordSystem(chartDoc); 
+  try { 
+    return coordSys.getAxisByDimension(axisVal, idx); 
+  } 
+  catch(Exception ex) { 
+    System.out.println("Could not get the axis"); 
+    return null; 
+  } 
+}  // end of getAxis() </p>
+<p>XCoordinateSystem.getAxisByDimension() takes two integer arguments: the first 
+represents the axis (x-, y-, or  z-), while the second is a primary or secondary index (0 
+or 1) for the chosen axis. Chart2.java includes wrapper functions for Chart2.getAxis() 
+for the most common cases: </p>
+<p>// in the Chart2 class 
+public static XAxis getXAxis(XChartDocument chartDoc) 
+{  return getAxis(chartDoc, Chart2.X_AXIS, 0);  } </p>
+<p>public static XAxis getYAxis(XChartDocument chartDoc) 
+{  return getAxis(chartDoc, Chart2.Y_AXIS, 0);  } </p>
+<p>public static XAxis getXAxis2(XChartDocument chartDoc) 
+{  return getAxis(chartDoc, Chart2.X_AXIS, 1);  } </p>
+<p>public static XAxis getYAxis2(XChartDocument chartDoc) 
+{  return getAxis(chartDoc, Chart2.Y_AXIS, 1);  } </p>
+<p>Chart2.setAxisTitle() calls Chart2.getAxis() to get a reference to the correct axis, and 
+then reuses many of the methods described earlier for setting the chart title: </p>
+<p>// in the Chart2 class 
+public static void setAxisTitle(XChartDocument chartDoc,<br />
+                     String title, int axisVal, int idx) 
+{<br />
+  XAxis axis = getAxis(chartDoc, axisVal, idx); 
+  if (axis == null) 
+    return; 
+  XTitled titledAxis = Lo.qi(XTitled.class, axis); 
+  XTitle xtitle = createTitle(title); 
+  if (xtitle != null) { 
+    titledAxis.setTitleObject(xtitle); 
+    setXTitleFont(xtitle, "Arial", 12);  // Arial 12pt 
+  } 
+}  // end of setAxisTitle() </p>
+<p>As with Chart2.getAxis(), Chart2.java includes wrapper methods for 
+Chart2.setAxisTitle() to simplify common axis cases: </p>
+<p>// in the Chart2 class 
+public static void setXAxisTitle(XChartDocument chartDoc,<br />
+                                 String title) 
+{  setAxisTitle(chartDoc, title, Chart2.X_AXIS, 0);  } </p>
+<p>public static void setYAxisTitle(XChartDocument chartDoc,<br />
+                                 String title) 
+{  setAxisTitle(chartDoc, title, Chart2.Y_AXIS, 0);  } </p>
+<p>public static void setXAxis2Title(XChartDocument chartDoc,<br />
+                                  String title) 
+{  setAxisTitle(chartDoc, title, Chart2.X_AXIS, 1);  } </p>
+<p>public static void setYAxis2Title(XChartDocument chartDoc,<br />
+                                  String title) 
+{  setAxisTitle(chartDoc, title, Chart2.Y_AXIS, 1);  } </p>
+<h2 id="3-rotating-axis-titles">3.  Rotating Axis Titles</h2>
+<p>The default orientation for titles is horizontal, which is fine for the chart and x-axis 
+titles, but can cause the y-axis title to occupy too much horizontal space. The solution 
+is to call Chart2.rotateYAxisTitle() with an angle (usually 90 degrees) to turn the text 
+counter-clockwise so it's vertically orientated (see Figure 2). </p>
+<p>The implementation accesses the XTitle interface for the axis title, and then modifies 
+its "TextRotation" property from the Title service (see Figure 5). </p>
+<p>// in the Chart2 class 
+public static void rotateYAxisTitle(XChartDocument chartDoc,<br />
+                                    int angle) 
+{  rotateAxisTitle(chartDoc, Chart2.Y_AXIS, 0, angle);  } </p>
+<p>public static void rotateAxisTitle(XChartDocument chartDoc,<br />
+                                   int axisVal, int idx, int angle) 
+// + angle is rotation counter-clockwise from horizontal 
+{ 
+  XTitle xtitle = getAxisTitle(chartDoc, axisVal, idx); 
+  if (xtitle != null) 
+    Props.setProperty(xtitle, "TextRotation", angle); 
+}  // end of rotateAxisTitle() </p>
+<p>public static XTitle getAxisTitle(XChartDocument chartDoc,<br />
+                                  int axisVal, int idx) 
+{ XAxis axis = getAxis(chartDoc, axisVal, idx); 
+  if (axis == null) 
+    return null; 
+  XTitled titledAxis = Lo.qi(XTitled.class, axis); 
+  return titledAxis.getTitleObject(); 
+}  // end of getAxisTitle() </p>
+<h2 id="4-what-chart-templates-are-available">4.  What Chart Templates are Available?</h2>
+<p>colChart() in Chart2Views.java returns its XChartDocument reference. This isn't 
+necessary for rendering the chart, but allows the reference to be passed to 
+Chart2.getChartTemplates(): </p>
+<p>// in main() in Chart2Views.java... </p>
+<p>XChartDocument chartDoc = colChart(doc, sheet); 
+String[] templateNames = Chart2.getChartTemplates(chartDoc); 
+Lo.printNames(templateNames, 1); </p>
+<p>The only way to list the chart templates supported by the chart2 module (i.e. those 
+shown in Table 1 of Chapter 28) is by querying an existing chart document. That's the 
+purpose of Chart2.getChartTemplates(): </p>
+<p>// in the Chart2 class 
+public static String[] getChartTemplates(XChartDocument chartDoc) 
+{ 
+  XChartTypeManager ctMan = chartDoc.getChartTypeManager(); 
+  return Info.getAvailableServices(ctMan); 
+} </p>
+<p>Normally XChartTypeManager is used to create a template instance, but 
+Info.getAvailableServices() accesses its 
+XMultiServiceFactory.getAvailableServiceNames() method to list the names of all its 
+supported services, which are templates: </p>
+<p>// in the Info class 
+public static String[] getAvailableServices(Object obj) 
+{ 
+  XMultiServiceFactory msf =<br />
+                  Lo.qi(XMultiServiceFactory.class, obj); 
+  String[] serviceNames = msf.getAvailableServiceNames(); 
+  Arrays.sort(serviceNames); 
+  return serviceNames; 
+}  // end of getAvailableServices() </p>
+<p>The output lists has 66 names, starting and ending like so: </p>
+<p>"com.sun.star.chart2.template.Area" 
+"com.sun.star.chart2.template.Bar" 
+"com.sun.star.chart2.template.Bubble" 
+"com.sun.star.chart2.template.Column" 
+"com.sun.star.chart2.template.ColumnWithLine" 
+     : 
+"com.sun.star.chart2.template.ThreeDLineDeep" 
+"com.sun.star.chart2.template.ThreeDPie" 
+"com.sun.star.chart2.template.ThreeDPieAllExploded" 
+"com.sun.star.chart2.template.ThreeDScatter" </p>
+<p>Sixty-four of those names appear in Chapter 28's Table 1. The two missing are 
+"GL3DBar" and "GL3DBarRoundedRectangle", which were reported as being "not 
+ready for general use" in an OpenOffice forum posting from May 2014. </p>
+<h2 id="5-multiple-columns">5.  Multiple Columns</h2>
+<p>The multColChart() method in Chart2Views.java uses a table containing three 
+columns of data (see Figure 7) to generate two column graphs in the same chart, as in </p>
+<p><img alt="" src="images/29-Column_Charts-8.png" /></p>
+<p>Figure 8. </p>
+<p><img alt="" src="images/29-Column_Charts-7.png" /></p>
+<p>Figure 7. The "States with the Most Colleges" Table. </p>
+<p><img alt="" src="images/29-Column_Charts-8.png" /></p>
+<p>Figure 8. A Multiple Column Chart Generated from the Table in Figure 7. </p>
+<p>multColChart() is: </p>
+<p>// in Chart2Views.java 
+private static void multColChart(XSpreadsheetDocument doc, 
+                                 XSpreadsheet sheet) 
+{ 
+  CellRangeAddress rangeAddr = Calc.getAddress(sheet, "E15:G21"); 
+  XChartDocument chartDoc = 
+     Chart2.insertChart(sheet, rangeAddr, "A22", 20, 11, "Column"); 
+                         // ThreeDColumnDeep, ThreeDColumnFlat 
+  Calc.gotoCell(doc, "A13"); </p>
+<p>Chart2.setTitle(chartDoc, Calc.getString(sheet, "E13")); 
+  Chart2.setXAxisTitle(chartDoc, Calc.getString(sheet, "E15")); 
+  Chart2.setYAxisTitle(chartDoc, Calc.getString(sheet, "F14")); 
+  Chart2.rotateYAxisTitle(chartDoc, 90); 
+  Chart2.viewLegend(chartDoc, true); </p>
+<p>// for a 3D version 
+  // Chart2.showAxisLabel(chartDoc, Chart2.Z_AXIS, 0, false); 
+  // Chart2.setChartShape3D(chartDoc, "cylinder"); <br />
+                               // box, cylinder, cone, pyramid 
+}  // end of multColChart() </p>
+<p>The same "Column" chart template is used as in colChart(), and the additional column 
+of data is treated as an extra column graph. The chart title and axis titles are added in 
+the same way as before, and a legend is included by calling Chart2.viewLegend(): </p>
+<p>// in the Chart2 class 
+public static void viewLegend(XChartDocument chartDoc,<br />
+                              boolean isVisible) 
+{ 
+  XDiagram diagram = chartDoc.getFirstDiagram(); 
+  XLegend legend = diagram.getLegend(); 
+  if (isVisible &amp;&amp; (legend == null)) { 
+    XLegend leg = Lo.createInstanceMCF(XLegend.class,<br />
+                              "com.sun.star.chart2.Legend"); 
+    Props.setProperty(leg, "LineStyle", LineStyle.NONE); 
+                         // no outline around legend 
+    Props.setProperty(leg, "FillStyle", FillStyle.SOLID); 
+    Props.setProperty(leg, "FillTransparence", 100); <br />
+                         // transparent solid background 
+    diagram.setLegend(leg); 
+  } 
+  Props.setProperty(diagram.getLegend(), "Show", isVisible); <br />
+                                   // toggle visibility 
+}  // end of viewLegend() </p>
+<p>The legend is accessible via the chart diagram service. viewLegend() creates an 
+instance, and sets a few properties to make it look nicer. </p>
+<p>Figure 9 shows the Legend service, which defines several properties, and inherits 
+many others from FillProperties and LineProperties. The "LineStyle", "FillStyle", and 
+"FillTransparence" properties utilized in viewLegend() come from the inherited 
+property classes, but "Show" is from the Legend service. </p>
+<p><img alt="" src="images/29-Column_Charts-9.png" /></p>
+<p>Figure 9. The Legend Service. </p>
+<p>The XLegend interface contains no methods, and is used only to access the properties 
+in its defining service. </p>
+<h2 id="6-3d-pizazz">6.  3D Pizazz</h2>
+<p>I'm not a fan of 3D charts which are often harder to understand than their 2D 
+equivalents, even if they do look more "hi-tech". But if you really want  a 3D version 
+of a chart, it's mostly just a matter of changing the template name in the call to 
+Chart2.insertChart(). </p>
+<p>If the "Column" string is changed to "ThreeDColumnDeep" or "ThreeDColumnFlat" 
+in insertChart() in multColChart(), then the charts in Figure 10 appear. </p>
+<p><img alt="" src="images/29-Column_Charts-10.jpg" /></p>
+<p>Figure 10. Deep and Flat 3D Column Charts. </p>
+<p>"deep" orders the two 3D graphs along the z-axis, and labels the axis.  </p>
+<p>The x-axis labels are rotated automatically in the top-most chart of Figure 10 because 
+the width of the chart wasn't sufficient to draw them horizontally, and that's caused 
+the graphs to be squashed into less vertical space.  </p>
+<p>multColChart() contains two commented out lines which illustrate how a 3D graph 
+can be changed: </p>
+<p>// part of multColChart() in Chart2Views.java... </p>
+<p>Chart2.showAxisLabel(chartDoc, Chart2.Z_AXIS, 0, false); <br />
+                                           // hide labels 
+Chart2.setChartShape3D(chartDoc, "cylinder"); <br />
+                  // shape can be: box, cylinder, cone, pyramid </p>
+<p>Chart2.showAxisLabel() is passed the boolean false to switch off the display of the z-
+axis labels. Chart2.setChartShape3D() changes the shape of the columns; in this case 
+to cylinders, as in Figure 11. </p>
+<p><img alt="" src="images/29-Column_Charts-11.jpg" /></p>
+<p>Figure 11. Modified Deep 3D Column Chart. </p>
+<p>Chart2.showAxisLabel() uses Chart2.getAxis() to access the XAxis interface, and 
+then modifies its "Show" property: </p>
+<p>// in the Chart2 class 
+public static void showAxisLabel(XChartDocument chartDoc,<br />
+                 int axisVal, int idx, boolean isVisible) 
+{ XAxis axis = getAxis(chartDoc, axisVal, idx); 
+  if (axis == null) 
+    return; 
+  //Props.showObjProps("Axis", axis); 
+  Props.setProperty(axis, "Show", isVisible); 
+}  // end of showAxisLabel() </p>
+<p>The Axis service contains a large assortment of properties (online documentation can 
+be read by calling lodoc chart2 axis service), and inherits character and line 
+properties depicted in Figure 12. </p>
+<p><img alt="" src="images/29-Column_Charts-12.png" /></p>
+<p>Figure 12. The Axis Service. </p>
+<p>Chart2.setChartShape3D() affects the data 'points' (which in a 3D column chart are 
+boxes by default). This requires access to the XDataSeries array of data points by 
+calling Chart2.getDataSeries(), and then the "Geometry3D" property in the DataSeries 
+service is modified. Figure 11 in Chapter 28 shows the service and its interfaces, and 
+most of its properties are inherited from the DataPointProperties class, including 
+"Geometry3D". The code for  Chart2.setChartShape3D(): </p>
+<p>// in the Chart2 class 
+public static void setChartShape3D(XChartDocument chartDoc,<br />
+                                   String shape) 
+{<br />
+  XDataSeries[] dataSeriesArr = getDataSeries(chartDoc); 
+  for (XDataSeries dataSeries : dataSeriesArr) { 
+    if (shape.equals("box")) 
+      Props.setProperty(dataSeries, "Geometry3D",<br />
+                                    DataPointGeometry3D.CUBOID); 
+    else if (shape.equals("cylinder")) 
+      Props.setProperty(dataSeries, "Geometry3D",<br />
+                                    DataPointGeometry3D.CYLINDER); 
+    else if (shape.equals("cone")) 
+      Props.setProperty(dataSeries, "Geometry3D",<br />
+                                    DataPointGeometry3D.CONE); 
+    else if (shape.equals("pyramid")) 
+      Props.setProperty(dataSeries, "Geometry3D",<br />
+                                    DataPointGeometry3D.PYRAMID); 
+    else 
+      System.out.println("Did not recognize 3D shape: " + shape); 
+  } 
+}  // end of setChartShape3D() </p>
+<h2 id="7-the-column-and-line-chart">7.  The Column and Line Chart</h2>
+<p>Another way to display the multiple columns of data in the "States with the Most 
+Colleges" table (Figure 7) is to draw a column and line chart. The column is generated 
+from the first data column, and the line graph uses the second column. The result is 
+shown in Figure 13. </p>
+<p><img alt="" src="images/29-Column_Charts-13.png" /></p>
+<p>Figure 13. A Column and Line Chart Generated from the Table in Figure 7. </p>
+<p>colLineChart() in Chart2Views.java generates Figure 13: </p>
+<p>// in Chart2Views.java 
+private static void colLineChart(XSpreadsheetDocument doc, 
+                                 XSpreadsheet sheet) 
+{ 
+  CellRangeAddress rangeAddr = Calc.getAddress(sheet, "E15:G21"); 
+  XChartDocument chartDoc = Chart2.insertChart(sheet,<br />
+                     rangeAddr, "A22", 20, 11, "ColumnWithLine"); 
+  Calc.gotoCell(doc, "A13"); </p>
+<p>Chart2.setTitle(chartDoc, Calc.getString(sheet, "E13")); 
+  Chart2.setXAxisTitle(chartDoc, Calc.getString(sheet, "E15")); 
+  Chart2.setYAxisTitle(chartDoc, Calc.getString(sheet, "F14")); 
+  Chart2.rotateYAxisTitle(chartDoc, 90); 
+  Chart2.viewLegend(chartDoc, true); 
+}  // end of colLineChart() </p>
+<p>It's identical to mulColChart() except for the template string ("ColumnWithLine") 
+passed to Chart2.insertChart(). </p>
+<p>A chart's coordinate system may utilize multiple chart types. Up to now a chart 
+template (e.g. "Column") has been converted to a single chart type (e.g. </p>
+<p>ColumnChartType) by the chart API (specifically by the chart type manager), but the 
+"ColumnWithLine" template is different. The manager implements that template<br />
+using two chart types, "ColumnChartType" and "LineChartType". This is reported by 
+Chart2.insertChart() calling Chart2.printChartTypes(): </p>
+<p>No. of chart types: 2 
+  com.sun.star.chart2.ColumnChartType 
+  com.sun.star.chart2.LineChartType </p>
+<p>Chart2.printChartTypes() uses Chart2.getChartTypes(), which was defined earlier: </p>
+<p>// in the Chart2 class 
+public static void printChartTypes(XChartDocument chartDoc) 
+{ 
+  XChartType[] chartTypes = getChartTypes(chartDoc); 
+  if (chartTypes.length &gt; 1) { 
+    System.out.println("No. of chart types: " + chartTypes.length); 
+    for(XChartType ct : chartTypes) 
+      System.out.println("  " + ct.getChartType()); 
+  } 
+  else 
+    System.out.println("Chart type: " +<br />
+                          chartTypes[0].getChartType()); 
+}  // end of printChartTypes() </p>
+<p>Why is this separation of a single template into two chart types important?<br />
+The short answer is that it complicates the search for a chart template's data. For 
+example, my earlier Chart2.getChartType() returns the first chart type in the 
+XChartType[] array since most templates only use a single chart type:  </p>
+<p>// in the Chart2 class 
+public static XChartType getChartType(XChartDocument chartDoc) 
+{ 
+  XChartType[] chartTypes = getChartTypes(chartDoc); 
+  return chartTypes[0]; 
+} </p>
+<p>This method is insufficient for examining a chart created with the "ColumnWithLine" 
+template since the XChartType[] array holds two chart types. A programmer will have 
+to use findChartType(), which searches the array for the specified chart type: </p>
+<p>// in the Chart2 class 
+public static XChartType findChartType(XChartDocument chartDoc,<br />
+                                       String chartType) 
+{ String srchName = "com.sun.star.chart2." +<br />
+                               chartType.toLowerCase(); 
+  XChartType[] chartTypes = getChartTypes(chartDoc); 
+  for(XChartType ct : chartTypes) { 
+    String ctName = ct.getChartType().toLowerCase(); 
+    if (ctName.equals(srchName)) 
+      return ct; 
+  } 
+  System.out.println("Chart type " + srchName + " not found"); 
+  return null; 
+}  // end of findChartType() </p>
+<p>For example, the following call returns a reference to the line chart type: 
+XChartType lineCT = Chart2.findChartType(chartDoc, "LineChartType"); 
+The simple getChartType()  is used in Chart2.getDataSeries(): </p>
+<p>// in the Chart2 class 
+public static XDataSeries[] getDataSeries(XChartDocument chartDoc) 
+{ 
+  XChartType xChartType = getChartType(chartDoc); 
+  XDataSeriesContainer dsCon =<br />
+                   Lo.qi(XDataSeriesContainer.class, xChartType); 
+  return dsCon.getDataSeries(); 
+}  //end of getDataSeries() </p>
+<p>This means that Chart2.getDataSeries() can only access the data associated with the 
+column (the first chart type) in a "ColumnWithLine" chart document. The fix is to use 
+a more complex version of Chart2.getDataSeries(): </p>
+<p>// in the Chart2 class 
+public static XDataSeries[] getDataSeries(XChartDocument chartDoc,<br />
+                                          String chartType) 
+// get the data series associated with the specified chart type 
+{ 
+  XChartType xChartType = findChartType(chartDoc, chartType); 
+  if (xChartType == null) 
+    return null; 
+  XDataSeriesContainer dsCon =<br />
+                   Lo.qi(XDataSeriesContainer.class, xChartType); 
+  return dsCon.getDataSeries(); 
+}  //end of getDataSeries() </p>
+<p>This version requires a chart type string argument to get the correct chart type. For 
+example, the call: 
+XDataSeries[] ds = Chart2.getDataSeries(chartDoc, "LineChartType"); 
+returns the data series associated with the line chart type. </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="28-Chart2_API_Overview.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 28. Chart2 API Overview
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Chapter 30. Bar, Pie, Area, Line Charts
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

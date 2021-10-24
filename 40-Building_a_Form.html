@@ -1,0 +1,1875 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 40. Building a Form - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-40-building-a-form" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 40. Building a Form
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 40. Building a Form
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="40-Building_a_Form.html" class="md-nav__link md-nav__link--active">
+        Chapter 40. Building a Form
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-creating-controls" class="md-nav__link">
+    1.  Creating Controls
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-assigning-a-data-source-to-a-form" class="md-nav__link">
+    2.  Assigning a Data Source to a Form
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-creating-data-aware-controls" class="md-nav__link">
+    3.  Creating Data-aware Controls
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-initializing-the-gridcontrol" class="md-nav__link">
+    4.  Initializing the GridControl
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-attaching-listeners" class="md-nav__link">
+    5.  Attaching Listeners
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-listening-for-grid-control-selection-changes" class="md-nav__link">
+    6.  Listening for Grid Control Selection Changes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-using-the-result-set" class="md-nav__link">
+    7.  Using the Result Set
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-some-bugs" class="md-nav__link">
+    8.  Some Bugs
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-creating-controls" class="md-nav__link">
+    1.  Creating Controls
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-assigning-a-data-source-to-a-form" class="md-nav__link">
+    2.  Assigning a Data Source to a Form
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-creating-data-aware-controls" class="md-nav__link">
+    3.  Creating Data-aware Controls
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-initializing-the-gridcontrol" class="md-nav__link">
+    4.  Initializing the GridControl
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-attaching-listeners" class="md-nav__link">
+    5.  Attaching Listeners
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-listening-for-grid-control-selection-changes" class="md-nav__link">
+    6.  Listening for Grid Control Selection Changes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-using-the-result-set" class="md-nav__link">
+    7.  Using the Result Set
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-some-bugs" class="md-nav__link">
+    8.  Some Bugs
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/40-Building_a_Form.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-40-building-a-form">Chapter 40. Building a Form</h1>
+<p>Programmatically </p>
+<p>BuildForm.java creates a text-based form at run-time, and 
+attaches listeners to the controls. Three of the controls 
+(two list boxes and a grid control) are "data aware" which 
+means that they obtain their data externally from a 
+database. Figure 1 shows a screenshot of the generated document, with the controls 
+and data sources labeled. </p>
+<p><img alt="" src="images/40-Building_a_Form-1.png" /></p>
+<p>Figure 1. The BuildForm.java Generated Document. </p>
+<p>The document contains two forms: the default "Form", and "GridForm" holding a 
+single GridControl. "GridForm" employs the same database as "Form", but interacts 
+with it in a different way. </p>
+<p>Table 1 summarizes which listeners are used with which controls. These are Office 
+listeners (i.e. subclasses of XEventListener) not Java classes. </p>
+<p>Form Control Listeners 
+CommandButton XActionListener, XMouseListener </p>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+</div>
+<p>Creating 
+Controls; Assigning a 
+Data Source to a Form; 
+Creating Data-aware 
+Controls; Attaching 
+Listeners 
+Example folders: "Forms 
+Tests" and "Utils" 
+Textfield XTextListener, XFocusListener 
+RadioButton, CheckBox XPropertyChangeListener 
+ListBox XItemListener 
+GridControl XSelectionChangeListener, 
+XGridColumnListener 
+Table 1. Controls and Associated Listeners Used by BuildForm.java. </p>
+<p>The finished form is saved in "build.odt", which retains the data links (since they're 
+stored as properties of the form controls), but the listeners are discarded. </p>
+<p>The main() function of BuildForm.java creates a text document, and adds form 
+controls by calling createForm(): </p>
+<p>// globals 
+private static final String DB_FNM = "liang.odb";    // database  </p>
+<p>private XTextDocument doc;  // for use by the listeners </p>
+<p>// in BuildForm.java 
+public BuildForm() 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  doc = Write.createDoc(loader); </p>
+<p>if (doc == null) { 
+    System.out.println("Writer doc creation failed"); 
+    Lo.closeOffice(); 
+    System.exit(1); 
+  } </p>
+<p>doc.addEventListener(this); <br />
+      // for showing disposing of document (and controls) 
+  GUI.setVisible(doc, true); </p>
+<p>XTextViewCursor tvc = Write.getViewCursor(doc); 
+  Write.append(tvc, "Building a Form\n"); 
+  Write.endParagraph(tvc); </p>
+<p>createForm(doc); 
+  Lo.dispatchCmd("SwitchControlDesignMode"); 
+    // switch from form design/editing mode to live mode </p>
+<p>Lo.waitEnter(); </p>
+<p>Lo.saveDoc(doc, "build.odt"); 
+  Lo.closeDoc(doc); 
+  Lo.closeOffice(); 
+}  // end of BuildForm() </p>
+<h2 id="1-creating-controls">1.  Creating Controls</h2>
+<p>createForm() makes many calls to Forms.addControl(), and other Forms.addXXX() 
+methods which indirectly use Forms.addControl(). For example, the call that creates 
+the "No automatic generation" radio button at the top of the form is: </p>
+<p>// part of createForm() in BuildForm.java... </p>
+<p>XPropertySet props =<br />
+     Forms.addControl(doc, "Option",  "No automatic generation",<br />
+                      "RadioButton", 106, 11, 50, 6); </p>
+<p>It returns the model's properties since additional values often need to be set after the 
+control has been created. </p>
+<p>Forms.addControl() starts by creating the control's view, utilizing a subclass of the 
+Shape service, called ControlShape. The relevant part of the service hierarchy is 
+shown in Figure 2. </p>
+<p><img alt="" src="images/40-Building_a_Form-2.png" /></p>
+<p>Figure 2. The Shape and ControlShape Services. </p>
+<p>Properties in the Shape service define the position, width, and height of the control 
+inside the form. In the call to Forms.addControl() above, the first pair of numbers, 
+(106,11), is the intended position, while its width and height are 50 x 6.  </p>
+<p>After the view has been initialized, the control's model is created by using the string 
+passed in the method call (e.g. "RadioButton" in this example). </p>
+<p>The model and shape are linked together using XControlShape.setControl().  </p>
+<p>Forms.addControl() is: </p>
+<p>// in the Forms class 
+public static XPropertySet addControl(XComponent doc,<br />
+     String name, String label, String compKind, int x, int y, 
+                                        int width, int height) 
+// use the default form, "Form", for the control 
+{  return addControl(doc, name, label, compKind,<br />
+                              x, y, width, height, null);  } </p>
+<p>public static XPropertySet addControl(XComponent doc, <br />
+      String name, String label, String compKind, int x, int y, 
+      int width, int height, XNameContainer parentForm) 
+{ 
+  XPropertySet modelProps = null; 
+  try { 
+    // create a shape to represent the control's view 
+    XControlShape cShape = 
+        Lo.createInstanceMSF(XControlShape.class,<br />
+                        "com.sun.star.drawing.ControlShape"); </p>
+<pre><code>// position and size of the shape 
+cShape.setSize(new Size(width*100, height * 100)); 
+cShape.setPosition(new Point(x * 100, y * 100));
+
+// adjust the anchor so that the control is tied to the page 
+XPropertySet shapeProps = Lo.qi(XPropertySet.class, cShape); 
+TextContentAnchorType eAnchorType =  
+                   TextContentAnchorType.AT_PARAGRAPH; 
+shapeProps.setPropertyValue("AnchorType", eAnchorType);
+
+// create the control's model 
+XControlModel cModel =  
+           Lo.createInstanceMSF(XControlModel.class,  
+               "com.sun.star.form.component." + compKind);
+
+// insert the model into the form (or default to "Form") 
+if (parentForm != null) 
+  parentForm.insertByName(name, cModel);
+
+// link model to the shape 
+cShape.setControl(cModel);
+
+// add shape to shapes collection of the doc's draw page 
+XDrawPage drawPage = getDrawPage(doc); 
+XShapes formShape s= Lo.qi(XShapes.class, drawPage ); 
+formShapes.add(cShape);
+
+// set Name and Label properties for the model 
+modelProps = Lo.qi(XPropertySet.class, cModel); 
+modelProps.setPropertyValue("Name", name); 
+if (label != null) 
+  modelProps.setPropertyValue("Label", label);
+</code></pre>
+<p>} 
+  catch (Exception e) { 
+    System.out.println(e); 
+  } 
+  return modelProps; 
+}  // end of addControl() </p>
+<p>The control is added to the form in two ways: firstly the control model is placed in the 
+parent form with: 
+parentForm.insertByName(name, cModel); 
+then the control shape is inserted into the form's draw page: </p>
+<p>XDrawPage drawPage = getDrawPage(doc); 
+XShapes formShape s= Lo.qi(XShapes.class, drawPage ); 
+formShapes.add(cShape); </p>
+<p>The Forms class contains several methods that call addControl() with fixed 
+arguments, and set various model properties. For example, Forms.addButton() makes 
+a CommandButton: </p>
+<p>// in the Forms class 
+public static XPropertySet addButton(XComponent doc,<br />
+   String name, String label, int x, int y, int width, int height) 
+{ 
+  XPropertySet buttonProps = null; 
+  try { 
+    buttonProps = addControl(doc, name, label, "CommandButton",<br />
+                             x, y, width, height); 
+    buttonProps.setPropertyValue("HelpText", name); </p>
+<pre><code>// don't want button to be accessible by the "tab" key 
+buttonProps.setPropertyValue("Tabstop", false);
+
+// the button should not steal focus when clicked 
+buttonProps.setPropertyValue("FocusOnClick", false);
+</code></pre>
+<p>} 
+  catch (Exception e) { 
+    System.out.println(e); 
+  } </p>
+<p>return buttonProps; 
+}  // end of addButton() </p>
+<p>The "CommandButton" string passed to addControl() means that the model will be an 
+instance of "com.sun.star.form.component.CommandButton". </p>
+<p>Another variant of addControl() is Forms.addLabelledControl() which calls 
+addControl() twice to attach a text label to the control. For instance, the 
+"FIRSTNAME" text field is created with: </p>
+<p>// part of createForm() in BuildForm.java... </p>
+<p>XPropertySet props = 
+    Forms.addLabelledControl(doc, "FIRSTNAME", "TextField", 11); </p>
+<p>The Forms.addLabelledControl() code: </p>
+<p>// in the Forms class 
+public static XPropertySet addLabelledControl(XComponent doc,<br />
+          String label, String compKind, int y) 
+{  return addLabelledControl(doc, label, compKind, 2, y, 6);  } </p>
+<p>public static XPropertySet addLabelledControl(XComponent doc,<br />
+        String label, String compKind, int x, int y, int height) 
+{ 
+  XPropertySet ctrlProps = null; 
+  try { 
+    // create label (fixed text) control 
+    String name = label + "_Label"; 
+    XPropertySet labelProps =<br />
+       addControl(doc, name, label, "FixedText", x, y, 25, 6); </p>
+<pre><code>// create data field control 
+ctrlProps = addControl(doc, label, null, compKind,  
+           x + 26, y, 40, height);  // to the right 
+ctrlProps.setPropertyValue("DataField", label);
+
+// add label props to the control 
+ctrlProps.setPropertyValue("LabelControl", labelProps);
+</code></pre>
+<p>} 
+  catch (Exception e) { 
+    System.out.println(e); 
+  } </p>
+<p>return ctrlProps; 
+}  // end of addLabelledControl() </p>
+<p>The label is of type com.sun.star.form.component.FixedText, and linked to the text 
+field by setting its "DataField" and "LabelControl" properties. </p>
+<h2 id="2-assigning-a-data-source-to-a-form">2.  Assigning a Data Source to a Form</h2>
+<p>The "Form" and "GridForm" forms are both 'data aware', which means they're 
+connected to external databases. Data awareness is supported by the DataForm 
+subclass of the Form service, which is also connected to the RowSet and ResultSet 
+services of Base, as in Figure 3. </p>
+<p><img alt="" src="images/40-Building_a_Form-3.png" /></p>
+<p>Figure 3. Part of the DataForm Service Hierarchy. </p>
+<p>RowSet in the sdbc module supports the "DataSourceName", "Command", and 
+"CommandType" properties (amongst others). "DataSourceName" is set to the 
+database's URL, and "Command", and "CommandType" specify how the database 
+will be queried by the form's controls. </p>
+<p>The "Form" form is attached to the "liang.odb" database by: </p>
+<p>// part of createForm() in BuildForm.java... </p>
+<p>XForm defForm = Forms.getForm(doc, "Form"); 
+Forms.bindFormToTable(defForm,<br />
+                         FileIO.fnmToURL("liang.odb"), "Course"); </p>
+<p>The code for Forms.bindFormToTable(): </p>
+<p>// in the Forms class 
+public static void bindFormToTable(XForm xForm, 
+                          String sourceName, String tableName) 
+{ Props.setProperty(xForm, "DataSourceName", sourceName); 
+  Props.setProperty(xForm, "Command", tableName); // any table name 
+  Props.setProperty(xForm, "CommandType", CommandType.TABLE); 
+}  // end of bindFormToTable() </p>
+<p>CommandType.TABLE permits SQL SELECT queries to be sent to the data source 
+by the controls. The "Command" setting can be the name of any table in the database 
+since the form's two list boxes (see Figure 1) send their own SELECT queries (see 
+below). </p>
+<p>"GridForm" is set up by a call to Forms.bindFormToSQL() which sends a SQL query 
+to the database to obtain a result set for filling the GridControl table. The code 
+fragment in BuildForm.java is: </p>
+<p>// part of createForm() in BuildForm.java... </p>
+<p>XNameContainer gridCon = Forms.insertForm("GridForm", doc); 
+XForm gridForm = Lo.qi(XForm.class, gridCon); </p>
+<p>Forms.bindFormToSQL(gridForm, FileIO.fnmToURL(DB_FNM),<br />
+         "SELECT \"firstName\", \"lastName\" FROM \"Student\""); </p>
+<p>The code for Forms.bindFormToSQL(): </p>
+<p>// in the Forms class 
+public static void bindFormToSQL(XForm xForm, 
+                                 String sourceName, String cmd) 
+{ Props.setProperty(xForm, "DataSourceName", sourceName); 
+  Props.setProperty(xForm, "Command", cmd);   // SQL statement 
+  Props.setProperty(xForm, "CommandType", CommandType.COMMAND);   <br />
+}  // end of bindFormToSQL() </p>
+<p>It's not clear to me why the command type must be CommandType.COMMAND in 
+Forms.bindFormToSQL() since the SELECT query should be processable by 
+CommandType.TABLE, but using that type cause a run-time error. </p>
+<h2 id="3-creating-data-aware-controls">3.  Creating Data-aware Controls</h2>
+<p>Some control models have subclasses that support data-awareness, which means they 
+can access the form's data source using SELECT queries. The different types are 
+shown in Table 2. </p>
+<p>Control Models Type of Access 
+GridControl Fill a table (grid) with data 
+DatabaseListBox, 
+DatabaseComboBox 
+Fill a list with data 
+DatabaseTextField, 
+DatabaseDateField, 
+DatabaseTimeField, 
+DatabaseNumericField, 
+DatabasePatternField, 
+DatabaseFormattedField, 
+DatabaseCurrencyField 
+Fill a text field 
+DatabaseRadioButton, 
+DatabaseCheckBox 
+Specify whether a box is selected 
+or not. </p>
+<p>DatabaseImageControl Read an image 
+Table 2. Data-aware Control Models. </p>
+<p>The service hierarchy for these control models is similar to the hierarchy for 
+DatabaseListBox shown in Figure 4 (except for GridControl which I'll get to shortly). </p>
+<p><img alt="" src="images/40-Building_a_Form-4.png" /></p>
+<p>Figure 4. Part of the Service Hierarchy for DatabaseListBox. </p>
+<p>Figure 4 should be compared with the service hierarchy for an non-data-aware model, 
+such as CommandButton in Figure 8 of Chapter 39.  </p>
+<p>The model is initialized by setting properties using the database associated with the 
+parent form. Exactly which properties should be set depends on the model, but 
+DatabaseListBox and DatabaseComboBox are fairly straightforward. </p>
+<p>"ListSourceType" is set to ListSourceType.SQL, and "ListSource" assigned a string 
+array containing a SQL command. The command should be a SELECT query which 
+returns a single column result set. </p>
+<p>The two DatabaseListBoxs in BuildForm.java (see Figure 1) are initialized by calling 
+Forms.addDatabaseList() like so: </p>
+<p>// part of createForm() in BuildForm.java... </p>
+<p>Forms.addDatabaseList(doc, "CourseNames",<br />
+          "SELECT \"title\" FROM \"Course\"", 90, 90, 20, 6); </p>
+<p>Forms.addDatabaseList(doc, "StudNames",<br />
+          "SELECT \"lastName\" FROM \"Student\"",  140, 90, 20, 6); </p>
+<p>Forms.addDatabaseList() is: </p>
+<p>// in the Forms class 
+public static XPropertySet addDatabaseList(XComponent doc,<br />
+                         String name, String sqlCmd, 
+                         int x, int y, int width, int height) 
+{ 
+  XPropertySet listProps = null; 
+  try { 
+    listProps = addControl(doc, name, null, "DatabaseListBox",<br />
+                           x, y, width, height); 
+    // listProps.setPropertyValue("DefaultSelection",<br />
+    //                        new short[]{0});  // hangs 
+    listProps.setPropertyValue("Dropdown", true); 
+    listProps.setPropertyValue("MultiSelection", false); 
+    listProps.setPropertyValue("BoundColumn", (short) 0); </p>
+<pre><code>// data-aware properties 
+listProps.setPropertyValue("ListSourceType",  
+                                    ListSourceType.SQL); 
+listProps.setPropertyValue("ListSource",  
+                                 new String[] { sqlCmd });
+</code></pre>
+<p>} 
+  catch (Exception e) { 
+    System.out.println(e); 
+  } 
+  return listProps; 
+}  // end of addDatabaseList() </p>
+<p>The DatabaseListBox control is created by calling Forms.addControl(), and then the 
+model's properties are configured.  </p>
+<p>Setting the list's default selection to be its first value causes Office to hang, so I've 
+commented out that line in addDatabaseList() above. This means that the list boxes 
+appear to be empty until the user clicks on them. </p>
+<h2 id="4-initializing-the-gridcontrol">4.  Initializing the GridControl</h2>
+<p>The GridControl is created by calling Forms.addControl() with "GridControl" as the 
+model string. Also, since this is the only control not inside the "Form" default form, 
+it's necessary to include a reference to the nameContainer for "GridForm": </p>
+<p>// part of createForm() in BuildForm.java... </p>
+<p>// add "GridForm" to document 
+XNameContainer gridCon = Forms.insertForm("GridForm", doc); 
+XForm gridForm = Lo.qi(XForm.class, gridCon); </p>
+<p>// "GridForm" uses an SQL query as its data source 
+Forms.bindFormToSQL(gridForm, FileIO.fnmToURL(DB_FNM),<br />
+          "SELECT \"firstName\", \"lastName\" FROM \"Student\""); </p>
+<p>// create grid control inside "GridForm" 
+props = Forms.addControl(doc, "SalesTable", null,<br />
+                      "GridControl", 2, 100, 100, 40, gridCon); </p>
+<p>"GridForm"s query generates a result set with two columns consisting of first and last 
+names from the Student table. For this information to be displayed by the grid, two of 
+the grid's columns must be attached to the two result set columns. This is done by 
+calling Forms.createGridColumn() twice: </p>
+<p>// part of createForm() in BuildForm.java... </p>
+<p>// get grid control's model 
+XControlModel gridModel = Lo.qi(XControlModel.class, props); </p>
+<p>// connect grid control's columns to result set 
+Forms.createGridColumn(gridModel, "firstName", "TextField", 25); 
+Forms.createGridColumn(gridModel, "lastName", "TextField", 25); </p>
+<p>The main service for a grid control model is GridControl in the form.components 
+module. Part of its hierarchy is shown in Figure 5. </p>
+<p><img alt="" src="images/40-Building_a_Form-5.png" /></p>
+<p>Figure 5. Part of the GridControl Service Hierarchy. </p>
+<p>If Figure 5's hierarchy is compared to those for other models, such as 
+CommandButton in Figure 8 of Chapter 39, there are some differences. GridControl 
+inherits the UnoControlModel service, but not through UnoControlGridModel in the 
+awt module. A search for such a service returns an entire awt.grid sub-module for grid 
+services, interfaces, and classes, but these aren't utilized by the form's grid control. </p>
+<p>The consequence is that GridControl is initialized in a different way from other 
+models, and listener code becomes a little harder to implement (as we'll see in section 
+6). </p>
+<p>Forms.createGridColumn() employs the XGridColumnFactory interface to link a grid 
+column to a result set column: </p>
+<p>// in the Forms class 
+public static void createGridColumn(XControlModel gridModel,<br />
+        String dataField, String colKind, int width) 
+{<br />
+  try { 
+    // column container and factory 
+    XIndexContainer colContainer =<br />
+                    Lo.qi(XIndexContainer.class, gridModel); 
+    XGridColumnFactory colFactory =<br />
+                    Lo.qi(XGridColumnFactory.class, gridModel); </p>
+<pre><code>// create the column 
+XPropertySet colProps = colFactory.createColumn(colKind); 
+colProps.setPropertyValue("DataField", dataField);   
+            // connect column to this result set column 
+colProps.setPropertyValue("Label", dataField); 
+colProps.setPropertyValue("Name", dataField); 
+if (width &gt; 0) 
+  colProps.setPropertyValue("Width", new Integer(width * 10));
+
+// add properties column to container 
+colContainer.insertByIndex(colContainer.getCount(), colProps);
+</code></pre>
+<p>} 
+  catch (Exception e) { 
+    System.out.println(e); 
+  } 
+}  // end of createGridColumn() </p>
+<h2 id="5-attaching-listeners">5.  Attaching Listeners</h2>
+<p>Table 1 shows that nine Office  listeners are used with the controls. To reduce coding, 
+BuildForm implements their methods: </p>
+<dl>
+<dt>// in BuildForm.java</dt>
+<dt>public class BuildForm implements XEventListener,</dt>
+<dt>XActionListener, XPropertyChangeListener,</dt>
+<dt>XTextListener, XFocusListener, XItemListener,</dt>
+<dt>XMouseListener, XSelectionChangeListener,</dt>
+<dt>XGridColumnListener</dt>
+<dt>{</dt>
+<dd>// methods for creating the controls ... </dd>
+<dd>// methods for attaching listeners to the controls ... </dd>
+</dl>
+<p>// listener methods for ... </p>
+<p>// XEventListener 
+  public void disposing(EventObject ev) 
+  { String implName = Info.getImplementationName(ev.Source); 
+    System.out.println("Disposing: " + implName); 
+  } </p>
+<dl>
+<dt>// XActionListener  </dt>
+<dt>  public void actionPerformed(ActionEvent ev) </dt>
+<dt>  // called when a button has been pressed </dt>
+<dt>  {  System.out.println("Pressed \"" + ev.ActionCommand + "\"");  }   </dt>
+<dd>
+<p>// many more listener methods </p>
+</dd>
+</dl>
+<p>}  // end of BuildForm class </p>
+<p>The listener methods are fairly simple, except for the XSelectionChangeListener 
+attached to the grid control. A button control is attached to a listener like so: </p>
+<p>// part of createForm() in BuildForm.java... </p>
+<p>XPropertySet props = Forms.addButton(doc, "first", "&lt;&lt;", 2, 63, 8); 
+listenToButton(props); </p>
+<p>The code in listenToButton() is depicted by Figure 6. All the other "listener attacher"<br />
+functions in BuildForm.java work in a similar way. </p>
+<p><img alt="" src="images/40-Building_a_Form-6.png" /></p>
+<p>Figure 6. Attaching a Listener to a Button Control. </p>
+<p>The property set passed to listenToButton() is cast to XControlModel, and then 
+converted into a view using Forms.getControl(). The control is cast to an interface 
+(such as XButton or XTextComponent) which offers an addXXXListener() method. </p>
+<p>The listenToButton() method is: </p>
+<p>// in BuildForm.java 
+public void listenToButton(XPropertySet props) 
+{ 
+  XControlModel cModel = Lo.qi(XControlModel.class, props); 
+  XControl control = Forms.getControl(doc, cModel); 
+  XButton xButton = Lo.qi(XButton.class, control); </p>
+<p>xButton.setActionCommand(Forms.getName(cModel)); 
+  xButton.addActionListener(this);  // use BuildForms as the listener 
+}  // end of listenToButton() </p>
+<h2 id="6-listening-for-grid-control-selection-changes">6.  Listening for Grid Control Selection Changes</h2>
+<p>Grid selection changes occur when the user clicks on a cell in the table, as in Figure 7. </p>
+<p><img alt="" src="images/40-Building_a_Form-7.png" /></p>
+<p>Figure 7. Grid Control Selection Change. </p>
+<p>Figure 8 shows the grid model and control hierarchy.  </p>
+<p><img alt="" src="images/40-Building_a_Form-8.png" /></p>
+<p>Figure 8. Attaching a Listener to a Grid Control. </p>
+<p>The grid model inherits UnoControlModel via FormControlModel. On the control 
+side, GridControl in the form.control module inherits UnoControl directly. </p>
+<p>GridControl supports two listener interfaces – XSelectionSupplier and XGridControl. </p>
+<p>Their attachment is handled by listenToGrid(), which is called after the control has 
+been initialized by createForm(): </p>
+<p>// in createForm() in BuildForm.java... </p>
+<p>props = Forms.addControl(doc, "SalesTable", null, 
+                   "GridControl", 2, 100, 100, 40, gridCon); 
+XControlModel gridModel = Lo.qi(XControlModel.class, props); </p>
+<p>Forms.createGridColumn(gridModel, "firstName", "TextField", 25); 
+Forms.createGridColumn(gridModel, "lastName", "TextField", 25); 
+listenToGrid(gridModel); </p>
+<p>listenToGrid() is defined as: </p>
+<p>// in BuildForm.java 
+public void listenToGrid(XControlModel gridModel) 
+{ 
+  XControl control = Forms.getControl(doc, gridModel); 
+  XGridControl gc = Lo.qi(XGridControl.class, control); 
+  gc.addGridControlListener(this); </p>
+<p>XSelectionSupplier gridSelection =<br />
+                      Lo.qi(XSelectionSupplier.class, gc); 
+  gridSelection.addSelectionChangeListener(this); 
+}  // end of listenToGrid() </p>
+<p>There's no point using XGridControlListener in this example because its 
+columnChanged() method is only triggered when the data in a column changes, which 
+never occurs. However, XSelectionChangeListener.selectionChanged() is sent an 
+event whenever the user's selection changes, which is what we're interested in 
+reporting. </p>
+<h2 id="7-using-the-result-set">7.  Using the Result Set</h2>
+<p>The XGridControl interface for GridControl doesn't offer all the methods I need for 
+announcing selection changes.  </p>
+<p>XGridControl inherits XGrid and XGridFieldDataSupplier. XGrid can retrieve the 
+currently selected column, while XGridFieldDataSupplier provides access to the data, 
+but neither of them offer a way to find the currently selected row. That requires the 
+result set for the table, which can only be examined by starting from the form level.  </p>
+<p>Getting to the result set requires a number of casts, the first being from the event 
+object arriving at the listener to the model that sent it. Forms.getEventControlModel() 
+does that job: </p>
+<p>// in the Forms class 
+public static XControlModel getEventControlModel(EventObject ev) 
+{ XControl xControl = Lo.qi(XControl.class, ev.Source); 
+  return xControl.getModel(); 
+} </p>
+<p>Another conversion step is from control model to the parent form, which is carried out 
+by Forms.getFormName(): </p>
+<p>// in the Forms class 
+public static String getFormName(XControlModel cModel) 
+{ XChild xChild = Lo.qi(XChild.class, cModel); 
+  XNamed xNamed = Lo.qi(XNamed.class, xChild.getParent()); 
+  return xNamed.getName(); 
+} </p>
+<p>selectionChanged() utilizes getEventControlModel() and getFormName() to convert 
+an event object to a form. Finally, XForm is cast to a result set using the hierarchy in </p>
+<p><img alt="" src="images/40-Building_a_Form-3.png" /></p>
+<p>Figure 3. </p>
+<p>// in BuildForm.java 
+public void selectionChanged(EventObject ev) 
+{ 
+  XControlModel cModel = Forms.getEventControlModel(ev); 
+  XGridControl gc =  Lo.qi(XGridControl.class, ev.Source); <br />
+  System.out.println("Grid " + Forms.getName(cModel) +<br />
+                     " column: " + gc.getCurrentColumnPosition()); </p>
+<p>String formName = Forms.getFormName(cModel); 
+  XForm gForm = Forms.getForm(doc, formName); 
+  XResultSet rs = Lo.qi(XResultSet.class, gForm); 
+  try { 
+    System.out.println("    row: " + rs.getRow()); 
+  } 
+  catch (com.sun.star.uno.Exception e) { 
+    System.out.println(e); 
+  } 
+}  // end of selectionChanged() </p>
+<p>selectionChanged() jumps through these hoops in order to print the currently selected 
+column and row in the table. The selected column is obtained by calling 
+XGridControl.getCurrentColumnPosition(), and the current row comes from 
+XResultSet.getRow(). </p>
+<h2 id="8-some-bugs">8.  Some Bugs</h2>
+<p>My first version of BuildForm.java had a few problems which caused it to hang.  </p>
+<p>The most serious occurred when I tried to include an image button in the form. The 
+relevant lines in createForm() in BuildForm.java were: </p>
+<p>// in createForm() in BuildForm.java... </p>
+<p>props = Forms.addControl(doc, "Smiley", null, 
+                                 "ImageButton", 90, 80, 10, 10); 
+props.setPropertyValue("ImageURL", FileIO.fnmToURL("smiley.png")); </p>
+<p>The button would sometimes appear at the correct position, but cause Office to hang 
+when pressed, and sometimes the button wouldn't appear at all. After failing to find an 
+answer online, I commented out the above lines. If anyone knows of a solution please 
+contact me. </p>
+<p>A more minor issue is the initial lack of text in the DatabaseListBoxs. In the original 
+Forms.addDatabaseList(), the list text was set with: 
+listProps.setPropertyValue("DefaultSelection", new short[]{0}); 
+This line caused Office to hang, and once again I 'solved' the problem by commenting 
+out the code. The unfortunate side-effect is that now the list box's text is blank until 
+the user clicks on the list. </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="39-Forms_API_Overview.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 39. Forms API Overview
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="41-Printing.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Chapter 41. Printing
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

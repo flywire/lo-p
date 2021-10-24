@@ -1,0 +1,1714 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 25. Monitoring Sheets - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-25-monitoring-sheets" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 25. Monitoring Sheets
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 25. Monitoring Sheets
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link md-nav__link--active">
+        Chapter 25. Monitoring Sheets
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-listening-for-the-users-modifications" class="md-nav__link">
+    1.  Listening for the User's Modifications
+  </a>
+  
+    <nav class="md-nav" aria-label="1.  Listening for the User's Modifications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-listening-to-the-close-box" class="md-nav__link">
+    1.1.  Listening to the Close Box
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-listening-for-modifications" class="md-nav__link">
+    1.2.  Listening for Modifications
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-examining-the-changed-cell-or-cells" class="md-nav__link">
+    1.3.  Examining the Changed Cell (or Cells)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-problems-with-the-modified-method" class="md-nav__link">
+    1.4.  Problems with the modified() Method
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-listening-for-cell-selections" class="md-nav__link">
+    2.  Listening for Cell Selections
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-listening-for-the-users-modifications" class="md-nav__link">
+    1.  Listening for the User's Modifications
+  </a>
+  
+    <nav class="md-nav" aria-label="1.  Listening for the User's Modifications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-listening-to-the-close-box" class="md-nav__link">
+    1.1.  Listening to the Close Box
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-listening-for-modifications" class="md-nav__link">
+    1.2.  Listening for Modifications
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-examining-the-changed-cell-or-cells" class="md-nav__link">
+    1.3.  Examining the Changed Cell (or Cells)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-problems-with-the-modified-method" class="md-nav__link">
+    1.4.  Problems with the modified() Method
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-listening-for-cell-selections" class="md-nav__link">
+    2.  Listening for Cell Selections
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/25-Monitoring_Sheets.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-25-monitoring-sheets">Chapter 25. Monitoring Sheets</h1>
+<p>The chapter looks at three kinds of listeners for 
+spreadsheets: document modification, application closing, 
+and cell selection listeners. </p>
+<p>Office's support for listeners was first described back in 
+Chapter 4.  </p>
+<h2 id="1-listening-for-the-users-modifications">1.  Listening for the User's Modifications</h2>
+<p>A common requirement for spreadsheet programming is controlling how the user 
+interacts with the sheet's data. In the extreme case, this might mean preventing the 
+user from changing anything, which is possible through the XProtectable interface 
+discussed in Chapter 20, section 1.1. But often we want to let the user edit the sheet, 
+but monitor what is being changed. </p>
+<p>One way of doing this is to attach a XModifyListener interface to the open document 
+so that its modified() method will be triggered whenever a cell is changed. </p>
+<p>ModifyListener.java illustrates this approach: </p>
+<p>// in ModifyListener.java 
+public class ModifyListener implements XModifyListener 
+{ 
+  private XSpreadsheetDocument doc; 
+  private XSpreadsheet sheet; </p>
+<p>public ModifyListener() 
+  { 
+    XComponentLoader loader = Lo.loadOffice(); 
+    doc = Calc.createDoc(loader); 
+    if (doc == null) { 
+      System.out.println("Document creation failed"); 
+      Lo.closeOffice(); 
+      return; 
+    } 
+    GUI.setVisible(doc, true); 
+    sheet = Calc.getSheet(doc, 0); </p>
+<pre><code>// insert some data 
+Calc.setCol(sheet, "A1", 
+   new Object[] {"Smith", 42, 58.9, -66.5, 43.4, 44.5, 45.3});
+
+// listen for cell modifications 
+XModifyBroadcaster mb = Lo.qi(XModifyBroadcaster.class, doc); 
+mb.addModifyListener(this);
+
+// close down when window close box is clicked 
+XExtendedToolkit tk = Lo.createInstanceMCF( 
+                          XExtendedToolkit.class,  
+                          "com.sun.star.awt.Toolkit");
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Listening for </p>
+</div>
+<p>Document Modifications 
+(XModifyListener); 
+Listening for 
+Application Closing 
+(XTopWindowListener); 
+Listening for Cell 
+Selection 
+(XSelectionChangeListe
+ner) 
+Example folders: "Calc 
+Tests" and "Utils" 
+    if (tk != null) 
+      tk.addTopWindowListener( new XTopWindowAdapter() { 
+        public void windowClosing(EventObject eo) 
+        { System.out.println("Closing"); <br />
+          Lo.saveDoc(doc, "modify.ods"); 
+          Lo.closeDoc(doc); 
+          Lo.closeOffice(); 
+        } 
+      }); 
+  }  // end of ModifyListener() </p>
+<p>// ----- XModifyListener methods ------ </p>
+<p>public void disposing(EventObject event) 
+  {  System.out.println("Disposing"); }   </p>
+<p>public void modified(EventObject event) 
+  {  // called whenever a cell is modified;<br />
+     // the code in this method is explained below 
+  }  </p>
+<p>// ------------------------------------ 
+  public static void main(String args[]) 
+  {  new ModifyListener();  } </p>
+<p>}  // end of ModifyListener class </p>
+<h3 id="11-listening-to-the-close-box">1.1.  Listening to the Close Box</h3>
+<p>main() creates a ModifyListener object and then terminates, which means that the 
+object must deal with the closing of the spreadsheet and the termination of Office. </p>
+<p>This is done by employing another listener: an adapter for XTopWindowListener, 
+called XTopWindowAdapter, attached to the Calc application's close box: </p>
+<dl>
+<dt>// in ModifyListener.java</dt>
+<dd>XExtendedToolkit tk = Lo.createInstanceMCF(XExtendedToolkit.class,<br />
+                                    "com.sun.star.awt.Toolkit"); 
+if (tk != null) 
+  tk.addTopWindowListener( new XTopWindowAdapter() { 
+    public void windowClosing(EventObject eo) 
+    { /<em>  called whenever the appl. is closed  </em>/  } 
+  } </dd>
+</dl>
+<p>XTopWindowListener was described in Chapter 4, section 1, but 
+XTopWindowAdapter is one of my support classes. </p>
+<p>XTopWindowListener defines eight methods, called when the application window is 
+in different states: opened, activated, deactivated, minimized, normalized, closing, 
+closed, and disposed. XTopWindowAdapter supplies empty implementations for 
+those methods: </p>
+<p>// in Utils/XTopWindowAdapter.java 
+public class XTopWindowAdapter implements XTopWindowListener 
+{ 
+  public XTopWindowAdapter(){} </p>
+<p>public void windowOpened(EventObject event){} </p>
+<p>public void windowActivated(EventObject event){} 
+  public void windowDeactivated(EventObject event){} </p>
+<p>public void windowMinimized(EventObject event) {} 
+  public void windowNormalized(EventObject event){} </p>
+<p>public void windowClosing(EventObject event){} 
+  public void windowClosed(EventObject event){} </p>
+<p>public void disposing(EventObject event){} 
+}  // end of XTopWindowAdapter class </p>
+<p>ModifyListener.java overides XTopWindowAdapter's windowClosing(), but leaves 
+the other methods unchanged. windowClosing() is triggered when the application's 
+close box is clicked, and it responds by saving the document, then closes it and 
+Office: </p>
+<dl>
+<dt>// in ModifyListener.java</dt>
+<dd>tk.addTopWindowListener( new XTopWindowAdapter() { 
+  public void windowClosing(EventObject eo) 
+  { System.out.println("Closing"); <br />
+    Lo.saveDoc(doc, "modify.ods"); 
+    Lo.closeDoc(doc); 
+    Lo.closeOffice(); 
+  } 
+} </dd>
+</dl>
+<h3 id="12-listening-for-modifications">1.2.  Listening for Modifications</h3>
+<p>ModifyListener is notified of document changes by attaching itself to the document's 
+XModifyBroadcaster: </p>
+<p>// in ModifyListener.java 
+     : 
+// listen for cell modifications 
+XModifyBroadcaster mb = Lo.qi(XModifyBroadcaster.class, doc); 
+mb.addModifyListener(this); </p>
+<p>A look at the documentation for XModifyListener (use lodoc XModifyListener) 
+shows that it defines a modified() method, and inherits disposing() from 
+XEventListener. ModifyListener implements both of these, although disposing() only 
+prints a message. ModifyListener.modified() does something useful: </p>
+<p>// in ModifyListener.java 
+     : 
+// global variables 
+private XSpreadsheetDocument doc; 
+private XSpreadsheet sheet; </p>
+<p>public void modified(EventObject event) 
+// called whenever a cell is modified 
+{<br />
+  // System.out.println("Modified: " + event.Source); 
+  // Info.showServices("Event source", event.Source); </p>
+<p>//  XSpreadsheetDocument doc =<br />
+  //    Lo.qi(XSpreadsheetDocument.class, event.Source); </p>
+<p>CellAddress addr = Calc.getSelectedCellAddr(doc); 
+  System.out.println("  " + Calc.getCellStr(addr) + " = " +<br />
+                            Calc.getVal(sheet, addr)); 
+}  // end of modified() </p>
+<p>An event object arriving at modified() contains a Source field of type XInterface. </p>
+<p>Every Office interface inherits XInterface so it's difficult to know what the source 
+really is. The simplest solution is to print the names of the source's supported services, 
+by calling Info.showServices(), as in the commented-out code above.  </p>
+<p>In this case, the Source field is supported by the SpreadsheetDocument service, which 
+means that it can be converted into an XSpreadsheetDocument  interface. Lots of 
+useful things can be accessed through this interface, but that's also commented-out 
+because I can utilize the document via the global variable, doc. </p>
+<h3 id="13-examining-the-changed-cell-or-cells">1.3.  Examining the Changed Cell (or Cells)</h3>
+<p>While modified() is being executed, the modified cell in the document is still selected 
+(or active), and so can be retrieved: </p>
+<p>// in modified() ... </p>
+<p>CellAddress addr = Calc.getSelectedCellAddr(doc); </p>
+<p>Calc.getSelectedCellAddr() needs the XModel interface for the document so that 
+XModel.getCurrentSelection() can be called. It also has to handle the possibility that a 
+cell range is currently selected rather than a single cell: </p>
+<p>// in the Calc class 
+public static CellAddress getSelectedCellAddr( 
+                                 XSpreadsheetDocument doc) 
+// return address of selected cell in document; 
+// returns null if a cell range is selected 
+{ 
+  // get address of selected cell range<br />
+  CellRangeAddress crAddr = getSelectedAddr(doc); </p>
+<p>// if cell range is a single cell 
+  CellAddress addr = null; 
+  if (Calc.isSingleCellRange(crAddr)) { 
+    XSpreadsheet sheet = getActiveSheet(doc); 
+    XCell cell = Calc.getCell(sheet, crAddr.StartColumn,<br />
+                                     crAddr.StartRow); 
+      // access the cell using the cell range position 
+    addr = Calc.getCellAddress(cell); 
+      // get address of selected cell 
+  } 
+  return addr; 
+}  // end of getSelectedCellAddr() </p>
+<p>public static CellRangeAddress getSelectedAddr( 
+                               XSpreadsheetDocument doc)<br />
+{ // look for selected address in document's model 
+  XModel model = Lo.qi(XModel.class, doc); 
+  return getSelectedAddr(model); 
+} </p>
+<p>public static CellRangeAddress getSelectedAddr(XModel model) 
+// return address of selected cell range in the model 
+{ 
+  if (model == null) { 
+    System.out.println("No document model found"); 
+    return null; 
+  } 
+  XCellRangeAddressable ra = Lo.qi( 
+     XCellRangeAddressable.class, model.getCurrentSelection()); 
+  if (ra != null) 
+    return ra.getRangeAddress(); 
+  else { 
+    System.out.println("No range address found"); 
+    return null; 
+  } 
+}  // end of getSelectedAddr() </p>
+<p>Calc.getSelectedCellAddr() utilizes Calc.getSelectedAddr(), which returns the address 
+of the selected cell range. Calc.getSelectedCellAddr() examines this cell range to see 
+if it's really just a single cell by calling Calc.isSingleCellRange(): </p>
+<p>// in the Calc class 
+public static boolean isSingleCellRange(CellRangeAddress addr) 
+{ return ((addr.StartColumn == addr.EndColumn) &amp;&amp; 
+          (addr.StartRow == addr.EndRow));   }  </p>
+<p>If the cell range is referencing a cell then the cell range address position is used to 
+directly access the cell in the sheet: </p>
+<dl>
+<dt>// in Calc.getSelectedCellAddr()</dt>
+<dd>XSpreadsheet sheet = getActiveSheet(doc); 
+XCell cell = Calc.getCell(sheet, crAddr.StartColumn,<br />
+                                 crAddr.StartRow); </dd>
+</dl>
+<p>This requires the current active sheet, which is obtained through 
+Calc.getActiveSheet(). </p>
+<h3 id="14-problems-with-the-modified-method">1.4.  Problems with the modified() Method</h3>
+<p>After all this coding, the bad news is that modified() is still lacking in functionality.  </p>
+<p>One minor problem is that modified() is called twice when the user finishes editing a 
+cell. This occurs when the user presses enter, or tab, or an arrow key, and for reasons I 
+don't understand. It could be fixed with some judicious hacking: e.g. by using a 
+counter to control when the code is executed. </p>
+<p>A more important concern is that modified() only has access to the new value in the 
+cell, but doesn't know what was overwritten, which would be very useful for 
+implementing data validation. This led me to investigate another form of listening, 
+based on cell selection, which is described next. </p>
+<h2 id="2-listening-for-cell-selections">2.  Listening for Cell Selections</h2>
+<p>Listening to cell selections on the sheet has the drawback of generating a lot of events, 
+but this abundance of data turns out to be useful; I can use it to report more about cell 
+modifications. </p>
+<p>The SelectListener.java example is similar to ModifyListener.java except that it 
+implements XSelectionChangeListener rather than XModifyListener: </p>
+<p>// in  SelectListener.java 
+public class SelectListener implements XSelectionChangeListener 
+{ 
+  private XSpreadsheetDocument doc; 
+  private XSpreadsheet sheet; </p>
+<p>// selected cell's current address and numeric value 
+  private CellAddress currAddr; 
+  private Double currVal = null;  </p>
+<p>public SelectListener() 
+  { 
+    XComponentLoader loader = Lo.loadOffice(); 
+    doc = Calc.createDoc(loader); 
+    if (doc == null) { 
+      System.out.println("Document creation failed"); 
+      Lo.closeOffice(); 
+      return; 
+    } 
+    GUI.setVisible(doc, true); 
+    sheet = Calc.getSheet(doc, 0); </p>
+<pre><code>// initialize selected cell's current address and value 
+currAddr = Calc.getSelectedCellAddr(doc); 
+currVal = getCellDouble(sheet, currAddr);   // may be null
+
+attachListener(doc);  // listen for cell selections
+
+// insert some data 
+Calc.setCol(sheet, "A1", 
+   new Object[] {"Smith", 42, 58.9, -66.5, 43.4, 44.5, 45.3});
+
+// close down when window close box is clicked 
+XExtendedToolkit tk = Lo.createInstanceMCF( 
+                             XExtendedToolkit.class,  
+                             "com.sun.star.awt.Toolkit"); 
+if (tk != null) 
+  tk.addTopWindowListener( new XTopWindowAdapter() { 
+    public void windowClosing(EventObject eo) 
+    { System.out.println("Closing");   
+      Lo.saveDoc(doc, "select.ods"); 
+      Lo.closeDoc(doc); 
+      Lo.closeOffice(); 
+    } 
+  });
+</code></pre>
+<p>}  // end of SelectListener() </p>
+<p>SelectListener.java employs four globals instead of the two in ModifyListener: the 
+document and sheet variables are joined by variables holding the address of the 
+currently selected cell (currAddr) and its numerical value (currVal). If the cell doesn't 
+contain a double then currVal is assigned null. currAddr and currVal are initialized 
+after the document is first created, and are updated whenever the user changes a cell. </p>
+<p>attachListener() is called to attach the listener to the document: </p>
+<p>// in  SelectListener.java 
+private void attachListener(XSpreadsheetDocument doc) 
+{ 
+  // get selection supplier for document 
+  XController ctrl = Calc.getController(doc); 
+  XSelectionSupplier supp = Lo.qi(XSelectionSupplier.class, ctrl); </p>
+<p>if (supp == null) 
+    System.out.println("Could not attach selection listener"); 
+  else  // make "this" object a selection listener 
+    supp.addSelectionChangeListener(this);<br />
+}  // end of attachListener() </p>
+<p>The document's controller is changed to an XSelectionSupplier interface so its 
+addSelectionChangeListener() method can be called. </p>
+<p>The XSelectionChangeListener interface defines disposing() and selectionChanged() 
+(see lodoc XSelectionChangeListener for details). selectionChanged() listens for 
+three kinds of changes in the sheet: 
+ it reports when the selected cell changes by printing the name of the previous cell 
+and the newly selected one; 
+ it reports whether the cell that has just lost focus now has a value different from 
+when it was selected; 
+ it reports if the newly selected cell contains a numerical value. </p>
+<p>For example, Figure 1 shows the initial sheet of data created by SelectListener: </p>
+<p><img alt="" src="images/25-Monitoring_Sheets-1.png" /></p>
+<p>Figure 1. The Sheet of Data in SelectListener.java </p>
+<p>Note that the selected cell when the sheet is first created is "A1". </p>
+<p>If the user carries out the following operations: 
+ click in cell "B2" 
+ click in cell "A4" 
+ click in "A5" 
+ change "A5 to 4 and press tab 
+then the sheet will end up looking like Figure 2, with "B5" being the selected cell. </p>
+<p><img alt="" src="images/25-Monitoring_Sheets-2.png" /></p>
+<p>Figure 2. The Modified Sheet in SelectListener.java </p>
+<p>During these changes, selectionChanged() will report: </p>
+<p>A1 --&gt; B2 
+B2 --&gt; A4 
+A4 value: -66.5 
+A4 --&gt; A5 
+A5 value: 43.4 
+A5 --&gt; B5 
+A5 has changed from 43.4 to 4.0 </p>
+<p>The "--&gt;" lines note cell selection changes. The "value" lines state the value of a cell 
+when it's first selected, and the "changed" lines report whether the cell was left 
+changed when the focus moved to another cell.  </p>
+<p>The output from selectionChanged() shown above shows how the user moved around 
+the spreadsheet, and changed the "A5" cell's contents from 43.4 to 4. </p>
+<p>selectionChanged() is defined as: </p>
+<p>// in SelectListener.java 
+// globals<br />
+private CellAddress currAddr; 
+private Double currVal = null;  </p>
+<p>public void selectionChanged(EventObject event) 
+{ 
+  XController ctrl = Lo.qi(XController.class, event.Source); 
+  if (ctrl == null){ 
+    System.out.println("No ctrl for event source"); 
+    return; 
+  } </p>
+<p>// get address of currently selected cell 
+  CellAddress addr = Calc.getSelectedCellAddr(doc); 
+  if (addr == null) 
+    return; </p>
+<p>// is this different from the stored selected address? 
+  if (!Calc.isEqualAddresses(addr, currAddr)) { 
+    System.out.println( Calc.getCellStr(currAddr) + " --&gt; " +<br />
+                        Calc.getCellStr(addr)); </p>
+<pre><code>// check if currAddr value has changed 
+Double d = getCellDouble(sheet, currAddr);  // value right now 
+if (d != null) { 
+  if (currVal == null)  // so previously stored value was null 
+    System.out.println( Calc.getCellStr(currAddr) + 
+                                           " new value: " + d); 
+else {   // currVal has a value; is it different from d? 
+    if (currVal.doubleValue() != d.doubleValue()) 
+      System.out.println( Calc.getCellStr(currAddr) + 
+                 " has changed from " + currVal + " to " + d); 
+  } 
+}
+
+// update current address and value 
+currAddr = addr; 
+currVal = getCellDouble(sheet, addr); 
+if (currVal != null)  // print numerical value 
+  System.out.println( Calc.getCellStr(currAddr) +  
+                                     " value: " + currVal);
+</code></pre>
+<p>} 
+}  // end of selectionChanged() </p>
+<p>private Double getCellDouble(XSpreadsheet sheet, CellAddress addr) 
+// return numerical value at cell address, or null 
+{ 
+  Object obj = Calc.getVal(sheet, addr); 
+  if (obj instanceof Double) 
+    return (Double)obj; 
+  else   // if not a double, return null 
+    return null; 
+} // end of getCellDouble() </p>
+<p>selectionChanged() is called whenever the user selects a new cell. The address of this 
+new cell is obtained by Calc.getSelectedCellAddr(), which returns null if the user has 
+selected a cell range.  </p>
+<p>If the new selection is a cell then a series of comparisons are carried out between the 
+previously selected cell address and value (stored in the globals currAddr and 
+currVal) and the new address and its possible numerical value (stored in addr and d). </p>
+<p>At the end of the method the current address and value are updated with the new ones. </p>
+<p>XSelectionChangeListener shares a similar problem to XModifyListener in that a 
+single user selection triggers multiple calls to selectionChanged(). Clicking once 
+inside a cell causes four calls, and an arrow key press may trigger two calls depending 
+on how it's entered from the keyboard. </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="24-Complex_Data_Manipulation.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 24. Complex Data Manipulation
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="26-Search_Replace.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Chapter 26. Search and Replace
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

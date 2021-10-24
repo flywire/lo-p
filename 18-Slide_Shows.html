@@ -1,0 +1,1634 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 18. Slide Shows - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-18-slide-shows" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 18. Slide Shows
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 18. Slide Shows
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="18-Slide_Shows.html" class="md-nav__link md-nav__link--active">
+        Chapter 18. Slide Shows
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-starting-a-slide-show" class="md-nav__link">
+    1.  Starting a Slide Show
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-play-and-end-a-slide-show-automatically" class="md-nav__link">
+    2.  Play and End a Slide Show Automatically
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-play-a-slide-show-repeatedly" class="md-nav__link">
+    3.  Play a Slide Show Repeatedly
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-play-a-custom-slide-show" class="md-nav__link">
+    4.  Play a  Custom Slide Show
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-starting-a-slide-show" class="md-nav__link">
+    1.  Starting a Slide Show
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-play-and-end-a-slide-show-automatically" class="md-nav__link">
+    2.  Play and End a Slide Show Automatically
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-play-a-slide-show-repeatedly" class="md-nav__link">
+    3.  Play a Slide Show Repeatedly
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-play-a-custom-slide-show" class="md-nav__link">
+    4.  Play a  Custom Slide Show
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/18-Slide_Shows.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-18-slide-shows">Chapter 18. Slide Shows</h1>
+<p>This chapter focuses on ways to programmatically control 
+slide shows. If you're unfamiliar with what Impress offers 
+in this regard, then chapter 9 of the Impress user guide 
+gives a good overview. </p>
+<p>Creating and controlling slide shows employs properties 
+in the Presentation service, and methods in the 
+XSlideShowController interface (see Figure 1). </p>
+<p><img alt="" src="images/18-Slide_Shows-1.png" /></p>
+<p>Figure 1. The Slide Show Presentation Services. </p>
+<p>Two elements of slide shows not shown in Figure 1 are slide transition effects (e.g. </p>
+<p>have the next slide fade into view, replacing the current one), and shape animation 
+effects (e.g. have some text whoosh in from the bottom of the screen). These effects 
+are mostly controlled by setting properties – transition properties are in the 
+com.sun.star.presentation.DrawPage service, animations properties in 
+com.sun.star.presentation.Shape. </p>
+<h2 id="1-starting-a-slide-show">1.  Starting a Slide Show</h2>
+<p>The BasicShow.java example shows how a program can start a slide show, and then 
+let the user progress through the presentation by clicking on a slide, pressing the space 
+bar, or using the arrow keys.  </p>
+<p>While the slide show is running, BasicShow.java suspends, but wakes up when the 
+user exits the show. This can occur when he presses the ESC key, or clicks on the 
+slide show's "click to exit" screen. BasicShow then closes the document and shuts 
+down Office. </p>
+<p>The main() function: 
+Example folders: "Draw 
+Tests" and "Utils" </p>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Starting a Slide </p>
+</div>
+<p>Show; Play and End a 
+Slide Show 
+Automatically; Play a 
+Slide Show Repeatedly; 
+Play a  Custom Slide 
+Show </p>
+<p>// in BasicShow.java 
+public static void main(String args[]) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  XComponent doc = Lo.openDoc(args[0], loader); 
+  if (doc == null) { 
+    System.out.println("Could not open "+ args[0]); 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>GUI.setVisible(doc, true); 
+     // slideshow start() crashes if the doc is not visible </p>
+<p>XPresentation2 show = Draw.getShow(doc); 
+  Props.showObjProps("Slide show", show); 
+  show.start(); 
+  XSlideShowController sc = Draw.getShowController(show); 
+  Draw.waitEnded(sc);   // BasicShow waits for the user 
+                        // to finish the slide show 
+  Lo.closeDoc(doc); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+<p>The document is opened in the normal way and a slide show object created by calling 
+Draw.getShow(), which is defined as: </p>
+<p>// in the Draw class 
+public static XPresentation2 getShow(XComponent doc) 
+{ 
+  XPresentationSupplier ps = Lo.qi(XPresentationSupplier.class, doc); 
+  return Lo.qi(XPresentation2.class, ps.getPresentation()); 
+} </p>
+<p>The call to Props.showObjProps() in main() prints the properties associated with the 
+slide show, most of which are defined in the Presentation service (see Figure 1): </p>
+<p>Slide show Properties 
+  AllowAnimations == true 
+  CustomShow == 
+  Display == 0 
+  FirstPage == 
+  IsAlwaysOnTop == false 
+  IsAutomatic == false 
+  IsEndless == false 
+  IsFullScreen == true 
+  IsMouseVisible == false 
+  IsShowAll == true 
+  IsShowLogo == false 
+  IsTransitionOnClick == true 
+  Pause == 10 
+  StartWithNavigator == false 
+  UsePen == false </p>
+<p>The default values for these properties are sufficient for most presentations. </p>
+<p>The slide show is started by calling XPresentation.show() and, although the call 
+returns immediately, it may be a few 100 milliseconds before the presentation appears 
+on screen. If you have more than one monitor, one of them will be allocated a 
+"Presenter Console" window. </p>
+<p>This short period while the slide show initializes can cause a problem if the 
+XSlideShowController instance is requested too quickly – null will be returned if the 
+slide show hasn't finished being created. Draw.getShowController() handles this issue 
+by waiting: </p>
+<p>// in the Draw class 
+public static XSlideShowController getShowController( 
+                                        XPresentation2 show) 
+// keep trying to get the slide show controller 
+{ 
+  XSlideShowController sc = show.getController();  <br />
+     // may return null if executed too quickly after start of show </p>
+<p>int numTries = 1; 
+  if ((sc == null) &amp;&amp; (numTries &lt; 4)) {  // try 3 times 
+    Lo.delay(1000);  // give the slide show time to start 
+    numTries++; 
+    sc = show.getController(); 
+  } 
+  if (sc == null)<br />
+    System.out.println("Could not obtain slide show controller"); 
+  return sc; 
+}  // end of XSlideShowController getShowController() </p>
+<p>getShowController() tries to obtain the controller three times before giving up and 
+returning null. </p>
+<p>The XSlideShowController interface gives the programmer much greater control over 
+the slide show, including the ability to change the slide being displayed, and monitor 
+and control the slide show state. Two topics I won't cover here are how 
+XSlideShowController can assign listeners to the slide show (of type 
+XSlideShowListener), and how to utilize the XSlideShow interface.  </p>
+<p>Back in BasicShow.java, the main() function suspends by calling Draw.waitEnded(); 
+the idea is that the program will sleep until the human presenter ends the slide show. </p>
+<p>waitEnded() is implemented using XSlideShowController: </p>
+<p>// in the Draw class 
+public static void waitEnded(XSlideShowController sc) 
+{<br />
+  while (sc.getCurrentSlideIndex() != -1) //presentation not ended<br />
+    Lo.delay(1000); 
+  System.out.println("End of presentation detected"); 
+} </p>
+<p>XSlideShowController.getCurrentSlideIndex() normally returns a slide index (i.e. 0 or 
+greater), but when the slide show has finished it returns -1. waitEnded() keeps polling 
+for this value, sleeping for a second between each test. </p>
+<h2 id="2-play-and-end-a-slide-show-automatically">2.  Play and End a Slide Show Automatically</h2>
+<p>The AutoShow.java example removes the need for a presenter to click on a slide to 
+progress to the next one, and terminates the show itself after the last slide had been 
+displayed: </p>
+<p>// in AutoShow.java 
+public static void main(String args[]) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  XComponent doc = Lo.openDoc(args[0], loader); 
+  if (doc == null) { 
+    System.out.println("Could not open "+ args[0]); 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>GUI.setVisible(doc, true); </p>
+<p>// fast automatic change between all the slides 
+  XDrawPage[] slides = Draw.getSlidesArr(doc); 
+  for(XDrawPage slide : slides) 
+    Draw.setTransition(slide, FadeEffect.NONE, AnimationSpeed.FAST,<br />
+                                     Draw.AUTO_CHANGE, 1); </p>
+<p>XPresentation2 show = Draw.getShow(doc); 
+  show.start(); </p>
+<p>XSlideShowController sc = Draw.getShowController(show); </p>
+<p>Draw.waitLast(sc, 3000);  // terminate 3 seconds after the 
+                            // last slide has been shown 
+  System.out.println("Ending the slide show"); 
+  sc.deactivate(); 
+  show.end(); </p>
+<p>Lo.closeDoc(doc); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+<p>Automatic Slide Transitioning 
+The automated transition between slides is configured by calling Draw.setTransition() 
+on every slide in the deck: 
+Draw.setTransition(slide, FadeEffect.NONE,<br />
+                          AnimationSpeed.FAST,<br />
+                          Draw.AUTO_CHANGE, 1); 
+setTransition() combines the setting of four slide properties: "Effect", "Speed", 
+"Change", and "Duration": </p>
+<p>// in the Draw class 
+public static void setTransition(XDrawPage currSlide,<br />
+             FadeEffect fadeEffect, AnimationSpeed speed,<br />
+             int change, int duration) 
+{ try { 
+    XPropertySet props = Lo.qi(XPropertySet.class, currSlide); 
+    props.setPropertyValue("Effect", fadeEffect); 
+    props.setPropertyValue("Speed", speed); 
+    props.setPropertyValue("Change", change); 
+    props.setPropertyValue("Duration", duration);  // in seconds 
+  } 
+  catch (Exception e)<br />
+  {  System.out.println("Could not set slide transition");  } 
+}  // end of setTransition() </p>
+<p>Slide transition properties (such as "Effect", "Speed", "Change", and "Duration") are 
+defined in the com.sun.star.presentation.DrawPage service. However, the possible 
+values for "Effect" are stored in an enumeration listed at the end of the 
+com.sun.star.presentation module (use lodoc presentation module, and scroll to 
+the bottom of the page); Figure 2 shows the enum. </p>
+<p><img alt="" src="images/18-Slide_Shows-2.png" /></p>
+<p>Figure 2. The FadeEffect Enum. </p>
+<p>If you click on a word in the enum, then the browser follows a link to more 
+information.  </p>
+<p>The "Speed" property is used to set the speed of a slide transition, and its values are 
+also stored in an enum in the com.sun.star.presentation package. There are three 
+possible settings: AnimationSpeed.SLOW,  AnimationSpeed.MEDIUM, and 
+AnimationSpeed.FAST. </p>
+<p>The "Change" property specifies how a transition is triggered. The property can take 
+one of three integer values, which aren't defined by an enum for some reason. Instead, 
+the programmer can use constants defined in my Draw class: </p>
+<p>// in the Draw class 
+// slide show change constants 
+public static final int CLICK_ALL_CHANGE = 0; 
+public static final int AUTO_CHANGE = 1;  <br />
+public static final int CLICK_PAGE_CHANGE = 2; </p>
+<p>The default behavior is represented by 0 (Draw.CLICK_ALL_CHANGE) which requires 
+the presenter to click on a slide to change it, and a click is also need to trigger any 
+shape animations on the page. A value of 2 (Draw.CLICK_PAGE_CHANGE)  relieves the 
+presenter from clicking to trigger shape animations, but he still needs to activate a 
+slide transition manually. AutoShow.java passes Draw.AUTO_CHANGE to 
+Draw.setTransition() which causes all the animations and transitions to execute 
+automatically. </p>
+<p>The "Duration" property is specified in seconds and refers to how long the current 
+slide stays on display before the transition effect begins. This is different from the 
+"Speed" property which refers to how quickly a transition is performed. </p>
+<p>Finishing Automatically 
+The other aspect of this automated slide show is making it stop when the last slide has 
+been displayed. This is implemented by Draw.waitLast(): </p>
+<p>// in the Draw class 
+public static void waitLast(XSlideShowController sc, int delay) 
+{ 
+  int numSlides = sc.getSlideCount(); 
+  while (sc.getCurrentSlideIndex() &lt; numSlides-1) { <br />
+                 // has not yet reached the last slide 
+    Lo.delay(500); 
+  } 
+  Lo.delay(delay); 
+}  // end of waitLast() </p>
+<p>waitLast() keeps checking the current slide index and sleeps until the last slide in the 
+deck is reached. It then goes to sleep one last time, to give the final slide time to be 
+seen by the user. </p>
+<h2 id="3-play-a-slide-show-repeatedly">3.  Play a Slide Show Repeatedly</h2>
+<p>Another common kind of automated slide show is one that plays the show repeatedly, 
+only terminating when the presenter steps in and presses the ESC key. This only 
+requires four lines to be changed in AutoShow.java, shown in bold below: </p>
+<dl>
+<dt>// in AutoShow.java</dt>
+<dd>XPresentation2 show = Draw.getShow(doc); 
+Props.showObjProps("Slide show", show); 
+Props.setProperty(show, "IsEndless", true); 
+Props.setProperty(show, "Pause", 0);  <br />
+                   // no pause before repeating 
+show.start(); </dd>
+</dl>
+<p>XSlideShowController sc = Draw.getShowController(show); </p>
+<dl>
+<dt>// Draw.waitLast(sc, 3000);</dt>
+<dt>// commented out; replaced by the next line</dt>
+<dt>Draw.waitEnded(sc);</dt>
+<dt>System.out.println("Ending the slide show");</dt>
+<dt>sc.deactivate();</dt>
+<dt>show.end();</dt>
+<dd></dd>
+</dl>
+<p>The "IsEndless" property turns on slide show cycling, and "Pause" indicates how long 
+the black "Click to exit" screen is displayed before the show restarts. </p>
+<p>Draw.waitEnded() is the same as before – it makes AutoShow.java suspend until the 
+user clicks on the exit screen or presses the ESC key. </p>
+<h2 id="4-play-a-custom-slide-show">4.  Play a  Custom Slide Show</h2>
+<p>A custom slide show is a display sequence other than the usual one that starts with the 
+first slide and moves linearly through to the last. A named 'play list' of pages must be 
+created, consisting of references to slides in the deck. The list can point to the slides in 
+any order, and may reference a slide more than once.  </p>
+<p>Draw.buildPlayList() creates the named play list using three arguments: the slide 
+document, an array of slide indices which represents the intended playing sequence, 
+and a name for the list. For example: </p>
+<p>int[] slideIdxs = new int[] {5, 6, 7, 8}; 
+XNameContainer playList =<br />
+         Draw.buildPlayList(doc, slideIdxs, "ShortPlay"); </p>
+<p>This creates a play list called "ShortPlay" which will show the slides with indices 5, 6, 
+7, and 8 (note: the first slide has index 0). Draw.buildPlayList is used in the 
+CustomShow.java example: </p>
+<p>// in CustomShow.java 
+public static void main(String args[]) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  XComponent doc = Lo.openDoc("algs.odp", loader); 
+  if (doc == null) { 
+    System.out.println("Could not open algs.odp"); 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>GUI.setVisible(doc, true); </p>
+<p>int[] slideIdxs = new int[] {5, 6, 7, 8};<br />
+  XNameContainer playList =<br />
+      Draw.buildPlayList(doc, slideIdxs, "ShortPlay"); </p>
+<p>XPresentation2 show = Draw.getShow(doc); 
+  Props.setProperty(show, "CustomShow", "ShortPlay"); </p>
+<p>show.start(); 
+  XSlideShowController sc = Draw.getShowController(show); 
+  Draw.waitEnded(sc); </p>
+<p>Lo.closeDoc(doc); 
+  Lo.closeOffice(); 
+}  // end of main() </p>
+<p>The play list is installed by setting the "CustomShow" property in the slide show. The 
+rest of the code in CustomShow.java is similar to the BasicShow.java example. </p>
+<p>Creating a Play List Using Containers 
+The most confusing part of Draw.buildPlayList() is its use of two containers to hold 
+the play list: </p>
+<p>// part of buildPlayList() in the Draw class 
+      : 
+// get name container for the slide show 
+XNameContainer playList = Draw.getPlayList(doc); </p>
+<p>// get factory from the container 
+XSingleServiceFactory xFactory =<br />
+            Lo.qi(XSingleServiceFactory.class, playList); </p>
+<p>// use factory to make an index container 
+XIndexContainer slidesCon =  Lo.qi(XIndexContainer.class,<br />
+                                   xFactory.createInstance()); 
+      : </p>
+<p>An index container is created by XSingleServiceFactory.createInstance(), which 
+requires a factory instance. This factory is most conveniently obtained from an 
+existing container, namely the one for the slide show. That's obtained by 
+Draw.getPlayList(): </p>
+<p>// in the Draw class 
+public static XNameContainer getPlayList(XComponent doc) 
+// get a name container for the play list 
+{ 
+  XCustomPresentationSupplier cpSupp =<br />
+            Lo.qi(XCustomPresentationSupplier.class, doc); 
+  return cpSupp.getCustomPresentations(); 
+} </p>
+<p>Draw.buildPlayList() fills the index container with references to the slides, and then 
+places it inside the name container: </p>
+<p>/<em> store the index container under the play list name 
+   in the name container </em>/ 
+playList.insertByName(customName, slidesCon); </p>
+<p>In other words, the play list is a name container holding a named index container. </p>
+<p>The rest of buildPlayList() is straightforward: </p>
+<p>// in the Draw class 
+public static XNameContainer buildPlayList(XComponent doc,<br />
+                          int[] slideIdxs, String customName) 
+{ 
+  // get a name container for the play list 
+  XNameContainer playList = Draw.getPlayList(doc); </p>
+<p>try { 
+    // create an index container for the play list 
+    XSingleServiceFactory xFactory =<br />
+            Lo.qi(XSingleServiceFactory.class, playList); 
+    XIndexContainer slidesCon =  Lo.qi(XIndexContainer.class,<br />
+                                      xFactory.createInstance()); </p>
+<pre><code>/* index container is assigned slide references 
+   whose indices come from slideIdxs 
+*/ 
+System.out.println("Building play list using: "); 
+for(int j=0; j &lt; slideIdxs.length; j++) { 
+  XDrawPage slide = Draw.getSlide(doc, slideIdxs[j]); 
+  if (slide != null) { 
+    slidesCon.insertByIndex(j, slide); 
+    System.out.println("  Slide " + slideIdxs[j]); 
+  } 
+}
+
+/* store the index container under the play list name 
+   in the name container */ 
+playList.insertByName(customName, slidesCon); 
+System.out.println("Playlist has name: " + customName + "\n"); 
+return playList;
+</code></pre>
+<p>} 
+  catch (com.sun.star.uno.Exception e)<br />
+  {  System.out.println("Unable to build play list: " + e); <br />
+     return null; 
+  } 
+}  // end of buildPlayList() </p>
+<p>The for-loop employs the array of indices to get references to the slides via 
+Draw.getSlide(). Each reference is added to the index container. </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="17-Slide_Deck_Manipulation.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 17. Slide Deck Manipulation
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="19%20Part%204%20Calc.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Part 4 Calc
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

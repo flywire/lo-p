@@ -1,0 +1,2208 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 49. Extension and Document - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-49-extension-and-document" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 49. Extension and Document
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 49. Extension and Document
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link md-nav__link--active">
+        Chapter 49. Extension and Document
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-form-macros-as-an-extension" class="md-nav__link">
+    1.  Form Macros as an Extension
+  </a>
+  
+    <nav class="md-nav" aria-label="1.  Form Macros as an Extension">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-the-gettextshow-macro" class="md-nav__link">
+    1.1.  The GetText.show Macro
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-the-getnumberget-macro" class="md-nav__link">
+    1.2.  The GetNumber.get Macro
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-loading-an-xml-dialog" class="md-nav__link">
+    1.3.  Loading an XML Dialog
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-building-a-dialog-at-runtime" class="md-nav__link">
+    1.4.  Building a Dialog at Runtime
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-dialogs-and-their-controls" class="md-nav__link">
+    1.5.  Dialogs and their Controls
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-storing-macros-inside-the-form-document" class="md-nav__link">
+    2.  Storing Macros inside the (Form) Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-attaching-macros-to-other-events" class="md-nav__link">
+    3.  Attaching Macros to Other Events
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-executing-macros-from-the-command-line" class="md-nav__link">
+    4.  Executing Macros from the Command Line
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-form-macros-as-an-extension" class="md-nav__link">
+    1.  Form Macros as an Extension
+  </a>
+  
+    <nav class="md-nav" aria-label="1.  Form Macros as an Extension">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-the-gettextshow-macro" class="md-nav__link">
+    1.1.  The GetText.show Macro
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-the-getnumberget-macro" class="md-nav__link">
+    1.2.  The GetNumber.get Macro
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-loading-an-xml-dialog" class="md-nav__link">
+    1.3.  Loading an XML Dialog
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-building-a-dialog-at-runtime" class="md-nav__link">
+    1.4.  Building a Dialog at Runtime
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-dialogs-and-their-controls" class="md-nav__link">
+    1.5.  Dialogs and their Controls
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-storing-macros-inside-the-form-document" class="md-nav__link">
+    2.  Storing Macros inside the (Form) Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-attaching-macros-to-other-events" class="md-nav__link">
+    3.  Attaching Macros to Other Events
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-executing-macros-from-the-command-line" class="md-nav__link">
+    4.  Executing Macros from the Command Line
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/49-Ext_Doc_Event_Macros.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-49-extension-and-document">Chapter 49. Extension and Document</h1>
+<p>Event Macros </p>
+<p>The previous chapter introduced event macros, and described<br />
+how a simple macro could be installed by copying it to a 
+specific Office directory. This chapter looks at two other 
+ways to package macros: as extensions, and by attaching 
+them to documents. </p>
+<h2 id="1-form-macros-as-an-extension">1.  Form Macros as an Extension</h2>
+<p>Adding a macro to Office by installing it as an extension means that the user doesn't 
+need to grapple with Office folders and copying files since Office's extension 
+manager does it for them. This section also uses more complex macros than the ones 
+in the previous chapter, namely ones that utilize their own dialogs and employ my 
+utility classes. </p>
+<p>The FormMacros.oxt extension is created by zipping up a FormMacros\ folder, which 
+is listed below: </p>
+<p>FormMacros 
+ |   description.xml 
+ |   form.png 
+ |   license.txt 
+ |   package-description.txt 
+ |  <br />
+ +---dialogLibrary 
+ |       NumExtractor.xdl 
+ |      <br />
+ +---META-INF 
+ |       manifest.xml 
+ |      <br />
+ ---Utils 
+         GetNumber.class 
+         GetText.class 
+         NumActionListener.class 
+         parcel-descriptor.xml 
+         Utils.jar </p>
+<p>The macros are in the Utils\ folder, and are utilized by the form stored in 
+FormMacrosTest.odt in the ways shown in Figure 1. </p>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Form Macros as </p>
+</div>
+<p>an Extension; Loading 
+an XML Dialog; 
+Building a Dialog at 
+Runtime; Storing 
+Macros inside the 
+(Form) Document; 
+Attaching Macros to 
+Other Events; Executing 
+Macros from the 
+Command Line 
+Example folders: 
+"EvMacro Tests" and 
+"Utils" </p>
+<p><img alt="" src="images/49-Ext_Doc_Event_Macros-1.png" /></p>
+<p>Figure 1. A Form and its Macros. </p>
+<p>Figure 1 illustrates the actions of two macros. GetText.show is attached to the form's 
+button, and display the text in the adjacent textfield when the button is pressed. The 
+GetNumber.get macro is attached to the second textfield, and is activated when 
+<RETURN> is pressed. A dialog, created by the macro, offers the user a choice of 
+replacing the text by a number or clearing the textfield. </p>
+<p>To simplify the example a little, FormMacrosTest.odt was created by hand rather than 
+programmatically. Also, I'm going to attach the extension's macros to the button and 
+textfield using Office's GUI, as explained shortly. </p>
+<p>I won’t explain all the contents of the FormMacros\ folder, because most of them 
+were covered in early chapters, particularly in Chapter 45. For example, I won't be 
+describing how I drew the "Number Extractor" dialog stored in 
+dialogLibrary\NumExtractor.xdl since that technique was covered in the last chapter, 
+in section 5. </p>
+<p>The new elements of FormMacros\ are the contents of manifest.xml and parcel-
+descriptor.xml. </p>
+<p>manifest.xml states the location of the macros inside the extension, which in my case 
+are in the Utils\ subdirectory. This is encoded as: </p>
+<?xml version="1.0" encoding="UTF-8"?>
+<p><manifest:manifest<br />     xmlns:manifest="http://openoffice.org/2001/manifest"> </p>
+<p><manifest:file-entry manifest:media-type= 
+          "application/vnd.sun.star.framework-script" 
+                       manifest:full-path="Utils/" /> </p>
+<p></manifest:manifest> </p>
+<p>parcel-descriptor.xml give details about the two macros, GetText.show and 
+GetNumber.get, which are used by the Macro Selector dialog: </p>
+<?xml version="1.0" encoding="UTF-8"?>
+<p><parcel language="Java" xmlns:parcel="scripting.dtd"> </p>
+<script language="Java"> 
+    <locale lang="en"> 
+      <displayname value="GetText.show"/> 
+      <description> 
+         Shows the text in a textfield 
+      </description> 
+    </locale> 
+    <functionname value="GetText.show"/> 
+    <logicalname value="GetText.show"/> 
+    <languagedepprops> 
+      <prop name="classpath" value=".:GetText:Utils.jar"/> 
+    </languagedepprops> 
+  </script>
+
+<script language="Java"> 
+    <locale lang="en"> 
+      <displayname value="GetNumber.get"/> 
+      <description> 
+         Extract an integer from a textfield 
+      </description> 
+    </locale> 
+    <functionname value="GetNumber.get"/> 
+    <logicalname value="GetNumber.get"/> 
+    <languagedepprops> 
+      <prop name="classpath" value=".:GetNumber:Utils.jar"/> 
+    </languagedepprops> 
+  </script>
+
+<p></parcel> </p>
+<p>There's an important difference between this parcel-descriptor.xml and the one given 
+for ShowEvent.show in the previous chapter, related to the new macros' classpaths: 
+      <prop name="classpath" value=".:GetText:Utils.jar"/> 
+and 
+      <prop name="classpath" value=".:GetNumber:Utils.jar"/> 
+The classpath line for ShowEvent.show was: 
+      <prop name="classpath" value="ShowEvent.jar"/> </p>
+<p>The difference, which took many hours of experimentation to find, is due to the 
+inclusion of my utilities classes as a JAR in Utils.  </p>
+<p>When Utils.jar is in the extension, Office is unable to recognize GetText.show and 
+GetNumber.get packaged as JARs (e.g. as GetText.jar and GetNumber.jar). It appears 
+that Office can only add a single JAR to its classpath with <languagedepprops>. </p>
+<p>Instead I've stored the macros as .class files in Utils. In addition, it's necessary to 
+include "." in the classpath so NumActionListener.class can be found at runtime.  </p>
+<p>The three Java files (GetText.java, GetNumber.java, and NumActionListener.java) 
+are compiled and manually copied into FormMacros\Utils. Then the 
+installMacros.bat batch script zips up the folder as an OXT file, and calls unopkg.exe 
+to install it. The extension manager displays the "Form Macros" as in Figure 2. </p>
+<p><img alt="" src="images/49-Ext_Doc_Event_Macros-2.png" /></p>
+<p>Figure 2. The Form Macros Extension. </p>
+<p>By default, extension macros are installed as user macros, as can be seen in the Macro 
+Selector dialog in Figure 3. </p>
+<p><img alt="" src="images/49-Ext_Doc_Event_Macros-3.png" /></p>
+<p>Figure 3. The User Extension Macros in the Macro Selector. </p>
+<p>The Utils\ subdirectory of the extension has become a module called Utils. </p>
+<p>The full names of the extension macros can be obtained using my ListMacros.java or 
+FindMacros.java examples. For example: 
+run FindMacros Utils 
+produces: </p>
+<p>Matching Macros in Office: (2) 
+  vnd.sun.star.script:Utils.GetNumber.get? 
+      language=Java&amp;location=user:uno_packages/FormMacros.oxt </p>
+<p>vnd.sun.star.script:Utils.GetText.show? 
+      language=Java&amp;location=user:uno_packages/FormMacros.oxt </p>
+<h3 id="11-the-gettextshow-macro">1.1.  The GetText.show Macro</h3>
+<p>GetText.show is triggered when a button is pressed; it displays the text currently in 
+the "Text Box 1" textfield inside a message box (see Figure 1). The code for the class 
+is: </p>
+<p>// in GetText.java 
+public class GetText 
+{ 
+  private static final String LOG_FNM = "c://macrosInfo.txt"; 
+              // log file for storing debugging output </p>
+<p>public static void show(XScriptContext sc, ActionEvent e) 
+  // Called when a button pressed 
+  {<br />
+    String controlName = Forms.getEventSourceName(e); </p>
+<pre><code>FileIO.appendTo(LOG_FNM, "\"" + controlName +  
+             "\" sent ActionEvent at " + Lo.getTimeStamp());
+
+XComponent doc = Lo.scriptInitialize(sc); 
+if (doc == null) 
+  return;
+
+// for debugging 
+Console console = new Console(); 
+console.setVisible(true);
+
+Forms.listForms(doc);
+
+XControlModel textBox = Forms.getControlModel(doc, "Text Box 1"); 
+// Props.showObjProps("TextBox", textBox);
+
+String textContents = (String)Props.getProperty(textBox, "Text"); 
+GUI.showXMessageBox("Textbox text", textContents);
+
+console.setVisible(false); 
+console.closeDown();
+</code></pre>
+<p>} // end of show() for ActionEvent </p>
+<p>}  // end of GetText class </p>
+<p>The class implements a single show() method suitable for responding to 
+ActionEvents. </p>
+<p>Forms.getEventSourceName() returns the name of the control that sent the event and 
+FileIO.appendTo() writes the details to a log file. This log is useful for debugging, 
+and can be removed when the macro is finished. </p>
+<p>Lo.scriptInitialize() uses the macro's XScriptContext object to initialize globals 
+maintained by my Lo class: </p>
+<p>// in the Lo class 
+// globals 
+private static XComponentContext xcc = null; 
+private static XDesktop xDesktop = null; 
+private static XMultiComponentFactory mcFactory = null;  <br />
+private static XMultiServiceFactory msFactory = null; </p>
+<p>public static XComponent scriptInitialize(XScriptContext sc) 
+{ 
+  if (sc == null) { 
+    System.out.println("Script Context is null"); 
+    return null; 
+  } </p>
+<p>xcc = sc.getComponentContext(); 
+  if (xcc == null)  { 
+    System.out.println("Could not access component context"); 
+    return null; 
+  } 
+  mcFactory = xcc.getServiceManager(); 
+  if (mcFactory == null) { 
+    System.out.println("Office Service Manager is unavailable"); 
+    return null; 
+  } </p>
+<p>xDesktop = sc.getDesktop(); 
+  if (xDesktop == null)  { 
+    System.out.println("Could not access desktop"); 
+    return null; 
+  } </p>
+<p>XComponent doc = xDesktop.getCurrentComponent(); 
+  if (doc == null)  { 
+    System.out.println("Could not access document"); 
+    return null; 
+  } </p>
+<p>msFactory =  Lo.qi(XMultiServiceFactory.class, doc); 
+  return doc; 
+}  // end of scriptInitialize() </p>
+<p>The log approach is fine for simple debugging, but it's also possible to create a 
+Console window for displaying more complex textual output. One useful thing to 
+report are the form's control details, by calling Forms.listForms(). The Console 
+window looks as in Figure 4. </p>
+<p><img alt="" src="images/49-Ext_Doc_Event_Macros-4.png" /></p>
+<p>Figure 4. The Console Window Output for GetText.show. </p>
+<p>The control names in Figure 4 include "Text Box 1", which is used by 
+Forms.getControlModel() to reference the textfield control: </p>
+<p>// part of show() in GetText.java... </p>
+<p>XControlModel textBox = Forms.getControlModel(doc, "Text Box 1"); 
+String textContents = (String)Props.getProperty(textBox, "Text"); 
+GUI.showXMessageBox("Textbox text", textContents); </p>
+<h3 id="12-the-getnumberget-macro">1.2.  The GetNumber.get Macro</h3>
+<p>The second textfield in Figure 1 is called "AgeText". Its listener processes the text 
+when the user types <RETURN>, which is implemented using a keypress listener, as 
+shown in Figure 5. </p>
+<p><img alt="" src="images/49-Ext_Doc_Event_Macros-5.png" /></p>
+<p>Figure 5. The "AgeText" Properties Dialog. </p>
+<p>GetNumber.get is woken up by every keypress, which should be ignored until the key 
+is <RETURN>. Then the text is read from the "AgeText" textfield, and the extracted 
+number displayed in the "Number Extractor" dialog (shown in Figure 1). This dialog 
+has its own listener (a NumActionListener object) attached to the "Ok" and "Cancel" 
+buttons which updates the "AgeText" textfield depending on which is pressed. </p>
+<p>The GetNumber class defines a single static get() method, suitable for receiving 
+KeyEvents: </p>
+<p>// in GetNumber.java 
+public static void get(XScriptContext sc, KeyEvent e) 
+{<br />
+  String controlName = Forms.getEventSourceName(e); 
+  if (e.KeyCode == Key.RETURN) {  // return typed 
+    XComponent doc = Lo.scriptInitialize(sc); 
+    if (doc != null) { 
+      XControlModel cModel =<br />
+             Forms.getControlModel(doc, controlName); 
+      if (Forms.isTextField(cModel)) 
+        loadXDLDialog(cModel); 
+        // runtimeDialog(cModel); 
+    } 
+  } 
+} // end of get() </p>
+<p>When the <RETURN> key is pressed, Forms.getControlModel() searches the form 
+for the control that sent the event (i.e. the "AgeText" textfield).  </p>
+<p>If the control is a textfield then the "Number Extractor" dialog is displayed in one of 
+two ways – either loadXDLDialog() loads the dialog's XML from 
+dialogLibrary\NumExtractor.xdl inside the extension, or runtimeDialog() creates the 
+dialog dynamically by calling methods in my Dialogs utility class. I'll look at each 
+approach in the next two sections. </p>
+<h3 id="13-loading-an-xml-dialog">1.3.  Loading an XML Dialog</h3>
+<p>Chapter 46 on Add-ons describes how to use Office's dialog editor to create a dialog 
+and export it as an XDL file. The same steps were used to create NumExtractor.xdl, 
+which is shown in Figure 6. </p>
+<p><img alt="" src="images/49-Ext_Doc_Event_Macros-6.png" /></p>
+<p>Figure 6. The NumExtractor.xdl Dialog. </p>
+<p>The XML contents of NumExtractor.xdl are: </p>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dlg:window PUBLIC "-//OpenOffice.org//DTD OfficeDocument 
+1.0//EN" "dialog.dtd">
+
+<p><dlg:window xmlns:dlg="http://openoffice.org/2000/dialog" 
+            xmlns:script="http://openoffice.org/2000/script" 
+            dlg:id="NumExtractor" 
+            dlg:left="109" dlg:top="73" 
+            dlg:width="94" dlg:height="44" 
+            dlg:closeable="true" dlg:moveable="true" 
+            dlg:title="Number Extractor"> </p>
+<p><dlg:bulletinboard> 
+  <dlg:text dlg:id="Label1" dlg:tab-index="0" 
+            dlg:left="8" dlg:top="11" 
+            dlg:width="48" dlg:height="10" 
+            dlg:value="Extracted number: " 
+            dlg:align="right"/> </p>
+<p><dlg:button dlg:id="CommandButton1" dlg:tab-index="2" 
+              dlg:left="8" dlg:top="27" 
+              dlg:width="33" dlg:height="12" 
+              dlg:value="Ok"/> </p>
+<p><dlg:textfield dlg:id="TextField1" dlg:tab-index="1" 
+                 dlg:left="61" dlg:top="9" 
+                 dlg:width="24" dlg:height="12" 
+                 dlg:align="center" 
+                 dlg:readonly="true"/> </p>
+<p><dlg:button dlg:id="CommandButton2" dlg:tab-index="3" 
+              dlg:left="52" dlg:top="27" 
+              dlg:width="33" dlg:height="12" 
+              dlg:value="Cancel"/> </p>
+<p></dlg:bulletinboard> 
+</dlg:window> </p>
+<p>The most important things to note for later are the control IDs; in particular, the 
+textfield and button names: "TextField1", "CommandButton1", and 
+"CommandButton2". </p>
+<p>loadXDLDialog() utilizes Dialogs.loadAddonDialog() described in Chapter 46 to 
+obtain a reference to the dialog. It's initialized by initDialog() and made live by 
+XDialog.execute(): </p>
+<p>// in GetNumber.java 
+private static void loadXDLDialog(XControlModel cModel) 
+{ 
+  XDialog dialog = Dialogs.loadAddonDialog( 
+                          "org.openoffice.formmacros",<br />
+                          "dialogLibrary/NumExtractor.xdl"); 
+  if (dialog == null) 
+    return; 
+  initDialog(dialog, cModel); 
+  dialog.execute(); 
+}  // end of loadXDLDialog() </p>
+<p>initDialog() fills the dialog's textfield with numerical data extracted from the form's 
+"AgeText" field, and attaches a NumActionListener to its buttons: </p>
+<p>// part of GetNumber.java 
+private static void initDialog(XDialog dialog,<br />
+                               XControlModel cModel) 
+{ 
+  XControl dialogCtrl = Dialogs.getDialogControl(dialog); 
+  if (dialogCtrl == null) 
+    return; </p>
+<p>int val = extractDigits(<br />
+                (String)Props.getProperty(cModel, "Text")); </p>
+<p>// store extracted number in dialog's read-only text field; 
+  // the names of the controls are hardwired 
+  XTextComponent numFieldTB = Lo.qi(XTextComponent.class, 
+                 Dialogs.findControl(dialogCtrl, "TextField1")); 
+  numFieldTB.setText(""+val); </p>
+<p>// assign same listener to both buttons 
+  NumActionListener naListener =<br />
+               new NumActionListener(dialog, cModel, val); </p>
+<p>XButton okButton = Lo.qi(XButton.class, 
+          Dialogs.findControl(dialogCtrl, "CommandButton1")); 
+  okButton.addActionListener(naListener); </p>
+<p>XButton cancelButton = Lo.qi(XButton.class, 
+          Dialogs.findControl(dialogCtrl, "CommandButton2")); 
+  cancelButton.addActionListener(naListener); 
+} // end of initDialog() </p>
+<p>Dialogs.findControl() finds the dialog's textfield and buttons using the IDs that we 
+saw in NumExtractor.xdl. </p>
+<p>The NumActionListener class is included in the extension's Utils\ folder. It's a 
+standard button listener, but uses Office's XActionListener and ActionEvent not the 
+Java classes with similar names: </p>
+<p>// in NumActionListener.java 
+public class NumActionListener implements XActionListener 
+{ 
+  private XDialog dialog; 
+  private XControlModel cModel; 
+  private int val; </p>
+<p>public NumActionListener(XDialog dialog,<br />
+                            XControlModel cModel, int val) 
+  { this.dialog = dialog; 
+    this.cModel = cModel; 
+    this.val = val; 
+  }  // end of NumActionListener() </p>
+<p>public void actionPerformed(ActionEvent e) 
+  { 
+    String buttonName = Dialogs.getEventSourceName(e); 
+    System.out.println("Event received from : " + buttonName); </p>
+<pre><code>if (buttonName.equals("CommandButton1"))        // "OK" button 
+  Props.setProperty(cModel, "Text", "" + val);   
+                                      // put val in text field 
+else if (buttonName.equals("CommandButton2"))   // "Cancel" 
+  Props.setProperty(cModel, "Text", "");   // clear text field
+
+dialog.endExecute();
+</code></pre>
+<p>}  // end of actionPerformed() </p>
+<p>public void disposing(EventObject e) { }  </p>
+<p>}  // end of NumActionListener class </p>
+<p>The number extracted from the "AgeText" textfield is passed to the listener via its 
+constructor, along with a reference to the control. If the user presses "Ok" then the 
+number is written into the textfield, otherwise an empty string is used to clear its 
+contents. </p>
+<h3 id="14-building-a-dialog-at-runtime">1.4.  Building a Dialog at Runtime</h3>
+<p>Office's dialog editor is the easiest way to construct a dialog, but there may be 
+situations where you want to create a simple dialog at run time. The commented-out 
+call to runtimeDialog() in GetNumber.get shows how to do this using my Dialog class 
+functions: </p>
+<p>// part of GetNumber.java 
+private static void runtimeDialog(XControlModel cModel) 
+{ 
+  XControl dialogCtrl = makeDialogControl(); 
+  if (dialogCtrl == null) 
+    return; </p>
+<p>XDialog dialog = Dialogs.createDialogPeer(dialogCtrl); 
+  if (dialog == null) 
+    return; </p>
+<p>initDialog(dialog, cModel); 
+  dialog.execute(); 
+}  // end of runtimeDialog() </p>
+<p>The dialog generated by makeDialogControl() (see Figure 7) is very similar to the one 
+defined in NumExtractor.xdl. </p>
+<p><img alt="" src="images/49-Ext_Doc_Event_Macros-7.png" /></p>
+<p>Figure 7. The Rendering of the Runtime Dialog. </p>
+<p>makeDialogControl() creates an empty dialog, and fills it with a label, textfield and 
+two buttons: </p>
+<p>// part of GetNumber.java 
+private static XControl makeDialogControl() 
+{ 
+  XControl dialogCtrl =<br />
+        Dialogs.createDialogControl(109, 73, 94, 44,<br />
+                                      "Number Extractor"); 
+  if (dialogCtrl == null) 
+    System.out.println("dialog control is null"); 
+  // log("Dialog name:" + Dialogs.getControlName(dialogCtrl)); 
+        // reports "OfficeDialog1" </p>
+<p>XControl xc = Dialogs.insertLabel(dialogCtrl, 8, 11, 48,<br />
+                                    "Extracted Number: "); 
+  // log("Label name:" + Dialogs.getControlName(xc)); 
+        // FixedText1 </p>
+<p>xc = Dialogs.insertTextField(dialogCtrl, 61, 9, 24, ""); 
+  // log("Text field name:" + Dialogs.getControlName(xc)); 
+        // TextField1 </p>
+<p>xc = Dialogs.insertButton(dialogCtrl, 9, 27, 33, "Ok"); 
+  // log("Ok button name:" + Dialogs.getControlName(xc)); 
+       // CommandButton1 </p>
+<p>xc = Dialogs.insertButton(dialogCtrl, 52, 27, 33, "Cancel"); 
+  // log("Cancel button name:" + Dialogs.getControlName(xc)); 
+       // CommandButton2 </p>
+<p>return dialogCtrl; 
+}  // end of makeDialogControl() </p>
+<p>One tricky aspect is deciding on the control positions and widths passed to the 
+Dialogs.insertXXX() methods. I based them on the values in NumExtractor.xdl.  </p>
+<p>initDialog() is again used to initialize the dialog's textfield and buttons, which 
+assumes they are called "TextField1", "CommandButton1", and "CommandButton2". </p>
+<p>I confirmed this for the runtime dialog by writing their name to the log file: </p>
+<p>// part of GetNumber.java 
+// global 
+private static final String LOG_FNM = "c://macrosInfo.txt"; </p>
+<p>private static void log(String msg) 
+{  FileIO.appendTo(LOG_FNM, msg);  } </p>
+<h3 id="15-dialogs-and-their-controls">1.5.  Dialogs and their Controls</h3>
+<p>Dialog controls utilize the same model-view framework as form controls (which were 
+described back in Chapter 39). Controls store data as properties spread over a 
+hierarchy centered around UnoControlModel in the com.sun.star.awt module. A small 
+fragment of that hierarchy is shown in Figure 8. </p>
+<p><img alt="" src="images/49-Ext_Doc_Event_Macros-8.png" /></p>
+<p>Figure 8. UnoControlModel and Some Subclasses. </p>
+<p>A dialog is represented by UnoControlDialogModel, which stores properties such as 
+the title, a background image or color, and windowing flags such as whether it is 
+closeable. Its XNameContainer interface allows the names of its component controls 
+to be accessed.  </p>
+<p>Some of the important properties, such as the (x, y) position of a control, are a little 
+hard to find – they're not in UnoControlModel but its superclass, 
+UnoControlDialogElement. </p>
+<p>The other part of the model-view framework are views which represent how a control 
+is drawn. Views for different controls are subclasses of the UnoControl service, as 
+shown in Figure 9. </p>
+<p><img alt="" src="images/49-Ext_Doc_Event_Macros-9.png" /></p>
+<p>Figure 9. UnoControl and Some Subclasses. </p>
+<p>UnoControl's XControl contains methods for linking a model to a view. Also, 
+subclass interfaces, such as XButton and XTextComponent, are where listeners are 
+attached to controls. </p>
+<p>It helps to remember the naming conventions illustrated by Figures 8 and 9 – a service 
+containing the word "Model" is almost always for storing data, while a service 
+without the word "Model" is almost always a view. </p>
+<p>Figure 9 doesn't include a dialog view; it's sufficiently different to deserve its own 
+diagram, Figure 10. </p>
+<p><img alt="" src="images/49-Ext_Doc_Event_Macros-10.png" /></p>
+<p>Figure 10. The UnoControlDialog Service. </p>
+<p>UnoControlDialog isn't a subclass of UnoControl, but its interface, 
+XUnoControlDialog, still inherits XControl and so can be linked to a model. It also 
+inherits XControlContainer which allows controls to be added to and removed from a 
+dialog. XDialog contains execute() which makes a dialog active on screen. </p>
+<p>Dialogs.createDialogControl() creates a dialog view and model, and links them. The 
+dialog is initialized by setting various properties in its model: </p>
+<p>// in the Dialogs class 
+public static XControl createDialogControl(int x, int y,<br />
+                     int width, int height, String title) 
+{ try { 
+    XControl dialogCtrl = <br />
+                 Lo.createInstanceMCF(XControl.class,<br />
+                     "com.sun.star.awt.UnoControlDialog"); 
+    XControlModel xControlModel =<br />
+                 Lo.createInstanceMCF(XControlModel.class,<br />
+                     "com.sun.star.awt.UnoControlDialogModel"); 
+    dialogCtrl.setModel(xControlModel);  // link view and model </p>
+<pre><code>XPropertySet props = getControlProps(dialogCtrl.getModel()); 
+props.setPropertyValue("PositionX", x); 
+props.setPropertyValue("PositionY", y); 
+props.setPropertyValue("Height", height); 
+props.setPropertyValue("Width", width);
+
+props.setPropertyValue("Title", title); 
+props.setPropertyValue("Name", "OfficeDialog");
+
+props.setPropertyValue("Step", 0); 
+props.setPropertyValue("Moveable", true); 
+props.setPropertyValue("TabIndex", new Short((short) 0));
+
+return dialogCtrl;
+</code></pre>
+<p>} 
+  catch (Exception ex) { 
+    System.out.println("Could not create dialog control: " + ex); 
+    return null; 
+  } 
+}  // end of createDialogControl() </p>
+<p>makeDialogControl() in the GetNumber class adds a label, textfield, and two buttons 
+to the dialog by calling Dialogs.insertXXX() methods. These methods are all quite 
+similar, so I'll only explain insertButton(). Its job is to create a button model, and 
+initialize its properties: </p>
+<p>// in the Dialogs class 
+public static XControl insertButton(XControl dialogCtrl, 
+                          int x, int y, int width, String label) 
+{  return insertButton(dialogCtrl, x, y, width, label,<br />
+                       PushButtonType.STANDARD_value); 
+} </p>
+<p>public static XControl insertButton(XControl dialogCtrl, 
+                          int x, int y, int width,<br />
+                          String label, int pushButtonType) 
+{ try { 
+    // create a button model 
+    XMultiServiceFactory msf =<br />
+             Lo.qi(XMultiServiceFactory.class,<br />
+                            dialogCtrl.getModel()); 
+    Object model = msf.createInstance( 
+               "com.sun.star.awt.UnoControlButtonModel"); </p>
+<pre><code>// generate a unique name for the control 
+XNameContainer nameCon = getDialogNmCon(dialogCtrl); 
+String nm = createName(nameCon, "CommandButton");
+
+// set properties in the model 
+XPropertySet props = getControlProps(model); 
+props.setPropertyValue("PositionX", x); 
+props.setPropertyValue("PositionY", y); 
+props.setPropertyValue("Height", 14); 
+props.setPropertyValue("Width", width);
+
+props.setPropertyValue("Label", label); 
+props.setPropertyValue("PushButtonType",  
+              new Short((short) pushButtonType)); 
+props.setPropertyValue("Name", nm);
+
+// add the model to the dialog 
+nameCon.insertByName(nm, model);
+
+// get the dialog's container holding all the control views 
+XControlContainer ctrlCon =  
+           Lo.qi(XControlContainer.class, dialogCtrl);
+
+// use the model's name to get its view inside the dialog 
+return ctrlCon.getControl(nm);
+</code></pre>
+<p>} 
+  catch (Exception ex) { 
+    System.out.println("Could not create button control: " + ex); 
+    return null; 
+  } 
+}  // end of insertButton() </p>
+<p>First the model is created and added to the dialog. Its view is retrieved from the 
+dialog's control container, and returned as an XControl object. </p>
+<p>Back in GetNumber.runtimeDialog(), the dialog's window (or peer) is linked to the 
+Office window by Dialogs.createDialogPeer(): </p>
+<p>// in the Dialogs class 
+public static XDialog createDialogPeer(XControl dialogCtrl) 
+{ 
+  XWindow xWindow = (XWindow) Lo.qi(XWindow.class, dialogCtrl); 
+  xWindow.setVisible(false); 
+             // set dialog window invisible until it is executed </p>
+<p>XToolkit xToolkit = Lo.createInstanceMCF(XToolkit.class,<br />
+                                  "com.sun.star.awt.Toolkit"); 
+  XWindowPeer windowParentPeer = xToolkit.getDesktopWindow(); </p>
+<p>dialogCtrl.createPeer(xToolkit, windowParentPeer); </p>
+<p>XComponent dialogComponent = Lo.qi(XComponent.class, dialogCtrl); 
+  return getDialog(dialogCtrl); 
+}  // end of createDialogPeer() </p>
+<h2 id="2-storing-macros-inside-the-form-document">2.  Storing Macros inside the (Form) Document</h2>
+<p>The previous section examined how to add macros to Office as extensions. Another 
+popular way of utilizing macros is to embed them inside documents. </p>
+<p>I'll create a variation of the previous form, with the same functionality for its text 
+fields, but GetText.show and GetNumber.get (and its dialog and listener) will be 
+stored inside the document. </p>
+<p>Office documents, such as FormMacrosTest.odt, can be manipulated as zip files; I 
+chose 7-Zip (http://www.7-zip.org/) for the purpose, because it's powerful, open 
+source, and can be executed from the command line and from DOS batch scripts. </p>
+<p>I'm reusing the same form from the previous section, but stored in 
+FormDocMacros.odt. It's unzipped using my unzipDoc.bat script to create a folder 
+called FormDocMacros_odt. The macros are added by modifying this folder: two 
+new subdirectories are created, and the manifest.xml file changed, as illustrated by </p>
+<p><img alt="" src="images/49-Ext_Doc_Event_Macros-11.png" /></p>
+<p>Figure 11. </p>
+<p><img alt="" src="images/49-Ext_Doc_Event_Macros-11.png" /></p>
+<p>Figure 11. The Changed FormDocMacros_odt\ Folder </p>
+<p>The dialogLibrary\ folder contains the same "Number Extractor" dialog definition as 
+before. The Scripts\java\Utils\ folder contains Macros.jar, and a new version of 
+parcel-descriptor.xml. </p>
+<p>Macros.jar is different from the earlier extension, which used three classes 
+(GetText.class, GetNumber.class, and NumActionListener.class) and Utils.jar. </p>
+<p>Unfortunately, this combination doesn't work for document macros. Instead, 
+Macros.jar is a renamed version of Utils.jar with GetText.class, GetNumber.class, and 
+NumActionListener.class added to it.  </p>
+<p>This change to the code organization is reflected in parcel-descriptor.xml. The 
+classpath entries for the two macros become: 
+<prop name="classpath" value="Macros.jar"/> 
+manifest.xml specifies the structure of FormDocMacros_odt\, so lines are added 
+describing dialogLibrary\ and Scripts\: </p>
+<p>// added to manifest.xml </p>
+<p><manifest:file-entry manifest:media-type="text/xml"<br />       manifest:full-path= 
+          "Scripts/java/Utils/parcel-descriptor.xml"/> </p>
+<p><manifest:file-entry manifest:media-type= 
+                 "application/vnd.sun.star.dialog-library"<br />       manifest:full-path="dialogLibrary/" /> 
+<manifest:file-entry manifest:media-type="" 
+       manifest:full-path="dialogLibrary/NumExtractor.xdl" /> </p>
+<p><manifest:file-entry manifest:media-type="application/binary"<br />       manifest:full-path="Scripts/java/Utils/"/> 
+<manifest:file-entry manifest:media-type="application/binary"<br />       manifest:full-path="Scripts/java/"/> 
+<manifest:file-entry manifest:media-type="application/binary"<br />       manifest:full-path="Scripts/"/> </p>
+<p><manifest:file-entry manifest:media-type="application/binary"<br />       manifest:full-path="Scripts/java/Utils/Macros.jar"/> </p>
+<p>FormDocMacros_odt\ is re-zipped, becoming FormDocMacros.odt. Double-clicking 
+on it causes it to open, to display the same form as before, but only after the user has 
+clicked "Enable Macros" in the security warning (see Figure 12). </p>
+<p><img alt="" src="images/49-Ext_Doc_Event_Macros-12.png" /></p>
+<p>Figure 12. The Macro Security Warning when Opening FormDocMacros.odt. </p>
+<p>Although the form is the same as previously, the button and textfield must be 
+configured to use the document macros rather than macros stored inside Office. For 
+example, the button's "Execute action" event should be assigned to GetText.show in 
+the document, as in Figure 13. </p>
+<p><img alt="" src="images/49-Ext_Doc_Event_Macros-13.png" /></p>
+<p>Figure 13. Selecting a Document Macro. </p>
+<p>The resulting event is displayed in Figure 14. </p>
+<p><img alt="" src="images/49-Ext_Doc_Event_Macros-14.png" /></p>
+<p>Figure 14. The "Execute action" Event. </p>
+<h2 id="3-attaching-macros-to-other-events">3.  Attaching Macros to Other Events</h2>
+<p>This chapter and the last have concentrated on adding macros to form controls, but 
+other parts of Office, and other documents, can utilize event macros as well. </p>
+<p>A summary of the different ways that event macros can be employed is given on the 
+wiki page "Scripting LibreOffice" at https://help.libreoffice.org/Common/Scripting. It 
+lists uses for event macros such as: 
+ attached to form controls (already described); 
+ attached to menu items and toolbar icons (this is covered by Add-ons in 
+Chapter 46); 
+ attached to Office and document events (described next); 
+ attached to key combinations; 
+ attached to an embedded object, such as a chart; 
+ attached to a graphic; 
+ attached to a hyperlink. </p>
+<p>The Tools &gt; Customize dialog window supports the connection of event macros to 
+menus, keyboards, toolbars, and events, as shown in Figure 15. </p>
+<p><img alt="" src="images/49-Ext_Doc_Event_Macros-15.png" /></p>
+<p>Figure 15. The Tools &gt; Customize Dialog. </p>
+<p>The Events tab in Figure 15 has a pop-down list at its bottom which allows macros to 
+be attached to Office events (as in the figure) or to events associated with the 
+currently open document. </p>
+<p>A macro is selected via the "Macro…" button which takes the user to the Macro 
+Selector dialog. In Figure 15, I've attached ShowEvent.show to the Office events 
+"Start Application" and "Open Document". When Office starts it will display the 
+dialog window on the left of Figure 16, and the dialog on the right when the document 
+is opened. </p>
+<p><img alt="" src="images/49-Ext_Doc_Event_Macros-16.png" /></p>
+<p>Figure 16. The ShowEvent.show Dialogs for Office Events. </p>
+<p>These dialogs are drawn by the DocumentEvent version of show() in the ShowEvent 
+class: </p>
+<p>// in the ShowEvent class 
+public static void show(XScriptContext sc,<br />
+                      com.sun.star.document.DocumentEvent e)<br />
+{  display("document", e.EventName);  } </p>
+<p>Automatic Macro Attachment 
+It's possible to automate the attachment of macros to Office and document events, as 
+illustrated by the DocEvents.java example: </p>
+<p>// in DocEvents.java 
+public static void main(String[] args) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); </p>
+<p>Macros.listOfficeEvents(); </p>
+<p>// list the "OnStartApp" and "OnLoad" Office event properties 
+  PropertyValue[] osaProps = Macros.getEventProps("OnStartApp"); 
+  Props.showProps("OnStartApp Event", osaProps); </p>
+<p>PropertyValue[] olProps = Macros.getEventProps("OnLoad"); 
+  Props.showProps("OnLoad Event", olProps); </p>
+<p>// attach macros to event if it does not have macros already 
+  if (Lo.isNullOrEmpty( (String)Props.getProp(osaProps, "Script"))) 
+    Macros.setEventScript("OnStartApp",<br />
+       "vnd.sun.star.script:ShowEvent.ShowEvent.show? 
+                           language=Java&amp;location=share"); </p>
+<p>if (Lo.isNullOrEmpty( (String)Props.getProp(olProps, "Script"))) 
+    Macros.setEventScript("OnLoad",<br />
+       "vnd.sun.star.script:ShowEvent.ShowEvent.show? 
+                          language=Java&amp;location=share"); </p>
+<p>XTextDocument doc = Write.openDoc("build.odt", loader); 
+  if (doc == null) { 
+    System.out.println("Could not open build.odt"); 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>GUI.setVisible(doc, true); 
+  Lo.wait(2000); </p>
+<p>Macros.listDocEvents(doc); </p>
+<p>// list the "OnPageCountChange" doc event properties 
+  PropertyValue[] opccProps =<br />
+               Macros.getDocEventProps(doc, "OnPageCountChange"); 
+    Props.showProps("OnPageCountChange Event", opccProps); </p>
+<p>if (Lo.isNullOrEmpty(<br />
+                   (String)Props.getProp(opccProps, "Script"))) { 
+    Macros.setDocEventScript(doc, "OnPageCountChange",<br />
+       "vnd.sun.star.script:ShowEvent.ShowEvent.show? 
+                             language=Java&amp;location=share"); </p>
+<pre><code>Lo.save(doc);  // must save doc after event macro change
+</code></pre>
+<p>} </p>
+<p>Lo.waitEnter(); 
+  Lo.closeDoc(doc); 
+  Lo.closeOffice(); 
+} // end of main() </p>
+<p>The program begins by listing all the names of the Office events by calling 
+Macros.listOfficeEvents(), and then the properties for the "OnStartApp" and 
+"OnLoad" events. It attaches ShowEvent.show to the two events, resulting in the 
+macro setup in Figure 15. </p>
+<p>The output from Macros.listOfficeEvents() is: </p>
+<p>Event Handler names 
+No. of names: 28 
+  "OnCloseApp"  "OnCopyTo"  "OnCopyToDone"  "OnCopyToFailed" 
+  "OnCreate"  "OnFocus"  "OnLoad"  "OnLoadFinished" 
+  "OnModeChanged"  "OnModifyChanged"  "OnNew"  "OnPrepareUnload" 
+  "OnPrepareViewClosing"  "OnPrint"  "OnSave"  "OnSaveAs" 
+  "OnSaveAsDone"  "OnSaveAsFailed"  "OnSaveDone"  "OnSaveFailed" 
+  "OnStartApp"  "OnStorageChanged"  "OnTitleChanged"  "OnUnfocus" 
+  "OnUnload"  "OnViewClosed"  "OnViewCreated"  "OnVisAreaChanged" </p>
+<p>These names can be mapped without too much difficulty to the strings in the "Events" 
+column of Figure 15. </p>
+<p>The properties listed for the "OnStartApp" and "OnLoad" events are: </p>
+<p>Properties for "OnStartApp Event": 
+  EventType: Script 
+  Script: </p>
+<p>Properties for "OnLoad Event": 
+  EventType: Script 
+  Script: </p>
+<p>In other words, neither events have macros attached to them at the start of 
+DocEvents.java. </p>
+<p>Events are manipulated using the XEventSupplier interface. Its relevant services and 
+interfaces are shown in Figure 17. </p>
+<p><img alt="" src="images/49-Ext_Doc_Event_Macros-17.png" /></p>
+<p>Figure 17. The XEventSupplier Interface. </p>
+<p>Document events are reached through the OfficeDocument service while Office 
+events are obtained via theGlobalEventBroadcaster (or the deprecated 
+GlobalEventBroadcaster). </p>
+<p>Macro.listOfficeEvents() starts with the theGlobalEventBroadcaster service, and uses 
+XEventSupplier.getEvents() to obtain an XNameReplace object which is a named 
+container whose entries can be changed: </p>
+<p>// in the Macros class 
+public static void listOfficeEvents() 
+{ System.out.println("\nEvent Handler names"); 
+  XNameReplace eventHandlers = getEventHandlers(); 
+  Lo.printNames( eventHandlers.getElementNames() ); 
+} </p>
+<p>public static XNameReplace getEventHandlers() 
+{ XGlobalEventBroadcaster geb =<br />
+           theGlobalEventBroadcaster.get(Lo.getContext()); 
+  return geb.getEvents();<br />
+} </p>
+<p>Macros.getEventProps() looks up a specific event handler, and casts its entry in the 
+XNameReplace container to a PropertyValue array: </p>
+<p>// in Macros class 
+public static PropertyValue[] getEventProps(String eventName) 
+{<br />
+  XNameReplace eventHandlers = getEventHandlers(); 
+  return getEventProps( eventHandlers, eventName); 
+}  </p>
+<p>public static PropertyValue[] getEventProps( 
+            XNameReplace eventHandlers, String eventName) 
+{ try { 
+    Object oProps = eventHandlers.getByName(eventName); 
+    if (AnyConverter.isVoid(oProps))  // or conversion may fail 
+      return null; 
+    else 
+      return (PropertyValue[])oProps; 
+  } 
+  catch(com.sun.star.uno.Exception e) 
+  {  System.out.println("Could not find event " + eventName); 
+     return null; 
+  } 
+} // end of getEventProps() </p>
+<p>Macros.setEventScript() utilizes getEventProps() to get the PropertyValue[] array for 
+a given event, and sets the "Script" property to be the full name of the macro (e.g. </p>
+<p>"vnd.sun.star.script:ShowEvent.ShowEvent.show?language=Java&amp;location=share"). </p>
+<p>Then the original entry in the XNameReplace object is updated with the changed 
+property: </p>
+<p>public static void setEventScript(String eventName,<br />
+                                  String scriptName) 
+{ 
+  PropertyValue[] evProps = getEventProps(eventName); 
+  if (evProps != null) 
+    Props.setProp(evProps, "Script", scriptName); 
+  else 
+    evProps = Props.makeProps("EventType", "Script", 
+                              "Script", scriptName); </p>
+<p>XNameReplace eventHandlers = getEventHandlers(); 
+  try { 
+    eventHandlers.replaceByName(eventName, evProps); 
+    System.out.println("Set script for " + eventName + " to \"" + 
+                                           scriptName + "\""); 
+  } 
+  catch(com.sun.star.uno.Exception e) 
+  {  System.out.println("Could not set script " + eventName);  } 
+} // end of setEventScript() </p>
+<p>The Macros utilities class contains similar methods for getting and setting document 
+events. Macros.listDocEvents(), Macros.getDocEventProps(), and 
+Macros.setDocEventScript() get the XEventSupplier object from the document via its 
+OfficeDocument service. </p>
+<p>Macros.listDocEvents() prints the following document event names: </p>
+<p>Doc Event Handler names 
+No. of names: 34 
+  "OnCloseApp"  "OnCopyTo"  "OnCopyToDone"  "OnCopyToFailed" 
+  "OnCreate"  "OnFieldMerge"  "OnFieldMergeFinished"  "OnFocus" 
+  "OnLayoutFinished"  "OnLoad"  "OnLoadFinished"  "OnMailMerge" 
+  "OnMailMergeFinished"  "OnModeChanged"  "OnModifyChanged"  "OnNew" 
+  "OnPageCountChange"  "OnPrepareUnload" <br />
+  "OnPrepareViewClosing"  "OnPrint" 
+  "OnSave"  "OnSaveAs"  "OnSaveAsDone"  "OnSaveAsFailed" 
+  "OnSaveDone"  "OnSaveFailed"  "OnStartApp"  "OnStorageChanged" 
+  "OnTitleChanged"  "OnUnfocus"  "OnUnload"  "OnViewClosed" 
+  "OnViewCreated"  "OnVisAreaChanged" </p>
+<p>There's a big overlap with Office events, and the difference between the same-named 
+events, such as "OnLoad", is that the Office version is fired when any document is 
+loaded, whereas the document "OnLoad" will only fire for the loading of "build.odt". </p>
+<p>DocEvent.java attaches ShowEvent.show to its "OnPageCountChange" event, and the 
+document is saved so the change is remembered. </p>
+<p>The change can be confirmed by opening the document and checking the Event tab of 
+the Tools &gt; Customize dialog. The "OnPageCountChange" setting is at the end of the 
+events, as in Figure 18. </p>
+<p><img alt="" src="images/49-Ext_Doc_Event_Macros-18.png" /></p>
+<p>Figure 18. The Event tab of the Tools &gt; Customize Dialog. </p>
+<p>Note that the "Save in:" pop-down list at the bottom of the dialog shows the document 
+name instead of "LibreOffice". </p>
+<h2 id="4-executing-macros-from-the-command-line">4.  Executing Macros from the Command Line</h2>
+<p>One of the show() method in the ShowEvent class doesn't have an event argument: </p>
+<p>// part of ShowEvent.java 
+public static void show(XScriptContext sc) 
+{  display("menu/run");   } </p>
+<p>This method can be called in a number of different situations: <br />
+ when the macro is attached to a menu item; 
+ when the macro is executed from the "Run Macro..." menu item of the<br />
+Tools &gt; Macros menu; 
+ if there's no suitable event handling version of show(), then this version acts as 
+a default; 
+ when the macro is executed from the command line. </p>
+<p>The last approach can be employed when Office is called from the command line to 
+open a document. The command line arguments can include the full name of a macro, 
+which will cause its "run" version to be called. For example: </p>
+<p>office.exe build.odt "vnd.sun.star.script:ShowEvent.ShowEvent.show? 
+                                   language=Java&amp;location=share" </p>
+<p>"build.odt" is opened, and the ShowEvent.show share macro executed.  </p>
+<p>The execMacro.bat batch file in the examples simplifies these command line 
+parameters. </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="48-Event_Macros.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 48. Event Macros
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Part 9 The ODF Format
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

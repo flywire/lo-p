@@ -1,0 +1,1618 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 36. Using RowSets and Database - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-36-using-rowsets-and-database" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 36. Using RowSets and Database
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="06-Text_Styles.html" class="md-nav__link">
+        Chapter 6. Text Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 36. Using RowSets and Database
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link md-nav__link--active">
+        Chapter 36. Using RowSets and Database
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-using-rowsets" class="md-nav__link">
+    1.  Using RowSets
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-using-the-database-context" class="md-nav__link">
+    2.  Using the Database Context
+  </a>
+  
+    <nav class="md-nav" aria-label="2.  Using the Database Context">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-registered-data-sources" class="md-nav__link">
+    2.1.  Registered Data Sources
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-accessing-a-file-using-a-data-source" class="md-nav__link">
+    2.2.  Accessing a File Using a Data Source
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-copying-data-from-base-to-calc" class="md-nav__link">
+    3.  Copying Data From Base To Calc
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-using-rowsets" class="md-nav__link">
+    1.  Using RowSets
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-using-the-database-context" class="md-nav__link">
+    2.  Using the Database Context
+  </a>
+  
+    <nav class="md-nav" aria-label="2.  Using the Database Context">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-registered-data-sources" class="md-nav__link">
+    2.1.  Registered Data Sources
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-accessing-a-file-using-a-data-source" class="md-nav__link">
+    2.2.  Accessing a File Using a Data Source
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-copying-data-from-base-to-calc" class="md-nav__link">
+    3.  Copying Data From Base To Calc
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/36-RowSets_DB_Context.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-36-using-rowsets-and-database">Chapter 36. Using RowSets and Database</h1>
+<p>Context </p>
+<p>This chapter looks at programming with the XRowSet and 
+XDatabaseContext interfaces, which were labelled (2) and 
+(3) in Figure 5 of the Chapter 34. Figure 1 repeats that 
+figure but without the alternative query approaches (labels (1) and (4)). </p>
+<p><img alt="" src="images/36-RowSets_DB_Context-1.png" /></p>
+<p>Figure 1.  Querying a Base Document. </p>
+<h2 id="1-using-rowsets">1.  Using RowSets</h2>
+<p>Base's RowSet offers much the same functionality as JDBC's RowSet in that it 
+abstracts away from connecting Java to a database towards queries applied to general 
+tabular data. This means that a row set can access different types of information 
+include flat files, spreadsheets, and ODB files.  </p>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+</div>
+<p>Using RowSets; 
+Using the Database 
+Context; Copying Data 
+From Base To Calc 
+Example folders: "Base 
+Tests" and "Utils" 
+The JDBC RowSet is implemented in a different way from the sdb row set – JDBC 
+supports several RowSet subclasses, including JdbcRowSet, CachedRowSet and 
+WebRowSet, none of which are present in the Base API. Instead the different ways of 
+manipulating files are specified by setting properties in a RowSet object before it is 
+executed. </p>
+<p>Figure 2 shows that row set properties are distributed between two RowSet services, 
+one in the sdbc module, the other in the higher-level sdb module. </p>
+<p><img alt="" src="images/36-RowSets_DB_Context-2.png" /></p>
+<p>Figure 2. The RowSet Services and Interfaces. </p>
+<p>Although the XRowSet interface's most important method is execute(), it inherits 
+XResultSet which adds other useful functions. One benefit is that an executed row set, 
+which contains results, can be passed to the BaseTablePrinter class for ASCII 
+printing. </p>
+<p>Aside from the documentation webpages for the two RowSet services, a good 
+summary of row set properties can be found in "The RowSet Service" section of the 
+Developer's Guide in chapter 12. The same information is online at: 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Usage (or use 
+loguide "Database usage"). </p>
+<p>My personal view is that the RowSet service is overly complex, trying to combine too 
+many ways of accessing databases and tabular data. It's easier to use separate services 
+aimed at specific forms of data. For example, XOfficeDatabaseDocument for ODB 
+files, XDatabaseContext for URLs, and XDriverManager for none-ODB data such as 
+CSV files and e-mail address books. I'll discuss XDatabaseContext  in section 2 and 
+XDriverManager in the next chapter. </p>
+<p>Another 'black mark' against RowSet is that the my example below hangs after 
+closing a row set; Lo.killOffice() must be called to end the program.  </p>
+<p>UseRowSets.java executes a row set containing a simple SQL query: </p>
+<p>// in UseRowSets.java 
+public static void main(String[] args) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  execQuery(); 
+  Lo.closeOffice(); 
+  Lo.killOffice();    // needed to clean-up after XRowSet 
+}  // end of main() </p>
+<p>private static void execQuery() 
+{ 
+  try { 
+    System.out.println("Initializing rowset..."); 
+    XRowSet xRowSet = Base.rowSetQuery("liangTables.odb", 
+          "SELECT \"firstName\", \"lastName\" FROM \"Student\""); </p>
+<pre><code>// add rowset listener 
+xRowSet.addRowSetListener( new XRowSetListener() { 
+  public void cursorMoved(EventObject e)  
+  {  System.out.println("Cursor moved");  }
+
+  public void rowChanged(EventObject e)  
+  {  System.out.println("Row changed");  }
+
+  public void rowSetChanged(EventObject e)  
+  {  System.out.println("RowSet changed");  }
+
+  public void disposing(EventObject e) 
+  {  System.out.println("RowSet being destroyed"); } 
+});
+
+System.out.println("Executing rowset..."); 
+xRowSet.execute();
+
+BaseTablePrinter.printResultSet(xRowSet);   
+  // possible since XRowSet is a subclass of XResultSet
+
+// dispose of row set 
+XComponent xComp = Lo.qi(XComponent.class, xRowSet); 
+xComp.dispose();
+</code></pre>
+<p>} 
+  catch(com.sun.star.uno.Exception e) 
+  {  System.out.println(e);  } 
+}  // end of execQuery() </p>
+<p>The tricky initialization of RowSet properties is handled by Base.rowSetQuery(): </p>
+<p>// in the Base class 
+public static XRowSet rowSetQuery(String fnm, String query) 
+{ 
+  XRowSet xRowSet = Lo.createInstanceMCF(XRowSet.class,<br />
+                                 "com.sun.star.sdb.RowSet"); </p>
+<p>Props.setProperty(xRowSet, "DataSourceName", FileIO.fnmToURL(fnm)); 
+  Props.setProperty(xRowSet, "CommandType", CommandType.COMMAND);  <br />
+                                       // TABLE, QUERY or COMMAND 
+  Props.setProperty(xRowSet, "Command", query); 
+         // command could be a table, query name, or SQL,<br />
+         // depending on the CommandType </p>
+<p>// set these if your database requires a login 
+  // Props.setProperty(xRowSet, "User", ""); 
+  // Props.setProperty(xRowSet, "Password", ""); </p>
+<p>// more attributes are defined in sdb and sdbc Rowset...  </p>
+<p>return xRowSet; 
+}  // end of rowSetQuery() </p>
+<p>Base.rowSetQuery() shows that initializing a row set is less work than directly 
+obtaining an ODB data source, connecting to the database, and creating a Statement 
+service. The equivalent of executing a statement is the call to XRowset.execute(), 
+carried out by execQuery() in UseRowSets.java: 
+xRowSet.execute(); 
+Once the row set has been populated, it's passed to BaseTablePrinter.printResultSet() 
+where it's treated as an XResultSet instance: 
+// in execQuery()... </p>
+<p>BaseTablePrinter.printResultSet(xRowSet);   </p>
+<p>Listening to the Row Set 
+execQuery() shows how it's possible to attach a listener to a row set, which is woken 
+up when the result set cursor moves or the set is changed.  </p>
+<p>The anonymous XRowSetListener in execQuery() prints a short message if any of its 
+handlers are triggered; their output can be seen in Figure 3. </p>
+<p><img alt="" src="images/36-RowSets_DB_Context-3.png" /></p>
+<p>Figure 3. The Execution of UseRowSets.java. </p>
+<p>Termination Problem after Closing a Row Set 
+The disposal of the row set is easy: </p>
+<p>// at the end of execQuery()... </p>
+<p>XComponent xComp = Lo.qi(XComponent.class, xRowSet); 
+xComp.dispose(); </p>
+<p>Back in main(), Lo.closeOffice() is executed, returns, but then the program hangs. A 
+call to Lo.killOffice() (which utilizes Window's taskkill) is needed to terminate the 
+program and Office. </p>
+<h2 id="2-using-the-database-context">2.  Using the Database Context</h2>
+<p>Sdbc's XDatabaseContext lets the programmer access Base's database context, which 
+is a container for data sources (see Figure 1). Data sources map names to databases, 
+hiding the low-level details of the driver's protocol, and whether the database is 
+embedded in an ODB file or located at the other end of a URL. Base's database 
+context performs a similar role to JNDI for data sources in JDBC. </p>
+<p>Figure 4 shows the DatabaseContext service and some of its important interfaces. </p>
+<p><img alt="" src="images/36-RowSets_DB_Context-4.png" /></p>
+<p>Figure 4. The DatabaseContext Service and Interfaces. </p>
+<h3 id="21-registered-data-sources">2.1.  Registered Data Sources</h3>
+<p>It's possible to add (or register) new data sources to Base's database context, but I 
+won't be using that feature. Currently registered sources are listed by 
+Base.printRegisteredDataSources(): </p>
+<p>// in the Base class 
+public static void printRegisteredDataSources() 
+// print all registered datasources 
+{ 
+  XDatabaseRegistrations dbRegs =<br />
+       Lo.createInstanceMCF(XDatabaseRegistrations.class,<br />
+                           "com.sun.star.sdb.DatabaseContext"); </p>
+<p>XNameAccess nmsAccess = Lo.createInstanceMCF(XNameAccess.class,<br />
+                             "com.sun.star.sdb.DatabaseContext"); </p>
+<p>String dsNames[] = nmsAccess.getElementNames(); 
+  System.out.println("Registered Data Sources (" +<br />
+                                  dsNames.length + ")"); 
+  for (int i = 0; i &lt; dsNames.length; ++i) { 
+    String dbLoc = null; 
+    try { 
+      dbLoc = dbRegs.getDatabaseLocation(dsNames[i]); 
+    } 
+    catch(com.sun.star.uno.Exception e) {} 
+    System.out.println("  " + dsNames[i] + " in " + dbLoc); 
+  } 
+  System.out.println(); 
+}  // end of printRegisteredDataSources() </p>
+<p>The method iterates through the data source names in the database context, printing 
+the locations of their associated databases. The output for my version of Base is: </p>
+<p>Registered Data Sources (1) 
+  Bibliography in file:///C:/Users/Dell/AppData/Roaming/ 
+                       LibreOffice/4/user/database/biblio.odb </p>
+<p>Only a "Bibliography" data source is stored in the database context, which maps to an 
+ODB file called biblio.odb. </p>
+<h3 id="22-accessing-a-file-using-a-data-source">2.2.  Accessing a File Using a Data Source</h3>
+<p>New data sources can be created in the database context, which offers a way to access 
+ODB files without having to explicitly open them as documents. For example, the 
+DataSourcer.java example shows how "liangTables.odb" can be queried without 
+having to first instantiate XOfficeDatabaseDocument (i.e. without opening the ODB 
+file). </p>
+<p>// in DataSourcer.java 
+public static void main(String[] args) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); </p>
+<p>Base.printRegisteredDataSources();  // explained above </p>
+<p>XConnection conn = null; 
+  try { 
+    XDataSource dataSource =<br />
+          Base.getFileDataSource("liangTables.odb"); 
+          // no office document opened </p>
+<pre><code>conn = dataSource.getConnection("", ""); // no login/password
+
+XResultSet rs = Base.executeQuery( 
+    "SELECT \"firstName\", \"lastName\" FROM \"Student\"", conn); 
+BaseTablePrinter.printResultSet(rs);
+</code></pre>
+<p>} 
+  catch(SQLException e) { 
+    System.out.println(e); 
+  } </p>
+<p>Base.closeConnection(conn); 
+  Lo.closeOffice(); 
+  Lo.killOffice();   // needed when Base.getFileDataSource() used<br />
+}  // end of main()  </p>
+<p>The database context is manipulated by Base.getFileDataSource(): </p>
+<p>// in the Base class 
+public static XDataSource getFileDataSource(String fnm) 
+{ 
+  try { 
+    String fileURL = FileIO.fnmToURL(fnm); 
+    XNameAccess nmsAccess = Lo.createInstanceMCF(XNameAccess.class,<br />
+                            "com.sun.star.sdb.DatabaseContext"); 
+    XDataSource ds = Lo.qi(XDataSource.class,<br />
+                               nmsAccess.getByName(fileURL) ); 
+    if (ds == null) { 
+      System.out.println("No data source for " + fnm); 
+      return null; 
+    } 
+    else { 
+      System.out.println("Found data source for " + fnm); 
+      return ds; 
+    } 
+  } 
+  catch(com.sun.star.uno.Exception e) { 
+    System.out.println("Unable to access data source for " + fnm + 
+                       ": " + e.getMessage()); 
+    return null; 
+  } 
+}  // end of getFileDataSource() </p>
+<p>The database context's XNameAccess interface is used to map the supplied filename 
+to a data source.  </p>
+<p>Back in main() of DataSourcer.java, the Student table in the database is queried using 
+the data source, and then the program closes the connection and Office. There's no 
+need to close an XOfficeDatabaseDocument document, (e.g. by calling 
+Base.closeBaseDoc(dbDoc)) since one was never opened. </p>
+<p>Unfortunately, DataSourcer.java needs to call Lo.killOffice() or the program will 
+hang after the return of Lo.closeOffice(). This is similar to the row set problem in 
+UseRowSets.java in the previus section. </p>
+<h2 id="3-copying-data-from-base-to-calc">3.  Copying Data From Base To Calc</h2>
+<p>There are a few places in my Office support classes where the code assumes only one 
+document is open at a time. For programs that copy data from one document to 
+another, problems can be avoided by using an intermediate data structure. The usual 
+strategy is to read the data from the first document,  then close the file before the 
+second document is opened, and then the data is added to it. </p>
+<p>This situation arises when copying database records (stored in a Base document) to a 
+spreadsheet (a Calc document). An alternative solution to using an intermediate data 
+structure is to access the database as a data source instead of as a 
+XOfficeDatabaseDocument object. This means that only a single Calc document is 
+manipulated by the program so no problems arise with my support classes. This 
+approach is implemented in StoreInCalc.java: </p>
+<p>// globals 
+private static final String FNM = "liangTables.odb"; 
+private static final String CALC_FNM = "liangCalc.ods"; </p>
+<p>// in StoreInCalc.java 
+public static void main(String[] args) 
+{ 
+  XComponentLoader loader = Lo.loadOffice(); 
+  XSpreadsheetDocument doc = Calc.createDoc(loader); 
+  if (doc == null) { 
+    System.out.println("Document creation failed"); 
+    Lo.closeOffice(); 
+    return; 
+  } 
+  System.out.println("Created a Calc document"); </p>
+<p>XSpreadsheet sheet = Calc.getSheet(doc, 0); 
+  if (sheet == null) { 
+    System.out.println("No spreadsheet found"); 
+    Lo.closeOffice(); 
+    return; 
+  } </p>
+<p>GUI.setVisible(doc, true);  // show the new sheet </p>
+<p>Object[][] rsa = queryDB(FNM, 
+         "SELECT \"firstName\", \"lastName\" FROM \"Student\""); 
+  if (rsa != null) 
+    fillSheet(sheet, rsa); 
+  Lo.delay(3000);  // wait for visible sheet to be changed </p>
+<p>Lo.saveDoc(doc, CALC_FNM); 
+  Lo.closeDoc(doc); 
+  Lo.closeOffice(); </p>
+<p>// Lo.killOffice();   // needed when getFileDataSource() used<br />
+}  // end of main() </p>
+<p>The program creates a XSpreadsheetDocument object, which is left open while 
+queryDB() queries the database. The result set is returned as a 2D array called rsa, 
+which fillSheet() uses to populate the spreadsheet. The document is saved and Office 
+closed. </p>
+<p>queryDB() accesses the database as a data source, not as a document: </p>
+<p>// in StoreInCalc.java 
+private static Object[][] queryDB(String fnm, String query) 
+{ 
+  Object[][] rsa = null; 
+  XConnection conn = null; 
+  try { 
+    XDataSource dataSource = Base.getFileDataSource(fnm); 
+    conn = dataSource.getConnection("", "");  </p>
+<pre><code>XResultSet rs = Base.executeQuery(query, conn); 
+rsa = Base.getResultSetArr(rs);
+</code></pre>
+<p>} 
+  catch(SQLException e) { 
+    System.out.println(e); 
+  } </p>
+<p>Base.closeConnection(conn); 
+  return rsa; 
+}  // end of queryDB() </p>
+<p>Base.getResultSetArr() returns the result set as a 2D array of Objects. It builds the 
+array by traversing the result set a row at a time, creating a one-dimensional array for 
+each row. The data structure could be a defined as a 2D array of strings, except that 
+the Calc API requires an object array fillSheet() uses XCellRangeData.setDataArray() 
+to add the array to the sheet: </p>
+<p>// in StoreInCalc.java 
+private static void fillSheet(XSpreadsheet sheet, Object[][] rsa) 
+{ 
+  try { 
+    XCellRange cellRange = sheet.getCellRangeByPosition(0, 0, 
+                                 rsa[0].length-1, rsa.length-1); 
+    XCellRangeData xData = Lo.qi(XCellRangeData.class, cellRange); 
+    xData.setDataArray(rsa); 
+  } 
+  catch (Exception e) { 
+    System.out.println("Could not writes values to cells"); 
+  } 
+}  // end of fillSheet() </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="35-Examining_Base_Docs.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 35. Examining Base Documents
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="37-Driver_Manager.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Chapter 37. Using the Driver Manager
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2135 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="LibreOffice Programming (LO-P) is intended for programmers who want  to learn how to use the the LibreOffice API. This allows programs to control  and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and  database applications, and a lot more (e.g. its spell checker, forms  designer, and charting tools).  ">
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+    
+    
+      
+        <title>Chapter 6. Text Styles - LibreOffice Programming</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
+      
+        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-6-text-styles" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LibreOffice Programming
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 6. Text Styles
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="LibreOffice Programming" class="md-nav__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    LibreOffice Programming
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lo-p
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        Preface
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01%20Part%201%20Basics.html" class="md-nav__link">
+        Part 1 Basics
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="01-Concepts.html" class="md-nav__link">
+        Chapter 1. LibreOffice API Concepts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="02-Starting_and_Stopping.html" class="md-nav__link">
+        Chapter 2. Starting and Stopping
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="03-Examining.html" class="md-nav__link">
+        Chapter 3. Examining
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04-Listening.html" class="md-nav__link">
+        Chapter 4. Listening, and Other Techniques
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05%20Part%202%20Writer.html" class="md-nav__link">
+        Part 2 Writer
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="05-Text_API_Overview.html" class="md-nav__link">
+        Chapter 5. Text API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chapter 6. Text Styles
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="06-Text_Styles.html" class="md-nav__link md-nav__link--active">
+        Chapter 6. Text Styles
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-properties-are-in-a-propertyset" class="md-nav__link">
+    1.  What Properties are in a PropertySet?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-listing-styles-information" class="md-nav__link">
+    2.  Listing Styles Information
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-characterstyles-style-family-contains" class="md-nav__link">
+    1.  "CharacterStyles" Style Family contains:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-framestyles-style-family-contains-containers" class="md-nav__link">
+    2.  "FrameStyles" Style Family contains containers:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-numberingstyles-style-family-contains-containers" class="md-nav__link">
+    3.  "NumberingStyles" Style Family contains containers:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pagestyles-style-family-contains-containers" class="md-nav__link">
+    4.  "PageStyles" Style Family contains containers:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-paragraphstyles-style-family-contains-containers" class="md-nav__link">
+    5.  "ParagraphStyles" Style Family contains containers:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-creating-a-new-style" class="md-nav__link">
+    3.  Creating a New Style
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-applying-styles-to-paragraphs-and-characters" class="md-nav__link">
+    4.  Applying Styles to Paragraphs (and Characters)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cursors-and-text-ranges" class="md-nav__link">
+    5.  Cursors and Text Ranges
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-building-a-story-document" class="md-nav__link">
+    6.  Building a Story Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-style-changes-to-words-and-phrases" class="md-nav__link">
+    7.  Style Changes to Words and Phrases
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-hyperlink-styling" class="md-nav__link">
+    8.  Hyperlink Styling
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-text-numbering" class="md-nav__link">
+    9.  Text Numbering
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="08-Graphic_Content.html" class="md-nav__link">
+        Chapter 8. Graphic Content
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="09-Text_Search.html" class="md-nav__link">
+        Chapter 9. Text Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="10-Linguistics.html" class="md-nav__link">
+        Chapter 10. The Linguistics API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-nav__link">
+        Part 3 Draw & Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="11-Draw_Impress_APIs.html" class="md-nav__link">
+        Chapter 11. Draw/Impress APIs Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="12-Examining_DrawImpress.html" class="md-nav__link">
+        Chapter 12. Examining a Draw/Impress
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13-Basic_Shapes.html" class="md-nav__link">
+        Chapter 13. Drawing Basic Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14-Animation.html" class="md-nav__link">
+        Chapter 14. Animation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="15-Complex_Shapes.html" class="md-nav__link">
+        Chapter 15. Complex Shapes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="16-Making_Slides.html" class="md-nav__link">
+        Chapter 16. Making Slides
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="17-Slide_Deck_Manipulation.html" class="md-nav__link">
+        Chapter 17. Slide Deck Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="18-Slide_Shows.html" class="md-nav__link">
+        Chapter 18. Slide Shows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19%20Part%204%20Calc.html" class="md-nav__link">
+        Part 4 Calc
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="19-Calc_API_Overview.html" class="md-nav__link">
+        Chapter 19. Calc API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
+        Chapter 20. Spreadsheet Displaying and
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="21-Extracting_Data.html" class="md-nav__link">
+        Chapter 21. Extracting Data
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="22-Styles.html" class="md-nav__link">
+        Chapter 22. Styles
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="23-Garlic_Secrets.html" class="md-nav__link">
+        Chapter 23. Garlic Secrets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="24-Complex_Data_Manipulation.html" class="md-nav__link">
+        Chapter 24. Complex Data Manipulation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="25-Monitoring_Sheets.html" class="md-nav__link">
+        Chapter 25. Monitoring Sheets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="26-Search_Replace.html" class="md-nav__link">
+        Chapter 26. Search and Replace
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28%20Part%205%20Chart.html" class="md-nav__link">
+        Part 5 Chart
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="28-Chart2_API_Overview.html" class="md-nav__link">
+        Chapter 28. Chart2 API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="29-Column_Charts.html" class="md-nav__link">
+        Chapter 29. Column Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-nav__link">
+        Chapter 30. Bar, Pie, Area, Line Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="31-XY_Scatter_Charts.html" class="md-nav__link">
+        Chapter 31. XY (Scatter) Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="32-Bubble_Net_Stock_Charts.html" class="md-nav__link">
+        Chapter 32. Bubble, Net, Stock Charts
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
+        Chapter 33. Using Charts in Other
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34%20Part%206%20Base.html" class="md-nav__link">
+        Part 6 Base
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="34-JDBC_to_Base_API.html" class="md-nav__link">
+        Chapter 34. From JDBC to the Base API
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="35-Examining_Base_Docs.html" class="md-nav__link">
+        Chapter 35. Examining Base Documents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="36-RowSets_DB_Context.html" class="md-nav__link">
+        Chapter 36. Using RowSets and Database
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="37-Driver_Manager.html" class="md-nav__link">
+        Chapter 37. Using the Driver Manager
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="38-ODB_as_Zip.html" class="md-nav__link">
+        Chapter 38. Treating an ODB File as a
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39%20Part%207%20Cross-application.html" class="md-nav__link">
+        Part 7 Cross-application
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="39-Forms_API_Overview.html" class="md-nav__link">
+        Chapter 39. Forms API Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="40-Building_a_Form.html" class="md-nav__link">
+        Chapter 40. Building a Form
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="41-Printing.html" class="md-nav__link">
+        Chapter 41. Printing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="42-Sending_E-mail.html" class="md-nav__link">
+        Chapter 42. Sending E-mail
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="44-Office_as_GUI_Comp.html" class="md-nav__link">
+        Chapter 44. Office as a GUI Component
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-nav__link">
+        Part 8 Extending LibreOffice
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="45-UNO_Components.html" class="md-nav__link">
+        Chapter 45. Coding UNO Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="46-Addons.html" class="md-nav__link">
+        Chapter 46. Add-ons
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="47-Calc_Add-ins.html" class="md-nav__link">
+        Chapter 47. Calc Add-ins
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="48-Event_Macros.html" class="md-nav__link">
+        Chapter 48. Event Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
+        Chapter 49. Extension and Document
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-nav__link">
+        Part 9 The ODF Format
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="50-Importing_XML.html" class="md-nav__link">
+        Chapter 50. Importing XML
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="51-Simple_ODF.html" class="md-nav__link">
+        Chapter 51. Simple ODF
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-properties-are-in-a-propertyset" class="md-nav__link">
+    1.  What Properties are in a PropertySet?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-listing-styles-information" class="md-nav__link">
+    2.  Listing Styles Information
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-characterstyles-style-family-contains" class="md-nav__link">
+    1.  "CharacterStyles" Style Family contains:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-framestyles-style-family-contains-containers" class="md-nav__link">
+    2.  "FrameStyles" Style Family contains containers:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-numberingstyles-style-family-contains-containers" class="md-nav__link">
+    3.  "NumberingStyles" Style Family contains containers:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pagestyles-style-family-contains-containers" class="md-nav__link">
+    4.  "PageStyles" Style Family contains containers:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-paragraphstyles-style-family-contains-containers" class="md-nav__link">
+    5.  "ParagraphStyles" Style Family contains containers:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-creating-a-new-style" class="md-nav__link">
+    3.  Creating a New Style
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-applying-styles-to-paragraphs-and-characters" class="md-nav__link">
+    4.  Applying Styles to Paragraphs (and Characters)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cursors-and-text-ranges" class="md-nav__link">
+    5.  Cursors and Text Ranges
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-building-a-story-document" class="md-nav__link">
+    6.  Building a Story Document
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-style-changes-to-words-and-phrases" class="md-nav__link">
+    7.  Style Changes to Words and Phrases
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-hyperlink-styling" class="md-nav__link">
+    8.  Hyperlink Styling
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-text-numbering" class="md-nav__link">
+    9.  Text Numbering
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/flywire/lo-p/edit/master/docs/06-Text_Styles.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="chapter-6-text-styles">Chapter 6. Text Styles</h1>
+<p>This chapter focuses on how text documents styles can be 
+examined and manipulated. This revolves around the 
+XStyleFamiliesSupplier interface in 
+GenericTextDocument, which is highlighted in Figure 1 (a 
+repeat of Figure 2 in Chapter 5). </p>
+<p><img alt="" src="images/06-Text_Styles-1.png" /></p>
+<p>Figure 1. The Text Document Services, and some Interfaces. </p>
+<p>XStyleFamiliesSupplier has a getStyleFamilies() method for returning text style 
+families. All these families are stored in an XNameAccess object, as depicted in </p>
+<p><img alt="" src="images/06-Text_Styles-2.png" /></p>
+<p>Figure 2. </p>
+<p>XNameAccess is one of Office's collection types, and employed when the objects in a 
+collection have names. There's also an XIndexAccess for collections in index order. </p>
+<p>XNameContainer and XIndexContainer add the ability to insert and remove objects 
+from a collection.  </p>
+<p>Example folders: "Text 
+Tests" and "Utils" </p>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Five Style </p>
+</div>
+<p>Families; Properties; 
+Listing Styles;  Creating 
+a Style; Applying Styles; 
+Paragraph/Word Styles; 
+Hyperlink Styling; Text 
+Numbering; Headers and 
+Footers </p>
+<p><img alt="" src="images/06-Text_Styles-2.png" /></p>
+<p>Figure 2. Style Families and their Property Sets. </p>
+<p>Five style family names are used by text documents: "CharacterStyles", 
+"FrameStyles", "NumberingStyles", "PageStyles", and "ParagraphStyles". The 
+XNameAccess families collection can be accessed with one of those names, and 
+returns a style family. A style family is a modifiable collection of PropertySet objects, 
+stored in an XNameContainer object. </p>
+<p>Figure 2 shows that if the "ParagraphStyles" family is retrieved, it contains property 
+sets labelled "Header", "List", "Standard", and quite a few more. Each property set 
+can format a paragraph, change the text's font, size, and many other attributes. These 
+property sets are called styles. </p>
+<p>The "CharacterStyles" family is a container of property sets (styles) which affect 
+selected sentences, words, or characters in the document. The "FrameStyles" 
+container holds property sets (styles) for formatting graphic and text frames. The 
+"NumberingStyles" family is for adding numbers or bullets to paragraphs. The 
+"PageStyles" family is for formatting pages. </p>
+<p>The names of the property sets (styles) in the style families can be listed using 
+LibreOffice's GUI. If you create a new text document in Writer, a "Styles and 
+Formatting" dialog window appears when you press F11 (or click on the brown 
+spanner icon in the "Formatting" toolbar). Within the window you can switch between 
+five icons representing the five style families. Figure 3 shows the list of property set 
+(style) names for the paragraph styles family. They corresponds to the property set 
+names shown in Figure 2. </p>
+<p><img alt="" src="images/06-Text_Styles-3.png" /></p>
+<p>Figure 3. Styles and Formatting Window in Writer. </p>
+<p>The names listed in the window are the same as the names used in the API, except in 
+two cases: the "Default Style" name that appears in the GUI window for "Paragraph 
+Styles" and "Page Styles" is changed to "Standard" in the API. Strangely, the "Default 
+Style" name for "Character Styles" in the GUI is called "Default Style" in the API. </p>
+<p>Accessing a style (a property set) is a three-step process, shown below. First the style 
+families, then the style family (e.g. "ParagraphStyle"), and then the style (e.g. </p>
+<p>"Standard"): </p>
+<p>// 1. get the style families 
+XStyleFamiliesSupplier xSupplier = 
+                       Lo.qi(XStyleFamiliesSupplier.class, doc); 
+XNameAccess nameAcc = xSupplier.getStyleFamilies(); </p>
+<p>// 2. get the paragraph style family 
+XNameContainer paraStyleCon = Lo.qi(XNameContainer.class,<br />
+                          nameAcc.getByName("ParagraphStyles")); </p>
+<p>// 3. get the 'standard' style (property set) 
+XPropertySet standardProps = Lo.qi(XPropertySet.class,<br />
+                          paraStyleCon.getByName("Standard")); </p>
+<p>The code that implements this process in the Write utility class is a bit more 
+complicated since the calls to getByName() may raise exceptions if their string 
+arguments are incorrect. </p>
+<p>The calls to Lo.qi() cast the object returned from a collection into the correct type. </p>
+<h2 id="1-what-properties-are-in-a-propertyset">1.  What Properties are in a PropertySet?</h2>
+<p>The "Standard" name in the "ParagraphStyles" style family refers to a property set 
+(style). Each set is a collection of name=value pairs, and there are get and set methods 
+using a name to get/set its value. This is simple enough, but what names should the 
+programmer use? 
+Each property set (style) in the same style family contain the same properties, but 
+with different values. For instance, in Figure 2 the "Header", "Title", "Standard", 
+"List", and "Table" sets contain the same named properties. </p>
+<p>The names of the properties used by the sets in a style family can be found in the 
+documentation for their "XXXStyle" service. Table 1 summarizes the mapping. </p>
+<p>Style Family Name Service where Properties 
+are Defined 
+"CharacterStyles" CharacterStyle 
+"FrameStyles" FrameStyle (??) 
+"NumberingStyles" NumberingStyle 
+"PageStyles" PageStyle 
+"ParagraphStyles" ParagraphStyle 
+Table 1. Properties Information for Each Style Family. </p>
+<p>The easiest way of finding Office documentation for the services in the second 
+column of Table 1 is with lodoc.bat. For example, the page about CharacterStyle 
+can be found with lodoc CharacterStyle service.  </p>
+<p>The FrameStyle service (full name: com.sun.star.style.FrameStyle) has a "??" against 
+it since there's no online documentation for that service, although such a service 
+exists. </p>
+<p>A style's properties are usually defined across several classes in an inheritance 
+hierarchy. The hierarchies for the five styles are summarized in Figure 4. </p>
+<p><img alt="" src="images/06-Text_Styles-4.png" /></p>
+<p>Figure 4. The Inheritance Hierarchies for the Style Services. </p>
+<p>Figure 4 shows the hierarchies for the five style services: CharacterStyle, FrameStyle, 
+NumberingStyle, PageStyle, and ParagraphStyle. There's clearly a lot of similarities 
+between them, so I'll focus on CharacterStyle.  </p>
+<p>There are three services containing character style properties: CharacterStyle, Style, 
+and CharacterProperties. If you visit the online documentation for CharacterStyle, the 
+properties are listed under the heading "Public Attributes", which is shown in Figure 
+5. </p>
+<p><img alt="" src="images/06-Text_Styles-5.png" /></p>
+<p>Figure 5. Part of the Online Documentation for CharacterStyle. </p>
+<p>CharacterStyle defines six properties itself, but there are many more inherited from 
+the Style and CharacterProperties services. If you click on the triangles next to the 
+"Public Attributes inherited from" lines, the documentation expands to display those 
+properties. </p>
+<p>Figure 4 contains two "(??)" strings – one is to indicate that there's no documentation 
+for FrameStyle, so I'm guessing about its inheritance hierarchy.  </p>
+<p>The other "(??)" is in the ParagraphStyle hierarchy. The documentation for 
+ParagraphStyle, and the information in the developers guide, indicate that 
+ParagraphStyle inherits only Style and ParagraphCharacter. I believe this to be 
+incorrect, based on my coding with ParagraphStyle (some of which you'll see in the 
+next sections). ParagraphStyle appears to inherits three services: Style, 
+ParagraphCharacter, and CharacterStyle, as indicated in Figure 6. </p>
+<p><img alt="" src="images/06-Text_Styles-6.png" /></p>
+<p>Figure 6. The Paragraph Service and its Superclasses. </p>
+<p>For more information of the styles API, start in the development guide in the "Overall 
+Document Features" section, online at: 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/ 
+          Overall_Document_Features 
+or type loGuide "Overall Document Features" 
+The character and paragraph style properties are explained in the "Formatting" 
+section: 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/ 
+          Formatting 
+or type  loGuide writer Formatting </p>
+<h2 id="2-listing-styles-information">2.  Listing Styles Information</h2>
+<p>My StylesInfo.java example illustrates some of the Writer and Info utility functions 
+for examining style families and their property sets. The main() function starts by 
+listing the style families names: </p>
+<p>XTextDocument doc = Write.openDoc(args[0], loader); </p>
+<p>// get all the style families for this document 
+String[] styleFamilies = Info.getStyleFamilyNames(doc); 
+System.out.println("No. of Style Family Names: " +<br />
+                                  styleFamilies.length); 
+for(String styleFamily : styleFamilies) 
+  System.out.println("  " + styleFamily); 
+System.out.println(); </p>
+<p>The output lists the five family names: </p>
+<p>No. of Style Family Names: 5 
+  CharacterStyles 
+  FrameStyles 
+  NumberingStyles 
+  PageStyles 
+  ParagraphStyles </p>
+<p>Info.getStyleFamilyNames() starts by casting the document to an 
+XStyleFamiliesSupplier interface. Then the style families XNameAccess collection is 
+obtained by calling XStyleFamiliesSupplier.getStyleFamilies().The family names in 
+that collection are extracted with XNameAccess.getElementName(): </p>
+<p>public static String[] getStyleFamilyNames(XComponent doc) 
+// in the Info class 
+{ 
+  XStyleFamiliesSupplier xSupplier =  Lo.qi( 
+                            XStyleFamiliesSupplier.class, doc); 
+  XNameAccess nameAcc = xSupplier.getStyleFamilies(); 
+  String[] names = nameAcc.getElementNames(); 
+  Arrays.sort(names); 
+  return names; 
+}  // end of getStyleFamilyNames() </p>
+<p>Back in StylesInfo.java, the main() function continues by looping through the list of 
+style family names, printing all the style (property set) names in each family: </p>
+<p>// list all the style names for each style family 
+for(int i=0; i &lt; styleFamilies.length; i++) { 
+  String styleFamily = styleFamilies[i]; 
+  System.out.println((i+1) + ". \"" + styleFamily +<br />
+                               "\" Style Family contains:"); 
+  String[] styleNames = Info.getStyleNames(doc, styleFamily); 
+  Lo.printNames(styleNames); 
+} </p>
+<p>The output is lengthy, but informative: </p>
+<h2 id="1-characterstyles-style-family-contains">1.  "CharacterStyles" Style Family contains:</h2>
+<p>"Bullet Symbols"  "Caption characters"  "Citation"  "Default Style" 
+  "Definition"  "Drop Caps"  "Emphasis"  "Endnote Symbol" 
+  "Endnote anchor"  "Example"  "Footnote Symbol"  "Footnote anchor" 
+  "Index Link"  "Internet link"  "Line numbering"  "Main index entry" 
+  "Numbering Symbols"  "Page Number"  "Placeholder"  "Rubies" 
+  "Source Text"  "Strong Emphasis"  "Teletype"  "User Entry" 
+  "Variable"  "Vertical Numbering Symbols"  "Visited Internet Link" </p>
+<h2 id="2-framestyles-style-family-contains-containers">2.  "FrameStyles" Style Family contains containers:</h2>
+<p>"Formula"  "Frame"  "Graphics"  "Labels" 
+  "Marginalia"  "OLE"  "Watermark" </p>
+<h2 id="3-numberingstyles-style-family-contains-containers">3.  "NumberingStyles" Style Family contains containers:</h2>
+<p>"List 1"  "List 2"  "List 3"  "List 4" 
+  "List 5"  "Numbering 1"  "Numbering 2"  "Numbering 3" 
+  "Numbering 4"  "Numbering 5" </p>
+<h2 id="4-pagestyles-style-family-contains-containers">4.  "PageStyles" Style Family contains containers:</h2>
+<p>"Endnote"  "Envelope"  "First Page"  "Footnote" 
+  "HTML"  "Index"  "Landscape"  "Left Page" 
+  "Right Page"  "Standard" </p>
+<h2 id="5-paragraphstyles-style-family-contains-containers">5.  "ParagraphStyles" Style Family contains containers:</h2>
+<p>"Addressee"  "Bibliography 1"  "Bibliography Heading"  "Caption" 
+  "Contents 1"  "Contents 10"  "Contents 2"  "Contents 3" 
+  "Contents 4"  "Contents 5"  "Contents 6"  "Contents 7" 
+  "Contents 8"  "Contents 9"  "Contents Heading"  "Drawing" 
+  "Endnote"  "First line indent"  "Footer"  "Footer left" 
+  "Footer right"  "Footnote"  "Frame contents"  "Hanging indent" 
+  "Header"  "Header left"  "Header right"  "Heading" 
+  "Heading 1"  "Heading 10"  "Heading 2"  "Heading 3" 
+  "Heading 4"  "Heading 5"  "Heading 6"  "Heading 7" 
+  "Heading 8"  "Heading 9"  "Horizontal Line"  "Illustration" 
+  "Illustration Index 1"  "Illustration Index Heading"  "Index"<br />
+"Index 1" 
+  "Index 2"  "Index 3"  "Index Heading"  "Index Separator" 
+  "List"  "List 1"  "List 1 Cont."  "List 1 End" 
+  "List 1 Start"  "List 2"  "List 2 Cont."  "List 2 End" 
+  "List 2 Start"  "List 3"  "List 3 Cont."  "List 3 End" 
+  "List 3 Start"  "List 4"  "List 4 Cont."  "List 4 End" 
+  "List 4 Start"  "List 5"  "List 5 Cont."  "List 5 End" 
+  "List 5 Start"  "List Contents"  "List Heading"  "List Indent" 
+  "Marginalia"  "Numbering 1"  "Numbering 1 Cont."  "Numbering 1 End" 
+  "Numbering 1 Start"  "Numbering 2"  "Numbering 2 Cont."  "Numbering 
+2 End" 
+  "Numbering 2 Start"  "Numbering 3"  "Numbering 3 Cont."  "Numbering 
+3 End" 
+  "Numbering 3 Start"  "Numbering 4"  "Numbering 4 Cont."  "Numbering 
+4 End" 
+  "Numbering 4 Start"  "Numbering 5"  "Numbering 5 Cont."  "Numbering 
+5 End" 
+  "Numbering 5 Start"  "Object index 1"  "Object index heading"<br />
+"Preformatted 
+  "Quotations"  "Salutation"  "Sender"  "Signature" 
+  "Standard"  "Subtitle"  "Table"  "Table Contents" 
+  "Table Heading"  "Table index 1"  "Table index heading"  "Text" 
+  "Text body"  "Text body indent"  "Title"  "User Index 1" 
+  "User Index 10"  "User Index 2"  "User Index 3"  "User Index 4" 
+  "User Index 5"  "User Index 6"  "User Index 7"  "User Index 8" 
+  "User Index 9"  "User Index Heading"  </p>
+<p>Info.getStyleNames() retrieves the XNameContainer object for each style family, and 
+extracts its style (property set) names using getElementNames(): </p>
+<p>public static String[] getStyleNames(XComponent doc, 
+                                String familyStyleName) 
+// in Info.java 
+{ XNameContainer styleContainer =<br />
+                getStyleContainer(doc, familyStyleName); 
+  if (styleContainer == null) 
+    return null; 
+  else { 
+    String[] names = styleContainer.getElementNames(); 
+    Arrays.sort(names); 
+    return names; 
+  } 
+}  // end of getStyleNames() </p>
+<p>The last part of StylesInfo.java lists the properties for a specific property set. </p>
+<p>Info.getStyleProps() does that:  </p>
+<p>XPropertySet getStyleProps(XComponent doc, 
+                     String familyStyleName, String propSetNm) 
+{ XNameContainer styleContainer =<br />
+           getStyleContainer(doc, familyStyleName); 
+           // container is a collection of named property sets 
+  if (styleContainer == null) 
+    return null; 
+  else { 
+    XPropertySet nameProps = null; 
+    try { 
+      nameProps = Lo.qi( XPropertySet.class,<br />
+                    styleContainer.getByName(propSetNm)); 
+    } 
+    catch(Exception e) 
+    {  System.out.println("Could not access style: " + e);  } 
+    return nameProps; 
+  } 
+}  // end of getStyleProps() </p>
+<p>Its arguments are the document, the style family name, and style (property set) name. </p>
+<p>A reference to the property set is returned. Accessing the "Standard" style (property 
+set) of the "ParagraphStyle" family would require: </p>
+<p>XPropertySet props =<br />
+       Info.getStyleProps(doc, "ParagraphStyles", "Standard") </p>
+<p>The property set can be nicely printed by calling Props.showProps(): 
+Props.showProps("ParagraphStyles \"Standard\"", props ); 
+The output is long, but begins and ends like so: </p>
+<p>ParagraphStyles "Standard" Properties 
+  BorderDistance == 0 
+  BottomBorder == com.sun.star.table.BorderLine2@1a8a1dc 
+  BottomBorderDistance == 0 
+  BreakType == com.sun.star.style.BreakType@18e5cde 
+  Category == 0 
+  CharAutoKerning == true 
+  CharBackColor == -1 
+  CharBackTransparent == true 
+       : 
+  Rsid == Any[Type[unsigned long], 0] 
+  SnapToGrid == true 
+  StyleInteropGrabBag == [Lcom.sun.star.beans.PropertyValue;@1701da1 
+  TopBorder == com.sun.star.table.BorderLine2@6f3b58 
+  TopBorderDistance == 0 
+  WritingMode == 0 </p>
+<p>This listing, and in fact any listing of a style from "ParagraphStyles", shows that the 
+properties are a mixture of those defined in the Style, ParagraphProperties, and 
+CharacterProperties services.  </p>
+<h2 id="3-creating-a-new-style">3.  Creating a New Style</h2>
+<p>My StoryCreator.java example adds a new style to the paragraph style family, and 
+uses it to format the document's paragraphs. </p>
+<p>The new ParagraphStyle service is referenced using one of its interfaces, the usual one 
+being XStyle since all the different style services support it (as shown in Figure 4). </p>
+<p>For example: </p>
+<p>// create a new paragraph style 
+XStyle paraStyle = Lo.createInstanceMSF(XStyle.class,<br />
+                       "com.sun.star.style.ParagraphStyle"); </p>
+<p>Lo.createInstanceMSF()'s second argument is the full name of the service, and the 
+first argument is the interface. All the style services are located in the 
+"com.sun.star.style" package. </p>
+<p>Since I want to change property in this new style, I cast the XStyle interface to 
+XPropertySet: 
+XPropertySet props = Lo.qi(XPropertySet.class, paraStyle); 
+A property is modified using setPropertyValue().  </p>
+<p>props.setPropertyValue("ParaBottomMargin", 400); 
+props.setPropertyValue("CharFontName", "Times New Roman"); 
+props.setPropertyValue("CharHeight", 12.0f); </p>
+<p>These three properties are defined in one of the 'Properties' classes inherited by 
+ParagraphStyle (as shown in Figure 4). "ParaBottomMargin" appears in 
+ParagraphProperties, while "CharFontName" and "CharHeight" come from 
+CharacterProperties. </p>
+<p>After setting the style's properties, the new style added to the document's paragraph 
+style family: </p>
+<p>// access the paragraph style family 
+XNameContainer paraStyles =<br />
+           Info.getStyleContainer(textDoc, "ParagraphStyles"); </p>
+<p>// store the style in the style family with the name "Foo" 
+paraStyles.insertByName("Foo", props); </p>
+<p>The style is stored with the name "Foo", but any unique name would be good (perhaps 
+one a little more descriptive than "Foo" would be better). </p>
+<p>The style creation code in StoryCreator.java is located in createParaStyle() and 
+follows the  code fragment sequence described above: </p>
+<p>public static boolean createParaStyle(XTextDocument textDoc,<br />
+                                               String styleName) 
+// create a new paragraph container/style called styleName 
+{ 
+  XNameContainer paraStyles =<br />
+        Info.getStyleContainer(textDoc, "ParagraphStyles"); 
+  if (paraStyles == null) 
+    return false; </p>
+<p>try { 
+    // create new paragraph style properties set 
+    XStyle paraStyle = Lo.createInstanceMSF( 
+                 XStyle.class, "com.sun.star.style.ParagraphStyle"); 
+    XPropertySet props = Lo.qi(XPropertySet.class, paraStyle); </p>
+<pre><code>// set some properties 
+props.setPropertyValue("CharFontName", "Times New Roman"); 
+props.setPropertyValue("CharHeight", 12.0f); 
+props.setPropertyValue("ParaBottomMargin", 400); 
+                               //  4mm, in 100th mm units
+
+// set paragraph line spacing to 6mm  
+LineSpacing lineSpacing = new LineSpacing(); 
+  lineSpacing.Mode = LineSpacingMode.FIX; 
+  lineSpacing.Height = 600; 
+  props.setPropertyValue("ParaLineSpacing", lineSpacing);
+
+// some more common properties; not all used here  
+/* props.setPropertyValue("CharWeight",  
+                           com.sun.star.awt.FontWeight.BOLD); 
+   props.setPropertyValue("CharAutoKerning", true); 
+   props.setPropertyValue("ParaAdjust",  
+                          ParagraphAdjust.CENTER_value); 
+   props.setPropertyValue("ParaFirstLineIndent", 0); 
+   props.setPropertyValue("BreakType", BreakType.PAGE_AFTER); 
+*/ 
+  // store those properties in a container called styleName 
+  paraStyles.insertByName(styleName, props); 
+  return true; 
+} 
+catch(com.sun.star.uno.Exception e)  
+{ System.out.println("Could not set paragraph style");   
+  return false; 
+}
+</code></pre>
+<p>}  // end of createParaStyle() </p>
+<p>The "ParaLineSpacing" property is a little more complex than the others since its 
+value isn't a basic type, but a LineSpacing object.  </p>
+<p>The ParagraphProperties documentation for "ParaLineSpacing" is shown in Figure 7. </p>
+<p><img alt="" src="images/06-Text_Styles-7.png" /></p>
+<p>Figure 7. The ParaLineSpacing Property in the ParagraphProperties Documentation. </p>
+<p>Clicking on the "com::sun::star::style::LineSpacing" return type will load the 
+LineSpacing documentation page  into the browser.  </p>
+<p>In StoryCreator.java, createParaStyle() is called like so: </p>
+<p>XTextDocument doc = Write.createDoc(loader); </p>
+<p>if (!createParaStyle(doc, "adParagraph")){ 
+  System.out.println("Could not create new paragraph style"); 
+  Lo.closeOffice(); 
+  return; 
+} </p>
+<p>A new style called "adParagraph" is added to the paragraph style family. It uses 
+Times New Roman 12pt font, and leaves a 6mm space between paragraphs.  </p>
+<h2 id="4-applying-styles-to-paragraphs-and-characters">4.  Applying Styles to Paragraphs (and Characters)</h2>
+<p>I've added an "adParagraph" style to the paragraph style family, but how do I apply 
+that style to some paragraphs in the document? 
+The easiest way is through the document's XTextRange interface. XTextRange is 
+supported by the TextRange service, which inherits ParagraphProperties and 
+CharacterProperties (and several other property classes), as illustrated in Figure 8. </p>
+<p><img alt="" src="images/06-Text_Styles-8.png" /></p>
+<p>Figure 8. The TextRange Service. </p>
+<p>XTextRange can be cast to XPropertySet to make the properties in 
+ParagraphProperties and CharacterProperties accessible. An existing (or new) 
+paragraph style is applied to a text range by setting its "ParaStyleName" property: </p>
+<p>XTextRange xTextRange = doc.getText().getStart(); 
+XPropertySet props = Lo.qi(XPropertySet.class, xTextRange); 
+props.setProperty("ParaStyleName", "adParagraph"); </p>
+<p>Using Props.setProperty(), simplifies this to: </p>
+<p>XTextRange xTextRange = doc.getText().getStart(); 
+Props.setProperty(xTextRange, "ParaStyleName", "adParagraph"); </p>
+<p>The code above obtains the text range at the start of the document, and set its 
+paragraph style to "adParagraph". Any text added from this position onwards will use 
+that style.  </p>
+<p>This approach is used in StoryCreator.java: the style is set first, then text is added. </p>
+<h2 id="5-cursors-and-text-ranges">5.  Cursors and Text Ranges</h2>
+<p>Another technique for applying styles uses a cursor to select a text range. Then the 
+text's properties are accessed through the cursor.  </p>
+<p>All the different kinds of model and view cursor belong to the TextCursor service, 
+and this inherits TextRange. This allows us to extend Figure 8 to become Figure 9. </p>
+<p><img alt="" src="images/06-Text_Styles-9.png" /></p>
+<p>Figure 9. Cursor Access to Text Properties. </p>
+<p>This hierarchy means that a cursor can access the TextRange service and its text 
+properties. The following code fragment demonstrates the idea: </p>
+<p>XTextCursor cursor = Write.getCursor(textDoc); 
+cursor.gotoEnd(true);   // select the entire document </p>
+<p>XPropertySet props = Lo.qi(XPropertySet.class, cursor); 
+props.setProperty("ParaStyleName", "adParagraph"); </p>
+<p>Using Props.setProperty(), simplifies this to: </p>
+<p>XTextCursor cursor = Write.getCursor(textDoc); 
+cursor.gotoEnd(true); 
+Props.setProperty(cursor, "ParaStyleName", "adParagraph"); </p>
+<p>This approach is employed in StoryCreator.java when some paragraphs (such as 
+section headers) need to use a paragraph style other than "adParagraph". I'll supply 
+details in a moment. </p>
+<h2 id="6-building-a-story-document">6.  Building a Story Document</h2>
+<p>StoryCreator.java starts by setting the "adParagraph" style, then employs readText() 
+to read text from a file and add it to the document: </p>
+<p>XTextRange xTextRange = doc.getText().getStart(); 
+Props.setProperty(xTextRange, "ParaStyleName", "adParagraph"); </p>
+<p>XTextCursor cursor = Write.getCursor(doc); 
+readText("scandal.txt", cursor); 
+Write.endParagraph(cursor); </p>
+<p>readText() assumes the text file has a certain format. For example, "scandal.txt" 
+begins like so: </p>
+<p>Title: A Scandal in Bohemia 
+Author: Sir Arthur Conan Doyle </p>
+<p>Part I. </p>
+<p>To Sherlock Holmes she is always THE woman. I have seldom heard 
+him mention her under any other name. In his eyes she eclipses 
+and predominates the whole of her sex.  </p>
+<p>It was not that he felt any emotion akin to love for Irene Adler.  </p>
+<p>All emotions, and that one particularly, were abhorrent to his<br />
+cold, precise but admirably balanced mind.  </p>
+<p>A paragraph is a series of text lines followed by a blank line. But there are exceptions: 
+lines that starts with "Title: ", "Author: " or "Part " are treated as headings, and styled 
+differently. When the text above is processed, the resulting document looks like </p>
+<p><img alt="" src="images/06-Text_Styles-10.png" /></p>
+<p>Figure 10. </p>
+<p><img alt="" src="images/06-Text_Styles-10.png" /></p>
+<p>Figure 10. The Output of StoryCreator.java. </p>
+<p>readText() is implemented using Java's FileReader and BufferedReader: </p>
+<p>public static void readText(String fnm, XTextCursor cursor) 
+/* Write the text in fnm into a Office document. </p>
+<p>Use current paragraph styling unless the line starts 
+   with "Title: ", "Author: ", or "Part ". </p>
+<p>*/ 
+{ 
+  StringBuilder sb = new StringBuilder(0); 
+  BufferedReader br = null; 
+  try { 
+    br = new BufferedReader(new FileReader(fnm)); 
+    System.out.println("Reading text from: " + fnm); </p>
+<pre><code>String line; 
+while ((line = br.readLine()) != null) { 
+  // System.out.println("&lt;" + line + "&gt;"); 
+  if (line.length() == 0) { 
+    if (sb.length() &gt; 0) 
+      Write.appendPara(cursor, sb.toString()); 
+    sb.setLength(0); 
+  } 
+  else if (line.startsWith("Title: ")) { 
+    Write.appendPara(cursor, line.substring(7)); 
+    Write.stylePrevParagraph(cursor, "Title"); 
+  } 
+  else if (line.startsWith("Author: ")) { 
+    Write.appendPara(cursor, line.substring(8)); 
+    Write.stylePrevParagraph(cursor, "Subtitle"); 
+  } 
+  else if (line.startsWith("Part ")) { 
+    Write.appendPara(cursor, line); 
+    Write.stylePrevParagraph(cursor, "Heading"); 
+  } 
+  else { 
+    sb.append(line + " "); 
+  } 
+} 
+if (sb.length() &gt; 0) 
+  Write.appendPara(cursor, sb.toString());
+</code></pre>
+<p>} 
+  catch (FileNotFoundException ex) 
+  {  System.out.println("Could not open: " + fnm); } 
+  catch (IOException ex)<br />
+  {  System.out.println("Read error: " + ex); } 
+  finally { 
+    try { 
+      if (br != null) 
+        br.close(); 
+    } 
+    catch (IOException ex)<br />
+    {  System.out.println("Problem closing " + fnm); } 
+  } 
+}  // end of readText() </p>
+<p>The interesting bits are the calls to Write.appendPara() and 
+Write.stylePrevParagraph() which add a paragraph to the document and apply a style 
+to it. For instance: </p>
+<p>else if (line.startsWith("Author: ")) { 
+  Write.appendPara(cursor, line.substring(8)); 
+  Write.stylePrevParagraph(cursor, "Subtitle"); 
+} </p>
+<p>Write.appendPara() writes the string into the document as a paragraph (the input line 
+without the "Author: " substring). Write.stylePrevParagraph() changes the paragraph 
+style from "adParagraph" to "Subtitle".  </p>
+<p>The hard part of Write.stylePrevParagraph() is making sure that the style change only 
+affects the previous paragraph. Text appended after this line should use "adParagraph" 
+styling.  </p>
+<p>public static void stylePrevParagraph(XTextCursor cursor,<br />
+                                      Object propVal) 
+{  stylePrevParagraph(cursor, "ParaStyleName", propVal);  } </p>
+<p>public static void stylePrevParagraph(XTextCursor cursor, 
+                             String propName, Object propVal) 
+{ 
+  // save current property 
+  Object oldValue = Props.getProperty(cursor, propName); </p>
+<p>// apply property change to previous paragraph 
+  XParagraphCursor paraCursor = Lo.qi( 
+                                XParagraphCursor.class, cursor); 
+  paraCursor.gotoPreviousParagraph(true);   // select prev para 
+  Props.setProperty(paraCursor, propName, propVal); </p>
+<p>// reset the cursor and property 
+  paraCursor.gotoNextParagraph(false); 
+  Props.setProperty(cursor, propName, oldValue); 
+}  // end of stylePrevParagraph() </p>
+<p>The current "ParaStyleName" value is stored before changing its value in the selected 
+range. Afterwards, that style name is applied back to the cursor.  </p>
+<p>stylePrevParagraph() changes the XTextCursor into a paragraph cursor so that it's 
+easier to move around across paragraphs. </p>
+<p>readText() calls Write.stylePrevParagraph() with three style names ("Title", 
+"Subtitle", and "Heading"). I obtained those names from looking at the "Paragraph 
+Styles" dialog window in Figure 3. </p>
+<h2 id="7-style-changes-to-words-and-phrases">7.  Style Changes to Words and Phrases</h2>
+<p>Aside from changing paragraph styles, it's useful to apply style changes to words or 
+strings inside a paragraph. For example, to highlight a word in bold, or write several 
+words in red italics for emphasis.  </p>
+<p>This is implemented by Write.styleLeft() using a similar approach to 
+Write.stylePrevParagraph(). styleLeft() is passed an integer position which lies to the 
+left of the current cursor position. Character style changes are applied to the text range 
+defined by that distance: </p>
+<p>public static void styleLeft(XTextCursor cursor,<br />
+                   int pos, String propName, Object propVal) 
+{ 
+  // save current property 
+  Object oldValue = Props.getProperty(cursor, propName); </p>
+<p>// apply property change to the left of cursor 
+  int currPos = getPosition(cursor); 
+  cursor.goLeft((short)(currPos-pos), true); 
+  Props.setProperty(cursor, propName, propVal); </p>
+<p>// reset the cursor and property 
+  cursor.goRight((short)(currPos-pos), false); 
+  Props.setProperty(cursor, propName, oldValue); 
+}  // end of styleLeft() </p>
+<p>An XTextCursor is used to select the range, and the new style is set. Then the cursor 
+is moved back to its old position, and the previous style reapplied. </p>
+<p>The Write class contain a few support functions that set common styles using 
+styleLeft(): </p>
+<p>public static void styleLeftBold(XTextCursor cursor, int pos) 
+{  styleLeft(cursor, pos, "CharWeight",<br />
+                           com.sun.star.awt.FontWeight.BOLD);  } </p>
+<p>public static void styleLeftItalic(XTextCursor cursor, int pos) 
+{  styleLeft(cursor, pos, "CharPosture",<br />
+                           com.sun.star.awt.FontSlant.ITALIC);  } </p>
+<p>public static void styleLeftColor(XTextCursor cursor,<br />
+                                   int pos, java.awt.Color col) 
+{  styleLeft(cursor, pos, "CharColor", Lo.getColorInt(col));  } </p>
+<p>public static void styleLeftCode(XTextCursor cursor, int pos) 
+// code is text in 10pt Courier New 
+{  styleLeft(cursor, pos, "CharFontName", "Courier New"); 
+   styleLeft(cursor, pos, "CharHeight", 10); 
+} </p>
+<p>The position (the pos value) passed to styleLeft() can be obtained from 
+Write.getPosition(), or as the result of the Write.append() methods. </p>
+<p>My BuildDoc.java example contains several examples of how to use 
+Write.styleLeft(): </p>
+<p>// code fragment from BuildDoc.java 
+XTextCursor cursor = Write.getCursor(doc); </p>
+<p>int pos = Write.append(cursor, "Some examples of simple text "); 
+Write.append(cursor, "styles.\n"); 
+Write.styleLeftBold(cursor, pos);  // bold text back to pos </p>
+<p>pos = Write.getPosition(cursor); 
+Write.appendPara(cursor, "This line is written in red italics."); 
+Write.styleLeftColor(cursor, pos, Color.RED);   // red 
+Write.styleLeftItalic(cursor, pos);             // italics </p>
+<p>Write.appendPara(cursor, "Back to old style\n"); </p>
+<p>The resulting text in the document looks like Figure 11. </p>
+<p><img alt="" src="images/06-Text_Styles-11.png" /></p>
+<p>Figure 11. Styled Text. </p>
+<p>The following fragment from BuildDoc.java applies a 'code' styling to several lines: </p>
+<p>// code fragment from BuildDoc.java 
+Write.appendPara(cursor, "Here's some code:"); </p>
+<p>pos = Write.getPosition(cursor); 
+Write.append(cursor, "\npublic class Hello\n"); 
+Write.append(cursor, "{\n"); 
+Write.append(cursor, "  public static void main(String args[]\n"); 
+Write.append(cursor, " { System.out.println(\"Hello Andrew\"); }\n"); 
+Write.appendPara(cursor, "}  // end of Hello class\n"); 
+Write.styleLeftCode(cursor, pos); </p>
+<p>Figure 12 shows the generated document text. </p>
+<p><img alt="" src="images/06-Text_Styles-12.png" /></p>
+<p>Figure 12. Text with Code Styling. </p>
+<p>Unfortunately, styleLeft() depend on integer character positions, which are calculated 
+using Write.getPosition(). As I've mentioned before, this method could fail if asked to 
+generate too large a string, and this would cause styleLeft() to die. </p>
+<h2 id="8-hyperlink-styling">8.  Hyperlink Styling</h2>
+<p>Text hyperlinks are implemented as styles, using "HyperLinkURL", and perhaps 
+"HyperLinkName", and "HyperLinkTarget". BuildDoc.java shows how the 
+"HyperLinkURL" property is set: </p>
+<p>Write.appendPara(cursor, "A link to my JLOP website:"); 
+String urlStr = "http://fivedots.coe.psu.ac.th/~ad/jlop/"; </p>
+<p>pos = Write.getPosition(cursor); 
+Write.append(cursor, urlStr); </p>
+<p>Write.styleLeft(cursor, pos, "HyperLinkURL", urlStr); 
+Write.endParagraph(cursor); </p>
+<p>When the document is viewed, the text is drawn as a link as in Figure 13. </p>
+<p><img alt="" src="images/06-Text_Styles-13.png" /></p>
+<p>Figure 13. Text Containing a Hypertext Link. </p>
+<p>If the user control-clicks on the link, then the URL value of "HyperLinkURL" will be 
+loaded into the browser. </p>
+<p>The "HyperLinkName" property specifies a link name, which can be used when 
+searching a document. "HyperLinkTarget" corresponds to the HTML hypertext target 
+attribute, and has a default value of "_self".  </p>
+<h2 id="9-text-numbering">9.  Text Numbering</h2>
+<p>It's straightforward to number paragraphs by using Write.styleLeft() and the 
+"NumberingStyleName" property. The following code from BuildDoc.java, numbers 
+three paragraphs: </p>
+<p>// code fragment from BuildDoc.java 
+Write.appendPara(cursor, "The following points are important:"); </p>
+<p>pos = Write.appendPara(cursor, "Have a good breakfast"); 
+Write.appendPara(cursor, "Have a good lunch"); 
+Write.appendPara(cursor, "Have a good dinner\n"); 
+Write.styleLeft(cursor, pos, "NumberingStyleName", "Numbering 1"); </p>
+<p>The result is shown in Figure 14. </p>
+<p><img alt="" src="images/06-Text_Styles-14.png" /></p>
+<p>Figure 14. Numbered Paragraphs. </p>
+<p>"NumberingStyleName" is a property in ParagraphProperties, and the "Numbering 1" 
+style is from the "Paragraph Styles" dialog window in Figure 3.  </p>
+<p>Bullets are drawn instead of numbers by changing the style name to "List 1" (see 
+Figure 15). </p>
+<p><img alt="" src="images/06-Text_Styles-15.png" /></p>
+<p>Figure 15. Bulleted Paragraphs. </p>
+<p>One issue with numbered paragraphs is that their default behavior retains the current 
+count when numbering another group of text. For example, a second group of 
+numbered paragraphs appearing in the document after Figure 14 would start at '4'. </p>
+<p>This is fixed by setting the "ParaIsNumberingRestart" property to true: 
+Write.styleLeft(cursor, pos, "ParaIsNumberingRestart", true); </p>
+<p>One large topic I won’t be looking at is document numbering. This includes the 
+numbering of chapter headings and lines. Chapter and line numbering are dealt with 
+differently from most document styles. Instead of being accessed via 
+XStyleFamiliesSupplier, they employ XChapterNumberingSupplier and 
+XNumberFormatsSupplier.  </p>
+<p>For more details, see the development guide: 
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Line_Numbering_an
+d_Outline_Numbering 
+or type loGuide "Line Numbering". </p>
+<ol>
+<li>Other Style Changes 
+StoryCreator.java illustrates three other styling effects: the creation of a header, 
+setting the page to A4 format, and employing page numbers in the footer. The 
+relevant calls are: </li>
+</ol>
+<p>// code fragment in StoryCreator.java 
+Write.setHeader(doc, "From: " + args[0]); 
+Write.setA4PageFormat(doc); 
+Write.setPageNumbers(doc); </p>
+<p>Write.setA4PageFormat() sets the page formatting. Write.setPageNumbers() utilizes 
+text fields, which I'll examine in the "Text Fields" section in Chapter 7. </p>
+<p>Changing the header in Write.setHeader() requires the setting of the "HeaderIsOn" 
+boolean in the "Standard" page style. Adding text to the header is done via an XText 
+reference. The code for Write.setHeader(): </p>
+<p>public static void setHeader(XTextDocument textDoc, String hText) 
+/* Modify the header via the page style for the document.  </p>
+<p>Put the text on the right hand side in the header in 
+   Times New Roman, 10pt */ 
+{ 
+  XPropertySet props =<br />
+         Info.getStyleProps(textDoc, "PageStyles", "Standard"); 
+  if (props == null) { 
+    System.out.println("Could not access standard page style"); 
+    return; 
+  } </p>
+<p>try { 
+    props.setPropertyValue("HeaderIsOn", true); 
+                 // header is turned on in the document </p>
+<pre><code>// access the header's XText and cursor 
+XText headerText = Lo.qi(XText.class,  
+                     props.getPropertyValue("HeaderText")); 
+XTextCursor headerCursor = headerText.createTextCursor(); 
+headerCursor.gotoEnd(false);
+
+// header is on the rhs and in Times New Roman, 10pt 
+XPropertySet headerProps = Lo.qi( 
+                            XPropertySet.class, headerCursor); 
+headerProps.setPropertyValue("CharFontName","Times New Roman"); 
+headerProps.setPropertyValue("CharHeight", 10); 
+headerProps.setPropertyValue("ParaAdjust",ParagraphAdjust.RIGHT);
+
+headerText.setString(hText + "\n");
+</code></pre>
+<p>}<br />
+  catch (Exception ex)<br />
+  {  System.out.println(ex); } 
+}  // end of setHeader() </p>
+<p>The header's XText reference is retrieved via the page style's "HeaderText" property, 
+and a cursor is created local to the header: 
+XTextCursor headerCursor = headerText.createTextCursor(); 
+This cursor can only move around inside the header not the entire document.  </p>
+<p>The properties of the header's XText are changed using the cursor, and then the text is 
+added.  </p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="05-Text_API_Overview.html" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Chapter 5. Text API Overview
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="08-Graphic_Content.html" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Chapter 8. Graphic Content
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      
+    
+  </body>
+</html>
