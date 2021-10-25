@@ -29,56 +29,33 @@ you program in Java, the number increases to six! These approaches are summarize
 in Table 1, and none are without drawbacks. 
 
  
-API Services/Classes Used Drawbacks 
-Office API  
-(coded in Java) 
-SimpleSystemMail or 
-SimpleCommandMail 
-User must click "Ok" in a "Confirm" 
-dialog before the e-mail is sent. 
-
-MailServiceProvider 
-(joint best choice) 
-Two DLLs must be repositioned in the 
-Office installation before the code will 
-work. 
-
-Firewalls may block it. 
-
-MailMerge Works well, but focuses on mail 
-merge rather than general purpose e-
-mail. 
-
-The user must configure Office's e-
-mail settings in Writer before the code 
-will work. 
-
-Java only 
-(no use of Office) 
- 
- 
-JavaMail: Session, 
-Message, Transport, and 
-others (joint best 
-choice) 
-Requires the download of the 
-javax.mail JAR. 
-
-Firewalls may block it.  
-
-Desktop.mail() Attachments are not supported as 
-standard in the mailto: protocol. 
-
-The e-mail client appears, and the user 
-must press "Send". 
-
-Process & batch file Needs a separate batch file. 
-
-Tied to the Thunderbird e-mail client. 
-
-The e-mail client appears, and the user 
-must press "Send". 
-
+|API               |Services/Classes Used  |Drawbacks                               |
+|------------------|-----------------------|----------------------------------------|
+|Office API        |SimpleSystemMail or    |User must click "Ok" in a "Confirm"     |
+|(coded in Java)   |SimpleCommandMail      |dialog before the e-mail is sent.       |
+|                  |MailServiceProvider    |Two DLLs must be repositioned in the    |
+|                  |(joint best choice)    |Office installation before the code will|
+|                  |                       |work.                                   |
+|                  |                       |Firewalls may block it.                 |
+|                  |MailMerge              |Works well, but focuses on mail         |
+|                  |                       |merge rather than general purpose e-    |
+|                  |                       |mail.                                   |
+|                  |                       |The user must configure Office's e-     |
+|                  |                       |mail settings in Writer before the code |
+|                  |                       |will work.                              |
+|Java only         |JavaMail: Session,     |Requires the download of the            |
+|(no use of Office)|Message, Transport, and|javax.mail JAR.                         |
+|                  |others (joint best     |Firewalls may block it.                 |
+|                  |choice)                |                                        |
+|                  |Desktop.mail()         |Attachments are not supported as        |
+|                  |                       |standard in the mailto: protocol.       |
+|                  |                       |The e-mail client appears, and the user |
+|                  |                       |must press "Send".                      |
+|                  |                       |                                        |
+|                  |Process & batch file   |Needs a separate batch file.            |
+|                  |                       |Tied to the Thunderbird e-mail client.  |
+|                  |                       |The e-mail client appears, and the user |
+|                  |                       |must press "Send".                      |
  
 Table 1. Office and Java Approaches for Sending E-mail. 
 

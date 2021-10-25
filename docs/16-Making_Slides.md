@@ -621,35 +621,23 @@ page. This needs "OnClick" to be set to ClickAction.FIRSTPAGE.
 Several other forms of click action are listed in Table 1. 
 
  
-ClickAction Name Effect 
-NONE  No action is performed on the click. Animation and 
-fade effects are also switched off. 
-
-PREVPAGE  The presentation jumps to the previous page. 
-
-NEXTPAGE  The presentation jumps to the next page. 
-
-FIRSTPAGE  The presentation continues with the first page. 
-
-LASTPAGE  The presentation continues with the last page. 
-
-BOOKMARK  The presentation jumps to a bookmark. 
-
-DOCUMENT  The presentation jumps to another document. 
-
-INVISIBLE  The object renders itself invisible after a click. 
-
-SOUND  A sound is played after a click. 
-
-VERB  An OLE verb is performed on this object. 
-
-VANISH  The object vanishes with its effect. 
-
-PROGRAM  Another program is executed after a click. 
-
-MACRO  An Office macro is executed after the click. 
-
-STOPPRESENTATION  The presentation is stopped after the click. 
+|ClickAction     |Name Effect                                       |
+|----------------|--------------------------------------------------|
+|NONE            |No action is performed on the click.              |
+|                |Animation and fade effects are also switched off. |
+|PREVPAGE        |The presentation jumps to the previous page.      |
+|NEXTPAGE        |The presentation jumps to the next page.          |
+|FIRSTPAGE       |The presentation continues with the first page.   |
+|LASTPAGE        |The presentation continues with the last page.    |
+|BOOKMARK        |The presentation jumps to a bookmark.             |
+|DOCUMENT        |The presentation jumps to another document.       |
+|INVISIBLE       |The object renders itself invisible after a click.|
+|SOUND           |A sound is played after a click.                  |
+|VERB            |An OLE verb is performed on this object.          |
+|VANISH          |The object vanishes with its effect.              |
+|PROGRAM         |Another program is executed after a click.        |
+|MACRO           |An Office macro is executed after the click.      |
+|STOPPRESENTATION|The presentation is stopped after the click.      |
 
 Table 1. ClickAction Effects. 
 

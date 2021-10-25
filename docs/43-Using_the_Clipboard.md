@@ -555,27 +555,23 @@ flavors rather than the Office ones. It's easy to get the two APIs confused, so 
 shows their main correspondences. 
 
  
-Office Java 
-SystemClipboard.create() Toolkit.getDefaultToolkit(). 
+|Office                        |Java                                 |
+|------------------------------|-------------------------------------|						       
+|SystemClipboard.create()      |Toolkit.getDefaultToolkit().         |
+|                              |getSystemClipboard()                 |
+|XSystemClipboard inherits     |Clipboard;                           |
+|XClipboard, and others        |                                     |
+|(see Fig. 1);                 |                                     |
+|getContents() never fails (?);|getContents() can fail;              |
+|                              |Can handle serializable objects;     |
+|Can handle String or byte[]   |More methods                         |
+|XClipboardListener            |FlavorListener                       |
+|XClipboardOwner               |ClipboardOwner                       |
+|XTransferable                 |Transferable                         |
+|DataFlavor                    |DataFlavor; many predefined constants|
+|TextTransferable (my class)   |StringSelection (in the JDK)         |
 
-getSystemClipboard() 
-XSystemClipboard inherits 
-XClipboard, and others  
-(see Fig. 1); 
-getContents() never fails (?); 
-Clipboard; 
- 
-getContents() can fail; 
-Can handle serializable objects; 
-Can handle String or byte[] More methods 
-XClipboardListener FlavorListener 
-XClipboardOwner ClipboardOwner 
-XTransferable Transferable 
-DataFlavor DataFlavor; many predefined 
-constants 
-TextTransferable (my class) StringSelection (in the JDK) 
-Table 1. Corresponding Clipboard Services, Interfaces, and Classes  
-in the Office and Java APIs. 
+Table 1. Corresponding Clipboard Services, Interfaces, and Classes in the Office and Java APIs. 
 
  
 The JClip class uses a similar approach to the Clip class for creating a clipboard 
@@ -895,32 +891,18 @@ I'll look at how to use these techniques with four kinds of documents: Writer, C
 Impress, and Base, as summarized in Table 2. 
 
  
-Document 
-Copy-and-Paste Approach 
-Invisible Visible 
-Writer 
-(CopyPasteText.java) 
-Copy/Paste:  
-text 
-Copy: XTextViewCursor 
-Paste: RTF, HTML, ODT 
-Calc 
-(CopyPasteCalc.java) 
-Copy/Paste:  
-2D array 
-Copy: XCellRange 
-Paste: SYLK, ODS 
-Impress 
-(CopySlide.java) 
-none 
-Copy: XDrawView 
-Paste: bitmap, PNG, 
-XML, ODP 
-Base 
-(CopyResultSet.java) 
-Copy/Paste:  
-2D array 
-none 
+|Document               |Invisible  |Visible              |
+|-----------------------|-----------|---------------------|
+|Copy-and-Paste Approach|           |                     |
+|Writer                 |Copy/Paste:|Copy: XTextViewCursor|
+|(CopyPasteText.java)   |text       |Paste: RTF, HTML, ODT|
+|Calc                   |Copy/Paste:|Copy: XCellRange     |
+|(CopyPasteCalc.java)   |2D array   |Paste: SYLK, ODS     |
+|Impress                |none       |Copy: XDrawView      |
+|(CopySlide.java)       |           |Paste: bitmap, PNG,  |
+|Base                   |Copy/Paste:|none                 |
+|CopyResultSet.java)    |2D array   |                     |
+
 Table 2. Copy-and-Paste Techniques Applied to Office Documents. 
 
  

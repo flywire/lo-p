@@ -16,6 +16,8 @@ Changes required are reformatting for this media since the scripts have missed a
 
 # Overview
 
+![[Java LibreOffice Programming]](images/jLo.png)
+
 _Java LibreOffice Programming_ (JLOP) is intended for programmers who want to learn how to use the Java version of the [LibreOffice](http://www.libreoffice.org/) API. This allows Java to control and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and database applications, and a lot more (e.g. its spell checker, forms designer, and charting tools).
 
 This book is **not** about how to use LibreOffice's GUI. I won't explain where to find a particular menu item to change text colour or run the spell checker. But I **will** explain how to do these kinds of things via API calls from Java programs. For instance, I describe a program that constructs a Word file full of randomly generated algebra questions, and show how a ASCII text file can be transformed into a slide presentation.

@@ -939,14 +939,16 @@ is "com.sun.star.text.TextDocument". Other application/service mappings are show
 in Table 1. 
 
  
-Office Application Document Service 
-Writer  com.sun.star.text.TextDocument 
-Calc  com.sun.star.sheet.SpreadsheetDocument 
-Impress      com.sun.star.presentation.PresentationDocument 
-Draw         com.sun.star.drawing.DrawingDocument 
-Formula      com.sun.star.formula.FormulaProperties 
-Chart   com.sun.star.chart.ChartDocument 
-Bibliography   com.sun.star.frame.Bibliography 
+|Office Application|Document Service                              |
+|------------------|----------------------------------------------|
+|Writer            |com.sun.star.text.TextDocument                |
+|Calc              |com.sun.star.sheet.SpreadsheetDocument        |
+|Impress           |com.sun.star.presentation.PresentationDocument|
+|Draw              |com.sun.star.drawing.DrawingDocument          |
+|Formula           |com.sun.star.formula.FormulaProperties        |
+|Chart             |com.sun.star.chart.ChartDocument              |
+|Bibliography      |com.sun.star.frame.Bibliography               |
+
 Table 1. Office Application/Service Mappings Used by "Context" 
  
 If the "Context" field isn't assigned a value, then the add-on will be available in all of 
@@ -1034,15 +1036,13 @@ variants to choose from, each with a different property name, which are listed i
 2. 
 
  
-Size in 
-Pixels 
-Contrast 
-Property Name 
-Hexadecimal text File name 
-16x16 normal ImageSmall ImageSmallURL 
-16x16 high ImageSmallHC ImageSmallHCURL 
-26x26 normal ImageBig ImageBigURL 
-26x26 high ImageBigHC ImageBigHCURL 
+|Size in Pixels |Contrast|Hexadecimal text|File name      |
+|---------------|--------|----------------|---------------|
+|16x16          |normal  |ImageSmall      |ImageSmallURL  |
+|16x16          |high    |ImageSmallHC    |ImageSmallHCURL| 
+|26x26          |normal  |ImageBig        |ImageBigURL    |
+|26x26          |high    |ImageBigHC      |ImageBigHCURL  |
+
 Table 2. Image Property Names. 
 
  

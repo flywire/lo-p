@@ -768,23 +768,23 @@ Table 1 lists the PrintDescriptor properties, or use my lodoc.bat script to acce
 class' documentation online (type "lodoc PrinterDescriptor"). 
 
  
-Property Description 
-Name Name of the printer. 
+|Property              |Description                            |
+|----------------------|---------------------------------------|	               
+|Name                  |Name of the printer.                   |
+|PaperOrientation      |Paper orientation                      |
+|                      |(com.sun.star.view.PaperOrientation:   |
+|                      |PORTRAIT, LANDSCAPE)                   |
+|PaperFormat           |Paper size formats                     |
+|                      |(com.sun.star.view.PaperFormat: A3, A4,|
+|                      |A5, B4, B5, LETTER, LEGAL,             |
+|                      |TABLOID, USER)                         |
+|PaperSize             |Paper size in 100th mm                 |
+|                      |(com.sun.star.awt.Size).               |
+|IsBusy                |Is the printer busy?                   |
+|CanSetPaperOrientation|Can the paper orientation be set?      |
+|CanSetPaperFormat     |Are other paper formats supported?     |
+|CanSetPaperSize       |Are other paper sizes supported?       |
 
-PaperOrientation Paper orientation 
-(com.sun.star.view.PaperOrientation:  
-PORTRAIT, LANDSCAPE) 
-PaperFormat Paper size formats 
-(com.sun.star.view.PaperFormat: A3, A4, 
-A5, B4, B5, LETTER, LEGAL, 
-TABLOID, USER) 
-PaperSize Paper size in 100th mm 
-(com.sun.star.awt.Size). 
-
-IsBusy Is the printer busy? 
-CanSetPaperOrientation Can the paper orientation be set? 
-CanSetPaperFormat Are other paper formats supported? 
-CanSetPaperSize Are other paper sizes supported? 
 Table 1. Properties in com.sun.star.view.PrinterDescriptor. 
 
  
@@ -845,26 +845,18 @@ public static String printableState(PrintableState val)
 The PrintableState constants are summarized in Table 2. 
 
  
-Enumerator Constant Description 
-JOB_STARTED  Printing/rendering has begun. 
-
-JOB_COMPLETED  
-Printing/rendering has finished; spooling 
-has begun. 
-
-JOB_SPOOLED  
-Spooling has finished successfully. This 
-is the "success" state for a print job.  
-
-JOB_ABORTED  
-Printing was aborted (e.g., by the user) 
-during printing or spooling.  
-
-JOB_FAILED  The printing ran into an error.  
-
-JOB_SPOOLING_FAILED  
-The document could be printed but not 
-spooled.  
+|Enumerator Constant|Description                              |
+|-------------------|-----------------------------------------|
+|JOB_STARTED        |Printing/rendering has begun.            |
+|JOB_COMPLETED      |Printing/rendering has finished; spooling|
+|                   |has begun.                               |
+|JOB_SPOOLED        |Spooling has finished successfully. This |
+|                   |is the "success" state for a print job.  |
+|JOB_ABORTED        |Printing was aborted (e.g., by the user) |
+|                   |during printing or spooling.             |
+|JOB_FAILED         |The printing ran into an error.          |
+|JOB_SPOOLING_FAILED|The document could be printed but not    |
+|                   |spooled.                                 |
 
 Table 2. Properties in com.sun.star.view.PrintableState enum. 
 
@@ -927,26 +919,22 @@ XPrintable.print() is configured using PrintOptions properties, which are listed
 Table 3. 
 
  
-Property Description 
-CopyCount Number of copies to print. 
-
-FileName Send the output to a file rather than to the 
-printer. 
-
-Collate Collate the printed pages (set to true or 
-false). 
-
-Sort Sort the pages (deprecated; use Collate) 
-Pages A string that specifies pages and page 
-ranges to print.  For example, "1-4;10" to 
-print the pages 1 to 4 and 10. 
-
-Wait Wait for the print request to be 
-completed. 
-
-DuplexMode Set duplex constant (using 
-com.sun.star.view.DuplexMode) 
-PrinterName The name of the printer. 
+|Property   |Description                                 |
+|-----------|--------------------------------------------|
+|CopyCount  |Number of copies to print.                  |
+|FileName   |Send the output to a file rather than to the|
+|           |printer.                                    |
+|Collate    |Collate the printed pages (set to true or   |
+|           |false).                                     |
+|Sort       |Sort the pages (deprecated; use Collate)    |
+|Pages      |A string that specifies pages and page      |
+|           |ranges to print.  For example, "1-4;10" to  |
+|           |print the pages 1 to 4 and 10.              |
+|Wait       |Wait for the print request to be            |
+|           |completed.                                  |
+|DuplexMode |Set duplex constant (using                  |
+|           |com.sun.star.view.DuplexMode)               |
+|PrinterName|The name of the printer.                    |
 
 Table 3. Properties in com.sun.star.view.PrintOptions. 
 
@@ -1040,36 +1028,25 @@ list, use "lodoc Settings document" to look at the online documentation. The Set
 webpage is also a good starting point for examining its DocumentSettings subclasses.  
 
  
-Property  Description  
-PrinterName Printer used by the document. 
+|Property                |Description                              |
+|------------------------|-----------------------------------------|		             
+|PrinterName             |Printer used by the document.            |
+|PrinterSetup            |A byte array containing driver-specific  |
+|                        |data.                                    |
+|IsPrintBooklet          |Put two document pages on one physical   |
+|                        |page, such that you can fold the output  |
+|                        |into a booklet.                          |
+|IsPrintBookletFront     |Only print the fronts of a booklet       |
+|IsPrintBookletBack      |Only print the backs of a booklet        |
+|PrintQuality            |Normal (0); Grayscale (1), Black and     |
+|                        |white (2).                               |
+|PrinterIndependentLayout|Forbid use of printer metrics for layout.|
+|EmbedFonts              |Whether to embed fonts used by the       |
+|                        |document.                                |
+|EmbedSystemFonts        |Whether to embed system fonts used by    |
+|                        |the document.                            |
 
-PrinterSetup 
-A byte array containing driver-specific 
-data. 
-
-IsPrintBooklet 
-Put two document pages on one physical 
-page, such that you can fold the output 
-into a booklet. 
-
-IsPrintBookletFront Only print the fronts of a booklet 
-IsPrintBookletBack Only print the backs of a booklet 
-PrintQuality 
-Normal (0); Grayscale (1), Black and 
-white (2). 
-
-PrinterIndependentLayout Forbid use of printer metrics for layout. 
-
-EmbedFonts 
-Whether to embed fonts used by the 
-document. 
-
-EmbedSystemFonts 
-Whether to embed system fonts used by 
-the document. 
-
-Table 4. Printing-related Properties in  
-com.sun.star.document.Settings. 
+Table 4. Printing-related Properties in com.sun.star.document.Settings. 
 
  
 Writer documents utilize the DocumentSettings service in the text module which 
@@ -1079,47 +1056,33 @@ print properties are inherited from the PrintSettings service in the text module
 are listed in Table 5. Use "lodoc PrintSettings text" to visit its documentation. 
 
  
-Property  Description  
-PrintGraphics If true, print graphic objects. 
-
-PrintTables If true, print text tables. 
-
-PrintDrawings If true, print shapes. 
-
-PrintLeftPages If true, print left pages. 
-
-PrintRightPages If true, print right pages. 
-
-PrintControls If true, then control shapes in the 
-document (usually inside forms) are 
-printed. 
-
-PrintReversed If true, print the pages in reverse order, 
-starting with the last page. 
-
-PrintPaperFromSetup If true, use the paper tray specified for 
-the system printer. If false, use the paper 
-tray specified by the page style. 
-
-PrintFaxName Name of the fax machine. 
-
-PrintAnnotationMode Specify how notes are printed. Uses 
-com.sun.star.text.NotePrintMode: NOT, 
-ONLY, DOC_END, or PAGE_END). 
-
-PrintProspect If true, prospect printing is used. Related 
-to brochures (I think). 
-
-PrintPageBackground 
-Determines if the background color / 
-background graphic of pages is printed. 
-
-PrintBlackFonts Determines if characters are printed in 
-black. 
-
-PrintEmptyPages 
-Determines if automatically inserted 
-empty pages are printed. 
+|Property           |Description                                |
+|-------------------|-------------------------------------------|
+|PrintGraphics      |If true, print graphic objects.            |
+|PrintTables        |If true, print text tables.                |
+|PrintDrawings      |If true, print shapes.                     |
+|PrintLeftPages     |If true, print left pages.                 |
+|PrintRightPages    |If true, print right pages.                |
+|PrintControls      |If true, then control shapes in the        |
+|                   |document (usually inside forms) are        |
+|                   |printed.                                   |
+|PrintReversed      |If true, print the pages in reverse order, |
+|                   |starting with the last page.               |
+|PrintPaperFromSetup|If true, use the paper tray specified for  |
+|                   |the system printer. If false, use the paper|
+|                   |tray specified by the page style.          |
+|PrintFaxName       |Name of the fax machine.                   |
+|PrintAnnotationMode|Specify how notes are printed. Uses        |
+|                   |com.sun.star.text.NotePrintMode: NOT,      |
+|                   |ONLY, DOC_END, or PAGE_END).               |
+|PrintProspect      |If true, prospect printing is used. Related|
+|                   |to brochures (I think).                    |
+|PrintPageBackground|Determines if the background color /       |
+|                   |background graphic of pages is printed.    |
+|PrintBlackFonts    |Determines if characters are printed in    |
+|                   |black.                                     |
+|PrintEmptyPages    |Determines if automatically inserted       |
+|                   |empty pages are printed.                   |
 
 Table 5. Properties in com.sun.star.text.PrintSettings. 
 
@@ -1166,32 +1129,26 @@ DocumentSettings service presentation"); its printing-related properties are giv
 Table 6. 
 
  
-Property  Description  
-IsPrintDrawing Enables or disables the printing of the 
-drawing pages. 
+|Property          |Description                                |
+|------------------|-------------------------------------------|
+|IsPrintDrawing    |Enables or disables the printing of the    |
+|                  |drawing pages.                             |
+|IsPrintNotes      |Enables or disables the printing of the    |
+|                  |notes pages.                               |
+|IsPrintHandout    |Enables or disables the printing of the    |
+|                  |handout pages.                             |
+|IsPrintOutline    |Enables or disables the printing of the    |
+|                  |outline pages.                             |
+|IsPrintHiddenPages|Enables or disables the printing of draw   |
+|                  |pages that are marked as hidden.           |
+|IsPrintFitPage    |Enables or disables the fitting of the page|
+|                  |to the printable area during printing.     |
+|IsPrintTilePage   |If this is true and the paper size for     |
+|                  |printing is larger than the paper size of  |
+|                  |the printer than the content is tiled over |
+|                  |multiple pages.                            |
 
-IsPrintNotes Enables or disables the printing of the 
-notes pages. 
-
-IsPrintHandout Enables or disables the printing of the 
-handout pages. 
-
-IsPrintOutline Enables or disables the printing of the 
-outline pages. 
-
-IsPrintHiddenPages Enables or disables the printing of draw 
-pages that are marked as hidden. 
-
-IsPrintFitPage Enables or disables the fitting of the page 
-to the printable area during printing. 
-
-IsPrintTilePage If this is true and the paper size for 
-printing is larger than the paper size of 
-the printer than the content is tiled over 
-multiple pages. 
-
-Table 6. Printing-related Properties in  
-com.sun.star.presentation.DocumentSettings. 
+Table 6. Printing-related Properties in com.sun.star.presentation.DocumentSettings. 
 
 Draw documents are similar to presentations, and this is reflected in the 
 DocumentSettings service in the drawing module (see "lodoc DocumentSettings 
@@ -1199,17 +1156,16 @@ service drawing") which offers a subset of the slide properties. The printing-re
 ones are listed in Table 7.  
 
  
-Property  Description  
-IsPrintFitPage Enables or disables the fitting of the page 
-to the printable area during printing. 
+|Property       |Description                                |
+|---------------|-------------------------------------------|
+|IsPrintFitPage |Enables or disables the fitting of the page|
+|               |to the printable area during printing.     |
+|IsPrintTilePage|If this is true and the paper size for     |
+|               |printing is larger than the paper size of  |
+|               |the printer than the content is tiled over |
+|               |multiple pages.                            |
 
-IsPrintTilePage If this is true and the paper size for 
-printing is larger than the paper size of 
-the printer than the content is tiled over 
-multiple pages. 
-
-Table 7. Printing-related Properties in  
-com.sun.star.drawing.DocumentSettings. 
+Table 7. Printing-related Properties in com.sun.star.drawing.DocumentSettings. 
 
  
 The drawing and presentation DocumentSettings services inherit the Settings service, 
@@ -1217,18 +1173,16 @@ and a HeaderFooterSettings service in the documents folder (see "lodoc
 HeaderFooterSettings"), which add the properties in Table 8. 
 
  
-Property  Description  
-IsPrintPageName Enables or disables the printing of the 
-page name in the header or footer. 
+|Property       |Description                            |
+|---------------|---------------------------------------|
+|IsPrintPageName|Enables or disables the printing of the| 
+|               |page name in the header or footer.     |
+|IsPrintDate    |Enables or disables the printing of the| 
+|               |date in the header or footer.          |
+|IsPrintTime    |Enables or disables the printing of the| 
+|               |current time in the header or footer.  |
 
-IsPrintDate Enables or disables the printing of the 
-date in the header or footer. 
-
-IsPrintTime Enables or disables the printing of the 
-current time in the header or footer. 
-
-Table 8. Properties in  
-com.sun.star.document.HeaderFooterSettings. 
+Table 8. Properties in com.sun.star.document.HeaderFooterSettings. 
 
  
  
@@ -1241,28 +1195,20 @@ PagePrintSettings service (see Table 9). These relate to the document's margins 
 printing multiple pages on a single sheet. 
 
  
-Property  Description  
-PageRows 
-Number of page rows on each 
-printed page. 
+|Property    |Description                     |
+|------------|--------------------------------|
+|PageRows    |Number of page rows on each     |
+|            |printed page.                   |
+|PageColumns |Number of page columns on each  |
+|            |printed page.                   |
+|LeftMargin  |Left margin of the printed page.| 
+|RightMargin |Right margin.                   |
+|TopMargin   |Top margin.                     |
+|BottomMargin|Bottom margin.                  |
+|HoriMargin  |Margin between page rows.       |
+|VertMargin  |Margin between page columns.    |
+|IsLandscape |Print in landscape format?      |
 
-PageColumns 
-Number of page columns on each 
-printed page. 
-
-LeftMargin Left margin of the printed page. 
-
-RightMargin Right margin. 
-
-TopMargin Top margin. 
-
-BottomMargin Bottom margin. 
-
-HoriMargin Margin between page rows. 
-
-VertMargin Margin between page columns. 
-
-IsLandscape Print in landscape format? 
 Table 9. Properties in com.sun.star.text.PagePrintSettings. 
 
  
@@ -1302,18 +1248,16 @@ XGlobalSheetSettings interface (see "lodoc XGlobalSheetSettings). The printing-
 related properties are listed in Table 10. 
 
  
-Property  Description  
-PrintAllSheets Specifies whether all sheets or only 
-selected sheets are printed. 
+|Property         |Description                               |
+|-----------------|------------------------------------------|
+|PrintAllSheets   |Specifies whether all sheets or only      |
+|                 |selected sheets are printed.              |
+|PrintEmptyPages  |Specifies whether empty pages are         |
+|                 |printed.                                  |
+|UsePrinterMetrics|Specifies whether printer metrics are used|
+|                 |for display.                              |
 
-PrintEmptyPages Specifies whether empty pages are 
-printed. 
-
-UsePrinterMetrics Specifies whether printer metrics are used 
-for display. 
-
-Table 10. Printing-related Properties in  
-com.sun.star.sheet.XGlobalSheetSettings. 
+Table 10. Printing-related Properties in com.sun.star.sheet.XGlobalSheetSettings. 
 
  
 This organization of the documentation may be an error, since the 
@@ -1363,81 +1307,63 @@ PageProperties service in the style module (see "lodoc PageProperties style"), a
 in Table 11. 
 
   
-Property  Description  
-Lots of border props…  
-Lots of margin props…  
-IsLandscape Determines if the page format is 
-landscape. 
+|Property             |Description                     |
+|---------------------|--------------------------------|
+|Lots of border props…|                                |
+|Lots of margin props…|                                |
+|IsLandscape          |Determines if the page format is|
+|                     |landscape.                      |
+|PrinterPaperTray     |Contains the name of a paper    |
+|                     |tray of the selected printer.   |
+|Lots of header props…|                                |
+|Lots of footer props…|                                |
+|Lots of grid props…  |                                |
+|GridPrint            |Determines whether text grid    |
+|                     |lines are printed.              |
 
-PrinterPaperTray Contains the name of a paper 
-tray of the selected printer. 
-
-Lots of header props…  
-Lots of footer props…  
-Lots of grid props…  
-GridPrint Determines whether text grid 
-lines are printed. 
-
-Table 11. Printing-related Properties in  
-com.sun.star.style.PageProperties. 
+Table 11. Printing-related Properties in com.sun.star.style.PageProperties. 
 
  
 Many more print properties come from TablePageStyle in the sheet module (see 
 "lodoc TablePageStyle", which are given in Table 12. 
 
  
-Property  Description  
-PrintAnnotations Enables printing of cell annotations. 
+|Property              |Description                                    |
+|----------------------|-----------------------------------------------|
+|PrintAnnotations      |Enables printing of cell annotations.          |
+|PrintGrid             |Enables printing of the cell grid.             |
+|PrintHeaders          |Enables printing of column and row             |
+|                      |headers.                                       |
+|PrintCharts           |Enables printing of charts.                    |
+|PrintObjects          |Enables printing of embedded objects.          |
+|PrintDrawing          |Enables printing of drawing objects.           |
+|PrintFormulas         |Enables printing of formulas instead of their  |
+|                      |results.                                       |
+|PrintZeroValues       |Enables printing of zero-values.               |
+|PrintDownFirst        |Specifies the print order for the pages within |
+|                      |each sheet.                                    |
+|PageScale             |Contains the scaling factor (in percent) for   |
+|                      |printing the sheet.                            |
+|ScaleToPages          |Contains the number of pages the sheet will    |
+|                      |use for printing.                              |
+|ScaleToPagesX         |Contains the number of horizontal pages the    |
+|                      |sheet will be printed on.                      |
+|ScaleToPagesY         |Contains the number of vertical pages the      |
+|                      |sheet will be printed on.                      |
+|LeftPageHeaderContent |Contains the content of the header for the     |
+|                      |left pages                                     |
+|                      |(com.sun.star.sheet.XHeaderFooterContent).     |
+|RightPageHeaderContent|Contains the content of the header for the     |
+|                      |right pages                                    |
+|                      |(com.sun.star.sheet.XHeaderFooterContent).     |
+|LeftPageFooterContent |Contains the content of the footer for the left| 
+|                      |pages                                          |
+|                      |(com.sun.star.sheet.XHeaderFooterContent).     |
+|RightPageFooterContent|Contains the content of the footer for the     |
+|                      |right pages                                    |
+|                      |(com.sun.star.sheet.XHeaderFooterContent).     |
 
-PrintGrid Enables printing of the cell grid. 
-
-PrintHeaders Enables printing of column and row 
-headers.  
-
-PrintCharts Enables printing of charts.  
-
-PrintObjects Enables printing of embedded objects.  
-
-PrintDrawing Enables printing of drawing objects. 
-
-PrintFormulas Enables printing of formulas instead of their 
-results.  
-
-PrintZeroValues Enables printing of zero-values. 
-
-PrintDownFirst Specifies the print order for the pages within 
-each sheet. 
-
-PageScale Contains the scaling factor (in percent) for 
-printing the sheet. 
-
-ScaleToPages Contains the number of pages the sheet will 
-use for printing.  
-
-ScaleToPagesX Contains the number of horizontal pages the 
-sheet will be printed on. 
-
-ScaleToPagesY Contains the number of vertical pages the 
-sheet will be printed on. 
-
-LeftPageHeaderContent Contains the content of the header for the 
-left pages 
-(com.sun.star.sheet.XHeaderFooterContent). 
-
-RightPageHeaderContent Contains the content of the header for the 
-right pages 
-(com.sun.star.sheet.XHeaderFooterContent). 
-
-LeftPageFooterContent Contains the content of the footer for the left 
-pages 
-(com.sun.star.sheet.XHeaderFooterContent). 
-
-RightPageFooterContent Contains the content of the footer for the 
-right pages 
-(com.sun.star.sheet.XHeaderFooterContent). 
-
-Table 12. Printing-related Properties in  
-com.sun.star.sheet.TablePageStyle. 
+Table 12. Printing-related Properties in com.sun.star.sheet.TablePageStyle. 
 
  
 ## 5.  Specialized Printing 
@@ -1903,31 +1829,26 @@ http://www.eecs.utk.edu/resources/it/kb/printing/linux-command-line).
 Perhaps less well known are the printing utilities in Windows, listed in Table 13. 
 
  
-VBScript  Purpose  
-Prnmngr.vbs Printer management. Adds, deletes, and 
-lists printers or printer connections, in 
-addition to setting and displaying the 
-default printer.  
-
-Used by printersList.bat 
-Prncnfg.vbs Configures or displays configuration 
-information about a printer. 
-
-Used by printerStatus.bat 
-Prnjobs.vbs Pauses, resumes, cancels, and lists print 
-jobs.  
-
-Used by printerJobs.bat 
-Prnqctl.vbs Printer queue management. Prints a test 
-page, pauses or resumes a printer, and 
-clears a printer queue. 
-
-Used by printerClean.bat 
-Prndrvr.vbs Adds, deletes, and lists printer drivers. 
-
-Prnport.vbs Printer port management. 
-
-Pubprn.vbs Publish a printer to Active Directory. 
+|VBScript   |Purpose                                  |
+|-----------|-----------------------------------------|
+|Prnmngr.vbs|Printer management. Adds, deletes, and   |
+|           |lists printers or printer connections, in| 
+|           |addition to setting and displaying the   |
+|           |default printer.                         |
+|           |Used by printersList.bat                 |
+|Prncnfg.vbs|Configures or displays configuration     |
+|           |information about a printer.             |
+|           |Used by printerStatus.bat                |
+|Prnjobs.vbs|Pauses, resumes, cancels, and lists print| 
+|           |jobs.                                    |
+|           |Used by printerJobs.bat                  |
+|Prnqctl.vbs|Printer queue management. Prints a test  |
+|           |page, pauses or resumes a printer, and   |
+|           |clears a printer queue.                  |
+|           |Used by printerClean.bat                 |
+|Prndrvr.vbs|Adds, deletes, and lists printer drivers.| 
+|Prnport.vbs|Printer port management.                 |
+|Pubprn.vbs |Publish a printer to Active Directory.   |
 
 Table 13. Windows 7's VBScript Printing Utilities. 
 

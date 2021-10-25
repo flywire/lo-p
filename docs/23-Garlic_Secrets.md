@@ -156,33 +156,24 @@ or use lodoc GeneralFunctions. The more important functions  are shown in Table
 1. 
 
  
-GeneralFunction Name Calculation Applied to the Cell Values 
-SUM  Sum the numerical values. 
-
-COUNT  Count all the values, including the non-
-numerical ones. 
-
-COUNTNUMS  Count only the numerical values. 
-
-AVERAGE  Average all the numerical values. 
-
-MAX  Find the maximum of all the numerical values. 
-
-MIN  Find the minimum of all the numerical values. 
-
-PRODUCT  Return the product of all the numerical values. 
-
-STDEV  The standard deviation is calculated for the 
-values based on using a sample size. 
-
-STDEVP  The standard deviation is calculated for the 
-values based on using the entire population. 
-
-VAR  The variance is calculated for the values based 
-on using a sample size. 
-
-VARP  The variance is calculated for the values based 
-on using the entire population. 
+|GeneralFunction|Calculation Applied to the Cell Values                   |
+|Name           |                                                         |
+|---------------|---------------------------------------------------------|
+|SUM            |Sum the numerical values.                                |
+|COUNT          |Count all the values, including the non-numerical ones.  |
+|COUNTNUMS      |Count only the numerical values.                         |
+|AVERAGE        |Average all the numerical values.                        |
+|MAX            |Find the maximum of all the numerical values.            |
+|MIN            |Find the minimum of all the numerical values.            |
+|PRODUCT        |Return the product of all the numerical values.          |
+|STDEV          |The standard deviation is calculated for the values based|
+|               |on using a sample size.                                  |
+|STDEVP         |The standard deviation is calculated for the values based|
+|               |on using the entire population.                          |
+|VAR            |The variance is calculated for the values based on using |
+|               |a sample size.                                           |
+|VARP           |The variance is calculated for the values based on using |
+|               |the entire population.                                   |
 
 Table 1. Some GeneralFunctions. 
 

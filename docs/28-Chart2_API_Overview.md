@@ -127,71 +127,45 @@ In the chart2 API, the variants are accessed via template names, which are liste
 Table 1. 
 
  
-Chart Types Template Names 
-Column Stacked 
-Percent 
-3D 
-Column, StackedColumn, PercentStackedColumn, 
-ThreeDColumnDeep, ThreeDColumnFlat, 
-StackedThreeDColumnFlat, 
-PercentStackedThreeDColumnFlat 
-Bar Stacked 
-Percent 
-3D 
-Bar, StackedBar, PercentStackedBar, 
-ThreeDBarDeep, ThreeDBarFlat, 
-StackedThreeDBarFlat, 
-PercentStackedThreeDBarFlat 
-Pie Donut 
-Exploded 
-3D 
-Pie, Donut, 
-PieAllExploded, DonutAllExploded, 
-ThreeDPie, ThreeDPieAllExploded, 
-ThreeDDonut, ThreeDDonutAllExploded 
-Area Stacked 
-Percent 
-3D 
-Area, StackedArea, PercentStackedArea, 
-ThreeDArea, StackedThreeDArea, 
-PercentStackedThreeDArea 
-Line Symbol 
-Stacked 
-Percent 
-3D 
-Line, Symbol, LineSymbol, 
-StackedLine, StackedSymbol, StackedLineSymbol, 
-PercentStackedLine, PercentStackedSymbol, 
-PercentStackedLineSymbol, 
-ThreeDLine, ThreeDLineDeep, 
-StackedThreeDLine, PercentStackedThreeDLine 
-XY 
-(Scatter) 
-Line 
-3D 
-ScatterSymbol, ScatterLine, ScatterLineSymbol, 
-ThreeDScatter 
-Bubble  Bubble 
-Net Line 
-Symbol 
-Filled 
-Stacked 
-Percent 
-Net, NetLine, NetSymbol, FilledNet, 
-StackedNet, StackedNetLine, 
-StackedNetSymbol, StackedFilledNet, 
-PercentStackedNet, PercentStackedNetLine, 
-PercentStackedNetSymbol, 
-PercentStackedFilledNet 
-Stock Open 
-Volume 
-StockLowHighClose, 
-StockOpenLowHighClose, 
-StockVolumeLowHighClose, 
-StockVolumeOpenLowHighClose 
-Column 
-and Line 
-Stacked ColumnWithLine, StackedColumnWithLine 
+|Chart     |Types  |Template Names                                |  
+|----------|-------|----------------------------------------------|	       
+|Column    |Stacked|Column, StackedColumn, PercentStackedColumn,  |
+|          |Percent|ThreeDColumnDeep, ThreeDColumnFlat,           |
+|          |3D     |StackedThreeDColumnFlat,                      |
+|          |       |PercentStackedThreeDColumnFlat                |
+|Bar       |Stacked|Bar, StackedBar, PercentStackedBar,           |
+|          |Percent|ThreeDBarDeep, ThreeDBarFlat,                 |
+|          |3D     |StackedThreeDBarFlat,                         |
+|          |       |PercentStackedThreeDBarFlat                   |
+|Pie       |Donut  |Pie, Donut,                                   |
+|          |Explode|PieAllExploded, DonutAllExploded,             |
+|          |3D     |ThreeDPie, ThreeDPieAllExploded,              |
+|          |       |ThreeDDonut, ThreeDDonutAllExploded           |
+|Area      |Stacked|Area, StackedArea, PercentStackedArea,        |
+|          |Percent|ThreeDArea, StackedThreeDArea,                |
+|          |3D     |PercentStackedThreeDArea                      |
+|Line      |Symbol |Line, Symbol, LineSymbol,                     |
+|          |Stacked|StackedLine, StackedSymbol, StackedLineSymbol,|
+|          |Percent|PercentStackedLine, PercentStackedSymbol,     |
+|          |3D     |PercentStackedLineSymbol,                     |
+|          |       |ThreeDLine, ThreeDLineDeep,                   |
+|          |       |StackedThreeDLine, PercentStackedThreeDLine   |
+|XY        |Line   |ScatterSymbol, ScatterLine, ScatterLineSymbol,|
+|(Scatter) |3D     |ThreeDScatter                                 |
+|Bubble    |       |Bubble                                        |
+|Net       |Line   |Net, NetLine, NetSymbol, FilledNet,           |
+|          |Symbol |StackedNet, StackedNetLine,                   |
+|          |Filled |StackedNetSymbol, StackedFilledNet,           |
+|          |Stacked|PercentStackedNet, PercentStackedNetLine,     |
+|          |       |PercentStackedNetSymbol,                      |
+|          |Percent|PercentStackedFilledNet                       |
+|Stock     |Open   |StockLowHighClose,                            |
+|          |Volume |StockOpenLowHighClose,                        |
+|          |       |StockVolumeLowHighClose,                      |
+|          |       |StockVolumeOpenLowHighClose                   |
+|Column    |Stacked|ColumnWithLine, StackedColumnWithLine         |
+|and Line  |       |                                              |
+
 Table 1. Chart Types and Template Names. 
 
  
@@ -204,16 +178,18 @@ template.
 It's also possible to create a chart using a chart type name, which are listed in Table 2. 
 
  
-Chart Chart Type Names 
-Column ColumnChartType 
-Bar BarChartType 
-Pie PieChartType 
-Area AreaChartType 
-Line LineChartType 
-XY (Scatter) ScatterChartType 
-Bubble BubbleChartType 
-Net NetChartType, FilledNetChartType 
-Stock CandleStickChartType 
+|Chart |Chart Type Names                |
+|------|--------------------------------|
+|Column|ColumnChartType                 |
+|Bar   |BarChartType                    |
+|Pie   |PieChartType                    |
+|Area  |AreaChartType                   |
+|Line  |LineChartType                   |
+|XY    |(Scatter) ScatterChartType      |
+|Bubble|BubbleChartType                 |
+|Net   |NetChartType, FilledNetChartType|
+|Stock |CandleStickChartType            |
+
 Table 2. Chart Type Names. 
 
  

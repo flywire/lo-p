@@ -115,17 +115,19 @@ across several modules and submodules. The form module contains many services,
 interfaces, and seven submodules, which are listed in Table 1. 
 
  
-Form Submodule Purpose 
-binding collects functionality for binding form controls to 
-external data sources 
-component collects form control model descriptions 
-control collects form control descriptions 
-inspection collects services for inspecting form/components  
-runtime collects functionality needed during a form's runtime 
-submission collects functionality for submitting forms to external 
-data sinks 
-validation collects functionality to validate form components by 
-help of external validator instances 
+|Form Submodule|Purpose                                                |
+|--------------|-------------------------------------------------------|
+|binding       |collects functionality for binding form controls to    |
+|              |external data sources                                  |
+|component     |collects form control model descriptions               |
+|control       |collects form control descriptions                     |
+|inspection    |collects services for inspecting form/components       |
+|runtime       |collects functionality needed during a form's runtime  |
+|submission    |collects functionality for submitting forms to external|
+|              |data sinks                                             |
+|validation    |collects functionality to validate form components by  |
+|              |help of external validator instances                   |
+
 Table 1. Submodules of the Form Module. 
 
  

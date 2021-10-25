@@ -124,13 +124,14 @@ The names of the properties used by the sets in a style family can be found in t
 documentation for their "XXXStyle" service. Table 1 summarizes the mapping. 
 
  
-Style Family Name Service where Properties 
-are Defined 
-"CharacterStyles" CharacterStyle 
-"FrameStyles" FrameStyle (??) 
-"NumberingStyles" NumberingStyle 
-"PageStyles" PageStyle 
-"ParagraphStyles" ParagraphStyle 
+|Style Family Name|Service where Properties are Defined| 
+|-----------------|------------------------------------|
+|"CharacterStyles"|CharacterStyle                      |
+|"FrameStyles"    |FrameStyle (??)                     | 
+|"NumberingStyles"|NumberingStyle                      |
+|"PageStyles"     |PageStyle                           |
+|"ParagraphStyles"|ParagraphStyle                      |
+
 Table 1. Properties Information for Each Style Family. 
 
  
