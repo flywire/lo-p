@@ -1,4 +1,18 @@
 # Chapter 10. The Linguistics API 
+
+!!! note "Topics"
+    Linguistic 
+    Tools; Using the Spell 
+    Checker; Using the 
+    Thesaurus; Grammar 
+    Checking; Guessing the 
+    Language used in a 
+    String; Spell Checking 
+    and Grammar Checking 
+    a Document 
+
+    Example folders: "Lingu 
+    Tests" and "Utils" 
  
  
 The linguistics API has four main components – a spell 
@@ -49,19 +63,6 @@ Lingo.java prints a variety of information about the linguistics services:
  
 public static void main(String args[]) 
 { 
-
-!!! note "Topics"
-    Linguistic 
-Tools; Using the Spell 
-Checker; Using the 
-Thesaurus; Grammar 
-Checking; Guessing the 
-Language used in a 
-String; Spell Checking 
-and Grammar Checking 
-a Document 
-Example folders: "Lingu 
-Tests" and "Utils" 
   Lo.loadOffice(); 
  
   // print linguistics info 

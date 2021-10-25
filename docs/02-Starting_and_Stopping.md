@@ -1,5 +1,17 @@
 # Chapter 2. Starting and Stopping 
- 
+
+!!! note "Topics"
+    Starting Office; 
+    Closing Down/Killing 
+    Office; Opening a 
+    Document; Creating a 
+    Document; Saving; 
+    Closing; Document 
+    Conversion; Bug 
+    Detection and Reporting 
+
+    Example folders: "Office 
+    Tests" and "Utils" 
  
 Chapter 1 introduced some of the core ideas of Office. 
 
@@ -50,18 +62,7 @@ public class OfficeInfo
  
 }  // end of OfficeInfo class 
  
-
-!!! note "Topics"
-    Starting Office; 
-Closing Down/Killing 
-Office; Opening a 
-Document; Creating a 
-Document; Saving; 
-Closing; Document 
-Conversion; Bug 
-Detection and Reporting 
-Example folders: "Office 
-Tests" and "Utils" 
+ 
 Lo.loadOffice() invokes Office and sets up a UNO bridge using named pipes. There's 
 also a Lo.loadSocketOffice() which uses sockets instead of pipes. Both functions 
 return a reference to a component loader which can be used to load a document.  

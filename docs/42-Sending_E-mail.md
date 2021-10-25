@@ -1,4 +1,18 @@
 # Chapter 42. Sending E-mail 
+
+!!! note "Topics"
+    SimpleSystemMail / 
+    SimpleCommandMail; 
+    Using the 
+    MailServiceProvider 
+    Service; Using 
+    JavaMail; The Desktop 
+    API; Thunderbird 
+    Scripting; Office Mail 
+    Merge 
+
+    Example folders: "Mail 
+    Tests" and "Utils" 
  
  
 The Jargon file is a humorous collection of computer 
@@ -66,20 +80,6 @@ The e-mail client appears, and the user
 must press "Send". 
 
  
-
-!!! note "Topics"
-     
-SimpleSystemMail / 
-SimpleCommandMail; 
-Using the 
-MailServiceProvider 
-Service; Using 
-JavaMail; The Desktop 
-API; Thunderbird 
-Scripting; Office Mail 
-Merge 
-Example folders: "Mail 
-Tests" and "Utils" 
 Table 1. Office and Java Approaches for Sending E-mail. 
 
  

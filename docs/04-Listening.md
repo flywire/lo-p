@@ -1,5 +1,15 @@
 # Chapter 4. Listening, and Other Techniques 
- 
+
+!!! note "Topics"
+    Window 
+    Listeners; Office 
+    Manipulation with JNA; 
+    Dispatching; Robot 
+    Keys 
+
+    Example folders: "Office 
+    Tests" and "Utils" 
+
  
 This chapter concludes the general introduction to Office 
 programming by looking at several techniques that will 
@@ -11,7 +21,6 @@ Robot package.
 Once again the examples come from the "Office Tests" directory in the code 
 download associated with this book, and make liberal use of the classes in the "Utils" 
 directory. For details please visit http://fivedots.coe.psu.ac.th/~ad/jlop/. 
-
  
  
 ## 1.  Listening to a Window 
@@ -51,15 +60,6 @@ public class DocWindow implements XTopWindowListener
     if (doc == null) { 
       System.out.println("Could not open " + fnm); 
       Lo.closeOffice(); 
-
-!!! note "Topics"
-    Window 
-Listeners; Office 
-Manipulation with JNA; 
-Dispatching; Robot 
-Keys 
-Example folders: "Office 
-Tests" and "Utils" 
       return; 
     } 
  

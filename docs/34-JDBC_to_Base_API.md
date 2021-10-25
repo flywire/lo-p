@@ -1,4 +1,13 @@
 # Chapter 34. From JDBC to the Base API 
+
+!!! note "Topics"
+    Three Database 
+    Modules: sdbc, sdbcx, 
+    sdb; A Little JDBC; 
+    From JDBC to sdbc 
+
+    Example folders: "Base 
+    Tests" and "Utils" 
  
  
 Base offers a graphical interface for the building and 
@@ -41,14 +50,6 @@ http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Database.
 The API is spread across three modules: sdbc, sdbcx, and sdb, whose structure is 
 summarized in Figure 1. 
 
-
-!!! note "Topics"
-    Three Database 
-Modules: sdbc, sdbcx, 
-sdb; A Little JDBC; 
-From JDBC to sdbc 
-Example folders: "Base 
-Tests" and "Utils" 
  
 
 ![](images/34-JDBC_to_Base_API-1.png)

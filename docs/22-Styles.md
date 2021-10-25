@@ -1,4 +1,16 @@
 # Chapter 22. Styles 
+
+!!! note "Topics"
+    Obtaining Style 
+    Information:  the 
+    TableCellStyle and 
+    TablePageStyle 
+    Services;  Creating and 
+    Using a New Style; 
+    Adding Borders 
+
+    Example folders: "Calc 
+    Tests" and "Utils" 
  
  
 This chapter looks at how spreadsheet styles are stored, 
@@ -30,17 +42,6 @@ associated with the input document:
  
 // in StylesAllInfo.java 
 public static void main(String args[]) 
-
-!!! note "Topics"
-    Obtaining Style 
-Information:  the 
-TableCellStyle and 
-TablePageStyle 
-Services;  Creating and 
-Using a New Style; 
-Adding Borders 
-Example folders: "Calc 
-Tests" and "Utils" 
 { 
   if (args.length < 1) { 
     System.out.println("Usage: run StylesAllInfo <fnm>"); 

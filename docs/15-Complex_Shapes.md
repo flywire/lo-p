@@ -1,4 +1,18 @@
 # Chapter 15. Complex Shapes 
+
+!!! note "Topics"
+    Connecting Two 
+    Rectangles; Shape 
+    Composition (grouping, 
+    binding, and 
+    combining); Combining 
+    with Dispatches; 
+    Undoing Composition; 
+    Bezier Curves (simple 
+    and complex) 
+
+    Example folders: "Draw 
+    Tests" and "Utils" 
  
  
 This chapter looks at three complex topics involving 
@@ -30,19 +44,6 @@ Figure 1. Different Styles of Connector.
 
  
 Grouper.java contains code for generating the top-left example in Figure 1: 
-
-!!! note "Topics"
-    Connecting Two 
-Rectangles; Shape 
-Composition (grouping, 
-binding, and 
-combining); Combining 
-with Dispatches; 
-Undoing Composition; 
-Bezier Curves (simple 
-and complex) 
-Example folders: "Draw 
-Tests" and "Utils" 
  
 // Grouper.java 
 public static void main (String args[]) 

@@ -1,4 +1,20 @@
 # Chapter 43. Using the Clipboard 
+
+!!! note "Topics"
+    The Office 
+    Clipboard API: adding, 
+    retrieving, text, images; 
+    Java's Clipboard API 
+    adding, retrieving, text, 
+    images, 2D arrays;  
+    Copy and Pasting in an 
+    Office Document: 
+    Writer, Calc, Impress, 
+    Base 
+
+    Example folders: 
+    "Clipboard Tests" and 
+    "Utils" 
  
  
 The clipboard has appeared a few times in previous 
@@ -49,21 +65,6 @@ Office's clipboard API is modelled on Java's clipboard classes, and there are
 advantages to using the Java API instead of Office when manipulating complex data. 
 
 As a consequence, I've developed two support classes, in Clip.java and JClip.java, 
-
-!!! note "Topics"
-    The Office 
-Clipboard API: adding, 
-retrieving, text, images; 
-Java's Clipboard API 
-adding, retrieving, text, 
-images, 2D arrays;  
-Copy and Pasting in an 
-Office Document: 
-Writer, Calc, Impress, 
-Base 
-Example folders: 
-"Clipboard Tests" and 
-"Utils" 
 which contain helpful functions for using the Office clipboard API and the Java 
 version respectively. 
 

@@ -1,4 +1,20 @@
 # Chapter 44. Office as a GUI Component 
+
+!!! note "Topics"
+    OOoBean; 
+    Wrapping OOoBean in a 
+    JPanel; Using the 
+    OBeanPanel; Using an 
+    Undecorated Office 
+    Window; Augmenting 
+    the User Interface: a 
+    New Toolbar Item; 
+    Augmenting the User 
+    Interface: a New Menu 
+    Item  
+
+    Example folders: "GUI 
+    Tests" and "Utils" 
  
  
 This chapter looks at two ways to use Office as a GUI 
@@ -45,21 +61,6 @@ document, and displays it on a Java Canvas. Some of that can be seen in Figure 1
 which gives a simplified view of its classes and interfaces. 
 
  
-
-!!! note "Topics"
-    OOoBean; 
-Wrapping OOoBean in a 
-JPanel; Using the 
-OBeanPanel; Using an 
-Undecorated Office 
-Window; Augmenting 
-the User Interface: a 
-New Toolbar Item; 
-Augmenting the User 
-Interface: a New Menu 
-Item  
-Example folders: "GUI 
-Tests" and "Utils" 
  
 
 ![](images/44-Office_as_GUI_Comp-1.png)

@@ -1,4 +1,15 @@
 # Chapter 37. Using the Driver Manager 
+
+!!! note "Topics"
+    Querying a CSV 
+    File; Querying an 
+    Access File; Querying a 
+    Calc Spreadsheet; 
+    Querying a Thunderbird 
+    Address Book 
+
+    Example folders: "Base 
+    Tests" and "Utils" 
  
  
 This chapter looks at programming with the 
@@ -27,16 +38,6 @@ connection properties. A good source for this information is the Developer's Gui
 the "Driver Specifics" section of chapter 12. It's also accessible online at 
 https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics 
 (or use loGuide "Database Driver Specifics"). Unfortunately, the guide was last 
-
-!!! note "Topics"
-    Querying a CSV 
-File; Querying an 
-Access File; Querying a 
-Calc Spreadsheet; 
-Querying a Thunderbird 
-Address Book 
-Example folders: "Base 
-Tests" and "Utils" 
 updated in 2008 for OpenOffice 3.1, and some details have changed since then. A 
 better approach is to query Base's DriverManager at run time which will supply data 
 for the version of Office that you're using. Figure 2 shows the relevant parts of the 

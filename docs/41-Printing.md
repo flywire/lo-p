@@ -1,4 +1,20 @@
 # Chapter 41. Printing 
+
+!!! note "Topics"
+    The Java Print 
+    Service (JPS); Printing 
+    in Office Writer, 
+    Impress, Calc; Viewing 
+    a Document's Print 
+    Properties; Specialized 
+    Printing: Writer, 
+    Impress, Calc; Hacking 
+    the GUI; Command 
+    Prompt Printing 
+
+    Example folders: 
+    "Printing Tests" and 
+    "Utils" 
  
  
 Java's Print Service (JPS) and Office's printing APIs 
@@ -53,21 +69,6 @@ listener can be attached to monitor what's happening during the printing.
 Document types are encoded as DocFlavor objects which contain data source details 
 (e.g. whether the document comes from an input stream or a URL), and a MIME type 
 (e.g. image/gif, application/pdf). A common misconception about DocFlavor is that it 
-
-!!! note "Topics"
-    The Java Print 
-Service (JPS); Printing 
-in Office Writer, 
-Impress, Calc; Viewing 
-a Document's Print 
-Properties; Specialized 
-Printing: Writer, 
-Impress, Calc; Hacking 
-the GUI; Command 
-Prompt Printing 
-Example folders: 
-"Printing Tests" and 
-"Utils" 
 means that Java can print that kind of document. A DocFlavor is used to check 
 whether a printer supports a document type, and the answer may be "no". 
 

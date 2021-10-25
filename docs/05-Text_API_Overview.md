@@ -1,4 +1,20 @@
 # Chapter 5. Text API Overview 
+
+!!! note "Topics"
+    API Overview; 
+    Text Cursors; Extracting 
+    Text; Cursor Iteration; 
+    Creating Cursors; 
+    Creating a Document; 
+    Using and Comparing 
+    Text Cursors; 
+    Inserting/Changing Text 
+    in a Document; Text 
+    Enumeration; 
+    Appending Documents 
+
+    Example folders: "Text 
+    Tests" and "Utils" 
  
  
 The next few chapters look at programming with the text 
@@ -40,21 +56,6 @@ The API is centered around four text document services which subclass
 OfficeDocument, as shown in Figure 1. 
 
  
-
-!!! note "Topics"
-    API Overview; 
-Text Cursors; Extracting 
-Text; Cursor Iteration; 
-Creating Cursors; 
-Creating a Document; 
-Using and Comparing 
-Text Cursors; 
-Inserting/Changing Text 
-in a Document; Text 
-Enumeration; 
-Appending Documents 
-Example folders: "Text 
-Tests" and "Utils" 
 
 ![](images/05-Text_API_Overview-1.png)
 

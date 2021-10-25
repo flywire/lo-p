@@ -1,4 +1,19 @@
 # Chapter 13. Drawing Basic Shapes 
+
+!!! note "Topics"
+    A Black Dashed 
+    Line; A Red Ellipse; 
+    Filled Rectangles; Text; 
+    Shape Names; A 
+    Transparent Circle and a 
+    Polar Line; A Math 
+    Formula as an OLE 
+    Shape; Polygons; 
+    Multiple Lines, Partial 
+    Elipses 
+
+    Example folders: "Draw 
+    Tests" and "Utils" 
  
  
 This chapter contains an assortment of basic shape 
@@ -48,20 +63,6 @@ XComponent doc = Draw.createDrawDoc(loader);
        : 
 Lo.saveDoc(doc, "picture.odg"); // "odg" is Draw's extension 
  
-
-!!! note "Topics"
-    A Black Dashed 
-Line; A Red Ellipse; 
-Filled Rectangles; Text; 
-Shape Names; A 
-Transparent Circle and a 
-Polar Line; A Math 
-Formula as an OLE 
-Shape; Polygons; 
-Multiple Lines, Partial 
-Elipses 
-Example folders: "Draw 
-Tests" and "Utils" 
 Aside from saving Office formats,  Lo.saveDoc() recognizes other graphical forms 
 based on the filename extension (e.g. a document saved to "picture.png" will create a 
 PNG file). 

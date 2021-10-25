@@ -1,5 +1,17 @@
-# Chapter 33. Using Charts in Other 
-Documents 
+# Chapter 33. Using Charts in Other Documents 
+
+!!! note "Topics"
+    Copy-and-Paste 
+    Dispatches; Adding a 
+    Chart to a Text 
+    Document; Adding a 
+    Chart to a Slide 
+    Document; Saving the 
+    Chart as an Image 
+
+    Example folders: 
+    "Chart2 Tests" and 
+    "Utils" 
  
  
 This chapter describes two examples, TextChart.java and 
@@ -54,18 +66,6 @@ document is created, and the chart image is pasted into it, resulting in the pag
 in Figure 1. 
 
  
-
-!!! note "Topics"
-    Copy-and-Paste 
-Dispatches; Adding a 
-Chart to a Text 
-Document; Adding a 
-Chart to a Slide 
-Document; Saving the 
-Chart as an Image 
-Example folders: 
-"Chart2 Tests" and 
-"Utils" 
  
 
 ![](images/33-Charts_in_Others_Docs-1.png)

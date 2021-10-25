@@ -1,4 +1,17 @@
 # Chapter 19. Calc API Overview 
+
+!!! note "Topics"
+    The Spreadsheet 
+    Document; Document 
+    Spreadsheets; 
+    Spreadsheet Data; The 
+    Spreadsheet Service; 
+    Cell Range Services; 
+    Cell Services; Sheet Cell 
+    Ranges 
+
+    Example folders: "Calc 
+    Tests" and "Utils" 
  
  
 This chapter gives an overview of the main services and 
@@ -35,18 +48,6 @@ OfficeDocument. Figure 1 shows these services, including some of their interface
 
 Figure 1. Some Spreadsheet Services and Interfaces. 
 
-
-!!! note "Topics"
-    The Spreadsheet 
-Document; Document 
-Spreadsheets; 
-Spreadsheet Data; The 
-Spreadsheet Service; 
-Cell Range Services; 
-Cell Services; Sheet Cell 
-Ranges 
-Example folders: "Calc 
-Tests" and "Utils" 
  
 Calc's functionality is mostly divided between two Java packages (modules), sheet 
 and table, which are documented at 

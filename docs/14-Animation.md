@@ -1,4 +1,14 @@
 # Chapter 14. Animation 
+
+!!! note "Topics"
+    Circle 
+    Movement; Line 
+    Rotation; Animating an 
+    Image; The Gallery 
+    Module  
+     
+    Example folders: "Draw 
+    Tests" and "Utils" 
  
  
 DrawPicture.java contains a commented-out call to 
@@ -52,16 +62,6 @@ private static void animShapes(XDrawPage currSlide)
   } 
 }  // end of animShapes() 
  
-
-!!! note "Topics"
-    Circle 
-Movement; Line 
-Rotation; Animating an 
-Image; The Gallery 
-Module  
- 
-Example folders: "Draw 
-Tests" and "Utils" 
 The shape (circle or line) is changed by removing the current version from the page 
 and inserting a new updated instance. This means that a lot of objects are created and 
 removed in a short amount of time. The alternative approach, which retains the shape 

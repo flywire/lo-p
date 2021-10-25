@@ -1,5 +1,19 @@
 # Chapter 25. Monitoring Sheets 
- 
+
+!!! note "Topics"
+    Listening for 
+    Document Modifications 
+    (XModifyListener); 
+    Listening for 
+    Application Closing 
+    (XTopWindowListener); 
+    Listening for Cell 
+    Selection 
+    (XSelectionChangeListe
+    ner) 
+
+    Example folders: "Calc 
+    Tests" and "Utils"  
  
 The chapter looks at three kinds of listeners for 
 spreadsheets: document modification, application closing, 
@@ -54,19 +68,6 @@ public class ModifyListener implements XModifyListener
                               XExtendedToolkit.class,  
                               "com.sun.star.awt.Toolkit"); 
 
-!!! note "Topics"
-    Listening for 
-Document Modifications 
-(XModifyListener); 
-Listening for 
-Application Closing 
-(XTopWindowListener); 
-Listening for Cell 
-Selection 
-(XSelectionChangeListe
-ner) 
-Example folders: "Calc 
-Tests" and "Utils" 
     if (tk != null) 
       tk.addTopWindowListener( new XTopWindowAdapter() { 
         public void windowClosing(EventObject eo) 

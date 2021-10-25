@@ -1,4 +1,17 @@
 # Chapter 26. Search and Replace 
+
+!!! note "Topics"
+    XSearchable; 
+    XReplaceable; 
+    SearchDescriptor; 
+    ReplaceDescriptor;  
+    Searching Iteratively; 
+    Searching For All 
+    Matches; Replacing All 
+    Matches     
+
+    Example folders: "Calc 
+    Tests" and "Utils" 
  
  
 The increaseGarlicCost() method in GarlicSecrets.java 
@@ -53,18 +66,6 @@ public static void main(String args[])
  
   Lo.saveDoc(doc, "replace.ods"); 
   Lo.waitEnter(); 
-
-!!! note "Topics"
-    XSearchable; 
-XReplaceable; 
-SearchDescriptor; 
-ReplaceDescriptor;  
-Searching Iteratively; 
-Searching For All 
-Matches; Replacing All 
-Matches     
-Example folders: "Calc 
-Tests" and "Utils" 
   Lo.closeDoc(doc); 
   Lo.closeOffice(); 
 }  // end of main() 

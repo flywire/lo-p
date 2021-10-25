@@ -1,5 +1,15 @@
 # Chapter 9. Text Search and Replace 
- 
+
+!!! note "Topics"
+    Finding the First 
+    Matching Phrase; 
+    Replacing all the 
+    Matching Words; 
+    Finding all Matching 
+    Phrases 
+
+    Example folders: "Text 
+    Tests" and "Utils"  
  
 The GenericTextDocument service supports the 
 XSearchable and XReplaceable interfaces (see Chapter 5, 
@@ -39,15 +49,6 @@ SearchDescriptor and ReplaceDescriptor services. Figure 2 summarizes these
 arrangements. 
 
 
-!!! note "Topics"
-    Finding the First 
-Matching Phrase; 
-Replacing all the 
-Matching Words; 
-Finding all Matching 
-Phrases 
-Example folders: "Text 
-Tests" and "Utils" 
  
 
 ![](images/09-Text_Search-2.png)

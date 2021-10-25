@@ -1,4 +1,14 @@
 # Chapter 39. Forms API Overview 
+
+!!! note "Topics"
+    An Overview of 
+    the Forms API; 
+    Examining a Text-based 
+    Form; Attaching 
+    Listeners to a View 
+
+    Example folders: "Forms 
+    Tests" and "Utils" 
  
  
 Forms are usually found in Writer documents, or as data 
@@ -51,15 +61,6 @@ look to a user).
 Nevertheless, manipulating a form from code can be useful. This chapter starts with 
 an overview of the forms API, and then looks at how data input into an existing form 
 can be processed using listeners. This isn't the standard way of adding behavior to 
-
-!!! note "Topics"
-   An Overview of 
-the Forms API; 
-Examining a Text-based 
-Form; Attaching 
-Listeners to a View 
-Example folders: "Forms 
-Tests" and "Utils" 
 forms; that capability is typically handled by macros coded in Office Basic (for 
 example, see chapter 13 of "Getting Started with LibreOffice" and chapter 9 of the 
 "Base Handbook"). I'll be looking at how to code form macros in Chapters 48 and 49. 

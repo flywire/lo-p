@@ -1,4 +1,16 @@
 # Chapter 32. Bubble, Net, Stock Charts 
+
+!!! note "Topics"
+    The Bubble 
+    Chart; The Net Chart; 
+    The Stock Chart: basic 
+    and modified candle 
+    sticks; Stock Chart and 
+    Line Graph 
+
+    Example folders: 
+    "Chart2 Tests" and 
+    "Utils" 
  
  
 This chapter concludes my use of the Chart2Views.java 
@@ -41,17 +53,6 @@ labeledBubbleChart() in Chart2Views.java utilizes the "World data" table in
 "chartsData.ods" (see Figure 1).  
 
  
-
-!!! note "Topics"
-    The Bubble 
-Chart; The Net Chart; 
-The Stock Chart: basic 
-and modified candle 
-sticks; Stock Chart and 
-Line Graph 
-Example folders: 
-"Chart2 Tests" and 
-"Utils" 
  
 
 ![](images/32-Bubble_Net_Stock_Charts-1.png)

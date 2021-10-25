@@ -1,5 +1,17 @@
 # Chapter 18. Slide Shows 
  
+!!! note "Topics"
+    Starting a Slide 
+    Show; Play and End a 
+    Slide Show 
+    Automatically; Play a 
+    Slide Show Repeatedly; 
+    Play a  Custom Slide 
+    Show 
+
+    Example folders: "Draw 
+    Tests" and "Utils" 
+
  
 This chapter focuses on ways to programmatically control 
 slide shows. If you're unfamiliar with what Impress offers 
@@ -39,17 +51,6 @@ slide show's "click to exit" screen. BasicShow then closes the document and shut
 down Office. 
 
 The main() function: 
-Example folders: "Draw 
-Tests" and "Utils" 
-
-!!! note "Topics"
-    Starting a Slide 
-Show; Play and End a 
-Slide Show 
-Automatically; Play a 
-Slide Show Repeatedly; 
-Play a  Custom Slide 
-Show 
  
 // in BasicShow.java 
 public static void main(String args[]) 

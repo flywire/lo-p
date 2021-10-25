@@ -1,5 +1,15 @@
-# Chapter 40. Building a Form 
-Programmatically 
+# Chapter 40. Building a Form Programmatically 
+
+!!! note "Topics"
+    Creating 
+    Controls; Assigning a 
+    Data Source to a Form; 
+    Creating Data-aware 
+    Controls; Attaching 
+    Listeners 
+
+    Example folders: "Forms 
+    Tests" and "Utils" 
  
  
 BuildForm.java creates a text-based form at run-time, and 
@@ -27,16 +37,6 @@ listeners (i.e. subclasses of XEventListener) not Java classes.
  
 Form Control Listeners 
 CommandButton XActionListener, XMouseListener 
-
-!!! note "Topics"
-   Creating 
-Controls; Assigning a 
-Data Source to a Form; 
-Creating Data-aware 
-Controls; Attaching 
-Listeners 
-Example folders: "Forms 
-Tests" and "Utils" 
 Textfield XTextListener, XFocusListener 
 RadioButton, CheckBox XPropertyChangeListener 
 ListBox XItemListener 

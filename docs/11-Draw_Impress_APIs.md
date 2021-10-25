@@ -1,4 +1,17 @@
 # Chapter 11. Draw/Impress APIs Overview 
+
+!!! note "Topics"
+    Draw Pages and 
+    Master Pages; Draw 
+    Page Details; API 
+    Hierarchy Code 
+    Examples; Shapes in a 
+    Drawing; Shapes in a 
+    Presentation ; The Slide 
+    Show APIs 
+
+    Example folders: "Draw 
+    Tests" and "Utils" 
  
  
 This part discusses the APIs for both Draw and Impress 
@@ -46,18 +59,6 @@ The presentation API is mostly located in Office's com.sun.star.presentation pac
 http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1presentation
 .html. You can also find it with lodoc presentation module reference. 
 
-
-!!! note "Topics"
-    Draw Pages and 
-Master Pages; Draw 
-Page Details; API 
-Hierarchy Code 
-Examples; Shapes in a 
-Drawing; Shapes in a 
-Presentation ; The Slide 
-Show APIs 
-Example folders: "Draw 
-Tests" and "Utils" 
 Figure 2 shows a more detailed version of Figure 1 which includes some of the 
 interfaces defined by the services. 
 

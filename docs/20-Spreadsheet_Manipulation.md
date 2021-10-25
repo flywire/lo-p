@@ -1,5 +1,21 @@
-# Chapter 20. Spreadsheet Displaying and 
-Creation 
+# Chapter 20. Spreadsheet Displaying and Creation 
+
+!!! note "Topics"
+    Displaying a 
+    Document; Read-only 
+    and Protected Viewing; 
+    Active Sheets; Sheet 
+    Names; Zooming; 
+    Creating a Document; 
+    Cell Names and Ranges; 
+    Cell Values; Data 
+    Arrays; Rows and 
+    Columns of Data; 
+    Adding a Picture and a 
+    Chart 
+
+    Example folders: "Calc 
+    Tests" and "Utils" 
  
  
 This chapter looks at two main topics: the display of an 
@@ -48,22 +64,6 @@ public static void main(String args[])
     System.out.println("Could not open " + args[0]); 
     Lo.closeOffice(); 
     return; 
-
-!!! note "Topics"
-    Displaying a 
-Document; Read-only 
-and Protected Viewing; 
-Active Sheets; Sheet 
-Names; Zooming; 
-Creating a Document; 
-Cell Names and Ranges; 
-Cell Values; Data 
-Arrays; Rows and 
-Columns of Data; 
-Adding a Picture and a 
-Chart 
-Example folders: "Calc 
-Tests" and "Utils" 
   } 
  
   GUI.setVisible(doc, true); 

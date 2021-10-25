@@ -1,4 +1,18 @@
 # Chapter 21. Extracting Data 
+
+!!! note "Topics"
+    Getting a Cell 
+    Value; Getting the Data 
+    from a Cell Range; 
+    Getting Rows and 
+    Columns of Data;  
+    Obtaining Cell Ranges 
+    by Using Queries; 
+    Finding the Used Area 
+    with Sheet Cursors 
+
+    Example folders: "Calc 
+    Tests" and "Utils" 
  
  
 This chapter is about extracting data from a spreadsheet. 
@@ -38,19 +52,6 @@ public static void main(String args[])
   XComponentLoader loader = Lo.loadOffice(); 
   XSpreadsheetDocument doc = Calc.openDoc(args[0], loader); 
   if (doc == null) { 
-
-!!! note "Topics"
-    Getting a Cell 
-Value; Getting the Data 
-from a Cell Range; 
-Getting Rows and 
-Columns of Data;  
-Obtaining Cell Ranges 
-by Using Queries; 
-Finding the Used Area 
-with Sheet Cursors 
-Example folders: "Calc 
-Tests" and "Utils" 
     System.out.println("Could not open " + args[0]); 
     Lo.closeOffice(); 
     return; 

@@ -1,4 +1,20 @@
 # Chapter 28. Chart2 API Overview 
+
+!!! note "Topics"
+    Charting 
+    Elements; Chart 
+    Creation: TableChart, 
+    ChartDocument, linking 
+    template, diagram, and 
+    data source; Modifying 
+    Chart Elements: 
+    diagram, coordinate 
+    system, chart type, data 
+    series 
+
+    Example folders: 
+    "Chart2 Tests" and 
+    "Utils" 
  
 At over 1,600 pages the OpenOffice Developer's Guide 
 isn't a quick read, but you might expect it to cover all the 
@@ -51,21 +67,6 @@ word "Diagram" (e.g. BarDiagram, DonutDiagram, LineDiagram) whereas the chart2
 names either end with the word "ChartType" (e.g. BarChartType, PieChartType, 
 LineChartType), or with no special word (e.g. Bar, Donut, Line). 
 
-
-!!! note "Topics"
-    Charting 
-Elements; Chart 
-Creation: TableChart, 
-ChartDocument, linking 
-template, diagram, and 
-data source; Modifying 
-Chart Elements: 
-diagram, coordinate 
-system, chart type, data 
-series 
-Example folders: 
-"Chart2 Tests" and 
-"Utils" 
 A good way to get a feel for chart2's functionality is to look at chapter 3 of Calc's user 
 guide, available from https://www.libreoffice.org/get-help/documentation/. It 
 describes the charting wizard, which acts as a very nice GUI for most of the chart2 

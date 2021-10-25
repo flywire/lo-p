@@ -1,4 +1,13 @@
 # Chapter 47. Calc Add-ins 
+
+!!! note "Topics"
+   Implementing a 
+    Calc Add-in; The IDL 
+    definitions of the 
+    Functions; XCU creation 
+
+    Example folders: "Addin 
+    Tests" and "Utils" 
  
  
 Calc Add-ins are extensions containing spreadsheet 
@@ -23,14 +32,6 @@ I created a small spreadsheet in calcTest.ods using doubler(), doublerSum(), and
 sortByFirstCol(), which is displayed in Figure 2. 
 
  
-
-!!! note "Topics"
-   Implementing a 
-Calc Add-in; The IDL 
-definitions of the 
-Functions; XCU creation 
-Example folders: "Addin 
-Tests" and "Utils" 
  
 
 ![](images/47-Calc_Add-ins-2.png)

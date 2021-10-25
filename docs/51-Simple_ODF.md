@@ -1,4 +1,21 @@
 # Chapter 51. Simple ODF 
+
+!!! note "Topics"
+    The 
+    OpenDocument Format; 
+    Doc Information; 
+    Unzipping an ODF Doc; 
+    the Simple Java API for 
+    ODF (Apache ODF 
+    Toolkit): making docs 
+    (text, sheet, and slides), 
+    slide movement, doc 
+    concatenation (text, 
+    sheet, and slides) 
+
+    Example folders: 
+    "ODFToolkit Tests" and 
+    "Utils" 
  
  
 An OpenDocument Format (ODF) document is a zipped 
@@ -41,22 +58,6 @@ The easiest way of viewing these files and folders is to unzip the ODF file usin
 utility such as 7-Zip, as in Figure 1. 
 
  
-
-!!! note "Topics"
-    The 
-OpenDocument Format; 
-Doc Information; 
-Unzipping an ODF Doc; 
-the Simple Java API for 
-ODF (Apache ODF 
-Toolkit): making docs 
-(text, sheet, and slides), 
-slide movement, doc 
-concatenation (text, 
-sheet, and slides) 
-Example folders: 
-"ODFToolkit Tests" and 
-"Utils" 
  
 
 ![](images/51-Simple_ODF-1.png)

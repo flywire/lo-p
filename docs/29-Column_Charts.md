@@ -1,4 +1,19 @@
 # Chapter 29. Column Charts 
+
+!!! note "Topics"
+    Creating a Chart 
+    Title; Creating Axis 
+    Titles; Rotating Axis 
+    Titles; What Chart 
+    Templates are 
+    Available?; Multiple 
+    Columns; 3D Pizazz; 
+    The Column and Line 
+    Chart 
+
+    Example folders: 
+    "Chart2 Tests" and 
+    "Utils" 
  
  
 All the chart examples in the next four chapters come from 
@@ -53,20 +68,6 @@ public static void main(String args[])
  
   // labeledBubbleChart(doc, sheet); 
  
-
-!!! note "Topics"
-    Creating a Chart 
-Title; Creating Axis 
-Titles; Rotating Axis 
-Titles; What Chart 
-Templates are 
-Available?; Multiple 
-Columns; 3D Pizazz; 
-The Column and Line 
-Chart 
-Example folders: 
-"Chart2 Tests" and 
-"Utils" 
   // netChart(doc, sheet); 
  
   // happyStockChart(doc, sheet); 

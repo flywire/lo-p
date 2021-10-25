@@ -1,4 +1,17 @@
 # Chapter 31. XY (Scatter) Charts 
+
+!!! note "Topics"
+   A Scatter Chart 
+    (with Regressions); 
+    Calculating Regressions; 
+    Drawing a Regression 
+    Curve; Changing Axis 
+    Scales; Adding Error 
+    Bars 
+
+    Example folders: 
+    "Chart2 Tests" and 
+    "Utils" 
  
  
 This chapter continues using the Chart2Views.java 
@@ -41,18 +54,6 @@ scatterChart() in Chart2Views.java utilizes the "Ice Cream Sales vs. Temperature
 table in "chartsData.ods" (see Figure 1) to generate the scatter chart in Figure 2. 
 
  
-
-!!! note "Topics"
-   A Scatter Chart 
-(with Regressions); 
-Calculating Regressions; 
-Drawing a Regression 
-Curve; Changing Axis 
-Scales; Adding Error 
-Bars 
-Example folders: 
-"Chart2 Tests" and 
-"Utils" 
  
 
 ![](images/31-XY_Scatter_Charts-1.png)

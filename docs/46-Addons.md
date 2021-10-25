@@ -1,4 +1,20 @@
 # Chapter 46. Add-ons 
+
+!!! note "Topics"
+   What is an Add-
+    on?; Creating the 
+    EzHighlight Add-on; 
+    Creating a Partial Add-
+    on Implementation; The 
+    FreeMarker-generated 
+    EzHighlightAddonImpl; 
+    Creating the Dialog; 
+    Configuring the Add-on; 
+    Building and Installing 
+    the OXT File 
+
+    Example folders: 
+    "AddOn Tests", "Utils" 
  
  
 Add-ons build upon the UNO component techniques 
@@ -25,21 +41,6 @@ Office's Tools > Add-Ons menu item (see Figure 2) or as a toolbar created by Vie
 Toolbars > Add-on 2 (see Figure 3). This 'floating' toolbar can be attached to an 
 existing toolbar. 
 
-
-!!! note "Topics"
-   What is an Add-
-on?; Creating the 
-EzHighlight Add-on; 
-Creating a Partial Add-
-on Implementation; The 
-FreeMarker-generated 
-EzHighlightAddonImpl; 
-Creating the Dialog; 
-Configuring the Add-on; 
-Building and Installing 
-the OXT File 
-Example folders: 
-"AddOn Tests", "Utils" 
  
 
 ![](images/46-Addons-2.png)

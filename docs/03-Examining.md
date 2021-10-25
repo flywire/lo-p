@@ -1,5 +1,16 @@
 # Chapter 3. Examining  
- 
+
+!!! note "Topics"
+    Examining 
+    Office; Getting and 
+    Setting Document  
+    Properties; Examining a 
+    Document for API 
+    Details; Examining a 
+    Document Using MRI  
+
+    Example folders: "Office 
+    Tests" and "Utils"  
  
 This chapter looks at ways to examine the state of the 
 Office application and a document. A document will be 
@@ -46,16 +57,6 @@ simplest version of getConfig() looks along both paths by default so the program
 only has to supply a property name when calling the method. This is illustrated in the 
 OfficeInfo.java example in the "Office Tests/" folder: 
 
-!!! note "Topics"
-    Examining 
-Office; Getting and 
-Setting Document  
-Properties; Examining a 
-Document for API 
-Details; Examining a 
-Document Using MRI  
-Example folders: "Office 
-Tests" and "Utils" 
  
 // in OfficeInfo.java 
 XComponentLoader loader = Lo.loadOffice(); 

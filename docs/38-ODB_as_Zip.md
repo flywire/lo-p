@@ -1,5 +1,16 @@
-# Chapter 38. Treating an ODB File as a 
-Zipped Folder 
+# Chapter 38. Treating an ODB File as a Zipped Folder 
+
+!!! note "Topics"
+    Extracting a 
+    Database from an ODB 
+    File; Querying an 
+    Extracted HSQLDB 
+    Database; Querying an 
+    Extracted Firebird 
+    Database 
+
+    Example folders: "Base 
+    Tests" and "Utils" 
  
  
 An ODB document can be manipulated as a zipped folder, 
@@ -52,17 +63,6 @@ public static void main(String[] args)
                          tableNames.get(0) + "\"", conn); 
  
     DBTablePrinter.printResultSet(rs);   
-
-!!! note "Topics"
-    Extracting a 
-Database from an ODB 
-File; Querying an 
-Extracted HSQLDB 
-Database; Querying an 
-Extracted Firebird 
-Database 
-Example folders: "Base 
-Tests" and "Utils" 
     conn.close(); 
   } 
   catch(SQLException e) { 

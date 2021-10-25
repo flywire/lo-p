@@ -1,4 +1,19 @@
 # Chapter 48. Event Macros 
+
+!!! note "Topics"
+   Macro Locations; 
+    Naming Macro 
+    Functions; Calling 
+    Existing Macros; The 
+    LibreLogo Macro; 
+    Writing a Simple Event 
+    Macro; Automating the 
+    Assigning of Event 
+    Macros 
+
+    Example folders: 
+    "EvMacro Tests" and 
+    "Utils" 
  
  
 Event macros are functions triggered by the occurrence of 
@@ -46,20 +61,6 @@ Two textbooks that focus on Office Basic macros in a particular Office applicati
 Automation 
 Mark Alexander Bain 
 Packt Publishing, 2006 
-
-!!! note "Topics"
-   Macro Locations; 
-Naming Macro 
-Functions; Calling 
-Existing Macros; The 
-LibreLogo Macro; 
-Writing a Simple Event 
-Macro; Automating the 
-Assigning of Event 
-Macros 
-Example folders: 
-"EvMacro Tests" and 
-"Utils" 
 https://www.packtpub.com/hardware-and-creative/learn-openofficeorg-
 spreadsheet-macro-programming-ooobasic-and-calc-automation 
  Database Programming with OpenOffice.org Base and Basic 

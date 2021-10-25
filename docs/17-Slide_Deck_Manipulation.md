@@ -1,4 +1,17 @@
 # Chapter 17. Slide Deck Manipulation 
+
+!!! note "Topics"
+    Deck Building; 
+    Master Pages; Adding a 
+    Slide to  a Deck; 
+    Rearranging a Deck; 
+    Appending Two Decks; 
+    Exporting a Slide as an 
+    Image; Extracting the 
+    Text from a Deck 
+
+    Example folders: "Draw 
+    Tests" and "Utils" 
  
  
 This chapter looks at a number of common tasks 
@@ -49,18 +62,6 @@ Algorithm Design
 When PointsBuilder reads this text, it generates three slides, and saves them to 
 "points.odp" which is shown in Figure 1. 
 
-
-!!! note "Topics"
-    Deck Building; 
-Master Pages; Adding a 
-Slide to  a Deck; 
-Rearranging a Deck; 
-Appending Two Decks; 
-Exporting a Slide as an 
-Image; Extracting the 
-Text from a Deck 
-Example folders: "Draw 
-Tests" and "Utils" 
  
  
 

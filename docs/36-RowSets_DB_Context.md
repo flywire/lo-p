@@ -1,5 +1,13 @@
-# Chapter 36. Using RowSets and Database 
-Context 
+# Chapter 36. Using RowSets and Database Context 
+
+!!! note "Topics"
+   Using RowSets; 
+    Using the Database 
+    Context; Copying Data 
+    From Base To Calc 
+
+    Example folders: "Base 
+    Tests" and "Utils" 
  
  
 This chapter looks at programming with the XRowSet and 
@@ -23,14 +31,6 @@ abstracts away from connecting Java to a database towards queries applied to gen
 tabular data. This means that a row set can access different types of information 
 include flat files, spreadsheets, and ODB files.  
 
-
-!!! note "Topics"
-   Using RowSets; 
-Using the Database 
-Context; Copying Data 
-From Base To Calc 
-Example folders: "Base 
-Tests" and "Utils" 
 The JDBC RowSet is implemented in a different way from the sdb row set – JDBC 
 supports several RowSet subclasses, including JdbcRowSet, CachedRowSet and 
 WebRowSet, none of which are present in the Base API. Instead the different ways of 

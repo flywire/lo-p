@@ -1,5 +1,19 @@
 # Chapter 23. Garlic Secrets 
- 
+
+!!! note "Topics"
+    Freezing Rows; 
+    GeneralFunctions; Sheet 
+    Searching; Sheet Range 
+    Queries; Hidden  Cells; 
+    Cell Merging; Splitting 
+    Windows; View Panes; 
+    View State Data; Active 
+    Panes;  Inserting Rows 
+    and Columns; Shifting 
+    Cells  
+
+    Example folders: "Calc 
+    Tests" and "Utils"  
  
 This chapter's GarlicSecrets.java example illustrates how 
 data can be extracted from an existing spreadsheet 
@@ -35,19 +49,6 @@ commented out parts in later sections:
  
 // in GarlicSecrets.java 
 
-!!! note "Topics"
-    Freezing Rows; 
-GeneralFunctions; Sheet 
-Searching; Sheet Range 
-Queries; Hidden  Cells; 
-Cell Merging; Splitting 
-Windows; View Panes; 
-View State Data; Active 
-Panes;  Inserting Rows 
-and Columns; Shifting 
-Cells  
-Example folders: "Calc 
-Tests" and "Utils" 
 private static final String FNM = "produceSales.xlsx"; 
 private static final String OUT_FNM = "garlicSecrets.ods"; 
  

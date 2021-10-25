@@ -1,5 +1,15 @@
 # Chapter 27. Functions and Data Analysis 
- 
+
+!!! note "Topics"
+    Calling Calc 
+    Functions from Code; 
+    Pivot Tables; Goal Seek; 
+    Linear and Nonlinear 
+    Solving (using SCO, 
+    DEPS) 
+
+    Example folders: "Calc 
+    Tests" and "Utils"  
  
 This chapter looks at how to utilize Calc's spreadsheet 
 functions directly from Java, and then examines four of 
@@ -51,15 +61,6 @@ and complex numbers. See IMSUM and ROMAN below for examples. The
 in_Functions, and continues in https://help.libreoffice.org/Calc/Add-
 in_Functions,_List_of_Analysis_Functions_Part_One and 
 
-!!! note "Topics"
-    Calling Calc 
-Functions from Code; 
-Pivot Tables; Goal Seek; 
-Linear and Nonlinear 
-Solving (using SCO, 
-DEPS) 
-Example folders: "Calc 
-Tests" and "Utils" 
 https://help.libreoffice.org/Calc/Add-
 in_Functions,_List_of_Analysis_Functions_Part_Two. 
 

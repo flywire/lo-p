@@ -1,4 +1,15 @@
 # Chapter 7. Text Content Other than Strings 
+
+!!! note "Topics"
+    Accessing Text 
+    Content; Text  Frames; 
+    Embedded Objects  
+    (Math Formulae); Text  
+    Fields; Text Tables; 
+    Bookmarks 
+
+    Example folders: "Text 
+    Tests" and "Utils" 
  
  
 Chapter 5 looked at using text cursors to move around 
@@ -22,16 +33,6 @@ From the XText service its possible to access the XTextContent interface (see Fi
 1), which belongs to the TextContent service. As Figure 2 indicates, that service is the 
 parent of many subclasses which represent different kinds of text document content. 
 
-
-!!! note "Topics"
-    Accessing Text 
-Content; Text  Frames; 
-Embedded Objects  
-(Math Formulae); Text  
-Fields; Text Tables; 
-Bookmarks 
-Example folders: "Text 
-Tests" and "Utils" 
  
 
 ![](images/07-Non-text_Content-2.png)

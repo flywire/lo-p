@@ -1,5 +1,12 @@
-# Chapter 12. Examining a Draw/Impress 
-Document 
+# Chapter 12. Examining a Draw/Impress Document 
+
+!!! note "Topics"
+    Examining 
+    Slides/Pages; Page 
+    Layers;  Styles 
+
+    Example folders: "Draw 
+    Tests" and "Utils" 
  
  
 This chapter describes the SlidesInfo.java example, which 
@@ -52,13 +59,6 @@ public static void main(String args[])
   Lo.closeOffice(); 
 } // end of main() 
  
-
-!!! note "Topics"
-    Examining 
-Slides/Pages; Page 
-Layers;  Styles 
-Example folders: "Draw 
-Tests" and "Utils" 
 Lo.openDoc() is capable of opening any Office document, and importing documents 
 in other formats, so it's worthwhile checking the resulting XComponent object before 
 progressing. Draw.isShapesBased() returns true if the file holds a Draw or Impress 

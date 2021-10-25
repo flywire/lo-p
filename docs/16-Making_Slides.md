@@ -1,4 +1,18 @@
 # Chapter 16. Making Slides 
+
+!!! note "Topics"
+    Creating Slides: 
+    title, subtitle, bullets, 
+    images, video, buttons; 
+    Shape Animations; 
+    Dispatch Shapes (special 
+    symbols, block arrows, 
+    3D shapes, flowchart 
+    elements, callouts, and 
+    stars); Slide Viewing 
+
+    Example folders: "Draw 
+    Tests" and "Utils" 
  
  
 The MakeSlides.java example creates a deck of five slides, 
@@ -49,19 +63,6 @@ public static void main (String args[])
   Draw.drawMedia(currSlide, "clock.avi", 20, 70, 50, 50); 
  
   // fourth slide: buttons 
-
-!!! note "Topics"
-    Creating Slides: 
-title, subtitle, bullets, 
-images, video, buttons; 
-Shape Animations; 
-Dispatch Shapes (special 
-symbols, block arrows, 
-3D shapes, flowchart 
-elements, callouts, and 
-stars); Slide Viewing 
-Example folders: "Draw 
-Tests" and "Utils" 
   currSlide = Draw.addSlide(doc); 
   buttonShapes(currSlide); 
  

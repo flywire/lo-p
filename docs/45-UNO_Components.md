@@ -1,4 +1,28 @@
 # Chapter 45. Coding UNO Components 
+
+!!! note "Topics"
+    Using the 
+    RandomSents 
+    Component; Writing 
+    IDL Definitions; Using 
+    idlc.bat; Merging Type 
+    Data into a Registry 
+    Database; Generating 
+    the Java Package and 
+    Interface; Creating a 
+    Skeleton Component; 
+    Compiling the 
+    Completed 
+    Implementation; 
+    Packaging the 
+    Component; Installing 
+    the Extension; Using a 
+    New Component in a 
+    Program 
+
+    Example folders: "UNO 
+    Comps Tests" and 
+    "Utils" 
  
  
 In its simplest form, an UNO component consists of a new 
@@ -37,29 +61,6 @@ to be in specific locations. My solution to these issues is twelve (12!) batch f
 whose names label the arrows in Figure 1. 
 
  
-
-!!! note "Topics"
-    Using the 
-RandomSents 
-Component; Writing 
-IDL Definitions; Using 
-idlc.bat; Merging Type 
-Data into a Registry 
-Database; Generating 
-the Java Package and 
-Interface; Creating a 
-Skeleton Component; 
-Compiling the 
-Completed 
-Implementation; 
-Packaging the 
-Component; Installing 
-the Extension; Using a 
-New Component in a 
-Program 
-Example folders: "UNO 
-Comps Tests" and 
-"Utils" 
  
 
 ![](images/45-UNO_Components-1.png)

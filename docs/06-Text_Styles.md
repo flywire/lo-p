@@ -1,4 +1,17 @@
 # Chapter 6. Text Styles 
+
+!!! note "Topics"
+    Five Style 
+    Families; Properties; 
+    Listing Styles;  Creating 
+    a Style; Applying Styles; 
+    Paragraph/Word Styles; 
+    Hyperlink Styling; Text 
+    Numbering; Headers and 
+    Footers 
+
+    Example folders: "Text 
+    Tests" and "Utils" 
  
  
 This chapter focuses on how text documents styles can be 
@@ -26,19 +39,6 @@ collection have names. There's also an XIndexAccess for collections in index ord
 
 XNameContainer and XIndexContainer add the ability to insert and remove objects 
 from a collection.  
-
-Example folders: "Text 
-Tests" and "Utils" 
-
-!!! note "Topics"
-    Five Style 
-Families; Properties; 
-Listing Styles;  Creating 
-a Style; Applying Styles; 
-Paragraph/Word Styles; 
-Hyperlink Styling; Text 
-Numbering; Headers and 
-Footers 
  
 
 ![](images/06-Text_Styles-2.png)

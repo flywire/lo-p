@@ -1,5 +1,11 @@
 # Chapter 8. Graphic Content 
- 
+
+!!! note "Topics"
+    Graphics; 
+    Linked Images/Shapes 
+
+    Example folders: "Text 
+    Tests" and "Utils" 
  
 Chapter 7 looked at several forms of text document 
 content (e.g. text frames, math formulae, text fields and 
@@ -30,12 +36,7 @@ public static void addImageLink(XTextDocument doc,
                            XTextCursor cursor, String fnm,  
                            int width, int height) 
 { try { 
-
-!!! note "Topics"
-    Graphics; 
-Linked Images/Shapes 
-Example folders: "Text 
-Tests" and "Utils" 
+ 
     // create TextContent for graphic 
     XTextContent tgo = Lo.createInstanceMSF(XTextContent.class,  
                              "com.sun.star.text.TextGraphicObject"); 

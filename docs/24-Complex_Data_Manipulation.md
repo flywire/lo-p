@@ -1,5 +1,16 @@
 # Chapter 24. Complex Data Manipulation 
- 
+
+!!! note "Topics"
+    Sorting Data; 
+    Generating Data: 
+    Automatic, LINEAR 
+    Mode, DATE Mode, 
+    GROWTH Mode; Fancy 
+    Text: borders, headlines, 
+    hyperlinks, annotations 
+
+    Example folders: "Calc 
+    Tests" and "Utils"  
  
 This chapter looks at a variety of less common text 
 manipulation techniques, including the sorting of data, 
@@ -55,16 +66,6 @@ public static void main(String args[])
   Lo.closeDoc(doc); 
   Lo.closeOffice(); 
 
-!!! note "Topics"
-    Sorting Data; 
-Generating Data: 
-Automatic, LINEAR 
-Mode, DATE Mode, 
-GROWTH Mode; Fancy 
-Text: borders, headlines, 
-hyperlinks, annotations 
-Example folders: "Calc 
-Tests" and "Utils" 
 }  // end of main() 
  
 The unsorted table is shown in Figure 1.  

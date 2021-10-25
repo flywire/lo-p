@@ -1,4 +1,16 @@
 # Chapter 50. Importing XML 
+
+!!! note "Topics"
+    XSLT Filters; 
+    Using Filters with Java; 
+    Alternatives to XSLT 
+    Filters: DOM Parsing, 
+    Node and Attribute Data 
+    Extraction, JAXB 
+    Conversion 
+
+    Example folders: "Filter 
+    Tests" and "Utils" 
  
  
 This chapter is mostly about importing XML data into 
@@ -48,17 +60,6 @@ imported unchanged, as plain text:
 Office offers many ways of loading XML through the "All files (*.*)" popdown list in 
 the Open dialog. Figure 1 shows my selection of "Flat XML ODF Spreadsheet": 
  
-
-!!! note "Topics"
-    XSLT Filters; 
-Using Filters with Java; 
-Alternatives to XSLT 
-Filters: DOM Parsing, 
-Node and Attribute Data 
-Extraction, JAXB 
-Conversion 
-Example folders: "Filter 
-Tests" and "Utils" 
  
 
 ![](images/50-Importing_XML-1.png)

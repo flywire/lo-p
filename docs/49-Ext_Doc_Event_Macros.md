@@ -1,5 +1,21 @@
-# Chapter 49. Extension and Document  
-Event Macros 
+# Chapter 49. Extension and Document Event Macros 
+
+!!! note "Topics"
+    Form Macros as 
+    an Extension; Loading 
+    an XML Dialog; 
+    Building a Dialog at 
+    Runtime; Storing 
+    Macros inside the 
+    (Form) Document; 
+    Attaching Macros to 
+    Other Events; Executing 
+    Macros from the 
+    Command Line 
+
+    Example folders: 
+    "EvMacro Tests" and 
+    "Utils" 
  
  
 The previous chapter introduced event macros, and described  
@@ -43,22 +59,6 @@ FormMacros
 The macros are in the Utils\ folder, and are utilized by the form stored in 
 FormMacrosTest.odt in the ways shown in Figure 1. 
 
-
-!!! note "Topics"
-    Form Macros as 
-an Extension; Loading 
-an XML Dialog; 
-Building a Dialog at 
-Runtime; Storing 
-Macros inside the 
-(Form) Document; 
-Attaching Macros to 
-Other Events; Executing 
-Macros from the 
-Command Line 
-Example folders: 
-"EvMacro Tests" and 
-"Utils" 
  
 
 ![](images/49-Ext_Doc_Event_Macros-1.png)

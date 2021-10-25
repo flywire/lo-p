@@ -1,5 +1,22 @@
 # Chapter 1. LibreOffice API Concepts 
- 
+
+!!! note "Topics"
+    Some History; 
+    Help and Rxamples  for 
+    the LibreOffice SDK 
+    (lodoc, loguide); Office 
+    as a Process; Common 
+    Structures (Interface, 
+    Property, Service, and 
+    Component); Service 
+    and Interface Inheritance 
+    Hierarchies; the Frame-
+    Controller-Model (FCM) 
+    Relationship; 
+    Extensions; Comparison 
+    with Basic 
+
+    Example folder: "Utils"  
  
 This chapter describes LibreOffice API concepts without 
 resorting to code (that comes along in the next chapter). 
@@ -37,22 +54,6 @@ Figure 1. Office's Timeline.
 This book is not about how to use LibreOffice's GUI (e.g. where to find the menu 
 item for italicizing text). I'm also not going to discuss how to compile the LibreOffice 
 
-!!! note "Topics"
-    Some History; 
-Help and Rxamples  for 
-the LibreOffice SDK 
-(lodoc, loguide); Office 
-as a Process; Common 
-Structures (Interface, 
-Property, Service, and 
-Component); Service 
-and Interface Inheritance 
-Hierarchies; the Frame-
-Controller-Model (FCM) 
-Relationship; 
-Extensions; Comparison 
-with Basic 
-Example folder: "Utils" 
 source, which is a focus of LibreOffice's development webpage 
 (https://wiki.documentfoundation.org/Development). My intention is to explain the 
 Java API that comes as part of the LibreOffice SDK, which you can obtain from 

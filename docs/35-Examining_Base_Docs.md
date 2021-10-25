@@ -1,4 +1,24 @@
 # Chapter 35. Examining Base Documents 
+
+!!! note "Topics"
+    Querying an 
+    Embedded HSQLDB 
+    Database; Using 
+    Metadata when 
+    Querying; Debugging 
+    Database Code; Creating 
+    a Base Document; 
+    Processing Multiple 
+    SQL Commands; 
+    Displaying Table 
+    Relationships; Prepared 
+    Statements; Scrollable 
+    and Updatable Result 
+    Sets; Converting a 
+    Database to Text 
+
+    Example folders: "Base 
+    Tests" and "Utils" 
  
  
 This chapter looks at programming with Base documents 
@@ -24,25 +44,6 @@ databases.
  
  
   
-
-!!! note "Topics"
-    Querying an 
-Embedded HSQLDB 
-Database; Using 
-Metadata when 
-Querying; Debugging 
-Database Code; Creating 
-a Base Document; 
-Processing Multiple 
-SQL Commands; 
-Displaying Table 
-Relationships; Prepared 
-Statements; Scrollable 
-and Updatable Result 
-Sets; Converting a 
-Database to Text 
-Example folders: "Base 
-Tests" and "Utils" 
 ## 1.  Querying an Embedded HSQLDB Database  
 
 The following SimpleQuery.java example shows how to query a HSQLDB database 
