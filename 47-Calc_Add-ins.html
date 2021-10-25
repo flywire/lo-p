@@ -427,7 +427,7 @@
   
     <li class="md-nav__item">
       <a href="12-Examining_DrawImpress.html" class="md-nav__link">
-        Chapter 12. Examining a Draw/Impress
+        Chapter 12. Examining a Draw/Impress Document
       </a>
     </li>
   
@@ -562,7 +562,7 @@
   
     <li class="md-nav__item">
       <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
-        Chapter 20. Spreadsheet Displaying and
+        Chapter 20. Spreadsheet Displaying and Creation
       </a>
     </li>
   
@@ -772,7 +772,7 @@
   
     <li class="md-nav__item">
       <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
-        Chapter 33. Using Charts in Other
+        Chapter 33. Using Charts in Other Documents
       </a>
     </li>
   
@@ -832,7 +832,7 @@
   
     <li class="md-nav__item">
       <a href="36-RowSets_DB_Context.html" class="md-nav__link">
-        Chapter 36. Using RowSets and Database
+        Chapter 36. Using RowSets and Database Context
       </a>
     </li>
   
@@ -862,7 +862,7 @@
   
     <li class="md-nav__item">
       <a href="38-ODB_as_Zip.html" class="md-nav__link">
-        Chapter 38. Treating an ODB File as a
+        Chapter 38. Treating an ODB File as a Zipped Folder
       </a>
     </li>
   
@@ -907,7 +907,7 @@
   
     <li class="md-nav__item">
       <a href="40-Building_a_Form.html" class="md-nav__link">
-        Chapter 40. Building a Form
+        Chapter 40. Building a Form Programmatically
       </a>
     </li>
   
@@ -1102,7 +1102,7 @@
   
     <li class="md-nav__item">
       <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
-        Chapter 49. Extension and Document
+        Chapter 49. Extension and Document Event Macros
       </a>
     </li>
   
@@ -1209,6 +1209,16 @@
                 
                 
                 <h1 id="chapter-47-calc-add-ins">Chapter 47. Calc Add-ins</h1>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+</div>
+<p>Implementing a 
+    Calc Add-in; The IDL 
+    definitions of the 
+    Functions; XCU creation </p>
+<pre><code>Example folders: "Addin 
+Tests" and "Utils"
+</code></pre>
 <p>Calc Add-ins are extensions containing spreadsheet 
 functions; my Doubler add-in contains three: doubler() for 
 doubling a supplied value, doublerSum() for summing a 
@@ -1221,15 +1231,6 @@ been installed in Office. </p>
 <p>Figure 1. The Doubler Calc Add-in, and other Extensions. </p>
 <p>I created a small spreadsheet in calcTest.ods using doubler(), doublerSum(), and 
 sortByFirstCol(), which is displayed in Figure 2. </p>
-<div class="admonition note">
-<p class="admonition-title">Topics</p>
-</div>
-<p>Implementing a 
-Calc Add-in; The IDL 
-definitions of the 
-Functions; XCU creation 
-Example folders: "Addin 
-Tests" and "Utils" </p>
 <p><img alt="" src="images/47-Calc_Add-ins-2.png" /></p>
 <p>Figure 2. Calc Add-in Functions Used in a Spreadsheet. </p>
 <p>doubler() is called six times to double the values in the "A" column, storing them in 

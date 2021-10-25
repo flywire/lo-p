@@ -427,7 +427,7 @@
   
     <li class="md-nav__item">
       <a href="12-Examining_DrawImpress.html" class="md-nav__link">
-        Chapter 12. Examining a Draw/Impress
+        Chapter 12. Examining a Draw/Impress Document
       </a>
     </li>
   
@@ -562,7 +562,7 @@
   
     <li class="md-nav__item">
       <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
-        Chapter 20. Spreadsheet Displaying and
+        Chapter 20. Spreadsheet Displaying and Creation
       </a>
     </li>
   
@@ -851,7 +851,7 @@
   
     <li class="md-nav__item">
       <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
-        Chapter 33. Using Charts in Other
+        Chapter 33. Using Charts in Other Documents
       </a>
     </li>
   
@@ -911,7 +911,7 @@
   
     <li class="md-nav__item">
       <a href="36-RowSets_DB_Context.html" class="md-nav__link">
-        Chapter 36. Using RowSets and Database
+        Chapter 36. Using RowSets and Database Context
       </a>
     </li>
   
@@ -941,7 +941,7 @@
   
     <li class="md-nav__item">
       <a href="38-ODB_as_Zip.html" class="md-nav__link">
-        Chapter 38. Treating an ODB File as a
+        Chapter 38. Treating an ODB File as a Zipped Folder
       </a>
     </li>
   
@@ -986,7 +986,7 @@
   
     <li class="md-nav__item">
       <a href="40-Building_a_Form.html" class="md-nav__link">
-        Chapter 40. Building a Form
+        Chapter 40. Building a Form Programmatically
       </a>
     </li>
   
@@ -1136,7 +1136,7 @@
   
     <li class="md-nav__item">
       <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
-        Chapter 49. Extension and Document
+        Chapter 49. Extension and Document Event Macros
       </a>
     </li>
   
@@ -1277,6 +1277,21 @@
                 
                 
                 <h1 id="chapter-25-monitoring-sheets">Chapter 25. Monitoring Sheets</h1>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Listening for 
+Document Modifications 
+(XModifyListener); 
+Listening for 
+Application Closing 
+(XTopWindowListener); 
+Listening for Cell 
+Selection 
+(XSelectionChangeListe
+ner) </p>
+<p>Example folders: "Calc 
+Tests" and "Utils"  </p>
+</div>
 <p>The chapter looks at three kinds of listeners for 
 spreadsheets: document modification, application closing, 
 and cell selection listeners. </p>
@@ -1319,32 +1334,18 @@ mb.addModifyListener(this);
 XExtendedToolkit tk = Lo.createInstanceMCF( 
                           XExtendedToolkit.class,  
                           "com.sun.star.awt.Toolkit");
+
+if (tk != null) 
+  tk.addTopWindowListener( new XTopWindowAdapter() { 
+    public void windowClosing(EventObject eo) 
+    { System.out.println("Closing");   
+      Lo.saveDoc(doc, "modify.ods"); 
+      Lo.closeDoc(doc); 
+      Lo.closeOffice(); 
+    } 
+  });
 </code></pre>
-<div class="admonition note">
-<p class="admonition-title">Topics</p>
-<p>Listening for </p>
-</div>
-<p>Document Modifications 
-(XModifyListener); 
-Listening for 
-Application Closing 
-(XTopWindowListener); 
-Listening for Cell 
-Selection 
-(XSelectionChangeListe
-ner) 
-Example folders: "Calc 
-Tests" and "Utils" 
-    if (tk != null) 
-      tk.addTopWindowListener( new XTopWindowAdapter() { 
-        public void windowClosing(EventObject eo) 
-        { System.out.println("Closing"); <br />
-          Lo.saveDoc(doc, "modify.ods"); 
-          Lo.closeDoc(doc); 
-          Lo.closeOffice(); 
-        } 
-      }); 
-  }  // end of ModifyListener() </p>
+<p>}  // end of ModifyListener() </p>
 <p>// ----- XModifyListener methods ------ </p>
 <p>public void disposing(EventObject event) 
   {  System.out.println("Disposing"); }   </p>

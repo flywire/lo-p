@@ -427,7 +427,7 @@
   
     <li class="md-nav__item">
       <a href="12-Examining_DrawImpress.html" class="md-nav__link">
-        Chapter 12. Examining a Draw/Impress
+        Chapter 12. Examining a Draw/Impress Document
       </a>
     </li>
   
@@ -562,7 +562,7 @@
   
     <li class="md-nav__item">
       <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
-        Chapter 20. Spreadsheet Displaying and
+        Chapter 20. Spreadsheet Displaying and Creation
       </a>
     </li>
   
@@ -772,7 +772,7 @@
   
     <li class="md-nav__item">
       <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
-        Chapter 33. Using Charts in Other
+        Chapter 33. Using Charts in Other Documents
       </a>
     </li>
   
@@ -832,7 +832,7 @@
   
     <li class="md-nav__item">
       <a href="36-RowSets_DB_Context.html" class="md-nav__link">
-        Chapter 36. Using RowSets and Database
+        Chapter 36. Using RowSets and Database Context
       </a>
     </li>
   
@@ -862,7 +862,7 @@
   
     <li class="md-nav__item">
       <a href="38-ODB_as_Zip.html" class="md-nav__link">
-        Chapter 38. Treating an ODB File as a
+        Chapter 38. Treating an ODB File as a Zipped Folder
       </a>
     </li>
   
@@ -907,7 +907,7 @@
   
     <li class="md-nav__item">
       <a href="40-Building_a_Form.html" class="md-nav__link">
-        Chapter 40. Building a Form
+        Chapter 40. Building a Form Programmatically
       </a>
     </li>
   
@@ -1387,7 +1387,7 @@
   
     <li class="md-nav__item">
       <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
-        Chapter 49. Extension and Document
+        Chapter 49. Extension and Document Event Macros
       </a>
     </li>
   
@@ -1779,6 +1779,22 @@
                 
                 
                 <h1 id="chapter-43-using-the-clipboard">Chapter 43. Using the Clipboard</h1>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>The Office 
+Clipboard API: adding, 
+retrieving, text, images; 
+Java's Clipboard API 
+adding, retrieving, text, 
+images, 2D arrays;<br />
+Copy and Pasting in an 
+Office Document: 
+Writer, Calc, Impress, 
+Base </p>
+<p>Example folders: 
+"Clipboard Tests" and 
+"Utils" </p>
+</div>
 <p>The clipboard has appeared a few times in previous 
 chapters, notably in the CopySlide.java example of 
 Chapter 17, section 4 – I used Lo.dispatchCmd("Copy") to 
@@ -1819,23 +1835,7 @@ and paste can be replaced by the clipboard API which means that there's no need 
 rely on OS-level windows being active and on Lo.wait() calls.  </p>
 <p>Office's clipboard API is modelled on Java's clipboard classes, and there are 
 advantages to using the Java API instead of Office when manipulating complex data. </p>
-<p>As a consequence, I've developed two support classes, in Clip.java and JClip.java, </p>
-<div class="admonition note">
-<p class="admonition-title">Topics</p>
-<p>The Office </p>
-</div>
-<p>Clipboard API: adding, 
-retrieving, text, images; 
-Java's Clipboard API 
-adding, retrieving, text, 
-images, 2D arrays;<br />
-Copy and Pasting in an 
-Office Document: 
-Writer, Calc, Impress, 
-Base 
-Example folders: 
-"Clipboard Tests" and 
-"Utils" 
+<p>As a consequence, I've developed two support classes, in Clip.java and JClip.java, 
 which contain helpful functions for using the Office clipboard API and the Java 
 version respectively. </p>
 <p>After some short examples of manipulating the clipboard using the Office API and the 
@@ -2206,25 +2206,69 @@ they're serializable, can be more easily manipulated with Java than Office. </p>
 the code in Clip.java, but using Java classes for the clipboard, transferables, and 
 flavors rather than the Office ones. It's easy to get the two APIs confused, so Table 1 
 shows their main correspondences. </p>
-<p>Office Java 
-SystemClipboard.create() Toolkit.getDefaultToolkit(). </p>
-<p>getSystemClipboard() 
-XSystemClipboard inherits 
-XClipboard, and others<br />
-(see Fig. 1); 
-getContents() never fails (?); 
-Clipboard; </p>
-<p>getContents() can fail; 
-Can handle serializable objects; 
-Can handle String or byte[] More methods 
-XClipboardListener FlavorListener 
-XClipboardOwner ClipboardOwner 
-XTransferable Transferable 
-DataFlavor DataFlavor; many predefined 
-constants 
-TextTransferable (my class) StringSelection (in the JDK) 
-Table 1. Corresponding Clipboard Services, Interfaces, and Classes<br />
-in the Office and Java APIs. </p>
+<table>
+<thead>
+<tr>
+<th>Office</th>
+<th>Java</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SystemClipboard.create()</td>
+<td>Toolkit.getDefaultToolkit().</td>
+</tr>
+<tr>
+<td></td>
+<td>getSystemClipboard()</td>
+</tr>
+<tr>
+<td>XSystemClipboard inherits</td>
+<td>Clipboard;</td>
+</tr>
+<tr>
+<td>XClipboard, and others</td>
+<td></td>
+</tr>
+<tr>
+<td>(see Fig. 1);</td>
+<td></td>
+</tr>
+<tr>
+<td>getContents() never fails (?);</td>
+<td>getContents() can fail;</td>
+</tr>
+<tr>
+<td></td>
+<td>Can handle serializable objects;</td>
+</tr>
+<tr>
+<td>Can handle String or byte[]</td>
+<td>More methods</td>
+</tr>
+<tr>
+<td>XClipboardListener</td>
+<td>FlavorListener</td>
+</tr>
+<tr>
+<td>XClipboardOwner</td>
+<td>ClipboardOwner</td>
+</tr>
+<tr>
+<td>XTransferable</td>
+<td>Transferable</td>
+</tr>
+<tr>
+<td>DataFlavor</td>
+<td>DataFlavor; many predefined constants</td>
+</tr>
+<tr>
+<td>TextTransferable (my class)</td>
+<td>StringSelection (in the JDK)</td>
+</tr>
+</tbody>
+</table>
+<p>Table 1. Corresponding Clipboard Services, Interfaces, and Classes in the Office and Java APIs. </p>
 <p>The JClip class uses a similar approach to the Clip class for creating a clipboard 
 reference: </p>
 <p>// in the JClip class 
@@ -2458,33 +2502,63 @@ timing). A problem I haven't mentioned before is how to programmatically select
 data, which turns out to be different for each document type. </p>
 <p>I'll look at how to use these techniques with four kinds of documents: Writer, Calc, 
 Impress, and Base, as summarized in Table 2. </p>
-<p>Document 
-Copy-and-Paste Approach 
-Invisible Visible 
-Writer 
-(CopyPasteText.java) 
-Copy/Paste:<br />
-text 
-Copy: XTextViewCursor 
-Paste: RTF, HTML, ODT 
-Calc 
-(CopyPasteCalc.java) 
-Copy/Paste:<br />
-2D array 
-Copy: XCellRange 
-Paste: SYLK, ODS 
-Impress 
-(CopySlide.java) 
-none 
-Copy: XDrawView 
-Paste: bitmap, PNG, 
-XML, ODP 
-Base 
-(CopyResultSet.java) 
-Copy/Paste:<br />
-2D array 
-none 
-Table 2. Copy-and-Paste Techniques Applied to Office Documents. </p>
+<table>
+<thead>
+<tr>
+<th>Document</th>
+<th>Invisible</th>
+<th>Visible</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Copy-and-Paste Approach</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Writer</td>
+<td>Copy/Paste:</td>
+<td>Copy: XTextViewCursor</td>
+</tr>
+<tr>
+<td>(CopyPasteText.java)</td>
+<td>text</td>
+<td>Paste: RTF, HTML, ODT</td>
+</tr>
+<tr>
+<td>Calc</td>
+<td>Copy/Paste:</td>
+<td>Copy: XCellRange</td>
+</tr>
+<tr>
+<td>(CopyPasteCalc.java)</td>
+<td>2D array</td>
+<td>Paste: SYLK, ODS</td>
+</tr>
+<tr>
+<td>Impress</td>
+<td>none</td>
+<td>Copy: XDrawView</td>
+</tr>
+<tr>
+<td>(CopySlide.java)</td>
+<td></td>
+<td>Paste: bitmap, PNG,</td>
+</tr>
+<tr>
+<td>Base</td>
+<td>Copy/Paste:</td>
+<td>none</td>
+</tr>
+<tr>
+<td>CopyResultSet.java)</td>
+<td>2D array</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Table 2. Copy-and-Paste Techniques Applied to Office Documents. </p>
 <p>The 'Visible' column shows the advantage and disadvantage of the approach.  </p>
 <p>The advantage is that pasting can use a range of data formats. For example, a selected 
 grid of cells from a spreadsheet can be saved as a Microsoft SYLK file (an ASCII 

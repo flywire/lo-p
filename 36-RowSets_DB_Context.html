@@ -16,7 +16,7 @@
     
     
       
-        <title>Chapter 36. Using RowSets and Database - LibreOffice Programming</title>
+        <title>Chapter 36. Using RowSets and Database Context - LibreOffice Programming</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chapter-36-using-rowsets-and-database" class="md-skip">
+        <a href="#chapter-36-using-rowsets-and-database-context" class="md-skip">
           Skip to content
         </a>
       
@@ -94,7 +94,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Chapter 36. Using RowSets and Database
+              Chapter 36. Using RowSets and Database Context
             
           </span>
         </div>
@@ -427,7 +427,7 @@
   
     <li class="md-nav__item">
       <a href="12-Examining_DrawImpress.html" class="md-nav__link">
-        Chapter 12. Examining a Draw/Impress
+        Chapter 12. Examining a Draw/Impress Document
       </a>
     </li>
   
@@ -562,7 +562,7 @@
   
     <li class="md-nav__item">
       <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
-        Chapter 20. Spreadsheet Displaying and
+        Chapter 20. Spreadsheet Displaying and Creation
       </a>
     </li>
   
@@ -772,7 +772,7 @@
   
     <li class="md-nav__item">
       <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
-        Chapter 33. Using Charts in Other
+        Chapter 33. Using Charts in Other Documents
       </a>
     </li>
   
@@ -840,12 +840,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Chapter 36. Using RowSets and Database
+          Chapter 36. Using RowSets and Database Context
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="36-RowSets_DB_Context.html" class="md-nav__link md-nav__link--active">
-        Chapter 36. Using RowSets and Database
+        Chapter 36. Using RowSets and Database Context
       </a>
       
         
@@ -934,7 +934,7 @@
   
     <li class="md-nav__item">
       <a href="38-ODB_as_Zip.html" class="md-nav__link">
-        Chapter 38. Treating an ODB File as a
+        Chapter 38. Treating an ODB File as a Zipped Folder
       </a>
     </li>
   
@@ -979,7 +979,7 @@
   
     <li class="md-nav__item">
       <a href="40-Building_a_Form.html" class="md-nav__link">
-        Chapter 40. Building a Form
+        Chapter 40. Building a Form Programmatically
       </a>
     </li>
   
@@ -1129,7 +1129,7 @@
   
     <li class="md-nav__item">
       <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
-        Chapter 49. Extension and Document
+        Chapter 49. Extension and Document Event Macros
       </a>
     </li>
   
@@ -1262,8 +1262,17 @@
                   </a>
                 
                 
-                <h1 id="chapter-36-using-rowsets-and-database">Chapter 36. Using RowSets and Database</h1>
-<p>Context </p>
+                <h1 id="chapter-36-using-rowsets-and-database-context">Chapter 36. Using RowSets and Database Context</h1>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+</div>
+<p>Using RowSets; 
+    Using the Database 
+    Context; Copying Data 
+    From Base To Calc </p>
+<pre><code>Example folders: "Base 
+Tests" and "Utils"
+</code></pre>
 <p>This chapter looks at programming with the XRowSet and 
 XDatabaseContext interfaces, which were labelled (2) and 
 (3) in Figure 5 of the Chapter 34. Figure 1 repeats that 
@@ -1275,16 +1284,7 @@ figure but without the alternative query approaches (labels (1) and (4)). </p>
 abstracts away from connecting Java to a database towards queries applied to general 
 tabular data. This means that a row set can access different types of information 
 include flat files, spreadsheets, and ODB files.  </p>
-<div class="admonition note">
-<p class="admonition-title">Topics</p>
-</div>
-<p>Using RowSets; 
-Using the Database 
-Context; Copying Data 
-From Base To Calc 
-Example folders: "Base 
-Tests" and "Utils" 
-The JDBC RowSet is implemented in a different way from the sdb row set – JDBC 
+<p>The JDBC RowSet is implemented in a different way from the sdb row set – JDBC 
 supports several RowSet subclasses, including JdbcRowSet, CachedRowSet and 
 WebRowSet, none of which are present in the Base API. Instead the different ways of 
 manipulating files are specified by setting properties in a RowSet object before it is 

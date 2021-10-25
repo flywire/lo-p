@@ -427,7 +427,7 @@
   
     <li class="md-nav__item">
       <a href="12-Examining_DrawImpress.html" class="md-nav__link">
-        Chapter 12. Examining a Draw/Impress
+        Chapter 12. Examining a Draw/Impress Document
       </a>
     </li>
   
@@ -562,7 +562,7 @@
   
     <li class="md-nav__item">
       <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
-        Chapter 20. Spreadsheet Displaying and
+        Chapter 20. Spreadsheet Displaying and Creation
       </a>
     </li>
   
@@ -772,7 +772,7 @@
   
     <li class="md-nav__item">
       <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
-        Chapter 33. Using Charts in Other
+        Chapter 33. Using Charts in Other Documents
       </a>
     </li>
   
@@ -832,7 +832,7 @@
   
     <li class="md-nav__item">
       <a href="36-RowSets_DB_Context.html" class="md-nav__link">
-        Chapter 36. Using RowSets and Database
+        Chapter 36. Using RowSets and Database Context
       </a>
     </li>
   
@@ -862,7 +862,7 @@
   
     <li class="md-nav__item">
       <a href="38-ODB_as_Zip.html" class="md-nav__link">
-        Chapter 38. Treating an ODB File as a
+        Chapter 38. Treating an ODB File as a Zipped Folder
       </a>
     </li>
   
@@ -907,7 +907,7 @@
   
     <li class="md-nav__item">
       <a href="40-Building_a_Form.html" class="md-nav__link">
-        Chapter 40. Building a Form
+        Chapter 40. Building a Form Programmatically
       </a>
     </li>
   
@@ -1057,7 +1057,7 @@
   
     <li class="md-nav__item">
       <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
-        Chapter 49. Extension and Document
+        Chapter 49. Extension and Document Event Macros
       </a>
     </li>
   
@@ -1455,6 +1455,18 @@
                 
                 
                 <h1 id="chapter-50-importing-xml">Chapter 50. Importing XML</h1>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>XSLT Filters; 
+Using Filters with Java; 
+Alternatives to XSLT 
+Filters: DOM Parsing, 
+Node and Attribute Data 
+Extraction, JAXB 
+Conversion </p>
+<p>Example folders: "Filter 
+Tests" and "Utils" </p>
+</div>
 <p>This chapter is mostly about importing XML data into 
 Office. I start by looking at XSLT import (and export) 
 filters, which give the best results but require the 
@@ -1497,18 +1509,6 @@ imported unchanged, as plain text: </p>
 </payments> </p>
 <p>Office offers many ways of loading XML through the "All files (<em>.</em>)" popdown list in 
 the Open dialog. Figure 1 shows my selection of "Flat XML ODF Spreadsheet": </p>
-<div class="admonition note">
-<p class="admonition-title">Topics</p>
-<p>XSLT Filters; </p>
-</div>
-<p>Using Filters with Java; 
-Alternatives to XSLT 
-Filters: DOM Parsing, 
-Node and Attribute Data 
-Extraction, JAXB 
-Conversion 
-Example folders: "Filter 
-Tests" and "Utils" </p>
 <p><img alt="" src="images/50-Importing_XML-1.png" /></p>
 <p>Figure 1. Selecting an XML Import Format. </p>
 <p>Unfortunately, the result isn't a nice spreadsheet of the payments, but a Writer 

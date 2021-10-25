@@ -16,7 +16,7 @@
     
     
       
-        <title>Chapter 40. Building a Form - LibreOffice Programming</title>
+        <title>Chapter 40. Building a Form Programmatically - LibreOffice Programming</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chapter-40-building-a-form" class="md-skip">
+        <a href="#chapter-40-building-a-form-programmatically" class="md-skip">
           Skip to content
         </a>
       
@@ -94,7 +94,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Chapter 40. Building a Form
+              Chapter 40. Building a Form Programmatically
             
           </span>
         </div>
@@ -427,7 +427,7 @@
   
     <li class="md-nav__item">
       <a href="12-Examining_DrawImpress.html" class="md-nav__link">
-        Chapter 12. Examining a Draw/Impress
+        Chapter 12. Examining a Draw/Impress Document
       </a>
     </li>
   
@@ -562,7 +562,7 @@
   
     <li class="md-nav__item">
       <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
-        Chapter 20. Spreadsheet Displaying and
+        Chapter 20. Spreadsheet Displaying and Creation
       </a>
     </li>
   
@@ -772,7 +772,7 @@
   
     <li class="md-nav__item">
       <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
-        Chapter 33. Using Charts in Other
+        Chapter 33. Using Charts in Other Documents
       </a>
     </li>
   
@@ -832,7 +832,7 @@
   
     <li class="md-nav__item">
       <a href="36-RowSets_DB_Context.html" class="md-nav__link">
-        Chapter 36. Using RowSets and Database
+        Chapter 36. Using RowSets and Database Context
       </a>
     </li>
   
@@ -862,7 +862,7 @@
   
     <li class="md-nav__item">
       <a href="38-ODB_as_Zip.html" class="md-nav__link">
-        Chapter 38. Treating an ODB File as a
+        Chapter 38. Treating an ODB File as a Zipped Folder
       </a>
     </li>
   
@@ -915,12 +915,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Chapter 40. Building a Form
+          Chapter 40. Building a Form Programmatically
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="40-Building_a_Form.html" class="md-nav__link md-nav__link--active">
-        Chapter 40. Building a Form
+        Chapter 40. Building a Form Programmatically
       </a>
       
         
@@ -1144,7 +1144,7 @@
   
     <li class="md-nav__item">
       <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
-        Chapter 49. Extension and Document
+        Chapter 49. Extension and Document Event Macros
       </a>
     </li>
   
@@ -1292,8 +1292,18 @@
                   </a>
                 
                 
-                <h1 id="chapter-40-building-a-form">Chapter 40. Building a Form</h1>
-<p>Programmatically </p>
+                <h1 id="chapter-40-building-a-form-programmatically">Chapter 40. Building a Form Programmatically</h1>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Creating 
+Controls; Assigning a 
+Data Source to a Form; 
+Creating Data-aware 
+Controls; Attaching 
+Listeners </p>
+<p>Example folders: "Forms 
+Tests" and "Utils" </p>
+</div>
 <p>BuildForm.java creates a text-based form at run-time, and 
 attaches listeners to the controls. Three of the controls 
 (two list boxes and a grid control) are "data aware" which 
@@ -1308,18 +1318,7 @@ with it in a different way. </p>
 <p>Table 1 summarizes which listeners are used with which controls. These are Office 
 listeners (i.e. subclasses of XEventListener) not Java classes. </p>
 <p>Form Control Listeners 
-CommandButton XActionListener, XMouseListener </p>
-<div class="admonition note">
-<p class="admonition-title">Topics</p>
-</div>
-<p>Creating 
-Controls; Assigning a 
-Data Source to a Form; 
-Creating Data-aware 
-Controls; Attaching 
-Listeners 
-Example folders: "Forms 
-Tests" and "Utils" 
+CommandButton XActionListener, XMouseListener 
 Textfield XTextListener, XFocusListener 
 RadioButton, CheckBox XPropertyChangeListener 
 ListBox XItemListener 

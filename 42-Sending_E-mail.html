@@ -427,7 +427,7 @@
   
     <li class="md-nav__item">
       <a href="12-Examining_DrawImpress.html" class="md-nav__link">
-        Chapter 12. Examining a Draw/Impress
+        Chapter 12. Examining a Draw/Impress Document
       </a>
     </li>
   
@@ -562,7 +562,7 @@
   
     <li class="md-nav__item">
       <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
-        Chapter 20. Spreadsheet Displaying and
+        Chapter 20. Spreadsheet Displaying and Creation
       </a>
     </li>
   
@@ -772,7 +772,7 @@
   
     <li class="md-nav__item">
       <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
-        Chapter 33. Using Charts in Other
+        Chapter 33. Using Charts in Other Documents
       </a>
     </li>
   
@@ -832,7 +832,7 @@
   
     <li class="md-nav__item">
       <a href="36-RowSets_DB_Context.html" class="md-nav__link">
-        Chapter 36. Using RowSets and Database
+        Chapter 36. Using RowSets and Database Context
       </a>
     </li>
   
@@ -862,7 +862,7 @@
   
     <li class="md-nav__item">
       <a href="38-ODB_as_Zip.html" class="md-nav__link">
-        Chapter 38. Treating an ODB File as a
+        Chapter 38. Treating an ODB File as a Zipped Folder
       </a>
     </li>
   
@@ -907,7 +907,7 @@
   
     <li class="md-nav__item">
       <a href="40-Building_a_Form.html" class="md-nav__link">
-        Chapter 40. Building a Form
+        Chapter 40. Building a Form Programmatically
       </a>
     </li>
   
@@ -1171,7 +1171,7 @@
   
     <li class="md-nav__item">
       <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
-        Chapter 49. Extension and Document
+        Chapter 49. Extension and Document Event Macros
       </a>
     </li>
   
@@ -1347,6 +1347,20 @@
                 
                 
                 <h1 id="chapter-42-sending-e-mail">Chapter 42. Sending E-mail</h1>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>SimpleSystemMail / 
+SimpleCommandMail; 
+Using the 
+MailServiceProvider 
+Service; Using 
+JavaMail; The Desktop 
+API; Thunderbird 
+Scripting; Office Mail 
+Merge </p>
+<p>Example folders: "Mail 
+Tests" and "Utils" </p>
+</div>
 <p>The Jargon file is a humorous collection of computer 
 slang (online at http://www.catb.org/jargon/html/), and its 
 entry for Zawinski's "Law of Software Envelopment" 
@@ -1359,57 +1373,143 @@ Office is a reasonable example (if you replace 'read' with 'send') because, depe
 on how you count things, its API contains three different ways of sending e-mail. If 
 you program in Java, the number increases to six! These approaches are summarized 
 in Table 1, and none are without drawbacks. </p>
-<p>API Services/Classes Used Drawbacks 
-Office API<br />
-(coded in Java) 
-SimpleSystemMail or 
-SimpleCommandMail 
-User must click "Ok" in a "Confirm" 
-dialog before the e-mail is sent. </p>
-<p>MailServiceProvider 
-(joint best choice) 
-Two DLLs must be repositioned in the 
-Office installation before the code will 
-work. </p>
-<p>Firewalls may block it. </p>
-<p>MailMerge Works well, but focuses on mail 
-merge rather than general purpose e-
-mail. </p>
-<p>The user must configure Office's e-
-mail settings in Writer before the code 
-will work. </p>
-<p>Java only 
-(no use of Office) </p>
-<p>JavaMail: Session, 
-Message, Transport, and 
-others (joint best 
-choice) 
-Requires the download of the 
-javax.mail JAR. </p>
-<p>Firewalls may block it.  </p>
-<p>Desktop.mail() Attachments are not supported as 
-standard in the mailto: protocol. </p>
-<p>The e-mail client appears, and the user 
-must press "Send". </p>
-<p>Process &amp; batch file Needs a separate batch file. </p>
-<p>Tied to the Thunderbird e-mail client. </p>
-<p>The e-mail client appears, and the user 
-must press "Send". </p>
-<div class="admonition note">
-<p class="admonition-title">Topics</p>
-</div>
-<p>SimpleSystemMail / 
-SimpleCommandMail; 
-Using the 
-MailServiceProvider 
-Service; Using 
-JavaMail; The Desktop 
-API; Thunderbird 
-Scripting; Office Mail 
-Merge 
-Example folders: "Mail 
-Tests" and "Utils" 
-Table 1. Office and Java Approaches for Sending E-mail. </p>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>Services/Classes Used</th>
+<th>Drawbacks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Office API</td>
+<td>SimpleSystemMail or</td>
+<td>User must click "Ok" in a "Confirm"</td>
+</tr>
+<tr>
+<td>(coded in Java)</td>
+<td>SimpleCommandMail</td>
+<td>dialog before the e-mail is sent.</td>
+</tr>
+<tr>
+<td></td>
+<td>MailServiceProvider</td>
+<td>Two DLLs must be repositioned in the</td>
+</tr>
+<tr>
+<td></td>
+<td>(joint best choice)</td>
+<td>Office installation before the code will</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>work.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Firewalls may block it.</td>
+</tr>
+<tr>
+<td></td>
+<td>MailMerge</td>
+<td>Works well, but focuses on mail</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>merge rather than general purpose e-</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>mail.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>The user must configure Office's e-</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>mail settings in Writer before the code</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>will work.</td>
+</tr>
+<tr>
+<td>Java only</td>
+<td>JavaMail: Session,</td>
+<td>Requires the download of the</td>
+</tr>
+<tr>
+<td>(no use of Office)</td>
+<td>Message, Transport, and</td>
+<td>javax.mail JAR.</td>
+</tr>
+<tr>
+<td></td>
+<td>others (joint best</td>
+<td>Firewalls may block it.</td>
+</tr>
+<tr>
+<td></td>
+<td>choice)</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Desktop.mail()</td>
+<td>Attachments are not supported as</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>standard in the mailto: protocol.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>The e-mail client appears, and the user</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>must press "Send".</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Process &amp; batch file</td>
+<td>Needs a separate batch file.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Tied to the Thunderbird e-mail client.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>The e-mail client appears, and the user</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>must press "Send".</td>
+</tr>
+</tbody>
+</table>
+<p>Table 1. Office and Java Approaches for Sending E-mail. </p>
 <p>My aim is to write a sendMessage() function that sends a text message, optionally 
 including a file attachment, to a specified e-mail address. The mail will be sent 
 through an SMTP (Simple Mail Transfer Protocol) server that uses STARTTLS to 

@@ -556,7 +556,7 @@
   
     <li class="md-nav__item">
       <a href="12-Examining_DrawImpress.html" class="md-nav__link">
-        Chapter 12. Examining a Draw/Impress
+        Chapter 12. Examining a Draw/Impress Document
       </a>
     </li>
   
@@ -691,7 +691,7 @@
   
     <li class="md-nav__item">
       <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
-        Chapter 20. Spreadsheet Displaying and
+        Chapter 20. Spreadsheet Displaying and Creation
       </a>
     </li>
   
@@ -901,7 +901,7 @@
   
     <li class="md-nav__item">
       <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
-        Chapter 33. Using Charts in Other
+        Chapter 33. Using Charts in Other Documents
       </a>
     </li>
   
@@ -961,7 +961,7 @@
   
     <li class="md-nav__item">
       <a href="36-RowSets_DB_Context.html" class="md-nav__link">
-        Chapter 36. Using RowSets and Database
+        Chapter 36. Using RowSets and Database Context
       </a>
     </li>
   
@@ -991,7 +991,7 @@
   
     <li class="md-nav__item">
       <a href="38-ODB_as_Zip.html" class="md-nav__link">
-        Chapter 38. Treating an ODB File as a
+        Chapter 38. Treating an ODB File as a Zipped Folder
       </a>
     </li>
   
@@ -1036,7 +1036,7 @@
   
     <li class="md-nav__item">
       <a href="40-Building_a_Form.html" class="md-nav__link">
-        Chapter 40. Building a Form
+        Chapter 40. Building a Form Programmatically
       </a>
     </li>
   
@@ -1186,7 +1186,7 @@
   
     <li class="md-nav__item">
       <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
-        Chapter 49. Extension and Document
+        Chapter 49. Extension and Document Event Macros
       </a>
     </li>
   
@@ -1377,6 +1377,19 @@
                 
                 
                 <h1 id="chapter-6-text-styles">Chapter 6. Text Styles</h1>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Five Style 
+Families; Properties; 
+Listing Styles;  Creating 
+a Style; Applying Styles; 
+Paragraph/Word Styles; 
+Hyperlink Styling; Text 
+Numbering; Headers and 
+Footers </p>
+<p>Example folders: "Text 
+Tests" and "Utils" </p>
+</div>
 <p>This chapter focuses on how text documents styles can be 
 examined and manipulated. This revolves around the 
 XStyleFamiliesSupplier interface in 
@@ -1392,19 +1405,6 @@ families. All these families are stored in an XNameAccess object, as depicted in
 collection have names. There's also an XIndexAccess for collections in index order. </p>
 <p>XNameContainer and XIndexContainer add the ability to insert and remove objects 
 from a collection.  </p>
-<p>Example folders: "Text 
-Tests" and "Utils" </p>
-<div class="admonition note">
-<p class="admonition-title">Topics</p>
-<p>Five Style </p>
-</div>
-<p>Families; Properties; 
-Listing Styles;  Creating 
-a Style; Applying Styles; 
-Paragraph/Word Styles; 
-Hyperlink Styling; Text 
-Numbering; Headers and 
-Footers </p>
 <p><img alt="" src="images/06-Text_Styles-2.png" /></p>
 <p>Figure 2. Style Families and their Property Sets. </p>
 <p>Five style family names are used by text documents: "CharacterStyles", 
@@ -1461,14 +1461,37 @@ with different values. For instance, in Figure 2 the "Header", "Title", "Standar
 "List", and "Table" sets contain the same named properties. </p>
 <p>The names of the properties used by the sets in a style family can be found in the 
 documentation for their "XXXStyle" service. Table 1 summarizes the mapping. </p>
-<p>Style Family Name Service where Properties 
-are Defined 
-"CharacterStyles" CharacterStyle 
-"FrameStyles" FrameStyle (??) 
-"NumberingStyles" NumberingStyle 
-"PageStyles" PageStyle 
-"ParagraphStyles" ParagraphStyle 
-Table 1. Properties Information for Each Style Family. </p>
+<table>
+<thead>
+<tr>
+<th>Style Family Name</th>
+<th>Service where Properties are Defined</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"CharacterStyles"</td>
+<td>CharacterStyle</td>
+</tr>
+<tr>
+<td>"FrameStyles"</td>
+<td>FrameStyle (??)</td>
+</tr>
+<tr>
+<td>"NumberingStyles"</td>
+<td>NumberingStyle</td>
+</tr>
+<tr>
+<td>"PageStyles"</td>
+<td>PageStyle</td>
+</tr>
+<tr>
+<td>"ParagraphStyles"</td>
+<td>ParagraphStyle</td>
+</tr>
+</tbody>
+</table>
+<p>Table 1. Properties Information for Each Style Family. </p>
 <p>The easiest way of finding Office documentation for the services in the second 
 column of Table 1 is with lodoc.bat. For example, the page about CharacterStyle 
 can be found with lodoc CharacterStyle service.  </p>

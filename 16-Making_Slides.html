@@ -427,7 +427,7 @@
   
     <li class="md-nav__item">
       <a href="12-Examining_DrawImpress.html" class="md-nav__link">
-        Chapter 12. Examining a Draw/Impress
+        Chapter 12. Examining a Draw/Impress Document
       </a>
     </li>
   
@@ -696,7 +696,7 @@
   
     <li class="md-nav__item">
       <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
-        Chapter 20. Spreadsheet Displaying and
+        Chapter 20. Spreadsheet Displaying and Creation
       </a>
     </li>
   
@@ -906,7 +906,7 @@
   
     <li class="md-nav__item">
       <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
-        Chapter 33. Using Charts in Other
+        Chapter 33. Using Charts in Other Documents
       </a>
     </li>
   
@@ -966,7 +966,7 @@
   
     <li class="md-nav__item">
       <a href="36-RowSets_DB_Context.html" class="md-nav__link">
-        Chapter 36. Using RowSets and Database
+        Chapter 36. Using RowSets and Database Context
       </a>
     </li>
   
@@ -996,7 +996,7 @@
   
     <li class="md-nav__item">
       <a href="38-ODB_as_Zip.html" class="md-nav__link">
-        Chapter 38. Treating an ODB File as a
+        Chapter 38. Treating an ODB File as a Zipped Folder
       </a>
     </li>
   
@@ -1041,7 +1041,7 @@
   
     <li class="md-nav__item">
       <a href="40-Building_a_Form.html" class="md-nav__link">
-        Chapter 40. Building a Form
+        Chapter 40. Building a Form Programmatically
       </a>
     </li>
   
@@ -1191,7 +1191,7 @@
   
     <li class="md-nav__item">
       <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
-        Chapter 49. Extension and Document
+        Chapter 49. Extension and Document Event Macros
       </a>
     </li>
   
@@ -1387,6 +1387,20 @@
                 
                 
                 <h1 id="chapter-16-making-slides">Chapter 16. Making Slides</h1>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Creating Slides: 
+title, subtitle, bullets, 
+images, video, buttons; 
+Shape Animations; 
+Dispatch Shapes (special 
+symbols, block arrows, 
+3D shapes, flowchart 
+elements, callouts, and 
+stars); Slide Viewing </p>
+<p>Example folders: "Draw 
+Tests" and "Utils" </p>
+</div>
 <p>The MakeSlides.java example creates a deck of five slides, 
 illustrating different aspects of slide generation: 
  Slide 1. A slide combining a title and subtitle (see 
@@ -1427,21 +1441,7 @@ the presentation in "makeslides.odp": </p>
   currSlide = Draw.addSlide(doc); 
   Draw.titleOnlySlide(currSlide, "Clock Video"); 
   Draw.drawMedia(currSlide, "clock.avi", 20, 70, 50, 50); </p>
-<p>// fourth slide: buttons </p>
-<div class="admonition note">
-<p class="admonition-title">Topics</p>
-<p>Creating Slides: </p>
-</div>
-<p>title, subtitle, bullets, 
-images, video, buttons; 
-Shape Animations; 
-Dispatch Shapes (special 
-symbols, block arrows, 
-3D shapes, flowchart 
-elements, callouts, and 
-stars); Slide Viewing 
-Example folders: "Draw 
-Tests" and "Utils" 
+<p>// fourth slide: buttons 
   currSlide = Draw.addSlide(doc); 
   buttonShapes(currSlide); </p>
 <p>// fifth slide: shapes created with dispatches 
@@ -1846,22 +1846,76 @@ refer to the file as an URL.  </p>
 <p>Clicking on the rounded rectangle causes the slide show to jump back to the first 
 page. This needs "OnClick" to be set to ClickAction.FIRSTPAGE. </p>
 <p>Several other forms of click action are listed in Table 1. </p>
-<p>ClickAction Name Effect 
-NONE  No action is performed on the click. Animation and 
-fade effects are also switched off. </p>
-<p>PREVPAGE  The presentation jumps to the previous page. </p>
-<p>NEXTPAGE  The presentation jumps to the next page. </p>
-<p>FIRSTPAGE  The presentation continues with the first page. </p>
-<p>LASTPAGE  The presentation continues with the last page. </p>
-<p>BOOKMARK  The presentation jumps to a bookmark. </p>
-<p>DOCUMENT  The presentation jumps to another document. </p>
-<p>INVISIBLE  The object renders itself invisible after a click. </p>
-<p>SOUND  A sound is played after a click. </p>
-<p>VERB  An OLE verb is performed on this object. </p>
-<p>VANISH  The object vanishes with its effect. </p>
-<p>PROGRAM  Another program is executed after a click. </p>
-<p>MACRO  An Office macro is executed after the click. </p>
-<p>STOPPRESENTATION  The presentation is stopped after the click. </p>
+<table>
+<thead>
+<tr>
+<th>ClickAction</th>
+<th>Name Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NONE</td>
+<td>No action is performed on the click.</td>
+</tr>
+<tr>
+<td></td>
+<td>Animation and fade effects are also switched off.</td>
+</tr>
+<tr>
+<td>PREVPAGE</td>
+<td>The presentation jumps to the previous page.</td>
+</tr>
+<tr>
+<td>NEXTPAGE</td>
+<td>The presentation jumps to the next page.</td>
+</tr>
+<tr>
+<td>FIRSTPAGE</td>
+<td>The presentation continues with the first page.</td>
+</tr>
+<tr>
+<td>LASTPAGE</td>
+<td>The presentation continues with the last page.</td>
+</tr>
+<tr>
+<td>BOOKMARK</td>
+<td>The presentation jumps to a bookmark.</td>
+</tr>
+<tr>
+<td>DOCUMENT</td>
+<td>The presentation jumps to another document.</td>
+</tr>
+<tr>
+<td>INVISIBLE</td>
+<td>The object renders itself invisible after a click.</td>
+</tr>
+<tr>
+<td>SOUND</td>
+<td>A sound is played after a click.</td>
+</tr>
+<tr>
+<td>VERB</td>
+<td>An OLE verb is performed on this object.</td>
+</tr>
+<tr>
+<td>VANISH</td>
+<td>The object vanishes with its effect.</td>
+</tr>
+<tr>
+<td>PROGRAM</td>
+<td>Another program is executed after a click.</td>
+</tr>
+<tr>
+<td>MACRO</td>
+<td>An Office macro is executed after the click.</td>
+</tr>
+<tr>
+<td>STOPPRESENTATION</td>
+<td>The presentation is stopped after the click.</td>
+</tr>
+</tbody>
+</table>
 <p>Table 1. ClickAction Effects. </p>
 <p>Table 1 shows that it's possible to jump to various places in a slide show, and also 
 execute macros and external programs. In both cases, the "Bookmark" property is 

@@ -427,7 +427,7 @@
   
     <li class="md-nav__item">
       <a href="12-Examining_DrawImpress.html" class="md-nav__link">
-        Chapter 12. Examining a Draw/Impress
+        Chapter 12. Examining a Draw/Impress Document
       </a>
     </li>
   
@@ -562,7 +562,7 @@
   
     <li class="md-nav__item">
       <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
-        Chapter 20. Spreadsheet Displaying and
+        Chapter 20. Spreadsheet Displaying and Creation
       </a>
     </li>
   
@@ -772,7 +772,7 @@
   
     <li class="md-nav__item">
       <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
-        Chapter 33. Using Charts in Other
+        Chapter 33. Using Charts in Other Documents
       </a>
     </li>
   
@@ -832,7 +832,7 @@
   
     <li class="md-nav__item">
       <a href="36-RowSets_DB_Context.html" class="md-nav__link">
-        Chapter 36. Using RowSets and Database
+        Chapter 36. Using RowSets and Database Context
       </a>
     </li>
   
@@ -862,7 +862,7 @@
   
     <li class="md-nav__item">
       <a href="38-ODB_as_Zip.html" class="md-nav__link">
-        Chapter 38. Treating an ODB File as a
+        Chapter 38. Treating an ODB File as a Zipped Folder
       </a>
     </li>
   
@@ -907,7 +907,7 @@
   
     <li class="md-nav__item">
       <a href="40-Building_a_Form.html" class="md-nav__link">
-        Chapter 40. Building a Form
+        Chapter 40. Building a Form Programmatically
       </a>
     </li>
   
@@ -1273,7 +1273,7 @@
   
     <li class="md-nav__item">
       <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
-        Chapter 49. Extension and Document
+        Chapter 49. Extension and Document Event Macros
       </a>
     </li>
   
@@ -1551,6 +1551,22 @@
                 
                 
                 <h1 id="chapter-41-printing">Chapter 41. Printing</h1>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>The Java Print 
+Service (JPS); Printing 
+in Office Writer, 
+Impress, Calc; Viewing 
+a Document's Print 
+Properties; Specialized 
+Printing: Writer, 
+Impress, Calc; Hacking 
+the GUI; Command 
+Prompt Printing </p>
+<p>Example folders: 
+"Printing Tests" and 
+"Utils" </p>
+</div>
 <p>Java's Print Service (JPS) and Office's printing APIs 
 nicely compliment each other. For example, since Java 1.4 
 (February 2002), JPS has included printer discovery based 
@@ -1586,23 +1602,7 @@ attributes to limit the search. </p>
 <h2 id="4-the-printing-is-started-and-performed-asynchronously">4.  The printing is started, and performed asynchronously.</h2>
 <p>Document types are encoded as DocFlavor objects which contain data source details 
 (e.g. whether the document comes from an input stream or a URL), and a MIME type 
-(e.g. image/gif, application/pdf). A common misconception about DocFlavor is that it </p>
-<div class="admonition note">
-<p class="admonition-title">Topics</p>
-<p>The Java Print </p>
-</div>
-<p>Service (JPS); Printing 
-in Office Writer, 
-Impress, Calc; Viewing 
-a Document's Print 
-Properties; Specialized 
-Printing: Writer, 
-Impress, Calc; Hacking 
-the GUI; Command 
-Prompt Printing 
-Example folders: 
-"Printing Tests" and 
-"Utils" 
+(e.g. image/gif, application/pdf). A common misconception about DocFlavor is that it 
 means that Java can print that kind of document. A DocFlavor is used to check 
 whether a printer supports a document type, and the answer may be "no". </p>
 <p>The following code locates print services that support GIF documents sent from a file: </p>
@@ -2140,22 +2140,73 @@ public static void usePrinter(XPrintable xp, String printer)
 }  </p>
 <p>Table 1 lists the PrintDescriptor properties, or use my lodoc.bat script to access the 
 class' documentation online (type "lodoc PrinterDescriptor"). </p>
-<p>Property Description 
-Name Name of the printer. </p>
-<p>PaperOrientation Paper orientation 
-(com.sun.star.view.PaperOrientation:<br />
-PORTRAIT, LANDSCAPE) 
-PaperFormat Paper size formats 
-(com.sun.star.view.PaperFormat: A3, A4, 
-A5, B4, B5, LETTER, LEGAL, 
-TABLOID, USER) 
-PaperSize Paper size in 100th mm 
-(com.sun.star.awt.Size). </p>
-<p>IsBusy Is the printer busy? 
-CanSetPaperOrientation Can the paper orientation be set? 
-CanSetPaperFormat Are other paper formats supported? 
-CanSetPaperSize Are other paper sizes supported? 
-Table 1. Properties in com.sun.star.view.PrinterDescriptor. </p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>Name of the printer.</td>
+</tr>
+<tr>
+<td>PaperOrientation</td>
+<td>Paper orientation</td>
+</tr>
+<tr>
+<td></td>
+<td>(com.sun.star.view.PaperOrientation:</td>
+</tr>
+<tr>
+<td></td>
+<td>PORTRAIT, LANDSCAPE)</td>
+</tr>
+<tr>
+<td>PaperFormat</td>
+<td>Paper size formats</td>
+</tr>
+<tr>
+<td></td>
+<td>(com.sun.star.view.PaperFormat: A3, A4,</td>
+</tr>
+<tr>
+<td></td>
+<td>A5, B4, B5, LETTER, LEGAL,</td>
+</tr>
+<tr>
+<td></td>
+<td>TABLOID, USER)</td>
+</tr>
+<tr>
+<td>PaperSize</td>
+<td>Paper size in 100th mm</td>
+</tr>
+<tr>
+<td></td>
+<td>(com.sun.star.awt.Size).</td>
+</tr>
+<tr>
+<td>IsBusy</td>
+<td>Is the printer busy?</td>
+</tr>
+<tr>
+<td>CanSetPaperOrientation</td>
+<td>Can the paper orientation be set?</td>
+</tr>
+<tr>
+<td>CanSetPaperFormat</td>
+<td>Are other paper formats supported?</td>
+</tr>
+<tr>
+<td>CanSetPaperSize</td>
+<td>Are other paper sizes supported?</td>
+</tr>
+</tbody>
+</table>
+<p>Table 1. Properties in com.sun.star.view.PrinterDescriptor. </p>
 <p>Print.setListener() inside Print.usePrinter() attaches an XPrintJobListener listener to 
 the print job by casting XPrintable to XPrintJobBroadcaster (see Figure 1). </p>
 <p>// in the Print class 
@@ -2204,21 +2255,56 @@ public static String printableState(PrintableState val)
  } 
 }  // end of printableState() </p>
 <p>The PrintableState constants are summarized in Table 2. </p>
-<p>Enumerator Constant Description 
-JOB_STARTED  Printing/rendering has begun. </p>
-<p>JOB_COMPLETED<br />
-Printing/rendering has finished; spooling 
-has begun. </p>
-<p>JOB_SPOOLED<br />
-Spooling has finished successfully. This 
-is the "success" state for a print job.  </p>
-<p>JOB_ABORTED<br />
-Printing was aborted (e.g., by the user) 
-during printing or spooling.  </p>
-<p>JOB_FAILED  The printing ran into an error.  </p>
-<p>JOB_SPOOLING_FAILED<br />
-The document could be printed but not 
-spooled.  </p>
+<table>
+<thead>
+<tr>
+<th>Enumerator Constant</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JOB_STARTED</td>
+<td>Printing/rendering has begun.</td>
+</tr>
+<tr>
+<td>JOB_COMPLETED</td>
+<td>Printing/rendering has finished; spooling</td>
+</tr>
+<tr>
+<td></td>
+<td>has begun.</td>
+</tr>
+<tr>
+<td>JOB_SPOOLED</td>
+<td>Spooling has finished successfully. This</td>
+</tr>
+<tr>
+<td></td>
+<td>is the "success" state for a print job.</td>
+</tr>
+<tr>
+<td>JOB_ABORTED</td>
+<td>Printing was aborted (e.g., by the user)</td>
+</tr>
+<tr>
+<td></td>
+<td>during printing or spooling.</td>
+</tr>
+<tr>
+<td>JOB_FAILED</td>
+<td>The printing ran into an error.</td>
+</tr>
+<tr>
+<td>JOB_SPOOLING_FAILED</td>
+<td>The document could be printed but not</td>
+</tr>
+<tr>
+<td></td>
+<td>spooled.</td>
+</tr>
+</tbody>
+</table>
 <p>Table 2. Properties in com.sun.star.view.PrintableState enum. </p>
 <p>Back in the main() function of DocPrinter.java, Print.reportPrinterProps() outputs the 
 printer's PrintDescriptor settings (listed in Table 1). It loops through the properties 
@@ -2270,21 +2356,72 @@ easily understood strings.  </p>
 <p>At last it's time to print the document. As Figure 1 indicates, the call to 
 XPrintable.print() is configured using PrintOptions properties, which are listed in 
 Table 3. </p>
-<p>Property Description 
-CopyCount Number of copies to print. </p>
-<p>FileName Send the output to a file rather than to the 
-printer. </p>
-<p>Collate Collate the printed pages (set to true or 
-false). </p>
-<p>Sort Sort the pages (deprecated; use Collate) 
-Pages A string that specifies pages and page 
-ranges to print.  For example, "1-4;10" to 
-print the pages 1 to 4 and 10. </p>
-<p>Wait Wait for the print request to be 
-completed. </p>
-<p>DuplexMode Set duplex constant (using 
-com.sun.star.view.DuplexMode) 
-PrinterName The name of the printer. </p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CopyCount</td>
+<td>Number of copies to print.</td>
+</tr>
+<tr>
+<td>FileName</td>
+<td>Send the output to a file rather than to the</td>
+</tr>
+<tr>
+<td></td>
+<td>printer.</td>
+</tr>
+<tr>
+<td>Collate</td>
+<td>Collate the printed pages (set to true or</td>
+</tr>
+<tr>
+<td></td>
+<td>false).</td>
+</tr>
+<tr>
+<td>Sort</td>
+<td>Sort the pages (deprecated; use Collate)</td>
+</tr>
+<tr>
+<td>Pages</td>
+<td>A string that specifies pages and page</td>
+</tr>
+<tr>
+<td></td>
+<td>ranges to print.  For example, "1-4;10" to</td>
+</tr>
+<tr>
+<td></td>
+<td>print the pages 1 to 4 and 10.</td>
+</tr>
+<tr>
+<td>Wait</td>
+<td>Wait for the print request to be</td>
+</tr>
+<tr>
+<td></td>
+<td>completed.</td>
+</tr>
+<tr>
+<td>DuplexMode</td>
+<td>Set duplex constant (using</td>
+</tr>
+<tr>
+<td></td>
+<td>com.sun.star.view.DuplexMode)</td>
+</tr>
+<tr>
+<td>PrinterName</td>
+<td>The name of the printer.</td>
+</tr>
+</tbody>
+</table>
 <p>Table 3. Properties in com.sun.star.view.PrintOptions. </p>
 <p>The configuration and printing is carried out by Print.print(): </p>
 <p>// in the Print class 
@@ -2355,62 +2492,192 @@ Print.getDocSettings()'s result. </p>
 but it contains  many more properties for different aspects of a document. For a full 
 list, use "lodoc Settings document" to look at the online documentation. The Settings 
 webpage is also a good starting point for examining its DocumentSettings subclasses.  </p>
-<p>Property  Description<br />
-PrinterName Printer used by the document. </p>
-<p>PrinterSetup 
-A byte array containing driver-specific 
-data. </p>
-<p>IsPrintBooklet 
-Put two document pages on one physical 
-page, such that you can fold the output 
-into a booklet. </p>
-<p>IsPrintBookletFront Only print the fronts of a booklet 
-IsPrintBookletBack Only print the backs of a booklet 
-PrintQuality 
-Normal (0); Grayscale (1), Black and 
-white (2). </p>
-<p>PrinterIndependentLayout Forbid use of printer metrics for layout. </p>
-<p>EmbedFonts 
-Whether to embed fonts used by the 
-document. </p>
-<p>EmbedSystemFonts 
-Whether to embed system fonts used by 
-the document. </p>
-<p>Table 4. Printing-related Properties in<br />
-com.sun.star.document.Settings. </p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PrinterName</td>
+<td>Printer used by the document.</td>
+</tr>
+<tr>
+<td>PrinterSetup</td>
+<td>A byte array containing driver-specific</td>
+</tr>
+<tr>
+<td></td>
+<td>data.</td>
+</tr>
+<tr>
+<td>IsPrintBooklet</td>
+<td>Put two document pages on one physical</td>
+</tr>
+<tr>
+<td></td>
+<td>page, such that you can fold the output</td>
+</tr>
+<tr>
+<td></td>
+<td>into a booklet.</td>
+</tr>
+<tr>
+<td>IsPrintBookletFront</td>
+<td>Only print the fronts of a booklet</td>
+</tr>
+<tr>
+<td>IsPrintBookletBack</td>
+<td>Only print the backs of a booklet</td>
+</tr>
+<tr>
+<td>PrintQuality</td>
+<td>Normal (0); Grayscale (1), Black and</td>
+</tr>
+<tr>
+<td></td>
+<td>white (2).</td>
+</tr>
+<tr>
+<td>PrinterIndependentLayout</td>
+<td>Forbid use of printer metrics for layout.</td>
+</tr>
+<tr>
+<td>EmbedFonts</td>
+<td>Whether to embed fonts used by the</td>
+</tr>
+<tr>
+<td></td>
+<td>document.</td>
+</tr>
+<tr>
+<td>EmbedSystemFonts</td>
+<td>Whether to embed system fonts used by</td>
+</tr>
+<tr>
+<td></td>
+<td>the document.</td>
+</tr>
+</tbody>
+</table>
+<p>Table 4. Printing-related Properties in com.sun.star.document.Settings. </p>
 <p>Writer documents utilize the DocumentSettings service in the text module which 
 doesn't contain any printing properties, but is far from empty. Again, use "lodoc 
 DocumentSettings text" to visit its documentation in the text module. Instead, the 
 print properties are inherited from the PrintSettings service in the text module, which 
 are listed in Table 5. Use "lodoc PrintSettings text" to visit its documentation. </p>
-<p>Property  Description<br />
-PrintGraphics If true, print graphic objects. </p>
-<p>PrintTables If true, print text tables. </p>
-<p>PrintDrawings If true, print shapes. </p>
-<p>PrintLeftPages If true, print left pages. </p>
-<p>PrintRightPages If true, print right pages. </p>
-<p>PrintControls If true, then control shapes in the 
-document (usually inside forms) are 
-printed. </p>
-<p>PrintReversed If true, print the pages in reverse order, 
-starting with the last page. </p>
-<p>PrintPaperFromSetup If true, use the paper tray specified for 
-the system printer. If false, use the paper 
-tray specified by the page style. </p>
-<p>PrintFaxName Name of the fax machine. </p>
-<p>PrintAnnotationMode Specify how notes are printed. Uses 
-com.sun.star.text.NotePrintMode: NOT, 
-ONLY, DOC_END, or PAGE_END). </p>
-<p>PrintProspect If true, prospect printing is used. Related 
-to brochures (I think). </p>
-<p>PrintPageBackground 
-Determines if the background color / 
-background graphic of pages is printed. </p>
-<p>PrintBlackFonts Determines if characters are printed in 
-black. </p>
-<p>PrintEmptyPages 
-Determines if automatically inserted 
-empty pages are printed. </p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PrintGraphics</td>
+<td>If true, print graphic objects.</td>
+</tr>
+<tr>
+<td>PrintTables</td>
+<td>If true, print text tables.</td>
+</tr>
+<tr>
+<td>PrintDrawings</td>
+<td>If true, print shapes.</td>
+</tr>
+<tr>
+<td>PrintLeftPages</td>
+<td>If true, print left pages.</td>
+</tr>
+<tr>
+<td>PrintRightPages</td>
+<td>If true, print right pages.</td>
+</tr>
+<tr>
+<td>PrintControls</td>
+<td>If true, then control shapes in the</td>
+</tr>
+<tr>
+<td></td>
+<td>document (usually inside forms) are</td>
+</tr>
+<tr>
+<td></td>
+<td>printed.</td>
+</tr>
+<tr>
+<td>PrintReversed</td>
+<td>If true, print the pages in reverse order,</td>
+</tr>
+<tr>
+<td></td>
+<td>starting with the last page.</td>
+</tr>
+<tr>
+<td>PrintPaperFromSetup</td>
+<td>If true, use the paper tray specified for</td>
+</tr>
+<tr>
+<td></td>
+<td>the system printer. If false, use the paper</td>
+</tr>
+<tr>
+<td></td>
+<td>tray specified by the page style.</td>
+</tr>
+<tr>
+<td>PrintFaxName</td>
+<td>Name of the fax machine.</td>
+</tr>
+<tr>
+<td>PrintAnnotationMode</td>
+<td>Specify how notes are printed. Uses</td>
+</tr>
+<tr>
+<td></td>
+<td>com.sun.star.text.NotePrintMode: NOT,</td>
+</tr>
+<tr>
+<td></td>
+<td>ONLY, DOC_END, or PAGE_END).</td>
+</tr>
+<tr>
+<td>PrintProspect</td>
+<td>If true, prospect printing is used. Related</td>
+</tr>
+<tr>
+<td></td>
+<td>to brochures (I think).</td>
+</tr>
+<tr>
+<td>PrintPageBackground</td>
+<td>Determines if the background color /</td>
+</tr>
+<tr>
+<td></td>
+<td>background graphic of pages is printed.</td>
+</tr>
+<tr>
+<td>PrintBlackFonts</td>
+<td>Determines if characters are printed in</td>
+</tr>
+<tr>
+<td></td>
+<td>black.</td>
+</tr>
+<tr>
+<td>PrintEmptyPages</td>
+<td>Determines if automatically inserted</td>
+</tr>
+<tr>
+<td></td>
+<td>empty pages are printed.</td>
+</tr>
+</tbody>
+</table>
 <p>Table 5. Properties in com.sun.star.text.PrintSettings. </p>
 <dl>
 <dt>Back in ShowPrintProps.java, the properties are printed with Props.showProps(). The </dt>
@@ -2454,71 +2721,219 @@ which need additional code to access them as I'll explain later. </p>
 <p>An Impress file uses DocumentSettings in the presentation module (see "lodoc 
 DocumentSettings service presentation"); its printing-related properties are given in 
 Table 6. </p>
-<p>Property  Description<br />
-IsPrintDrawing Enables or disables the printing of the 
-drawing pages. </p>
-<p>IsPrintNotes Enables or disables the printing of the 
-notes pages. </p>
-<p>IsPrintHandout Enables or disables the printing of the 
-handout pages. </p>
-<p>IsPrintOutline Enables or disables the printing of the 
-outline pages. </p>
-<p>IsPrintHiddenPages Enables or disables the printing of draw 
-pages that are marked as hidden. </p>
-<p>IsPrintFitPage Enables or disables the fitting of the page 
-to the printable area during printing. </p>
-<p>IsPrintTilePage If this is true and the paper size for 
-printing is larger than the paper size of 
-the printer than the content is tiled over 
-multiple pages. </p>
-<p>Table 6. Printing-related Properties in<br />
-com.sun.star.presentation.DocumentSettings. </p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IsPrintDrawing</td>
+<td>Enables or disables the printing of the</td>
+</tr>
+<tr>
+<td></td>
+<td>drawing pages.</td>
+</tr>
+<tr>
+<td>IsPrintNotes</td>
+<td>Enables or disables the printing of the</td>
+</tr>
+<tr>
+<td></td>
+<td>notes pages.</td>
+</tr>
+<tr>
+<td>IsPrintHandout</td>
+<td>Enables or disables the printing of the</td>
+</tr>
+<tr>
+<td></td>
+<td>handout pages.</td>
+</tr>
+<tr>
+<td>IsPrintOutline</td>
+<td>Enables or disables the printing of the</td>
+</tr>
+<tr>
+<td></td>
+<td>outline pages.</td>
+</tr>
+<tr>
+<td>IsPrintHiddenPages</td>
+<td>Enables or disables the printing of draw</td>
+</tr>
+<tr>
+<td></td>
+<td>pages that are marked as hidden.</td>
+</tr>
+<tr>
+<td>IsPrintFitPage</td>
+<td>Enables or disables the fitting of the page</td>
+</tr>
+<tr>
+<td></td>
+<td>to the printable area during printing.</td>
+</tr>
+<tr>
+<td>IsPrintTilePage</td>
+<td>If this is true and the paper size for</td>
+</tr>
+<tr>
+<td></td>
+<td>printing is larger than the paper size of</td>
+</tr>
+<tr>
+<td></td>
+<td>the printer than the content is tiled over</td>
+</tr>
+<tr>
+<td></td>
+<td>multiple pages.</td>
+</tr>
+</tbody>
+</table>
+<p>Table 6. Printing-related Properties in com.sun.star.presentation.DocumentSettings. </p>
 <p>Draw documents are similar to presentations, and this is reflected in the 
 DocumentSettings service in the drawing module (see "lodoc DocumentSettings 
 service drawing") which offers a subset of the slide properties. The printing-related 
 ones are listed in Table 7.  </p>
-<p>Property  Description<br />
-IsPrintFitPage Enables or disables the fitting of the page 
-to the printable area during printing. </p>
-<p>IsPrintTilePage If this is true and the paper size for 
-printing is larger than the paper size of 
-the printer than the content is tiled over 
-multiple pages. </p>
-<p>Table 7. Printing-related Properties in<br />
-com.sun.star.drawing.DocumentSettings. </p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IsPrintFitPage</td>
+<td>Enables or disables the fitting of the page</td>
+</tr>
+<tr>
+<td></td>
+<td>to the printable area during printing.</td>
+</tr>
+<tr>
+<td>IsPrintTilePage</td>
+<td>If this is true and the paper size for</td>
+</tr>
+<tr>
+<td></td>
+<td>printing is larger than the paper size of</td>
+</tr>
+<tr>
+<td></td>
+<td>the printer than the content is tiled over</td>
+</tr>
+<tr>
+<td></td>
+<td>multiple pages.</td>
+</tr>
+</tbody>
+</table>
+<p>Table 7. Printing-related Properties in com.sun.star.drawing.DocumentSettings. </p>
 <p>The drawing and presentation DocumentSettings services inherit the Settings service, 
 and a HeaderFooterSettings service in the documents folder (see "lodoc 
 HeaderFooterSettings"), which add the properties in Table 8. </p>
-<p>Property  Description<br />
-IsPrintPageName Enables or disables the printing of the 
-page name in the header or footer. </p>
-<p>IsPrintDate Enables or disables the printing of the 
-date in the header or footer. </p>
-<p>IsPrintTime Enables or disables the printing of the 
-current time in the header or footer. </p>
-<p>Table 8. Properties in<br />
-com.sun.star.document.HeaderFooterSettings. </p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IsPrintPageName</td>
+<td>Enables or disables the printing of the</td>
+</tr>
+<tr>
+<td></td>
+<td>page name in the header or footer.</td>
+</tr>
+<tr>
+<td>IsPrintDate</td>
+<td>Enables or disables the printing of the</td>
+</tr>
+<tr>
+<td></td>
+<td>date in the header or footer.</td>
+</tr>
+<tr>
+<td>IsPrintTime</td>
+<td>Enables or disables the printing of the</td>
+</tr>
+<tr>
+<td></td>
+<td>current time in the header or footer.</td>
+</tr>
+</tbody>
+</table>
+<p>Table 8. Properties in com.sun.star.document.HeaderFooterSettings. </p>
 <h3 id="41-additional-writer-print-properties">4.1.  Additional Writer Print Properties</h3>
 <p>As Figure 2 indicates, Writer Documents have access to an XPagePrintable interface 
 offered by the GenericTextDocument service (see "lodoc XPagePrintable"). It has a 
 print method, XPagePrintable.printPages() which utilizes properties stored in the 
 PagePrintSettings service (see Table 9). These relate to the document's margins and 
 printing multiple pages on a single sheet. </p>
-<p>Property  Description<br />
-PageRows 
-Number of page rows on each 
-printed page. </p>
-<p>PageColumns 
-Number of page columns on each 
-printed page. </p>
-<p>LeftMargin Left margin of the printed page. </p>
-<p>RightMargin Right margin. </p>
-<p>TopMargin Top margin. </p>
-<p>BottomMargin Bottom margin. </p>
-<p>HoriMargin Margin between page rows. </p>
-<p>VertMargin Margin between page columns. </p>
-<p>IsLandscape Print in landscape format? 
-Table 9. Properties in com.sun.star.text.PagePrintSettings. </p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PageRows</td>
+<td>Number of page rows on each</td>
+</tr>
+<tr>
+<td></td>
+<td>printed page.</td>
+</tr>
+<tr>
+<td>PageColumns</td>
+<td>Number of page columns on each</td>
+</tr>
+<tr>
+<td></td>
+<td>printed page.</td>
+</tr>
+<tr>
+<td>LeftMargin</td>
+<td>Left margin of the printed page.</td>
+</tr>
+<tr>
+<td>RightMargin</td>
+<td>Right margin.</td>
+</tr>
+<tr>
+<td>TopMargin</td>
+<td>Top margin.</td>
+</tr>
+<tr>
+<td>BottomMargin</td>
+<td>Bottom margin.</td>
+</tr>
+<tr>
+<td>HoriMargin</td>
+<td>Margin between page rows.</td>
+</tr>
+<tr>
+<td>VertMargin</td>
+<td>Margin between page columns.</td>
+</tr>
+<tr>
+<td>IsLandscape</td>
+<td>Print in landscape format?</td>
+</tr>
+</tbody>
+</table>
+<p>Table 9. Properties in com.sun.star.text.PagePrintSettings. </p>
 <p>These properties are printed by casting the document to XPagePrintable: </p>
 <p>// part of ShowPrintProps.java... </p>
 <p>if (docType == Lo.WRITER) { 
@@ -2545,15 +2960,41 @@ sheet module, and PageStyle in the style module. </p>
 GlobalSheetSettings") doesn’t store the properties; instead they're maintained by its 
 XGlobalSheetSettings interface (see "lodoc XGlobalSheetSettings). The printing-
 related properties are listed in Table 10. </p>
-<p>Property  Description<br />
-PrintAllSheets Specifies whether all sheets or only 
-selected sheets are printed. </p>
-<p>PrintEmptyPages Specifies whether empty pages are 
-printed. </p>
-<p>UsePrinterMetrics Specifies whether printer metrics are used 
-for display. </p>
-<p>Table 10. Printing-related Properties in<br />
-com.sun.star.sheet.XGlobalSheetSettings. </p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PrintAllSheets</td>
+<td>Specifies whether all sheets or only</td>
+</tr>
+<tr>
+<td></td>
+<td>selected sheets are printed.</td>
+</tr>
+<tr>
+<td>PrintEmptyPages</td>
+<td>Specifies whether empty pages are</td>
+</tr>
+<tr>
+<td></td>
+<td>printed.</td>
+</tr>
+<tr>
+<td>UsePrinterMetrics</td>
+<td>Specifies whether printer metrics are used</td>
+</tr>
+<tr>
+<td></td>
+<td>for display.</td>
+</tr>
+</tbody>
+</table>
+<p>Table 10. Printing-related Properties in com.sun.star.sheet.XGlobalSheetSettings. </p>
 <p>This organization of the documentation may be an error, since the 
 XGlobalSheetSettings properties are accessed in the usual way, by instantiating the 
 GlobalSheetSettings service, and casting it to XPropertySet: </p>
@@ -2584,57 +3025,202 @@ in the PageStyle hierarchy. A simplified version of that hierarchy is shown in F
 <p>I'm only interested in printing-related properties in this chapter. Some come from the 
 PageProperties service in the style module (see "lodoc PageProperties style"), as listed 
 in Table 11. </p>
-<p>Property  Description<br />
-Lots of border props…<br />
-Lots of margin props…<br />
-IsLandscape Determines if the page format is 
-landscape. </p>
-<p>PrinterPaperTray Contains the name of a paper 
-tray of the selected printer. </p>
-<p>Lots of header props…<br />
-Lots of footer props…<br />
-Lots of grid props…<br />
-GridPrint Determines whether text grid 
-lines are printed. </p>
-<p>Table 11. Printing-related Properties in<br />
-com.sun.star.style.PageProperties. </p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lots of border props…</td>
+<td></td>
+</tr>
+<tr>
+<td>Lots of margin props…</td>
+<td></td>
+</tr>
+<tr>
+<td>IsLandscape</td>
+<td>Determines if the page format is</td>
+</tr>
+<tr>
+<td></td>
+<td>landscape.</td>
+</tr>
+<tr>
+<td>PrinterPaperTray</td>
+<td>Contains the name of a paper</td>
+</tr>
+<tr>
+<td></td>
+<td>tray of the selected printer.</td>
+</tr>
+<tr>
+<td>Lots of header props…</td>
+<td></td>
+</tr>
+<tr>
+<td>Lots of footer props…</td>
+<td></td>
+</tr>
+<tr>
+<td>Lots of grid props…</td>
+<td></td>
+</tr>
+<tr>
+<td>GridPrint</td>
+<td>Determines whether text grid</td>
+</tr>
+<tr>
+<td></td>
+<td>lines are printed.</td>
+</tr>
+</tbody>
+</table>
+<p>Table 11. Printing-related Properties in com.sun.star.style.PageProperties. </p>
 <p>Many more print properties come from TablePageStyle in the sheet module (see 
 "lodoc TablePageStyle", which are given in Table 12. </p>
-<p>Property  Description<br />
-PrintAnnotations Enables printing of cell annotations. </p>
-<p>PrintGrid Enables printing of the cell grid. </p>
-<p>PrintHeaders Enables printing of column and row 
-headers.  </p>
-<p>PrintCharts Enables printing of charts.  </p>
-<p>PrintObjects Enables printing of embedded objects.  </p>
-<p>PrintDrawing Enables printing of drawing objects. </p>
-<p>PrintFormulas Enables printing of formulas instead of their 
-results.  </p>
-<p>PrintZeroValues Enables printing of zero-values. </p>
-<p>PrintDownFirst Specifies the print order for the pages within 
-each sheet. </p>
-<p>PageScale Contains the scaling factor (in percent) for 
-printing the sheet. </p>
-<p>ScaleToPages Contains the number of pages the sheet will 
-use for printing.  </p>
-<p>ScaleToPagesX Contains the number of horizontal pages the 
-sheet will be printed on. </p>
-<p>ScaleToPagesY Contains the number of vertical pages the 
-sheet will be printed on. </p>
-<p>LeftPageHeaderContent Contains the content of the header for the 
-left pages 
-(com.sun.star.sheet.XHeaderFooterContent). </p>
-<p>RightPageHeaderContent Contains the content of the header for the 
-right pages 
-(com.sun.star.sheet.XHeaderFooterContent). </p>
-<p>LeftPageFooterContent Contains the content of the footer for the left 
-pages 
-(com.sun.star.sheet.XHeaderFooterContent). </p>
-<p>RightPageFooterContent Contains the content of the footer for the 
-right pages 
-(com.sun.star.sheet.XHeaderFooterContent). </p>
-<p>Table 12. Printing-related Properties in<br />
-com.sun.star.sheet.TablePageStyle. </p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PrintAnnotations</td>
+<td>Enables printing of cell annotations.</td>
+</tr>
+<tr>
+<td>PrintGrid</td>
+<td>Enables printing of the cell grid.</td>
+</tr>
+<tr>
+<td>PrintHeaders</td>
+<td>Enables printing of column and row</td>
+</tr>
+<tr>
+<td></td>
+<td>headers.</td>
+</tr>
+<tr>
+<td>PrintCharts</td>
+<td>Enables printing of charts.</td>
+</tr>
+<tr>
+<td>PrintObjects</td>
+<td>Enables printing of embedded objects.</td>
+</tr>
+<tr>
+<td>PrintDrawing</td>
+<td>Enables printing of drawing objects.</td>
+</tr>
+<tr>
+<td>PrintFormulas</td>
+<td>Enables printing of formulas instead of their</td>
+</tr>
+<tr>
+<td></td>
+<td>results.</td>
+</tr>
+<tr>
+<td>PrintZeroValues</td>
+<td>Enables printing of zero-values.</td>
+</tr>
+<tr>
+<td>PrintDownFirst</td>
+<td>Specifies the print order for the pages within</td>
+</tr>
+<tr>
+<td></td>
+<td>each sheet.</td>
+</tr>
+<tr>
+<td>PageScale</td>
+<td>Contains the scaling factor (in percent) for</td>
+</tr>
+<tr>
+<td></td>
+<td>printing the sheet.</td>
+</tr>
+<tr>
+<td>ScaleToPages</td>
+<td>Contains the number of pages the sheet will</td>
+</tr>
+<tr>
+<td></td>
+<td>use for printing.</td>
+</tr>
+<tr>
+<td>ScaleToPagesX</td>
+<td>Contains the number of horizontal pages the</td>
+</tr>
+<tr>
+<td></td>
+<td>sheet will be printed on.</td>
+</tr>
+<tr>
+<td>ScaleToPagesY</td>
+<td>Contains the number of vertical pages the</td>
+</tr>
+<tr>
+<td></td>
+<td>sheet will be printed on.</td>
+</tr>
+<tr>
+<td>LeftPageHeaderContent</td>
+<td>Contains the content of the header for the</td>
+</tr>
+<tr>
+<td></td>
+<td>left pages</td>
+</tr>
+<tr>
+<td></td>
+<td>(com.sun.star.sheet.XHeaderFooterContent).</td>
+</tr>
+<tr>
+<td>RightPageHeaderContent</td>
+<td>Contains the content of the header for the</td>
+</tr>
+<tr>
+<td></td>
+<td>right pages</td>
+</tr>
+<tr>
+<td></td>
+<td>(com.sun.star.sheet.XHeaderFooterContent).</td>
+</tr>
+<tr>
+<td>LeftPageFooterContent</td>
+<td>Contains the content of the footer for the left</td>
+</tr>
+<tr>
+<td></td>
+<td>pages</td>
+</tr>
+<tr>
+<td></td>
+<td>(com.sun.star.sheet.XHeaderFooterContent).</td>
+</tr>
+<tr>
+<td>RightPageFooterContent</td>
+<td>Contains the content of the footer for the</td>
+</tr>
+<tr>
+<td></td>
+<td>right pages</td>
+</tr>
+<tr>
+<td></td>
+<td>(com.sun.star.sheet.XHeaderFooterContent).</td>
+</tr>
+</tbody>
+</table>
+<p>Table 12. Printing-related Properties in com.sun.star.sheet.TablePageStyle. </p>
 <h2 id="5-specialized-printing">5.  Specialized Printing</h2>
 <p>In this section I'll use some of the document properties just described to control how 
 Writer, Impress, and Calc documents are printed. The example code is in 
@@ -2972,25 +3558,88 @@ explaining how to use lp, lpq, lpstat and others (e.g. </p>
 <p>http://www.computerhope.com/unix/ulp.htm, 
 http://www.eecs.utk.edu/resources/it/kb/printing/linux-command-line).  </p>
 <p>Perhaps less well known are the printing utilities in Windows, listed in Table 13. </p>
-<p>VBScript  Purpose<br />
-Prnmngr.vbs Printer management. Adds, deletes, and 
-lists printers or printer connections, in 
-addition to setting and displaying the 
-default printer.  </p>
-<p>Used by printersList.bat 
-Prncnfg.vbs Configures or displays configuration 
-information about a printer. </p>
-<p>Used by printerStatus.bat 
-Prnjobs.vbs Pauses, resumes, cancels, and lists print 
-jobs.  </p>
-<p>Used by printerJobs.bat 
-Prnqctl.vbs Printer queue management. Prints a test 
-page, pauses or resumes a printer, and 
-clears a printer queue. </p>
-<p>Used by printerClean.bat 
-Prndrvr.vbs Adds, deletes, and lists printer drivers. </p>
-<p>Prnport.vbs Printer port management. </p>
-<p>Pubprn.vbs Publish a printer to Active Directory. </p>
+<table>
+<thead>
+<tr>
+<th>VBScript</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prnmngr.vbs</td>
+<td>Printer management. Adds, deletes, and</td>
+</tr>
+<tr>
+<td></td>
+<td>lists printers or printer connections, in</td>
+</tr>
+<tr>
+<td></td>
+<td>addition to setting and displaying the</td>
+</tr>
+<tr>
+<td></td>
+<td>default printer.</td>
+</tr>
+<tr>
+<td></td>
+<td>Used by printersList.bat</td>
+</tr>
+<tr>
+<td>Prncnfg.vbs</td>
+<td>Configures or displays configuration</td>
+</tr>
+<tr>
+<td></td>
+<td>information about a printer.</td>
+</tr>
+<tr>
+<td></td>
+<td>Used by printerStatus.bat</td>
+</tr>
+<tr>
+<td>Prnjobs.vbs</td>
+<td>Pauses, resumes, cancels, and lists print</td>
+</tr>
+<tr>
+<td></td>
+<td>jobs.</td>
+</tr>
+<tr>
+<td></td>
+<td>Used by printerJobs.bat</td>
+</tr>
+<tr>
+<td>Prnqctl.vbs</td>
+<td>Printer queue management. Prints a test</td>
+</tr>
+<tr>
+<td></td>
+<td>page, pauses or resumes a printer, and</td>
+</tr>
+<tr>
+<td></td>
+<td>clears a printer queue.</td>
+</tr>
+<tr>
+<td></td>
+<td>Used by printerClean.bat</td>
+</tr>
+<tr>
+<td>Prndrvr.vbs</td>
+<td>Adds, deletes, and lists printer drivers.</td>
+</tr>
+<tr>
+<td>Prnport.vbs</td>
+<td>Printer port management.</td>
+</tr>
+<tr>
+<td>Pubprn.vbs</td>
+<td>Publish a printer to Active Directory.</td>
+</tr>
+</tbody>
+</table>
 <p>Table 13. Windows 7's VBScript Printing Utilities. </p>
 <p>The utilities are Visual Basic scripts, located in the 
 C:\Windows\System32\Printing_Admin_Scripts\en-US\ folder which isn't a standard 
@@ -3103,7 +3752,7 @@ prints the cover.odg Draw file to the HP laserjet. </p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Chapter 40. Building a Form
+              Chapter 40. Building a Form Programmatically
             </div>
           </div>
         </a>

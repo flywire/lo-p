@@ -427,7 +427,7 @@
   
     <li class="md-nav__item">
       <a href="12-Examining_DrawImpress.html" class="md-nav__link">
-        Chapter 12. Examining a Draw/Impress
+        Chapter 12. Examining a Draw/Impress Document
       </a>
     </li>
   
@@ -562,7 +562,7 @@
   
     <li class="md-nav__item">
       <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
-        Chapter 20. Spreadsheet Displaying and
+        Chapter 20. Spreadsheet Displaying and Creation
       </a>
     </li>
   
@@ -772,7 +772,7 @@
   
     <li class="md-nav__item">
       <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
-        Chapter 33. Using Charts in Other
+        Chapter 33. Using Charts in Other Documents
       </a>
     </li>
   
@@ -832,7 +832,7 @@
   
     <li class="md-nav__item">
       <a href="36-RowSets_DB_Context.html" class="md-nav__link">
-        Chapter 36. Using RowSets and Database
+        Chapter 36. Using RowSets and Database Context
       </a>
     </li>
   
@@ -862,7 +862,7 @@
   
     <li class="md-nav__item">
       <a href="38-ODB_as_Zip.html" class="md-nav__link">
-        Chapter 38. Treating an ODB File as a
+        Chapter 38. Treating an ODB File as a Zipped Folder
       </a>
     </li>
   
@@ -907,7 +907,7 @@
   
     <li class="md-nav__item">
       <a href="40-Building_a_Form.html" class="md-nav__link">
-        Chapter 40. Building a Form
+        Chapter 40. Building a Form Programmatically
       </a>
     </li>
   
@@ -1184,7 +1184,7 @@
   
     <li class="md-nav__item">
       <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
-        Chapter 49. Extension and Document
+        Chapter 49. Extension and Document Event Macros
       </a>
     </li>
   
@@ -1373,6 +1373,23 @@
                 
                 
                 <h1 id="chapter-46-add-ons">Chapter 46. Add-ons</h1>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+</div>
+<p>What is an Add-
+    on?; Creating the 
+    EzHighlight Add-on; 
+    Creating a Partial Add-
+    on Implementation; The 
+    FreeMarker-generated 
+    EzHighlightAddonImpl; 
+    Creating the Dialog; 
+    Configuring the Add-on; 
+    Building and Installing 
+    the OXT File </p>
+<pre><code>Example folders: 
+"AddOn Tests", "Utils"
+</code></pre>
 <p>Add-ons build upon the UNO component techniques 
 described in the last chapter to make a component 
 accessible via an Office menu and/or toolbar item.  </p>
@@ -1387,22 +1404,6 @@ Extension Manger in Figure 1. </p>
 Office's Tools &gt; Add-Ons menu item (see Figure 2) or as a toolbar created by View &gt; 
 Toolbars &gt; Add-on 2 (see Figure 3). This 'floating' toolbar can be attached to an 
 existing toolbar. </p>
-<div class="admonition note">
-<p class="admonition-title">Topics</p>
-</div>
-<p>What is an Add-
-on?; Creating the 
-EzHighlight Add-on; 
-Creating a Partial Add-
-on Implementation; The 
-FreeMarker-generated 
-EzHighlightAddonImpl; 
-Creating the Dialog; 
-Configuring the Add-on; 
-Building and Installing 
-the OXT File 
-Example folders: 
-"AddOn Tests", "Utils" </p>
 <p><img alt="" src="images/46-Addons-2.png" /></p>
 <p>Figure 2. The EzHighlight Add-on on the Tools Menu. </p>
 <p><img alt="" src="images/46-Addons-3.png" /></p>
@@ -2031,15 +2032,45 @@ below.  </p>
 utilizing the add-on. EzHighlight is accessible only from Writer, so "Context"'s value 
 is "com.sun.star.text.TextDocument". Other application/service mappings are shown 
 in Table 1. </p>
-<p>Office Application Document Service 
-Writer  com.sun.star.text.TextDocument 
-Calc  com.sun.star.sheet.SpreadsheetDocument 
-Impress      com.sun.star.presentation.PresentationDocument 
-Draw         com.sun.star.drawing.DrawingDocument 
-Formula      com.sun.star.formula.FormulaProperties 
-Chart   com.sun.star.chart.ChartDocument 
-Bibliography   com.sun.star.frame.Bibliography 
-Table 1. Office Application/Service Mappings Used by "Context" </p>
+<table>
+<thead>
+<tr>
+<th>Office Application</th>
+<th>Document Service</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Writer</td>
+<td>com.sun.star.text.TextDocument</td>
+</tr>
+<tr>
+<td>Calc</td>
+<td>com.sun.star.sheet.SpreadsheetDocument</td>
+</tr>
+<tr>
+<td>Impress</td>
+<td>com.sun.star.presentation.PresentationDocument</td>
+</tr>
+<tr>
+<td>Draw</td>
+<td>com.sun.star.drawing.DrawingDocument</td>
+</tr>
+<tr>
+<td>Formula</td>
+<td>com.sun.star.formula.FormulaProperties</td>
+</tr>
+<tr>
+<td>Chart</td>
+<td>com.sun.star.chart.ChartDocument</td>
+</tr>
+<tr>
+<td>Bibliography</td>
+<td>com.sun.star.frame.Bibliography</td>
+</tr>
+</tbody>
+</table>
+<p>Table 1. Office Application/Service Mappings Used by "Context" </p>
 <p>If the "Context" field isn't assigned a value, then the add-on will be available in all of 
 Office's applications. </p>
 <p>The "Target" field can be assigned four values: "_top", "_parent", "_blank", and 
@@ -2111,16 +2142,43 @@ either big or small (26x26 or 16x16 pixels), high contrast or normal, and loaded
 a file or coded as hexadecimal text. These different combinations mean there are eight 
 variants to choose from, each with a different property name, which are listed in Table 
 2. </p>
-<p>Size in 
-Pixels 
-Contrast 
-Property Name 
-Hexadecimal text File name 
-16x16 normal ImageSmall ImageSmallURL 
-16x16 high ImageSmallHC ImageSmallHCURL 
-26x26 normal ImageBig ImageBigURL 
-26x26 high ImageBigHC ImageBigHCURL 
-Table 2. Image Property Names. </p>
+<table>
+<thead>
+<tr>
+<th>Size in Pixels</th>
+<th>Contrast</th>
+<th>Hexadecimal text</th>
+<th>File name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>16x16</td>
+<td>normal</td>
+<td>ImageSmall</td>
+<td>ImageSmallURL</td>
+</tr>
+<tr>
+<td>16x16</td>
+<td>high</td>
+<td>ImageSmallHC</td>
+<td>ImageSmallHCURL</td>
+</tr>
+<tr>
+<td>26x26</td>
+<td>normal</td>
+<td>ImageBig</td>
+<td>ImageBigURL</td>
+</tr>
+<tr>
+<td>26x26</td>
+<td>high</td>
+<td>ImageBigHC</td>
+<td>ImageBigHCURL</td>
+</tr>
+</tbody>
+</table>
+<p>Table 2. Image Property Names. </p>
 <p>The "Images" attribute for EzHighlight is: </p>
 <p><node oor:name="Images"> 
   <node oor:name="org.openoffice.ezhighlightAddon"<br />        oor:op="replace"> </p>

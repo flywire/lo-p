@@ -427,7 +427,7 @@
   
     <li class="md-nav__item">
       <a href="12-Examining_DrawImpress.html" class="md-nav__link">
-        Chapter 12. Examining a Draw/Impress
+        Chapter 12. Examining a Draw/Impress Document
       </a>
     </li>
   
@@ -562,7 +562,7 @@
   
     <li class="md-nav__item">
       <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
-        Chapter 20. Spreadsheet Displaying and
+        Chapter 20. Spreadsheet Displaying and Creation
       </a>
     </li>
   
@@ -772,7 +772,7 @@
   
     <li class="md-nav__item">
       <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
-        Chapter 33. Using Charts in Other
+        Chapter 33. Using Charts in Other Documents
       </a>
     </li>
   
@@ -994,7 +994,7 @@
   
     <li class="md-nav__item">
       <a href="36-RowSets_DB_Context.html" class="md-nav__link">
-        Chapter 36. Using RowSets and Database
+        Chapter 36. Using RowSets and Database Context
       </a>
     </li>
   
@@ -1024,7 +1024,7 @@
   
     <li class="md-nav__item">
       <a href="38-ODB_as_Zip.html" class="md-nav__link">
-        Chapter 38. Treating an ODB File as a
+        Chapter 38. Treating an ODB File as a Zipped Folder
       </a>
     </li>
   
@@ -1069,7 +1069,7 @@
   
     <li class="md-nav__item">
       <a href="40-Building_a_Form.html" class="md-nav__link">
-        Chapter 40. Building a Form
+        Chapter 40. Building a Form Programmatically
       </a>
     </li>
   
@@ -1219,7 +1219,7 @@
   
     <li class="md-nav__item">
       <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
-        Chapter 49. Extension and Document
+        Chapter 49. Extension and Document Event Macros
       </a>
     </li>
   
@@ -1443,23 +1443,10 @@
                 
                 
                 <h1 id="chapter-35-examining-base-documents">Chapter 35. Examining Base Documents</h1>
-<p>This chapter looks at programming with Base documents 
-using the XOfficeDatabaseDocument interface, which was 
-labelled with a (1) in Figure 5 of the previous chapter. </p>
-<p>Figure 1 repeats that figure but without the alternative 
-query approaches (labels (2), (3), and (4)). </p>
-<p><img alt="" src="images/35-Examining_Base_Docs-1.png" /></p>
-<p>Figure 1.  Querying a Base Document. </p>
-<p>XOfficeDatabaseDocument accesses a database via the ODB document that's 
-connected to the database. The connection can take two forms – the database can be 
-embedded inside the ODB file, or the connection can be a URL which links to an 
-external database. Most of my examples will utilize ODB files that contain embedded 
-databases. </p>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
-<p>Querying an </p>
-</div>
-<p>Embedded HSQLDB 
+<p>Querying an 
+Embedded HSQLDB 
 Database; Using 
 Metadata when 
 Querying; Debugging 
@@ -1472,9 +1459,22 @@ Relationships; Prepared
 Statements; Scrollable 
 and Updatable Result 
 Sets; Converting a 
-Database to Text 
-Example folders: "Base 
+Database to Text </p>
+<p>Example folders: "Base 
 Tests" and "Utils" </p>
+</div>
+<p>This chapter looks at programming with Base documents 
+using the XOfficeDatabaseDocument interface, which was 
+labelled with a (1) in Figure 5 of the previous chapter. </p>
+<p>Figure 1 repeats that figure but without the alternative 
+query approaches (labels (2), (3), and (4)). </p>
+<p><img alt="" src="images/35-Examining_Base_Docs-1.png" /></p>
+<p>Figure 1.  Querying a Base Document. </p>
+<p>XOfficeDatabaseDocument accesses a database via the ODB document that's 
+connected to the database. The connection can take two forms – the database can be 
+embedded inside the ODB file, or the connection can be a URL which links to an 
+external database. Most of my examples will utilize ODB files that contain embedded 
+databases. </p>
 <h2 id="1-querying-an-embedded-hsqldb-database">1.  Querying an Embedded HSQLDB Database</h2>
 <p>The following SimpleQuery.java example shows how to query a HSQLDB database 
 embedded inside an ODB file called liangTables.odb. It has three tables, called 
@@ -2747,7 +2747,7 @@ set is a different type. </p>
               <span class="md-footer__direction">
                 Next
               </span>
-              Chapter 36. Using RowSets and Database
+              Chapter 36. Using RowSets and Database Context
             </div>
           </div>
           <div class="md-footer__button md-icon">

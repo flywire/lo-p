@@ -526,7 +526,7 @@
   
     <li class="md-nav__item">
       <a href="12-Examining_DrawImpress.html" class="md-nav__link">
-        Chapter 12. Examining a Draw/Impress
+        Chapter 12. Examining a Draw/Impress Document
       </a>
     </li>
   
@@ -661,7 +661,7 @@
   
     <li class="md-nav__item">
       <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
-        Chapter 20. Spreadsheet Displaying and
+        Chapter 20. Spreadsheet Displaying and Creation
       </a>
     </li>
   
@@ -871,7 +871,7 @@
   
     <li class="md-nav__item">
       <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
-        Chapter 33. Using Charts in Other
+        Chapter 33. Using Charts in Other Documents
       </a>
     </li>
   
@@ -931,7 +931,7 @@
   
     <li class="md-nav__item">
       <a href="36-RowSets_DB_Context.html" class="md-nav__link">
-        Chapter 36. Using RowSets and Database
+        Chapter 36. Using RowSets and Database Context
       </a>
     </li>
   
@@ -961,7 +961,7 @@
   
     <li class="md-nav__item">
       <a href="38-ODB_as_Zip.html" class="md-nav__link">
-        Chapter 38. Treating an ODB File as a
+        Chapter 38. Treating an ODB File as a Zipped Folder
       </a>
     </li>
   
@@ -1006,7 +1006,7 @@
   
     <li class="md-nav__item">
       <a href="40-Building_a_Form.html" class="md-nav__link">
-        Chapter 40. Building a Form
+        Chapter 40. Building a Form Programmatically
       </a>
     </li>
   
@@ -1156,7 +1156,7 @@
   
     <li class="md-nav__item">
       <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
-        Chapter 49. Extension and Document
+        Chapter 49. Extension and Document Event Macros
       </a>
     </li>
   
@@ -1317,6 +1317,13 @@
                 
                 
                 <h1 id="chapter-8-graphic-content">Chapter 8. Graphic Content</h1>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Graphics; 
+Linked Images/Shapes </p>
+<p>Example folders: "Text 
+Tests" and "Utils" </p>
+</div>
 <p>Chapter 7 looked at several forms of text document 
 content (e.g. text frames, math formulae, text fields and 
 tables, and bookmarks), as indicated by Figure 1. However 
@@ -1335,21 +1342,15 @@ shown in Write.addImageLink(): </p>
                            XTextCursor cursor, String fnm,<br />
                            int width, int height) 
 { try { </p>
-<div class="admonition note">
-<p class="admonition-title">Topics</p>
-<p>Graphics; </p>
-</div>
-<p>Linked Images/Shapes 
-Example folders: "Text 
-Tests" and "Utils" 
-    // create TextContent for graphic 
-    XTextContent tgo = Lo.createInstanceMSF(XTextContent.class,<br />
-                             "com.sun.star.text.TextGraphicObject"); 
-    if (tgo == null) { 
-      System.out.println("Could not create a text graphic object"); 
-      return; 
-    } </p>
-<pre><code>// set anchor and URL properties 
+<pre><code>// create TextContent for graphic 
+XTextContent tgo = Lo.createInstanceMSF(XTextContent.class,  
+                         "com.sun.star.text.TextGraphicObject"); 
+if (tgo == null) { 
+  System.out.println("Could not create a text graphic object"); 
+  return; 
+}
+
+// set anchor and URL properties 
 XPropertySet props = Lo.qi( XPropertySet.class, tgo); 
 props.setPropertyValue("AnchorType",  
                        TextContentAnchorType.AS_CHARACTER); 

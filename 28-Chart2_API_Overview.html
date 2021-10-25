@@ -427,7 +427,7 @@
   
     <li class="md-nav__item">
       <a href="12-Examining_DrawImpress.html" class="md-nav__link">
-        Chapter 12. Examining a Draw/Impress
+        Chapter 12. Examining a Draw/Impress Document
       </a>
     </li>
   
@@ -562,7 +562,7 @@
   
     <li class="md-nav__item">
       <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
-        Chapter 20. Spreadsheet Displaying and
+        Chapter 20. Spreadsheet Displaying and Creation
       </a>
     </li>
   
@@ -934,7 +934,7 @@
   
     <li class="md-nav__item">
       <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
-        Chapter 33. Using Charts in Other
+        Chapter 33. Using Charts in Other Documents
       </a>
     </li>
   
@@ -994,7 +994,7 @@
   
     <li class="md-nav__item">
       <a href="36-RowSets_DB_Context.html" class="md-nav__link">
-        Chapter 36. Using RowSets and Database
+        Chapter 36. Using RowSets and Database Context
       </a>
     </li>
   
@@ -1024,7 +1024,7 @@
   
     <li class="md-nav__item">
       <a href="38-ODB_as_Zip.html" class="md-nav__link">
-        Chapter 38. Treating an ODB File as a
+        Chapter 38. Treating an ODB File as a Zipped Folder
       </a>
     </li>
   
@@ -1069,7 +1069,7 @@
   
     <li class="md-nav__item">
       <a href="40-Building_a_Form.html" class="md-nav__link">
-        Chapter 40. Building a Form
+        Chapter 40. Building a Form Programmatically
       </a>
     </li>
   
@@ -1219,7 +1219,7 @@
   
     <li class="md-nav__item">
       <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
-        Chapter 49. Extension and Document
+        Chapter 49. Extension and Document Event Macros
       </a>
     </li>
   
@@ -1443,6 +1443,22 @@
                 
                 
                 <h1 id="chapter-28-chart2-api-overview">Chapter 28. Chart2 API Overview</h1>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Charting 
+Elements; Chart 
+Creation: TableChart, 
+ChartDocument, linking 
+template, diagram, and 
+data source; Modifying 
+Chart Elements: 
+diagram, coordinate 
+system, chart type, data 
+series </p>
+<p>Example folders: 
+"Chart2 Tests" and 
+"Utils" </p>
+</div>
 <p>At over 1,600 pages the OpenOffice Developer's Guide 
 isn't a quick read, but you might expect it to cover all the 
 major parts of the Office API. That's mostly true, except 
@@ -1486,23 +1502,7 @@ Basic, is to look at the names of the chart services. The old chart names end wi
 word "Diagram" (e.g. BarDiagram, DonutDiagram, LineDiagram) whereas the chart2 
 names either end with the word "ChartType" (e.g. BarChartType, PieChartType, 
 LineChartType), or with no special word (e.g. Bar, Donut, Line). </p>
-<div class="admonition note">
-<p class="admonition-title">Topics</p>
-<p>Charting </p>
-</div>
-<p>Elements; Chart 
-Creation: TableChart, 
-ChartDocument, linking 
-template, diagram, and 
-data source; Modifying 
-Chart Elements: 
-diagram, coordinate 
-system, chart type, data 
-series 
-Example folders: 
-"Chart2 Tests" and 
-"Utils" 
-A good way to get a feel for chart2's functionality is to look at chapter 3 of Calc's user 
+<p>A good way to get a feel for chart2's functionality is to look at chapter 3 of Calc's user 
 guide, available from https://www.libreoffice.org/get-help/documentation/. It 
 describes the charting wizard, which acts as a very nice GUI for most of the chart2 
 API. The chapter also introduces a lot of charting terminology (e.g. chart types, data 
@@ -1532,88 +1532,250 @@ percentage contribution to the total. A lengthy discussion about chart variants 
 found in chapter 3 of the Calc User Guide, in the section "Gallery of Chart Types".  </p>
 <p>In the chart2 API, the variants are accessed via template names, which are listed in 
 Table 1. </p>
-<p>Chart Types Template Names 
-Column Stacked 
-Percent 
-3D 
-Column, StackedColumn, PercentStackedColumn, 
-ThreeDColumnDeep, ThreeDColumnFlat, 
-StackedThreeDColumnFlat, 
-PercentStackedThreeDColumnFlat 
-Bar Stacked 
-Percent 
-3D 
-Bar, StackedBar, PercentStackedBar, 
-ThreeDBarDeep, ThreeDBarFlat, 
-StackedThreeDBarFlat, 
-PercentStackedThreeDBarFlat 
-Pie Donut 
-Exploded 
-3D 
-Pie, Donut, 
-PieAllExploded, DonutAllExploded, 
-ThreeDPie, ThreeDPieAllExploded, 
-ThreeDDonut, ThreeDDonutAllExploded 
-Area Stacked 
-Percent 
-3D 
-Area, StackedArea, PercentStackedArea, 
-ThreeDArea, StackedThreeDArea, 
-PercentStackedThreeDArea 
-Line Symbol 
-Stacked 
-Percent 
-3D 
-Line, Symbol, LineSymbol, 
-StackedLine, StackedSymbol, StackedLineSymbol, 
-PercentStackedLine, PercentStackedSymbol, 
-PercentStackedLineSymbol, 
-ThreeDLine, ThreeDLineDeep, 
-StackedThreeDLine, PercentStackedThreeDLine 
-XY 
-(Scatter) 
-Line 
-3D 
-ScatterSymbol, ScatterLine, ScatterLineSymbol, 
-ThreeDScatter 
-Bubble  Bubble 
-Net Line 
-Symbol 
-Filled 
-Stacked 
-Percent 
-Net, NetLine, NetSymbol, FilledNet, 
-StackedNet, StackedNetLine, 
-StackedNetSymbol, StackedFilledNet, 
-PercentStackedNet, PercentStackedNetLine, 
-PercentStackedNetSymbol, 
-PercentStackedFilledNet 
-Stock Open 
-Volume 
-StockLowHighClose, 
-StockOpenLowHighClose, 
-StockVolumeLowHighClose, 
-StockVolumeOpenLowHighClose 
-Column 
-and Line 
-Stacked ColumnWithLine, StackedColumnWithLine 
-Table 1. Chart Types and Template Names. </p>
+<table>
+<thead>
+<tr>
+<th>Chart</th>
+<th>Types</th>
+<th>Template Names</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Column</td>
+<td>Stacked</td>
+<td>Column, StackedColumn, PercentStackedColumn,</td>
+</tr>
+<tr>
+<td></td>
+<td>Percent</td>
+<td>ThreeDColumnDeep, ThreeDColumnFlat,</td>
+</tr>
+<tr>
+<td></td>
+<td>3D</td>
+<td>StackedThreeDColumnFlat,</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>PercentStackedThreeDColumnFlat</td>
+</tr>
+<tr>
+<td>Bar</td>
+<td>Stacked</td>
+<td>Bar, StackedBar, PercentStackedBar,</td>
+</tr>
+<tr>
+<td></td>
+<td>Percent</td>
+<td>ThreeDBarDeep, ThreeDBarFlat,</td>
+</tr>
+<tr>
+<td></td>
+<td>3D</td>
+<td>StackedThreeDBarFlat,</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>PercentStackedThreeDBarFlat</td>
+</tr>
+<tr>
+<td>Pie</td>
+<td>Donut</td>
+<td>Pie, Donut,</td>
+</tr>
+<tr>
+<td></td>
+<td>Explode</td>
+<td>PieAllExploded, DonutAllExploded,</td>
+</tr>
+<tr>
+<td></td>
+<td>3D</td>
+<td>ThreeDPie, ThreeDPieAllExploded,</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>ThreeDDonut, ThreeDDonutAllExploded</td>
+</tr>
+<tr>
+<td>Area</td>
+<td>Stacked</td>
+<td>Area, StackedArea, PercentStackedArea,</td>
+</tr>
+<tr>
+<td></td>
+<td>Percent</td>
+<td>ThreeDArea, StackedThreeDArea,</td>
+</tr>
+<tr>
+<td></td>
+<td>3D</td>
+<td>PercentStackedThreeDArea</td>
+</tr>
+<tr>
+<td>Line</td>
+<td>Symbol</td>
+<td>Line, Symbol, LineSymbol,</td>
+</tr>
+<tr>
+<td></td>
+<td>Stacked</td>
+<td>StackedLine, StackedSymbol, StackedLineSymbol,</td>
+</tr>
+<tr>
+<td></td>
+<td>Percent</td>
+<td>PercentStackedLine, PercentStackedSymbol,</td>
+</tr>
+<tr>
+<td></td>
+<td>3D</td>
+<td>PercentStackedLineSymbol,</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>ThreeDLine, ThreeDLineDeep,</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>StackedThreeDLine, PercentStackedThreeDLine</td>
+</tr>
+<tr>
+<td>XY</td>
+<td>Line</td>
+<td>ScatterSymbol, ScatterLine, ScatterLineSymbol,</td>
+</tr>
+<tr>
+<td>(Scatter)</td>
+<td>3D</td>
+<td>ThreeDScatter</td>
+</tr>
+<tr>
+<td>Bubble</td>
+<td></td>
+<td>Bubble</td>
+</tr>
+<tr>
+<td>Net</td>
+<td>Line</td>
+<td>Net, NetLine, NetSymbol, FilledNet,</td>
+</tr>
+<tr>
+<td></td>
+<td>Symbol</td>
+<td>StackedNet, StackedNetLine,</td>
+</tr>
+<tr>
+<td></td>
+<td>Filled</td>
+<td>StackedNetSymbol, StackedFilledNet,</td>
+</tr>
+<tr>
+<td></td>
+<td>Stacked</td>
+<td>PercentStackedNet, PercentStackedNetLine,</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>PercentStackedNetSymbol,</td>
+</tr>
+<tr>
+<td></td>
+<td>Percent</td>
+<td>PercentStackedFilledNet</td>
+</tr>
+<tr>
+<td>Stock</td>
+<td>Open</td>
+<td>StockLowHighClose,</td>
+</tr>
+<tr>
+<td></td>
+<td>Volume</td>
+<td>StockOpenLowHighClose,</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>StockVolumeLowHighClose,</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>StockVolumeOpenLowHighClose</td>
+</tr>
+<tr>
+<td>Column</td>
+<td>Stacked</td>
+<td>ColumnWithLine, StackedColumnWithLine</td>
+</tr>
+<tr>
+<td>and Line</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Table 1. Chart Types and Template Names. </p>
 <p>The templates I'll be using are highlighted in bold in Table 1. </p>
 <p>The template names are closely related to the tooltip names in Calc's chart wizard. For 
 example, the tooltip name in Figure 3 corresponds to the "PercentStackedColumn" 
 template. </p>
 <p>It's also possible to create a chart using a chart type name, which are listed in Table 2. </p>
-<p>Chart Chart Type Names 
-Column ColumnChartType 
-Bar BarChartType 
-Pie PieChartType 
-Area AreaChartType 
-Line LineChartType 
-XY (Scatter) ScatterChartType 
-Bubble BubbleChartType 
-Net NetChartType, FilledNetChartType 
-Stock CandleStickChartType 
-Table 2. Chart Type Names. </p>
+<table>
+<thead>
+<tr>
+<th>Chart</th>
+<th>Chart Type Names</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Column</td>
+<td>ColumnChartType</td>
+</tr>
+<tr>
+<td>Bar</td>
+<td>BarChartType</td>
+</tr>
+<tr>
+<td>Pie</td>
+<td>PieChartType</td>
+</tr>
+<tr>
+<td>Area</td>
+<td>AreaChartType</td>
+</tr>
+<tr>
+<td>Line</td>
+<td>LineChartType</td>
+</tr>
+<tr>
+<td>XY</td>
+<td>(Scatter) ScatterChartType</td>
+</tr>
+<tr>
+<td>Bubble</td>
+<td>BubbleChartType</td>
+</tr>
+<tr>
+<td>Net</td>
+<td>NetChartType, FilledNetChartType</td>
+</tr>
+<tr>
+<td>Stock</td>
+<td>CandleStickChartType</td>
+</tr>
+</tbody>
+</table>
+<p>Table 2. Chart Type Names. </p>
 <p>Note that a stock chart graph is drawn using a CandleStickChartType, and that there's 
 no type name for a column and line chart because it's implemented as a combination 
 of ColumnChartType and BarChartType. </p>

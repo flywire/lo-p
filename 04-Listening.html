@@ -500,7 +500,7 @@
   
     <li class="md-nav__item">
       <a href="12-Examining_DrawImpress.html" class="md-nav__link">
-        Chapter 12. Examining a Draw/Impress
+        Chapter 12. Examining a Draw/Impress Document
       </a>
     </li>
   
@@ -635,7 +635,7 @@
   
     <li class="md-nav__item">
       <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
-        Chapter 20. Spreadsheet Displaying and
+        Chapter 20. Spreadsheet Displaying and Creation
       </a>
     </li>
   
@@ -845,7 +845,7 @@
   
     <li class="md-nav__item">
       <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
-        Chapter 33. Using Charts in Other
+        Chapter 33. Using Charts in Other Documents
       </a>
     </li>
   
@@ -905,7 +905,7 @@
   
     <li class="md-nav__item">
       <a href="36-RowSets_DB_Context.html" class="md-nav__link">
-        Chapter 36. Using RowSets and Database
+        Chapter 36. Using RowSets and Database Context
       </a>
     </li>
   
@@ -935,7 +935,7 @@
   
     <li class="md-nav__item">
       <a href="38-ODB_as_Zip.html" class="md-nav__link">
-        Chapter 38. Treating an ODB File as a
+        Chapter 38. Treating an ODB File as a Zipped Folder
       </a>
     </li>
   
@@ -980,7 +980,7 @@
   
     <li class="md-nav__item">
       <a href="40-Building_a_Form.html" class="md-nav__link">
-        Chapter 40. Building a Form
+        Chapter 40. Building a Form Programmatically
       </a>
     </li>
   
@@ -1130,7 +1130,7 @@
   
     <li class="md-nav__item">
       <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
-        Chapter 49. Extension and Document
+        Chapter 49. Extension and Document Event Macros
       </a>
     </li>
   
@@ -1265,361 +1265,397 @@
                 
                 
                 <h1 id="chapter-4-listening-and-other-techniques">Chapter 4. Listening, and Other Techniques</h1>
-<p>This chapter concludes the general introduction to Office 
-programming by looking at several techniques that will 
-reappear periodically in later chapters: the use of window 
-listeners, the manipulation of Office using the JNA library, 
-dispatching messages to the Office GUI, and the Java 
-Robot package.   </p>
-<p>Once again the examples come from the "Office Tests" directory in the code 
-download associated with this book, and make liberal use of the classes in the "Utils" 
-directory. For details please visit http://fivedots.coe.psu.ac.th/~ad/jlop/. </p>
-<h2 id="1-listening-to-a-window">1.  Listening to a Window</h2>
-<p>I haven't previously mentioned Office's listener interfaces (there are about 140 of 
-them), because they work in the same way as listeners in Java. </p>
-<p>Probably the easiest way of obtaining a list of them all is to visit the LibreOffice 
-documentation for XEventListener (use lodoc XEventListener). The tree diagram 
-at the top of the page shows that every listener interface is a subclass of 
-XEventListener, and you can click on a subclass box to jump to its documentation.  </p>
-<p>One nice syntactic feature of listeners is that almost all their names end with 
-“Listener”. This makes them easy to find when searching through indices of class 
-names, such as the “Class Index” page at 
-http://api.libreoffice.org/docs/idl/ref/classes.html. </p>
-<p>The top-level document window can be monitored for changes using 
-XTopWindowListener, which responds to modifications of the window’s state, such 
-as when it is opened, closed, minimized, and made active.  </p>
-<p>The DocWindow.java example illustrates how to use the listener: </p>
-<p>public class DocWindow implements XTopWindowListener 
-{ </p>
-<p>public DocWindow(String fnm) 
-  { 
-    XComponentLoader loader = Lo.loadOffice(); </p>
-<pre><code>XExtendedToolkit tk = Lo.createInstanceMCF( 
-            XExtendedToolkit.class, "com.sun.star.awt.Toolkit"); 
-if (tk != null) 
-  tk.addTopWindowListener(this);
-
-XComponent doc = Lo.openDoc(fnm, loader); 
-if (doc == null) { 
-  System.out.println("Could not open " + fnm); 
-  Lo.closeOffice();
-</code></pre>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
-<p>Window </p>
+<p>Window
+Listeners; Office
+Manipulation with JNA;
+Dispatching; Robot
+Keys</p>
+<p>Example folders: "Office
+Tests" and "Utils"</p>
 </div>
-<p>Listeners; Office 
-Manipulation with JNA; 
-Dispatching; Robot 
-Keys 
-Example folders: "Office 
-Tests" and "Utils" 
-      return; 
-    } </p>
-<pre><code>GUI.setVisible(doc, true);
+<p>This chapter concludes the general introduction to Office
+programming by looking at several techniques that will
+reappear periodically in later chapters: the use of window
+listeners, the manipulation of Office using the JNA library,
+dispatching messages to the Office GUI, and the Java
+Robot package.</p>
+<p>Once again the examples come from the "Office Tests" directory in the code
+download associated with this book, and make liberal use of the classes in the "Utils"
+directory. For details please visit http://fivedots.coe.psu.ac.th/~ad/jlop/.</p>
+<h2 id="1-listening-to-a-window">1.  Listening to a Window</h2>
+<p>I haven't previously mentioned Office's listener interfaces (there are about 140 of
+them), because they work in the same way as listeners in Java.</p>
+<p>Probably the easiest way of obtaining a list of them all is to visit the LibreOffice
+documentation for XEventListener (use lodoc XEventListener). The tree diagram
+at the top of the page shows that every listener interface is a subclass of
+XEventListener, and you can click on a subclass box to jump to its documentation.</p>
+<p>One nice syntactic feature of listeners is that almost all their names end with
+“Listener”. This makes them easy to find when searching through indices of class
+names, such as the “Class Index” page at
+http://api.libreoffice.org/docs/idl/ref/classes.html.</p>
+<p>The top-level document window can be monitored for changes using
+XTopWindowListener, which responds to modifications of the window’s state, such
+as when it is opened, closed, minimized, and made active.</p>
+<p>The DocWindow.java example illustrates how to use the listener:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DocWindow</span> <span class="kd">implements</span> <span class="n">XTopWindowListener</span>
+<span class="p">{</span>
 
- // various window manipulation code; see below 
- //     :
+  <span class="kd">public</span> <span class="nf">DocWindow</span><span class="p">(</span><span class="n">String</span> <span class="n">fnm</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
 
-Lo.closeDoc(doc);  
-Lo.closeOffice();
-</code></pre>
-<p>} // end of DocWindow() </p>
-<p>// --------- 7 XTopWindowListener methods ----------- </p>
-<p>public void windowOpened(EventObject event)<br />
-  {<br />
-    System.out.println("WL: Opened"); <br />
-    XWindow xWin = Lo.qi(XWindow.class, event.Source); 
-    GUI.printRect( xWin.getPosSize()); <br />
-  }  // end of windowOpened() </p>
-<p>public void windowActivated(EventObject event) 
-  { System.out.println("WL: Activated"); <br />
-    System.out.println("  Title bar: \"" + GUI.getTitleBar() + "\""); 
-  }  // end of windowActivated() </p>
-<p>public void windowMinimized(EventObject event) 
-  { System.out.println("WL: Minimized");  } </p>
-<p>public void windowNormalized(EventObject event) 
-  { System.out.println("WL: Normalized");  } </p>
-<p>public void windowDeactivated(EventObject event) 
-  { System.out.println("WL: De-activated");  } </p>
-<p>public void windowClosing(EventObject event) // never called (?) 
-  { System.out.println("WL: Closing");  } </p>
-<p>public void windowClosed(EventObject event) 
-  { System.out.println("WL: Closed");  } </p>
-<p>// --------- XEventListener method ------------ </p>
-<p>public void disposing(EventObject event)   // never called (?) 
-  { System.out.println("WL: Disposing");  } </p>
-<p>}  // end of DocWindow class </p>
-<p>The class implements seven methods for XTopWindowListener, and disposing() 
-inherited from XEventListener. </p>
-<p>The DocWindow object is made the listener for the window by accessing the 
-XExtendedToolkit interface, which is part of the Toolkit service. Toolkit is utilized by 
-Office to create windows, and XExtendedToolkit adds three kinds of listeners: 
-XTopWindowListener, XFocusListener, and the XKeyHandler listener. </p>
-<p>When an event arrives at a listener method, one of the more useful things to do is to 
-transform it into an XWindow instance: 
-XWindow xWin = Lo.qi(XWindow.class, event.Source); 
-It's then possible to access details about the frame, such as its size. </p>
-<p>Events are fired when GUI.setVisible() is called in the DocWindow() constructor. An 
-opened event is issued, followed by an activated event, triggering calls to 
-windowOpened() and windowActivated(). Rather confusingly, both these methods are 
-called twice. </p>
-<p>When Lo.closeDoc() is called at the end of the constructor, a single de-activated event 
-is fired, but two closed events are issued. Consequently, there's a single call to 
-windowDeactivated() and two to windowClosed(). Strangely, there's no window 
-closing event trigger of windowClosing(), and Lo.closeOffice() doesn't cause 
-disposing() to fire. </p>
+    <span class="n">XExtendedToolkit</span> <span class="n">tk</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span>
+                <span class="n">XExtendedToolkit</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="s">&quot;com.sun.star.awt.Toolkit&quot;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">tk</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+      <span class="n">tk</span><span class="p">.</span><span class="na">addTopWindowListener</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+    <span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">openDoc</span><span class="p">(</span><span class="n">fnm</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">doc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not open &quot;</span> <span class="o">+</span> <span class="n">fnm</span><span class="p">);</span>
+      <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">GUI</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+     <span class="c1">// various window manipulation code; see below</span>
+     <span class="c1">//     :</span>
+
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+  <span class="p">}</span> <span class="c1">// end of DocWindow()</span>
+
+
+
+  <span class="c1">// --------- 7 XTopWindowListener methods -----------</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">windowOpened</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">event</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;WL: Opened&quot;</span><span class="p">);</span>
+    <span class="n">XWindow</span> <span class="n">xWin</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XWindow</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="na">Source</span><span class="p">);</span>
+    <span class="n">GUI</span><span class="p">.</span><span class="na">printRect</span><span class="p">(</span> <span class="n">xWin</span><span class="p">.</span><span class="na">getPosSize</span><span class="p">());</span>
+  <span class="p">}</span>  <span class="c1">// end of windowOpened()</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">windowActivated</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">event</span><span class="p">)</span>
+  <span class="p">{</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;WL: Activated&quot;</span><span class="p">);</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  Title bar: \&quot;&quot;</span> <span class="o">+</span> <span class="n">GUI</span><span class="p">.</span><span class="na">getTitleBar</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>
+  <span class="p">}</span>  <span class="c1">// end of windowActivated()</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">windowMinimized</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">event</span><span class="p">)</span>
+  <span class="p">{</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;WL: Minimized&quot;</span><span class="p">);</span>  <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">windowNormalized</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">event</span><span class="p">)</span>
+  <span class="p">{</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;WL: Normalized&quot;</span><span class="p">);</span>  <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">windowDeactivated</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">event</span><span class="p">)</span>
+  <span class="p">{</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;WL: De-activated&quot;</span><span class="p">);</span>  <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">windowClosing</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">event</span><span class="p">)</span> <span class="c1">// never called (?)</span>
+  <span class="p">{</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;WL: Closing&quot;</span><span class="p">);</span>  <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">windowClosed</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">event</span><span class="p">)</span>
+  <span class="p">{</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;WL: Closed&quot;</span><span class="p">);</span>  <span class="p">}</span>
+
+  <span class="c1">// --------- XEventListener method ------------</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">disposing</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">event</span><span class="p">)</span>   <span class="c1">// never called (?)</span>
+  <span class="p">{</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;WL: Disposing&quot;</span><span class="p">);</span>  <span class="p">}</span>
+
+<span class="p">}</span>  <span class="c1">// end of DocWindow class</span>
+</code></pre></div>
+<p>The class implements seven methods for XTopWindowListener, and disposing()
+inherited from XEventListener.</p>
+<p>The DocWindow object is made the listener for the window by accessing the
+XExtendedToolkit interface, which is part of the Toolkit service. Toolkit is utilized by
+Office to create windows, and XExtendedToolkit adds three kinds of listeners:
+XTopWindowListener, XFocusListener, and the XKeyHandler listener.</p>
+<p>When an event arrives at a listener method, one of the more useful things to do is to
+transform it into an XWindow instance:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XWindow</span> <span class="n">xWin</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XWindow</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">event</span><span class="p">.</span><span class="na">Source</span><span class="p">);</span>
+</code></pre></div>
+<p>It's then possible to access details about the frame, such as its size.</p>
+<p>Events are fired when GUI.setVisible() is called in the DocWindow() constructor. An
+opened event is issued, followed by an activated event, triggering calls to
+windowOpened() and windowActivated(). Rather confusingly, both these methods are
+called twice.</p>
+<p>When Lo.closeDoc() is called at the end of the constructor, a single de-activated event
+is fired, but two closed events are issued. Consequently, there's a single call to
+windowDeactivated() and two to windowClosed(). Strangely, there's no window
+closing event trigger of windowClosing(), and Lo.closeOffice() doesn't cause
+disposing() to fire.</p>
 <h2 id="2-office-manipulation-with-jna">2.  Office Manipulation with JNA</h2>
-<p>Although XTopWindowListener can detect the minimization and re-activation of the 
-document window, there's no way to trigger these changes from the Office API.  </p>
-<p>Fixing this requires a trip outside Office because I need a library that can manipulate a 
-window controlled by the OS. One very nice API that fits my needs is Java Native 
-Access (JNA, https://github.com/twall/jna), which supports OS programming without 
-writing anything but Java. JNA comes with numerous classes, representing OS data 
-structures, such as window handles and process IDs. </p>
-<p>The JNA-powered methods in my JNAUtils.java utilities class fall roughly into three 
-groups: functions for accessing windows via their handles, methods for accessing 
-buttons inside windows via their handles, and functions that map between handles and 
-process IDs.  </p>
-<p>In the DocWindow.java example, the document window’s handle is retrieved first, 
-then minimization and re-activation methods change the window: </p>
-<p>// part of DocWindow.java 
-HWND handle = JNAUtils.getHandle(); 
-System.out.println("Handle: \"" +<br />
-                       JNAUtils.handleString(handle) + "\""); </p>
-<p>JNAUtils.winMinimize(handle); <br />
-                  // triggers minimized and de-activated events 
-Lo.delay(3000); </p>
-<p>JNAUtils.winRestore(handle); <br />
-                 // triggers normalized and activated events 
-Lo.delay(3000); </p>
-<p>The calls to Lo.delay() slow down the window changes at run time so the user can see 
-what's happening. </p>
-<p>JNAUtils.getHandle() employs JNA's User32 library function FindWindow(). It finds 
-the handle associated with a specific application window's class name, which is 
-"SALFRAME" for both LibreOffice and OpenOffice. JNAUtils.handleString() 
-converts the HWND handle into a hexadecimal string, which prints nicely. </p>
-<p>JNAUtils.winMinimize() and JNAUtils.winRestore() call User32.ShowWindow() 
-with different state parameters.  </p>
-<p>The JNA User32 class contains many functions related to window manipulation. For 
-example, it's easy to implement window movement and resizing using 
-SetWindowPos(). However, that functionality is already available in Office's 
-XWindow.setPosSize().  </p>
-<p>Incidentally, it's possible for Office to access a window’s handle as an integer by 
-means of XSystemDependentWindowPeer (e.g. see the code in 
-GUI.getWindowHandle()), but there are no Office methods which utilize this integer. </p>
-<p>JNA methods require a HWND instance, so the handle needs to be obtained using 
-JNA.  </p>
+<p>Although XTopWindowListener can detect the minimization and re-activation of the
+document window, there's no way to trigger these changes from the Office API.</p>
+<p>Fixing this requires a trip outside Office because I need a library that can manipulate a
+window controlled by the OS. One very nice API that fits my needs is Java Native
+Access (JNA, https://github.com/twall/jna), which supports OS programming without
+writing anything but Java. JNA comes with numerous classes, representing OS data
+structures, such as window handles and process IDs.</p>
+<p>The JNA-powered methods in my JNAUtils.java utilities class fall roughly into three
+groups: functions for accessing windows via their handles, methods for accessing
+buttons inside windows via their handles, and functions that map between handles and
+process IDs.</p>
+<p>In the DocWindow.java example, the document window’s handle is retrieved first,
+then minimization and re-activation methods change the window:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of DocWindow.java</span>
+<span class="n">HWND</span> <span class="n">handle</span> <span class="o">=</span> <span class="n">JNAUtils</span><span class="p">.</span><span class="na">getHandle</span><span class="p">();</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Handle: \&quot;&quot;</span> <span class="o">+</span>
+                       <span class="n">JNAUtils</span><span class="p">.</span><span class="na">handleString</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>
+
+<span class="n">JNAUtils</span><span class="p">.</span><span class="na">winMinimize</span><span class="p">(</span><span class="n">handle</span><span class="p">);</span>
+                  <span class="c1">// triggers minimized and de-activated events</span>
+<span class="n">Lo</span><span class="p">.</span><span class="na">delay</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
+
+<span class="n">JNAUtils</span><span class="p">.</span><span class="na">winRestore</span><span class="p">(</span><span class="n">handle</span><span class="p">);</span>
+                 <span class="c1">// triggers normalized and activated events</span>
+<span class="n">Lo</span><span class="p">.</span><span class="na">delay</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
+</code></pre></div>
+<p>The calls to Lo.delay() slow down the window changes at run time so the user can see
+what's happening.</p>
+<p>JNAUtils.getHandle() employs JNA's User32 library function FindWindow(). It finds
+the handle associated with a specific application window's class name, which is
+"SALFRAME" for both LibreOffice and OpenOffice. JNAUtils.handleString()
+converts the HWND handle into a hexadecimal string, which prints nicely.</p>
+<p>JNAUtils.winMinimize() and JNAUtils.winRestore() call User32.ShowWindow()
+with different state parameters.</p>
+<p>The JNA User32 class contains many functions related to window manipulation. For
+example, it's easy to implement window movement and resizing using
+SetWindowPos(). However, that functionality is already available in Office's
+XWindow.setPosSize().</p>
+<p>Incidentally, it's possible for Office to access a window’s handle as an integer by
+means of XSystemDependentWindowPeer (e.g. see the code in
+GUI.getWindowHandle()), but there are no Office methods which utilize this integer.</p>
+<p>JNA methods require a HWND instance, so the handle needs to be obtained using
+JNA.</p>
 <h2 id="3-detecting-office-termination">3.  Detecting Office Termination</h2>
-<p>Office termination is most easily observed by attaching a listener to the Desktop 
-object, as in DocMonitor.java: </p>
-<p>public class DocMonitor 
-{ 
-  public DocMonitor(String fnm) 
-  { 
-    XComponentLoader loader = Lo.loadOffice();    </p>
-<pre><code>XDesktop xDesktop = Lo.getDesktop(); 
-xDesktop.addTerminateListener( new XTerminateListener() 
-{ 
-   public void queryTermination(EventObject e)  
-                            throws TerminationVetoException 
-   {  System.out.println("TL: Starting Closing");   }
+<p>Office termination is most easily observed by attaching a listener to the Desktop
+object, as in DocMonitor.java:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DocMonitor</span>
+<span class="p">{</span>
+  <span class="kd">public</span> <span class="nf">DocMonitor</span><span class="p">(</span><span class="n">String</span> <span class="n">fnm</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
 
-   public void notifyTermination(EventObject e) 
-   {  System.out.println("TL: Finished Closing"); }
+    <span class="n">XDesktop</span> <span class="n">xDesktop</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">getDesktop</span><span class="p">();</span>
+    <span class="n">xDesktop</span><span class="p">.</span><span class="na">addTerminateListener</span><span class="p">(</span> <span class="k">new</span> <span class="n">XTerminateListener</span><span class="p">()</span>
+    <span class="p">{</span>
+       <span class="kd">public</span> <span class="kt">void</span> <span class="nf">queryTermination</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">e</span><span class="p">)</span>
+                                <span class="kd">throws</span> <span class="n">TerminationVetoException</span>
+       <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;TL: Starting Closing&quot;</span><span class="p">);</span>   <span class="p">}</span>
 
-   public void disposing(EventObject e)  
-   {  System.out.println("TL: Disposing");  } 
-});
+       <span class="kd">public</span> <span class="kt">void</span> <span class="nf">notifyTermination</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">e</span><span class="p">)</span>
+       <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;TL: Finished Closing&quot;</span><span class="p">);</span> <span class="p">}</span>
 
-XComponent doc = Lo.openDoc(fnm, loader); 
-if (doc == null) { 
-  System.out.println("Could not open " + fnm); 
-  Lo.closeOffice(); 
-  return; 
-}
+       <span class="kd">public</span> <span class="kt">void</span> <span class="nf">disposing</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">e</span><span class="p">)</span>
+       <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;TL: Disposing&quot;</span><span class="p">);</span>  <span class="p">}</span>
+    <span class="p">});</span>
 
-GUI.setVisible(doc, true);
+    <span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">openDoc</span><span class="p">(</span><span class="n">fnm</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">doc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not open &quot;</span> <span class="o">+</span> <span class="n">fnm</span><span class="p">);</span>
+      <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
 
-System.out.println("Waiting for 5 secs before closing doc…"); 
-Lo.delay(5000); 
-Lo.closeDoc(doc);
+    <span class="n">GUI</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
 
-System.out.println("Waiting for 5 secs before closing Office…"); 
-Lo.delay(5000); 
-Lo.closeOffice();
-</code></pre>
-<p>}  // end of DocMonitor() 
-} </p>
-<p>An XTerminateListener is attached to the XDesktop instance. The program's output 
-is: </p>
-<blockquote>
-<p>run DocMonitor algs.odp 
-Loading Office... </p>
-</blockquote>
-<p>Opening algs.odp 
-Waiting for 5 secs before closing doc... </p>
-<p>Closing the document 
-Waiting for 5 secs before closing Office... </p>
-<p>Closing Office 
-TL: Starting Closing 
-TL: Finished Closing 
-Office terminated </p>
-<p>XTerminateListener’s queryTermination() and notifyTermination() are called at the 
-start and end of the Office closing sequence. As in the DocWindow.java example, 
-disposing() is never triggered. </p>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Waiting for 5 secs before closing doc…&quot;</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">delay</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Waiting for 5 secs before closing Office…&quot;</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">delay</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+  <span class="p">}</span>  <span class="c1">// end of DocMonitor()</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>An XTerminateListener is attached to the XDesktop instance. The program's output
+is:</p>
+<div class="highlight"><pre><span></span><code>&gt; run DocMonitor algs.odp
+Loading Office...
+
+Opening algs.odp
+Waiting for 5 secs before closing doc...
+
+Closing the document
+Waiting for 5 secs before closing Office...
+
+Closing Office
+TL: Starting Closing
+TL: Finished Closing
+Office terminated
+</code></pre></div>
+<p>XTerminateListener’s queryTermination() and notifyTermination() are called at the
+start and end of the Office closing sequence. As in the DocWindow.java example,
+disposing() is never triggered.</p>
 <h2 id="4-bridge-shutdown-detection">4.  Bridge Shutdown Detection</h2>
-<p>There's another way to detect Office closure: by listening for the shutdown of the 
-UNO bridge between the Java and Office processes. This can be useful if Office 
-crashes independently of your Java code. However, I was only able to get this 
-approach to work when using a socket-based link to Office. </p>
-<p>The modified parts of DocMonitor.java are: </p>
-<p>// in DocMonitor() 
-XComponentLoader loader = // Lo.loadOffice(); <br />
-                          Lo.loadSocketOffice(); 
-     :  // more code </p>
-<p>XComponent bridgeComp = Lo.getBridge(); 
-if (bridgeComp != null) { 
-  System.out.println("Found bridge"); 
-  bridgeComp.addEventListener( new XEventListener() 
-  { 
-    public void disposing(EventObject e) 
-    { /<em> remote bridge has gone down, because 
-         office crashed or was terminated. </em>/ 
-      System.out.println("Office bridge has gone!!"); 
-      System.exit(1); 
-    } 
-  }); 
-} </p>
-<p>XComponent doc = Lo.openDoc(fnm, loader); 
-     :   // more code </p>
-<p>Since the disappearance of the Office bridge is a fatal event, disposing() finishes by 
-calling System.exit() to kill Java. </p>
-<p>The output of the revised DocMonitor.java is: </p>
-<blockquote>
-<p>run DocMonitor algs.odp 
-Loading Office... </p>
-</blockquote>
-<p>Office process created 
-Found bridge 
-Opening algs.odp 
-Waiting for 5 secs before closing doc... </p>
-<p>Closing the document 
-Waiting for 5 secs before closing Office... </p>
-<p>Closing Office 
-TL: Starting Closing 
-TL: Finished Closing 
-Office terminated 
-Office bridge has gone!! </p>
-<p>This output shows that bridge closure follows the call to Lo.closeOffice(), as you'd 
-expect. However, if I make Office crash while DocMonitor is running, then the output 
-becomes: </p>
-<blockquote>
-<p>run DocMonitor algs.odp 
-Loading Office... </p>
-</blockquote>
-<p>Office process created 
-Found bridge 
-Opening algs.odp 
-Waiting for 5 secs before closing doc... </p>
-<p>Office bridge has gone!! </p>
-<p>I killed Office while the Java program was still running, so it never reached its 
-Lo.closeOffice() call which triggers the XTerminateListener methods. However, the 
-XEventListener attached to the bridge did fire. (If you're wondering, I killed Office by 
-opening the Task manager on my test machine, and stopped the soffice process.) </p>
+<p>There's another way to detect Office closure: by listening for the shutdown of the
+UNO bridge between the Java and Office processes. This can be useful if Office
+crashes independently of your Java code. However, I was only able to get this
+approach to work when using a socket-based link to Office.</p>
+<p>The modified parts of DocMonitor.java are:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in DocMonitor()</span>
+<span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="c1">// Lo.loadOffice();</span>
+                          <span class="n">Lo</span><span class="p">.</span><span class="na">loadSocketOffice</span><span class="p">();</span>
+     <span class="p">:</span>  <span class="c1">// more code</span>
+
+<span class="n">XComponent</span> <span class="n">bridgeComp</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">getBridge</span><span class="p">();</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">bridgeComp</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Found bridge&quot;</span><span class="p">);</span>
+  <span class="n">bridgeComp</span><span class="p">.</span><span class="na">addEventListener</span><span class="p">(</span> <span class="k">new</span> <span class="n">XEventListener</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">disposing</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">e</span><span class="p">)</span>
+    <span class="p">{</span> <span class="cm">/* remote bridge has gone down, because</span>
+<span class="cm">         office crashed or was terminated. */</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Office bridge has gone!!&quot;</span><span class="p">);</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">openDoc</span><span class="p">(</span><span class="n">fnm</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>
+     <span class="p">:</span>   <span class="c1">// more code</span>
+</code></pre></div>
+<p>Since the disappearance of the Office bridge is a fatal event, disposing() finishes by
+calling System.exit() to kill Java.</p>
+<p>The output of the revised DocMonitor.java is:</p>
+<div class="highlight"><pre><span></span><code>&gt; run DocMonitor algs.odp
+Loading Office...
+
+Office process created
+Found bridge
+Opening algs.odp
+Waiting for 5 secs before closing doc...
+
+Closing the document
+Waiting for 5 secs before closing Office...
+
+Closing Office
+TL: Starting Closing
+TL: Finished Closing
+Office terminated
+Office bridge has gone!!
+</code></pre></div>
+<p>This output shows that bridge closure follows the call to Lo.closeOffice(), as you'd
+expect. However, if I make Office crash while DocMonitor is running, then the output
+becomes:</p>
+<div class="highlight"><pre><span></span><code>&gt; run DocMonitor algs.odp
+Loading Office...
+
+Office process created
+Found bridge
+Opening algs.odp
+Waiting for 5 secs before closing doc...
+
+Office bridge has gone!!
+</code></pre></div>
+<p>I killed Office while the Java program was still running, so it never reached its
+Lo.closeOffice() call which triggers the XTerminateListener methods. However, the
+XEventListener attached to the bridge did fire. (If you're wondering, I killed Office by
+opening the Task manager on my test machine, and stopped the soffice process.)</p>
 <h2 id="5-dispatching">5.  Dispatching</h2>
-<p>This book is about the Java Office API, which manipulates UNO data structures such 
-as services, interfaces, and components. There's an alternative programming style, 
-based on the dispatching of messages to Office. These messages are mostly related to 
-menu items, so, for example, the messages ".uno:Copy", ".uno:Cut", ".uno:Paste", and 
-".uno:Undo" duplicate commands in the "Edit" menu. The use of messages tends to be 
-most common when writing macros (scripts) in Basic, because Office's built-in Macro 
-recorder automatically converts a user's interaction with menus into dispatches. </p>
-<p>One drawback of dispatching is that it isn't a complete programming solution. For 
-instance, copying requires the selection of text, which has to be implemented with the 
-Office API.  </p>
-<p>LibreOffice has a comprehensive webpage listing all the dispatch commands 
-(https://wiki.documentfoundation.org/Development/DispatchCommands). An older 
-source is the UICommands.ods spreadsheet, put together by Ariel Constenla-Haile in 
-2010, at https://arielch.fedorapeople.org/devel/ooo/UICommands.ods.   </p>
-<p>Another resource is chapter 10 of "OpenOffice.org Macros Explained" by Andrew 
-Pitonyak (free online at http://www.pitonyak.org/book/)<br />
-Creating a dispatcher in Java is a little complicated since XDispatchProvider and 
-XDispatchHelper instances are needed. XDispatchProvider is obtained from the frame 
-(i.e. window) where the message will be delivered, which is almost always the 
-Desktop's frame (i.e. Office application's window). XDispatchHelper sends the 
-message via its executeDispatch() method. It's also possible to examine the result 
-status in an DispatchResultEvent object, but that seems a bit flakey – it reports failure 
-when the dispatch works, and raises an exception when the dispatch really fails. </p>
-<p>The code is wrapped up in Lo.dispatchCmd() , which is called twice in the 
-DispatchTest.java example: </p>
-<p>public DispatchTest(String fnm) 
-{ 
-  XComponentLoader loader = Lo.loadOffice();    </p>
-<p>XComponent doc = Lo.openDoc(fnm, loader); 
-  if (doc == null) { 
-    System.out.println("Could not open " + fnm); 
-    Lo.closeOffice(); 
-    return; 
-  } </p>
-<p>GUI.setVisible(doc, true); 
-  Lo.delay(100); 
-  toggleSlidePane(); </p>
-<p>Lo.dispatchCmd("HelpIndex");     // show online Help </p>
-<p>Lo.dispatchCmd("Presentation");  // start slideshow </p>
-<p>//Lo.closeDoc(doc); 
-  //Lo.closeOffice(); 
-}  // end of DispatchTest() </p>
-<p>The Lo.dispatchCmd() string doesn't require an ".uno"" prefix. The first call sends 
-".uno:HelpIndex" to open Office's help window, and the second (".uno:Presentation") 
-starts an Impress slideshow. This latter message only works if the loaded file is an 
-Impress document. </p>
-<p>DispatchTest() doesn't close the document or Office at the end, so the user must 
-explicitly exit the slideshow and close the Office application himself by clicking on 
-its close box.  </p>
+<p>This book is about the Java Office API, which manipulates UNO data structures such
+as services, interfaces, and components. There's an alternative programming style,
+based on the dispatching of messages to Office. These messages are mostly related to
+menu items, so, for example, the messages ".uno:Copy", ".uno:Cut", ".uno:Paste", and
+".uno:Undo" duplicate commands in the "Edit" menu. The use of messages tends to be
+most common when writing macros (scripts) in Basic, because Office's built-in Macro
+recorder automatically converts a user's interaction with menus into dispatches.</p>
+<p>One drawback of dispatching is that it isn't a complete programming solution. For
+instance, copying requires the selection of text, which has to be implemented with the
+Office API.</p>
+<p>LibreOffice has a comprehensive webpage listing all the dispatch commands
+(https://wiki.documentfoundation.org/Development/DispatchCommands). An older
+source is the UICommands.ods spreadsheet, put together by Ariel Constenla-Haile in
+2010, at https://arielch.fedorapeople.org/devel/ooo/UICommands.ods.</p>
+<p>Another resource is chapter 10 of "OpenOffice.org Macros Explained" by Andrew
+Pitonyak (free online at http://www.pitonyak.org/book/)</p>
+<p>Creating a dispatcher in Java is a little complicated since XDispatchProvider and
+XDispatchHelper instances are needed. XDispatchProvider is obtained from the frame
+(i.e. window) where the message will be delivered, which is almost always the
+Desktop's frame (i.e. Office application's window). XDispatchHelper sends the
+message via its executeDispatch() method. It's also possible to examine the result
+status in an DispatchResultEvent object, but that seems a bit flakey – it reports failure
+when the dispatch works, and raises an exception when the dispatch really fails.</p>
+<p>The code is wrapped up in Lo.dispatchCmd() , which is called twice in the
+DispatchTest.java example:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="nf">DispatchTest</span><span class="p">(</span><span class="n">String</span> <span class="n">fnm</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+
+  <span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">openDoc</span><span class="p">(</span><span class="n">fnm</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">doc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not open &quot;</span> <span class="o">+</span> <span class="n">fnm</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">GUI</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">delay</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+  <span class="n">toggleSlidePane</span><span class="p">();</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">dispatchCmd</span><span class="p">(</span><span class="s">&quot;HelpIndex&quot;</span><span class="p">);</span>     <span class="c1">// show online Help</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">dispatchCmd</span><span class="p">(</span><span class="s">&quot;Presentation&quot;</span><span class="p">);</span>  <span class="c1">// start slideshow</span>
+
+  <span class="c1">//Lo.closeDoc(doc);</span>
+  <span class="c1">//Lo.closeOffice();</span>
+<span class="p">}</span>  <span class="c1">// end of DispatchTest()</span>
+</code></pre></div>
+<p>The Lo.dispatchCmd() string doesn't require an ".uno"" prefix. The first call sends
+".uno:HelpIndex" to open Office's help window, and the second (".uno:Presentation")
+starts an Impress slideshow. This latter message only works if the loaded file is an
+Impress document.</p>
+<p>DispatchTest() doesn't close the document or Office at the end, so the user must
+explicitly exit the slideshow and close the Office application himself by clicking on
+its close box.</p>
 <h2 id="6-robot-keys">6.  Robot Keys</h2>
-<p>Another menu-related approach to controlling Office is to programmatically send 
-menu shortcut key strokes to the currently active window. For example, a loaded 
-Impress document is often displayed with a slide selection pane. This can be closed 
-using the menu item View &gt; Slide Pane, which is assigned the shortcut keys ALT-v 
-ALT-l. </p>
-<p>toggleSlidePane() 'types' these key strokes with the help of Java's Robot class: </p>
-<p>// in DispatchTest.java </p>
-<p>private void toggleSlidePane() 
-// send ALT-v and then ALT-l to foreground window; 
-// makes slide pane appear/disappear in Impress 
-{ 
-  try { 
-    Robot robot = new Robot(); 
-    robot.setAutoDelay(250); 
-    robot.keyPress(KeyEvent.VK_ALT); </p>
-<pre><code>robot.keyPress(KeyEvent.VK_V); 
-robot.keyRelease(KeyEvent.VK_V);
+<p>Another menu-related approach to controlling Office is to programmatically send
+menu shortcut key strokes to the currently active window. For example, a loaded
+Impress document is often displayed with a slide selection pane. This can be closed
+using the menu item View &gt; Slide Pane, which is assigned the shortcut keys ALT-v
+ALT-l.</p>
+<p>toggleSlidePane() 'types' these key strokes with the help of Java's Robot class:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in DispatchTest.java</span>
 
-robot.keyPress(KeyEvent.VK_L); 
-robot.keyRelease(KeyEvent.VK_L);
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">toggleSlidePane</span><span class="p">()</span>
+<span class="c1">// send ALT-v and then ALT-l to foreground window;</span>
+<span class="c1">// makes slide pane appear/disappear in Impress</span>
+<span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">Robot</span> <span class="n">robot</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Robot</span><span class="p">();</span>
+    <span class="n">robot</span><span class="p">.</span><span class="na">setAutoDelay</span><span class="p">(</span><span class="mi">250</span><span class="p">);</span>
+    <span class="n">robot</span><span class="p">.</span><span class="na">keyPress</span><span class="p">(</span><span class="n">KeyEvent</span><span class="p">.</span><span class="na">VK_ALT</span><span class="p">);</span>
 
-robot.keyRelease(KeyEvent.VK_ALT);
-</code></pre>
-<p>} 
-  catch(AWTException e) 
-  {  System.out.println("sendkeys slidePane exception: " + e); } 
-}   // end of toggleSlidePane() </p>
-<p>This technique has a few drawbacks – one is that Robot can only send key strokes to 
-the currently active window on the OS' desktop. I've assumed this is Office, because I 
-just made Office visible with a call to GUI.setVisible() back in the DispatchTest() 
-constructor. Of course, the OS can do whatever it likes, such as suddenly pop up an 
-instant messaging window or a software update alert, which would cause the 
-characters to head to the wrong place. </p>
-<p>Another problem is that toggleSlidePane() is in the dark about the current state of the 
-GUI. If the slide pane is visible then the keys will make it disappear, but if the pane is 
-not currently on-screen then these keys will bring it up. Also, what if the current GUI 
-isn't the one for Impress? Do these combination of keys do something deadly in one 
-of Office's other applications? 
-One nice feature is that there's lots of documentation on keyboard shortcuts for Office 
+    <span class="n">robot</span><span class="p">.</span><span class="na">keyPress</span><span class="p">(</span><span class="n">KeyEvent</span><span class="p">.</span><span class="na">VK_V</span><span class="p">);</span>
+    <span class="n">robot</span><span class="p">.</span><span class="na">keyRelease</span><span class="p">(</span><span class="n">KeyEvent</span><span class="p">.</span><span class="na">VK_V</span><span class="p">);</span>
+
+    <span class="n">robot</span><span class="p">.</span><span class="na">keyPress</span><span class="p">(</span><span class="n">KeyEvent</span><span class="p">.</span><span class="na">VK_L</span><span class="p">);</span>
+    <span class="n">robot</span><span class="p">.</span><span class="na">keyRelease</span><span class="p">(</span><span class="n">KeyEvent</span><span class="p">.</span><span class="na">VK_L</span><span class="p">);</span>
+
+    <span class="n">robot</span><span class="p">.</span><span class="na">keyRelease</span><span class="p">(</span><span class="n">KeyEvent</span><span class="p">.</span><span class="na">VK_ALT</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">AWTException</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;sendkeys slidePane exception: &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">}</span>   <span class="c1">// end of toggleSlidePane()</span>
+</code></pre></div>
+<p>This technique has a few drawbacks – one is that Robot can only send key strokes to
+the currently active window on the OS' desktop. I've assumed this is Office, because I
+just made Office visible with a call to GUI.setVisible() back in the DispatchTest()
+constructor. Of course, the OS can do whatever it likes, such as suddenly pop up an
+instant messaging window or a software update alert, which would cause the
+characters to head to the wrong place.</p>
+<p>Another problem is that toggleSlidePane() is in the dark about the current state of the
+GUI. If the slide pane is visible then the keys will make it disappear, but if the pane is
+not currently on-screen then these keys will bring it up. Also, what if the current GUI
+isn't the one for Impress? Do these combination of keys do something deadly in one
+of Office's other applications?</p>
+<p>One nice feature is that there's lots of documentation on keyboard shortcuts for Office
 in its User guides (downloadable from https://th.libreoffice.org/get-
-help/documentation/), and these can be easily translated into key presses and releases 
-in Robot. </p>
+help/documentation/), and these can be easily translated into key presses and releases
+in Robot.</p>
                 
               
               

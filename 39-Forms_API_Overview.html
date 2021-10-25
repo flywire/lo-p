@@ -427,7 +427,7 @@
   
     <li class="md-nav__item">
       <a href="12-Examining_DrawImpress.html" class="md-nav__link">
-        Chapter 12. Examining a Draw/Impress
+        Chapter 12. Examining a Draw/Impress Document
       </a>
     </li>
   
@@ -562,7 +562,7 @@
   
     <li class="md-nav__item">
       <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
-        Chapter 20. Spreadsheet Displaying and
+        Chapter 20. Spreadsheet Displaying and Creation
       </a>
     </li>
   
@@ -772,7 +772,7 @@
   
     <li class="md-nav__item">
       <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
-        Chapter 33. Using Charts in Other
+        Chapter 33. Using Charts in Other Documents
       </a>
     </li>
   
@@ -832,7 +832,7 @@
   
     <li class="md-nav__item">
       <a href="36-RowSets_DB_Context.html" class="md-nav__link">
-        Chapter 36. Using RowSets and Database
+        Chapter 36. Using RowSets and Database Context
       </a>
     </li>
   
@@ -862,7 +862,7 @@
   
     <li class="md-nav__item">
       <a href="38-ODB_as_Zip.html" class="md-nav__link">
-        Chapter 38. Treating an ODB File as a
+        Chapter 38. Treating an ODB File as a Zipped Folder
       </a>
     </li>
   
@@ -1048,7 +1048,7 @@
   
     <li class="md-nav__item">
       <a href="40-Building_a_Form.html" class="md-nav__link">
-        Chapter 40. Building a Form
+        Chapter 40. Building a Form Programmatically
       </a>
     </li>
   
@@ -1198,7 +1198,7 @@
   
     <li class="md-nav__item">
       <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
-        Chapter 49. Extension and Document
+        Chapter 49. Extension and Document Event Macros
       </a>
     </li>
   
@@ -1401,6 +1401,16 @@
                 
                 
                 <h1 id="chapter-39-forms-api-overview">Chapter 39. Forms API Overview</h1>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>An Overview of 
+the Forms API; 
+Examining a Text-based 
+Form; Attaching 
+Listeners to a View </p>
+<p>Example folders: "Forms 
+Tests" and "Utils" </p>
+</div>
 <p>Forms are usually found in Writer documents, or as data 
 entry interfaces for Base, although they can also be 
 employed in Draw, Impress, and Calc. Although Base 
@@ -1438,17 +1448,7 @@ design mode on (where you're building the form) and off (to see how the form wil
 look to a user).  </p>
 <p>Nevertheless, manipulating a form from code can be useful. This chapter starts with 
 an overview of the forms API, and then looks at how data input into an existing form 
-can be processed using listeners. This isn't the standard way of adding behavior to </p>
-<div class="admonition note">
-<p class="admonition-title">Topics</p>
-</div>
-<p>An Overview of 
-the Forms API; 
-Examining a Text-based 
-Form; Attaching 
-Listeners to a View 
-Example folders: "Forms 
-Tests" and "Utils" 
+can be processed using listeners. This isn't the standard way of adding behavior to 
 forms; that capability is typically handled by macros coded in Office Basic (for 
 example, see chapter 13 of "Getting Started with LibreOffice" and chapter 9 of the 
 "Base Handbook"). I'll be looking at how to code form macros in Chapters 48 and 49. </p>
@@ -1482,18 +1482,57 @@ services and interfaces related to its appearance. If the API refers to a contro
 <p>Another problem with understanding the forms API is that its functionality is spread 
 across several modules and submodules. The form module contains many services, 
 interfaces, and seven submodules, which are listed in Table 1. </p>
-<p>Form Submodule Purpose 
-binding collects functionality for binding form controls to 
-external data sources 
-component collects form control model descriptions 
-control collects form control descriptions 
-inspection collects services for inspecting form/components<br />
-runtime collects functionality needed during a form's runtime 
-submission collects functionality for submitting forms to external 
-data sinks 
-validation collects functionality to validate form components by 
-help of external validator instances 
-Table 1. Submodules of the Form Module. </p>
+<table>
+<thead>
+<tr>
+<th>Form Submodule</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>binding</td>
+<td>collects functionality for binding form controls to</td>
+</tr>
+<tr>
+<td></td>
+<td>external data sources</td>
+</tr>
+<tr>
+<td>component</td>
+<td>collects form control model descriptions</td>
+</tr>
+<tr>
+<td>control</td>
+<td>collects form control descriptions</td>
+</tr>
+<tr>
+<td>inspection</td>
+<td>collects services for inspecting form/components</td>
+</tr>
+<tr>
+<td>runtime</td>
+<td>collects functionality needed during a form's runtime</td>
+</tr>
+<tr>
+<td>submission</td>
+<td>collects functionality for submitting forms to external</td>
+</tr>
+<tr>
+<td></td>
+<td>data sinks</td>
+</tr>
+<tr>
+<td>validation</td>
+<td>collects functionality to validate form components by</td>
+</tr>
+<tr>
+<td></td>
+<td>help of external validator instances</td>
+</tr>
+</tbody>
+</table>
+<p>Table 1. Submodules of the Form Module. </p>
 <p>To simplify matters, I'm only going to describe two of the submodules: 
 form.component which holds the model-related services, and form.control for the 
 view-related services.   </p>
@@ -2090,7 +2129,7 @@ movement of the mouse by the user from the text field to the button. </p>
               <span class="md-footer__direction">
                 Next
               </span>
-              Chapter 40. Building a Form
+              Chapter 40. Building a Form Programmatically
             </div>
           </div>
           <div class="md-footer__button md-icon">

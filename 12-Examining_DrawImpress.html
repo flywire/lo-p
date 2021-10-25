@@ -16,7 +16,7 @@
     
     
       
-        <title>Chapter 12. Examining a Draw/Impress - LibreOffice Programming</title>
+        <title>Chapter 12. Examining a Draw/Impress Document - LibreOffice Programming</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chapter-12-examining-a-drawimpress" class="md-skip">
+        <a href="#chapter-12-examining-a-drawimpress-document" class="md-skip">
           Skip to content
         </a>
       
@@ -94,7 +94,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Chapter 12. Examining a Draw/Impress
+              Chapter 12. Examining a Draw/Impress Document
             
           </span>
         </div>
@@ -435,12 +435,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Chapter 12. Examining a Draw/Impress
+          Chapter 12. Examining a Draw/Impress Document
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="12-Examining_DrawImpress.html" class="md-nav__link md-nav__link--active">
-        Chapter 12. Examining a Draw/Impress
+        Chapter 12. Examining a Draw/Impress Document
       </a>
       
         
@@ -614,7 +614,7 @@
   
     <li class="md-nav__item">
       <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
-        Chapter 20. Spreadsheet Displaying and
+        Chapter 20. Spreadsheet Displaying and Creation
       </a>
     </li>
   
@@ -824,7 +824,7 @@
   
     <li class="md-nav__item">
       <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
-        Chapter 33. Using Charts in Other
+        Chapter 33. Using Charts in Other Documents
       </a>
     </li>
   
@@ -884,7 +884,7 @@
   
     <li class="md-nav__item">
       <a href="36-RowSets_DB_Context.html" class="md-nav__link">
-        Chapter 36. Using RowSets and Database
+        Chapter 36. Using RowSets and Database Context
       </a>
     </li>
   
@@ -914,7 +914,7 @@
   
     <li class="md-nav__item">
       <a href="38-ODB_as_Zip.html" class="md-nav__link">
-        Chapter 38. Treating an ODB File as a
+        Chapter 38. Treating an ODB File as a Zipped Folder
       </a>
     </li>
   
@@ -959,7 +959,7 @@
   
     <li class="md-nav__item">
       <a href="40-Building_a_Form.html" class="md-nav__link">
-        Chapter 40. Building a Form
+        Chapter 40. Building a Form Programmatically
       </a>
     </li>
   
@@ -1109,7 +1109,7 @@
   
     <li class="md-nav__item">
       <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
-        Chapter 49. Extension and Document
+        Chapter 49. Extension and Document Event Macros
       </a>
     </li>
   
@@ -1222,8 +1222,15 @@
                   </a>
                 
                 
-                <h1 id="chapter-12-examining-a-drawimpress">Chapter 12. Examining a Draw/Impress</h1>
-<p>Document </p>
+                <h1 id="chapter-12-examining-a-drawimpress-document">Chapter 12. Examining a Draw/Impress Document</h1>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Examining 
+Slides/Pages; Page 
+Layers;  Styles </p>
+<p>Example folders: "Draw 
+Tests" and "Utils" </p>
+</div>
 <p>This chapter describes the SlidesInfo.java example, which 
 shows the basics of how to open and display a Draw or 
 Impress file. The code also illustrates how the slides or pages can be examined, 
@@ -1263,15 +1270,7 @@ including how to retrieve information on their layers and styles. </p>
 <p>Lo.closeDoc(doc); 
   Lo.closeOffice(); 
 } // end of main() </p>
-<div class="admonition note">
-<p class="admonition-title">Topics</p>
-<p>Examining </p>
-</div>
-<p>Slides/Pages; Page 
-Layers;  Styles 
-Example folders: "Draw 
-Tests" and "Utils" 
-Lo.openDoc() is capable of opening any Office document, and importing documents 
+<p>Lo.openDoc() is capable of opening any Office document, and importing documents 
 in other formats, so it's worthwhile checking the resulting XComponent object before 
 progressing. Draw.isShapesBased() returns true if the file holds a Draw or Impress 
 document: </p>

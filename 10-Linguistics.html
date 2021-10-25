@@ -616,7 +616,7 @@
   
     <li class="md-nav__item">
       <a href="12-Examining_DrawImpress.html" class="md-nav__link">
-        Chapter 12. Examining a Draw/Impress
+        Chapter 12. Examining a Draw/Impress Document
       </a>
     </li>
   
@@ -751,7 +751,7 @@
   
     <li class="md-nav__item">
       <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
-        Chapter 20. Spreadsheet Displaying and
+        Chapter 20. Spreadsheet Displaying and Creation
       </a>
     </li>
   
@@ -961,7 +961,7 @@
   
     <li class="md-nav__item">
       <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
-        Chapter 33. Using Charts in Other
+        Chapter 33. Using Charts in Other Documents
       </a>
     </li>
   
@@ -1021,7 +1021,7 @@
   
     <li class="md-nav__item">
       <a href="36-RowSets_DB_Context.html" class="md-nav__link">
-        Chapter 36. Using RowSets and Database
+        Chapter 36. Using RowSets and Database Context
       </a>
     </li>
   
@@ -1051,7 +1051,7 @@
   
     <li class="md-nav__item">
       <a href="38-ODB_as_Zip.html" class="md-nav__link">
-        Chapter 38. Treating an ODB File as a
+        Chapter 38. Treating an ODB File as a Zipped Folder
       </a>
     </li>
   
@@ -1096,7 +1096,7 @@
   
     <li class="md-nav__item">
       <a href="40-Building_a_Form.html" class="md-nav__link">
-        Chapter 40. Building a Form
+        Chapter 40. Building a Form Programmatically
       </a>
     </li>
   
@@ -1246,7 +1246,7 @@
   
     <li class="md-nav__item">
       <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
-        Chapter 49. Extension and Document
+        Chapter 49. Extension and Document Event Macros
       </a>
     </li>
   
@@ -1497,6 +1497,20 @@
                 
                 
                 <h1 id="chapter-10-the-linguistics-api">Chapter 10. The Linguistics API</h1>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Linguistic 
+Tools; Using the Spell 
+Checker; Using the 
+Thesaurus; Grammar 
+Checking; Guessing the 
+Language used in a 
+String; Spell Checking 
+and Grammar Checking 
+a Document </p>
+<p>Example folders: "Lingu 
+Tests" and "Utils" </p>
+</div>
 <p>The linguistics API has four main components – a spell 
 checker, a hyphenator, a thesaurus, and a grammar 
 checker (which Office calls a proof reader). I'll look at 
@@ -1533,21 +1547,7 @@ http://www.danielnaber.de/publications/, along with more recent material. </p>
 <h2 id="1-the-linguistic-tools">1.  The Linguistic Tools</h2>
 <p>Lingo.java prints a variety of information about the linguistics services: </p>
 <p>public static void main(String args[]) 
-{ </p>
-<div class="admonition note">
-<p class="admonition-title">Topics</p>
-<p>Linguistic </p>
-</div>
-<p>Tools; Using the Spell 
-Checker; Using the 
-Thesaurus; Grammar 
-Checking; Guessing the 
-Language used in a 
-String; Spell Checking 
-and Grammar Checking 
-a Document 
-Example folders: "Lingu 
-Tests" and "Utils" 
+{ 
   Lo.loadOffice(); </p>
 <p>// print linguistics info 
   Write.dictsInfo(); </p>

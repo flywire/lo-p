@@ -16,7 +16,7 @@
     
     
       
-        <title>Chapter 38. Treating an ODB File as a - LibreOffice Programming</title>
+        <title>Chapter 38. Treating an ODB File as a Zipped Folder - LibreOffice Programming</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chapter-38-treating-an-odb-file-as-a" class="md-skip">
+        <a href="#chapter-38-treating-an-odb-file-as-a-zipped-folder" class="md-skip">
           Skip to content
         </a>
       
@@ -94,7 +94,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Chapter 38. Treating an ODB File as a
+              Chapter 38. Treating an ODB File as a Zipped Folder
             
           </span>
         </div>
@@ -427,7 +427,7 @@
   
     <li class="md-nav__item">
       <a href="12-Examining_DrawImpress.html" class="md-nav__link">
-        Chapter 12. Examining a Draw/Impress
+        Chapter 12. Examining a Draw/Impress Document
       </a>
     </li>
   
@@ -562,7 +562,7 @@
   
     <li class="md-nav__item">
       <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link">
-        Chapter 20. Spreadsheet Displaying and
+        Chapter 20. Spreadsheet Displaying and Creation
       </a>
     </li>
   
@@ -772,7 +772,7 @@
   
     <li class="md-nav__item">
       <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
-        Chapter 33. Using Charts in Other
+        Chapter 33. Using Charts in Other Documents
       </a>
     </li>
   
@@ -832,7 +832,7 @@
   
     <li class="md-nav__item">
       <a href="36-RowSets_DB_Context.html" class="md-nav__link">
-        Chapter 36. Using RowSets and Database
+        Chapter 36. Using RowSets and Database Context
       </a>
     </li>
   
@@ -870,12 +870,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Chapter 38. Treating an ODB File as a
+          Chapter 38. Treating an ODB File as a Zipped Folder
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="38-ODB_as_Zip.html" class="md-nav__link md-nav__link--active">
-        Chapter 38. Treating an ODB File as a
+        Chapter 38. Treating an ODB File as a Zipped Folder
       </a>
       
         
@@ -959,7 +959,7 @@
   
     <li class="md-nav__item">
       <a href="40-Building_a_Form.html" class="md-nav__link">
-        Chapter 40. Building a Form
+        Chapter 40. Building a Form Programmatically
       </a>
     </li>
   
@@ -1109,7 +1109,7 @@
   
     <li class="md-nav__item">
       <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
-        Chapter 49. Extension and Document
+        Chapter 49. Extension and Document Event Macros
       </a>
     </li>
   
@@ -1222,8 +1222,19 @@
                   </a>
                 
                 
-                <h1 id="chapter-38-treating-an-odb-file-as-a">Chapter 38. Treating an ODB File as a</h1>
-<p>Zipped Folder </p>
+                <h1 id="chapter-38-treating-an-odb-file-as-a-zipped-folder">Chapter 38. Treating an ODB File as a Zipped Folder</h1>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Extracting a 
+Database from an ODB 
+File; Querying an 
+Extracted HSQLDB 
+Database; Querying an 
+Extracted Firebird 
+Database </p>
+<p>Example folders: "Base 
+Tests" and "Utils" </p>
+</div>
 <p>An ODB document can be manipulated as a zipped folder, 
 using tools such as 7-zip (http://www.7-zip.org/). This 
 means that it's possible to use Java zip classes (in the 
@@ -1265,22 +1276,10 @@ System.out.println( Arrays.toString(tableNames.toArray()));
 ResultSet rs = Jdbc.executeQuery("SELECT * FROM \"" +  
                      tableNames.get(0) + "\"", conn);
 
-DBTablePrinter.printResultSet(rs);
+DBTablePrinter.printResultSet(rs);   
+conn.close();
 </code></pre>
-<div class="admonition note">
-<p class="admonition-title">Topics</p>
-<p>Extracting a </p>
-</div>
-<p>Database from an ODB 
-File; Querying an 
-Extracted HSQLDB 
-Database; Querying an 
-Extracted Firebird 
-Database 
-Example folders: "Base 
-Tests" and "Utils" 
-    conn.close(); 
-  } 
+<p>} 
   catch(SQLException e) { 
     System.out.println(e); 
    } 

@@ -16,7 +16,7 @@
     
     
       
-        <title>Chapter 20. Spreadsheet Displaying and - LibreOffice Programming</title>
+        <title>Chapter 20. Spreadsheet Displaying and Creation - LibreOffice Programming</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chapter-20-spreadsheet-displaying-and" class="md-skip">
+        <a href="#chapter-20-spreadsheet-displaying-and-creation" class="md-skip">
           Skip to content
         </a>
       
@@ -94,7 +94,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Chapter 20. Spreadsheet Displaying and
+              Chapter 20. Spreadsheet Displaying and Creation
             
           </span>
         </div>
@@ -427,7 +427,7 @@
   
     <li class="md-nav__item">
       <a href="12-Examining_DrawImpress.html" class="md-nav__link">
-        Chapter 12. Examining a Draw/Impress
+        Chapter 12. Examining a Draw/Impress Document
       </a>
     </li>
   
@@ -570,12 +570,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Chapter 20. Spreadsheet Displaying and
+          Chapter 20. Spreadsheet Displaying and Creation
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="20-Spreadsheet_Manipulation.html" class="md-nav__link md-nav__link--active">
-        Chapter 20. Spreadsheet Displaying and
+        Chapter 20. Spreadsheet Displaying and Creation
       </a>
       
         
@@ -906,7 +906,7 @@
   
     <li class="md-nav__item">
       <a href="33-Charts_in_Others_Docs.html" class="md-nav__link">
-        Chapter 33. Using Charts in Other
+        Chapter 33. Using Charts in Other Documents
       </a>
     </li>
   
@@ -966,7 +966,7 @@
   
     <li class="md-nav__item">
       <a href="36-RowSets_DB_Context.html" class="md-nav__link">
-        Chapter 36. Using RowSets and Database
+        Chapter 36. Using RowSets and Database Context
       </a>
     </li>
   
@@ -996,7 +996,7 @@
   
     <li class="md-nav__item">
       <a href="38-ODB_as_Zip.html" class="md-nav__link">
-        Chapter 38. Treating an ODB File as a
+        Chapter 38. Treating an ODB File as a Zipped Folder
       </a>
     </li>
   
@@ -1041,7 +1041,7 @@
   
     <li class="md-nav__item">
       <a href="40-Building_a_Form.html" class="md-nav__link">
-        Chapter 40. Building a Form
+        Chapter 40. Building a Form Programmatically
       </a>
     </li>
   
@@ -1191,7 +1191,7 @@
   
     <li class="md-nav__item">
       <a href="49-Ext_Doc_Event_Macros.html" class="md-nav__link">
-        Chapter 49. Extension and Document
+        Chapter 49. Extension and Document Event Macros
       </a>
     </li>
   
@@ -1386,8 +1386,24 @@
                   </a>
                 
                 
-                <h1 id="chapter-20-spreadsheet-displaying-and">Chapter 20. Spreadsheet Displaying and</h1>
-<p>Creation </p>
+                <h1 id="chapter-20-spreadsheet-displaying-and-creation">Chapter 20. Spreadsheet Displaying and Creation</h1>
+<div class="admonition note">
+<p class="admonition-title">Topics</p>
+<p>Displaying a 
+Document; Read-only 
+and Protected Viewing; 
+Active Sheets; Sheet 
+Names; Zooming; 
+Creating a Document; 
+Cell Names and Ranges; 
+Cell Values; Data 
+Arrays; Rows and 
+Columns of Data; 
+Adding a Picture and a 
+Chart </p>
+<p>Example folders: "Calc 
+Tests" and "Utils" </p>
+</div>
 <p>This chapter looks at two main topics: the display of an 
 existing spreadsheet document, and the creation of a new 
 document, based around two examples, ShowSheet.java 
@@ -1424,24 +1440,7 @@ public static void main(String args[])
   if (doc == null) { 
     System.out.println("Could not open " + args[0]); 
     Lo.closeOffice(); 
-    return; </p>
-<div class="admonition note">
-<p class="admonition-title">Topics</p>
-<p>Displaying a </p>
-</div>
-<p>Document; Read-only 
-and Protected Viewing; 
-Active Sheets; Sheet 
-Names; Zooming; 
-Creating a Document; 
-Cell Names and Ranges; 
-Cell Values; Data 
-Arrays; Rows and 
-Columns of Data; 
-Adding a Picture and a 
-Chart 
-Example folders: "Calc 
-Tests" and "Utils" 
+    return; 
   } </p>
 <p>GUI.setVisible(doc, true); 
   Calc.gotoCell(doc, "A1");   // move view to top of sheet </p>
