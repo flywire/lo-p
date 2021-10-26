@@ -1146,6 +1146,19 @@
     3.  Attaching Macros to Other Events
   </a>
   
+    <nav class="md-nav" aria-label="3.  Attaching Macros to Other Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automatic-macro-attachment" class="md-nav__link">
+    Automatic Macro Attachment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1292,6 +1305,19 @@
     3.  Attaching Macros to Other Events
   </a>
   
+    <nav class="md-nav" aria-label="3.  Attaching Macros to Other Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automatic-macro-attachment" class="md-nav__link">
+    Automatic Macro Attachment
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1321,860 +1347,965 @@
                 <h1 id="chapter-49-extension-and-document-event-macros">Chapter 49. Extension and Document Event Macros</h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
-<p>Form Macros as 
-an Extension; Loading 
-an XML Dialog; 
-Building a Dialog at 
-Runtime; Storing 
-Macros inside the 
-(Form) Document; 
-Attaching Macros to 
-Other Events; Executing 
-Macros from the 
-Command Line </p>
-<p>Example folders: 
-"EvMacro Tests" and 
-"Utils" </p>
+<p>Form Macros as
+an Extension; Loading
+an XML Dialog;
+Building a Dialog at
+Runtime; Storing
+Macros inside the
+(Form) Document;
+Attaching Macros to
+Other Events; Executing
+Macros from the
+Command Line</p>
+<p>Example folders:
+"EvMacro Tests" and
+"Utils"</p>
 </div>
-<p>The previous chapter introduced event macros, and described<br />
-how a simple macro could be installed by copying it to a 
-specific Office directory. This chapter looks at two other 
-ways to package macros: as extensions, and by attaching 
-them to documents. </p>
+<p>The previous chapter introduced event macros, and described
+how a simple macro could be installed by copying it to a
+specific Office directory. This chapter looks at two other
+ways to package macros: as extensions, and by attaching
+them to documents.</p>
 <h2 id="1-form-macros-as-an-extension">1.  Form Macros as an Extension</h2>
-<p>Adding a macro to Office by installing it as an extension means that the user doesn't 
-need to grapple with Office folders and copying files since Office's extension 
-manager does it for them. This section also uses more complex macros than the ones 
-in the previous chapter, namely ones that utilize their own dialogs and employ my 
-utility classes. </p>
-<p>The FormMacros.oxt extension is created by zipping up a FormMacros\ folder, which 
-is listed below: </p>
-<p>FormMacros 
- |   description.xml 
- |   form.png 
- |   license.txt 
- |   package-description.txt 
- |  <br />
- +---dialogLibrary 
- |       NumExtractor.xdl 
- |      <br />
- +---META-INF 
- |       manifest.xml 
- |      <br />
- ---Utils 
-         GetNumber.class 
-         GetText.class 
-         NumActionListener.class 
-         parcel-descriptor.xml 
-         Utils.jar </p>
-<p>The macros are in the Utils\ folder, and are utilized by the form stored in 
-FormMacrosTest.odt in the ways shown in Figure 1. </p>
+<p>Adding a macro to Office by installing it as an extension means that the user doesn't
+need to grapple with Office folders and copying files since Office's extension
+manager does it for them. This section also uses more complex macros than the ones
+in the previous chapter, namely ones that utilize their own dialogs and employ my
+utility classes.</p>
+<p>The FormMacros.oxt extension is created by zipping up a FormMacros\ folder, which
+is listed below:</p>
+<div class="highlight"><pre><span></span><code>FormMacros
+ |   description.xml
+ |   form.png
+ |   license.txt
+ |   package-description.txt
+ |
+ +---dialogLibrary
+ |       NumExtractor.xdl
+ |
+ +---META-INF
+ |       manifest.xml
+ |
+ \---Utils
+         GetNumber.class
+         GetText.class
+         NumActionListener.class
+         parcel-descriptor.xml
+         Utils.jar
+</code></pre></div>
+<p>The macros are in the Utils\ folder, and are utilized by the form stored in
+FormMacrosTest.odt in the ways shown in Figure 1.</p>
 <p><img alt="" src="images/49-Ext_Doc_Event_Macros-1.png" /></p>
-<p>Figure 1. A Form and its Macros. </p>
-<p>Figure 1 illustrates the actions of two macros. GetText.show is attached to the form's 
-button, and display the text in the adjacent textfield when the button is pressed. The 
-GetNumber.get macro is attached to the second textfield, and is activated when 
-<RETURN> is pressed. A dialog, created by the macro, offers the user a choice of 
-replacing the text by a number or clearing the textfield. </p>
-<p>To simplify the example a little, FormMacrosTest.odt was created by hand rather than 
-programmatically. Also, I'm going to attach the extension's macros to the button and 
-textfield using Office's GUI, as explained shortly. </p>
-<p>I won’t explain all the contents of the FormMacros\ folder, because most of them 
-were covered in early chapters, particularly in Chapter 45. For example, I won't be 
-describing how I drew the "Number Extractor" dialog stored in 
-dialogLibrary\NumExtractor.xdl since that technique was covered in the last chapter, 
-in section 5. </p>
+<p>Figure 1. A Form and its Macros.</p>
+<p>Figure 1 illustrates the actions of two macros. GetText.show is attached to the form's
+button, and display the text in the adjacent textfield when the button is pressed. The
+GetNumber.get macro is attached to the second textfield, and is activated when
+<RETURN> is pressed. A dialog, created by the macro, offers the user a choice of
+replacing the text by a number or clearing the textfield.</p>
+<p>To simplify the example a little, FormMacrosTest.odt was created by hand rather than
+programmatically. Also, I'm going to attach the extension's macros to the button and
+textfield using Office's GUI, as explained shortly.</p>
+<p>I won’t explain all the contents of the FormMacros\ folder, because most of them
+were covered in early chapters, particularly in Chapter 45. For example, I won't be
+describing how I drew the "Number Extractor" dialog stored in
+dialogLibrary\NumExtractor.xdl since that technique was covered in the last chapter,
+in section 5.</p>
 <p>The new elements of FormMacros\ are the contents of manifest.xml and parcel-
-descriptor.xml. </p>
-<p>manifest.xml states the location of the macros inside the extension, which in my case 
-are in the Utils\ subdirectory. This is encoded as: </p>
-<?xml version="1.0" encoding="UTF-8"?>
-<p><manifest:manifest<br />     xmlns:manifest="http://openoffice.org/2001/manifest"> </p>
-<p><manifest:file-entry manifest:media-type= 
-          "application/vnd.sun.star.framework-script" 
-                       manifest:full-path="Utils/" /> </p>
-<p></manifest:manifest> </p>
-<p>parcel-descriptor.xml give details about the two macros, GetText.show and 
-GetNumber.get, which are used by the Macro Selector dialog: </p>
-<?xml version="1.0" encoding="UTF-8"?>
-<p><parcel language="Java" xmlns:parcel="scripting.dtd"> </p>
-<script language="Java"> 
-    <locale lang="en"> 
-      <displayname value="GetText.show"/> 
-      <description> 
-         Shows the text in a textfield 
-      </description> 
-    </locale> 
-    <functionname value="GetText.show"/> 
-    <logicalname value="GetText.show"/> 
-    <languagedepprops> 
-      <prop name="classpath" value=".:GetText:Utils.jar"/> 
-    </languagedepprops> 
-  </script>
+descriptor.xml.</p>
+<p>manifest.xml states the location of the macros inside the extension, which in my case
+are in the Utils\ subdirectory. This is encoded as:</p>
+<div class="highlight"><pre><span></span><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;manifest:manifest
+     xmlns:manifest=&quot;http://openoffice.org/2001/manifest&quot;&gt;
 
-<script language="Java"> 
-    <locale lang="en"> 
-      <displayname value="GetNumber.get"/> 
-      <description> 
-         Extract an integer from a textfield 
-      </description> 
-    </locale> 
-    <functionname value="GetNumber.get"/> 
-    <logicalname value="GetNumber.get"/> 
-    <languagedepprops> 
-      <prop name="classpath" value=".:GetNumber:Utils.jar"/> 
-    </languagedepprops> 
-  </script>
+  &lt;manifest:file-entry manifest:media-type=
+          &quot;application/vnd.sun.star.framework-script&quot;
+                       manifest:full-path=&quot;Utils/&quot; /&gt;
 
-<p></parcel> </p>
-<p>There's an important difference between this parcel-descriptor.xml and the one given 
-for ShowEvent.show in the previous chapter, related to the new macros' classpaths: 
-      <prop name="classpath" value=".:GetText:Utils.jar"/> 
-and 
-      <prop name="classpath" value=".:GetNumber:Utils.jar"/> 
-The classpath line for ShowEvent.show was: 
-      <prop name="classpath" value="ShowEvent.jar"/> </p>
-<p>The difference, which took many hours of experimentation to find, is due to the 
-inclusion of my utilities classes as a JAR in Utils.  </p>
-<p>When Utils.jar is in the extension, Office is unable to recognize GetText.show and 
-GetNumber.get packaged as JARs (e.g. as GetText.jar and GetNumber.jar). It appears 
-that Office can only add a single JAR to its classpath with <languagedepprops>. </p>
-<p>Instead I've stored the macros as .class files in Utils. In addition, it's necessary to 
-include "." in the classpath so NumActionListener.class can be found at runtime.  </p>
-<p>The three Java files (GetText.java, GetNumber.java, and NumActionListener.java) 
-are compiled and manually copied into FormMacros\Utils. Then the 
-installMacros.bat batch script zips up the folder as an OXT file, and calls unopkg.exe 
-to install it. The extension manager displays the "Form Macros" as in Figure 2. </p>
+&lt;/manifest:manifest&gt;
+</code></pre></div>
+<p>parcel-descriptor.xml give details about the two macros, GetText.show and
+GetNumber.get, which are used by the Macro Selector dialog:</p>
+<div class="highlight"><pre><span></span><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;parcel language=&quot;Java&quot; xmlns:parcel=&quot;scripting.dtd&quot;&gt;
+
+  &lt;script language=&quot;Java&quot;&gt;
+    &lt;locale lang=&quot;en&quot;&gt;
+      &lt;displayname value=&quot;GetText.show&quot;/&gt;
+      &lt;description&gt;
+         Shows the text in a textfield
+      &lt;/description&gt;
+    &lt;/locale&gt;
+    &lt;functionname value=&quot;GetText.show&quot;/&gt;
+    &lt;logicalname value=&quot;GetText.show&quot;/&gt;
+    &lt;languagedepprops&gt;
+      &lt;prop name=&quot;classpath&quot; value=&quot;.:GetText:Utils.jar&quot;/&gt;
+    &lt;/languagedepprops&gt;
+  &lt;/script&gt;
+
+  &lt;script language=&quot;Java&quot;&gt;
+    &lt;locale lang=&quot;en&quot;&gt;
+      &lt;displayname value=&quot;GetNumber.get&quot;/&gt;
+      &lt;description&gt;
+         Extract an integer from a textfield
+      &lt;/description&gt;
+    &lt;/locale&gt;
+    &lt;functionname value=&quot;GetNumber.get&quot;/&gt;
+    &lt;logicalname value=&quot;GetNumber.get&quot;/&gt;
+    &lt;languagedepprops&gt;
+      &lt;prop name=&quot;classpath&quot; value=&quot;.:GetNumber:Utils.jar&quot;/&gt;
+    &lt;/languagedepprops&gt;
+  &lt;/script&gt;
+
+&lt;/parcel&gt;
+</code></pre></div>
+<p>There's an important difference between this parcel-descriptor.xml and the one given
+for ShowEvent.show in the previous chapter, related to the new macros' classpaths:</p>
+<div class="highlight"><pre><span></span><code>      <span class="o">&lt;</span><span class="n">prop</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;classpath&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;.:GetText:Utils.jar&quot;</span><span class="o">/&gt;</span>
+</code></pre></div>
+<p>and</p>
+<div class="highlight"><pre><span></span><code>      <span class="o">&lt;</span><span class="n">prop</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;classpath&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;.:GetNumber:Utils.jar&quot;</span><span class="o">/&gt;</span>
+</code></pre></div>
+<p>The classpath line for ShowEvent.show was:</p>
+<div class="highlight"><pre><span></span><code>      <span class="o">&lt;</span><span class="n">prop</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;classpath&quot;</span> <span class="n">value</span><span class="o">=</span><span class="s">&quot;ShowEvent.jar&quot;</span><span class="o">/&gt;</span>
+</code></pre></div>
+<p>The difference, which took many hours of experimentation to find, is due to the
+inclusion of my utilities classes as a JAR in Utils.</p>
+<p>When Utils.jar is in the extension, Office is unable to recognize GetText.show and
+GetNumber.get packaged as JARs (e.g. as GetText.jar and GetNumber.jar). It appears
+that Office can only add a single JAR to its classpath with <languagedepprops>.</p>
+<p>Instead I've stored the macros as .class files in Utils. In addition, it's necessary to
+include "." in the classpath so NumActionListener.class can be found at runtime.</p>
+<p>The three Java files (GetText.java, GetNumber.java, and NumActionListener.java)
+are compiled and manually copied into FormMacros\Utils. Then the
+installMacros.bat batch script zips up the folder as an OXT file, and calls unopkg.exe
+to install it. The extension manager displays the "Form Macros" as in Figure 2.</p>
 <p><img alt="" src="images/49-Ext_Doc_Event_Macros-2.png" /></p>
-<p>Figure 2. The Form Macros Extension. </p>
-<p>By default, extension macros are installed as user macros, as can be seen in the Macro 
-Selector dialog in Figure 3. </p>
+<p>Figure 2. The Form Macros Extension.</p>
+<p>By default, extension macros are installed as user macros, as can be seen in the Macro
+Selector dialog in Figure 3.</p>
 <p><img alt="" src="images/49-Ext_Doc_Event_Macros-3.png" /></p>
-<p>Figure 3. The User Extension Macros in the Macro Selector. </p>
-<p>The Utils\ subdirectory of the extension has become a module called Utils. </p>
-<p>The full names of the extension macros can be obtained using my ListMacros.java or 
-FindMacros.java examples. For example: 
-run FindMacros Utils 
-produces: </p>
-<p>Matching Macros in Office: (2) 
-  vnd.sun.star.script:Utils.GetNumber.get? 
-      language=Java&amp;location=user:uno_packages/FormMacros.oxt </p>
-<p>vnd.sun.star.script:Utils.GetText.show? 
-      language=Java&amp;location=user:uno_packages/FormMacros.oxt </p>
+<p>Figure 3. The User Extension Macros in the Macro Selector.</p>
+<p>The Utils\ subdirectory of the extension has become a module called Utils.</p>
+<p>The full names of the extension macros can be obtained using my ListMacros.java or
+FindMacros.java examples. For example:</p>
+<div class="highlight"><pre><span></span><code>run FindMacros Utils
+</code></pre></div>
+<p>produces:</p>
+<div class="highlight"><pre><span></span><code>Matching Macros in Office: (2)
+  vnd.sun.star.script:Utils.GetNumber.get?
+      language=Java&amp;location=user:uno_packages/FormMacros.oxt
+
+  vnd.sun.star.script:Utils.GetText.show?
+      language=Java&amp;location=user:uno_packages/FormMacros.oxt
+</code></pre></div>
 <h3 id="11-the-gettextshow-macro">1.1.  The GetText.show Macro</h3>
-<p>GetText.show is triggered when a button is pressed; it displays the text currently in 
-the "Text Box 1" textfield inside a message box (see Figure 1). The code for the class 
-is: </p>
-<p>// in GetText.java 
-public class GetText 
-{ 
-  private static final String LOG_FNM = "c://macrosInfo.txt"; 
-              // log file for storing debugging output </p>
-<p>public static void show(XScriptContext sc, ActionEvent e) 
-  // Called when a button pressed 
-  {<br />
-    String controlName = Forms.getEventSourceName(e); </p>
-<pre><code>FileIO.appendTo(LOG_FNM, "\"" + controlName +  
-             "\" sent ActionEvent at " + Lo.getTimeStamp());
+<p>GetText.show is triggered when a button is pressed; it displays the text currently in
+the "Text Box 1" textfield inside a message box (see Figure 1). The code for the class
+is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in GetText.java</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">GetText</span>
+<span class="p">{</span>
+  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">LOG_FNM</span> <span class="o">=</span> <span class="s">&quot;c://macrosInfo.txt&quot;</span><span class="p">;</span>
+              <span class="c1">// log file for storing debugging output</span>
 
-XComponent doc = Lo.scriptInitialize(sc); 
-if (doc == null) 
-  return;
 
-// for debugging 
-Console console = new Console(); 
-console.setVisible(true);
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">show</span><span class="p">(</span><span class="n">XScriptContext</span> <span class="n">sc</span><span class="p">,</span> <span class="n">ActionEvent</span> <span class="n">e</span><span class="p">)</span>
+  <span class="c1">// Called when a button pressed</span>
+  <span class="p">{</span>
+    <span class="n">String</span> <span class="n">controlName</span> <span class="o">=</span> <span class="n">Forms</span><span class="p">.</span><span class="na">getEventSourceName</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
 
-Forms.listForms(doc);
+    <span class="n">FileIO</span><span class="p">.</span><span class="na">appendTo</span><span class="p">(</span><span class="n">LOG_FNM</span><span class="p">,</span> <span class="s">&quot;\&quot;&quot;</span> <span class="o">+</span> <span class="n">controlName</span> <span class="o">+</span>
+                 <span class="s">&quot;\&quot; sent ActionEvent at &quot;</span> <span class="o">+</span> <span class="n">Lo</span><span class="p">.</span><span class="na">getTimeStamp</span><span class="p">());</span>
 
-XControlModel textBox = Forms.getControlModel(doc, "Text Box 1"); 
-// Props.showObjProps("TextBox", textBox);
+    <span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">scriptInitialize</span><span class="p">(</span><span class="n">sc</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">doc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+      <span class="k">return</span><span class="p">;</span>
 
-String textContents = (String)Props.getProperty(textBox, "Text"); 
-GUI.showXMessageBox("Textbox text", textContents);
+    <span class="c1">// for debugging</span>
+    <span class="n">Console</span> <span class="n">console</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Console</span><span class="p">();</span>
+    <span class="n">console</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
 
-console.setVisible(false); 
-console.closeDown();
-</code></pre>
-<p>} // end of show() for ActionEvent </p>
-<p>}  // end of GetText class </p>
-<p>The class implements a single show() method suitable for responding to 
-ActionEvents. </p>
-<p>Forms.getEventSourceName() returns the name of the control that sent the event and 
-FileIO.appendTo() writes the details to a log file. This log is useful for debugging, 
-and can be removed when the macro is finished. </p>
-<p>Lo.scriptInitialize() uses the macro's XScriptContext object to initialize globals 
-maintained by my Lo class: </p>
-<p>// in the Lo class 
-// globals 
-private static XComponentContext xcc = null; 
-private static XDesktop xDesktop = null; 
-private static XMultiComponentFactory mcFactory = null;  <br />
-private static XMultiServiceFactory msFactory = null; </p>
-<p>public static XComponent scriptInitialize(XScriptContext sc) 
-{ 
-  if (sc == null) { 
-    System.out.println("Script Context is null"); 
-    return null; 
-  } </p>
-<p>xcc = sc.getComponentContext(); 
-  if (xcc == null)  { 
-    System.out.println("Could not access component context"); 
-    return null; 
-  } 
-  mcFactory = xcc.getServiceManager(); 
-  if (mcFactory == null) { 
-    System.out.println("Office Service Manager is unavailable"); 
-    return null; 
-  } </p>
-<p>xDesktop = sc.getDesktop(); 
-  if (xDesktop == null)  { 
-    System.out.println("Could not access desktop"); 
-    return null; 
-  } </p>
-<p>XComponent doc = xDesktop.getCurrentComponent(); 
-  if (doc == null)  { 
-    System.out.println("Could not access document"); 
-    return null; 
-  } </p>
-<p>msFactory =  Lo.qi(XMultiServiceFactory.class, doc); 
-  return doc; 
-}  // end of scriptInitialize() </p>
-<p>The log approach is fine for simple debugging, but it's also possible to create a 
-Console window for displaying more complex textual output. One useful thing to 
-report are the form's control details, by calling Forms.listForms(). The Console 
-window looks as in Figure 4. </p>
+    <span class="n">Forms</span><span class="p">.</span><span class="na">listForms</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+
+    <span class="n">XControlModel</span> <span class="n">textBox</span> <span class="o">=</span> <span class="n">Forms</span><span class="p">.</span><span class="na">getControlModel</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;Text Box 1&quot;</span><span class="p">);</span>
+    <span class="c1">// Props.showObjProps(&quot;TextBox&quot;, textBox);</span>
+
+    <span class="n">String</span> <span class="n">textContents</span> <span class="o">=</span> <span class="p">(</span><span class="n">String</span><span class="p">)</span><span class="n">Props</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="n">textBox</span><span class="p">,</span> <span class="s">&quot;Text&quot;</span><span class="p">);</span>
+    <span class="n">GUI</span><span class="p">.</span><span class="na">showXMessageBox</span><span class="p">(</span><span class="s">&quot;Textbox text&quot;</span><span class="p">,</span> <span class="n">textContents</span><span class="p">);</span>
+
+    <span class="n">console</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+    <span class="n">console</span><span class="p">.</span><span class="na">closeDown</span><span class="p">();</span>
+  <span class="p">}</span> <span class="c1">// end of show() for ActionEvent</span>
+
+<span class="p">}</span>  <span class="c1">// end of GetText class</span>
+</code></pre></div>
+<p>The class implements a single show() method suitable for responding to
+ActionEvents.</p>
+<p>Forms.getEventSourceName() returns the name of the control that sent the event and
+FileIO.appendTo() writes the details to a log file. This log is useful for debugging,
+and can be removed when the macro is finished.</p>
+<p>Lo.scriptInitialize() uses the macro's XScriptContext object to initialize globals
+maintained by my Lo class:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Lo class</span>
+<span class="c1">// globals</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="n">XComponentContext</span> <span class="n">xcc</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="n">XDesktop</span> <span class="n">xDesktop</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="n">XMultiComponentFactory</span> <span class="n">mcFactory</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="n">XMultiServiceFactory</span> <span class="n">msFactory</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XComponent</span> <span class="nf">scriptInitialize</span><span class="p">(</span><span class="n">XScriptContext</span> <span class="n">sc</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">sc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Script Context is null&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">xcc</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="na">getComponentContext</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">xcc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not access component context&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">mcFactory</span> <span class="o">=</span> <span class="n">xcc</span><span class="p">.</span><span class="na">getServiceManager</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">mcFactory</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Office Service Manager is unavailable&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">xDesktop</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="na">getDesktop</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">xDesktop</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not access desktop&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">xDesktop</span><span class="p">.</span><span class="na">getCurrentComponent</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">doc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not access document&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">msFactory</span> <span class="o">=</span>  <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XMultiServiceFactory</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">doc</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">doc</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of scriptInitialize()</span>
+</code></pre></div>
+<p>The log approach is fine for simple debugging, but it's also possible to create a
+Console window for displaying more complex textual output. One useful thing to
+report are the form's control details, by calling Forms.listForms(). The Console
+window looks as in Figure 4.</p>
 <p><img alt="" src="images/49-Ext_Doc_Event_Macros-4.png" /></p>
-<p>Figure 4. The Console Window Output for GetText.show. </p>
-<p>The control names in Figure 4 include "Text Box 1", which is used by 
-Forms.getControlModel() to reference the textfield control: </p>
-<p>// part of show() in GetText.java... </p>
-<p>XControlModel textBox = Forms.getControlModel(doc, "Text Box 1"); 
-String textContents = (String)Props.getProperty(textBox, "Text"); 
-GUI.showXMessageBox("Textbox text", textContents); </p>
+<p>Figure 4. The Console Window Output for GetText.show.</p>
+<p>The control names in Figure 4 include "Text Box 1", which is used by
+Forms.getControlModel() to reference the textfield control:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of show() in GetText.java...</span>
+<span class="n">XControlModel</span> <span class="n">textBox</span> <span class="o">=</span> <span class="n">Forms</span><span class="p">.</span><span class="na">getControlModel</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;Text Box 1&quot;</span><span class="p">);</span>
+<span class="n">String</span> <span class="n">textContents</span> <span class="o">=</span> <span class="p">(</span><span class="n">String</span><span class="p">)</span><span class="n">Props</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="n">textBox</span><span class="p">,</span> <span class="s">&quot;Text&quot;</span><span class="p">);</span>
+<span class="n">GUI</span><span class="p">.</span><span class="na">showXMessageBox</span><span class="p">(</span><span class="s">&quot;Textbox text&quot;</span><span class="p">,</span> <span class="n">textContents</span><span class="p">);</span>
+</code></pre></div>
 <h3 id="12-the-getnumberget-macro">1.2.  The GetNumber.get Macro</h3>
-<p>The second textfield in Figure 1 is called "AgeText". Its listener processes the text 
-when the user types <RETURN>, which is implemented using a keypress listener, as 
-shown in Figure 5. </p>
+<p>The second textfield in Figure 1 is called "AgeText". Its listener processes the text
+when the user types <RETURN>, which is implemented using a keypress listener, as
+shown in Figure 5.</p>
 <p><img alt="" src="images/49-Ext_Doc_Event_Macros-5.png" /></p>
-<p>Figure 5. The "AgeText" Properties Dialog. </p>
-<p>GetNumber.get is woken up by every keypress, which should be ignored until the key 
-is <RETURN>. Then the text is read from the "AgeText" textfield, and the extracted 
-number displayed in the "Number Extractor" dialog (shown in Figure 1). This dialog 
-has its own listener (a NumActionListener object) attached to the "Ok" and "Cancel" 
-buttons which updates the "AgeText" textfield depending on which is pressed. </p>
-<p>The GetNumber class defines a single static get() method, suitable for receiving 
-KeyEvents: </p>
-<p>// in GetNumber.java 
-public static void get(XScriptContext sc, KeyEvent e) 
-{<br />
-  String controlName = Forms.getEventSourceName(e); 
-  if (e.KeyCode == Key.RETURN) {  // return typed 
-    XComponent doc = Lo.scriptInitialize(sc); 
-    if (doc != null) { 
-      XControlModel cModel =<br />
-             Forms.getControlModel(doc, controlName); 
-      if (Forms.isTextField(cModel)) 
-        loadXDLDialog(cModel); 
-        // runtimeDialog(cModel); 
-    } 
-  } 
-} // end of get() </p>
-<p>When the <RETURN> key is pressed, Forms.getControlModel() searches the form 
-for the control that sent the event (i.e. the "AgeText" textfield).  </p>
-<p>If the control is a textfield then the "Number Extractor" dialog is displayed in one of 
-two ways – either loadXDLDialog() loads the dialog's XML from 
-dialogLibrary\NumExtractor.xdl inside the extension, or runtimeDialog() creates the 
-dialog dynamically by calling methods in my Dialogs utility class. I'll look at each 
-approach in the next two sections. </p>
+<p>Figure 5. The "AgeText" Properties Dialog.</p>
+<p>GetNumber.get is woken up by every keypress, which should be ignored until the key
+is <RETURN>. Then the text is read from the "AgeText" textfield, and the extracted
+number displayed in the "Number Extractor" dialog (shown in Figure 1). This dialog
+has its own listener (a NumActionListener object) attached to the "Ok" and "Cancel"
+buttons which updates the "AgeText" textfield depending on which is pressed.</p>
+<p>The GetNumber class defines a single static get() method, suitable for receiving
+KeyEvents:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in GetNumber.java</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">get</span><span class="p">(</span><span class="n">XScriptContext</span> <span class="n">sc</span><span class="p">,</span> <span class="n">KeyEvent</span> <span class="n">e</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">String</span> <span class="n">controlName</span> <span class="o">=</span> <span class="n">Forms</span><span class="p">.</span><span class="na">getEventSourceName</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">KeyCode</span> <span class="o">==</span> <span class="n">Key</span><span class="p">.</span><span class="na">RETURN</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// return typed</span>
+    <span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">scriptInitialize</span><span class="p">(</span><span class="n">sc</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">doc</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">XControlModel</span> <span class="n">cModel</span> <span class="o">=</span>
+             <span class="n">Forms</span><span class="p">.</span><span class="na">getControlModel</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">controlName</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">Forms</span><span class="p">.</span><span class="na">isTextField</span><span class="p">(</span><span class="n">cModel</span><span class="p">))</span>
+        <span class="n">loadXDLDialog</span><span class="p">(</span><span class="n">cModel</span><span class="p">);</span>
+        <span class="c1">// runtimeDialog(cModel);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span> <span class="c1">// end of get()</span>
+</code></pre></div>
+<p>When the <RETURN> key is pressed, Forms.getControlModel() searches the form
+for the control that sent the event (i.e. the "AgeText" textfield).</p>
+<p>If the control is a textfield then the "Number Extractor" dialog is displayed in one of
+two ways – either loadXDLDialog() loads the dialog's XML from
+dialogLibrary\NumExtractor.xdl inside the extension, or runtimeDialog() creates the
+dialog dynamically by calling methods in my Dialogs utility class. I'll look at each
+approach in the next two sections.</p>
 <h3 id="13-loading-an-xml-dialog">1.3.  Loading an XML Dialog</h3>
-<p>Chapter 46 on Add-ons describes how to use Office's dialog editor to create a dialog 
-and export it as an XDL file. The same steps were used to create NumExtractor.xdl, 
-which is shown in Figure 6. </p>
+<p>Chapter 46 on Add-ons describes how to use Office's dialog editor to create a dialog
+and export it as an XDL file. The same steps were used to create NumExtractor.xdl,
+which is shown in Figure 6.</p>
 <p><img alt="" src="images/49-Ext_Doc_Event_Macros-6.png" /></p>
-<p>Figure 6. The NumExtractor.xdl Dialog. </p>
-<p>The XML contents of NumExtractor.xdl are: </p>
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE dlg:window PUBLIC "-//OpenOffice.org//DTD OfficeDocument 
-1.0//EN" "dialog.dtd">
+<p>Figure 6. The NumExtractor.xdl Dialog.</p>
+<p>The XML contents of NumExtractor.xdl are:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="n">xml</span> <span class="n">version</span><span class="o">=</span><span class="s">&quot;1.0&quot;</span> <span class="n">encoding</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="o">?&gt;</span>
+<span class="o">&lt;!</span><span class="n">DOCTYPE</span> <span class="n">dlg</span><span class="p">:</span><span class="n">window</span> <span class="n">PUBLIC</span> <span class="s">&quot;-//OpenOffice.org//DTD OfficeDocument</span>
+<span class="s">1.0//EN&quot;</span> <span class="s">&quot;dialog.dtd&quot;</span><span class="o">&gt;</span>
 
-<p><dlg:window xmlns:dlg="http://openoffice.org/2000/dialog" 
-            xmlns:script="http://openoffice.org/2000/script" 
-            dlg:id="NumExtractor" 
-            dlg:left="109" dlg:top="73" 
-            dlg:width="94" dlg:height="44" 
-            dlg:closeable="true" dlg:moveable="true" 
-            dlg:title="Number Extractor"> </p>
-<p><dlg:bulletinboard> 
-  <dlg:text dlg:id="Label1" dlg:tab-index="0" 
-            dlg:left="8" dlg:top="11" 
-            dlg:width="48" dlg:height="10" 
-            dlg:value="Extracted number: " 
-            dlg:align="right"/> </p>
-<p><dlg:button dlg:id="CommandButton1" dlg:tab-index="2" 
-              dlg:left="8" dlg:top="27" 
-              dlg:width="33" dlg:height="12" 
-              dlg:value="Ok"/> </p>
-<p><dlg:textfield dlg:id="TextField1" dlg:tab-index="1" 
-                 dlg:left="61" dlg:top="9" 
-                 dlg:width="24" dlg:height="12" 
-                 dlg:align="center" 
-                 dlg:readonly="true"/> </p>
-<p><dlg:button dlg:id="CommandButton2" dlg:tab-index="3" 
-              dlg:left="52" dlg:top="27" 
-              dlg:width="33" dlg:height="12" 
-              dlg:value="Cancel"/> </p>
-<p></dlg:bulletinboard> 
-</dlg:window> </p>
-<p>The most important things to note for later are the control IDs; in particular, the 
-textfield and button names: "TextField1", "CommandButton1", and 
-"CommandButton2". </p>
-<p>loadXDLDialog() utilizes Dialogs.loadAddonDialog() described in Chapter 46 to 
-obtain a reference to the dialog. It's initialized by initDialog() and made live by 
-XDialog.execute(): </p>
-<p>// in GetNumber.java 
-private static void loadXDLDialog(XControlModel cModel) 
-{ 
-  XDialog dialog = Dialogs.loadAddonDialog( 
-                          "org.openoffice.formmacros",<br />
-                          "dialogLibrary/NumExtractor.xdl"); 
-  if (dialog == null) 
-    return; 
-  initDialog(dialog, cModel); 
-  dialog.execute(); 
-}  // end of loadXDLDialog() </p>
-<p>initDialog() fills the dialog's textfield with numerical data extracted from the form's 
-"AgeText" field, and attaches a NumActionListener to its buttons: </p>
-<p>// part of GetNumber.java 
-private static void initDialog(XDialog dialog,<br />
-                               XControlModel cModel) 
-{ 
-  XControl dialogCtrl = Dialogs.getDialogControl(dialog); 
-  if (dialogCtrl == null) 
-    return; </p>
-<p>int val = extractDigits(<br />
-                (String)Props.getProperty(cModel, "Text")); </p>
-<p>// store extracted number in dialog's read-only text field; 
-  // the names of the controls are hardwired 
-  XTextComponent numFieldTB = Lo.qi(XTextComponent.class, 
-                 Dialogs.findControl(dialogCtrl, "TextField1")); 
-  numFieldTB.setText(""+val); </p>
-<p>// assign same listener to both buttons 
-  NumActionListener naListener =<br />
-               new NumActionListener(dialog, cModel, val); </p>
-<p>XButton okButton = Lo.qi(XButton.class, 
-          Dialogs.findControl(dialogCtrl, "CommandButton1")); 
-  okButton.addActionListener(naListener); </p>
-<p>XButton cancelButton = Lo.qi(XButton.class, 
-          Dialogs.findControl(dialogCtrl, "CommandButton2")); 
-  cancelButton.addActionListener(naListener); 
-} // end of initDialog() </p>
-<p>Dialogs.findControl() finds the dialog's textfield and buttons using the IDs that we 
-saw in NumExtractor.xdl. </p>
-<p>The NumActionListener class is included in the extension's Utils\ folder. It's a 
-standard button listener, but uses Office's XActionListener and ActionEvent not the 
-Java classes with similar names: </p>
-<p>// in NumActionListener.java 
-public class NumActionListener implements XActionListener 
-{ 
-  private XDialog dialog; 
-  private XControlModel cModel; 
-  private int val; </p>
-<p>public NumActionListener(XDialog dialog,<br />
-                            XControlModel cModel, int val) 
-  { this.dialog = dialog; 
-    this.cModel = cModel; 
-    this.val = val; 
-  }  // end of NumActionListener() </p>
-<p>public void actionPerformed(ActionEvent e) 
-  { 
-    String buttonName = Dialogs.getEventSourceName(e); 
-    System.out.println("Event received from : " + buttonName); </p>
-<pre><code>if (buttonName.equals("CommandButton1"))        // "OK" button 
-  Props.setProperty(cModel, "Text", "" + val);   
-                                      // put val in text field 
-else if (buttonName.equals("CommandButton2"))   // "Cancel" 
-  Props.setProperty(cModel, "Text", "");   // clear text field
+<span class="o">&lt;</span><span class="n">dlg</span><span class="p">:</span><span class="n">window</span> <span class="n">xmlns</span><span class="p">:</span><span class="n">dlg</span><span class="o">=</span><span class="s">&quot;http://openoffice.org/2000/dialog&quot;</span>
+            <span class="n">xmlns</span><span class="p">:</span><span class="n">script</span><span class="o">=</span><span class="s">&quot;http://openoffice.org/2000/script&quot;</span>
+            <span class="n">dlg</span><span class="p">:</span><span class="n">id</span><span class="o">=</span><span class="s">&quot;NumExtractor&quot;</span>
+            <span class="n">dlg</span><span class="p">:</span><span class="n">left</span><span class="o">=</span><span class="s">&quot;109&quot;</span> <span class="n">dlg</span><span class="p">:</span><span class="n">top</span><span class="o">=</span><span class="s">&quot;73&quot;</span>
+            <span class="n">dlg</span><span class="p">:</span><span class="n">width</span><span class="o">=</span><span class="s">&quot;94&quot;</span> <span class="n">dlg</span><span class="p">:</span><span class="n">height</span><span class="o">=</span><span class="s">&quot;44&quot;</span>
+            <span class="n">dlg</span><span class="p">:</span><span class="n">closeable</span><span class="o">=</span><span class="s">&quot;true&quot;</span> <span class="n">dlg</span><span class="p">:</span><span class="n">moveable</span><span class="o">=</span><span class="s">&quot;true&quot;</span>
+            <span class="n">dlg</span><span class="p">:</span><span class="n">title</span><span class="o">=</span><span class="s">&quot;Number Extractor&quot;</span><span class="o">&gt;</span>
 
-dialog.endExecute();
-</code></pre>
-<p>}  // end of actionPerformed() </p>
-<p>public void disposing(EventObject e) { }  </p>
-<p>}  // end of NumActionListener class </p>
-<p>The number extracted from the "AgeText" textfield is passed to the listener via its 
-constructor, along with a reference to the control. If the user presses "Ok" then the 
-number is written into the textfield, otherwise an empty string is used to clear its 
-contents. </p>
+ <span class="o">&lt;</span><span class="n">dlg</span><span class="p">:</span><span class="n">bulletinboard</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">dlg</span><span class="p">:</span><span class="n">text</span> <span class="n">dlg</span><span class="p">:</span><span class="n">id</span><span class="o">=</span><span class="s">&quot;Label1&quot;</span> <span class="n">dlg</span><span class="p">:</span><span class="n">tab</span><span class="o">-</span><span class="n">index</span><span class="o">=</span><span class="s">&quot;0&quot;</span>
+            <span class="n">dlg</span><span class="p">:</span><span class="n">left</span><span class="o">=</span><span class="s">&quot;8&quot;</span> <span class="n">dlg</span><span class="p">:</span><span class="n">top</span><span class="o">=</span><span class="s">&quot;11&quot;</span>
+            <span class="n">dlg</span><span class="p">:</span><span class="n">width</span><span class="o">=</span><span class="s">&quot;48&quot;</span> <span class="n">dlg</span><span class="p">:</span><span class="n">height</span><span class="o">=</span><span class="s">&quot;10&quot;</span>
+            <span class="n">dlg</span><span class="p">:</span><span class="n">value</span><span class="o">=</span><span class="s">&quot;Extracted number: &quot;</span>
+            <span class="n">dlg</span><span class="p">:</span><span class="n">align</span><span class="o">=</span><span class="s">&quot;right&quot;</span><span class="o">/&gt;</span>
+
+  <span class="o">&lt;</span><span class="n">dlg</span><span class="p">:</span><span class="n">button</span> <span class="n">dlg</span><span class="p">:</span><span class="n">id</span><span class="o">=</span><span class="s">&quot;CommandButton1&quot;</span> <span class="n">dlg</span><span class="p">:</span><span class="n">tab</span><span class="o">-</span><span class="n">index</span><span class="o">=</span><span class="s">&quot;2&quot;</span>
+              <span class="n">dlg</span><span class="p">:</span><span class="n">left</span><span class="o">=</span><span class="s">&quot;8&quot;</span> <span class="n">dlg</span><span class="p">:</span><span class="n">top</span><span class="o">=</span><span class="s">&quot;27&quot;</span>
+              <span class="n">dlg</span><span class="p">:</span><span class="n">width</span><span class="o">=</span><span class="s">&quot;33&quot;</span> <span class="n">dlg</span><span class="p">:</span><span class="n">height</span><span class="o">=</span><span class="s">&quot;12&quot;</span>
+              <span class="n">dlg</span><span class="p">:</span><span class="n">value</span><span class="o">=</span><span class="s">&quot;Ok&quot;</span><span class="o">/&gt;</span>
+
+  <span class="o">&lt;</span><span class="n">dlg</span><span class="p">:</span><span class="n">textfield</span> <span class="n">dlg</span><span class="p">:</span><span class="n">id</span><span class="o">=</span><span class="s">&quot;TextField1&quot;</span> <span class="n">dlg</span><span class="p">:</span><span class="n">tab</span><span class="o">-</span><span class="n">index</span><span class="o">=</span><span class="s">&quot;1&quot;</span>
+                 <span class="n">dlg</span><span class="p">:</span><span class="n">left</span><span class="o">=</span><span class="s">&quot;61&quot;</span> <span class="n">dlg</span><span class="p">:</span><span class="n">top</span><span class="o">=</span><span class="s">&quot;9&quot;</span>
+                 <span class="n">dlg</span><span class="p">:</span><span class="n">width</span><span class="o">=</span><span class="s">&quot;24&quot;</span> <span class="n">dlg</span><span class="p">:</span><span class="n">height</span><span class="o">=</span><span class="s">&quot;12&quot;</span>
+                 <span class="n">dlg</span><span class="p">:</span><span class="n">align</span><span class="o">=</span><span class="s">&quot;center&quot;</span>
+                 <span class="n">dlg</span><span class="p">:</span><span class="n">readonly</span><span class="o">=</span><span class="s">&quot;true&quot;</span><span class="o">/&gt;</span>
+
+  <span class="o">&lt;</span><span class="n">dlg</span><span class="p">:</span><span class="n">button</span> <span class="n">dlg</span><span class="p">:</span><span class="n">id</span><span class="o">=</span><span class="s">&quot;CommandButton2&quot;</span> <span class="n">dlg</span><span class="p">:</span><span class="n">tab</span><span class="o">-</span><span class="n">index</span><span class="o">=</span><span class="s">&quot;3&quot;</span>
+              <span class="n">dlg</span><span class="p">:</span><span class="n">left</span><span class="o">=</span><span class="s">&quot;52&quot;</span> <span class="n">dlg</span><span class="p">:</span><span class="n">top</span><span class="o">=</span><span class="s">&quot;27&quot;</span>
+              <span class="n">dlg</span><span class="p">:</span><span class="n">width</span><span class="o">=</span><span class="s">&quot;33&quot;</span> <span class="n">dlg</span><span class="p">:</span><span class="n">height</span><span class="o">=</span><span class="s">&quot;12&quot;</span>
+              <span class="n">dlg</span><span class="p">:</span><span class="n">value</span><span class="o">=</span><span class="s">&quot;Cancel&quot;</span><span class="o">/&gt;</span>
+
+ <span class="o">&lt;/</span><span class="n">dlg</span><span class="p">:</span><span class="n">bulletinboard</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">dlg</span><span class="p">:</span><span class="n">window</span><span class="o">&gt;</span>
+</code></pre></div>
+<p>The most important things to note for later are the control IDs; in particular, the
+textfield and button names: "TextField1", "CommandButton1", and
+"CommandButton2".</p>
+<p>loadXDLDialog() utilizes Dialogs.loadAddonDialog() described in Chapter 46 to
+obtain a reference to the dialog. It's initialized by initDialog() and made live by
+XDialog.execute():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in GetNumber.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">loadXDLDialog</span><span class="p">(</span><span class="n">XControlModel</span> <span class="n">cModel</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XDialog</span> <span class="n">dialog</span> <span class="o">=</span> <span class="n">Dialogs</span><span class="p">.</span><span class="na">loadAddonDialog</span><span class="p">(</span>
+                          <span class="s">&quot;org.openoffice.formmacros&quot;</span><span class="p">,</span>
+                          <span class="s">&quot;dialogLibrary/NumExtractor.xdl&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">dialog</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="n">initDialog</span><span class="p">(</span><span class="n">dialog</span><span class="p">,</span> <span class="n">cModel</span><span class="p">);</span>
+  <span class="n">dialog</span><span class="p">.</span><span class="na">execute</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of loadXDLDialog()</span>
+</code></pre></div>
+<p>initDialog() fills the dialog's textfield with numerical data extracted from the form's
+"AgeText" field, and attaches a NumActionListener to its buttons:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of GetNumber.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">initDialog</span><span class="p">(</span><span class="n">XDialog</span> <span class="n">dialog</span><span class="p">,</span>
+                               <span class="n">XControlModel</span> <span class="n">cModel</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XControl</span> <span class="n">dialogCtrl</span> <span class="o">=</span> <span class="n">Dialogs</span><span class="p">.</span><span class="na">getDialogControl</span><span class="p">(</span><span class="n">dialog</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">dialogCtrl</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">;</span>
+
+  <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="n">extractDigits</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">String</span><span class="p">)</span><span class="n">Props</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="n">cModel</span><span class="p">,</span> <span class="s">&quot;Text&quot;</span><span class="p">));</span>
+
+  <span class="c1">// store extracted number in dialog&#39;s read-only text field;</span>
+  <span class="c1">// the names of the controls are hardwired</span>
+  <span class="n">XTextComponent</span> <span class="n">numFieldTB</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XTextComponent</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                 <span class="n">Dialogs</span><span class="p">.</span><span class="na">findControl</span><span class="p">(</span><span class="n">dialogCtrl</span><span class="p">,</span> <span class="s">&quot;TextField1&quot;</span><span class="p">));</span>
+  <span class="n">numFieldTB</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="o">+</span><span class="n">val</span><span class="p">);</span>
+
+  <span class="c1">// assign same listener to both buttons</span>
+  <span class="n">NumActionListener</span> <span class="n">naListener</span> <span class="o">=</span>
+               <span class="k">new</span> <span class="n">NumActionListener</span><span class="p">(</span><span class="n">dialog</span><span class="p">,</span> <span class="n">cModel</span><span class="p">,</span> <span class="n">val</span><span class="p">);</span>
+
+  <span class="n">XButton</span> <span class="n">okButton</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XButton</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+          <span class="n">Dialogs</span><span class="p">.</span><span class="na">findControl</span><span class="p">(</span><span class="n">dialogCtrl</span><span class="p">,</span> <span class="s">&quot;CommandButton1&quot;</span><span class="p">));</span>
+  <span class="n">okButton</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="n">naListener</span><span class="p">);</span>
+
+  <span class="n">XButton</span> <span class="n">cancelButton</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XButton</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+          <span class="n">Dialogs</span><span class="p">.</span><span class="na">findControl</span><span class="p">(</span><span class="n">dialogCtrl</span><span class="p">,</span> <span class="s">&quot;CommandButton2&quot;</span><span class="p">));</span>
+  <span class="n">cancelButton</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="n">naListener</span><span class="p">);</span>
+<span class="p">}</span> <span class="c1">// end of initDialog()</span>
+</code></pre></div>
+<p>Dialogs.findControl() finds the dialog's textfield and buttons using the IDs that we
+saw in NumExtractor.xdl.</p>
+<p>The NumActionListener class is included in the extension's Utils\ folder. It's a
+standard button listener, but uses Office's XActionListener and ActionEvent not the
+Java classes with similar names:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in NumActionListener.java</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">NumActionListener</span> <span class="kd">implements</span> <span class="n">XActionListener</span>
+<span class="p">{</span>
+  <span class="kd">private</span> <span class="n">XDialog</span> <span class="n">dialog</span><span class="p">;</span>
+  <span class="kd">private</span> <span class="n">XControlModel</span> <span class="n">cModel</span><span class="p">;</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">val</span><span class="p">;</span>
+
+
+  <span class="kd">public</span> <span class="nf">NumActionListener</span><span class="p">(</span><span class="n">XDialog</span> <span class="n">dialog</span><span class="p">,</span>
+                            <span class="n">XControlModel</span> <span class="n">cModel</span><span class="p">,</span> <span class="kt">int</span> <span class="n">val</span><span class="p">)</span>
+  <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="na">dialog</span> <span class="o">=</span> <span class="n">dialog</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="na">cModel</span> <span class="o">=</span> <span class="n">cModel</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="na">val</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span>
+  <span class="p">}</span>  <span class="c1">// end of NumActionListener()</span>
+
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="p">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">String</span> <span class="n">buttonName</span> <span class="o">=</span> <span class="n">Dialogs</span><span class="p">.</span><span class="na">getEventSourceName</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Event received from : &quot;</span> <span class="o">+</span> <span class="n">buttonName</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">buttonName</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;CommandButton1&quot;</span><span class="p">))</span>        <span class="c1">// &quot;OK&quot; button</span>
+      <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">cModel</span><span class="p">,</span> <span class="s">&quot;Text&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span> <span class="o">+</span> <span class="n">val</span><span class="p">);</span>
+                                          <span class="c1">// put val in text field</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">buttonName</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;CommandButton2&quot;</span><span class="p">))</span>   <span class="c1">// &quot;Cancel&quot;</span>
+      <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">cModel</span><span class="p">,</span> <span class="s">&quot;Text&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">);</span>   <span class="c1">// clear text field</span>
+
+    <span class="n">dialog</span><span class="p">.</span><span class="na">endExecute</span><span class="p">();</span>
+  <span class="p">}</span>  <span class="c1">// end of actionPerformed()</span>
+
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">disposing</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span> <span class="p">}</span>
+
+<span class="p">}</span>  <span class="c1">// end of NumActionListener class</span>
+</code></pre></div>
+<p>The number extracted from the "AgeText" textfield is passed to the listener via its
+constructor, along with a reference to the control. If the user presses "Ok" then the
+number is written into the textfield, otherwise an empty string is used to clear its
+contents.</p>
 <h3 id="14-building-a-dialog-at-runtime">1.4.  Building a Dialog at Runtime</h3>
-<p>Office's dialog editor is the easiest way to construct a dialog, but there may be 
-situations where you want to create a simple dialog at run time. The commented-out 
-call to runtimeDialog() in GetNumber.get shows how to do this using my Dialog class 
-functions: </p>
-<p>// part of GetNumber.java 
-private static void runtimeDialog(XControlModel cModel) 
-{ 
-  XControl dialogCtrl = makeDialogControl(); 
-  if (dialogCtrl == null) 
-    return; </p>
-<p>XDialog dialog = Dialogs.createDialogPeer(dialogCtrl); 
-  if (dialog == null) 
-    return; </p>
-<p>initDialog(dialog, cModel); 
-  dialog.execute(); 
-}  // end of runtimeDialog() </p>
-<p>The dialog generated by makeDialogControl() (see Figure 7) is very similar to the one 
-defined in NumExtractor.xdl. </p>
+<p>Office's dialog editor is the easiest way to construct a dialog, but there may be
+situations where you want to create a simple dialog at run time. The commented-out
+call to runtimeDialog() in GetNumber.get shows how to do this using my Dialog class
+functions:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of GetNumber.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">runtimeDialog</span><span class="p">(</span><span class="n">XControlModel</span> <span class="n">cModel</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XControl</span> <span class="n">dialogCtrl</span> <span class="o">=</span> <span class="n">makeDialogControl</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">dialogCtrl</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">;</span>
+
+  <span class="n">XDialog</span> <span class="n">dialog</span> <span class="o">=</span> <span class="n">Dialogs</span><span class="p">.</span><span class="na">createDialogPeer</span><span class="p">(</span><span class="n">dialogCtrl</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">dialog</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">;</span>
+
+  <span class="n">initDialog</span><span class="p">(</span><span class="n">dialog</span><span class="p">,</span> <span class="n">cModel</span><span class="p">);</span>
+  <span class="n">dialog</span><span class="p">.</span><span class="na">execute</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of runtimeDialog()</span>
+</code></pre></div>
+<p>The dialog generated by makeDialogControl() (see Figure 7) is very similar to the one
+defined in NumExtractor.xdl.</p>
 <p><img alt="" src="images/49-Ext_Doc_Event_Macros-7.png" /></p>
-<p>Figure 7. The Rendering of the Runtime Dialog. </p>
-<p>makeDialogControl() creates an empty dialog, and fills it with a label, textfield and 
-two buttons: </p>
-<p>// part of GetNumber.java 
-private static XControl makeDialogControl() 
-{ 
-  XControl dialogCtrl =<br />
-        Dialogs.createDialogControl(109, 73, 94, 44,<br />
-                                      "Number Extractor"); 
-  if (dialogCtrl == null) 
-    System.out.println("dialog control is null"); 
-  // log("Dialog name:" + Dialogs.getControlName(dialogCtrl)); 
-        // reports "OfficeDialog1" </p>
-<p>XControl xc = Dialogs.insertLabel(dialogCtrl, 8, 11, 48,<br />
-                                    "Extracted Number: "); 
-  // log("Label name:" + Dialogs.getControlName(xc)); 
-        // FixedText1 </p>
-<p>xc = Dialogs.insertTextField(dialogCtrl, 61, 9, 24, ""); 
-  // log("Text field name:" + Dialogs.getControlName(xc)); 
-        // TextField1 </p>
-<p>xc = Dialogs.insertButton(dialogCtrl, 9, 27, 33, "Ok"); 
-  // log("Ok button name:" + Dialogs.getControlName(xc)); 
-       // CommandButton1 </p>
-<p>xc = Dialogs.insertButton(dialogCtrl, 52, 27, 33, "Cancel"); 
-  // log("Cancel button name:" + Dialogs.getControlName(xc)); 
-       // CommandButton2 </p>
-<p>return dialogCtrl; 
-}  // end of makeDialogControl() </p>
-<p>One tricky aspect is deciding on the control positions and widths passed to the 
-Dialogs.insertXXX() methods. I based them on the values in NumExtractor.xdl.  </p>
-<p>initDialog() is again used to initialize the dialog's textfield and buttons, which 
-assumes they are called "TextField1", "CommandButton1", and "CommandButton2". </p>
-<p>I confirmed this for the runtime dialog by writing their name to the log file: </p>
-<p>// part of GetNumber.java 
-// global 
-private static final String LOG_FNM = "c://macrosInfo.txt"; </p>
-<p>private static void log(String msg) 
-{  FileIO.appendTo(LOG_FNM, msg);  } </p>
+<p>Figure 7. The Rendering of the Runtime Dialog.</p>
+<p>makeDialogControl() creates an empty dialog, and fills it with a label, textfield and
+two buttons:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of GetNumber.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="n">XControl</span> <span class="nf">makeDialogControl</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">XControl</span> <span class="n">dialogCtrl</span> <span class="o">=</span>
+        <span class="n">Dialogs</span><span class="p">.</span><span class="na">createDialogControl</span><span class="p">(</span><span class="mi">109</span><span class="p">,</span> <span class="mi">73</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span>
+                                      <span class="s">&quot;Number Extractor&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">dialogCtrl</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;dialog control is null&quot;</span><span class="p">);</span>
+  <span class="c1">// log(&quot;Dialog name:&quot; + Dialogs.getControlName(dialogCtrl));</span>
+        <span class="c1">// reports &quot;OfficeDialog1&quot;</span>
+
+  <span class="n">XControl</span> <span class="n">xc</span> <span class="o">=</span> <span class="n">Dialogs</span><span class="p">.</span><span class="na">insertLabel</span><span class="p">(</span><span class="n">dialogCtrl</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span>
+                                    <span class="s">&quot;Extracted Number: &quot;</span><span class="p">);</span>
+  <span class="c1">// log(&quot;Label name:&quot; + Dialogs.getControlName(xc));</span>
+        <span class="c1">// FixedText1</span>
+
+  <span class="n">xc</span> <span class="o">=</span> <span class="n">Dialogs</span><span class="p">.</span><span class="na">insertTextField</span><span class="p">(</span><span class="n">dialogCtrl</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">);</span>
+  <span class="c1">// log(&quot;Text field name:&quot; + Dialogs.getControlName(xc));</span>
+        <span class="c1">// TextField1</span>
+
+  <span class="n">xc</span> <span class="o">=</span> <span class="n">Dialogs</span><span class="p">.</span><span class="na">insertButton</span><span class="p">(</span><span class="n">dialogCtrl</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="s">&quot;Ok&quot;</span><span class="p">);</span>
+  <span class="c1">// log(&quot;Ok button name:&quot; + Dialogs.getControlName(xc));</span>
+       <span class="c1">// CommandButton1</span>
+
+  <span class="n">xc</span> <span class="o">=</span> <span class="n">Dialogs</span><span class="p">.</span><span class="na">insertButton</span><span class="p">(</span><span class="n">dialogCtrl</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="s">&quot;Cancel&quot;</span><span class="p">);</span>
+  <span class="c1">// log(&quot;Cancel button name:&quot; + Dialogs.getControlName(xc));</span>
+       <span class="c1">// CommandButton2</span>
+
+  <span class="k">return</span> <span class="n">dialogCtrl</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of makeDialogControl()</span>
+</code></pre></div>
+<p>One tricky aspect is deciding on the control positions and widths passed to the
+Dialogs.insertXXX() methods. I based them on the values in NumExtractor.xdl.</p>
+<p>initDialog() is again used to initialize the dialog's textfield and buttons, which
+assumes they are called "TextField1", "CommandButton1", and "CommandButton2".
+I confirmed this for the runtime dialog by writing their name to the log file:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of GetNumber.java</span>
+<span class="c1">// global</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">LOG_FNM</span> <span class="o">=</span> <span class="s">&quot;c://macrosInfo.txt&quot;</span><span class="p">;</span>
+
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">log</span><span class="p">(</span><span class="n">String</span> <span class="n">msg</span><span class="p">)</span>
+<span class="p">{</span>  <span class="n">FileIO</span><span class="p">.</span><span class="na">appendTo</span><span class="p">(</span><span class="n">LOG_FNM</span><span class="p">,</span> <span class="n">msg</span><span class="p">);</span>  <span class="p">}</span>
+</code></pre></div>
 <h3 id="15-dialogs-and-their-controls">1.5.  Dialogs and their Controls</h3>
-<p>Dialog controls utilize the same model-view framework as form controls (which were 
-described back in Chapter 39). Controls store data as properties spread over a 
-hierarchy centered around UnoControlModel in the com.sun.star.awt module. A small 
-fragment of that hierarchy is shown in Figure 8. </p>
+<p>Dialog controls utilize the same model-view framework as form controls (which were
+described back in Chapter 39). Controls store data as properties spread over a
+hierarchy centered around UnoControlModel in the com.sun.star.awt module. A small
+fragment of that hierarchy is shown in Figure 8.</p>
 <p><img alt="" src="images/49-Ext_Doc_Event_Macros-8.png" /></p>
-<p>Figure 8. UnoControlModel and Some Subclasses. </p>
-<p>A dialog is represented by UnoControlDialogModel, which stores properties such as 
-the title, a background image or color, and windowing flags such as whether it is 
-closeable. Its XNameContainer interface allows the names of its component controls 
-to be accessed.  </p>
-<p>Some of the important properties, such as the (x, y) position of a control, are a little 
-hard to find – they're not in UnoControlModel but its superclass, 
-UnoControlDialogElement. </p>
-<p>The other part of the model-view framework are views which represent how a control 
-is drawn. Views for different controls are subclasses of the UnoControl service, as 
-shown in Figure 9. </p>
+<p>Figure 8. UnoControlModel and Some Subclasses.</p>
+<p>A dialog is represented by UnoControlDialogModel, which stores properties such as
+the title, a background image or color, and windowing flags such as whether it is
+closeable. Its XNameContainer interface allows the names of its component controls
+to be accessed.</p>
+<p>Some of the important properties, such as the (x, y) position of a control, are a little
+hard to find – they're not in UnoControlModel but its superclass,
+UnoControlDialogElement.</p>
+<p>The other part of the model-view framework are views which represent how a control
+is drawn. Views for different controls are subclasses of the UnoControl service, as
+shown in Figure 9.</p>
 <p><img alt="" src="images/49-Ext_Doc_Event_Macros-9.png" /></p>
-<p>Figure 9. UnoControl and Some Subclasses. </p>
-<p>UnoControl's XControl contains methods for linking a model to a view. Also, 
-subclass interfaces, such as XButton and XTextComponent, are where listeners are 
-attached to controls. </p>
-<p>It helps to remember the naming conventions illustrated by Figures 8 and 9 – a service 
-containing the word "Model" is almost always for storing data, while a service 
-without the word "Model" is almost always a view. </p>
-<p>Figure 9 doesn't include a dialog view; it's sufficiently different to deserve its own 
-diagram, Figure 10. </p>
+<p>Figure 9. UnoControl and Some Subclasses.</p>
+<p>UnoControl's XControl contains methods for linking a model to a view. Also,
+subclass interfaces, such as XButton and XTextComponent, are where listeners are
+attached to controls.</p>
+<p>It helps to remember the naming conventions illustrated by Figures 8 and 9 – a service
+containing the word "Model" is almost always for storing data, while a service
+without the word "Model" is almost always a view.</p>
+<p>Figure 9 doesn't include a dialog view; it's sufficiently different to deserve its own
+diagram, Figure 10.</p>
 <p><img alt="" src="images/49-Ext_Doc_Event_Macros-10.png" /></p>
-<p>Figure 10. The UnoControlDialog Service. </p>
-<p>UnoControlDialog isn't a subclass of UnoControl, but its interface, 
-XUnoControlDialog, still inherits XControl and so can be linked to a model. It also 
-inherits XControlContainer which allows controls to be added to and removed from a 
-dialog. XDialog contains execute() which makes a dialog active on screen. </p>
-<p>Dialogs.createDialogControl() creates a dialog view and model, and links them. The 
-dialog is initialized by setting various properties in its model: </p>
-<p>// in the Dialogs class 
-public static XControl createDialogControl(int x, int y,<br />
-                     int width, int height, String title) 
-{ try { 
-    XControl dialogCtrl = <br />
-                 Lo.createInstanceMCF(XControl.class,<br />
-                     "com.sun.star.awt.UnoControlDialog"); 
-    XControlModel xControlModel =<br />
-                 Lo.createInstanceMCF(XControlModel.class,<br />
-                     "com.sun.star.awt.UnoControlDialogModel"); 
-    dialogCtrl.setModel(xControlModel);  // link view and model </p>
-<pre><code>XPropertySet props = getControlProps(dialogCtrl.getModel()); 
-props.setPropertyValue("PositionX", x); 
-props.setPropertyValue("PositionY", y); 
-props.setPropertyValue("Height", height); 
-props.setPropertyValue("Width", width);
+<p>Figure 10. The UnoControlDialog Service.</p>
+<p>UnoControlDialog isn't a subclass of UnoControl, but its interface,
+XUnoControlDialog, still inherits XControl and so can be linked to a model. It also
+inherits XControlContainer which allows controls to be added to and removed from a
+dialog. XDialog contains execute() which makes a dialog active on screen.</p>
+<p>Dialogs.createDialogControl() creates a dialog view and model, and links them. The
+dialog is initialized by setting various properties in its model:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Dialogs class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XControl</span> <span class="nf">createDialogControl</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span>
+                     <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">,</span> <span class="n">String</span> <span class="n">title</span><span class="p">)</span>
+<span class="p">{</span> <span class="k">try</span> <span class="p">{</span>
+    <span class="n">XControl</span> <span class="n">dialogCtrl</span> <span class="o">=</span>
+                 <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XControl</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                     <span class="s">&quot;com.sun.star.awt.UnoControlDialog&quot;</span><span class="p">);</span>
+    <span class="n">XControlModel</span> <span class="n">xControlModel</span> <span class="o">=</span>
+                 <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XControlModel</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                     <span class="s">&quot;com.sun.star.awt.UnoControlDialogModel&quot;</span><span class="p">);</span>
+    <span class="n">dialogCtrl</span><span class="p">.</span><span class="na">setModel</span><span class="p">(</span><span class="n">xControlModel</span><span class="p">);</span>  <span class="c1">// link view and model</span>
 
-props.setPropertyValue("Title", title); 
-props.setPropertyValue("Name", "OfficeDialog");
+    <span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span> <span class="n">getControlProps</span><span class="p">(</span><span class="n">dialogCtrl</span><span class="p">.</span><span class="na">getModel</span><span class="p">());</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;PositionX&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;PositionY&quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;Height&quot;</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;Width&quot;</span><span class="p">,</span> <span class="n">width</span><span class="p">);</span>
 
-props.setPropertyValue("Step", 0); 
-props.setPropertyValue("Moveable", true); 
-props.setPropertyValue("TabIndex", new Short((short) 0));
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;Title&quot;</span><span class="p">,</span> <span class="n">title</span><span class="p">);</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;Name&quot;</span><span class="p">,</span> <span class="s">&quot;OfficeDialog&quot;</span><span class="p">);</span>
 
-return dialogCtrl;
-</code></pre>
-<p>} 
-  catch (Exception ex) { 
-    System.out.println("Could not create dialog control: " + ex); 
-    return null; 
-  } 
-}  // end of createDialogControl() </p>
-<p>makeDialogControl() in the GetNumber class adds a label, textfield, and two buttons 
-to the dialog by calling Dialogs.insertXXX() methods. These methods are all quite 
-similar, so I'll only explain insertButton(). Its job is to create a button model, and 
-initialize its properties: </p>
-<p>// in the Dialogs class 
-public static XControl insertButton(XControl dialogCtrl, 
-                          int x, int y, int width, String label) 
-{  return insertButton(dialogCtrl, x, y, width, label,<br />
-                       PushButtonType.STANDARD_value); 
-} </p>
-<p>public static XControl insertButton(XControl dialogCtrl, 
-                          int x, int y, int width,<br />
-                          String label, int pushButtonType) 
-{ try { 
-    // create a button model 
-    XMultiServiceFactory msf =<br />
-             Lo.qi(XMultiServiceFactory.class,<br />
-                            dialogCtrl.getModel()); 
-    Object model = msf.createInstance( 
-               "com.sun.star.awt.UnoControlButtonModel"); </p>
-<pre><code>// generate a unique name for the control 
-XNameContainer nameCon = getDialogNmCon(dialogCtrl); 
-String nm = createName(nameCon, "CommandButton");
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;Step&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;Moveable&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;TabIndex&quot;</span><span class="p">,</span> <span class="k">new</span> <span class="n">Short</span><span class="p">((</span><span class="kt">short</span><span class="p">)</span> <span class="mi">0</span><span class="p">));</span>
 
-// set properties in the model 
-XPropertySet props = getControlProps(model); 
-props.setPropertyValue("PositionX", x); 
-props.setPropertyValue("PositionY", y); 
-props.setPropertyValue("Height", 14); 
-props.setPropertyValue("Width", width);
+    <span class="k">return</span> <span class="n">dialogCtrl</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not create dialog control: &quot;</span> <span class="o">+</span> <span class="n">ex</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of createDialogControl()</span>
+</code></pre></div>
+<p>makeDialogControl() in the GetNumber class adds a label, textfield, and two buttons
+to the dialog by calling Dialogs.insertXXX() methods. These methods are all quite
+similar, so I'll only explain insertButton(). Its job is to create a button model, and
+initialize its properties:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Dialogs class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XControl</span> <span class="nf">insertButton</span><span class="p">(</span><span class="n">XControl</span> <span class="n">dialogCtrl</span><span class="p">,</span>
+                          <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="n">String</span> <span class="n">label</span><span class="p">)</span>
+<span class="p">{</span>  <span class="k">return</span> <span class="n">insertButton</span><span class="p">(</span><span class="n">dialogCtrl</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span>
+                       <span class="n">PushButtonType</span><span class="p">.</span><span class="na">STANDARD_value</span><span class="p">);</span>
+<span class="p">}</span>
 
-props.setPropertyValue("Label", label); 
-props.setPropertyValue("PushButtonType",  
-              new Short((short) pushButtonType)); 
-props.setPropertyValue("Name", nm);
 
-// add the model to the dialog 
-nameCon.insertByName(nm, model);
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XControl</span> <span class="nf">insertButton</span><span class="p">(</span><span class="n">XControl</span> <span class="n">dialogCtrl</span><span class="p">,</span>
+                          <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">,</span>
+                          <span class="n">String</span> <span class="n">label</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pushButtonType</span><span class="p">)</span>
+<span class="p">{</span> <span class="k">try</span> <span class="p">{</span>
+    <span class="c1">// create a button model</span>
+    <span class="n">XMultiServiceFactory</span> <span class="n">msf</span> <span class="o">=</span>
+             <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XMultiServiceFactory</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                            <span class="n">dialogCtrl</span><span class="p">.</span><span class="na">getModel</span><span class="p">());</span>
+    <span class="n">Object</span> <span class="n">model</span> <span class="o">=</span> <span class="n">msf</span><span class="p">.</span><span class="na">createInstance</span><span class="p">(</span>
+               <span class="s">&quot;com.sun.star.awt.UnoControlButtonModel&quot;</span><span class="p">);</span>
 
-// get the dialog's container holding all the control views 
-XControlContainer ctrlCon =  
-           Lo.qi(XControlContainer.class, dialogCtrl);
+    <span class="c1">// generate a unique name for the control</span>
+    <span class="n">XNameContainer</span> <span class="n">nameCon</span> <span class="o">=</span> <span class="n">getDialogNmCon</span><span class="p">(</span><span class="n">dialogCtrl</span><span class="p">);</span>
+    <span class="n">String</span> <span class="n">nm</span> <span class="o">=</span> <span class="n">createName</span><span class="p">(</span><span class="n">nameCon</span><span class="p">,</span> <span class="s">&quot;CommandButton&quot;</span><span class="p">);</span>
 
-// use the model's name to get its view inside the dialog 
-return ctrlCon.getControl(nm);
-</code></pre>
-<p>} 
-  catch (Exception ex) { 
-    System.out.println("Could not create button control: " + ex); 
-    return null; 
-  } 
-}  // end of insertButton() </p>
-<p>First the model is created and added to the dialog. Its view is retrieved from the 
-dialog's control container, and returned as an XControl object. </p>
-<p>Back in GetNumber.runtimeDialog(), the dialog's window (or peer) is linked to the 
-Office window by Dialogs.createDialogPeer(): </p>
-<p>// in the Dialogs class 
-public static XDialog createDialogPeer(XControl dialogCtrl) 
-{ 
-  XWindow xWindow = (XWindow) Lo.qi(XWindow.class, dialogCtrl); 
-  xWindow.setVisible(false); 
-             // set dialog window invisible until it is executed </p>
-<p>XToolkit xToolkit = Lo.createInstanceMCF(XToolkit.class,<br />
-                                  "com.sun.star.awt.Toolkit"); 
-  XWindowPeer windowParentPeer = xToolkit.getDesktopWindow(); </p>
-<p>dialogCtrl.createPeer(xToolkit, windowParentPeer); </p>
-<p>XComponent dialogComponent = Lo.qi(XComponent.class, dialogCtrl); 
-  return getDialog(dialogCtrl); 
-}  // end of createDialogPeer() </p>
+    <span class="c1">// set properties in the model</span>
+    <span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span> <span class="n">getControlProps</span><span class="p">(</span><span class="n">model</span><span class="p">);</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;PositionX&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;PositionY&quot;</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;Height&quot;</span><span class="p">,</span> <span class="mi">14</span><span class="p">);</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;Width&quot;</span><span class="p">,</span> <span class="n">width</span><span class="p">);</span>
+
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;Label&quot;</span><span class="p">,</span> <span class="n">label</span><span class="p">);</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;PushButtonType&quot;</span><span class="p">,</span>
+                  <span class="k">new</span> <span class="n">Short</span><span class="p">((</span><span class="kt">short</span><span class="p">)</span> <span class="n">pushButtonType</span><span class="p">));</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;Name&quot;</span><span class="p">,</span> <span class="n">nm</span><span class="p">);</span>
+
+    <span class="c1">// add the model to the dialog</span>
+    <span class="n">nameCon</span><span class="p">.</span><span class="na">insertByName</span><span class="p">(</span><span class="n">nm</span><span class="p">,</span> <span class="n">model</span><span class="p">);</span>
+
+    <span class="c1">// get the dialog&#39;s container holding all the control views</span>
+    <span class="n">XControlContainer</span> <span class="n">ctrlCon</span> <span class="o">=</span>
+               <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XControlContainer</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">dialogCtrl</span><span class="p">);</span>
+
+    <span class="c1">// use the model&#39;s name to get its view inside the dialog</span>
+    <span class="k">return</span> <span class="n">ctrlCon</span><span class="p">.</span><span class="na">getControl</span><span class="p">(</span><span class="n">nm</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not create button control: &quot;</span> <span class="o">+</span> <span class="n">ex</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of insertButton()</span>
+</code></pre></div>
+<p>First the model is created and added to the dialog. Its view is retrieved from the
+dialog's control container, and returned as an XControl object.</p>
+<p>Back in GetNumber.runtimeDialog(), the dialog's window (or peer) is linked to the
+Office window by Dialogs.createDialogPeer():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Dialogs class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XDialog</span> <span class="nf">createDialogPeer</span><span class="p">(</span><span class="n">XControl</span> <span class="n">dialogCtrl</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XWindow</span> <span class="n">xWindow</span> <span class="o">=</span> <span class="p">(</span><span class="n">XWindow</span><span class="p">)</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XWindow</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">dialogCtrl</span><span class="p">);</span>
+  <span class="n">xWindow</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+             <span class="c1">// set dialog window invisible until it is executed</span>
+
+  <span class="n">XToolkit</span> <span class="n">xToolkit</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XToolkit</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                                  <span class="s">&quot;com.sun.star.awt.Toolkit&quot;</span><span class="p">);</span>
+  <span class="n">XWindowPeer</span> <span class="n">windowParentPeer</span> <span class="o">=</span> <span class="n">xToolkit</span><span class="p">.</span><span class="na">getDesktopWindow</span><span class="p">();</span>
+
+  <span class="n">dialogCtrl</span><span class="p">.</span><span class="na">createPeer</span><span class="p">(</span><span class="n">xToolkit</span><span class="p">,</span> <span class="n">windowParentPeer</span><span class="p">);</span>
+
+  <span class="n">XComponent</span> <span class="n">dialogComponent</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XComponent</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">dialogCtrl</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">getDialog</span><span class="p">(</span><span class="n">dialogCtrl</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of createDialogPeer()</span>
+</code></pre></div>
 <h2 id="2-storing-macros-inside-the-form-document">2.  Storing Macros inside the (Form) Document</h2>
-<p>The previous section examined how to add macros to Office as extensions. Another 
-popular way of utilizing macros is to embed them inside documents. </p>
-<p>I'll create a variation of the previous form, with the same functionality for its text 
-fields, but GetText.show and GetNumber.get (and its dialog and listener) will be 
-stored inside the document. </p>
-<p>Office documents, such as FormMacrosTest.odt, can be manipulated as zip files; I 
-chose 7-Zip (http://www.7-zip.org/) for the purpose, because it's powerful, open 
-source, and can be executed from the command line and from DOS batch scripts. </p>
-<p>I'm reusing the same form from the previous section, but stored in 
-FormDocMacros.odt. It's unzipped using my unzipDoc.bat script to create a folder 
-called FormDocMacros_odt. The macros are added by modifying this folder: two 
-new subdirectories are created, and the manifest.xml file changed, as illustrated by </p>
+<p>The previous section examined how to add macros to Office as extensions. Another
+popular way of utilizing macros is to embed them inside documents.</p>
+<p>I'll create a variation of the previous form, with the same functionality for its text
+fields, but GetText.show and GetNumber.get (and its dialog and listener) will be
+stored inside the document.</p>
+<p>Office documents, such as FormMacrosTest.odt, can be manipulated as zip files; I
+chose 7-Zip (http://www.7-zip.org/) for the purpose, because it's powerful, open
+source, and can be executed from the command line and from DOS batch scripts.</p>
+<p>I'm reusing the same form from the previous section, but stored in
+FormDocMacros.odt. It's unzipped using my unzipDoc.bat script to create a folder
+called FormDocMacros_odt. The macros are added by modifying this folder: two
+new subdirectories are created, and the manifest.xml file changed, as illustrated by
+Figure 11.</p>
 <p><img alt="" src="images/49-Ext_Doc_Event_Macros-11.png" /></p>
-<p>Figure 11. </p>
-<p><img alt="" src="images/49-Ext_Doc_Event_Macros-11.png" /></p>
-<p>Figure 11. The Changed FormDocMacros_odt\ Folder </p>
-<p>The dialogLibrary\ folder contains the same "Number Extractor" dialog definition as 
-before. The Scripts\java\Utils\ folder contains Macros.jar, and a new version of 
-parcel-descriptor.xml. </p>
-<p>Macros.jar is different from the earlier extension, which used three classes 
-(GetText.class, GetNumber.class, and NumActionListener.class) and Utils.jar. </p>
-<p>Unfortunately, this combination doesn't work for document macros. Instead, 
-Macros.jar is a renamed version of Utils.jar with GetText.class, GetNumber.class, and 
-NumActionListener.class added to it.  </p>
-<p>This change to the code organization is reflected in parcel-descriptor.xml. The 
-classpath entries for the two macros become: 
-<prop name="classpath" value="Macros.jar"/> 
-manifest.xml specifies the structure of FormDocMacros_odt\, so lines are added 
-describing dialogLibrary\ and Scripts\: </p>
-<p>// added to manifest.xml </p>
-<p><manifest:file-entry manifest:media-type="text/xml"<br />       manifest:full-path= 
-          "Scripts/java/Utils/parcel-descriptor.xml"/> </p>
-<p><manifest:file-entry manifest:media-type= 
-                 "application/vnd.sun.star.dialog-library"<br />       manifest:full-path="dialogLibrary/" /> 
-<manifest:file-entry manifest:media-type="" 
-       manifest:full-path="dialogLibrary/NumExtractor.xdl" /> </p>
-<p><manifest:file-entry manifest:media-type="application/binary"<br />       manifest:full-path="Scripts/java/Utils/"/> 
-<manifest:file-entry manifest:media-type="application/binary"<br />       manifest:full-path="Scripts/java/"/> 
-<manifest:file-entry manifest:media-type="application/binary"<br />       manifest:full-path="Scripts/"/> </p>
-<p><manifest:file-entry manifest:media-type="application/binary"<br />       manifest:full-path="Scripts/java/Utils/Macros.jar"/> </p>
-<p>FormDocMacros_odt\ is re-zipped, becoming FormDocMacros.odt. Double-clicking 
-on it causes it to open, to display the same form as before, but only after the user has 
-clicked "Enable Macros" in the security warning (see Figure 12). </p>
+<p>Figure 11. The Changed FormDocMacros_odt\ Folder</p>
+<p>The dialogLibrary\ folder contains the same "Number Extractor" dialog definition as
+before. The Scripts\java\Utils\ folder contains Macros.jar, and a new version of
+parcel-descriptor.xml.</p>
+<p>Macros.jar is different from the earlier extension, which used three classes
+(GetText.class, GetNumber.class, and NumActionListener.class) and Utils.jar.</p>
+<p>Unfortunately, this combination doesn't work for document macros. Instead,
+Macros.jar is a renamed version of Utils.jar with GetText.class, GetNumber.class, and
+NumActionListener.class added to it.</p>
+<p>This change to the code organization is reflected in parcel-descriptor.xml. The
+classpath entries for the two macros become:
+<prop name="classpath" value="Macros.jar"/>
+manifest.xml specifies the structure of FormDocMacros_odt\, so lines are added
+describing dialogLibrary\ and Scripts\:</p>
+<div class="highlight"><pre><span></span><code>// added to manifest.xml
+
+&lt;manifest:file-entry manifest:media-type=&quot;text/xml&quot;
+       manifest:full-path=
+          &quot;Scripts/java/Utils/parcel-descriptor.xml&quot;/&gt;
+
+&lt;manifest:file-entry manifest:media-type=
+                 &quot;application/vnd.sun.star.dialog-library&quot;
+       manifest:full-path=&quot;dialogLibrary/&quot; /&gt;
+&lt;manifest:file-entry manifest:media-type=&quot;&quot;
+       manifest:full-path=&quot;dialogLibrary/NumExtractor.xdl&quot; /&gt;
+
+&lt;manifest:file-entry manifest:media-type=&quot;application/binary&quot;
+       manifest:full-path=&quot;Scripts/java/Utils/&quot;/&gt;
+&lt;manifest:file-entry manifest:media-type=&quot;application/binary&quot;
+       manifest:full-path=&quot;Scripts/java/&quot;/&gt;
+&lt;manifest:file-entry manifest:media-type=&quot;application/binary&quot;
+       manifest:full-path=&quot;Scripts/&quot;/&gt;
+
+&lt;manifest:file-entry manifest:media-type=&quot;application/binary&quot;
+       manifest:full-path=&quot;Scripts/java/Utils/Macros.jar&quot;/&gt;
+</code></pre></div>
+<p>FormDocMacros_odt\ is re-zipped, becoming FormDocMacros.odt. Double-clicking
+on it causes it to open, to display the same form as before, but only after the user has
+clicked "Enable Macros" in the security warning (see Figure 12).</p>
 <p><img alt="" src="images/49-Ext_Doc_Event_Macros-12.png" /></p>
-<p>Figure 12. The Macro Security Warning when Opening FormDocMacros.odt. </p>
-<p>Although the form is the same as previously, the button and textfield must be 
-configured to use the document macros rather than macros stored inside Office. For 
-example, the button's "Execute action" event should be assigned to GetText.show in 
-the document, as in Figure 13. </p>
+<p>Figure 12. The Macro Security Warning when Opening FormDocMacros.odt.</p>
+<p>Although the form is the same as previously, the button and textfield must be
+configured to use the document macros rather than macros stored inside Office. For
+example, the button's "Execute action" event should be assigned to GetText.show in
+the document, as in Figure 13.</p>
 <p><img alt="" src="images/49-Ext_Doc_Event_Macros-13.png" /></p>
-<p>Figure 13. Selecting a Document Macro. </p>
-<p>The resulting event is displayed in Figure 14. </p>
+<p>Figure 13. Selecting a Document Macro.</p>
+<p>The resulting event is displayed in Figure 14.</p>
 <p><img alt="" src="images/49-Ext_Doc_Event_Macros-14.png" /></p>
-<p>Figure 14. The "Execute action" Event. </p>
+<p>Figure 14. The "Execute action" Event.</p>
 <h2 id="3-attaching-macros-to-other-events">3.  Attaching Macros to Other Events</h2>
-<p>This chapter and the last have concentrated on adding macros to form controls, but 
-other parts of Office, and other documents, can utilize event macros as well. </p>
-<p>A summary of the different ways that event macros can be employed is given on the 
-wiki page "Scripting LibreOffice" at https://help.libreoffice.org/Common/Scripting. It 
-lists uses for event macros such as: 
- attached to form controls (already described); 
- attached to menu items and toolbar icons (this is covered by Add-ons in 
-Chapter 46); 
- attached to Office and document events (described next); 
- attached to key combinations; 
- attached to an embedded object, such as a chart; 
- attached to a graphic; 
- attached to a hyperlink. </p>
-<p>The Tools &gt; Customize dialog window supports the connection of event macros to 
-menus, keyboards, toolbars, and events, as shown in Figure 15. </p>
+<p>This chapter and the last have concentrated on adding macros to form controls, but
+other parts of Office, and other documents, can utilize event macros as well.</p>
+<p>A summary of the different ways that event macros can be employed is given on the
+wiki page "Scripting LibreOffice" at https://help.libreoffice.org/Common/Scripting. It
+lists uses for event macros such as:</p>
+<ul>
+<li>attached to form controls (already described);</li>
+<li>attached to menu items and toolbar icons (this is covered by Add-ons in Chapter 46);</li>
+<li>attached to Office and document events (described next);</li>
+<li>attached to key combinations;</li>
+<li>attached to an embedded object, such as a chart;</li>
+<li>attached to a graphic;</li>
+<li>attached to a hyperlink.</li>
+</ul>
+<p>The Tools, Customize dialog window supports the connection of event macros to
+menus, keyboards, toolbars, and events, as shown in Figure 15.</p>
 <p><img alt="" src="images/49-Ext_Doc_Event_Macros-15.png" /></p>
-<p>Figure 15. The Tools &gt; Customize Dialog. </p>
-<p>The Events tab in Figure 15 has a pop-down list at its bottom which allows macros to 
-be attached to Office events (as in the figure) or to events associated with the 
-currently open document. </p>
-<p>A macro is selected via the "Macro…" button which takes the user to the Macro 
-Selector dialog. In Figure 15, I've attached ShowEvent.show to the Office events 
-"Start Application" and "Open Document". When Office starts it will display the 
-dialog window on the left of Figure 16, and the dialog on the right when the document 
-is opened. </p>
+<p>Figure 15. The Tools &gt; Customize Dialog.</p>
+<p>The Events tab in Figure 15 has a pop-down list at its bottom which allows macros to
+be attached to Office events (as in the figure) or to events associated with the
+currently open document.</p>
+<p>A macro is selected via the "Macro…" button which takes the user to the Macro
+Selector dialog. In Figure 15, I've attached ShowEvent.show to the Office events
+"Start Application" and "Open Document". When Office starts it will display the
+dialog window on the left of Figure 16, and the dialog on the right when the document
+is opened.</p>
 <p><img alt="" src="images/49-Ext_Doc_Event_Macros-16.png" /></p>
-<p>Figure 16. The ShowEvent.show Dialogs for Office Events. </p>
-<p>These dialogs are drawn by the DocumentEvent version of show() in the ShowEvent 
-class: </p>
-<p>// in the ShowEvent class 
-public static void show(XScriptContext sc,<br />
-                      com.sun.star.document.DocumentEvent e)<br />
-{  display("document", e.EventName);  } </p>
-<p>Automatic Macro Attachment 
-It's possible to automate the attachment of macros to Office and document events, as 
-illustrated by the DocEvents.java example: </p>
-<p>// in DocEvents.java 
-public static void main(String[] args) 
-{ 
-  XComponentLoader loader = Lo.loadOffice(); </p>
-<p>Macros.listOfficeEvents(); </p>
-<p>// list the "OnStartApp" and "OnLoad" Office event properties 
-  PropertyValue[] osaProps = Macros.getEventProps("OnStartApp"); 
-  Props.showProps("OnStartApp Event", osaProps); </p>
-<p>PropertyValue[] olProps = Macros.getEventProps("OnLoad"); 
-  Props.showProps("OnLoad Event", olProps); </p>
-<p>// attach macros to event if it does not have macros already 
-  if (Lo.isNullOrEmpty( (String)Props.getProp(osaProps, "Script"))) 
-    Macros.setEventScript("OnStartApp",<br />
-       "vnd.sun.star.script:ShowEvent.ShowEvent.show? 
-                           language=Java&amp;location=share"); </p>
-<p>if (Lo.isNullOrEmpty( (String)Props.getProp(olProps, "Script"))) 
-    Macros.setEventScript("OnLoad",<br />
-       "vnd.sun.star.script:ShowEvent.ShowEvent.show? 
-                          language=Java&amp;location=share"); </p>
-<p>XTextDocument doc = Write.openDoc("build.odt", loader); 
-  if (doc == null) { 
-    System.out.println("Could not open build.odt"); 
-    Lo.closeOffice(); 
-    return; 
-  } </p>
-<p>GUI.setVisible(doc, true); 
-  Lo.wait(2000); </p>
-<p>Macros.listDocEvents(doc); </p>
-<p>// list the "OnPageCountChange" doc event properties 
-  PropertyValue[] opccProps =<br />
-               Macros.getDocEventProps(doc, "OnPageCountChange"); 
-    Props.showProps("OnPageCountChange Event", opccProps); </p>
-<p>if (Lo.isNullOrEmpty(<br />
-                   (String)Props.getProp(opccProps, "Script"))) { 
-    Macros.setDocEventScript(doc, "OnPageCountChange",<br />
-       "vnd.sun.star.script:ShowEvent.ShowEvent.show? 
-                             language=Java&amp;location=share"); </p>
-<pre><code>Lo.save(doc);  // must save doc after event macro change
-</code></pre>
-<p>} </p>
-<p>Lo.waitEnter(); 
-  Lo.closeDoc(doc); 
-  Lo.closeOffice(); 
-} // end of main() </p>
-<p>The program begins by listing all the names of the Office events by calling 
-Macros.listOfficeEvents(), and then the properties for the "OnStartApp" and 
-"OnLoad" events. It attaches ShowEvent.show to the two events, resulting in the 
-macro setup in Figure 15. </p>
-<p>The output from Macros.listOfficeEvents() is: </p>
-<p>Event Handler names 
-No. of names: 28 
-  "OnCloseApp"  "OnCopyTo"  "OnCopyToDone"  "OnCopyToFailed" 
-  "OnCreate"  "OnFocus"  "OnLoad"  "OnLoadFinished" 
-  "OnModeChanged"  "OnModifyChanged"  "OnNew"  "OnPrepareUnload" 
-  "OnPrepareViewClosing"  "OnPrint"  "OnSave"  "OnSaveAs" 
-  "OnSaveAsDone"  "OnSaveAsFailed"  "OnSaveDone"  "OnSaveFailed" 
-  "OnStartApp"  "OnStorageChanged"  "OnTitleChanged"  "OnUnfocus" 
-  "OnUnload"  "OnViewClosed"  "OnViewCreated"  "OnVisAreaChanged" </p>
-<p>These names can be mapped without too much difficulty to the strings in the "Events" 
-column of Figure 15. </p>
-<p>The properties listed for the "OnStartApp" and "OnLoad" events are: </p>
-<p>Properties for "OnStartApp Event": 
-  EventType: Script 
-  Script: </p>
-<p>Properties for "OnLoad Event": 
-  EventType: Script 
-  Script: </p>
-<p>In other words, neither events have macros attached to them at the start of 
-DocEvents.java. </p>
-<p>Events are manipulated using the XEventSupplier interface. Its relevant services and 
-interfaces are shown in Figure 17. </p>
+<p>Figure 16. The ShowEvent.show Dialogs for Office Events.</p>
+<p>These dialogs are drawn by the DocumentEvent version of show() in the ShowEvent
+class:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the ShowEvent class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">show</span><span class="p">(</span><span class="n">XScriptContext</span> <span class="n">sc</span><span class="p">,</span>
+                      <span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">document</span><span class="p">.</span><span class="na">DocumentEvent</span> <span class="n">e</span><span class="p">)</span>
+<span class="p">{</span>  <span class="n">display</span><span class="p">(</span><span class="s">&quot;document&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="na">EventName</span><span class="p">);</span>  <span class="p">}</span>
+</code></pre></div>
+<h4 id="automatic-macro-attachment">Automatic Macro Attachment</h4>
+<p>It's possible to automate the attachment of macros to Office and document events, as
+illustrated by the DocEvents.java example:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in DocEvents.java</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+
+  <span class="n">Macros</span><span class="p">.</span><span class="na">listOfficeEvents</span><span class="p">();</span>
+
+  <span class="c1">// list the &quot;OnStartApp&quot; and &quot;OnLoad&quot; Office event properties</span>
+  <span class="n">PropertyValue</span><span class="o">[]</span> <span class="n">osaProps</span> <span class="o">=</span> <span class="n">Macros</span><span class="p">.</span><span class="na">getEventProps</span><span class="p">(</span><span class="s">&quot;OnStartApp&quot;</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">showProps</span><span class="p">(</span><span class="s">&quot;OnStartApp Event&quot;</span><span class="p">,</span> <span class="n">osaProps</span><span class="p">);</span>
+
+  <span class="n">PropertyValue</span><span class="o">[]</span> <span class="n">olProps</span> <span class="o">=</span> <span class="n">Macros</span><span class="p">.</span><span class="na">getEventProps</span><span class="p">(</span><span class="s">&quot;OnLoad&quot;</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">showProps</span><span class="p">(</span><span class="s">&quot;OnLoad Event&quot;</span><span class="p">,</span> <span class="n">olProps</span><span class="p">);</span>
+
+  <span class="c1">// attach macros to event if it does not have macros already</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">Lo</span><span class="p">.</span><span class="na">isNullOrEmpty</span><span class="p">(</span> <span class="p">(</span><span class="n">String</span><span class="p">)</span><span class="n">Props</span><span class="p">.</span><span class="na">getProp</span><span class="p">(</span><span class="n">osaProps</span><span class="p">,</span> <span class="s">&quot;Script&quot;</span><span class="p">)))</span>
+    <span class="n">Macros</span><span class="p">.</span><span class="na">setEventScript</span><span class="p">(</span><span class="s">&quot;OnStartApp&quot;</span><span class="p">,</span>
+       <span class="s">&quot;vnd.sun.star.script:ShowEvent.ShowEvent.show?</span>
+<span class="s">                           language=Java&amp;location=share&quot;</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">Lo</span><span class="p">.</span><span class="na">isNullOrEmpty</span><span class="p">(</span> <span class="p">(</span><span class="n">String</span><span class="p">)</span><span class="n">Props</span><span class="p">.</span><span class="na">getProp</span><span class="p">(</span><span class="n">olProps</span><span class="p">,</span> <span class="s">&quot;Script&quot;</span><span class="p">)))</span>
+    <span class="n">Macros</span><span class="p">.</span><span class="na">setEventScript</span><span class="p">(</span><span class="s">&quot;OnLoad&quot;</span><span class="p">,</span>
+       <span class="s">&quot;vnd.sun.star.script:ShowEvent.ShowEvent.show?</span>
+<span class="s">                          language=Java&amp;location=share&quot;</span><span class="p">);</span>
+
+
+  <span class="n">XTextDocument</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">openDoc</span><span class="p">(</span><span class="s">&quot;build.odt&quot;</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">doc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not open build.odt&quot;</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">GUI</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">wait</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span>
+
+  <span class="n">Macros</span><span class="p">.</span><span class="na">listDocEvents</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+
+  <span class="c1">// list the &quot;OnPageCountChange&quot; doc event properties</span>
+  <span class="n">PropertyValue</span><span class="o">[]</span> <span class="n">opccProps</span> <span class="o">=</span>
+               <span class="n">Macros</span><span class="p">.</span><span class="na">getDocEventProps</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;OnPageCountChange&quot;</span><span class="p">);</span>
+    <span class="n">Props</span><span class="p">.</span><span class="na">showProps</span><span class="p">(</span><span class="s">&quot;OnPageCountChange Event&quot;</span><span class="p">,</span> <span class="n">opccProps</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">Lo</span><span class="p">.</span><span class="na">isNullOrEmpty</span><span class="p">(</span>
+                   <span class="p">(</span><span class="n">String</span><span class="p">)</span><span class="n">Props</span><span class="p">.</span><span class="na">getProp</span><span class="p">(</span><span class="n">opccProps</span><span class="p">,</span> <span class="s">&quot;Script&quot;</span><span class="p">)))</span> <span class="p">{</span>
+    <span class="n">Macros</span><span class="p">.</span><span class="na">setDocEventScript</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;OnPageCountChange&quot;</span><span class="p">,</span>
+       <span class="s">&quot;vnd.sun.star.script:ShowEvent.ShowEvent.show?</span>
+<span class="s">                             language=Java&amp;location=share&quot;</span><span class="p">);</span>
+
+    <span class="n">Lo</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>  <span class="c1">// must save doc after event macro change</span>
+  <span class="p">}</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">waitEnter</span><span class="p">();</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+<span class="p">}</span> <span class="c1">// end of main()</span>
+</code></pre></div>
+<p>The program begins by listing all the names of the Office events by calling
+Macros.listOfficeEvents(), and then the properties for the "OnStartApp" and
+"OnLoad" events. It attaches ShowEvent.show to the two events, resulting in the
+macro setup in Figure 15.</p>
+<p>The output from Macros.listOfficeEvents() is:</p>
+<div class="highlight"><pre><span></span><code>Event Handler names
+No. of names: 28
+  &quot;OnCloseApp&quot;  &quot;OnCopyTo&quot;  &quot;OnCopyToDone&quot;  &quot;OnCopyToFailed&quot;
+  &quot;OnCreate&quot;  &quot;OnFocus&quot;  &quot;OnLoad&quot;  &quot;OnLoadFinished&quot;
+  &quot;OnModeChanged&quot;  &quot;OnModifyChanged&quot;  &quot;OnNew&quot;  &quot;OnPrepareUnload&quot;
+  &quot;OnPrepareViewClosing&quot;  &quot;OnPrint&quot;  &quot;OnSave&quot;  &quot;OnSaveAs&quot;
+  &quot;OnSaveAsDone&quot;  &quot;OnSaveAsFailed&quot;  &quot;OnSaveDone&quot;  &quot;OnSaveFailed&quot;
+  &quot;OnStartApp&quot;  &quot;OnStorageChanged&quot;  &quot;OnTitleChanged&quot;  &quot;OnUnfocus&quot;
+  &quot;OnUnload&quot;  &quot;OnViewClosed&quot;  &quot;OnViewCreated&quot;  &quot;OnVisAreaChanged&quot;
+</code></pre></div>
+<p>These names can be mapped without too much difficulty to the strings in the "Events"
+column of Figure 15.</p>
+<p>The properties listed for the "OnStartApp" and "OnLoad" events are:</p>
+<div class="highlight"><pre><span></span><code>Properties for &quot;OnStartApp Event&quot;:
+  EventType: Script
+  Script:
+
+Properties for &quot;OnLoad Event&quot;:
+  EventType: Script
+  Script:
+</code></pre></div>
+<p>In other words, neither events have macros attached to them at the start of
+DocEvents.java.</p>
+<p>Events are manipulated using the XEventSupplier interface. Its relevant services and
+interfaces are shown in Figure 17.</p>
 <p><img alt="" src="images/49-Ext_Doc_Event_Macros-17.png" /></p>
-<p>Figure 17. The XEventSupplier Interface. </p>
-<p>Document events are reached through the OfficeDocument service while Office 
-events are obtained via theGlobalEventBroadcaster (or the deprecated 
-GlobalEventBroadcaster). </p>
-<p>Macro.listOfficeEvents() starts with the theGlobalEventBroadcaster service, and uses 
-XEventSupplier.getEvents() to obtain an XNameReplace object which is a named 
-container whose entries can be changed: </p>
-<p>// in the Macros class 
-public static void listOfficeEvents() 
-{ System.out.println("\nEvent Handler names"); 
-  XNameReplace eventHandlers = getEventHandlers(); 
-  Lo.printNames( eventHandlers.getElementNames() ); 
-} </p>
-<p>public static XNameReplace getEventHandlers() 
-{ XGlobalEventBroadcaster geb =<br />
-           theGlobalEventBroadcaster.get(Lo.getContext()); 
-  return geb.getEvents();<br />
-} </p>
-<p>Macros.getEventProps() looks up a specific event handler, and casts its entry in the 
-XNameReplace container to a PropertyValue array: </p>
-<p>// in Macros class 
-public static PropertyValue[] getEventProps(String eventName) 
-{<br />
-  XNameReplace eventHandlers = getEventHandlers(); 
-  return getEventProps( eventHandlers, eventName); 
-}  </p>
-<p>public static PropertyValue[] getEventProps( 
-            XNameReplace eventHandlers, String eventName) 
-{ try { 
-    Object oProps = eventHandlers.getByName(eventName); 
-    if (AnyConverter.isVoid(oProps))  // or conversion may fail 
-      return null; 
-    else 
-      return (PropertyValue[])oProps; 
-  } 
-  catch(com.sun.star.uno.Exception e) 
-  {  System.out.println("Could not find event " + eventName); 
-     return null; 
-  } 
-} // end of getEventProps() </p>
-<p>Macros.setEventScript() utilizes getEventProps() to get the PropertyValue[] array for 
-a given event, and sets the "Script" property to be the full name of the macro (e.g. </p>
-<p>"vnd.sun.star.script:ShowEvent.ShowEvent.show?language=Java&amp;location=share"). </p>
-<p>Then the original entry in the XNameReplace object is updated with the changed 
-property: </p>
-<p>public static void setEventScript(String eventName,<br />
-                                  String scriptName) 
-{ 
-  PropertyValue[] evProps = getEventProps(eventName); 
-  if (evProps != null) 
-    Props.setProp(evProps, "Script", scriptName); 
-  else 
-    evProps = Props.makeProps("EventType", "Script", 
-                              "Script", scriptName); </p>
-<p>XNameReplace eventHandlers = getEventHandlers(); 
-  try { 
-    eventHandlers.replaceByName(eventName, evProps); 
-    System.out.println("Set script for " + eventName + " to \"" + 
-                                           scriptName + "\""); 
-  } 
-  catch(com.sun.star.uno.Exception e) 
-  {  System.out.println("Could not set script " + eventName);  } 
-} // end of setEventScript() </p>
-<p>The Macros utilities class contains similar methods for getting and setting document 
-events. Macros.listDocEvents(), Macros.getDocEventProps(), and 
-Macros.setDocEventScript() get the XEventSupplier object from the document via its 
-OfficeDocument service. </p>
-<p>Macros.listDocEvents() prints the following document event names: </p>
-<p>Doc Event Handler names 
-No. of names: 34 
-  "OnCloseApp"  "OnCopyTo"  "OnCopyToDone"  "OnCopyToFailed" 
-  "OnCreate"  "OnFieldMerge"  "OnFieldMergeFinished"  "OnFocus" 
-  "OnLayoutFinished"  "OnLoad"  "OnLoadFinished"  "OnMailMerge" 
-  "OnMailMergeFinished"  "OnModeChanged"  "OnModifyChanged"  "OnNew" 
-  "OnPageCountChange"  "OnPrepareUnload" <br />
-  "OnPrepareViewClosing"  "OnPrint" 
-  "OnSave"  "OnSaveAs"  "OnSaveAsDone"  "OnSaveAsFailed" 
-  "OnSaveDone"  "OnSaveFailed"  "OnStartApp"  "OnStorageChanged" 
-  "OnTitleChanged"  "OnUnfocus"  "OnUnload"  "OnViewClosed" 
-  "OnViewCreated"  "OnVisAreaChanged" </p>
-<p>There's a big overlap with Office events, and the difference between the same-named 
-events, such as "OnLoad", is that the Office version is fired when any document is 
-loaded, whereas the document "OnLoad" will only fire for the loading of "build.odt". </p>
-<p>DocEvent.java attaches ShowEvent.show to its "OnPageCountChange" event, and the 
-document is saved so the change is remembered. </p>
-<p>The change can be confirmed by opening the document and checking the Event tab of 
-the Tools &gt; Customize dialog. The "OnPageCountChange" setting is at the end of the 
-events, as in Figure 18. </p>
+<p>Figure 17. The XEventSupplier Interface.</p>
+<p>Document events are reached through the OfficeDocument service while Office
+events are obtained via theGlobalEventBroadcaster (or the deprecated
+GlobalEventBroadcaster).</p>
+<p>Macro.listOfficeEvents() starts with the theGlobalEventBroadcaster service, and uses
+XEventSupplier.getEvents() to obtain an XNameReplace object which is a named
+container whose entries can be changed:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Macros class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">listOfficeEvents</span><span class="p">()</span>
+<span class="p">{</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nEvent Handler names&quot;</span><span class="p">);</span>
+  <span class="n">XNameReplace</span> <span class="n">eventHandlers</span> <span class="o">=</span> <span class="n">getEventHandlers</span><span class="p">();</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">printNames</span><span class="p">(</span> <span class="n">eventHandlers</span><span class="p">.</span><span class="na">getElementNames</span><span class="p">()</span> <span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XNameReplace</span> <span class="nf">getEventHandlers</span><span class="p">()</span>
+<span class="p">{</span> <span class="n">XGlobalEventBroadcaster</span> <span class="n">geb</span> <span class="o">=</span>
+           <span class="n">theGlobalEventBroadcaster</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Lo</span><span class="p">.</span><span class="na">getContext</span><span class="p">());</span>
+  <span class="k">return</span> <span class="n">geb</span><span class="p">.</span><span class="na">getEvents</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Macros.getEventProps() looks up a specific event handler, and casts its entry in the
+XNameReplace container to a PropertyValue array:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Macros class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">PropertyValue</span><span class="o">[]</span> <span class="nf">getEventProps</span><span class="p">(</span><span class="n">String</span> <span class="n">eventName</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XNameReplace</span> <span class="n">eventHandlers</span> <span class="o">=</span> <span class="n">getEventHandlers</span><span class="p">();</span>
+  <span class="k">return</span> <span class="n">getEventProps</span><span class="p">(</span> <span class="n">eventHandlers</span><span class="p">,</span> <span class="n">eventName</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">PropertyValue</span><span class="o">[]</span> <span class="nf">getEventProps</span><span class="p">(</span>
+            <span class="n">XNameReplace</span> <span class="n">eventHandlers</span><span class="p">,</span> <span class="n">String</span> <span class="n">eventName</span><span class="p">)</span>
+<span class="p">{</span> <span class="k">try</span> <span class="p">{</span>
+    <span class="n">Object</span> <span class="n">oProps</span> <span class="o">=</span> <span class="n">eventHandlers</span><span class="p">.</span><span class="na">getByName</span><span class="p">(</span><span class="n">eventName</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">AnyConverter</span><span class="p">.</span><span class="na">isVoid</span><span class="p">(</span><span class="n">oProps</span><span class="p">))</span>  <span class="c1">// or conversion may fail</span>
+      <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">else</span>
+      <span class="k">return</span> <span class="p">(</span><span class="n">PropertyValue</span><span class="o">[]</span><span class="p">)</span><span class="n">oProps</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">uno</span><span class="p">.</span><span class="na">Exception</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not find event &quot;</span> <span class="o">+</span> <span class="n">eventName</span><span class="p">);</span>
+     <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span> <span class="c1">// end of getEventProps()</span>
+</code></pre></div>
+<p>Macros.setEventScript() utilizes getEventProps() to get the PropertyValue[] array for
+a given event, and sets the "Script" property to be the full name of the macro (e.g.
+"vnd.sun.star.script:ShowEvent.ShowEvent.show?language=Java&amp;location=share").
+Then the original entry in the XNameReplace object is updated with the changed
+property:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setEventScript</span><span class="p">(</span><span class="n">String</span> <span class="n">eventName</span><span class="p">,</span>
+                                  <span class="n">String</span> <span class="n">scriptName</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">PropertyValue</span><span class="o">[]</span> <span class="n">evProps</span> <span class="o">=</span> <span class="n">getEventProps</span><span class="p">(</span><span class="n">eventName</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">evProps</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="n">Props</span><span class="p">.</span><span class="na">setProp</span><span class="p">(</span><span class="n">evProps</span><span class="p">,</span> <span class="s">&quot;Script&quot;</span><span class="p">,</span> <span class="n">scriptName</span><span class="p">);</span>
+  <span class="k">else</span>
+    <span class="n">evProps</span> <span class="o">=</span> <span class="n">Props</span><span class="p">.</span><span class="na">makeProps</span><span class="p">(</span><span class="s">&quot;EventType&quot;</span><span class="p">,</span> <span class="s">&quot;Script&quot;</span><span class="p">,</span>
+                              <span class="s">&quot;Script&quot;</span><span class="p">,</span> <span class="n">scriptName</span><span class="p">);</span>
+
+  <span class="n">XNameReplace</span> <span class="n">eventHandlers</span> <span class="o">=</span> <span class="n">getEventHandlers</span><span class="p">();</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">eventHandlers</span><span class="p">.</span><span class="na">replaceByName</span><span class="p">(</span><span class="n">eventName</span><span class="p">,</span> <span class="n">evProps</span><span class="p">);</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Set script for &quot;</span> <span class="o">+</span> <span class="n">eventName</span> <span class="o">+</span> <span class="s">&quot; to \&quot;&quot;</span> <span class="o">+</span>
+                                           <span class="n">scriptName</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">uno</span><span class="p">.</span><span class="na">Exception</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not set script &quot;</span> <span class="o">+</span> <span class="n">eventName</span><span class="p">);</span>  <span class="p">}</span>
+<span class="p">}</span> <span class="c1">// end of setEventScript()</span>
+</code></pre></div>
+<p>The Macros utilities class contains similar methods for getting and setting document
+events. Macros.listDocEvents(), Macros.getDocEventProps(), and
+Macros.setDocEventScript() get the XEventSupplier object from the document via its
+OfficeDocument service.</p>
+<p>Macros.listDocEvents() prints the following document event names:</p>
+<div class="highlight"><pre><span></span><code>Doc Event Handler names
+No. of names: 34
+  &quot;OnCloseApp&quot;  &quot;OnCopyTo&quot;  &quot;OnCopyToDone&quot;  &quot;OnCopyToFailed&quot;
+  &quot;OnCreate&quot;  &quot;OnFieldMerge&quot;  &quot;OnFieldMergeFinished&quot;  &quot;OnFocus&quot;
+  &quot;OnLayoutFinished&quot;  &quot;OnLoad&quot;  &quot;OnLoadFinished&quot;  &quot;OnMailMerge&quot;
+  &quot;OnMailMergeFinished&quot;  &quot;OnModeChanged&quot;  &quot;OnModifyChanged&quot;  &quot;OnNew&quot;
+  &quot;OnPageCountChange&quot;  &quot;OnPrepareUnload&quot;
+  &quot;OnPrepareViewClosing&quot;  &quot;OnPrint&quot;
+  &quot;OnSave&quot;  &quot;OnSaveAs&quot;  &quot;OnSaveAsDone&quot;  &quot;OnSaveAsFailed&quot;
+  &quot;OnSaveDone&quot;  &quot;OnSaveFailed&quot;  &quot;OnStartApp&quot;  &quot;OnStorageChanged&quot;
+  &quot;OnTitleChanged&quot;  &quot;OnUnfocus&quot;  &quot;OnUnload&quot;  &quot;OnViewClosed&quot;
+  &quot;OnViewCreated&quot;  &quot;OnVisAreaChanged&quot;
+</code></pre></div>
+<p>There's a big overlap with Office events, and the difference between the same-named
+events, such as "OnLoad", is that the Office version is fired when any document is
+loaded, whereas the document "OnLoad" will only fire for the loading of "build.odt".</p>
+<p>DocEvent.java attaches ShowEvent.show to its "OnPageCountChange" event, and the
+document is saved so the change is remembered.</p>
+<p>The change can be confirmed by opening the document and checking the Event tab of
+the Tools, Customize dialog. The "OnPageCountChange" setting is at the end of the
+events, as in Figure 18.</p>
 <p><img alt="" src="images/49-Ext_Doc_Event_Macros-18.png" /></p>
-<p>Figure 18. The Event tab of the Tools &gt; Customize Dialog. </p>
-<p>Note that the "Save in:" pop-down list at the bottom of the dialog shows the document 
-name instead of "LibreOffice". </p>
+<p>Figure 18. The Event tab of the Tools &gt; Customize Dialog.</p>
+<p>Note that the "Save in:" pop-down list at the bottom of the dialog shows the document
+name instead of "LibreOffice".</p>
 <h2 id="4-executing-macros-from-the-command-line">4.  Executing Macros from the Command Line</h2>
-<p>One of the show() method in the ShowEvent class doesn't have an event argument: </p>
-<p>// part of ShowEvent.java 
-public static void show(XScriptContext sc) 
-{  display("menu/run");   } </p>
-<p>This method can be called in a number of different situations: <br />
- when the macro is attached to a menu item; 
- when the macro is executed from the "Run Macro..." menu item of the<br />
-Tools &gt; Macros menu; 
- if there's no suitable event handling version of show(), then this version acts as 
-a default; 
- when the macro is executed from the command line. </p>
-<p>The last approach can be employed when Office is called from the command line to 
-open a document. The command line arguments can include the full name of a macro, 
-which will cause its "run" version to be called. For example: </p>
-<p>office.exe build.odt "vnd.sun.star.script:ShowEvent.ShowEvent.show? 
-                                   language=Java&amp;location=share" </p>
-<p>"build.odt" is opened, and the ShowEvent.show share macro executed.  </p>
-<p>The execMacro.bat batch file in the examples simplifies these command line 
-parameters. </p>
+<p>One of the show() method in the ShowEvent class doesn't have an event argument:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of ShowEvent.java</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">show</span><span class="p">(</span><span class="n">XScriptContext</span> <span class="n">sc</span><span class="p">)</span>
+<span class="p">{</span>  <span class="n">display</span><span class="p">(</span><span class="s">&quot;menu/run&quot;</span><span class="p">);</span>   <span class="p">}</span>
+</code></pre></div>
+<p>This method can be called in a number of different situations:</p>
+<ul>
+<li>when the macro is attached to a menu item;</li>
+<li>when the macro is executed from the "Run Macro..." menu item of the Tools, Macros menu;</li>
+<li>if there's no suitable event handling version of show(), then this version acts as a default;</li>
+<li>when the macro is executed from the command line.</li>
+</ul>
+<p>The last approach can be employed when Office is called from the command line to
+open a document. The command line arguments can include the full name of a macro,
+which will cause its "run" version to be called. For example:</p>
+<div class="highlight"><pre><span></span><code>office.exe build.odt &quot;vnd.sun.star.script:ShowEvent.ShowEvent.show?
+                                   language=Java&amp;location=share&quot;
+</code></pre></div>
+<p>"build.odt" is opened, and the ShowEvent.show share macro executed.</p>
+<p>The execMacro.bat batch file in the examples simplifies these command line
+parameters.</p>
                 
               
               

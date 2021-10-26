@@ -1123,6 +1123,40 @@
     7.2.  Addon.xcs
   </a>
   
+    <nav class="md-nav" aria-label="7.2.  Addon.xcs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#addonmenu-attribute" class="md-nav__link">
+    "AddonMenu" Attribute
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#officetoolbar-attribute" class="md-nav__link">
+    "OfficeToolbar" Attribute
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#officehelp-attribute" class="md-nav__link">
+    "OfficeHelp" Attribute
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#images-attribute" class="md-nav__link">
+    "Images" Attribute
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -1341,6 +1375,40 @@
     7.2.  Addon.xcs
   </a>
   
+    <nav class="md-nav" aria-label="7.2.  Addon.xcs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#addonmenu-attribute" class="md-nav__link">
+    "AddonMenu" Attribute
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#officetoolbar-attribute" class="md-nav__link">
+    "OfficeToolbar" Attribute
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#officehelp-attribute" class="md-nav__link">
+    "OfficeHelp" Attribute
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#images-attribute" class="md-nav__link">
+    "Images" Attribute
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -1375,663 +1443,743 @@
                 <h1 id="chapter-46-add-ons">Chapter 46. Add-ons</h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
-</div>
 <p>What is an Add-
-    on?; Creating the 
-    EzHighlight Add-on; 
-    Creating a Partial Add-
-    on Implementation; The 
-    FreeMarker-generated 
-    EzHighlightAddonImpl; 
-    Creating the Dialog; 
-    Configuring the Add-on; 
-    Building and Installing 
-    the OXT File </p>
-<pre><code>Example folders: 
-"AddOn Tests", "Utils"
-</code></pre>
-<p>Add-ons build upon the UNO component techniques 
-described in the last chapter to make a component 
-accessible via an Office menu and/or toolbar item.  </p>
-<p>I'll implement the EzHighlight add-on, which allows word 
-occurrences to be highlighted in a Writer document. </p>
-<p>EzHighlight is installed in Office as an extension in the 
-same way as an UNO component, and is listed by the 
-Extension Manger in Figure 1. </p>
+on?; Creating the
+EzHighlight Add-on;
+Creating a Partial Add-
+on Implementation; The
+FreeMarker-generated
+EzHighlightAddonImpl;
+Creating the Dialog;
+Configuring the Add-on;
+Building and Installing
+the OXT File</p>
+<p>Example folders:
+"AddOn Tests", "Utils"</p>
+</div>
+<p>Add-ons build upon the UNO component techniques
+described in the last chapter to make a component
+accessible via an Office menu and/or toolbar item.</p>
+<p>I'll implement the EzHighlight add-on, which allows word
+occurrences to be highlighted in a Writer document.
+EzHighlight is installed in Office as an extension in the
+same way as an UNO component, and is listed by the
+Extension Manger in Figure 1.</p>
 <p><img alt="" src="images/46-Addons-1.png" /></p>
-<p>Figure 1. The EzHighlight Add-on Extension. </p>
-<p>When the Writer application is running, EzHighlight is accessible either through 
-Office's Tools &gt; Add-Ons menu item (see Figure 2) or as a toolbar created by View &gt; 
-Toolbars &gt; Add-on 2 (see Figure 3). This 'floating' toolbar can be attached to an 
-existing toolbar. </p>
+<p>Figure 1. The EzHighlight Add-on Extension.</p>
+<p>When the Writer application is running, EzHighlight is accessible either through
+Office's Tools, Add-Ons menu item (see Figure 2) or as a toolbar created by View,
+Toolbars, Add-on 2 (see Figure 3). This 'floating' toolbar can be attached to an
+existing toolbar.</p>
 <p><img alt="" src="images/46-Addons-2.png" /></p>
-<p>Figure 2. The EzHighlight Add-on on the Tools Menu. </p>
+<p>Figure 2. The EzHighlight Add-on on the Tools Menu.</p>
 <p><img alt="" src="images/46-Addons-3.png" /></p>
-<p>Figure 3. The EzHighlighter Add-on as a Toolbar. </p>
-<p>When the user clicks on "EzHighlight Text", either through the menu or toolbar, the 
-dialog shown in Figure 4 appears. </p>
+<p>Figure 3. The EzHighlighter Add-on as a Toolbar.</p>
+<p>When the user clicks on "EzHighlight Text", either through the menu or toolbar, the
+dialog shown in Figure 4 appears.</p>
 <p><img alt="" src="images/46-Addons-4.png" /></p>
-<p>Figure 4. The EzHighlighter Dialog. </p>
-<p>The user enters a word, and either types <ENTER> or presses the "Highlight" button. </p>
-<p>Every matching word in the currently loaded Writer document is redrawn in red, and 
-the number of changes reported in the "Count:" field.  </p>
-<p>EzHighlight also has basic help support, accessible from Office's Help menu as the 
-"About EzHighlight" item (see Figure 5). </p>
+<p>Figure 4. The EzHighlighter Dialog.</p>
+<p>The user enters a word, and either types <ENTER> or presses the "Highlight" button.
+Every matching word in the currently loaded Writer document is redrawn in red, and
+the number of changes reported in the "Count:" field.</p>
+<p>EzHighlight also has basic help support, accessible from Office's Help menu as the
+"About EzHighlight" item (see Figure 5).</p>
 <p><img alt="" src="images/46-Addons-5.png" /></p>
-<p>Figure 5. The EzHighlight Help Menu Item. </p>
-<p>Clicking on the help item causes a simple message box to appear, as in Figure 6. </p>
+<p>Figure 5. The EzHighlight Help Menu Item.</p>
+<p>Clicking on the help item causes a simple message box to appear, as in Figure 6.</p>
 <p><img alt="" src="images/46-Addons-6.png" /></p>
-<p>Figure 6. The EzHighlight Help Message Box. </p>
+<p>Figure 6. The EzHighlight Help Message Box.</p>
 <h2 id="1-what-is-an-add-on">1.  What is an Add-on?</h2>
-<p>Office supports two kinds of add-on: job add-ons and ProtocolHandler add-ons.  </p>
-<p>A job add-on is a component triggered by events inside Office, such as when the 
-application is first opened or about to terminate, or when a document is loaded, 
-printed, or closed.  </p>
-<p>This chapter is about Protocol handler add-ons, which link menu and/or toolbar items 
-to a component using Office's dispatch framework. Every GUI element is assigned a 
-'command URL', a unique name made of two or three parts:<br />
-<protocol string>:<command string>[?<command string argument>+ ] 
-A protocol string can be almost anything, and I'll be using the extension's ID 
-("org.openoffice.ezhighlightAddon").   </p>
-<p>There is a different command string for each GUI-triggered action, and I'll utilize two: 
-"EzHighlight" and "help". "EzHighlight" is associated with the EzHighlight menu and 
-toolbar items (Figures 2 and 3), and makes the dialog in Figure 4 appear. "help" is 
-assigned to the "About EzHighlight" help menu item, and causes the message box in 
-Figure 6 to be displayed. </p>
-<p>I won't be using command string arguments. </p>
-<p>When a user chooses an item in the user interface, its command URL is passed along 
-a list of dispatch handlers until one accepts the command and processes it by creating 
-a dispatch object. Fortunately, most of the dispatch handling behavior in an add-on 
-can be generated automatically. </p>
-<p>The main source of information for job and ProtocolHandler add-ons is chapter 3 of 
-the Developer's Guide (available at 
-https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf), or<br />
-online at 
+<p>Office supports two kinds of add-on: job add-ons and ProtocolHandler add-ons.</p>
+<p>A job add-on is a component triggered by events inside Office, such as when the
+application is first opened or about to terminate, or when a document is loaded,
+printed, or closed.</p>
+<p>This chapter is about Protocol handler add-ons, which link menu and/or toolbar items
+to a component using Office's dispatch framework. Every GUI element is assigned a
+'command URL', a unique name made of two or three parts:</p>
+<div class="highlight"><pre><span></span><code>&lt;protocol string&gt;:&lt;command string&gt;[?&lt;command string argument&gt;+ ]
+</code></pre></div>
+<p>A protocol string can be almost anything, and I'll be using the extension's ID
+("org.openoffice.ezhighlightAddon").</p>
+<p>There is a different command string for each GUI-triggered action, and I'll utilize two:
+"EzHighlight" and "help". "EzHighlight" is associated with the EzHighlight menu and
+toolbar items (Figures 2 and 3), and makes the dialog in Figure 4 appear. "help" is
+assigned to the "About EzHighlight" help menu item, and causes the message box in
+Figure 6 to be displayed.</p>
+<p>I won't be using command string arguments.</p>
+<p>When a user chooses an item in the user interface, its command URL is passed along
+a list of dispatch handlers until one accepts the command and processes it by creating
+a dispatch object. Fortunately, most of the dispatch handling behavior in an add-on
+can be generated automatically.</p>
+<p>The main source of information for job and ProtocolHandler add-ons is chapter 3 of
+the Developer's Guide (available at
+https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf), or
+online at
 https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Integrating_
-Components_into_OpenOffice.org and 
+Components_into_OpenOffice.org and
 https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/AddOns/Ad
-d-Ons (or use loGuide "Integrating Components" and loGuide add-ons). </p>
-<p>The Developer's Guide add-on example can be found at <br />
-http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Components </p>
+d-Ons (or use <code>loGuide "Integrating Components"</code> and <code>loGuide add-ons</code>).</p>
+<p>The Developer's Guide add-on example can be found at
+http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Components</p>
 <h2 id="2-creating-the-ezhighlight-add-on">2.  Creating the EzHighlight Add-on</h2>
-<p>There's an overlap between the steps required to create an UNO component and an 
-add-on. The main similarity is the need for an OXT file containing a JAR and a 
-description.xml. However, there's no need for an IDL file or type database (a RDB 
-file), but there are extra details concerning the GUI and dispatch handling.  </p>
-<p>The main steps in creating an add-on are illustrated by Figure 7. </p>
+<p>There's an overlap between the steps required to create an UNO component and an
+add-on. The main similarity is the need for an OXT file containing a JAR and a
+description.xml. However, there's no need for an IDL file or type database (a RDB
+file), but there are extra details concerning the GUI and dispatch handling.</p>
+<p>The main steps in creating an add-on are illustrated by Figure 7.</p>
 <p><img alt="" src="images/46-Addons-7.png" /></p>
-<p>Figure 7. Toolchain for Creating an Add-on. </p>
-<p>The UNO component toolchain in the previous chapter used my skelComp.bat script 
+<p>Figure 7. Toolchain for Creating an Add-on.</p>
+<p>The UNO component toolchain in the previous chapter used my skelComp.bat script
 to generate a partial Java implementation. The script utilizes Office's uno-
-skeletonmaker which can also be employed to generate add-ons and Calc addins. </p>
-<p>Unfortunately, I was unable to get its add-on features to work.  </p>
+skeletonmaker which can also be employed to generate add-ons and Calc addins.
+Unfortunately, I was unable to get its add-on features to work.</p>
 <p>This was not a great loss since I'd already been thinking about replacing uno-
-skeletonmaker with FreeMarker, a powerful template processing library 
+skeletonmaker with FreeMarker, a powerful template processing library
 (http://freemarker.org/). FreeMarker can easily duplicate all the features of  uno-
-skeletonmaker, creating a Java class with the boilerplate code for creating a service 
-and handling command URLs. Also, by switching to FreeMarker, I was able to add 
-more automatic code generation, including code for a user input dialog and a 
-debugging window.  </p>
-<p>The OXT file requires three configuration files: a description of  the dialog in Figure 
-4, Addon.xcs which defines the add-on's GUI (e.g. the menu and toolbar items in 
-Figures 2 and 3), and ProtocolHandler.xcu which says which command URLs are 
-processed by the add-on's dispatch handler. </p>
-<p>The toolchain in Figure 7 will be explained in more detail in the rest of this chapter. </p>
+skeletonmaker, creating a Java class with the boilerplate code for creating a service
+and handling command URLs. Also, by switching to FreeMarker, I was able to add
+more automatic code generation, including code for a user input dialog and a
+debugging window.</p>
+<p>The OXT file requires three configuration files: a description of  the dialog in Figure
+4, Addon.xcs which defines the add-on's GUI (e.g. the menu and toolbar items in
+Figures 2 and 3), and ProtocolHandler.xcu which says which command URLs are
+processed by the add-on's dispatch handler.</p>
+<p>The toolchain in Figure 7 will be explained in more detail in the rest of this chapter.</p>
 <h2 id="3-creating-a-partial-add-on-implementation">3.  Creating a Partial Add-on Implementation</h2>
-<p>Figure 8 shows the main elements needed to use the FreeMarker template library: a 
-FTL template file, and a program that instantiates the template by employing a 
-collection of FreeMarker variables and their bindings.  </p>
+<p>Figure 8 shows the main elements needed to use the FreeMarker template library: a
+FTL template file, and a program that instantiates the template by employing a
+collection of FreeMarker variables and their bindings.</p>
 <p><img alt="" src="images/46-Addons-8.png" /></p>
-<p>Figure 8. Using FreeMarker. </p>
-<p>The simplest FreeMarker program replaces all the FreeMarker variables in the 
-template by their associated bindings, generating a new text file (a Java program in 
-this case). However, FreeMarker contains additional programming features, including 
-for-loops and if-statements, which can generate more complex blocks of text. </p>
-<p>The add-on template is stored in addonImpl.ftl, and is processed by 
-CreateAddonImpl.java. It reads in the add-on's name, and initializes a HashMap of 
-three FreeMarker variables called "className", "extensionID, and "cmdNames". </p>
-<p>For example, CreateAddonImpl can be called like so: </p>
-<blockquote>
-<p>run CreateAddonImpl EzHighlight 
-The three variables are assigned: 
- "className"   : "EzHighlightAddonImpl" 
- "extensionID  :  "org.openoffice.ezhighlightAddon" 
- "cmdNames"    : [ "EzHighlight", "help" ] 
-"className" is assigned the name of the generated Java class. "extensionID" contains 
-the protocol string used by the command URLs. "cmdNames" holds a list of 
-command URL names: "EzHighlight" is linked to the add-on's menu and toolbar 
-items, and "help" is attached to the add-on's help menu item. </p>
-</blockquote>
-<p>CreateAddonImpl outputs a class called EzHighlightAddonImpl, a fully functional 
-add-on, which displays a dialog like the one in Figure 4 and the help message in </p>
-<p><img alt="" src="images/46-Addons-6.png" /></p>
-<p>Figure 6. However, after the user has typed <ENTER> in the dialog or pressed the 
-"Ok" button, no processing is carried out on the Office document.  </p>
-<p>First I'll give an overview of the features in the generated EzHighlightAddonImpl 
-class, then explain the additional highlighting code in a later section. </p>
+<p>Figure 8. Using FreeMarker.</p>
+<p>The simplest FreeMarker program replaces all the FreeMarker variables in the
+template by their associated bindings, generating a new text file (a Java program in
+this case). However, FreeMarker contains additional programming features, including
+for-loops and if-statements, which can generate more complex blocks of text.</p>
+<p>The add-on template is stored in addonImpl.ftl, and is processed by
+CreateAddonImpl.java. It reads in the add-on's name, and initializes a HashMap of
+three FreeMarker variables called "className", "extensionID, and "cmdNames".</p>
+<p>For example, CreateAddonImpl can be called like so:</p>
+<div class="highlight"><pre><span></span><code>&gt; run CreateAddonImpl EzHighlight
+</code></pre></div>
+<p>The three variables are assigned:</p>
+<ul>
+<li>"className"   : "EzHighlightAddonImpl"</li>
+<li>"extensionID  :  "org.openoffice.ezhighlightAddon"</li>
+<li>"cmdNames"    : [ "EzHighlight", "help" ]</li>
+</ul>
+<p>"className" is assigned the name of the generated Java class. "extensionID" contains
+the protocol string used by the command URLs. "cmdNames" holds a list of
+command URL names: "EzHighlight" is linked to the add-on's menu and toolbar
+items, and "help" is attached to the add-on's help menu item.</p>
+<p>CreateAddonImpl outputs a class called EzHighlightAddonImpl, a fully functional
+add-on, which displays a dialog like the one in Figure 4 and the help message in
+Figure 6. However, after the user has typed <ENTER> in the dialog or pressed the
+"Ok" button, no processing is carried out on the Office document.</p>
+<p>First I'll give an overview of the features in the generated EzHighlightAddonImpl
+class, then explain the additional highlighting code in a later section.</p>
 <h2 id="4-the-freemarker-generated-ezhighlightaddonimpl">4.  The FreeMarker-generated EzHighlightAddonImpl</h2>
-<p>The template in addonImpl.ftl represents a single Java class, which extends 
-WeakBase and implements seven interfaces: </p>
-<p>public class ${className} extends WeakBase implements 
-         XInitialization, XServiceInfo,<br />
-         XDispatchProvider, XDispatch,   // for the add-on 
-         XActionListener, XTopWindowListener,<br />
-         XKeyListener                    // for the dialog 
-{ 
- //  ... add-on code 
-}  </p>
-<p>WeakBase is the base class used by all components (which includes add-ons and Calc 
-Addins). XServiceInfo and XInitialization handle the creation and initialization of the 
-service at run time. </p>
-<p>The XDispatchProvider method, queryDispatch(), implements the dispatch handler 
-for the add-on – it accepts the command URLs associated with the add-on: </p>
-<p>// in EzHighlightAddonInpl.java 
-public XDispatch queryDispatch(URL commandURL,<br />
-                      String targetFrameName, int searchFlags) 
-{ 
-  if (commandURL.Protocol.compareTo( 
-                 "org.openoffice.ezhighlightAddon:") == 0) { 
-    if (commandURL.Path.compareTo("EzHighlight") == 0) { 
-      System.out.println("queryDispatch() for \"EzHighlight\""); 
-      return this; 
-    } 
-    if (commandURL.Path.compareTo("help") == 0) { 
-      System.out.println("queryDispatch() for \"help\""); 
-      return this; 
-    } 
-  } 
-  return null; 
-}  // end of queryDispatch() </p>
-<p>The handler signals its acceptance of a command URL by returning a dispatch object 
-which Office uses to process the command. EzHighlightAddonImpl also implements 
-the XDispatch interface, so returns a reference to itself. This means that Office calls 
-EzHighlightAddonImpl.dispatch(), passing it the command URL and other properties: </p>
-<p>// in EzHighlightAddonInpl.java 
-public void dispatch(URL commandURL, PropertyValue[] props) 
-{ 
-  if (commandURL.Protocol.compareTo( 
-               "org.openoffice.ezhighlightAddon:") == 0) { 
-    if (commandURL.Path.compareTo("EzHighlight") == 0) 
-      processCmd("EzHighlight");  <br />
-    if (commandURL.Path.compareTo("help") == 0) 
-      processCmd("help");  <br />
-  } 
-}  // end of dispatch() </p>
-<p>The template-generated code inside dispatch() distinguishes between the possible 
-command names ("EzHighlight" and "help") by calling processCmd() with different 
-arguments. </p>
-<p>If processCmd()'s input argument is "help", then GUI.showMessageBox() is called to 
-display the window shown in Figure 6, while "EzHighlight" triggers the dialog in </p>
-<p><img alt="" src="images/46-Addons-4.png" /></p>
-<p>Figure 4. The processCmd() code is: </p>
-<p>// in EzHighlightAddonInpl.java... </p>
-<p>// globals 
-private XDialog dialog = null; </p>
-<p>private Console console;    // for debugging output 
-private int printCount = 1; </p>
-<p>private void processCmd(String cmd) 
-{ 
-  XComponent doc = Lo.addonInitialize(xcc);  <br />
-                   // so my utils can be used safely </p>
-<p>System.out.println("Window title: " + GUI.getTitleBar()); 
-  System.out.println(printCount++ +<br />
-                 ". dispatch() called for \"" + cmd + "\""); </p>
-<p>if (cmd.equals("help")) { 
-    GUI.showMessageBox("Add-on Help",<br />
-          "Type in the text, then press return or<br />
-           click the Ok button."); 
-    return; 
-  } </p>
-<p>// "EzHighlight" is processed by the following code... </p>
-<p>console.setVisible(true); </p>
-<p>dialog = Dialogs.loadAddonDialog( 
-                    "org.openoffice.ezhighlightAddon", 
-                    "dialogLibrary/" + cmd + ".xdl"); 
-  if (dialog == null) { 
-    System.out.println("Could not load " + cmd + " dialog"); 
-    return; 
-  } </p>
-<p>XControl dialogControl = Dialogs.getDialogControl(dialog); 
-  initDialog(dialogControl); 
-  Dialogs.execute(dialogControl); </p>
-<p>console.setVisible(false); 
-}  // end of processCmd() </p>
-<p>Lo.addonInitialize() initializes the globals used by my Lo utility library and other 
-support classes: </p>
-<p>// in the Lo class 
-// globals 
-private static XComponentContext xcc = null; 
-private static XDesktop xDesktop = null; 
-private static XMultiComponentFactory mcFactory = null;  <br />
-private static XMultiServiceFactory msFactory = null; </p>
-<p>public static XComponent addonInitialize( 
-                             XComponentContext addonXcc) 
-{ xcc = addonXcc; 
-  if (xcc == null)  { 
-    System.out.println("Could not access component context"); 
-    return null; 
-  } </p>
-<p>mcFactory = xcc.getServiceManager(); 
-  if (mcFactory == null) { 
-    System.out.println("Office Service Manager is unavailable"); 
-    return null; 
-  } </p>
-<p>try { 
-    Object oDesktop = mcFactory.createInstanceWithContext( 
-                         "com.sun.star.frame.Desktop", xcc); 
-    xDesktop = Lo.qi(XDesktop.class, oDesktop); 
-  } 
-  catch (Exception e) { 
-    System.out.println("Could not access desktop"); 
-    return null; 
-  } </p>
-<p>XComponent doc = xDesktop.getCurrentComponent(); 
-  if (doc == null)  { 
-    System.out.println("Could not access document"); 
-    return null; 
-  } </p>
-<p>msFactory =  Lo.qi(XMultiServiceFactory.class, doc); 
-  return doc; 
-}  // end of addonInitialize() </p>
-<p>addonInitialize() returns an instance of XComponent, which refers to the document 
-currently loaded into Office. Later this will be used to highlight the document's text. </p>
-<p>processCmd() calls Console.setVisible() before and after the processing of the 
-"EzHighlight" command. The first call makes a Console debugging window visible, 
-and the call at the end hides it. These lines should be commented out of the completed 
-add-on, so the window doesn't appear. </p>
-<p>The dialog is handled by methods from my Dialogs support class, and by listeners set 
-up in initDialog().  </p>
+<p>The template in addonImpl.ftl represents a single Java class, which extends
+WeakBase and implements seven interfaces:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">$</span><span class="p">{</span><span class="n">className</span><span class="p">}</span> <span class="kd">extends</span> <span class="n">WeakBase</span> <span class="kd">implements</span>
+         <span class="n">XInitialization</span><span class="p">,</span> <span class="n">XServiceInfo</span><span class="p">,</span>
+         <span class="n">XDispatchProvider</span><span class="p">,</span> <span class="n">XDispatch</span><span class="p">,</span>   <span class="c1">// for the add-on</span>
+         <span class="n">XActionListener</span><span class="p">,</span> <span class="n">XTopWindowListener</span><span class="p">,</span>
+         <span class="n">XKeyListener</span>                    <span class="c1">// for the dialog</span>
+<span class="p">{</span>
+ <span class="c1">//  ... add-on code</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>WeakBase is the base class used by all components (which includes add-ons and Calc
+Addins). XServiceInfo and XInitialization handle the creation and initialization of the
+service at run time.</p>
+<p>The XDispatchProvider method, queryDispatch(), implements the dispatch handler
+for the add-on – it accepts the command URLs associated with the add-on:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in EzHighlightAddonInpl.java</span>
+<span class="kd">public</span> <span class="n">XDispatch</span> <span class="nf">queryDispatch</span><span class="p">(</span><span class="n">URL</span> <span class="n">commandURL</span><span class="p">,</span>
+                      <span class="n">String</span> <span class="n">targetFrameName</span><span class="p">,</span> <span class="kt">int</span> <span class="n">searchFlags</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">commandURL</span><span class="p">.</span><span class="na">Protocol</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span>
+                 <span class="s">&quot;org.openoffice.ezhighlightAddon:&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">commandURL</span><span class="p">.</span><span class="na">Path</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="s">&quot;EzHighlight&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;queryDispatch() for \&quot;EzHighlight\&quot;&quot;</span><span class="p">);</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">commandURL</span><span class="p">.</span><span class="na">Path</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="s">&quot;help&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;queryDispatch() for \&quot;help\&quot;&quot;</span><span class="p">);</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of queryDispatch()</span>
+</code></pre></div>
+<p>The handler signals its acceptance of a command URL by returning a dispatch object
+which Office uses to process the command. EzHighlightAddonImpl also implements
+the XDispatch interface, so returns a reference to itself. This means that Office calls
+EzHighlightAddonImpl.dispatch(), passing it the command URL and other properties:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in EzHighlightAddonInpl.java</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">dispatch</span><span class="p">(</span><span class="n">URL</span> <span class="n">commandURL</span><span class="p">,</span> <span class="n">PropertyValue</span><span class="o">[]</span> <span class="n">props</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">commandURL</span><span class="p">.</span><span class="na">Protocol</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span>
+               <span class="s">&quot;org.openoffice.ezhighlightAddon:&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">commandURL</span><span class="p">.</span><span class="na">Path</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="s">&quot;EzHighlight&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">processCmd</span><span class="p">(</span><span class="s">&quot;EzHighlight&quot;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">commandURL</span><span class="p">.</span><span class="na">Path</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="s">&quot;help&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">processCmd</span><span class="p">(</span><span class="s">&quot;help&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of dispatch()</span>
+</code></pre></div>
+<p>The template-generated code inside dispatch() distinguishes between the possible
+command names ("EzHighlight" and "help") by calling processCmd() with different
+arguments.</p>
+<p>If processCmd()'s input argument is "help", then GUI.showMessageBox() is called to
+display the window shown in Figure 6, while "EzHighlight" triggers the dialog in
+Figure 4. The processCmd() code is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in EzHighlightAddonInpl.java...</span>
+
+<span class="c1">// globals</span>
+<span class="kd">private</span> <span class="n">XDialog</span> <span class="n">dialog</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+<span class="kd">private</span> <span class="n">Console</span> <span class="n">console</span><span class="p">;</span>    <span class="c1">// for debugging output</span>
+<span class="kd">private</span> <span class="kt">int</span> <span class="n">printCount</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">processCmd</span><span class="p">(</span><span class="n">String</span> <span class="n">cmd</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">addonInitialize</span><span class="p">(</span><span class="n">xcc</span><span class="p">);</span>
+                   <span class="c1">// so my utils can be used safely</span>
+
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Window title: &quot;</span> <span class="o">+</span> <span class="n">GUI</span><span class="p">.</span><span class="na">getTitleBar</span><span class="p">());</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">printCount</span><span class="o">++</span> <span class="o">+</span>
+                 <span class="s">&quot;. dispatch() called for \&quot;&quot;</span> <span class="o">+</span> <span class="n">cmd</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">cmd</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;help&quot;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">GUI</span><span class="p">.</span><span class="na">showMessageBox</span><span class="p">(</span><span class="s">&quot;Add-on Help&quot;</span><span class="p">,</span>
+          <span class="s">&quot;Type in the text, then press return or</span>
+<span class="s">           click the Ok button.&quot;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// &quot;EzHighlight&quot; is processed by the following code...</span>
+
+  <span class="n">console</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+
+  <span class="n">dialog</span> <span class="o">=</span> <span class="n">Dialogs</span><span class="p">.</span><span class="na">loadAddonDialog</span><span class="p">(</span>
+                    <span class="s">&quot;org.openoffice.ezhighlightAddon&quot;</span><span class="p">,</span>
+                    <span class="s">&quot;dialogLibrary/&quot;</span> <span class="o">+</span> <span class="n">cmd</span> <span class="o">+</span> <span class="s">&quot;.xdl&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">dialog</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not load &quot;</span> <span class="o">+</span> <span class="n">cmd</span> <span class="o">+</span> <span class="s">&quot; dialog&quot;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">XControl</span> <span class="n">dialogControl</span> <span class="o">=</span> <span class="n">Dialogs</span><span class="p">.</span><span class="na">getDialogControl</span><span class="p">(</span><span class="n">dialog</span><span class="p">);</span>
+  <span class="n">initDialog</span><span class="p">(</span><span class="n">dialogControl</span><span class="p">);</span>
+  <span class="n">Dialogs</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="n">dialogControl</span><span class="p">);</span>
+
+  <span class="n">console</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of processCmd()</span>
+</code></pre></div>
+<p>Lo.addonInitialize() initializes the globals used by my Lo utility library and other
+support classes:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Lo class</span>
+<span class="c1">// globals</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="n">XComponentContext</span> <span class="n">xcc</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="n">XDesktop</span> <span class="n">xDesktop</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="n">XMultiComponentFactory</span> <span class="n">mcFactory</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="n">XMultiServiceFactory</span> <span class="n">msFactory</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XComponent</span> <span class="nf">addonInitialize</span><span class="p">(</span>
+                             <span class="n">XComponentContext</span> <span class="n">addonXcc</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">xcc</span> <span class="o">=</span> <span class="n">addonXcc</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">xcc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not access component context&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">mcFactory</span> <span class="o">=</span> <span class="n">xcc</span><span class="p">.</span><span class="na">getServiceManager</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">mcFactory</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Office Service Manager is unavailable&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">Object</span> <span class="n">oDesktop</span> <span class="o">=</span> <span class="n">mcFactory</span><span class="p">.</span><span class="na">createInstanceWithContext</span><span class="p">(</span>
+                         <span class="s">&quot;com.sun.star.frame.Desktop&quot;</span><span class="p">,</span> <span class="n">xcc</span><span class="p">);</span>
+    <span class="n">xDesktop</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XDesktop</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">oDesktop</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not access desktop&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">xDesktop</span><span class="p">.</span><span class="na">getCurrentComponent</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">doc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not access document&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">msFactory</span> <span class="o">=</span>  <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XMultiServiceFactory</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">doc</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">doc</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of addonInitialize()</span>
+</code></pre></div>
+<p>addonInitialize() returns an instance of XComponent, which refers to the document
+currently loaded into Office. Later this will be used to highlight the document's text.</p>
+<p>processCmd() calls Console.setVisible() before and after the processing of the
+"EzHighlight" command. The first call makes a Console debugging window visible,
+and the call at the end hides it. These lines should be commented out of the completed
+add-on, so the window doesn't appear.</p>
+<p>The dialog is handled by methods from my Dialogs support class, and by listeners set
+up in initDialog().</p>
 <h2 id="5-creating-the-dialog">5.  Creating the Dialog</h2>
-<p>There are two approaches for dialog creation: the easy way uses Office's dialog editor, 
-and the hard way calls functions in my Dialogs support class to programmatically 
-create the dialog's components. I'll use the editor in this chapter, and employ Dialogs 
-methods in my macros in Chapter 48. </p>
-<p>The Developer's Guide has some information on the dialog editor in chapter 11, 
-"OpenOffice.org Basic". The relevant sub-sections are online at 
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Dialog_Editor and 
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Creating_Dialogs 
-(or use loGuide "Dialog Editor" and loGuide "Creating Dialogs").  </p>
-<p>The editor utilizes drag-and-drop to place GUI elements in a dialog drawing area, 
-with property windows for specializing each element. The editor is reached via 
-Office's menu item Tools &gt; Macros &gt; Organize Dialogs (see Figure 9). </p>
+<p>There are two approaches for dialog creation: the easy way uses Office's dialog editor,
+and the hard way calls functions in my Dialogs support class to programmatically
+create the dialog's components. I'll use the editor in this chapter, and employ Dialogs
+methods in my macros in Chapter 48.</p>
+<p>The Developer's Guide has some information on the dialog editor in chapter 11,
+"OpenOffice.org Basic". The relevant sub-sections are online at
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Dialog_Editor and
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Creating_Dialogs
+(or use loGuide "Dialog Editor" and loGuide "Creating Dialogs").</p>
+<p>The editor utilizes drag-and-drop to place GUI elements in a dialog drawing area,
+with property windows for specializing each element. The editor is reached via
+Office's menu item Tools &gt; Macros &gt; Organize Dialogs (see Figure 9).</p>
 <p><img alt="" src="images/46-Addons-9.png" /></p>
-<p>Figure 9. Creating a new Dialog. </p>
-<p>Figure 10 shows the dialog editor window after the creation of a new dialog called 
-"Basic"; the GUI controls run along the bottom of the window. </p>
+<p>Figure 9. Creating a new Dialog.</p>
+<p>Figure 10 shows the dialog editor window after the creation of a new dialog called
+"Basic"; the GUI controls run along the bottom of the window.</p>
 <p><img alt="" src="images/46-Addons-10.png" /></p>
-<p>Figure 10. The Dialog Editor Window for a new Dialog. </p>
-<p>The simplest useful dialog is probably the version of the "Basic" dialog in Figure 11, 
-consisting of a label, text field, and "Ok" button. </p>
+<p>Figure 10. The Dialog Editor Window for a new Dialog.</p>
+<p>The simplest useful dialog is probably the version of the "Basic" dialog in Figure 11,
+consisting of a label, text field, and "Ok" button.</p>
 <p><img alt="" src="images/46-Addons-11.png" /></p>
-<p>Figure 11. The "Basic" Dialog. </p>
-<p>A dialog can be exported as XML using the "Export Dialog" icon above the drawing 
-area (the icon includes a floppy disk which will leave young programmers mystified).  </p>
-<p>The resulting XDL file contains text something like: </p>
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE dlg:window  
-       PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" 
-       "dialog.dtd">
-<p><dlg:window xmlns:dlg="http://openoffice.org/2000/dialog" 
-            xmlns:script="http://openoffice.org/2000/script" 
-         dlg:id="Basic" 
-         dlg:left="52" dlg:top="44" dlg:width="173" dlg:height="34" 
-         dlg:closeable="true" dlg:moveable="true" 
-         dlg:title="Basic Dialog"> </p>
-<p><dlg:styles> 
-    <dlg:style dlg:style-id="0" 
-               dlg:background-color="0xeeeeee" 
-               dlg:font-height="10"/> 
-  </dlg:styles> </p>
-<p><dlg:bulletinboard> 
-    <dlg:text dlg:style-id="0" dlg:id="Label1" 
-          dlg:tab-index="0" 
-          dlg:left="6" dlg:top="11" dlg:width="38" dlg:height="8" 
-          dlg:value="Enter input:"/> </p>
-<pre><code>&lt;dlg:textfield dlg:id="TextField1" 
-      dlg:tab-index="1" 
-      dlg:left="41" dlg:top="7" dlg:width="83" dlg:height="14"/&gt;
+<p>Figure 11. The "Basic" Dialog.</p>
+<p>A dialog can be exported as XML using the "Export Dialog" icon above the drawing
+area (the icon includes a floppy disk which will leave young programmers mystified).</p>
+<p>The resulting XDL file contains text something like:</p>
+<div class="highlight"><pre><span></span><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE dlg:window
+       PUBLIC &quot;-//OpenOffice.org//DTD OfficeDocument 1.0//EN&quot;
+       &quot;dialog.dtd&quot;&gt;
+&lt;dlg:window xmlns:dlg=&quot;http://openoffice.org/2000/dialog&quot;
+            xmlns:script=&quot;http://openoffice.org/2000/script&quot;
+         dlg:id=&quot;Basic&quot;
+         dlg:left=&quot;52&quot; dlg:top=&quot;44&quot; dlg:width=&quot;173&quot; dlg:height=&quot;34&quot;
+         dlg:closeable=&quot;true&quot; dlg:moveable=&quot;true&quot;
+         dlg:title=&quot;Basic Dialog&quot;&gt;
 
-&lt;dlg:button dlg:id="CommandButton1" 
-      dlg:tab-index="2" 
-      dlg:left="137" dlg:top="9" dlg:width="28" dlg:height="12" 
-      dlg:value="Ok"/&gt;
-</code></pre>
-<p></dlg:bulletinboard> 
-</dlg:window> </p>
-<p>The code in EzHighlightAddonInpl assumes that the dialog contains a text field called 
-"TextField1" and a button called "CommandButton1", which is true of the XDL 
-shown above. Of course, it's possible to add more GUI components, as in the next 
-section. </p>
+  &lt;dlg:styles&gt;
+    &lt;dlg:style dlg:style-id=&quot;0&quot;
+               dlg:background-color=&quot;0xeeeeee&quot;
+               dlg:font-height=&quot;10&quot;/&gt;
+  &lt;/dlg:styles&gt;
+
+  &lt;dlg:bulletinboard&gt;
+    &lt;dlg:text dlg:style-id=&quot;0&quot; dlg:id=&quot;Label1&quot;
+          dlg:tab-index=&quot;0&quot;
+          dlg:left=&quot;6&quot; dlg:top=&quot;11&quot; dlg:width=&quot;38&quot; dlg:height=&quot;8&quot;
+          dlg:value=&quot;Enter input:&quot;/&gt;
+
+    &lt;dlg:textfield dlg:id=&quot;TextField1&quot;
+          dlg:tab-index=&quot;1&quot;
+          dlg:left=&quot;41&quot; dlg:top=&quot;7&quot; dlg:width=&quot;83&quot; dlg:height=&quot;14&quot;/&gt;
+
+    &lt;dlg:button dlg:id=&quot;CommandButton1&quot;
+          dlg:tab-index=&quot;2&quot;
+          dlg:left=&quot;137&quot; dlg:top=&quot;9&quot; dlg:width=&quot;28&quot; dlg:height=&quot;12&quot;
+          dlg:value=&quot;Ok&quot;/&gt;
+
+  &lt;/dlg:bulletinboard&gt;
+&lt;/dlg:window&gt;
+</code></pre></div>
+<p>The code in EzHighlightAddonInpl assumes that the dialog contains a text field called
+"TextField1" and a button called "CommandButton1", which is true of the XDL
+shown above. Of course, it's possible to add more GUI components, as in the next
+section.</p>
 <h3 id="51-the-ezhighlight-dialog">5.1.  The EzHighlight Dialog</h3>
-<p>The dialog editor has an import icon to the left of the export icon, which can be used 
-to load an XDL file for modification.  </p>
-<p>I copied the "Basic" XDL file, renaming it to "EzHighlight.xdl", and imported it; a 
-few changes and additions later, it looked as shown in Figure 12. </p>
+<p>The dialog editor has an import icon to the left of the export icon, which can be used
+to load an XDL file for modification.</p>
+<p>I copied the "Basic" XDL file, renaming it to "EzHighlight.xdl", and imported it; a
+few changes and additions later, it looked as shown in Figure 12.</p>
 <p><img alt="" src="images/46-Addons-12.png" /></p>
-<p>Figure 12. The EzHighlight.xdl Dialog. </p>
-<p>The exported XML is: </p>
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE dlg:window  
-               PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" 
-               "dialog.dtd">
-<p><dlg:window xmlns:dlg="http://openoffice.org/2000/dialog" 
-            xmlns:script="http://openoffice.org/2000/script" 
-      dlg:id="EzHighlight" 
-      dlg:left="109" dlg:top="73" dlg:width="184" dlg:height="44" 
-      dlg:closeable="true" dlg:moveable="true" 
-      dlg:title="EzHighlight Text Selector"> </p>
-<p><dlg:styles> 
-  <dlg:style dlg:style-id="0" 
-             dlg:background-color="0xeeeeee"/> 
- </dlg:styles> </p>
-<p><dlg:bulletinboard> 
-  <dlg:text dlg:style-id="0" dlg:id="Label1" 
-          dlg:tab-index="0" 
-          dlg:left="8" dlg:top="11" dlg:width="26" dlg:height="10" 
-          dlg:value="Enter text:" 
-          dlg:align="right"/> </p>
-<p><dlg:textfield dlg:id="TextField1" 
-          dlg:tab-index="1" 
-          dlg:left="39" dlg:top="9" dlg:width="83" dlg:height="12"/> </p>
-<p><dlg:textfield dlg:id="TextField2" 
-          dlg:tab-index="2" 
-          dlg:left="39" dlg:top="26" dlg:width="46" dlg:height="12" 
-          dlg:readonly="true"/> </p>
-<p><dlg:text dlg:style-id="0" dlg:id="Label2" 
-          dlg:tab-index="3" 
-          dlg:left="8" dlg:top="27" dlg:width="26" dlg:height="10" 
-          dlg:value="Count:" 
-          dlg:align="right"/> </p>
-<p><dlg:button dlg:id="CommandButton1" 
-          dlg:tab-index="4" 
-          dlg:left="131" dlg:top="9" dlg:width="46" dlg:height="12" 
-          dlg:value="Highlight"/> </p>
-<p></dlg:bulletinboard> 
-</dlg:window> </p>
-<p>The dialog loading code in EzHighlightAddonInpl.java assumes that the dialog's 
-filename is the same as the command URL name, as can be seen in processCmd(): </p>
-<p>// part of processCmd() in EzHighlightAddonInpl.java... </p>
-<p>dialog = Dialogs.loadAddonDialog("org.openoffice.ezhighlightAddon", 
-                            "dialogLibrary/" + cmd + ".xdl"); </p>
-<p>processCmd() also assumes that the XDL file is in a dialogLibrary/ sub-directory. I'll 
-explain how this is part of the add-on's OXT file in a later section. </p>
-<p>Dialogs.loadAddonDialog() is defined as: </p>
-<p>// in the Dialogs class 
-public static XDialog loadAddonDialog(String extensionID,<br />
-                                      String dialogFnm) 
-{ XDialogProvider dp =<br />
-           Lo.createInstanceMCF(XDialogProvider.class,<br />
-                         "com.sun.star.awt.DialogProvider"); 
-  if (dp == null) { 
-    System.out.println("Could not access the Dialog Provider"); 
-    return null; 
-  } 
-  try { 
-    return dp.createDialog("vnd.sun.star.extension://" +<br />
-                                extensionID + "/" + dialogFnm); 
-  } 
-  catch (java.lang.Exception e) { 
-    System.out.println("Could not load the dialog: \"" +<br />
-                                   dialogFnm + "\": " + e); 
-    return null; 
-  } 
-}  // end of loadAddonDialog() </p>
-<p>The crucial line is the call to XDialogProvider.createDialog(), which constructs the 
-dialog name: 
-vnd.sun.star.extension://org.openoffice.ezhighlightAddon/ 
-                                       dialogLibrary/EzHighlight 
-The dialog is loaded from the ezhighlightAddon extension. </p>
+<p>Figure 12. The EzHighlight.xdl Dialog.</p>
+<p>The exported XML is:</p>
+<div class="highlight"><pre><span></span><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE dlg:window
+               PUBLIC &quot;-//OpenOffice.org//DTD OfficeDocument 1.0//EN&quot;
+               &quot;dialog.dtd&quot;&gt;
+&lt;dlg:window xmlns:dlg=&quot;http://openoffice.org/2000/dialog&quot;
+            xmlns:script=&quot;http://openoffice.org/2000/script&quot;
+      dlg:id=&quot;EzHighlight&quot;
+      dlg:left=&quot;109&quot; dlg:top=&quot;73&quot; dlg:width=&quot;184&quot; dlg:height=&quot;44&quot;
+      dlg:closeable=&quot;true&quot; dlg:moveable=&quot;true&quot;
+      dlg:title=&quot;EzHighlight Text Selector&quot;&gt;
+
+ &lt;dlg:styles&gt;
+  &lt;dlg:style dlg:style-id=&quot;0&quot;
+             dlg:background-color=&quot;0xeeeeee&quot;/&gt;
+ &lt;/dlg:styles&gt;
+
+ &lt;dlg:bulletinboard&gt;
+  &lt;dlg:text dlg:style-id=&quot;0&quot; dlg:id=&quot;Label1&quot;
+          dlg:tab-index=&quot;0&quot;
+          dlg:left=&quot;8&quot; dlg:top=&quot;11&quot; dlg:width=&quot;26&quot; dlg:height=&quot;10&quot;
+          dlg:value=&quot;Enter text:&quot;
+          dlg:align=&quot;right&quot;/&gt;
+
+  &lt;dlg:textfield dlg:id=&quot;TextField1&quot;
+          dlg:tab-index=&quot;1&quot;
+          dlg:left=&quot;39&quot; dlg:top=&quot;9&quot; dlg:width=&quot;83&quot; dlg:height=&quot;12&quot;/&gt;
+
+  &lt;dlg:textfield dlg:id=&quot;TextField2&quot;
+          dlg:tab-index=&quot;2&quot;
+          dlg:left=&quot;39&quot; dlg:top=&quot;26&quot; dlg:width=&quot;46&quot; dlg:height=&quot;12&quot;
+          dlg:readonly=&quot;true&quot;/&gt;
+
+  &lt;dlg:text dlg:style-id=&quot;0&quot; dlg:id=&quot;Label2&quot;
+          dlg:tab-index=&quot;3&quot;
+          dlg:left=&quot;8&quot; dlg:top=&quot;27&quot; dlg:width=&quot;26&quot; dlg:height=&quot;10&quot;
+          dlg:value=&quot;Count:&quot;
+          dlg:align=&quot;right&quot;/&gt;
+
+  &lt;dlg:button dlg:id=&quot;CommandButton1&quot;
+          dlg:tab-index=&quot;4&quot;
+          dlg:left=&quot;131&quot; dlg:top=&quot;9&quot; dlg:width=&quot;46&quot; dlg:height=&quot;12&quot;
+          dlg:value=&quot;Highlight&quot;/&gt;
+
+ &lt;/dlg:bulletinboard&gt;
+&lt;/dlg:window&gt;
+</code></pre></div>
+<p>The dialog loading code in EzHighlightAddonInpl.java assumes that the dialog's
+filename is the same as the command URL name, as can be seen in processCmd():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of processCmd() in EzHighlightAddonInpl.java...</span>
+
+<span class="n">dialog</span> <span class="o">=</span> <span class="n">Dialogs</span><span class="p">.</span><span class="na">loadAddonDialog</span><span class="p">(</span><span class="s">&quot;org.openoffice.ezhighlightAddon&quot;</span><span class="p">,</span>
+                            <span class="s">&quot;dialogLibrary/&quot;</span> <span class="o">+</span> <span class="n">cmd</span> <span class="o">+</span> <span class="s">&quot;.xdl&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>processCmd() also assumes that the XDL file is in a dialogLibrary/ sub-directory. I'll
+explain how this is part of the add-on's OXT file in a later section.</p>
+<p>Dialogs.loadAddonDialog() is defined as:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Dialogs class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XDialog</span> <span class="nf">loadAddonDialog</span><span class="p">(</span><span class="n">String</span> <span class="n">extensionID</span><span class="p">,</span>
+                                      <span class="n">String</span> <span class="n">dialogFnm</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">XDialogProvider</span> <span class="n">dp</span> <span class="o">=</span>
+           <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XDialogProvider</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                         <span class="s">&quot;com.sun.star.awt.DialogProvider&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">dp</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not access the Dialog Provider&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">dp</span><span class="p">.</span><span class="na">createDialog</span><span class="p">(</span><span class="s">&quot;vnd.sun.star.extension://&quot;</span> <span class="o">+</span>
+                                <span class="n">extensionID</span> <span class="o">+</span> <span class="s">&quot;/&quot;</span> <span class="o">+</span> <span class="n">dialogFnm</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not load the dialog: \&quot;&quot;</span> <span class="o">+</span>
+                                   <span class="n">dialogFnm</span> <span class="o">+</span> <span class="s">&quot;\&quot;: &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of loadAddonDialog()</span>
+</code></pre></div>
+<p>The crucial line is the call to XDialogProvider.createDialog(), which constructs the
+dialog name:</p>
+<div class="highlight"><pre><span></span><code><span class="n">vnd</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">extension</span><span class="p">:</span><span class="c1">//org.openoffice.ezhighlightAddon/</span>
+                                       <span class="n">dialogLibrary</span><span class="o">/</span><span class="n">EzHighlight</span>
+</code></pre></div>
+<p>The dialog is loaded from the ezhighlightAddon extension.</p>
 <h3 id="52-listening-to-the-dialog">5.2.  Listening to the Dialog</h3>
-<p>Back in processCmd(), listeners are attached to the loaded dialog, and the dialog is 
-made visible on-screen: </p>
-<p>// in processCmd() in EzHighlightAddonInpl.java... </p>
-<p>XControl dialogControl = Dialogs.getDialogControl(dialog); 
-initDialog(dialogControl); 
-Dialogs.execute(dialogControl); </p>
-<p>Dialogs.getDialogControl() casts the XDialog into an XControl: </p>
-<p>// in the Dialogs class 
-public static XControl getDialogControl(XDialog dialog) 
-{  return Lo.qi(XControl.class, dialog);  }   </p>
-<p>The initDialog() method inside EzHighlightAddonInpl.java attaches three listeners to 
-the dialog: a window listener, an action listener for the "CommandButton1" button, 
-and a key listener for the "TextField1" text field: </p>
-<p>// in the EzHighlightAddonInpl class 
-// globals 
-private XTextComponent textBox;  <br />
-             // the text in the dialog's text field </p>
-<p>private void initDialog(XControl dialogControl) 
-{ 
-  // listen to the dialog window 
-  XTopWindow topWin = Dialogs.getDialogWindow(dialogControl); 
-  topWin.addTopWindowListener(this); </p>
-<p>// Dialogs.showControlInfo(dialogControl); </p>
-<p>// set listener for Ok button 
-  XButton button = Lo.qi(XButton.class, 
-      Dialogs.findControl(dialogControl, "CommandButton1")); 
-  button.addActionListener(this); </p>
-<p>// set listener for text box 
-  textBox = Lo.qi(XTextComponent.class,<br />
-      Dialogs.findControl(dialogControl, "TextField1")); 
-  XWindow xTFWindow = (XWindow) Lo.qi(XWindow.class, textBox); 
-  xTFWindow.addKeyListener(this); 
-  xTFWindow.setFocus(); 
-}  // end of initDialog() </p>
-<p>These controls and listeners are all from Office's com.sun.star.awt module. The dialog 
-and listeners will be invoked by Office at run time, and so should use its API, not 
-Java's Swing. </p>
-<p>The call to Dialogs.showControlInfo() is commented out in initDialog(), but is a 
-useful way to double-check the dialog's internal construction, and particularly the IDs 
-of its components. showControlInfo() prints to standard output which will be 
-displayed in the Console window. Figure 13 reports the structure of the 
-EzHighlight.xdl dialog from Figure 12. </p>
+<p>Back in processCmd(), listeners are attached to the loaded dialog, and the dialog is
+made visible on-screen:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in processCmd() in EzHighlightAddonInpl.java...</span>
+
+<span class="n">XControl</span> <span class="n">dialogControl</span> <span class="o">=</span> <span class="n">Dialogs</span><span class="p">.</span><span class="na">getDialogControl</span><span class="p">(</span><span class="n">dialog</span><span class="p">);</span>
+<span class="n">initDialog</span><span class="p">(</span><span class="n">dialogControl</span><span class="p">);</span>
+<span class="n">Dialogs</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="n">dialogControl</span><span class="p">);</span>
+</code></pre></div>
+<p>Dialogs.getDialogControl() casts the XDialog into an XControl:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Dialogs class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XControl</span> <span class="nf">getDialogControl</span><span class="p">(</span><span class="n">XDialog</span> <span class="n">dialog</span><span class="p">)</span>
+<span class="p">{</span>  <span class="k">return</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XControl</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">dialog</span><span class="p">);</span>  <span class="p">}</span>
+</code></pre></div>
+<p>The initDialog() method inside EzHighlightAddonInpl.java attaches three listeners to
+the dialog: a window listener, an action listener for the "CommandButton1" button,
+and a key listener for the "TextField1" text field:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the EzHighlightAddonInpl class</span>
+<span class="c1">// globals</span>
+<span class="kd">private</span> <span class="n">XTextComponent</span> <span class="n">textBox</span><span class="p">;</span>
+             <span class="c1">// the text in the dialog&#39;s text field</span>
+
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">initDialog</span><span class="p">(</span><span class="n">XControl</span> <span class="n">dialogControl</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// listen to the dialog window</span>
+  <span class="n">XTopWindow</span> <span class="n">topWin</span> <span class="o">=</span> <span class="n">Dialogs</span><span class="p">.</span><span class="na">getDialogWindow</span><span class="p">(</span><span class="n">dialogControl</span><span class="p">);</span>
+  <span class="n">topWin</span><span class="p">.</span><span class="na">addTopWindowListener</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+  <span class="c1">// Dialogs.showControlInfo(dialogControl);</span>
+
+  <span class="c1">// set listener for Ok button</span>
+  <span class="n">XButton</span> <span class="n">button</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XButton</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+      <span class="n">Dialogs</span><span class="p">.</span><span class="na">findControl</span><span class="p">(</span><span class="n">dialogControl</span><span class="p">,</span> <span class="s">&quot;CommandButton1&quot;</span><span class="p">));</span>
+  <span class="n">button</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+  <span class="c1">// set listener for text box</span>
+  <span class="n">textBox</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XTextComponent</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+      <span class="n">Dialogs</span><span class="p">.</span><span class="na">findControl</span><span class="p">(</span><span class="n">dialogControl</span><span class="p">,</span> <span class="s">&quot;TextField1&quot;</span><span class="p">));</span>
+  <span class="n">XWindow</span> <span class="n">xTFWindow</span> <span class="o">=</span> <span class="p">(</span><span class="n">XWindow</span><span class="p">)</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XWindow</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">textBox</span><span class="p">);</span>
+  <span class="n">xTFWindow</span><span class="p">.</span><span class="na">addKeyListener</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="n">xTFWindow</span><span class="p">.</span><span class="na">setFocus</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of initDialog()</span>
+</code></pre></div>
+<p>These controls and listeners are all from Office's com.sun.star.awt module. The dialog
+and listeners will be invoked by Office at run time, and so should use its API, not
+Java's Swing.</p>
+<p>The call to Dialogs.showControlInfo() is commented out in initDialog(), but is a
+useful way to double-check the dialog's internal construction, and particularly the IDs
+of its components. showControlInfo() prints to standard output which will be
+displayed in the Console window. Figure 13 reports the structure of the
+EzHighlight.xdl dialog from Figure 12.</p>
 <p><img alt="" src="images/46-Addons-13.png" /></p>
-<p>Figure 13. The Console Window Showing Dialog Details. </p>
-<p>The dialog contains five components: two labels, two text fields, and a button. </p>
-<p>Dialogs.findControl() uses a control's name to find it inside a dialog: </p>
-<p>// in Dialogs class 
-public static XControl findControl(XControl dialogCtrl,<br />
-                                  String name) 
-{ XControlContainer ctrlCon =<br />
-                  Lo.qi(XControlContainer.class, dialogCtrl); 
-  return ctrlCon.getControl(name); 
-}  </p>
-<p>initDialog() converts the returned "CommandButton1" control into an XButton, and 
-the "TextField1" control into an XTextComponent so that listeners can be attached to 
-them. </p>
-<p>EzHighlightAddonInpl implements all of the listener interfaces used by the dialog: 
-XActionListener, XTopWindowListener, and XKeyListener.  </p>
-<p>XActionListener.actionPerformed() deals with button presses, 
-XTopWindowListener.windowClosing() listens for the closing of the dialog, and 
-XKeyListener.keyPressed() captures the user typing <ENTER> into the text field: </p>
-<p>// in the EzHighlightAddonInpl class 
-// globals 
-private XDialog dialog = null; 
-private XTextComponent textBox; </p>
-<p>public void actionPerformed(ActionEvent e) 
-{ 
-  String info = textBox.getText(); 
-  if (info.equals("")) 
-    return; 
-  System.out.println("Info: \"" + info +"\""); 
-  textBox.setText(""); 
-  // ADD code here 
-}  // end of actionPerformed() </p>
-<p>public void windowClosing(EventObject event) 
-{  dialog.endExecute();   } </p>
-<p>public void keyPressed(KeyEvent event) 
-{ <br />
-  if (event.KeyCode == Key.RETURN) {<br />
-    String info = textBox.getText(); 
-    if (info.equals("")) 
-      return; 
-    System.out.println("Info: \"" + info +"\""); 
-    textBox.setText(""); 
-    // ADD code here 
-  } 
-}  // end of keyPressed() </p>
-<p>The template generated code for actionPerformed() and keyPressed() only print 
-information to the Console window. Add-on specific functionality is added next. </p>
+<p>Figure 13. The Console Window Showing Dialog Details.</p>
+<p>The dialog contains five components: two labels, two text fields, and a button.</p>
+<p>Dialogs.findControl() uses a control's name to find it inside a dialog:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Dialogs class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XControl</span> <span class="nf">findControl</span><span class="p">(</span><span class="n">XControl</span> <span class="n">dialogCtrl</span><span class="p">,</span>
+                                  <span class="n">String</span> <span class="n">name</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">XControlContainer</span> <span class="n">ctrlCon</span> <span class="o">=</span>
+                  <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XControlContainer</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">dialogCtrl</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">ctrlCon</span><span class="p">.</span><span class="na">getControl</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>initDialog() converts the returned "CommandButton1" control into an XButton, and
+the "TextField1" control into an XTextComponent so that listeners can be attached to
+them.</p>
+<p>EzHighlightAddonInpl implements all of the listener interfaces used by the dialog:
+XActionListener, XTopWindowListener, and XKeyListener.
+XActionListener.actionPerformed() deals with button presses,
+XTopWindowListener.windowClosing() listens for the closing of the dialog, and
+XKeyListener.keyPressed() captures the user typing <ENTER> into the text field:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the EzHighlightAddonInpl class</span>
+<span class="c1">// globals</span>
+<span class="kd">private</span> <span class="n">XDialog</span> <span class="n">dialog</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="kd">private</span> <span class="n">XTextComponent</span> <span class="n">textBox</span><span class="p">;</span>
+
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="p">(</span><span class="n">ActionEvent</span> <span class="n">e</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">String</span> <span class="n">info</span> <span class="o">=</span> <span class="n">textBox</span><span class="p">.</span><span class="na">getText</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">))</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Info: \&quot;&quot;</span> <span class="o">+</span> <span class="n">info</span> <span class="o">+</span><span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>
+  <span class="n">textBox</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+  <span class="c1">// ADD code here</span>
+<span class="p">}</span>  <span class="c1">// end of actionPerformed()</span>
+
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">windowClosing</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">event</span><span class="p">)</span>
+<span class="p">{</span>  <span class="n">dialog</span><span class="p">.</span><span class="na">endExecute</span><span class="p">();</span>   <span class="p">}</span>
+
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">keyPressed</span><span class="p">(</span><span class="n">KeyEvent</span> <span class="n">event</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="na">KeyCode</span> <span class="o">==</span> <span class="n">Key</span><span class="p">.</span><span class="na">RETURN</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">String</span> <span class="n">info</span> <span class="o">=</span> <span class="n">textBox</span><span class="p">.</span><span class="na">getText</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">))</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Info: \&quot;&quot;</span> <span class="o">+</span> <span class="n">info</span> <span class="o">+</span><span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>
+    <span class="n">textBox</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+    <span class="c1">// ADD code here</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of keyPressed()</span>
+</code></pre></div>
+<p>The template generated code for actionPerformed() and keyPressed() only print
+information to the Console window. Add-on specific functionality is added next.</p>
 <h2 id="6-completing-the-implementation-of-ezhighlightaddoninpl">6.  Completing the Implementation of EzHighlightAddonInpl</h2>
-<p>The completion of EzHighlightAddonInpl.java takes the form of new code in 
-processCmd(), initDialog(), actionPerformed(), and keyPressed(), and a few new 
-global variables. </p>
-<p>processCmd() converts the XComponent document returned by Lo.addonInitialize() 
-into an XTextDocument, assuming that the currently loaded document is text-based. </p>
-<p>If it isn't then there's no point continuing: </p>
-<p>// in the EzHighlightAddonInpl class 
-// globals 
-private XTextDocument textDoc; </p>
-<p>// in processCmd() 
-    : 
-XComponent doc = Lo.addonInitialize(xcc);<br />
-// added 
-textDoc = Write.getTextDoc(doc); 
-if (textDoc == null) 
-  return; 
-    : </p>
-<p>initDialog() is extended to access the word count text field. It's only used to report the 
-number of changes, so doesn't need a listener: </p>
-<p>// in the EzHighlightAddonInpl class 
-// globals 
-private XTextComponent countTextBox; </p>
-<p>// in initDialog() 
-    : 
-// get a reference to the count text field; added 
-countTextBox = Lo.qi(XTextComponent.class,<br />
-          Dialogs.findControl(dialogControl, "TextField2")); 
-    : </p>
-<p>actionPerformed() and keyPressed() must trigger the highlighting code, which is 
-implemented in applyEzHighlighting(): </p>
-<p>// added to actionPerformed() 
-    : 
-int count = applyEzHighlighting(info); 
-countTextBox.setText(""+count); </p>
-<p>// added to keyPressed() 
-    : 
-int count = applyEzHighlighting(info); 
-countTextBox.setText(""+count); </p>
-<p>applyEzHighlighting() is passed the text entered by the user through the dialog. It uses 
-the XReplaceable and XReplaceDescriptor interfaces to perform a search and replace 
-through the document. This technique, and very similar code, was explained in 
-Chapter 9. applyEzHighlighting() is: </p>
-<p>// in the EzHighlightAddonInpl class 
-// globals 
-private XTextDocument textDoc; </p>
-<p>private int applyEzHighlighting(String searchKey) 
-/* Matches whole words and is case sensitive.  </p>
-<p>Highlights in bold and red;  */ 
-{ 
-  System.out.println("applyEzHighlighting(): " + searchKey); </p>
-<p>XReplaceable repl = Lo.qi(XReplaceable.class, textDoc); 
-  XReplaceDescriptor desc = repl.createReplaceDescriptor(); </p>
-<p>/<em> Get a XPropertyReplace object for altering the properties 
-     of the replaced text </em>/ 
-  XPropertyReplace propReplace = Lo.qi(XPropertyReplace.class, desc); </p>
-<p>// Set the replaced text to bold and red 
-  PropertyValue wv = new PropertyValue("CharWeight", -1,<br />
-              FontWeight.BOLD, PropertyState.DIRECT_VALUE); 
-  PropertyValue cv = new PropertyValue("CharColor", -1,<br />
-          Color.RED.getRGB(), PropertyState.DIRECT_VALUE); 
-  PropertyValue[] props = new PropertyValue[] {cv, wv}; </p>
-<p>try { 
-    propReplace.setReplaceAttributes(props); </p>
-<pre><code>// Only match whole words and be case sensitive 
-desc.setPropertyValue("SearchCaseSensitive", true); 
-desc.setPropertyValue("SearchWords", true);
-</code></pre>
-<p>} 
-  catch (com.sun.star.uno.Exception ex) { 
-    System.out.println("Error setting up search properties"); 
-    return -1; 
-  } </p>
-<p>/<em> Replaces all instances of searchKey with new Text properties 
-     and gets the number of changed instances </em>/ 
-  desc.setSearchString(searchKey); 
-  desc.setReplaceString(searchKey); 
-  return repl.replaceAll(desc); 
-}  // end of applyEzHighlighting() </p>
+<p>The completion of EzHighlightAddonInpl.java takes the form of new code in
+processCmd(), initDialog(), actionPerformed(), and keyPressed(), and a few new
+global variables.</p>
+<p>processCmd() converts the XComponent document returned by Lo.addonInitialize()
+into an XTextDocument, assuming that the currently loaded document is text-based.
+If it isn't then there's no point continuing:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the EzHighlightAddonInpl class</span>
+<span class="c1">// globals</span>
+<span class="kd">private</span> <span class="n">XTextDocument</span> <span class="n">textDoc</span><span class="p">;</span>
+
+
+<span class="c1">// in processCmd()</span>
+    <span class="p">:</span>
+<span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">addonInitialize</span><span class="p">(</span><span class="n">xcc</span><span class="p">);</span>
+<span class="c1">// added</span>
+<span class="n">textDoc</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">getTextDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">textDoc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+  <span class="k">return</span><span class="p">;</span>
+    <span class="p">:</span>
+</code></pre></div>
+<p>initDialog() is extended to access the word count text field. It's only used to report the
+number of changes, so doesn't need a listener:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the EzHighlightAddonInpl class</span>
+<span class="c1">// globals</span>
+<span class="kd">private</span> <span class="n">XTextComponent</span> <span class="n">countTextBox</span><span class="p">;</span>
+
+
+<span class="c1">// in initDialog()</span>
+    <span class="p">:</span>
+<span class="c1">// get a reference to the count text field; added</span>
+<span class="n">countTextBox</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XTextComponent</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+          <span class="n">Dialogs</span><span class="p">.</span><span class="na">findControl</span><span class="p">(</span><span class="n">dialogControl</span><span class="p">,</span> <span class="s">&quot;TextField2&quot;</span><span class="p">));</span>
+    <span class="p">:</span>
+</code></pre></div>
+<p>actionPerformed() and keyPressed() must trigger the highlighting code, which is
+implemented in applyEzHighlighting():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// added to actionPerformed()</span>
+    <span class="p">:</span>
+<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">applyEzHighlighting</span><span class="p">(</span><span class="n">info</span><span class="p">);</span>
+<span class="n">countTextBox</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="o">+</span><span class="n">count</span><span class="p">);</span>
+
+
+<span class="c1">// added to keyPressed()</span>
+    <span class="p">:</span>
+<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">applyEzHighlighting</span><span class="p">(</span><span class="n">info</span><span class="p">);</span>
+<span class="n">countTextBox</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="o">+</span><span class="n">count</span><span class="p">);</span>
+</code></pre></div>
+<p>applyEzHighlighting() is passed the text entered by the user through the dialog. It uses
+the XReplaceable and XReplaceDescriptor interfaces to perform a search and replace
+through the document. This technique, and very similar code, was explained in
+Chapter 9. applyEzHighlighting() is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the EzHighlightAddonInpl class</span>
+<span class="c1">// globals</span>
+<span class="kd">private</span> <span class="n">XTextDocument</span> <span class="n">textDoc</span><span class="p">;</span>
+
+
+<span class="kd">private</span> <span class="kt">int</span> <span class="nf">applyEzHighlighting</span><span class="p">(</span><span class="n">String</span> <span class="n">searchKey</span><span class="p">)</span>
+<span class="cm">/* Matches whole words and is case sensitive.</span>
+
+<span class="cm">   Highlights in bold and red;  */</span>
+<span class="p">{</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;applyEzHighlighting(): &quot;</span> <span class="o">+</span> <span class="n">searchKey</span><span class="p">);</span>
+
+  <span class="n">XReplaceable</span> <span class="n">repl</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XReplaceable</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">textDoc</span><span class="p">);</span>
+  <span class="n">XReplaceDescriptor</span> <span class="n">desc</span> <span class="o">=</span> <span class="n">repl</span><span class="p">.</span><span class="na">createReplaceDescriptor</span><span class="p">();</span>
+
+  <span class="cm">/* Get a XPropertyReplace object for altering the properties</span>
+<span class="cm">     of the replaced text */</span>
+  <span class="n">XPropertyReplace</span> <span class="n">propReplace</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPropertyReplace</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">desc</span><span class="p">);</span>
+
+  <span class="c1">// Set the replaced text to bold and red</span>
+  <span class="n">PropertyValue</span> <span class="n">wv</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PropertyValue</span><span class="p">(</span><span class="s">&quot;CharWeight&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+              <span class="n">FontWeight</span><span class="p">.</span><span class="na">BOLD</span><span class="p">,</span> <span class="n">PropertyState</span><span class="p">.</span><span class="na">DIRECT_VALUE</span><span class="p">);</span>
+  <span class="n">PropertyValue</span> <span class="n">cv</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PropertyValue</span><span class="p">(</span><span class="s">&quot;CharColor&quot;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+          <span class="n">Color</span><span class="p">.</span><span class="na">RED</span><span class="p">.</span><span class="na">getRGB</span><span class="p">(),</span> <span class="n">PropertyState</span><span class="p">.</span><span class="na">DIRECT_VALUE</span><span class="p">);</span>
+  <span class="n">PropertyValue</span><span class="o">[]</span> <span class="n">props</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PropertyValue</span><span class="o">[]</span> <span class="p">{</span><span class="n">cv</span><span class="p">,</span> <span class="n">wv</span><span class="p">};</span>
+
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">propReplace</span><span class="p">.</span><span class="na">setReplaceAttributes</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+
+    <span class="c1">// Only match whole words and be case sensitive</span>
+    <span class="n">desc</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;SearchCaseSensitive&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="n">desc</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;SearchWords&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">uno</span><span class="p">.</span><span class="na">Exception</span> <span class="n">ex</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error setting up search properties&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="cm">/* Replaces all instances of searchKey with new Text properties</span>
+<span class="cm">     and gets the number of changed instances */</span>
+  <span class="n">desc</span><span class="p">.</span><span class="na">setSearchString</span><span class="p">(</span><span class="n">searchKey</span><span class="p">);</span>
+  <span class="n">desc</span><span class="p">.</span><span class="na">setReplaceString</span><span class="p">(</span><span class="n">searchKey</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">repl</span><span class="p">.</span><span class="na">replaceAll</span><span class="p">(</span><span class="n">desc</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of applyEzHighlighting()</span>
+</code></pre></div>
 <h2 id="7-configuring-the-add-on">7.  Configuring the Add-on</h2>
-<p>An add-on OXT file requires two configuration files not used by an UNO component: 
-ProtocolHandler.xcu and Addon.xcs. </p>
+<p>An add-on OXT file requires two configuration files not used by an UNO component:
+ProtocolHandler.xcu and Addon.xcs.</p>
 <h3 id="71-protocolhandlerxcu">7.1.  ProtocolHandler.xcu</h3>
-<p>ProtocolHandler.xcu specifies which command URLs will be handled by the 
-component. The contents of the file for EzHighlight are: </p>
-<?xml version='1.0' encoding='UTF-8'?>
+<p>ProtocolHandler.xcu specifies which command URLs will be handled by the
+component. The contents of the file for EzHighlight are:</p>
+<div class="highlight"><pre><span></span><code>&lt;?xml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;?&gt;
 
-<p><oor:component-data oor:name="ProtocolHandler"<br />                    oor:package="org.openoffice.Office"<br />      xmlns:oor="http://openoffice.org/2001/registry"<br />      xmlns:xs="http://www.w3.org/2001/XMLSchema"<br />      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> 
-  <node oor:name="HandlerSet"> </p>
-<pre><code>&lt;node oor:name="EzHighlightAddonImpl" oor:op="replace"&gt; 
-  &lt;prop oor:name="Protocols" oor:type="oor:string-list"&gt; 
-    &lt;value&gt;org.openoffice.ezhighlightAddon:*&lt;/value&gt; 
-  &lt;/prop&gt; 
-&lt;/node&gt;
-</code></pre>
-<p></node> 
-</oor:component-data> </p>
-<p>The "EzHighlightAddonImpl" component will handle all command URLs that begin 
-with the "org.openoffice.ezhighlightAddon" extension ID. The "all" is specified using 
-the * wildcard. The component name is the name of the generated Java class. </p>
+&lt;oor:component-data oor:name=&quot;ProtocolHandler&quot;
+                    oor:package=&quot;org.openoffice.Office&quot;
+      xmlns:oor=&quot;http://openoffice.org/2001/registry&quot;
+      xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;
+      xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+  &lt;node oor:name=&quot;HandlerSet&quot;&gt;
+
+    &lt;node oor:name=&quot;EzHighlightAddonImpl&quot; oor:op=&quot;replace&quot;&gt;
+      &lt;prop oor:name=&quot;Protocols&quot; oor:type=&quot;oor:string-list&quot;&gt;
+        &lt;value&gt;org.openoffice.ezhighlightAddon:*&lt;/value&gt;
+      &lt;/prop&gt;
+    &lt;/node&gt;
+
+  &lt;/node&gt;
+&lt;/oor:component-data&gt;
+</code></pre></div>
+<p>The "EzHighlightAddonImpl" component will handle all command URLs that begin
+with the "org.openoffice.ezhighlightAddon" extension ID. The "all" is specified using
+the * wildcard. The component name is the name of the generated Java class.</p>
 <h3 id="72-addonxcs">7.2.  Addon.xcs</h3>
-<p>Addon.xcs defines the add-on's GUI elements, such as its menu and toolbar items (i.e. </p>
-<p>as seen in Figures 2, 3, and 5). Figure 14 illustrates how the file may set up to five 
-attributes: </p>
+<p>Addon.xcs defines the add-on's GUI elements, such as its menu and toolbar items (i.e.
+as seen in Figures 2, 3, and 5). Figure 14 illustrates how the file may set up to five
+attributes:</p>
 <p><img alt="" src="images/46-Addons-14.png" /></p>
-<p>Figure 14. The Addon.xcs GUI Elements. </p>
-<p>The "AddonMenu" attribute defines the look of the menu item that appears at the end 
-of Office's Tool &gt; Add-ons menu, as in Figure 2.  </p>
-<p>The "OfficeToolbar" attribute specifies the appearance of the floating toolbar reached 
-via View &gt; Toolbars &gt; Add-on <number>, as in Figure 3. </p>
-<p>The "OfficeMenubar" attribute is used to add a menu item to Office's main menu bar, 
-which seems a rather poor GUI design choice, so I've chosen not to use it. </p>
-<p>The OfficeHelp" attribute creates the add-on's help menu item on Office's Help menu, 
-as in Figure 5. </p>
-<p>The "Images" attribute defines the icons that appear next to the text in the menu and 
-toolbar items. If you look back at Figures 2 and 3, you'll see that no icons appear, but 
-this isn't for want of me trying. This feature seems to be broken, but I'll still explain 
-how to set it up. </p>
-<p>Aside from "Images", the attributes have a similar structure: a menu or toolbar item 
-with five sub-attributes: URL, Title, ImageIdentifier, Context, and Target; I'll not be 
-using sub-menu attributes. </p>
-<p>The best explanation of Addon.xcs' structure is "How to distribute your macros with 
-an Addon" by Bernard Marcelly at 
-http://www.openoffice.org/documentation/HOW_TO/various_topics/Addons1_1en.pd
-f, which dates from 2003. </p>
-<p>The "AddonMenu" Attribute 
-The "AddonMenu" attribute used by the EzHighlight add-on is: </p>
-<p><node oor:name="AddonMenu"> 
-  <node oor:name="org.openoffice.ezhighlightAddon"<br />        oor:op="replace"> </p>
-<pre><code>&lt;prop oor:name="URL" oor:type="xs:string"&gt; 
-  &lt;value&gt;org.openoffice.ezhighlightAddon:EzHighlight&lt;/value&gt; 
-&lt;/prop&gt;
+<p>Figure 14. The Addon.xcs GUI Elements.</p>
+<p>The "AddonMenu" attribute defines the look of the menu item that appears at the end
+of Office's Tool &gt; Add-ons menu, as in Figure 2.</p>
+<p>The "OfficeToolbar" attribute specifies the appearance of the floating toolbar reached
+via View &gt; Toolbars &gt; Add-on <number>, as in Figure 3.</p>
+<p>The "OfficeMenubar" attribute is used to add a menu item to Office's main menu bar,
+which seems a rather poor GUI design choice, so I've chosen not to use it.</p>
+<p>The OfficeHelp" attribute creates the add-on's help menu item on Office's Help menu,
+as in Figure 5.</p>
+<p>The "Images" attribute defines the icons that appear next to the text in the menu and
+toolbar items. If you look back at Figures 2 and 3, you'll see that no icons appear, but
+this isn't for want of me trying. This feature seems to be broken, but I'll still explain
+how to set it up.</p>
+<p>Aside from "Images", the attributes have a similar structure: a menu or toolbar item
+with five sub-attributes: URL, Title, ImageIdentifier, Context, and Target; I'll not be
+using sub-menu attributes.</p>
+<p>The best explanation of Addon.xcs' structure is "How to distribute your macros with
+an Addon" by Bernard Marcelly at
+http://www.openoffice.org/documentation/HOW_TO/various_topics/Addons1_1en.pdf,
+which dates from 2003.</p>
+<h4 id="addonmenu-attribute">"AddonMenu" Attribute</h4>
+<p>The "AddonMenu" attribute used by the EzHighlight add-on is:</p>
+<div class="highlight"><pre><span></span><code>&lt;node oor:name=&quot;AddonMenu&quot;&gt;
+  &lt;node oor:name=&quot;org.openoffice.ezhighlightAddon&quot;
+        oor:op=&quot;replace&quot;&gt;
 
-&lt;prop oor:name="Title" oor:type="xs:string"&gt; 
-  &lt;value&gt;EzHighlight Text&lt;/value&gt; 
-&lt;/prop&gt;
+    &lt;prop oor:name=&quot;URL&quot; oor:type=&quot;xs:string&quot;&gt;
+      &lt;value&gt;org.openoffice.ezhighlightAddon:EzHighlight&lt;/value&gt;
+    &lt;/prop&gt;
 
-&lt;prop oor:name="ImageIdentifier" oor:type="xs:string"&gt; 
-    &lt;value/&gt; 
-&lt;/prop&gt;
+    &lt;prop oor:name=&quot;Title&quot; oor:type=&quot;xs:string&quot;&gt;
+      &lt;value&gt;EzHighlight Text&lt;/value&gt;
+    &lt;/prop&gt;
 
-&lt;prop oor:name="Context" oor:type="xs:string"&gt; 
-  &lt;value&gt;com.sun.star.text.TextDocument&lt;/value&gt; 
-&lt;/prop&gt;
+    &lt;prop oor:name=&quot;ImageIdentifier&quot; oor:type=&quot;xs:string&quot;&gt;
+        &lt;value/&gt;
+    &lt;/prop&gt;
 
-&lt;prop oor:name="Target" oor:type="xs:string"&gt; 
-  &lt;value&gt;_self&lt;/value&gt; 
-&lt;/prop&gt;
-</code></pre>
-<p></node> 
-</node> </p>
-<p>The "URL" attribute holds the command URL which is dispatched by Office when 
-the menu item is clicked.  </p>
-<p>The "Title" attribute contains the menu item's text, and "ImageIdentifier" can be 
-assigned the path to a PNG or BMP file for the text's icon. "ImageIdentifier" is left 
-empty here since all the images are defined in the "Images" attribute, explained 
-below.  </p>
-<p>The "Context" attribute is assigned the document service for the Office application 
-utilizing the add-on. EzHighlight is accessible only from Writer, so "Context"'s value 
-is "com.sun.star.text.TextDocument". Other application/service mappings are shown 
-in Table 1. </p>
+    &lt;prop oor:name=&quot;Context&quot; oor:type=&quot;xs:string&quot;&gt;
+      &lt;value&gt;com.sun.star.text.TextDocument&lt;/value&gt;
+    &lt;/prop&gt;
+
+    &lt;prop oor:name=&quot;Target&quot; oor:type=&quot;xs:string&quot;&gt;
+      &lt;value&gt;_self&lt;/value&gt;
+    &lt;/prop&gt;
+  &lt;/node&gt;
+&lt;/node&gt;
+</code></pre></div>
+<p>The "URL" attribute holds the command URL which is dispatched by Office when
+the menu item is clicked.</p>
+<p>The "Title" attribute contains the menu item's text, and "ImageIdentifier" can be
+assigned the path to a PNG or BMP file for the text's icon. "ImageIdentifier" is left
+empty here since all the images are defined in the "Images" attribute, explained
+below.</p>
+<p>The "Context" attribute is assigned the document service for the Office application
+utilizing the add-on. EzHighlight is accessible only from Writer, so "Context"'s value
+is "com.sun.star.text.TextDocument". Other application/service mappings are shown
+in Table 1.</p>
 <table>
 <thead>
 <tr>
@@ -2070,78 +2218,82 @@ in Table 1. </p>
 </tr>
 </tbody>
 </table>
-<p>Table 1. Office Application/Service Mappings Used by "Context" </p>
-<p>If the "Context" field isn't assigned a value, then the add-on will be available in all of 
-Office's applications. </p>
-<p>The "Target" field can be assigned four values: "_top", "_parent", "_blank", and 
-"_self", but I've never seen any other value used but "_self". </p>
-<p>The "OfficeToolbar" Attribute 
-Figure 2 (EzHighlight's menu item) and Figure 3 (its toolbar item) look the same, and 
-respond in the same way when clicked, so it's no great surprise that the 
-"OfficeToolbar" attribute in Addon.xcs is almost exactly the same as "AddonMenu": </p>
-<p><node oor:name="OfficeToolBar"> 
-  <node oor:name="org.openoffice.ezhighlightAddon"<br />        oor:op="replace"> 
-    <node oor:name="m1" oor:op="replace"> </p>
-<pre><code>  &lt;prop oor:name="URL" oor:type="xs:string"&gt; 
-    &lt;value&gt;org.openoffice.ezhighlightAddon:EzHighlight&lt;/value&gt; 
-  &lt;/prop&gt;
+<p>Table 1. Office Application/Service Mappings Used by "Context"</p>
+<p>If the "Context" field isn't assigned a value, then the add-on will be available in all of
+Office's applications.</p>
+<p>The "Target" field can be assigned four values: "_top", "_parent", "_blank", and
+"_self", but I've never seen any other value used but "_self".</p>
+<h4 id="officetoolbar-attribute">"OfficeToolbar" Attribute</h4>
+<p>Figure 2 (EzHighlight's menu item) and Figure 3 (its toolbar item) look the same, and
+respond in the same way when clicked, so it's no great surprise that the
+"OfficeToolbar" attribute in Addon.xcs is almost exactly the same as "AddonMenu":</p>
+<div class="highlight"><pre><span></span><code>&lt;node oor:name=&quot;OfficeToolBar&quot;&gt;
+  &lt;node oor:name=&quot;org.openoffice.ezhighlightAddon&quot;
+        oor:op=&quot;replace&quot;&gt;
+    &lt;node oor:name=&quot;m1&quot; oor:op=&quot;replace&quot;&gt;
 
-  &lt;prop oor:name="Title" oor:type="xs:string"&gt; 
-    &lt;value&gt;EzHighlight Text&lt;/value&gt; 
-  &lt;/prop&gt;
+      &lt;prop oor:name=&quot;URL&quot; oor:type=&quot;xs:string&quot;&gt;
+        &lt;value&gt;org.openoffice.ezhighlightAddon:EzHighlight&lt;/value&gt;
+      &lt;/prop&gt;
 
-  &lt;prop oor:name="ImageIdentifier" oor:type="xs:string"&gt; 
-     &lt;value/&gt; 
-  &lt;/prop&gt;
+      &lt;prop oor:name=&quot;Title&quot; oor:type=&quot;xs:string&quot;&gt;
+        &lt;value&gt;EzHighlight Text&lt;/value&gt;
+      &lt;/prop&gt;
 
-  &lt;prop oor:name="Context" oor:type="xs:string"&gt; 
-    &lt;value&gt;com.sun.star.text.TextDocument&lt;/value&gt; 
-  &lt;/prop&gt;
+      &lt;prop oor:name=&quot;ImageIdentifier&quot; oor:type=&quot;xs:string&quot;&gt;
+         &lt;value/&gt;
+      &lt;/prop&gt;
 
-  &lt;prop oor:name="Target" oor:type="xs:string"&gt; 
-    &lt;value&gt;_self&lt;/value&gt; 
-  &lt;/prop&gt; 
+      &lt;prop oor:name=&quot;Context&quot; oor:type=&quot;xs:string&quot;&gt;
+        &lt;value&gt;com.sun.star.text.TextDocument&lt;/value&gt;
+      &lt;/prop&gt;
+
+      &lt;prop oor:name=&quot;Target&quot; oor:type=&quot;xs:string&quot;&gt;
+        &lt;value&gt;_self&lt;/value&gt;
+      &lt;/prop&gt;
+    &lt;/node&gt;
+  &lt;/node&gt;
 &lt;/node&gt;
-</code></pre>
-<p></node> 
-</node> </p>
-<p>The difference is an extra <node> attribute which allows a toolbar to hold several 
-items. In the description above, there's one item labeled as "m1". The labels can be 
-any unique string, but "m" followed by a number is used in most examples. </p>
-<p>The "OfficeHelp" Attribute 
-The "OfficeHelp" attribute is similar to "OfficeToolbar" and "AddonMenu", but 
-dispatches a different command URL ("org.openoffice.ezhighlightAddon:help") and 
-its menu item uses a different title ("About EzHighlight"). </p>
-<p><node oor:name="OfficeHelp"> 
-  <node oor:name="org.openoffice.ezhighlightAddon"<br />        oor:op="replace"> </p>
-<pre><code> &lt;prop oor:name="URL" oor:type="xs:string"&gt; 
-    &lt;value&gt;org.openoffice.ezhighlightAddon:help&lt;/value&gt; 
- &lt;/prop&gt;
+</code></pre></div>
+<p>The difference is an extra <node> attribute which allows a toolbar to hold several
+items. In the description above, there's one item labeled as "m1". The labels can be
+any unique string, but "m" followed by a number is used in most examples.</p>
+<h4 id="officehelp-attribute">"OfficeHelp" Attribute</h4>
+<p>The "OfficeHelp" attribute is similar to "OfficeToolbar" and "AddonMenu", but
+dispatches a different command URL ("org.openoffice.ezhighlightAddon:help") and
+its menu item uses a different title ("About EzHighlight").</p>
+<div class="highlight"><pre><span></span><code>&lt;node oor:name=&quot;OfficeHelp&quot;&gt;
+  &lt;node oor:name=&quot;org.openoffice.ezhighlightAddon&quot;
+        oor:op=&quot;replace&quot;&gt;
 
- &lt;prop oor:name="Title" oor:type="xs:string"&gt; 
-    &lt;value xml:lang="en-US"&gt;About EzHighlight&lt;/value&gt; 
- &lt;/prop&gt;
+     &lt;prop oor:name=&quot;URL&quot; oor:type=&quot;xs:string&quot;&gt;
+        &lt;value&gt;org.openoffice.ezhighlightAddon:help&lt;/value&gt;
+     &lt;/prop&gt;
 
- &lt;prop oor:name="ImageIdentifier" oor:type="xs:string"&gt; 
-    &lt;value/&gt; 
- &lt;/prop&gt;
+     &lt;prop oor:name=&quot;Title&quot; oor:type=&quot;xs:string&quot;&gt;
+        &lt;value xml:lang=&quot;en-US&quot;&gt;About EzHighlight&lt;/value&gt;
+     &lt;/prop&gt;
 
-  &lt;prop oor:name="Context" oor:type="xs:string"&gt; 
-    &lt;value&gt;com.sun.star.text.TextDocument&lt;/value&gt; 
-  &lt;/prop&gt;
+     &lt;prop oor:name=&quot;ImageIdentifier&quot; oor:type=&quot;xs:string&quot;&gt;
+        &lt;value/&gt;
+     &lt;/prop&gt;
 
- &lt;prop oor:name="Target" oor:type="xs:string"&gt; 
-    &lt;value&gt;_self&lt;/value&gt; 
- &lt;/prop&gt;
-</code></pre>
-<p></node> 
-</node> </p>
-<p>The "Images" Attribute 
-The "Images" attribute specifies the icons used by the GUI elements. An image can be 
-either big or small (26x26 or 16x16 pixels), high contrast or normal, and loaded from 
-a file or coded as hexadecimal text. These different combinations mean there are eight 
-variants to choose from, each with a different property name, which are listed in Table 
-2. </p>
+      &lt;prop oor:name=&quot;Context&quot; oor:type=&quot;xs:string&quot;&gt;
+        &lt;value&gt;com.sun.star.text.TextDocument&lt;/value&gt;
+      &lt;/prop&gt;
+
+     &lt;prop oor:name=&quot;Target&quot; oor:type=&quot;xs:string&quot;&gt;
+        &lt;value&gt;_self&lt;/value&gt;
+     &lt;/prop&gt;
+   &lt;/node&gt;
+&lt;/node&gt;
+</code></pre></div>
+<h4 id="images-attribute">"Images" Attribute</h4>
+<p>The "Images" attribute specifies the icons used by the GUI elements. An image can be
+either big or small (26x26 or 16x16 pixels), high contrast or normal, and loaded from
+a file or coded as hexadecimal text. These different combinations mean there are eight
+variants to choose from, each with a different property name, which are listed in Table
+2.</p>
 <table>
 <thead>
 <tr>
@@ -2178,119 +2330,140 @@ variants to choose from, each with a different property name, which are listed i
 </tr>
 </tbody>
 </table>
-<p>Table 2. Image Property Names. </p>
-<p>The "Images" attribute for EzHighlight is: </p>
-<p><node oor:name="Images"> 
-  <node oor:name="org.openoffice.ezhighlightAddon"<br />        oor:op="replace"> </p>
-<pre><code>&lt;prop oor:name="URL" oor:type="xs:string"&gt; 
-  &lt;value&gt;org.openoffice.ezhighlightAddon:EzHighlight&lt;/value&gt; 
-&lt;/prop&gt;
+<p>Table 2. Image Property Names.</p>
+<p>The "Images" attribute for EzHighlight is:</p>
+<div class="highlight"><pre><span></span><code>&lt;node oor:name=&quot;Images&quot;&gt;
+  &lt;node oor:name=&quot;org.openoffice.ezhighlightAddon&quot;
+        oor:op=&quot;replace&quot;&gt;
 
-&lt;node oor:name="UserDefinedImages"&gt; 
-  &lt;prop oor:name="ImageSmallURL"&gt; 
-    &lt;value&gt;%origin%/images/ezhighlight16.png&lt;/value&gt; 
-  &lt;/prop&gt; 
-  &lt;prop oor:name="ImageBigURL"&gt; 
-    &lt;value&gt;%origin%/images/ezhighlight26.png&lt;/value&gt; 
-  &lt;/prop&gt; 
+    &lt;prop oor:name=&quot;URL&quot; oor:type=&quot;xs:string&quot;&gt;
+      &lt;value&gt;org.openoffice.ezhighlightAddon:EzHighlight&lt;/value&gt;
+    &lt;/prop&gt;
+
+    &lt;node oor:name=&quot;UserDefinedImages&quot;&gt;
+      &lt;prop oor:name=&quot;ImageSmallURL&quot;&gt;
+        &lt;value&gt;%origin%/images/ezhighlight16.png&lt;/value&gt;
+      &lt;/prop&gt;
+      &lt;prop oor:name=&quot;ImageBigURL&quot;&gt;
+        &lt;value&gt;%origin%/images/ezhighlight26.png&lt;/value&gt;
+      &lt;/prop&gt;
+    &lt;/node&gt;
+
+  &lt;/node&gt;
 &lt;/node&gt;
-</code></pre>
-<p></node> 
-</node> </p>
-<p>The "UserDefinedImages" sub-attribute specifies two sizes of normal contrast image, 
-supplied as filenames. %origin% stands for the OXT file, so the two icons are stored 
-in the images/ subdirectory inside that zipped file. </p>
-<p>The images will be used for the menu and toolbar items associated with the 
-"org.openoffice.ezhighlightAddon:EzHighlight" command URL. Unfortunately, the 
-images don't appear, as shown in Figures 2 and 3. </p>
-<p>The hexadecimal text definition of a small image would be something like: </p>
-<p><prop oor:name="ImageSmall"> 
-    <value>89504E470D0A1A0A0000000D494844520000001000000 
-           01008060000001FF3FF610000024F494 ... // more numbers 
-    </value> 
-  </prop> </p>
-<p>One way to obtain an image's hexadecimal text is to call my ImageHex.java program 
-which prints it to stdout. Unfortunately, the icon still doesn't appear, even when 
-specified in this form. </p>
+</code></pre></div>
+<p>The "UserDefinedImages" sub-attribute specifies two sizes of normal contrast image,
+supplied as filenames. %origin% stands for the OXT file, so the two icons are stored
+in the images/ subdirectory inside that zipped file.</p>
+<p>The images will be used for the menu and toolbar items associated with the
+"org.openoffice.ezhighlightAddon:EzHighlight" command URL. Unfortunately, the
+images don't appear, as shown in Figures 2 and 3.</p>
+<p>The hexadecimal text definition of a small image would be something like:</p>
+<div class="highlight"><pre><span></span><code>  &lt;prop oor:name=&quot;ImageSmall&quot;&gt;
+    &lt;value&gt;89504E470D0A1A0A0000000D494844520000001000000
+           01008060000001FF3FF610000024F494 ... // more numbers
+    &lt;/value&gt;
+  &lt;/prop&gt;
+</code></pre></div>
+<p>One way to obtain an image's hexadecimal text is to call my ImageHex.java program
+which prints it to stdout. Unfortunately, the icon still doesn't appear, even when
+specified in this form.</p>
 <h2 id="8-building-and-installing-the-oxt-file">8.  Building and Installing the OXT File</h2>
-<p>Figure 7 shows the stages in building and installing the add-on as an extension. These 
-steps are carried out by my installAddon.bat script, which assumes that the various 
-configuration files have already been created and are in certain locations. </p>
-<p>The completed EzHighlightAddonImpl.java file is compiled, then added to 
-EzHighlight.jar with a manifest that refers to Utils.jar: </p>
-<p>RegistrationClassName: EzHighlightAddonImpl 
-Class-Path: Utils.jar </p>
+<p>Figure 7 shows the stages in building and installing the add-on as an extension. These
+steps are carried out by my installAddon.bat script, which assumes that the various
+configuration files have already been created and are in certain locations.</p>
+<p>The completed EzHighlightAddonImpl.java file is compiled, then added to
+EzHighlight.jar with a manifest that refers to Utils.jar:</p>
+<div class="highlight"><pre><span></span><code><span class="nl">RegistrationClassName</span><span class="p">:</span> <span class="n">EzHighlightAddonImpl</span>
+<span class="n">Class</span><span class="o">-</span><span class="n">Path</span><span class="p">:</span> <span class="n">Utils</span><span class="p">.</span><span class="na">jar</span>
+</code></pre></div>
 <p>Utils.jar contains my support classes, which may be required by the add-on at run-
-time. installAddon.bat will add it to the OXT file along with EzHighlight.jar. </p>
-<p>installAddon.bat assumes that the add-on configuration files are in a sub-directory 
-with the same name as the add-on. For example, when it's processing the EzHighlight 
-add-on, it looks for a EzHighlight/ folder with the following structure: </p>
-<p>EzHighlight 
-    |   Addons.xcu 
-    |   description.xml 
-    |   license.txt 
-    |   package-description.txt 
-    |   ProtocolHandler.xcu 
-    |   Utils.jar 
-    |  <br />
-    +---dialogLibrary 
-    |       EzHighlight.xdl 
-    |      <br />
-    +---images 
-    |       ezhighlight.png 
-    |       ezhighlight16.png 
-    |       ezhighlight26.png 
-    |      <br />
-    ---META-INF 
-            manifest.xml </p>
-<p>EzHighlight.jar is moved into EzHighlight/, and the folder is zipped into 
-EzHighlight.oxt. The extension is installed into Office using the unopkg tool, in the 
-same way as the UNO component of the last chapter. </p>
-<p>EzHighlight/ contains three configuration files: ProtocolHandler.xcu, Addons.xcu, 
-and description.xml. description.xml plays the same role as the same-named file for 
-UNO components. Its contents use the same XML attributes: </p>
-<?xml version="1.0" encoding="UTF-8"?>
-<p><description 
-xmlns="http://openoffice.org/extensions/description/2006"<br />xmlns:d="http://openoffice.org/extensions/description/2006"<br />xmlns:xlink="http://www.w3.org/1999/xlink"> </p>
-<p><identifier value="org.openoffice.ezhighlightAddon"/> 
-  <version value="0.1"/> </p>
-<p><display-name> 
-    <name lang="en">EzHighlight Addon</name> 
-  </display-name> </p>
-<p><publisher> 
-    <name xlink:href="http://fivedots.coe.psu.ac.th/~ad/jlop/"<br />          lang="en">Andrew Davison</name> 
-  </publisher> </p>
-<p><registration> 
-    <simple-license accept-by="user" > 
-      <license-text xlink:href="license.txt" lang="en"/> 
-    </simple-license> 
-  </registration> </p>
-<p><extension-description> 
-    <src lang="en-US" xlink:href="package-description.txt"/> 
-  </extension-description> </p>
-<p><icon> 
-    <default xlink:href="images/ezhighlight.png" /> 
-  </icon> </p>
-<p><update-information> 
-    <src xlink:href="http://fivedots.coe.psu.ac.th/~ad/jlop/"/> 
-  </update-information> </p>
-<p><dependencies><br />
-   <OpenOffice.org-minimal-version value="3.4"<br />                      d:name="OpenOffice.org 3.4"/><br />
-  </dependencies>  </p>
-<p><platform value="all" /> 
-</description> </p>
-<p>The biggest difference is that the extension icon is located in the images/ subdirectory 
-inside EzHighlight/. license.txt and package-description.txt are referenced in the 
-description, which explains why those files are in EzHighlight/. </p>
-<p>The dialog description (EzHighlight.xdl) is stored in its own subdirectory, 
-dialogLibrary/, to match the dialog loading code in EzHighlightAddonInpl.java: </p>
-<p>// in processCmd() 
-dialog = Dialogs.loadAddonDialog("org.openoffice.ezhighlightAddon", 
-                            "dialogLibrary/" + cmd + ".xdl"); </p>
-<p>The images/ subdirectory contains the extension manager icon (ezhighlight.png) and 
-two sizes of GUI icons (ezhighlight16.png and ezhighlight26.png). The GUI icons 
-must be inside images/ to match the locations specified in the "Images" attribute in 
-Addon.xcs. </p>
+time. installAddon.bat will add it to the OXT file along with EzHighlight.jar.</p>
+<p>installAddon.bat assumes that the add-on configuration files are in a sub-directory
+with the same name as the add-on. For example, when it's processing the EzHighlight
+add-on, it looks for a EzHighlight/ folder with the following structure:</p>
+<div class="highlight"><pre><span></span><code>EzHighlight
+    |   Addons.xcu
+    |   description.xml
+    |   license.txt
+    |   package-description.txt
+    |   ProtocolHandler.xcu
+    |   Utils.jar
+    |
+    +---dialogLibrary
+    |       EzHighlight.xdl
+    |
+    +---images
+    |       ezhighlight.png
+    |       ezhighlight16.png
+    |       ezhighlight26.png
+    |
+    \---META-INF
+            manifest.xml
+</code></pre></div>
+<p>EzHighlight.jar is moved into EzHighlight/, and the folder is zipped into
+EzHighlight.oxt. The extension is installed into Office using the unopkg tool, in the
+same way as the UNO component of the last chapter.</p>
+<p>EzHighlight/ contains three configuration files: ProtocolHandler.xcu, Addons.xcu,
+and description.xml. description.xml plays the same role as the same-named file for
+UNO components. Its contents use the same XML attributes:</p>
+<div class="highlight"><pre><span></span><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;description
+xmlns=&quot;http://openoffice.org/extensions/description/2006&quot;
+xmlns:d=&quot;http://openoffice.org/extensions/description/2006&quot;
+xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;&gt;
+
+  &lt;identifier value=&quot;org.openoffice.ezhighlightAddon&quot;/&gt;
+  &lt;version value=&quot;0.1&quot;/&gt;
+
+  &lt;display-name&gt;
+    &lt;name lang=&quot;en&quot;&gt;EzHighlight Addon&lt;/name&gt;
+  &lt;/display-name&gt;
+
+  &lt;publisher&gt;
+    &lt;name xlink:href=&quot;http://fivedots.coe.psu.ac.th/~ad/jlop/&quot;
+          lang=&quot;en&quot;&gt;Andrew Davison&lt;/name&gt;
+  &lt;/publisher&gt;
+
+  &lt;registration&gt;
+    &lt;simple-license accept-by=&quot;user&quot; &gt;
+      &lt;license-text xlink:href=&quot;license.txt&quot; lang=&quot;en&quot;/&gt;
+    &lt;/simple-license&gt;
+  &lt;/registration&gt;
+
+  &lt;extension-description&gt;
+    &lt;src lang=&quot;en-US&quot; xlink:href=&quot;package-description.txt&quot;/&gt;
+  &lt;/extension-description&gt;
+
+  &lt;icon&gt;
+    &lt;default xlink:href=&quot;images/ezhighlight.png&quot; /&gt;
+  &lt;/icon&gt;
+
+  &lt;update-information&gt;
+    &lt;src xlink:href=&quot;http://fivedots.coe.psu.ac.th/~ad/jlop/&quot;/&gt;
+  &lt;/update-information&gt;
+
+  &lt;dependencies&gt;
+   &lt;OpenOffice.org-minimal-version value=&quot;3.4&quot;
+                      d:name=&quot;OpenOffice.org 3.4&quot;/&gt;
+  &lt;/dependencies&gt;
+
+  &lt;platform value=&quot;all&quot; /&gt;
+&lt;/description&gt;
+</code></pre></div>
+<p>The biggest difference is that the extension icon is located in the images/ subdirectory
+inside EzHighlight/. license.txt and package-description.txt are referenced in the
+description, which explains why those files are in EzHighlight/.</p>
+<p>The dialog description (EzHighlight.xdl) is stored in its own subdirectory,
+dialogLibrary/, to match the dialog loading code in EzHighlightAddonInpl.java:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in processCmd()</span>
+<span class="n">dialog</span> <span class="o">=</span> <span class="n">Dialogs</span><span class="p">.</span><span class="na">loadAddonDialog</span><span class="p">(</span><span class="s">&quot;org.openoffice.ezhighlightAddon&quot;</span><span class="p">,</span>
+                            <span class="s">&quot;dialogLibrary/&quot;</span> <span class="o">+</span> <span class="n">cmd</span> <span class="o">+</span> <span class="s">&quot;.xdl&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>The images/ subdirectory contains the extension manager icon (ezhighlight.png) and
+two sizes of GUI icons (ezhighlight16.png and ezhighlight26.png). The GUI icons
+must be inside images/ to match the locations specified in the "Images" attribute in
+Addon.xcs.</p>
                 
               
               
