@@ -421,7 +421,7 @@ its close box.
 Another menu-related approach to controlling Office is to programmatically send
 menu shortcut key strokes to the currently active window. For example, a loaded
 Impress document is often displayed with a slide selection pane. This can be closed
-using the menu item View > Slide Pane, which is assigned the shortcut keys ALT-v
+using the menu item View, Slide Pane, which is assigned the shortcut keys ALT-v
 ALT-l.
 
 toggleSlidePane() 'types' these key strokes with the help of Java's Robot class:

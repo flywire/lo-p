@@ -93,8 +93,8 @@ class. One way of finding the most current list is to browse main.xcd in
 
 Path settings store directory locations for parts of the Office installation, such as the
 whereabouts of the gallery and spellchecker files. A partial list of predefined paths is
-accessible from within LibreOffice, via the Tools menu: Tools > Options >
-LibreOffice > Paths. But the best source of information is the developer's guide, in the
+accessible from within LibreOffice, via the Tools menu: Tools, Options,
+LibreOffice, Paths. But the best source of information is the developer's guide, in the
 "Path Organization" section of chapter 6, or at
 https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Path_Organizat
 ion, which can be accessed using:
@@ -437,7 +437,7 @@ MRI can be downloaded from
 http://extensions.services.openoffice.org/en/project/mri-uno-object-inspection-tool,
 depositing an OXT file (probably called "MRI-1.3.3.oxt") on your machine.
 
-Installing an extension is done through the Tools > Extension Manager menu item.
+Installing an extension is done through the Tools, Extension Manager menu item.
 
 Click on the "Add" button and select the OXT file. Or you may be able to simply
 double click on the file to start the installation.
@@ -449,7 +449,7 @@ v.1.2.4, at OpenOffice's extension's website
 (http://extensions.services.openoffice.org/en/project/mri-uno-object-inspection-tool)
 did install successfully.
 
-Once installed, MRI can be accessed through Office's GUI via the Tools > Add-ons
+Once installed, MRI can be accessed through Office's GUI via the Tools, Add-ons
 menu item, or programmatically as in my ExamineDoc.java example:
 
 ```java

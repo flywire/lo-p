@@ -1,5 +1,7 @@
 # Preface
 
+![[idea]](images/bulb_on.png)
+
 Star Basic is the native language of Star Office which has been incorporated by Open Office and Libre Office. This means that all other supported languages must negotiate a basic bridge.
 
 This [comment](https://stackoverflow.com/a/64517979) from Dan Dascalescu offers a challenge to the community:

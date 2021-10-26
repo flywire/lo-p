@@ -429,9 +429,6 @@ Figures 5 and 6).
 The Frame-Controller-Model (FCM) relationship (or design pattern) is a part of
 Office which programmers will encounter frequently. It appears in the API as
 connections between the XFrame, XController, and XModel interfaces, as shown in
-
-![](images/01-Concepts-11.png)
-
 Figure 11.
 
 
@@ -475,17 +472,13 @@ interfaces, lets me give a more detailed definition of a component. Back in sect
 (and in Figure 4), I said a component was an implemented service. Another way of
 understanding a component is in terms of how much of the FCM relationship it
 supports, which allows the 'component' idea to be divided into three:
+
 1.  A component that supports both the XModel and XController interfaces is usually
-
 an Office document.
-
 2.  A component with a controller but no model is typically used to implement library
-
 functionality that doesn't need to load data. Examples include the spell checker,
 and Office tools for creating database forms.
-
 3.  A component with no model or controller (i.e. just an XWindow object) is used
-
 for simple GUI elements, such as Office's help windows.
 
 Of these three types, the component-as-document (number 1) is the most important
