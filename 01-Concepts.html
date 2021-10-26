@@ -1634,9 +1634,8 @@ Figures 5 and 6).</p>
 <h2 id="5-the-fcm-relationship">5.  The FCM Relationship</h2>
 <p>The Frame-Controller-Model (FCM) relationship (or design pattern) is a part of
 Office which programmers will encounter frequently. It appears in the API as
-connections between the XFrame, XController, and XModel interfaces, as shown in</p>
-<p><img alt="" src="images/01-Concepts-11.png" /></p>
-<p>Figure 11.</p>
+connections between the XFrame, XController, and XModel interfaces, as shown in
+Figure 11.</p>
 <p><img alt="" src="images/01-Concepts-11.png" /></p>
 <p>Figure 11. The FCM Relationship.</p>
 <p>Every Office document inherits the OfficeDocument service (see Figure 9), and
@@ -1668,18 +1667,16 @@ example, XDesktop provides getCurrentFrame() to access the currently active fram
 interfaces, lets me give a more detailed definition of a component. Back in section 3
 (and in Figure 4), I said a component was an implemented service. Another way of
 understanding a component is in terms of how much of the FCM relationship it
-supports, which allows the 'component' idea to be divided into three:
-1.  A component that supports both the XModel and XController interfaces is usually</p>
-<p>an Office document.</p>
+supports, which allows the 'component' idea to be divided into three:</p>
 <ol>
-<li>A component with a controller but no model is typically used to implement library</li>
+<li>A component that supports both the XModel and XController interfaces is usually
+an Office document.</li>
+<li>A component with a controller but no model is typically used to implement library
+functionality that doesn't need to load data. Examples include the spell checker,
+and Office tools for creating database forms.</li>
+<li>A component with no model or controller (i.e. just an XWindow object) is used
+for simple GUI elements, such as Office's help windows.</li>
 </ol>
-<p>functionality that doesn't need to load data. Examples include the spell checker,
-and Office tools for creating database forms.</p>
-<ol>
-<li>A component with no model or controller (i.e. just an XWindow object) is used</li>
-</ol>
-<p>for simple GUI elements, such as Office's help windows.</p>
 <p>Of these three types, the component-as-document (number 1) is the most important
 for our needs. In particular, I'll be using the component loader in the remote
 component context to load Office documents.</p>

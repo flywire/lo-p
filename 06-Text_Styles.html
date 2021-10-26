@@ -366,41 +366,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-characterstyles-style-family-contains" class="md-nav__link">
-    1.  "CharacterStyles" Style Family contains:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-framestyles-style-family-contains-containers" class="md-nav__link">
-    2.  "FrameStyles" Style Family contains containers:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-numberingstyles-style-family-contains-containers" class="md-nav__link">
-    3.  "NumberingStyles" Style Family contains containers:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-pagestyles-style-family-contains-containers" class="md-nav__link">
-    4.  "PageStyles" Style Family contains containers:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-paragraphstyles-style-family-contains-containers" class="md-nav__link">
-    5.  "ParagraphStyles" Style Family contains containers:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#3-creating-a-new-style" class="md-nav__link">
     3.  Creating a New Style
   </a>
@@ -445,6 +410,13 @@
         <li class="md-nav__item">
   <a href="#9-text-numbering" class="md-nav__link">
     9.  Text Numbering
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-other-style-changes" class="md-nav__link">
+    10.  Other Style Changes
   </a>
   
 </li>
@@ -1276,41 +1248,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-characterstyles-style-family-contains" class="md-nav__link">
-    1.  "CharacterStyles" Style Family contains:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-framestyles-style-family-contains-containers" class="md-nav__link">
-    2.  "FrameStyles" Style Family contains containers:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-numberingstyles-style-family-contains-containers" class="md-nav__link">
-    3.  "NumberingStyles" Style Family contains containers:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-pagestyles-style-family-contains-containers" class="md-nav__link">
-    4.  "PageStyles" Style Family contains containers:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-paragraphstyles-style-family-contains-containers" class="md-nav__link">
-    5.  "ParagraphStyles" Style Family contains containers:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#3-creating-a-new-style" class="md-nav__link">
     3.  Creating a New Style
   </a>
@@ -1359,6 +1296,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#10-other-style-changes" class="md-nav__link">
+    10.  Other Style Changes
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1379,88 +1323,90 @@
                 <h1 id="chapter-6-text-styles">Chapter 6. Text Styles</h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
-<p>Five Style 
-Families; Properties; 
-Listing Styles;  Creating 
-a Style; Applying Styles; 
-Paragraph/Word Styles; 
-Hyperlink Styling; Text 
-Numbering; Headers and 
-Footers </p>
-<p>Example folders: "Text 
-Tests" and "Utils" </p>
+<p>Five Style
+Families; Properties;
+Listing Styles;  Creating
+a Style; Applying Styles;
+Paragraph/Word Styles;
+Hyperlink Styling; Text
+Numbering; Headers and
+Footers</p>
+<p>Example folders: "Text
+Tests" and "Utils"</p>
 </div>
-<p>This chapter focuses on how text documents styles can be 
-examined and manipulated. This revolves around the 
-XStyleFamiliesSupplier interface in 
-GenericTextDocument, which is highlighted in Figure 1 (a 
-repeat of Figure 2 in Chapter 5). </p>
+<p>This chapter focuses on how text documents styles can be
+examined and manipulated. This revolves around the
+XStyleFamiliesSupplier interface in
+GenericTextDocument, which is highlighted in Figure 1 (a
+repeat of Figure 2 in Chapter 5).</p>
 <p><img alt="" src="images/06-Text_Styles-1.png" /></p>
-<p>Figure 1. The Text Document Services, and some Interfaces. </p>
-<p>XStyleFamiliesSupplier has a getStyleFamilies() method for returning text style 
-families. All these families are stored in an XNameAccess object, as depicted in </p>
+<p>Figure 1. The Text Document Services, and some Interfaces.</p>
+<p>XStyleFamiliesSupplier has a getStyleFamilies() method for returning text style
+families. All these families are stored in an XNameAccess object, as depicted in
+Figure 2.</p>
+<p>XNameAccess is one of Office's collection types, and employed when the objects in a
+collection have names. There's also an XIndexAccess for collections in index order.</p>
+<p>XNameContainer and XIndexContainer add the ability to insert and remove objects
+from a collection.</p>
 <p><img alt="" src="images/06-Text_Styles-2.png" /></p>
-<p>Figure 2. </p>
-<p>XNameAccess is one of Office's collection types, and employed when the objects in a 
-collection have names. There's also an XIndexAccess for collections in index order. </p>
-<p>XNameContainer and XIndexContainer add the ability to insert and remove objects 
-from a collection.  </p>
-<p><img alt="" src="images/06-Text_Styles-2.png" /></p>
-<p>Figure 2. Style Families and their Property Sets. </p>
-<p>Five style family names are used by text documents: "CharacterStyles", 
-"FrameStyles", "NumberingStyles", "PageStyles", and "ParagraphStyles". The 
-XNameAccess families collection can be accessed with one of those names, and 
-returns a style family. A style family is a modifiable collection of PropertySet objects, 
-stored in an XNameContainer object. </p>
-<p>Figure 2 shows that if the "ParagraphStyles" family is retrieved, it contains property 
-sets labelled "Header", "List", "Standard", and quite a few more. Each property set 
-can format a paragraph, change the text's font, size, and many other attributes. These 
-property sets are called styles. </p>
-<p>The "CharacterStyles" family is a container of property sets (styles) which affect 
-selected sentences, words, or characters in the document. The "FrameStyles" 
-container holds property sets (styles) for formatting graphic and text frames. The 
-"NumberingStyles" family is for adding numbers or bullets to paragraphs. The 
-"PageStyles" family is for formatting pages. </p>
-<p>The names of the property sets (styles) in the style families can be listed using 
-LibreOffice's GUI. If you create a new text document in Writer, a "Styles and 
-Formatting" dialog window appears when you press F11 (or click on the brown 
-spanner icon in the "Formatting" toolbar). Within the window you can switch between 
-five icons representing the five style families. Figure 3 shows the list of property set 
-(style) names for the paragraph styles family. They corresponds to the property set 
-names shown in Figure 2. </p>
+<p>Figure 2. Style Families and their Property Sets.</p>
+<p>Five style family names are used by text documents: "CharacterStyles",
+"FrameStyles", "NumberingStyles", "PageStyles", and "ParagraphStyles". The
+XNameAccess families collection can be accessed with one of those names, and
+returns a style family. A style family is a modifiable collection of PropertySet objects,
+stored in an XNameContainer object.</p>
+<p>Figure 2 shows that if the "ParagraphStyles" family is retrieved, it contains property
+sets labelled "Header", "List", "Standard", and quite a few more. Each property set
+can format a paragraph, change the text's font, size, and many other attributes. These
+property sets are called styles.</p>
+<p>The "CharacterStyles" family is a container of property sets (styles) which affect
+selected sentences, words, or characters in the document. The "FrameStyles"
+container holds property sets (styles) for formatting graphic and text frames. The
+"NumberingStyles" family is for adding numbers or bullets to paragraphs. The
+"PageStyles" family is for formatting pages.</p>
+<p>The names of the property sets (styles) in the style families can be listed using
+LibreOffice's GUI. If you create a new text document in Writer, a "Styles and
+Formatting" dialog window appears when you press F11 (or click on the brown
+spanner icon in the "Formatting" toolbar). Within the window you can switch between
+five icons representing the five style families. Figure 3 shows the list of property set
+(style) names for the paragraph styles family. They corresponds to the property set
+names shown in Figure 2.</p>
 <p><img alt="" src="images/06-Text_Styles-3.png" /></p>
-<p>Figure 3. Styles and Formatting Window in Writer. </p>
-<p>The names listed in the window are the same as the names used in the API, except in 
-two cases: the "Default Style" name that appears in the GUI window for "Paragraph 
-Styles" and "Page Styles" is changed to "Standard" in the API. Strangely, the "Default 
-Style" name for "Character Styles" in the GUI is called "Default Style" in the API. </p>
-<p>Accessing a style (a property set) is a three-step process, shown below. First the style 
-families, then the style family (e.g. "ParagraphStyle"), and then the style (e.g. </p>
-<p>"Standard"): </p>
-<p>// 1. get the style families 
-XStyleFamiliesSupplier xSupplier = 
-                       Lo.qi(XStyleFamiliesSupplier.class, doc); 
-XNameAccess nameAcc = xSupplier.getStyleFamilies(); </p>
-<p>// 2. get the paragraph style family 
-XNameContainer paraStyleCon = Lo.qi(XNameContainer.class,<br />
-                          nameAcc.getByName("ParagraphStyles")); </p>
-<p>// 3. get the 'standard' style (property set) 
-XPropertySet standardProps = Lo.qi(XPropertySet.class,<br />
-                          paraStyleCon.getByName("Standard")); </p>
-<p>The code that implements this process in the Write utility class is a bit more 
-complicated since the calls to getByName() may raise exceptions if their string 
-arguments are incorrect. </p>
-<p>The calls to Lo.qi() cast the object returned from a collection into the correct type. </p>
+<p>Figure 3. Styles and Formatting Window in Writer.</p>
+<p>The names listed in the window are the same as the names used in the API, except in
+two cases: the "Default Style" name that appears in the GUI window for "Paragraph
+Styles" and "Page Styles" is changed to "Standard" in the API. Strangely, the "Default
+Style" name for "Character Styles" in the GUI is called "Default Style" in the API.</p>
+<p>Accessing a style (a property set) is a three-step process, shown below. First the style
+families, then the style family (e.g. "ParagraphStyle"), and then the style (e.g.</p>
+<p>"Standard"):</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// 1. get the style families</span>
+<span class="n">XStyleFamiliesSupplier</span> <span class="n">xSupplier</span> <span class="o">=</span>
+                       <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XStyleFamiliesSupplier</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">doc</span><span class="p">);</span>
+<span class="n">XNameAccess</span> <span class="n">nameAcc</span> <span class="o">=</span> <span class="n">xSupplier</span><span class="p">.</span><span class="na">getStyleFamilies</span><span class="p">();</span>
+
+<span class="c1">// 2. get the paragraph style family</span>
+<span class="n">XNameContainer</span> <span class="n">paraStyleCon</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XNameContainer</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                          <span class="n">nameAcc</span><span class="p">.</span><span class="na">getByName</span><span class="p">(</span><span class="s">&quot;ParagraphStyles&quot;</span><span class="p">));</span>
+
+<span class="c1">// 3. get the &#39;standard&#39; style (property set)</span>
+<span class="n">XPropertySet</span> <span class="n">standardProps</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                          <span class="n">paraStyleCon</span><span class="p">.</span><span class="na">getByName</span><span class="p">(</span><span class="s">&quot;Standard&quot;</span><span class="p">));</span>
+</code></pre></div>
+<p>The code that implements this process in the Write utility class is a bit more
+complicated since the calls to getByName() may raise exceptions if their string
+arguments are incorrect.</p>
+<p>The calls to Lo.qi() cast the object returned from a collection into the correct type.</p>
 <h2 id="1-what-properties-are-in-a-propertyset">1.  What Properties are in a PropertySet?</h2>
-<p>The "Standard" name in the "ParagraphStyles" style family refers to a property set 
-(style). Each set is a collection of name=value pairs, and there are get and set methods 
-using a name to get/set its value. This is simple enough, but what names should the 
-programmer use? 
-Each property set (style) in the same style family contain the same properties, but 
-with different values. For instance, in Figure 2 the "Header", "Title", "Standard", 
-"List", and "Table" sets contain the same named properties. </p>
-<p>The names of the properties used by the sets in a style family can be found in the 
-documentation for their "XXXStyle" service. Table 1 summarizes the mapping. </p>
+<p>The "Standard" name in the "ParagraphStyles" style family refers to a property set
+(style). Each set is a collection of name=value pairs, and there are get and set methods
+using a name to get/set its value. This is simple enough, but what names should the
+programmer use?
+Each property set (style) in the same style family contain the same properties, but
+with different values. For instance, in Figure 2 the "Header", "Title", "Standard",
+"List", and "Table" sets contain the same named properties.</p>
+<p>The names of the properties used by the sets in a style family can be found in the
+documentation for their "XXXStyle" service. Table 1 summarizes the mapping.</p>
 <table>
 <thead>
 <tr>
@@ -1491,641 +1437,709 @@ documentation for their "XXXStyle" service. Table 1 summarizes the mapping. </p>
 </tr>
 </tbody>
 </table>
-<p>Table 1. Properties Information for Each Style Family. </p>
-<p>The easiest way of finding Office documentation for the services in the second 
-column of Table 1 is with lodoc.bat. For example, the page about CharacterStyle 
-can be found with lodoc CharacterStyle service.  </p>
-<p>The FrameStyle service (full name: com.sun.star.style.FrameStyle) has a "??" against 
-it since there's no online documentation for that service, although such a service 
-exists. </p>
-<p>A style's properties are usually defined across several classes in an inheritance 
-hierarchy. The hierarchies for the five styles are summarized in Figure 4. </p>
+<p>Table 1. Properties Information for Each Style Family.</p>
+<p>The easiest way of finding Office documentation for the services in the second
+column of Table 1 is with lodoc.bat. For example, the page about CharacterStyle
+can be found with <code>lodoc CharacterStyle service</code>.</p>
+<p>The FrameStyle service (full name: com.sun.star.style.FrameStyle) has a "??" against
+it since there's no online documentation for that service, although such a service
+exists.</p>
+<p>A style's properties are usually defined across several classes in an inheritance
+hierarchy. The hierarchies for the five styles are summarized in Figure 4.</p>
 <p><img alt="" src="images/06-Text_Styles-4.png" /></p>
-<p>Figure 4. The Inheritance Hierarchies for the Style Services. </p>
-<p>Figure 4 shows the hierarchies for the five style services: CharacterStyle, FrameStyle, 
-NumberingStyle, PageStyle, and ParagraphStyle. There's clearly a lot of similarities 
-between them, so I'll focus on CharacterStyle.  </p>
-<p>There are three services containing character style properties: CharacterStyle, Style, 
-and CharacterProperties. If you visit the online documentation for CharacterStyle, the 
-properties are listed under the heading "Public Attributes", which is shown in Figure 
-5. </p>
+<p>Figure 4. The Inheritance Hierarchies for the Style Services.</p>
+<p>Figure 4 shows the hierarchies for the five style services: CharacterStyle, FrameStyle,
+NumberingStyle, PageStyle, and ParagraphStyle. There's clearly a lot of similarities
+between them, so I'll focus on CharacterStyle.</p>
+<p>There are three services containing character style properties: CharacterStyle, Style,
+and CharacterProperties. If you visit the online documentation for CharacterStyle, the
+properties are listed under the heading "Public Attributes", which is shown in Figure
+5.</p>
 <p><img alt="" src="images/06-Text_Styles-5.png" /></p>
-<p>Figure 5. Part of the Online Documentation for CharacterStyle. </p>
-<p>CharacterStyle defines six properties itself, but there are many more inherited from 
-the Style and CharacterProperties services. If you click on the triangles next to the 
-"Public Attributes inherited from" lines, the documentation expands to display those 
-properties. </p>
-<p>Figure 4 contains two "(??)" strings – one is to indicate that there's no documentation 
-for FrameStyle, so I'm guessing about its inheritance hierarchy.  </p>
-<p>The other "(??)" is in the ParagraphStyle hierarchy. The documentation for 
-ParagraphStyle, and the information in the developers guide, indicate that 
-ParagraphStyle inherits only Style and ParagraphCharacter. I believe this to be 
-incorrect, based on my coding with ParagraphStyle (some of which you'll see in the 
-next sections). ParagraphStyle appears to inherits three services: Style, 
-ParagraphCharacter, and CharacterStyle, as indicated in Figure 6. </p>
+<p>Figure 5. Part of the Online Documentation for CharacterStyle.</p>
+<p>CharacterStyle defines six properties itself, but there are many more inherited from
+the Style and CharacterProperties services. If you click on the triangles next to the
+"Public Attributes inherited from" lines, the documentation expands to display those
+properties.</p>
+<p>Figure 4 contains two "(??)" strings – one is to indicate that there's no documentation
+for FrameStyle, so I'm guessing about its inheritance hierarchy.</p>
+<p>The other "(??)" is in the ParagraphStyle hierarchy. The documentation for
+ParagraphStyle, and the information in the developers guide, indicate that
+ParagraphStyle inherits only Style and ParagraphCharacter. I believe this to be
+incorrect, based on my coding with ParagraphStyle (some of which you'll see in the
+next sections). ParagraphStyle appears to inherits three services: Style,
+ParagraphCharacter, and CharacterStyle, as indicated in Figure 6.</p>
 <p><img alt="" src="images/06-Text_Styles-6.png" /></p>
-<p>Figure 6. The Paragraph Service and its Superclasses. </p>
-<p>For more information of the styles API, start in the development guide in the "Overall 
-Document Features" section, online at: 
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/ 
-          Overall_Document_Features 
-or type loGuide "Overall Document Features" 
-The character and paragraph style properties are explained in the "Formatting" 
-section: 
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/ 
-          Formatting 
-or type  loGuide writer Formatting </p>
+<p>Figure 6. The Paragraph Service and its Superclasses.</p>
+<p>For more information of the styles API, start in the development guide in the "Overall
+Document Features" section, online at: https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Overall_Document_Features
+or type <code>loGuide "Overall Document Features"</code></p>
+<p>The character and paragraph style properties are explained in the "Formatting"
+section:
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Formatting
+or type  <code>loGuide writer Formatting</code></p>
 <h2 id="2-listing-styles-information">2.  Listing Styles Information</h2>
-<p>My StylesInfo.java example illustrates some of the Writer and Info utility functions 
-for examining style families and their property sets. The main() function starts by 
-listing the style families names: </p>
-<p>XTextDocument doc = Write.openDoc(args[0], loader); </p>
-<p>// get all the style families for this document 
-String[] styleFamilies = Info.getStyleFamilyNames(doc); 
-System.out.println("No. of Style Family Names: " +<br />
-                                  styleFamilies.length); 
-for(String styleFamily : styleFamilies) 
-  System.out.println("  " + styleFamily); 
-System.out.println(); </p>
-<p>The output lists the five family names: </p>
-<p>No. of Style Family Names: 5 
-  CharacterStyles 
-  FrameStyles 
-  NumberingStyles 
-  PageStyles 
-  ParagraphStyles </p>
-<p>Info.getStyleFamilyNames() starts by casting the document to an 
-XStyleFamiliesSupplier interface. Then the style families XNameAccess collection is 
-obtained by calling XStyleFamiliesSupplier.getStyleFamilies().The family names in 
-that collection are extracted with XNameAccess.getElementName(): </p>
-<p>public static String[] getStyleFamilyNames(XComponent doc) 
-// in the Info class 
-{ 
-  XStyleFamiliesSupplier xSupplier =  Lo.qi( 
-                            XStyleFamiliesSupplier.class, doc); 
-  XNameAccess nameAcc = xSupplier.getStyleFamilies(); 
-  String[] names = nameAcc.getElementNames(); 
-  Arrays.sort(names); 
-  return names; 
-}  // end of getStyleFamilyNames() </p>
-<p>Back in StylesInfo.java, the main() function continues by looping through the list of 
-style family names, printing all the style (property set) names in each family: </p>
-<p>// list all the style names for each style family 
-for(int i=0; i &lt; styleFamilies.length; i++) { 
-  String styleFamily = styleFamilies[i]; 
-  System.out.println((i+1) + ". \"" + styleFamily +<br />
-                               "\" Style Family contains:"); 
-  String[] styleNames = Info.getStyleNames(doc, styleFamily); 
-  Lo.printNames(styleNames); 
-} </p>
-<p>The output is lengthy, but informative: </p>
-<h2 id="1-characterstyles-style-family-contains">1.  "CharacterStyles" Style Family contains:</h2>
-<p>"Bullet Symbols"  "Caption characters"  "Citation"  "Default Style" 
-  "Definition"  "Drop Caps"  "Emphasis"  "Endnote Symbol" 
-  "Endnote anchor"  "Example"  "Footnote Symbol"  "Footnote anchor" 
-  "Index Link"  "Internet link"  "Line numbering"  "Main index entry" 
-  "Numbering Symbols"  "Page Number"  "Placeholder"  "Rubies" 
-  "Source Text"  "Strong Emphasis"  "Teletype"  "User Entry" 
-  "Variable"  "Vertical Numbering Symbols"  "Visited Internet Link" </p>
-<h2 id="2-framestyles-style-family-contains-containers">2.  "FrameStyles" Style Family contains containers:</h2>
-<p>"Formula"  "Frame"  "Graphics"  "Labels" 
-  "Marginalia"  "OLE"  "Watermark" </p>
-<h2 id="3-numberingstyles-style-family-contains-containers">3.  "NumberingStyles" Style Family contains containers:</h2>
-<p>"List 1"  "List 2"  "List 3"  "List 4" 
-  "List 5"  "Numbering 1"  "Numbering 2"  "Numbering 3" 
-  "Numbering 4"  "Numbering 5" </p>
-<h2 id="4-pagestyles-style-family-contains-containers">4.  "PageStyles" Style Family contains containers:</h2>
-<p>"Endnote"  "Envelope"  "First Page"  "Footnote" 
-  "HTML"  "Index"  "Landscape"  "Left Page" 
-  "Right Page"  "Standard" </p>
-<h2 id="5-paragraphstyles-style-family-contains-containers">5.  "ParagraphStyles" Style Family contains containers:</h2>
-<p>"Addressee"  "Bibliography 1"  "Bibliography Heading"  "Caption" 
-  "Contents 1"  "Contents 10"  "Contents 2"  "Contents 3" 
-  "Contents 4"  "Contents 5"  "Contents 6"  "Contents 7" 
-  "Contents 8"  "Contents 9"  "Contents Heading"  "Drawing" 
-  "Endnote"  "First line indent"  "Footer"  "Footer left" 
-  "Footer right"  "Footnote"  "Frame contents"  "Hanging indent" 
-  "Header"  "Header left"  "Header right"  "Heading" 
-  "Heading 1"  "Heading 10"  "Heading 2"  "Heading 3" 
-  "Heading 4"  "Heading 5"  "Heading 6"  "Heading 7" 
-  "Heading 8"  "Heading 9"  "Horizontal Line"  "Illustration" 
-  "Illustration Index 1"  "Illustration Index Heading"  "Index"<br />
-"Index 1" 
-  "Index 2"  "Index 3"  "Index Heading"  "Index Separator" 
-  "List"  "List 1"  "List 1 Cont."  "List 1 End" 
-  "List 1 Start"  "List 2"  "List 2 Cont."  "List 2 End" 
-  "List 2 Start"  "List 3"  "List 3 Cont."  "List 3 End" 
-  "List 3 Start"  "List 4"  "List 4 Cont."  "List 4 End" 
-  "List 4 Start"  "List 5"  "List 5 Cont."  "List 5 End" 
-  "List 5 Start"  "List Contents"  "List Heading"  "List Indent" 
-  "Marginalia"  "Numbering 1"  "Numbering 1 Cont."  "Numbering 1 End" 
-  "Numbering 1 Start"  "Numbering 2"  "Numbering 2 Cont."  "Numbering 
-2 End" 
-  "Numbering 2 Start"  "Numbering 3"  "Numbering 3 Cont."  "Numbering 
-3 End" 
-  "Numbering 3 Start"  "Numbering 4"  "Numbering 4 Cont."  "Numbering 
-4 End" 
-  "Numbering 4 Start"  "Numbering 5"  "Numbering 5 Cont."  "Numbering 
-5 End" 
-  "Numbering 5 Start"  "Object index 1"  "Object index heading"<br />
-"Preformatted 
-  "Quotations"  "Salutation"  "Sender"  "Signature" 
-  "Standard"  "Subtitle"  "Table"  "Table Contents" 
-  "Table Heading"  "Table index 1"  "Table index heading"  "Text" 
-  "Text body"  "Text body indent"  "Title"  "User Index 1" 
-  "User Index 10"  "User Index 2"  "User Index 3"  "User Index 4" 
-  "User Index 5"  "User Index 6"  "User Index 7"  "User Index 8" 
-  "User Index 9"  "User Index Heading"  </p>
-<p>Info.getStyleNames() retrieves the XNameContainer object for each style family, and 
-extracts its style (property set) names using getElementNames(): </p>
-<p>public static String[] getStyleNames(XComponent doc, 
-                                String familyStyleName) 
-// in Info.java 
-{ XNameContainer styleContainer =<br />
-                getStyleContainer(doc, familyStyleName); 
-  if (styleContainer == null) 
-    return null; 
-  else { 
-    String[] names = styleContainer.getElementNames(); 
-    Arrays.sort(names); 
-    return names; 
-  } 
-}  // end of getStyleNames() </p>
-<p>The last part of StylesInfo.java lists the properties for a specific property set. </p>
-<p>Info.getStyleProps() does that:  </p>
-<p>XPropertySet getStyleProps(XComponent doc, 
-                     String familyStyleName, String propSetNm) 
-{ XNameContainer styleContainer =<br />
-           getStyleContainer(doc, familyStyleName); 
-           // container is a collection of named property sets 
-  if (styleContainer == null) 
-    return null; 
-  else { 
-    XPropertySet nameProps = null; 
-    try { 
-      nameProps = Lo.qi( XPropertySet.class,<br />
-                    styleContainer.getByName(propSetNm)); 
-    } 
-    catch(Exception e) 
-    {  System.out.println("Could not access style: " + e);  } 
-    return nameProps; 
-  } 
-}  // end of getStyleProps() </p>
-<p>Its arguments are the document, the style family name, and style (property set) name. </p>
-<p>A reference to the property set is returned. Accessing the "Standard" style (property 
-set) of the "ParagraphStyle" family would require: </p>
-<p>XPropertySet props =<br />
-       Info.getStyleProps(doc, "ParagraphStyles", "Standard") </p>
-<p>The property set can be nicely printed by calling Props.showProps(): 
-Props.showProps("ParagraphStyles \"Standard\"", props ); 
-The output is long, but begins and ends like so: </p>
-<p>ParagraphStyles "Standard" Properties 
-  BorderDistance == 0 
-  BottomBorder == com.sun.star.table.BorderLine2@1a8a1dc 
-  BottomBorderDistance == 0 
-  BreakType == com.sun.star.style.BreakType@18e5cde 
-  Category == 0 
-  CharAutoKerning == true 
-  CharBackColor == -1 
-  CharBackTransparent == true 
-       : 
-  Rsid == Any[Type[unsigned long], 0] 
-  SnapToGrid == true 
-  StyleInteropGrabBag == [Lcom.sun.star.beans.PropertyValue;@1701da1 
-  TopBorder == com.sun.star.table.BorderLine2@6f3b58 
-  TopBorderDistance == 0 
-  WritingMode == 0 </p>
-<p>This listing, and in fact any listing of a style from "ParagraphStyles", shows that the 
-properties are a mixture of those defined in the Style, ParagraphProperties, and 
-CharacterProperties services.  </p>
+<p>My StylesInfo.java example illustrates some of the Writer and Info utility functions
+for examining style families and their property sets. The main() function starts by
+listing the style families names:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XTextDocument</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">openDoc</span><span class="p">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>
+
+<span class="c1">// get all the style families for this document</span>
+<span class="n">String</span><span class="o">[]</span> <span class="n">styleFamilies</span> <span class="o">=</span> <span class="n">Info</span><span class="p">.</span><span class="na">getStyleFamilyNames</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No. of Style Family Names: &quot;</span> <span class="o">+</span>
+                                  <span class="n">styleFamilies</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
+<span class="k">for</span><span class="p">(</span><span class="n">String</span> <span class="n">styleFamily</span> <span class="p">:</span> <span class="n">styleFamilies</span><span class="p">)</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  &quot;</span> <span class="o">+</span> <span class="n">styleFamily</span><span class="p">);</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+</code></pre></div>
+<p>The output lists the five family names:</p>
+<div class="highlight"><pre><span></span><code>No. of Style Family Names: 5
+  CharacterStyles
+  FrameStyles
+  NumberingStyles
+  PageStyles
+  ParagraphStyles
+</code></pre></div>
+<p>Info.getStyleFamilyNames() starts by casting the document to an
+XStyleFamiliesSupplier interface. Then the style families XNameAccess collection is
+obtained by calling XStyleFamiliesSupplier.getStyleFamilies().The family names in
+that collection are extracted with XNameAccess.getElementName():</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">getStyleFamilyNames</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">)</span>
+<span class="c1">// in the Info class</span>
+<span class="p">{</span>
+  <span class="n">XStyleFamiliesSupplier</span> <span class="n">xSupplier</span> <span class="o">=</span>  <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span>
+                            <span class="n">XStyleFamiliesSupplier</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">doc</span><span class="p">);</span>
+  <span class="n">XNameAccess</span> <span class="n">nameAcc</span> <span class="o">=</span> <span class="n">xSupplier</span><span class="p">.</span><span class="na">getStyleFamilies</span><span class="p">();</span>
+  <span class="n">String</span><span class="o">[]</span> <span class="n">names</span> <span class="o">=</span> <span class="n">nameAcc</span><span class="p">.</span><span class="na">getElementNames</span><span class="p">();</span>
+  <span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">names</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">names</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of getStyleFamilyNames()</span>
+</code></pre></div>
+<p>Back in StylesInfo.java, the main() function continues by looping through the list of
+style family names, printing all the style (property set) names in each family:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// list all the style names for each style family</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">styleFamilies</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">String</span> <span class="n">styleFamily</span> <span class="o">=</span> <span class="n">styleFamilies</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;. \&quot;&quot;</span> <span class="o">+</span> <span class="n">styleFamily</span> <span class="o">+</span>
+                               <span class="s">&quot;\&quot; Style Family contains:&quot;</span><span class="p">);</span>
+  <span class="n">String</span><span class="o">[]</span> <span class="n">styleNames</span> <span class="o">=</span> <span class="n">Info</span><span class="p">.</span><span class="na">getStyleNames</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">styleFamily</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">printNames</span><span class="p">(</span><span class="n">styleNames</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The output is lengthy, but informative:</p>
+<div class="highlight"><pre><span></span><code>## 1. &quot;CharacterStyles&quot; Style Family contains:
+  &quot;Bullet Symbols&quot;  &quot;Caption characters&quot;  &quot;Citation&quot;  &quot;Default Style&quot;
+  &quot;Definition&quot;  &quot;Drop Caps&quot;  &quot;Emphasis&quot;  &quot;Endnote Symbol&quot;
+  &quot;Endnote anchor&quot;  &quot;Example&quot;  &quot;Footnote Symbol&quot;  &quot;Footnote anchor&quot;
+  &quot;Index Link&quot;  &quot;Internet link&quot;  &quot;Line numbering&quot;  &quot;Main index entry&quot;
+  &quot;Numbering Symbols&quot;  &quot;Page Number&quot;  &quot;Placeholder&quot;  &quot;Rubies&quot;
+  &quot;Source Text&quot;  &quot;Strong Emphasis&quot;  &quot;Teletype&quot;  &quot;User Entry&quot;
+  &quot;Variable&quot;  &quot;Vertical Numbering Symbols&quot;  &quot;Visited Internet Link&quot;
+
+## 2. &quot;FrameStyles&quot; Style Family contains containers:
+  &quot;Formula&quot;  &quot;Frame&quot;  &quot;Graphics&quot;  &quot;Labels&quot;
+  &quot;Marginalia&quot;  &quot;OLE&quot;  &quot;Watermark&quot;
+
+## 3. &quot;NumberingStyles&quot; Style Family contains containers:
+  &quot;List 1&quot;  &quot;List 2&quot;  &quot;List 3&quot;  &quot;List 4&quot;
+  &quot;List 5&quot;  &quot;Numbering 1&quot;  &quot;Numbering 2&quot;  &quot;Numbering 3&quot;
+  &quot;Numbering 4&quot;  &quot;Numbering 5&quot;
+
+## 4. &quot;PageStyles&quot; Style Family contains containers:
+  &quot;Endnote&quot;  &quot;Envelope&quot;  &quot;First Page&quot;  &quot;Footnote&quot;
+  &quot;HTML&quot;  &quot;Index&quot;  &quot;Landscape&quot;  &quot;Left Page&quot;
+  &quot;Right Page&quot;  &quot;Standard&quot;
+
+## 5. &quot;ParagraphStyles&quot; Style Family contains containers:
+  &quot;Addressee&quot;  &quot;Bibliography 1&quot;  &quot;Bibliography Heading&quot;  &quot;Caption&quot;
+  &quot;Contents 1&quot;  &quot;Contents 10&quot;  &quot;Contents 2&quot;  &quot;Contents 3&quot;
+  &quot;Contents 4&quot;  &quot;Contents 5&quot;  &quot;Contents 6&quot;  &quot;Contents 7&quot;
+  &quot;Contents 8&quot;  &quot;Contents 9&quot;  &quot;Contents Heading&quot;  &quot;Drawing&quot;
+  &quot;Endnote&quot;  &quot;First line indent&quot;  &quot;Footer&quot;  &quot;Footer left&quot;
+  &quot;Footer right&quot;  &quot;Footnote&quot;  &quot;Frame contents&quot;  &quot;Hanging indent&quot;
+  &quot;Header&quot;  &quot;Header left&quot;  &quot;Header right&quot;  &quot;Heading&quot;
+  &quot;Heading 1&quot;  &quot;Heading 10&quot;  &quot;Heading 2&quot;  &quot;Heading 3&quot;
+  &quot;Heading 4&quot;  &quot;Heading 5&quot;  &quot;Heading 6&quot;  &quot;Heading 7&quot;
+  &quot;Heading 8&quot;  &quot;Heading 9&quot;  &quot;Horizontal Line&quot;  &quot;Illustration&quot;
+  &quot;Illustration Index 1&quot;  &quot;Illustration Index Heading&quot;  &quot;Index&quot;
+&quot;Index 1&quot;
+  &quot;Index 2&quot;  &quot;Index 3&quot;  &quot;Index Heading&quot;  &quot;Index Separator&quot;
+  &quot;List&quot;  &quot;List 1&quot;  &quot;List 1 Cont.&quot;  &quot;List 1 End&quot;
+  &quot;List 1 Start&quot;  &quot;List 2&quot;  &quot;List 2 Cont.&quot;  &quot;List 2 End&quot;
+  &quot;List 2 Start&quot;  &quot;List 3&quot;  &quot;List 3 Cont.&quot;  &quot;List 3 End&quot;
+  &quot;List 3 Start&quot;  &quot;List 4&quot;  &quot;List 4 Cont.&quot;  &quot;List 4 End&quot;
+  &quot;List 4 Start&quot;  &quot;List 5&quot;  &quot;List 5 Cont.&quot;  &quot;List 5 End&quot;
+  &quot;List 5 Start&quot;  &quot;List Contents&quot;  &quot;List Heading&quot;  &quot;List Indent&quot;
+  &quot;Marginalia&quot;  &quot;Numbering 1&quot;  &quot;Numbering 1 Cont.&quot;  &quot;Numbering 1 End&quot;
+  &quot;Numbering 1 Start&quot;  &quot;Numbering 2&quot;  &quot;Numbering 2 Cont.&quot;  &quot;Numbering
+2 End&quot;
+  &quot;Numbering 2 Start&quot;  &quot;Numbering 3&quot;  &quot;Numbering 3 Cont.&quot;  &quot;Numbering
+3 End&quot;
+  &quot;Numbering 3 Start&quot;  &quot;Numbering 4&quot;  &quot;Numbering 4 Cont.&quot;  &quot;Numbering
+4 End&quot;
+  &quot;Numbering 4 Start&quot;  &quot;Numbering 5&quot;  &quot;Numbering 5 Cont.&quot;  &quot;Numbering
+5 End&quot;
+  &quot;Numbering 5 Start&quot;  &quot;Object index 1&quot;  &quot;Object index heading&quot;
+&quot;Preformatted
+  &quot;Quotations&quot;  &quot;Salutation&quot;  &quot;Sender&quot;  &quot;Signature&quot;
+  &quot;Standard&quot;  &quot;Subtitle&quot;  &quot;Table&quot;  &quot;Table Contents&quot;
+  &quot;Table Heading&quot;  &quot;Table index 1&quot;  &quot;Table index heading&quot;  &quot;Text&quot;
+  &quot;Text body&quot;  &quot;Text body indent&quot;  &quot;Title&quot;  &quot;User Index 1&quot;
+  &quot;User Index 10&quot;  &quot;User Index 2&quot;  &quot;User Index 3&quot;  &quot;User Index 4&quot;
+  &quot;User Index 5&quot;  &quot;User Index 6&quot;  &quot;User Index 7&quot;  &quot;User Index 8&quot;
+  &quot;User Index 9&quot;  &quot;User Index Heading&quot;
+</code></pre></div>
+<p>Info.getStyleNames() retrieves the XNameContainer object for each style family, and
+extracts its style (property set) names using getElementNames():</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">getStyleNames</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">,</span>
+                                <span class="n">String</span> <span class="n">familyStyleName</span><span class="p">)</span>
+<span class="c1">// in Info.java</span>
+<span class="p">{</span> <span class="n">XNameContainer</span> <span class="n">styleContainer</span> <span class="o">=</span>
+                <span class="n">getStyleContainer</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">familyStyleName</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">styleContainer</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">String</span><span class="o">[]</span> <span class="n">names</span> <span class="o">=</span> <span class="n">styleContainer</span><span class="p">.</span><span class="na">getElementNames</span><span class="p">();</span>
+    <span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">names</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">names</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of getStyleNames()</span>
+</code></pre></div>
+<p>The last part of StylesInfo.java lists the properties for a specific property set.
+Info.getStyleProps() does that:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XPropertySet</span> <span class="nf">getStyleProps</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">,</span>
+                     <span class="n">String</span> <span class="n">familyStyleName</span><span class="p">,</span> <span class="n">String</span> <span class="n">propSetNm</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">XNameContainer</span> <span class="n">styleContainer</span> <span class="o">=</span>
+           <span class="n">getStyleContainer</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">familyStyleName</span><span class="p">);</span>
+           <span class="c1">// container is a collection of named property sets</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">styleContainer</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">XPropertySet</span> <span class="n">nameProps</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="n">nameProps</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span> <span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                    <span class="n">styleContainer</span><span class="p">.</span><span class="na">getByName</span><span class="p">(</span><span class="n">propSetNm</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+    <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not access style: &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">);</span>  <span class="p">}</span>
+    <span class="k">return</span> <span class="n">nameProps</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of getStyleProps()</span>
+</code></pre></div>
+<p>Its arguments are the document, the style family name, and style (property set) name.</p>
+<p>A reference to the property set is returned. Accessing the "Standard" style (property
+set) of the "ParagraphStyle" family would require:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span>
+       <span class="n">Info</span><span class="p">.</span><span class="na">getStyleProps</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;ParagraphStyles&quot;</span><span class="p">,</span> <span class="s">&quot;Standard&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>The property set can be nicely printed by calling Props.showProps():</p>
+<div class="highlight"><pre><span></span><code><span class="n">Props</span><span class="p">.</span><span class="na">showProps</span><span class="p">(</span><span class="s">&quot;ParagraphStyles \&quot;Standard\&quot;&quot;</span><span class="p">,</span> <span class="n">props</span> <span class="p">);</span>
+</code></pre></div>
+<p>The output is long, but begins and ends like so:</p>
+<div class="highlight"><pre><span></span><code>ParagraphStyles &quot;Standard&quot; Properties
+  BorderDistance == 0
+  BottomBorder == com.sun.star.table.BorderLine2@1a8a1dc
+  BottomBorderDistance == 0
+  BreakType == com.sun.star.style.BreakType@18e5cde
+  Category == 0
+  CharAutoKerning == true
+  CharBackColor == -1
+  CharBackTransparent == true
+       :
+  Rsid == Any[Type[unsigned long], 0]
+  SnapToGrid == true
+  StyleInteropGrabBag == [Lcom.sun.star.beans.PropertyValue;@1701da1
+  TopBorder == com.sun.star.table.BorderLine2@6f3b58
+  TopBorderDistance == 0
+  WritingMode == 0
+</code></pre></div>
+<p>This listing, and in fact any listing of a style from "ParagraphStyles", shows that the
+properties are a mixture of those defined in the Style, ParagraphProperties, and
+CharacterProperties services.</p>
 <h2 id="3-creating-a-new-style">3.  Creating a New Style</h2>
-<p>My StoryCreator.java example adds a new style to the paragraph style family, and 
-uses it to format the document's paragraphs. </p>
-<p>The new ParagraphStyle service is referenced using one of its interfaces, the usual one 
-being XStyle since all the different style services support it (as shown in Figure 4). </p>
-<p>For example: </p>
-<p>// create a new paragraph style 
-XStyle paraStyle = Lo.createInstanceMSF(XStyle.class,<br />
-                       "com.sun.star.style.ParagraphStyle"); </p>
-<p>Lo.createInstanceMSF()'s second argument is the full name of the service, and the 
-first argument is the interface. All the style services are located in the 
-"com.sun.star.style" package. </p>
-<p>Since I want to change property in this new style, I cast the XStyle interface to 
-XPropertySet: 
-XPropertySet props = Lo.qi(XPropertySet.class, paraStyle); 
-A property is modified using setPropertyValue().  </p>
-<p>props.setPropertyValue("ParaBottomMargin", 400); 
-props.setPropertyValue("CharFontName", "Times New Roman"); 
-props.setPropertyValue("CharHeight", 12.0f); </p>
-<p>These three properties are defined in one of the 'Properties' classes inherited by 
-ParagraphStyle (as shown in Figure 4). "ParaBottomMargin" appears in 
-ParagraphProperties, while "CharFontName" and "CharHeight" come from 
-CharacterProperties. </p>
-<p>After setting the style's properties, the new style added to the document's paragraph 
-style family: </p>
-<p>// access the paragraph style family 
-XNameContainer paraStyles =<br />
-           Info.getStyleContainer(textDoc, "ParagraphStyles"); </p>
-<p>// store the style in the style family with the name "Foo" 
-paraStyles.insertByName("Foo", props); </p>
-<p>The style is stored with the name "Foo", but any unique name would be good (perhaps 
-one a little more descriptive than "Foo" would be better). </p>
-<p>The style creation code in StoryCreator.java is located in createParaStyle() and 
-follows the  code fragment sequence described above: </p>
-<p>public static boolean createParaStyle(XTextDocument textDoc,<br />
-                                               String styleName) 
-// create a new paragraph container/style called styleName 
-{ 
-  XNameContainer paraStyles =<br />
-        Info.getStyleContainer(textDoc, "ParagraphStyles"); 
-  if (paraStyles == null) 
-    return false; </p>
-<p>try { 
-    // create new paragraph style properties set 
-    XStyle paraStyle = Lo.createInstanceMSF( 
-                 XStyle.class, "com.sun.star.style.ParagraphStyle"); 
-    XPropertySet props = Lo.qi(XPropertySet.class, paraStyle); </p>
-<pre><code>// set some properties 
-props.setPropertyValue("CharFontName", "Times New Roman"); 
-props.setPropertyValue("CharHeight", 12.0f); 
-props.setPropertyValue("ParaBottomMargin", 400); 
-                               //  4mm, in 100th mm units
+<p>My StoryCreator.java example adds a new style to the paragraph style family, and
+uses it to format the document's paragraphs.</p>
+<p>The new ParagraphStyle service is referenced using one of its interfaces, the usual one
+being XStyle since all the different style services support it (as shown in Figure 4).</p>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// create a new paragraph style</span>
+<span class="n">XStyle</span> <span class="n">paraStyle</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMSF</span><span class="p">(</span><span class="n">XStyle</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                       <span class="s">&quot;com.sun.star.style.ParagraphStyle&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>Lo.createInstanceMSF()'s second argument is the full name of the service, and the
+first argument is the interface. All the style services are located in the
+"com.sun.star.style" package.</p>
+<p>Since I want to change property in this new style, I cast the XStyle interface to
+XPropertySet:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">paraStyle</span><span class="p">);</span>
+</code></pre></div>
+<p>A property is modified using setPropertyValue().</p>
+<div class="highlight"><pre><span></span><code><span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;ParaBottomMargin&quot;</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
+<span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;CharFontName&quot;</span><span class="p">,</span> <span class="s">&quot;Times New Roman&quot;</span><span class="p">);</span>
+<span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;CharHeight&quot;</span><span class="p">,</span> <span class="mf">12.0f</span><span class="p">);</span>
+</code></pre></div>
+<p>These three properties are defined in one of the 'Properties' classes inherited by
+ParagraphStyle (as shown in Figure 4). "ParaBottomMargin" appears in
+ParagraphProperties, while "CharFontName" and "CharHeight" come from
+CharacterProperties.</p>
+<p>After setting the style's properties, the new style added to the document's paragraph
+style family:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// access the paragraph style family</span>
+<span class="n">XNameContainer</span> <span class="n">paraStyles</span> <span class="o">=</span>
+           <span class="n">Info</span><span class="p">.</span><span class="na">getStyleContainer</span><span class="p">(</span><span class="n">textDoc</span><span class="p">,</span> <span class="s">&quot;ParagraphStyles&quot;</span><span class="p">);</span>
 
-// set paragraph line spacing to 6mm  
-LineSpacing lineSpacing = new LineSpacing(); 
-  lineSpacing.Mode = LineSpacingMode.FIX; 
-  lineSpacing.Height = 600; 
-  props.setPropertyValue("ParaLineSpacing", lineSpacing);
+<span class="c1">// store the style in the style family with the name &quot;Foo&quot;</span>
+<span class="n">paraStyles</span><span class="p">.</span><span class="na">insertByName</span><span class="p">(</span><span class="s">&quot;Foo&quot;</span><span class="p">,</span> <span class="n">props</span><span class="p">);</span>
+</code></pre></div>
+<p>The style is stored with the name "Foo", but any unique name would be good (perhaps
+one a little more descriptive than "Foo" would be better).</p>
+<p>The style creation code in StoryCreator.java is located in createParaStyle() and
+follows the  code fragment sequence described above:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">createParaStyle</span><span class="p">(</span><span class="n">XTextDocument</span> <span class="n">textDoc</span><span class="p">,</span>
+                                               <span class="n">String</span> <span class="n">styleName</span><span class="p">)</span>
+<span class="c1">// create a new paragraph container/style called styleName</span>
+<span class="p">{</span>
+  <span class="n">XNameContainer</span> <span class="n">paraStyles</span> <span class="o">=</span>
+        <span class="n">Info</span><span class="p">.</span><span class="na">getStyleContainer</span><span class="p">(</span><span class="n">textDoc</span><span class="p">,</span> <span class="s">&quot;ParagraphStyles&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">paraStyles</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
 
-// some more common properties; not all used here  
-/* props.setPropertyValue("CharWeight",  
-                           com.sun.star.awt.FontWeight.BOLD); 
-   props.setPropertyValue("CharAutoKerning", true); 
-   props.setPropertyValue("ParaAdjust",  
-                          ParagraphAdjust.CENTER_value); 
-   props.setPropertyValue("ParaFirstLineIndent", 0); 
-   props.setPropertyValue("BreakType", BreakType.PAGE_AFTER); 
-*/ 
-  // store those properties in a container called styleName 
-  paraStyles.insertByName(styleName, props); 
-  return true; 
-} 
-catch(com.sun.star.uno.Exception e)  
-{ System.out.println("Could not set paragraph style");   
-  return false; 
-}
-</code></pre>
-<p>}  // end of createParaStyle() </p>
-<p>The "ParaLineSpacing" property is a little more complex than the others since its 
-value isn't a basic type, but a LineSpacing object.  </p>
-<p>The ParagraphProperties documentation for "ParaLineSpacing" is shown in Figure 7. </p>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="c1">// create new paragraph style properties set</span>
+    <span class="n">XStyle</span> <span class="n">paraStyle</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMSF</span><span class="p">(</span>
+                 <span class="n">XStyle</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="s">&quot;com.sun.star.style.ParagraphStyle&quot;</span><span class="p">);</span>
+    <span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">paraStyle</span><span class="p">);</span>
+
+    <span class="c1">// set some properties</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;CharFontName&quot;</span><span class="p">,</span> <span class="s">&quot;Times New Roman&quot;</span><span class="p">);</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;CharHeight&quot;</span><span class="p">,</span> <span class="mf">12.0f</span><span class="p">);</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;ParaBottomMargin&quot;</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
+                                   <span class="c1">//  4mm, in 100th mm units</span>
+
+    <span class="c1">// set paragraph line spacing to 6mm</span>
+    <span class="n">LineSpacing</span> <span class="n">lineSpacing</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LineSpacing</span><span class="p">();</span>
+      <span class="n">lineSpacing</span><span class="p">.</span><span class="na">Mode</span> <span class="o">=</span> <span class="n">LineSpacingMode</span><span class="p">.</span><span class="na">FIX</span><span class="p">;</span>
+      <span class="n">lineSpacing</span><span class="p">.</span><span class="na">Height</span> <span class="o">=</span> <span class="mi">600</span><span class="p">;</span>
+      <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;ParaLineSpacing&quot;</span><span class="p">,</span> <span class="n">lineSpacing</span><span class="p">);</span>
+
+    <span class="c1">// some more common properties; not all used here</span>
+    <span class="cm">/* props.setPropertyValue(&quot;CharWeight&quot;,</span>
+<span class="cm">                               com.sun.star.awt.FontWeight.BOLD);</span>
+<span class="cm">       props.setPropertyValue(&quot;CharAutoKerning&quot;, true);</span>
+<span class="cm">       props.setPropertyValue(&quot;ParaAdjust&quot;,</span>
+<span class="cm">                              ParagraphAdjust.CENTER_value);</span>
+<span class="cm">       props.setPropertyValue(&quot;ParaFirstLineIndent&quot;, 0);</span>
+<span class="cm">       props.setPropertyValue(&quot;BreakType&quot;, BreakType.PAGE_AFTER);</span>
+<span class="cm">    */</span>
+      <span class="c1">// store those properties in a container called styleName</span>
+      <span class="n">paraStyles</span><span class="p">.</span><span class="na">insertByName</span><span class="p">(</span><span class="n">styleName</span><span class="p">,</span> <span class="n">props</span><span class="p">);</span>
+      <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">catch</span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">uno</span><span class="p">.</span><span class="na">Exception</span> <span class="n">e</span><span class="p">)</span>
+    <span class="p">{</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not set paragraph style&quot;</span><span class="p">);</span>
+      <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>  <span class="c1">// end of createParaStyle()</span>
+</code></pre></div>
+<p>The "ParaLineSpacing" property is a little more complex than the others since its
+value isn't a basic type, but a LineSpacing object.</p>
+<p>The ParagraphProperties documentation for "ParaLineSpacing" is shown in Figure 7.</p>
 <p><img alt="" src="images/06-Text_Styles-7.png" /></p>
-<p>Figure 7. The ParaLineSpacing Property in the ParagraphProperties Documentation. </p>
-<p>Clicking on the "com::sun::star::style::LineSpacing" return type will load the 
-LineSpacing documentation page  into the browser.  </p>
-<p>In StoryCreator.java, createParaStyle() is called like so: </p>
-<p>XTextDocument doc = Write.createDoc(loader); </p>
-<p>if (!createParaStyle(doc, "adParagraph")){ 
-  System.out.println("Could not create new paragraph style"); 
-  Lo.closeOffice(); 
-  return; 
-} </p>
-<p>A new style called "adParagraph" is added to the paragraph style family. It uses 
-Times New Roman 12pt font, and leaves a 6mm space between paragraphs.  </p>
+<p>Figure 7. The ParaLineSpacing Property in the ParagraphProperties Documentation.</p>
+<p>Clicking on the "com::sun::star::style::LineSpacing" return type will load the
+LineSpacing documentation page  into the browser.</p>
+<p>In StoryCreator.java, createParaStyle() is called like so:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XTextDocument</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">createDoc</span><span class="p">(</span><span class="n">loader</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">createParaStyle</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;adParagraph&quot;</span><span class="p">)){</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not create new paragraph style&quot;</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>A new style called "adParagraph" is added to the paragraph style family. It uses
+Times New Roman 12pt font, and leaves a 6mm space between paragraphs.</p>
 <h2 id="4-applying-styles-to-paragraphs-and-characters">4.  Applying Styles to Paragraphs (and Characters)</h2>
-<p>I've added an "adParagraph" style to the paragraph style family, but how do I apply 
-that style to some paragraphs in the document? 
-The easiest way is through the document's XTextRange interface. XTextRange is 
-supported by the TextRange service, which inherits ParagraphProperties and 
-CharacterProperties (and several other property classes), as illustrated in Figure 8. </p>
+<p>I've added an "adParagraph" style to the paragraph style family, but how do I apply
+that style to some paragraphs in the document?
+The easiest way is through the document's XTextRange interface. XTextRange is
+supported by the TextRange service, which inherits ParagraphProperties and
+CharacterProperties (and several other property classes), as illustrated in Figure 8.</p>
 <p><img alt="" src="images/06-Text_Styles-8.png" /></p>
-<p>Figure 8. The TextRange Service. </p>
-<p>XTextRange can be cast to XPropertySet to make the properties in 
-ParagraphProperties and CharacterProperties accessible. An existing (or new) 
-paragraph style is applied to a text range by setting its "ParaStyleName" property: </p>
-<p>XTextRange xTextRange = doc.getText().getStart(); 
-XPropertySet props = Lo.qi(XPropertySet.class, xTextRange); 
-props.setProperty("ParaStyleName", "adParagraph"); </p>
-<p>Using Props.setProperty(), simplifies this to: </p>
-<p>XTextRange xTextRange = doc.getText().getStart(); 
-Props.setProperty(xTextRange, "ParaStyleName", "adParagraph"); </p>
-<p>The code above obtains the text range at the start of the document, and set its 
-paragraph style to "adParagraph". Any text added from this position onwards will use 
-that style.  </p>
-<p>This approach is used in StoryCreator.java: the style is set first, then text is added. </p>
+<p>Figure 8. The TextRange Service.</p>
+<p>XTextRange can be cast to XPropertySet to make the properties in
+ParagraphProperties and CharacterProperties accessible. An existing (or new)
+paragraph style is applied to a text range by setting its "ParaStyleName" property:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XTextRange</span> <span class="n">xTextRange</span> <span class="o">=</span> <span class="n">doc</span><span class="p">.</span><span class="na">getText</span><span class="p">().</span><span class="na">getStart</span><span class="p">();</span>
+<span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">xTextRange</span><span class="p">);</span>
+<span class="n">props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="s">&quot;ParaStyleName&quot;</span><span class="p">,</span> <span class="s">&quot;adParagraph&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>Using Props.setProperty(), simplifies this to:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XTextRange</span> <span class="n">xTextRange</span> <span class="o">=</span> <span class="n">doc</span><span class="p">.</span><span class="na">getText</span><span class="p">().</span><span class="na">getStart</span><span class="p">();</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">xTextRange</span><span class="p">,</span> <span class="s">&quot;ParaStyleName&quot;</span><span class="p">,</span> <span class="s">&quot;adParagraph&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>The code above obtains the text range at the start of the document, and set its
+paragraph style to "adParagraph". Any text added from this position onwards will use
+that style.</p>
+<p>This approach is used in StoryCreator.java: the style is set first, then text is added.</p>
 <h2 id="5-cursors-and-text-ranges">5.  Cursors and Text Ranges</h2>
-<p>Another technique for applying styles uses a cursor to select a text range. Then the 
-text's properties are accessed through the cursor.  </p>
-<p>All the different kinds of model and view cursor belong to the TextCursor service, 
-and this inherits TextRange. This allows us to extend Figure 8 to become Figure 9. </p>
+<p>Another technique for applying styles uses a cursor to select a text range. Then the
+text's properties are accessed through the cursor.</p>
+<p>All the different kinds of model and view cursor belong to the TextCursor service,
+and this inherits TextRange. This allows us to extend Figure 8 to become Figure 9.</p>
 <p><img alt="" src="images/06-Text_Styles-9.png" /></p>
-<p>Figure 9. Cursor Access to Text Properties. </p>
-<p>This hierarchy means that a cursor can access the TextRange service and its text 
-properties. The following code fragment demonstrates the idea: </p>
-<p>XTextCursor cursor = Write.getCursor(textDoc); 
-cursor.gotoEnd(true);   // select the entire document </p>
-<p>XPropertySet props = Lo.qi(XPropertySet.class, cursor); 
-props.setProperty("ParaStyleName", "adParagraph"); </p>
-<p>Using Props.setProperty(), simplifies this to: </p>
-<p>XTextCursor cursor = Write.getCursor(textDoc); 
-cursor.gotoEnd(true); 
-Props.setProperty(cursor, "ParaStyleName", "adParagraph"); </p>
-<p>This approach is employed in StoryCreator.java when some paragraphs (such as 
-section headers) need to use a paragraph style other than "adParagraph". I'll supply 
-details in a moment. </p>
+<p>Figure 9. Cursor Access to Text Properties.</p>
+<p>This hierarchy means that a cursor can access the TextRange service and its text
+properties. The following code fragment demonstrates the idea:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XTextCursor</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">getCursor</span><span class="p">(</span><span class="n">textDoc</span><span class="p">);</span>
+<span class="n">cursor</span><span class="p">.</span><span class="na">gotoEnd</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>   <span class="c1">// select the entire document</span>
+
+<span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">cursor</span><span class="p">);</span>
+<span class="n">props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="s">&quot;ParaStyleName&quot;</span><span class="p">,</span> <span class="s">&quot;adParagraph&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>Using Props.setProperty(), simplifies this to:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XTextCursor</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">getCursor</span><span class="p">(</span><span class="n">textDoc</span><span class="p">);</span>
+<span class="n">cursor</span><span class="p">.</span><span class="na">gotoEnd</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="s">&quot;ParaStyleName&quot;</span><span class="p">,</span> <span class="s">&quot;adParagraph&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>This approach is employed in StoryCreator.java when some paragraphs (such as
+section headers) need to use a paragraph style other than "adParagraph". I'll supply
+details in a moment.</p>
 <h2 id="6-building-a-story-document">6.  Building a Story Document</h2>
-<p>StoryCreator.java starts by setting the "adParagraph" style, then employs readText() 
-to read text from a file and add it to the document: </p>
-<p>XTextRange xTextRange = doc.getText().getStart(); 
-Props.setProperty(xTextRange, "ParaStyleName", "adParagraph"); </p>
-<p>XTextCursor cursor = Write.getCursor(doc); 
-readText("scandal.txt", cursor); 
-Write.endParagraph(cursor); </p>
-<p>readText() assumes the text file has a certain format. For example, "scandal.txt" 
-begins like so: </p>
-<p>Title: A Scandal in Bohemia 
-Author: Sir Arthur Conan Doyle </p>
-<p>Part I. </p>
-<p>To Sherlock Holmes she is always THE woman. I have seldom heard 
-him mention her under any other name. In his eyes she eclipses 
-and predominates the whole of her sex.  </p>
-<p>It was not that he felt any emotion akin to love for Irene Adler.  </p>
-<p>All emotions, and that one particularly, were abhorrent to his<br />
-cold, precise but admirably balanced mind.  </p>
-<p>A paragraph is a series of text lines followed by a blank line. But there are exceptions: 
-lines that starts with "Title: ", "Author: " or "Part " are treated as headings, and styled 
-differently. When the text above is processed, the resulting document looks like </p>
+<p>StoryCreator.java starts by setting the "adParagraph" style, then employs readText()
+to read text from a file and add it to the document:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XTextRange</span> <span class="n">xTextRange</span> <span class="o">=</span> <span class="n">doc</span><span class="p">.</span><span class="na">getText</span><span class="p">().</span><span class="na">getStart</span><span class="p">();</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">xTextRange</span><span class="p">,</span> <span class="s">&quot;ParaStyleName&quot;</span><span class="p">,</span> <span class="s">&quot;adParagraph&quot;</span><span class="p">);</span>
+
+<span class="n">XTextCursor</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">getCursor</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+<span class="n">readText</span><span class="p">(</span><span class="s">&quot;scandal.txt&quot;</span><span class="p">,</span> <span class="n">cursor</span><span class="p">);</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">endParagraph</span><span class="p">(</span><span class="n">cursor</span><span class="p">);</span>
+</code></pre></div>
+<p>readText() assumes the text file has a certain format. For example, "scandal.txt"
+begins like so:</p>
+<div class="highlight"><pre><span></span><code>Title: A Scandal in Bohemia
+Author: Sir Arthur Conan Doyle
+
+Part I.
+
+
+To Sherlock Holmes she is always THE woman. I have seldom heard
+him mention her under any other name. In his eyes she eclipses
+and predominates the whole of her sex.
+
+
+It was not that he felt any emotion akin to love for Irene Adler.
+
+All emotions, and that one particularly, were abhorrent to his
+cold, precise but admirably balanced mind.
+</code></pre></div>
+<p>A paragraph is a series of text lines followed by a blank line. But there are exceptions:
+lines that starts with "Title: ", "Author: " or "Part " are treated as headings, and styled
+differently. When the text above is processed, the resulting document looks like
+Figure 10.</p>
 <p><img alt="" src="images/06-Text_Styles-10.png" /></p>
-<p>Figure 10. </p>
-<p><img alt="" src="images/06-Text_Styles-10.png" /></p>
-<p>Figure 10. The Output of StoryCreator.java. </p>
-<p>readText() is implemented using Java's FileReader and BufferedReader: </p>
-<p>public static void readText(String fnm, XTextCursor cursor) 
-/* Write the text in fnm into a Office document. </p>
-<p>Use current paragraph styling unless the line starts 
-   with "Title: ", "Author: ", or "Part ". </p>
-<p>*/ 
-{ 
-  StringBuilder sb = new StringBuilder(0); 
-  BufferedReader br = null; 
-  try { 
-    br = new BufferedReader(new FileReader(fnm)); 
-    System.out.println("Reading text from: " + fnm); </p>
-<pre><code>String line; 
-while ((line = br.readLine()) != null) { 
-  // System.out.println("&lt;" + line + "&gt;"); 
-  if (line.length() == 0) { 
-    if (sb.length() &gt; 0) 
-      Write.appendPara(cursor, sb.toString()); 
-    sb.setLength(0); 
-  } 
-  else if (line.startsWith("Title: ")) { 
-    Write.appendPara(cursor, line.substring(7)); 
-    Write.stylePrevParagraph(cursor, "Title"); 
-  } 
-  else if (line.startsWith("Author: ")) { 
-    Write.appendPara(cursor, line.substring(8)); 
-    Write.stylePrevParagraph(cursor, "Subtitle"); 
-  } 
-  else if (line.startsWith("Part ")) { 
-    Write.appendPara(cursor, line); 
-    Write.stylePrevParagraph(cursor, "Heading"); 
-  } 
-  else { 
-    sb.append(line + " "); 
-  } 
-} 
-if (sb.length() &gt; 0) 
-  Write.appendPara(cursor, sb.toString());
-</code></pre>
-<p>} 
-  catch (FileNotFoundException ex) 
-  {  System.out.println("Could not open: " + fnm); } 
-  catch (IOException ex)<br />
-  {  System.out.println("Read error: " + ex); } 
-  finally { 
-    try { 
-      if (br != null) 
-        br.close(); 
-    } 
-    catch (IOException ex)<br />
-    {  System.out.println("Problem closing " + fnm); } 
-  } 
-}  // end of readText() </p>
-<p>The interesting bits are the calls to Write.appendPara() and 
-Write.stylePrevParagraph() which add a paragraph to the document and apply a style 
-to it. For instance: </p>
-<p>else if (line.startsWith("Author: ")) { 
-  Write.appendPara(cursor, line.substring(8)); 
-  Write.stylePrevParagraph(cursor, "Subtitle"); 
-} </p>
-<p>Write.appendPara() writes the string into the document as a paragraph (the input line 
-without the "Author: " substring). Write.stylePrevParagraph() changes the paragraph 
-style from "adParagraph" to "Subtitle".  </p>
-<p>The hard part of Write.stylePrevParagraph() is making sure that the style change only 
-affects the previous paragraph. Text appended after this line should use "adParagraph" 
-styling.  </p>
-<p>public static void stylePrevParagraph(XTextCursor cursor,<br />
-                                      Object propVal) 
-{  stylePrevParagraph(cursor, "ParaStyleName", propVal);  } </p>
-<p>public static void stylePrevParagraph(XTextCursor cursor, 
-                             String propName, Object propVal) 
-{ 
-  // save current property 
-  Object oldValue = Props.getProperty(cursor, propName); </p>
-<p>// apply property change to previous paragraph 
-  XParagraphCursor paraCursor = Lo.qi( 
-                                XParagraphCursor.class, cursor); 
-  paraCursor.gotoPreviousParagraph(true);   // select prev para 
-  Props.setProperty(paraCursor, propName, propVal); </p>
-<p>// reset the cursor and property 
-  paraCursor.gotoNextParagraph(false); 
-  Props.setProperty(cursor, propName, oldValue); 
-}  // end of stylePrevParagraph() </p>
-<p>The current "ParaStyleName" value is stored before changing its value in the selected 
-range. Afterwards, that style name is applied back to the cursor.  </p>
-<p>stylePrevParagraph() changes the XTextCursor into a paragraph cursor so that it's 
-easier to move around across paragraphs. </p>
-<p>readText() calls Write.stylePrevParagraph() with three style names ("Title", 
-"Subtitle", and "Heading"). I obtained those names from looking at the "Paragraph 
-Styles" dialog window in Figure 3. </p>
+<p>Figure 10. The Output of StoryCreator.java.</p>
+<p>readText() is implemented using Java's FileReader and BufferedReader:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">readText</span><span class="p">(</span><span class="n">String</span> <span class="n">fnm</span><span class="p">,</span> <span class="n">XTextCursor</span> <span class="n">cursor</span><span class="p">)</span>
+<span class="cm">/* Write the text in fnm into a Office document.</span>
+
+<span class="cm">   Use current paragraph styling unless the line starts</span>
+<span class="cm">   with &quot;Title: &quot;, &quot;Author: &quot;, or &quot;Part &quot;.</span>
+
+<span class="cm">*/</span>
+<span class="p">{</span>
+  <span class="n">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="n">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="p">(</span><span class="k">new</span> <span class="n">FileReader</span><span class="p">(</span><span class="n">fnm</span><span class="p">));</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Reading text from: &quot;</span> <span class="o">+</span> <span class="n">fnm</span><span class="p">);</span>
+
+    <span class="n">String</span> <span class="n">line</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">((</span><span class="n">line</span> <span class="o">=</span> <span class="n">br</span><span class="p">.</span><span class="na">readLine</span><span class="p">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// System.out.println(&quot;&lt;&quot; + line + &quot;&gt;&quot;);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">line</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">sb</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+          <span class="n">Write</span><span class="p">.</span><span class="na">appendPara</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">sb</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
+        <span class="n">sb</span><span class="p">.</span><span class="na">setLength</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">line</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">&quot;Title: &quot;</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">Write</span><span class="p">.</span><span class="na">appendPara</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">line</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="mi">7</span><span class="p">));</span>
+        <span class="n">Write</span><span class="p">.</span><span class="na">stylePrevParagraph</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="s">&quot;Title&quot;</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">line</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">&quot;Author: &quot;</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">Write</span><span class="p">.</span><span class="na">appendPara</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">line</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="mi">8</span><span class="p">));</span>
+        <span class="n">Write</span><span class="p">.</span><span class="na">stylePrevParagraph</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="s">&quot;Subtitle&quot;</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">line</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">&quot;Part &quot;</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">Write</span><span class="p">.</span><span class="na">appendPara</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">line</span><span class="p">);</span>
+        <span class="n">Write</span><span class="p">.</span><span class="na">stylePrevParagraph</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="s">&quot;Heading&quot;</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="p">{</span>
+        <span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">line</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">sb</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">Write</span><span class="p">.</span><span class="na">appendPara</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">sb</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">FileNotFoundException</span> <span class="n">ex</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not open: &quot;</span> <span class="o">+</span> <span class="n">fnm</span><span class="p">);</span> <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="n">ex</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Read error: &quot;</span> <span class="o">+</span> <span class="n">ex</span><span class="p">);</span> <span class="p">}</span>
+  <span class="k">finally</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">br</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+        <span class="n">br</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="n">ex</span><span class="p">)</span>
+    <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Problem closing &quot;</span> <span class="o">+</span> <span class="n">fnm</span><span class="p">);</span> <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of readText()</span>
+</code></pre></div>
+<p>The interesting bits are the calls to Write.appendPara() and
+Write.stylePrevParagraph() which add a paragraph to the document and apply a style
+to it. For instance:</p>
+<div class="highlight"><pre><span></span><code><span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">line</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">&quot;Author: &quot;</span><span class="p">))</span> <span class="p">{</span>
+  <span class="n">Write</span><span class="p">.</span><span class="na">appendPara</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">line</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="mi">8</span><span class="p">));</span>
+  <span class="n">Write</span><span class="p">.</span><span class="na">stylePrevParagraph</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="s">&quot;Subtitle&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Write.appendPara() writes the string into the document as a paragraph (the input line
+without the "Author: " substring). Write.stylePrevParagraph() changes the paragraph
+style from "adParagraph" to "Subtitle".</p>
+<p>The hard part of Write.stylePrevParagraph() is making sure that the style change only
+affects the previous paragraph. Text appended after this line should use "adParagraph"
+styling.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">stylePrevParagraph</span><span class="p">(</span><span class="n">XTextCursor</span> <span class="n">cursor</span><span class="p">,</span>
+                                      <span class="n">Object</span> <span class="n">propVal</span><span class="p">)</span>
+<span class="p">{</span>  <span class="n">stylePrevParagraph</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="s">&quot;ParaStyleName&quot;</span><span class="p">,</span> <span class="n">propVal</span><span class="p">);</span>  <span class="p">}</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">stylePrevParagraph</span><span class="p">(</span><span class="n">XTextCursor</span> <span class="n">cursor</span><span class="p">,</span>
+                             <span class="n">String</span> <span class="n">propName</span><span class="p">,</span> <span class="n">Object</span> <span class="n">propVal</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// save current property</span>
+  <span class="n">Object</span> <span class="n">oldValue</span> <span class="o">=</span> <span class="n">Props</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">propName</span><span class="p">);</span>
+
+  <span class="c1">// apply property change to previous paragraph</span>
+  <span class="n">XParagraphCursor</span> <span class="n">paraCursor</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span>
+                                <span class="n">XParagraphCursor</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">cursor</span><span class="p">);</span>
+  <span class="n">paraCursor</span><span class="p">.</span><span class="na">gotoPreviousParagraph</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>   <span class="c1">// select prev para</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">paraCursor</span><span class="p">,</span> <span class="n">propName</span><span class="p">,</span> <span class="n">propVal</span><span class="p">);</span>
+
+  <span class="c1">// reset the cursor and property</span>
+  <span class="n">paraCursor</span><span class="p">.</span><span class="na">gotoNextParagraph</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">propName</span><span class="p">,</span> <span class="n">oldValue</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of stylePrevParagraph()</span>
+</code></pre></div>
+<p>The current "ParaStyleName" value is stored before changing its value in the selected
+range. Afterwards, that style name is applied back to the cursor.</p>
+<p>stylePrevParagraph() changes the XTextCursor into a paragraph cursor so that it's
+easier to move around across paragraphs.</p>
+<p>readText() calls Write.stylePrevParagraph() with three style names ("Title",
+"Subtitle", and "Heading"). I obtained those names from looking at the "Paragraph
+Styles" dialog window in Figure 3.</p>
 <h2 id="7-style-changes-to-words-and-phrases">7.  Style Changes to Words and Phrases</h2>
-<p>Aside from changing paragraph styles, it's useful to apply style changes to words or 
-strings inside a paragraph. For example, to highlight a word in bold, or write several 
-words in red italics for emphasis.  </p>
-<p>This is implemented by Write.styleLeft() using a similar approach to 
-Write.stylePrevParagraph(). styleLeft() is passed an integer position which lies to the 
-left of the current cursor position. Character style changes are applied to the text range 
-defined by that distance: </p>
-<p>public static void styleLeft(XTextCursor cursor,<br />
-                   int pos, String propName, Object propVal) 
-{ 
-  // save current property 
-  Object oldValue = Props.getProperty(cursor, propName); </p>
-<p>// apply property change to the left of cursor 
-  int currPos = getPosition(cursor); 
-  cursor.goLeft((short)(currPos-pos), true); 
-  Props.setProperty(cursor, propName, propVal); </p>
-<p>// reset the cursor and property 
-  cursor.goRight((short)(currPos-pos), false); 
-  Props.setProperty(cursor, propName, oldValue); 
-}  // end of styleLeft() </p>
-<p>An XTextCursor is used to select the range, and the new style is set. Then the cursor 
-is moved back to its old position, and the previous style reapplied. </p>
-<p>The Write class contain a few support functions that set common styles using 
-styleLeft(): </p>
-<p>public static void styleLeftBold(XTextCursor cursor, int pos) 
-{  styleLeft(cursor, pos, "CharWeight",<br />
-                           com.sun.star.awt.FontWeight.BOLD);  } </p>
-<p>public static void styleLeftItalic(XTextCursor cursor, int pos) 
-{  styleLeft(cursor, pos, "CharPosture",<br />
-                           com.sun.star.awt.FontSlant.ITALIC);  } </p>
-<p>public static void styleLeftColor(XTextCursor cursor,<br />
-                                   int pos, java.awt.Color col) 
-{  styleLeft(cursor, pos, "CharColor", Lo.getColorInt(col));  } </p>
-<p>public static void styleLeftCode(XTextCursor cursor, int pos) 
-// code is text in 10pt Courier New 
-{  styleLeft(cursor, pos, "CharFontName", "Courier New"); 
-   styleLeft(cursor, pos, "CharHeight", 10); 
-} </p>
-<p>The position (the pos value) passed to styleLeft() can be obtained from 
-Write.getPosition(), or as the result of the Write.append() methods. </p>
-<p>My BuildDoc.java example contains several examples of how to use 
-Write.styleLeft(): </p>
-<p>// code fragment from BuildDoc.java 
-XTextCursor cursor = Write.getCursor(doc); </p>
-<p>int pos = Write.append(cursor, "Some examples of simple text "); 
-Write.append(cursor, "styles.\n"); 
-Write.styleLeftBold(cursor, pos);  // bold text back to pos </p>
-<p>pos = Write.getPosition(cursor); 
-Write.appendPara(cursor, "This line is written in red italics."); 
-Write.styleLeftColor(cursor, pos, Color.RED);   // red 
-Write.styleLeftItalic(cursor, pos);             // italics </p>
-<p>Write.appendPara(cursor, "Back to old style\n"); </p>
-<p>The resulting text in the document looks like Figure 11. </p>
+<p>Aside from changing paragraph styles, it's useful to apply style changes to words or
+strings inside a paragraph. For example, to highlight a word in bold, or write several
+words in red italics for emphasis.</p>
+<p>This is implemented by Write.styleLeft() using a similar approach to
+Write.stylePrevParagraph(). styleLeft() is passed an integer position which lies to the
+left of the current cursor position. Character style changes are applied to the text range
+defined by that distance:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">styleLeft</span><span class="p">(</span><span class="n">XTextCursor</span> <span class="n">cursor</span><span class="p">,</span>
+                   <span class="kt">int</span> <span class="n">pos</span><span class="p">,</span> <span class="n">String</span> <span class="n">propName</span><span class="p">,</span> <span class="n">Object</span> <span class="n">propVal</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// save current property</span>
+  <span class="n">Object</span> <span class="n">oldValue</span> <span class="o">=</span> <span class="n">Props</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">propName</span><span class="p">);</span>
+
+  <span class="c1">// apply property change to the left of cursor</span>
+  <span class="kt">int</span> <span class="n">currPos</span> <span class="o">=</span> <span class="n">getPosition</span><span class="p">(</span><span class="n">cursor</span><span class="p">);</span>
+  <span class="n">cursor</span><span class="p">.</span><span class="na">goLeft</span><span class="p">((</span><span class="kt">short</span><span class="p">)(</span><span class="n">currPos</span><span class="o">-</span><span class="n">pos</span><span class="p">),</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">propName</span><span class="p">,</span> <span class="n">propVal</span><span class="p">);</span>
+
+  <span class="c1">// reset the cursor and property</span>
+  <span class="n">cursor</span><span class="p">.</span><span class="na">goRight</span><span class="p">((</span><span class="kt">short</span><span class="p">)(</span><span class="n">currPos</span><span class="o">-</span><span class="n">pos</span><span class="p">),</span> <span class="kc">false</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">propName</span><span class="p">,</span> <span class="n">oldValue</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of styleLeft()</span>
+</code></pre></div>
+<p>An XTextCursor is used to select the range, and the new style is set. Then the cursor
+is moved back to its old position, and the previous style reapplied.</p>
+<p>The Write class contain a few support functions that set common styles using
+styleLeft():</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">styleLeftBold</span><span class="p">(</span><span class="n">XTextCursor</span> <span class="n">cursor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pos</span><span class="p">)</span>
+<span class="p">{</span>  <span class="n">styleLeft</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="s">&quot;CharWeight&quot;</span><span class="p">,</span>
+                           <span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">FontWeight</span><span class="p">.</span><span class="na">BOLD</span><span class="p">);</span>  <span class="p">}</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">styleLeftItalic</span><span class="p">(</span><span class="n">XTextCursor</span> <span class="n">cursor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pos</span><span class="p">)</span>
+<span class="p">{</span>  <span class="n">styleLeft</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="s">&quot;CharPosture&quot;</span><span class="p">,</span>
+                           <span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">FontSlant</span><span class="p">.</span><span class="na">ITALIC</span><span class="p">);</span>  <span class="p">}</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">styleLeftColor</span><span class="p">(</span><span class="n">XTextCursor</span> <span class="n">cursor</span><span class="p">,</span>
+                                   <span class="kt">int</span> <span class="n">pos</span><span class="p">,</span> <span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">Color</span> <span class="n">col</span><span class="p">)</span>
+<span class="p">{</span>  <span class="n">styleLeft</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="s">&quot;CharColor&quot;</span><span class="p">,</span> <span class="n">Lo</span><span class="p">.</span><span class="na">getColorInt</span><span class="p">(</span><span class="n">col</span><span class="p">));</span>  <span class="p">}</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">styleLeftCode</span><span class="p">(</span><span class="n">XTextCursor</span> <span class="n">cursor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pos</span><span class="p">)</span>
+<span class="c1">// code is text in 10pt Courier New</span>
+<span class="p">{</span>  <span class="n">styleLeft</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="s">&quot;CharFontName&quot;</span><span class="p">,</span> <span class="s">&quot;Courier New&quot;</span><span class="p">);</span>
+   <span class="n">styleLeft</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="s">&quot;CharHeight&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The position (the pos value) passed to styleLeft() can be obtained from
+Write.getPosition(), or as the result of the Write.append() methods.</p>
+<p>My BuildDoc.java example contains several examples of how to use
+Write.styleLeft():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// code fragment from BuildDoc.java</span>
+<span class="n">XTextCursor</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">getCursor</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="s">&quot;Some examples of simple text &quot;</span><span class="p">);</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="s">&quot;styles.\n&quot;</span><span class="p">);</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">styleLeftBold</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">pos</span><span class="p">);</span>  <span class="c1">// bold text back to pos</span>
+
+<span class="n">pos</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">getPosition</span><span class="p">(</span><span class="n">cursor</span><span class="p">);</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">appendPara</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="s">&quot;This line is written in red italics.&quot;</span><span class="p">);</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">styleLeftColor</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">Color</span><span class="p">.</span><span class="na">RED</span><span class="p">);</span>   <span class="c1">// red</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">styleLeftItalic</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">pos</span><span class="p">);</span>             <span class="c1">// italics</span>
+
+<span class="n">Write</span><span class="p">.</span><span class="na">appendPara</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="s">&quot;Back to old style\n&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>The resulting text in the document looks like Figure 11.</p>
 <p><img alt="" src="images/06-Text_Styles-11.png" /></p>
-<p>Figure 11. Styled Text. </p>
-<p>The following fragment from BuildDoc.java applies a 'code' styling to several lines: </p>
-<p>// code fragment from BuildDoc.java 
-Write.appendPara(cursor, "Here's some code:"); </p>
-<p>pos = Write.getPosition(cursor); 
-Write.append(cursor, "\npublic class Hello\n"); 
-Write.append(cursor, "{\n"); 
-Write.append(cursor, "  public static void main(String args[]\n"); 
-Write.append(cursor, " { System.out.println(\"Hello Andrew\"); }\n"); 
-Write.appendPara(cursor, "}  // end of Hello class\n"); 
-Write.styleLeftCode(cursor, pos); </p>
-<p>Figure 12 shows the generated document text. </p>
+<p>Figure 11. Styled Text.</p>
+<p>The following fragment from BuildDoc.java applies a 'code' styling to several lines:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// code fragment from BuildDoc.java</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">appendPara</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="s">&quot;Here&#39;s some code:&quot;</span><span class="p">);</span>
+
+<span class="n">pos</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">getPosition</span><span class="p">(</span><span class="n">cursor</span><span class="p">);</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="s">&quot;\npublic class Hello\n&quot;</span><span class="p">);</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="s">&quot;{\n&quot;</span><span class="p">);</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="s">&quot;  public static void main(String args[]\n&quot;</span><span class="p">);</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="s">&quot; { System.out.println(\&quot;Hello Andrew\&quot;); }\n&quot;</span><span class="p">);</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">appendPara</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="s">&quot;}  // end of Hello class\n&quot;</span><span class="p">);</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">styleLeftCode</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">pos</span><span class="p">);</span>
+</code></pre></div>
+<p>Figure 12 shows the generated document text.</p>
 <p><img alt="" src="images/06-Text_Styles-12.png" /></p>
-<p>Figure 12. Text with Code Styling. </p>
-<p>Unfortunately, styleLeft() depend on integer character positions, which are calculated 
-using Write.getPosition(). As I've mentioned before, this method could fail if asked to 
-generate too large a string, and this would cause styleLeft() to die. </p>
+<p>Figure 12. Text with Code Styling.</p>
+<p>Unfortunately, styleLeft() depend on integer character positions, which are calculated
+using Write.getPosition(). As I've mentioned before, this method could fail if asked to
+generate too large a string, and this would cause styleLeft() to die.</p>
 <h2 id="8-hyperlink-styling">8.  Hyperlink Styling</h2>
-<p>Text hyperlinks are implemented as styles, using "HyperLinkURL", and perhaps 
-"HyperLinkName", and "HyperLinkTarget". BuildDoc.java shows how the 
-"HyperLinkURL" property is set: </p>
-<p>Write.appendPara(cursor, "A link to my JLOP website:"); 
-String urlStr = "http://fivedots.coe.psu.ac.th/~ad/jlop/"; </p>
-<p>pos = Write.getPosition(cursor); 
-Write.append(cursor, urlStr); </p>
-<p>Write.styleLeft(cursor, pos, "HyperLinkURL", urlStr); 
-Write.endParagraph(cursor); </p>
-<p>When the document is viewed, the text is drawn as a link as in Figure 13. </p>
+<p>Text hyperlinks are implemented as styles, using "HyperLinkURL", and perhaps
+"HyperLinkName", and "HyperLinkTarget". BuildDoc.java shows how the
+"HyperLinkURL" property is set:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Write</span><span class="p">.</span><span class="na">appendPara</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="s">&quot;A link to my JLOP website:&quot;</span><span class="p">);</span>
+<span class="n">String</span> <span class="n">urlStr</span> <span class="o">=</span> <span class="s">&quot;http://fivedots.coe.psu.ac.th/~ad/jlop/&quot;</span><span class="p">;</span>
+
+<span class="n">pos</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">getPosition</span><span class="p">(</span><span class="n">cursor</span><span class="p">);</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">urlStr</span><span class="p">);</span>
+
+<span class="n">Write</span><span class="p">.</span><span class="na">styleLeft</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="s">&quot;HyperLinkURL&quot;</span><span class="p">,</span> <span class="n">urlStr</span><span class="p">);</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">endParagraph</span><span class="p">(</span><span class="n">cursor</span><span class="p">);</span>
+</code></pre></div>
+<p>When the document is viewed, the text is drawn as a link as in Figure 13.</p>
 <p><img alt="" src="images/06-Text_Styles-13.png" /></p>
-<p>Figure 13. Text Containing a Hypertext Link. </p>
-<p>If the user control-clicks on the link, then the URL value of "HyperLinkURL" will be 
-loaded into the browser. </p>
-<p>The "HyperLinkName" property specifies a link name, which can be used when 
-searching a document. "HyperLinkTarget" corresponds to the HTML hypertext target 
-attribute, and has a default value of "_self".  </p>
+<p>Figure 13. Text Containing a Hypertext Link.</p>
+<p>If the user control-clicks on the link, then the URL value of "HyperLinkURL" will be
+loaded into the browser.</p>
+<p>The "HyperLinkName" property specifies a link name, which can be used when
+searching a document. "HyperLinkTarget" corresponds to the HTML hypertext target
+attribute, and has a default value of "_self".</p>
 <h2 id="9-text-numbering">9.  Text Numbering</h2>
-<p>It's straightforward to number paragraphs by using Write.styleLeft() and the 
-"NumberingStyleName" property. The following code from BuildDoc.java, numbers 
-three paragraphs: </p>
-<p>// code fragment from BuildDoc.java 
-Write.appendPara(cursor, "The following points are important:"); </p>
-<p>pos = Write.appendPara(cursor, "Have a good breakfast"); 
-Write.appendPara(cursor, "Have a good lunch"); 
-Write.appendPara(cursor, "Have a good dinner\n"); 
-Write.styleLeft(cursor, pos, "NumberingStyleName", "Numbering 1"); </p>
-<p>The result is shown in Figure 14. </p>
+<p>It's straightforward to number paragraphs by using Write.styleLeft() and the
+"NumberingStyleName" property. The following code from BuildDoc.java, numbers
+three paragraphs:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// code fragment from BuildDoc.java</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">appendPara</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="s">&quot;The following points are important:&quot;</span><span class="p">);</span>
+
+<span class="n">pos</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">appendPara</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="s">&quot;Have a good breakfast&quot;</span><span class="p">);</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">appendPara</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="s">&quot;Have a good lunch&quot;</span><span class="p">);</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">appendPara</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="s">&quot;Have a good dinner\n&quot;</span><span class="p">);</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">styleLeft</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="s">&quot;NumberingStyleName&quot;</span><span class="p">,</span> <span class="s">&quot;Numbering 1&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>The result is shown in Figure 14.</p>
 <p><img alt="" src="images/06-Text_Styles-14.png" /></p>
-<p>Figure 14. Numbered Paragraphs. </p>
-<p>"NumberingStyleName" is a property in ParagraphProperties, and the "Numbering 1" 
-style is from the "Paragraph Styles" dialog window in Figure 3.  </p>
-<p>Bullets are drawn instead of numbers by changing the style name to "List 1" (see 
-Figure 15). </p>
+<p>Figure 14. Numbered Paragraphs.</p>
+<p>"NumberingStyleName" is a property in ParagraphProperties, and the "Numbering 1"
+style is from the "Paragraph Styles" dialog window in Figure 3.</p>
+<p>Bullets are drawn instead of numbers by changing the style name to "List 1" (see
+Figure 15).</p>
 <p><img alt="" src="images/06-Text_Styles-15.png" /></p>
-<p>Figure 15. Bulleted Paragraphs. </p>
-<p>One issue with numbered paragraphs is that their default behavior retains the current 
-count when numbering another group of text. For example, a second group of 
-numbered paragraphs appearing in the document after Figure 14 would start at '4'. </p>
-<p>This is fixed by setting the "ParaIsNumberingRestart" property to true: 
-Write.styleLeft(cursor, pos, "ParaIsNumberingRestart", true); </p>
-<p>One large topic I won’t be looking at is document numbering. This includes the 
-numbering of chapter headings and lines. Chapter and line numbering are dealt with 
-differently from most document styles. Instead of being accessed via 
-XStyleFamiliesSupplier, they employ XChapterNumberingSupplier and 
-XNumberFormatsSupplier.  </p>
-<p>For more details, see the development guide: 
+<p>Figure 15. Bulleted Paragraphs.</p>
+<p>One issue with numbered paragraphs is that their default behavior retains the current
+count when numbering another group of text. For example, a second group of
+numbered paragraphs appearing in the document after Figure 14 would start at '4'.
+This is fixed by setting the "ParaIsNumberingRestart" property to true:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Write</span><span class="p">.</span><span class="na">styleLeft</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="s">&quot;ParaIsNumberingRestart&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+</code></pre></div>
+<p>One large topic I won’t be looking at is document numbering. This includes the
+numbering of chapter headings and lines. Chapter and line numbering are dealt with
+differently from most document styles. Instead of being accessed via
+XStyleFamiliesSupplier, they employ XChapterNumberingSupplier and
+XNumberFormatsSupplier.</p>
+<p>For more details, see the development guide:
 https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Line_Numbering_an
-d_Outline_Numbering 
-or type loGuide "Line Numbering". </p>
-<ol>
-<li>Other Style Changes 
-StoryCreator.java illustrates three other styling effects: the creation of a header, 
-setting the page to A4 format, and employing page numbers in the footer. The 
-relevant calls are: </li>
-</ol>
-<p>// code fragment in StoryCreator.java 
-Write.setHeader(doc, "From: " + args[0]); 
-Write.setA4PageFormat(doc); 
-Write.setPageNumbers(doc); </p>
-<p>Write.setA4PageFormat() sets the page formatting. Write.setPageNumbers() utilizes 
-text fields, which I'll examine in the "Text Fields" section in Chapter 7. </p>
-<p>Changing the header in Write.setHeader() requires the setting of the "HeaderIsOn" 
-boolean in the "Standard" page style. Adding text to the header is done via an XText 
-reference. The code for Write.setHeader(): </p>
-<p>public static void setHeader(XTextDocument textDoc, String hText) 
-/* Modify the header via the page style for the document.  </p>
-<p>Put the text on the right hand side in the header in 
-   Times New Roman, 10pt */ 
-{ 
-  XPropertySet props =<br />
-         Info.getStyleProps(textDoc, "PageStyles", "Standard"); 
-  if (props == null) { 
-    System.out.println("Could not access standard page style"); 
-    return; 
-  } </p>
-<p>try { 
-    props.setPropertyValue("HeaderIsOn", true); 
-                 // header is turned on in the document </p>
-<pre><code>// access the header's XText and cursor 
-XText headerText = Lo.qi(XText.class,  
-                     props.getPropertyValue("HeaderText")); 
-XTextCursor headerCursor = headerText.createTextCursor(); 
-headerCursor.gotoEnd(false);
+d_Outline_Numbering
+or type <code>loGuide "Line Numbering"</code>.</p>
+<h2 id="10-other-style-changes">10.  Other Style Changes</h2>
+<p>StoryCreator.java illustrates three other styling effects: the creation of a header,
+setting the page to A4 format, and employing page numbers in the footer. The
+relevant calls are:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// code fragment in StoryCreator.java</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">setHeader</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;From: &quot;</span> <span class="o">+</span> <span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">setA4PageFormat</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">setPageNumbers</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+</code></pre></div>
+<p>Write.setA4PageFormat() sets the page formatting. Write.setPageNumbers() utilizes
+text fields, which I'll examine in the "Text Fields" section in Chapter 7.</p>
+<p>Changing the header in Write.setHeader() requires the setting of the "HeaderIsOn"
+boolean in the "Standard" page style. Adding text to the header is done via an XText
+reference. The code for Write.setHeader():</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setHeader</span><span class="p">(</span><span class="n">XTextDocument</span> <span class="n">textDoc</span><span class="p">,</span> <span class="n">String</span> <span class="n">hText</span><span class="p">)</span>
+<span class="cm">/* Modify the header via the page style for the document.</span>
 
-// header is on the rhs and in Times New Roman, 10pt 
-XPropertySet headerProps = Lo.qi( 
-                            XPropertySet.class, headerCursor); 
-headerProps.setPropertyValue("CharFontName","Times New Roman"); 
-headerProps.setPropertyValue("CharHeight", 10); 
-headerProps.setPropertyValue("ParaAdjust",ParagraphAdjust.RIGHT);
+<span class="cm">   Put the text on the right hand side in the header in</span>
+<span class="cm">   Times New Roman, 10pt */</span>
+<span class="p">{</span>
+  <span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span>
+         <span class="n">Info</span><span class="p">.</span><span class="na">getStyleProps</span><span class="p">(</span><span class="n">textDoc</span><span class="p">,</span> <span class="s">&quot;PageStyles&quot;</span><span class="p">,</span> <span class="s">&quot;Standard&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">props</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not access standard page style&quot;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
 
-headerText.setString(hText + "\n");
-</code></pre>
-<p>}<br />
-  catch (Exception ex)<br />
-  {  System.out.println(ex); } 
-}  // end of setHeader() </p>
-<p>The header's XText reference is retrieved via the page style's "HeaderText" property, 
-and a cursor is created local to the header: 
-XTextCursor headerCursor = headerText.createTextCursor(); 
-This cursor can only move around inside the header not the entire document.  </p>
-<p>The properties of the header's XText are changed using the cursor, and then the text is 
-added.  </p>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;HeaderIsOn&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+                 <span class="c1">// header is turned on in the document</span>
+
+    <span class="c1">// access the header&#39;s XText and cursor</span>
+    <span class="n">XText</span> <span class="n">headerText</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XText</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                         <span class="n">props</span><span class="p">.</span><span class="na">getPropertyValue</span><span class="p">(</span><span class="s">&quot;HeaderText&quot;</span><span class="p">));</span>
+    <span class="n">XTextCursor</span> <span class="n">headerCursor</span> <span class="o">=</span> <span class="n">headerText</span><span class="p">.</span><span class="na">createTextCursor</span><span class="p">();</span>
+    <span class="n">headerCursor</span><span class="p">.</span><span class="na">gotoEnd</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+
+    <span class="c1">// header is on the rhs and in Times New Roman, 10pt</span>
+    <span class="n">XPropertySet</span> <span class="n">headerProps</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span>
+                                <span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">headerCursor</span><span class="p">);</span>
+    <span class="n">headerProps</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;CharFontName&quot;</span><span class="p">,</span><span class="s">&quot;Times New Roman&quot;</span><span class="p">);</span>
+    <span class="n">headerProps</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;CharHeight&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+    <span class="n">headerProps</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;ParaAdjust&quot;</span><span class="p">,</span><span class="n">ParagraphAdjust</span><span class="p">.</span><span class="na">RIGHT</span><span class="p">);</span>
+
+    <span class="n">headerText</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="n">hText</span> <span class="o">+</span> <span class="s">&quot;\n&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">ex</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of setHeader()</span>
+</code></pre></div>
+<p>The header's XText reference is retrieved via the page style's "HeaderText" property,
+and a cursor is created local to the header:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XTextCursor</span> <span class="n">headerCursor</span> <span class="o">=</span> <span class="n">headerText</span><span class="p">.</span><span class="na">createTextCursor</span><span class="p">();</span>
+</code></pre></div>
+<p>This cursor can only move around inside the header not the entire document.</p>
+<p>The properties of the header's XText are changed using the cursor, and then the text is
+added.</p>
                 
               
               

@@ -1225,282 +1225,304 @@
                 <h1 id="chapter-9-text-search-and-replace">Chapter 9. Text Search and Replace</h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
-<p>Finding the First 
-Matching Phrase; 
-Replacing all the 
-Matching Words; 
-Finding all Matching 
-Phrases </p>
-<p>Example folders: "Text 
-Tests" and "Utils"  </p>
+<p>Finding the First
+Matching Phrase;
+Replacing all the
+Matching Words;
+Finding all Matching
+Phrases</p>
+<p>Example folders: "Text
+Tests" and "Utils"</p>
 </div>
-<p>The GenericTextDocument service supports the 
-XSearchable and XReplaceable interfaces (see Chapter 5, 
-Figure 2), which are the entry points for doing regular 
-expression based search and replace inside a document. </p>
-<p>XSearchable.createSearchDescriptor() builds a search 
-description (an ordinary string or a regular expression). The search is executed with 
-XSearchable.findAll() or findFirst() and findNext().  </p>
-<p>XReplaceable works in a similar way but with a replace descriptor which combines a 
-replacement string with the search string. XReplaceable.replaceAll() performs search 
-and replacement, but the XSearchable searching methods are available as well. This is 
-shown in Figure 1. </p>
+<p>The GenericTextDocument service supports the
+XSearchable and XReplaceable interfaces (see Chapter 5,
+Figure 2), which are the entry points for doing regular
+expression based search and replace inside a document.</p>
+<p>XSearchable.createSearchDescriptor() builds a search
+description (an ordinary string or a regular expression). The search is executed with
+XSearchable.findAll() or findFirst() and findNext().</p>
+<p>XReplaceable works in a similar way but with a replace descriptor which combines a
+replacement string with the search string. XReplaceable.replaceAll() performs search
+and replacement, but the XSearchable searching methods are available as well. This is
+shown in Figure 1.</p>
 <p><img alt="" src="images/09-Text_Search-1.png" /></p>
-<p>Figure 1. The XSearchable and XReplaceable Interfaces. </p>
-<p>The following code fragment utilizes the XSearchable and XSearchDescriptor 
-interfaces: </p>
-<p>XSearchable searchable = Lo.qi(XSearchable.class, doc); 
-XSearchDescriptor srchDesc = searchable.createSearchDescriptor(); 
-srchDesc.setSearchString("colou?r");  <br />
-       // a regular expression meaning "color" or "colour" </p>
-<p>XReplaceable and XReplaceDescriptor objects are configured in a similar way, as 
-shown in the examples. </p>
-<p>XSearchDescriptor and XReplaceDescriptor contain get and set methods for their 
-strings. But a lot of the search functionality is expressed as properties in their 
-SearchDescriptor and ReplaceDescriptor services. Figure 2 summarizes these 
-arrangements. </p>
+<p>Figure 1. The XSearchable and XReplaceable Interfaces.</p>
+<p>The following code fragment utilizes the XSearchable and XSearchDescriptor
+interfaces:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XSearchable</span> <span class="n">searchable</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XSearchable</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">doc</span><span class="p">);</span>
+<span class="n">XSearchDescriptor</span> <span class="n">srchDesc</span> <span class="o">=</span> <span class="n">searchable</span><span class="p">.</span><span class="na">createSearchDescriptor</span><span class="p">();</span>
+<span class="n">srchDesc</span><span class="p">.</span><span class="na">setSearchString</span><span class="p">(</span><span class="s">&quot;colou?r&quot;</span><span class="p">);</span>
+       <span class="c1">// a regular expression meaning &quot;color&quot; or &quot;colour&quot;</span>
+</code></pre></div>
+<p>XReplaceable and XReplaceDescriptor objects are configured in a similar way, as
+shown in the examples.</p>
+<p>XSearchDescriptor and XReplaceDescriptor contain get and set methods for their
+strings. But a lot of the search functionality is expressed as properties in their
+SearchDescriptor and ReplaceDescriptor services. Figure 2 summarizes these
+arrangements.</p>
 <p><img alt="" src="images/09-Text_Search-2.png" /></p>
-<p>Figure 2. The SearchDescriptor and ReplaceDescriptor Services. </p>
-<p>The next code fragment accesses the SearchDescriptor properties, and switches on 
-regular expression searching: </p>
-<p>XPropertySet srchProps = Lo.qi(XPropertySet.class, srchDesc); 
-srchProps.setPropertyValue("SearchRegularExpression", true); </p>
-<p>Alternatively, Props.setProperty() can be employed: 
-Props.setProperty(srchDesc, "SearchRegularExpression", true); 
-Once a search descriptor has been created (i.e. its string is set and any properties 
-configured), then one of the findXXX() methods in XSearchable can be called.  </p>
-<p>For instance, XSearchable.findFirst() returns the text range of the first matching 
-element (or null), as in: </p>
-<p>XInterface srch = (XInterface) searchable.findFirst(srchDesc); 
-XTextRange matchTR = Lo.qi(XTextRange.class, srch); </p>
-<p>The example programs, TextReplace.java and ItalicsStyler.java, demonstrate search 
-and replacement. TextReplace.java uses XSearchable to find the first occurrence of a 
-regular expression and XReplaceable to replace multiple occurrences of other words. </p>
-<p>ItalicsStyler.java calls XSearchable's findAll() to find every occurrence of a phrase.  </p>
+<p>Figure 2. The SearchDescriptor and ReplaceDescriptor Services.</p>
+<p>The next code fragment accesses the SearchDescriptor properties, and switches on
+regular expression searching:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XPropertySet</span> <span class="n">srchProps</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">srchDesc</span><span class="p">);</span>
+<span class="n">srchProps</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;SearchRegularExpression&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+</code></pre></div>
+<p>Alternatively, Props.setProperty() can be employed:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">srchDesc</span><span class="p">,</span> <span class="s">&quot;SearchRegularExpression&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+</code></pre></div>
+<p>Once a search descriptor has been created (i.e. its string is set and any properties
+configured), then one of the findXXX() methods in XSearchable can be called.</p>
+<p>For instance, XSearchable.findFirst() returns the text range of the first matching
+element (or null), as in:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XInterface</span> <span class="n">srch</span> <span class="o">=</span> <span class="p">(</span><span class="n">XInterface</span><span class="p">)</span> <span class="n">searchable</span><span class="p">.</span><span class="na">findFirst</span><span class="p">(</span><span class="n">srchDesc</span><span class="p">);</span>
+<span class="n">XTextRange</span> <span class="n">matchTR</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XTextRange</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">srch</span><span class="p">);</span>
+</code></pre></div>
+<p>The example programs, TextReplace.java and ItalicsStyler.java, demonstrate search
+and replacement. TextReplace.java uses XSearchable to find the first occurrence of a
+regular expression and XReplaceable to replace multiple occurrences of other words.</p>
+<p>ItalicsStyler.java calls XSearchable's findAll() to find every occurrence of a phrase.</p>
 <h2 id="1-finding-the-first-matching-phrase">1.  Finding the First Matching Phrase</h2>
-<p>TextReplace.java repeatedly calls XSearchable.findFirst() with regular expressions 
-taken from an array. The first matching phrase for each expression is reported. For 
-instance, the call: </p>
-<p>String words[] = {"(G|g)rit", "colou?r"}; 
-findWords(doc, words); </p>
-<p>prints the following when "story.doc" is searched: </p>
-<p>Searching for first occurrence of "(G|g)rit" 
-  - found "Grit" 
-    - on page 1 
-    - at char position: 929 
-Searching for first occurrence of "colou?r" 
-  - found "colour" 
-    - on page 5 
-    - at char position: 10856 </p>
-<p>Three pieces of information are printed for each match: the text that matched, its page 
-location, and its character position calculated from the start of the document. The 
-character position could be obtained from a text cursor or a text view cursor, but I 
-need a page cursor to access the page number. Therefore the easiest thing to use a text 
-view cursor, and a linked page cursor. </p>
-<p>The code for findWords(): </p>
-<p>private static void findWords(XTextDocument doc, String[] words) 
-{ 
-  // get the text view cursor and linked page cursor 
-  XTextViewCursor tvc = Write.getViewCursor(doc); 
-  tvc.gotoStart(false); 
-  XPageCursor pageCursor = Lo.qi(XPageCursor.class, tvc); </p>
-<p>try { 
-    XSearchable searchable = Lo.qi(XSearchable.class, doc); 
-    XSearchDescriptor srchDesc =<br />
-                          searchable.createSearchDescriptor(); </p>
-<pre><code>for(int i = 0; i &lt; words.length; i++ ) { 
-  System.out.println("Searching for first occurrence of \"" +  
-                                              words[i] + "\""); 
-  srchDesc.setSearchString(words[i]); 
-  Props.setProperty(srchDesc, "SearchRegularExpression", true);
+<p>TextReplace.java repeatedly calls XSearchable.findFirst() with regular expressions
+taken from an array. The first matching phrase for each expression is reported. For
+instance, the call:</p>
+<div class="highlight"><pre><span></span><code><span class="n">String</span> <span class="n">words</span><span class="o">[]</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;(G|g)rit&quot;</span><span class="p">,</span> <span class="s">&quot;colou?r&quot;</span><span class="p">};</span>
+<span class="n">findWords</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">words</span><span class="p">);</span>
+</code></pre></div>
+<p>prints the following when "story.doc" is searched:</p>
+<div class="highlight"><pre><span></span><code>Searching for first occurrence of &quot;(G|g)rit&quot;
+  - found &quot;Grit&quot;
+    - on page 1
+    - at char position: 929
+Searching for first occurrence of &quot;colou?r&quot;
+  - found &quot;colour&quot;
+    - on page 5
+    - at char position: 10856
+</code></pre></div>
+<p>Three pieces of information are printed for each match: the text that matched, its page
+location, and its character position calculated from the start of the document. The
+character position could be obtained from a text cursor or a text view cursor, but I
+need a page cursor to access the page number. Therefore the easiest thing to use a text
+view cursor, and a linked page cursor.</p>
+<p>The code for findWords():</p>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">findWords</span><span class="p">(</span><span class="n">XTextDocument</span> <span class="n">doc</span><span class="p">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">words</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// get the text view cursor and linked page cursor</span>
+  <span class="n">XTextViewCursor</span> <span class="n">tvc</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">getViewCursor</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">tvc</span><span class="p">.</span><span class="na">gotoStart</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+  <span class="n">XPageCursor</span> <span class="n">pageCursor</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPageCursor</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">tvc</span><span class="p">);</span>
 
-  XInterface  srch = (XInterface) searchable.findFirst(srchDesc); 
-  if (srch != null) { 
-    XTextRange matchTR = Lo.qi(XTextRange.class, srch); 
-    tvc.gotoRange(matchTR, false);  
-    System.out.println("  - found \"" +  
-                               matchTR.getString() + "\""); 
-    System.out.println("    - on page " +  
-                                 pageCursor.getPage()); 
-    tvc.gotoStart(true);   
-    System.out.println("    - at char position: " +  
-                                 tvc.getString().length());  
-  } 
-  else 
-    System.out.println("  - not found"); 
-}
-</code></pre>
-<p>} 
-  catch(com.sun.star.uno.Exception e) { 
-    System.out.println(e); 
-  } 
-}  // end of findWords() </p>
-<p>findWords() creates the text view cursor (tvc), moves it to the start of the document, 
-and links the page cursor to it:<br />
-XPageCursor pageCursor = Lo.qi(XPageCursor.class, tvc); 
-There is only one view cursor in an application, so when the text view cursor moves, 
-so does the page cursor, and vice versa. </p>
-<p>The XSearchable and XSearchDescriptor interfaces are instantiated, and a for-loop 
-searches for each word in the supplied array. If XSearchable.findFirst() returns a 
-matching text range, it's used by XTextCursor.gotoRange() to update the position of 
-the cursor.  </p>
-<p>After the page position has been printed, the cursor is moved to the start of the 
-document with selection turned on: </p>
-<p>tvc.gotoStart(true);<br />
-System.out.println("    - at char position: " +<br />
-                                      tvc.getString().length());  </p>
-<p>This means that tvc.getString() will return all the text from the start of the document 
-to the current matching point, and so length() will return the character position 
-measured from the beginning of the file. As I've mentioned previously, this approach 
-may fail if the size of the string being instantiated is too big. </p>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">XSearchable</span> <span class="n">searchable</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XSearchable</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">doc</span><span class="p">);</span>
+    <span class="n">XSearchDescriptor</span> <span class="n">srchDesc</span> <span class="o">=</span>
+                          <span class="n">searchable</span><span class="p">.</span><span class="na">createSearchDescriptor</span><span class="p">();</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">words</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Searching for first occurrence of \&quot;&quot;</span> <span class="o">+</span>
+                                                  <span class="n">words</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>
+      <span class="n">srchDesc</span><span class="p">.</span><span class="na">setSearchString</span><span class="p">(</span><span class="n">words</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+      <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">srchDesc</span><span class="p">,</span> <span class="s">&quot;SearchRegularExpression&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+      <span class="n">XInterface</span>  <span class="n">srch</span> <span class="o">=</span> <span class="p">(</span><span class="n">XInterface</span><span class="p">)</span> <span class="n">searchable</span><span class="p">.</span><span class="na">findFirst</span><span class="p">(</span><span class="n">srchDesc</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">srch</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">XTextRange</span> <span class="n">matchTR</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XTextRange</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">srch</span><span class="p">);</span>
+        <span class="n">tvc</span><span class="p">.</span><span class="na">gotoRange</span><span class="p">(</span><span class="n">matchTR</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  - found \&quot;&quot;</span> <span class="o">+</span>
+                                   <span class="n">matchTR</span><span class="p">.</span><span class="na">getString</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;    - on page &quot;</span> <span class="o">+</span>
+                                     <span class="n">pageCursor</span><span class="p">.</span><span class="na">getPage</span><span class="p">());</span>
+        <span class="n">tvc</span><span class="p">.</span><span class="na">gotoStart</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;    - at char position: &quot;</span> <span class="o">+</span>
+                                     <span class="n">tvc</span><span class="p">.</span><span class="na">getString</span><span class="p">().</span><span class="na">length</span><span class="p">());</span>
+      <span class="p">}</span>
+      <span class="k">else</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  - not found&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">uno</span><span class="p">.</span><span class="na">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of findWords()</span>
+</code></pre></div>
+<p>findWords() creates the text view cursor (tvc), moves it to the start of the document,
+and links the page cursor to it:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XPageCursor</span> <span class="n">pageCursor</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPageCursor</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">tvc</span><span class="p">);</span>
+</code></pre></div>
+<p>There is only one view cursor in an application, so when the text view cursor moves,
+so does the page cursor, and vice versa.</p>
+<p>The XSearchable and XSearchDescriptor interfaces are instantiated, and a for-loop
+searches for each word in the supplied array. If XSearchable.findFirst() returns a
+matching text range, it's used by XTextCursor.gotoRange() to update the position of
+the cursor.</p>
+<p>After the page position has been printed, the cursor is moved to the start of the
+document with selection turned on:</p>
+<div class="highlight"><pre><span></span><code><span class="n">tvc</span><span class="p">.</span><span class="na">gotoStart</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;    - at char position: &quot;</span> <span class="o">+</span>
+                                      <span class="n">tvc</span><span class="p">.</span><span class="na">getString</span><span class="p">().</span><span class="na">length</span><span class="p">());</span>
+</code></pre></div>
+<p>This means that tvc.getString() will return all the text from the start of the document
+to the current matching point, and so length() will return the character position
+measured from the beginning of the file. As I've mentioned previously, this approach
+may fail if the size of the string being instantiated is too big.</p>
 <h2 id="2-replacing-all-the-matching-words">2.  Replacing all the Matching Words</h2>
-<p>TextReplace.java also contains a method called replaceWords(), which takes two 
-string arrays as arguments: </p>
-<p>// code fragment inside TextReplace.java 
-String ukWords[] = { 
-  "colour", "neighbour", "centre", "behaviour", "metre", "through" }; </p>
-<p>String usWords[] = { 
-  "color", "neighbor", "center", "behavior", "meter", "thru" }; </p>
-<p>replaceWords(doc, ukWords, usWords); </p>
-<p>replaceWords() cycles through the arrays, replacing all occurrences of the words in 
-the first array (e.g. in ukWords[]) with the corresponding words in the second array 
-(e.g. in usWords[]). For instance, every occurrence of "colour" is replaced by "color". </p>
-<p>The output: </p>
-<p>Change all occurrences of ... </p>
-<p>colour -&gt; color 
-    - no. of changes: 1 
-  neighbour -&gt; neighbor 
-    - no. of changes: 2 
-  centre -&gt; center 
-    - no. of changes: 2 
-  behaviour -&gt; behavior 
-    - no. of changes: 0 
-  metre -&gt; meter 
-    - no. of changes: 0 
-  through -&gt; thru 
-    - no. of changes: 4 </p>
-<p>Since replaceWords() doesn't report page and character positions, its code is 
-somewhat shorter than findWords(): </p>
-<p>private static void replaceWords(XTextDocument doc,<br />
-                       String[] oldWords, String[] newWords) 
-{ 
-  XReplaceable replaceable = Lo.qi(XReplaceable.class, doc); 
-  XReplaceDescriptor replaceDesc =<br />
-                        replaceable.createReplaceDescriptor(); </p>
-<p>System.out.println("Change all occurrences of ..."); 
-  for (int i = 0; i &lt; oldWords.length; i++) { 
-    System.out.println("  " + oldWords[i] + " -&gt; " + newWords[i]); 
-    replaceDesc.setSearchString(oldWords[i]); 
-    replaceDesc.setReplaceString(newWords[i]); </p>
-<pre><code>int numChanges = replaceable.replaceAll(replaceDesc);      
-                       // replace all occurrence of word 
-System.out.println("    - no. of changes: " + numChanges);
-</code></pre>
-<p>} 
-}  // end of replaceWords() </p>
-<p>The XReplaceable and XReplaceDescriptor interfaces are created in a similar way to 
-their search versions. The replace descriptor has two set methods, one for the search 
-string, the other for the replacement string. </p>
-<h2 id="3-finding-all-matching-phrases">3.  Finding all Matching Phrases</h2>
-<p>ItalicsStyler.java is supplied with a filename and a string on the command line. For 
-instance: </p>
-<blockquote>
-<p>run ItalicsStyler story.doc scandal 
-The program opens the file and uses the "search all' method in XSearchable to find all 
-occurrences of the string in the document. The matching strings are italicized and 
-colored red, and the changed document saved as "italicized.doc". These changes are 
-not performed using XReplaceable methods. </p>
-</blockquote>
-<p>Figure 3 shows a fragment of the resulting document, with the "scandal" text in the 
-title and header changed. The search ignores case, so the word in the title ("Scandal") 
-was correctly modified. </p>
-<p><img alt="" src="images/09-Text_Search-3.png" /></p>
-<p>Figure 3. A Fragment of The Italicized Document. </p>
-<p>The ItalicsStyler program also outputs matching details: </p>
-<p>Searching for all occurrence of "scandal" 
-No. of matches: 5 
-  - found "scandal" 
-    - on page 1 
-    - starting at char position: 6 
-  - found "Scandal" 
-    - on page 1 
-    - starting at char position: 2 
-  - found "scandal" 
-    - on page 6 
-    - starting at char position: 13153 
-  - found "scandal" 
-    - on page 18 
-    - starting at char position: 38736 
-  - found "scandal" 
-    - on page 21 
-    - starting at char position: 46425 </p>
-<p>As with TextReplace.java, the printed details include the page and character positions 
-of the matches. </p>
-<p>The searching in ItalicsStyler.java is performed by italicizeAll(), which bears a close 
-resemblance to findWords(): </p>
-<p>private static void italicizeAll(XTextDocument doc, String phrase) 
-{ 
-  // get the text view cursor and linked page cursor 
-  XTextViewCursor tvc = Write.getViewCursor(doc); 
-  tvc.gotoStart(false); 
-  XPageCursor pageCursor = Lo.qi(XPageCursor.class, tvc); </p>
-<p>try { 
-    XSearchable xSearchable = Lo.qi(XSearchable.class, doc); 
-    XSearchDescriptor srchDesc =<br />
-                         xSearchable.createSearchDescriptor(); </p>
-<pre><code>System.out.println("Searching for all  
-                     occurrences of \"" + phrase + "\""); 
-int phraseLen = phrase.length(); 
-srchDesc.setSearchString(phrase); 
-Props.setProperty(srchDesc, "SearchCaseSensitive", false);
+<p>TextReplace.java also contains a method called replaceWords(), which takes two
+string arrays as arguments:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// code fragment inside TextReplace.java</span>
+<span class="n">String</span> <span class="n">ukWords</span><span class="o">[]</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">&quot;colour&quot;</span><span class="p">,</span> <span class="s">&quot;neighbour&quot;</span><span class="p">,</span> <span class="s">&quot;centre&quot;</span><span class="p">,</span> <span class="s">&quot;behaviour&quot;</span><span class="p">,</span> <span class="s">&quot;metre&quot;</span><span class="p">,</span> <span class="s">&quot;through&quot;</span> <span class="p">};</span>
 
-XIndexAccess matches = xSearchable.findAll(srchDesc); 
-System.out.println("No. of matches: " + matches.getCount()); 
-for (int i = 0; i &lt; matches.getCount(); i++) { 
-  XTextRange matchTR = Lo.qi(XTextRange.class,  
-                                  matches.getByIndex(i)); 
-  if (matchTR != null) { 
-    tvc.gotoRange(matchTR, false); 
-    System.out.println("  - found \"" +  
-                            matchTR.getString() + "\""); 
-    System.out.println("    - on page " +  
-                                    pageCursor.getPage()); 
-    tvc.gotoStart(true); 
-    System.out.println("    - starting at char position: " +  
-                (tvc.getString().length() - phraseLen)); 
-    Props.setProperties(matchTR,  
-               new String[] {"CharColor", "CharPosture"}, 
-               new Object[] { 0xFF0000,  
-                      com.sun.star.awt.FontSlant.ITALIC} ); 
-  } 
-}
-</code></pre>
-<p>} 
-  catch(com.sun.star.uno.Exception e) { 
-    System.out.println(e); 
-  } 
-}  // end of italicizeAll() </p>
-<p>After the search descriptor string has been defined, the "SearchCaseSensitive" 
-property in SearchDescriptor is set to false: </p>
-<p>srchDesc.setSearchString(phrase); 
-Props.setProperty(srchDesc, "SearchCaseSensitive", false); </p>
-<p>This allows the search to match text contains both upper and lower case letters, such 
-as "Scandal". Many other search variants, such as restricting the search to complete 
-words, and the use of search similarity parameters are described in the 
-SearchDescriptor documentation (loDoc SearchDescriptor service). </p>
-<p>XSearchable.findAll() returns an XIndexAccess collection, which is examined 
-element-by-element inside a for-loop. The text range for each element is obtained by 
-applying Lo.qi(): 
-XTextRange matchTR = Lo.qiXTextRange.class, matches.getByIndex(i)); 
-The reporting of the matching page and character position use text view and page 
-cursors in the same way as findWords() in TextReplace.java.  </p>
-<p>XTextRange is part of the TextRange service, which inherits ParagraphProperties and 
-CharacterProperties. These properties are changed to adjust the character color and 
-style of the selected range: </p>
-<p>Props.setProperties(matchTR,<br />
-      new String[] {"CharColor", "CharPosture"}, 
-      new Object[] { 0xFF0000, com.sun.star.awt.FontSlant.ITALIC} ); </p>
-<p>This changes the "CharColor" and "CharPosture" properties to red and italic.  </p>
+<span class="n">String</span> <span class="n">usWords</span><span class="o">[]</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">&quot;color&quot;</span><span class="p">,</span> <span class="s">&quot;neighbor&quot;</span><span class="p">,</span> <span class="s">&quot;center&quot;</span><span class="p">,</span> <span class="s">&quot;behavior&quot;</span><span class="p">,</span> <span class="s">&quot;meter&quot;</span><span class="p">,</span> <span class="s">&quot;thru&quot;</span> <span class="p">};</span>
+
+<span class="n">replaceWords</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">ukWords</span><span class="p">,</span> <span class="n">usWords</span><span class="p">);</span>
+</code></pre></div>
+<p>replaceWords() cycles through the arrays, replacing all occurrences of the words in
+the first array (e.g. in ukWords[]) with the corresponding words in the second array
+(e.g. in usWords[]). For instance, every occurrence of "colour" is replaced by "color".</p>
+<p>The output:</p>
+<div class="highlight"><pre><span></span><code>Change all occurrences of ...
+
+  colour -&gt; color
+    - no. of changes: 1
+  neighbour -&gt; neighbor
+    - no. of changes: 2
+  centre -&gt; center
+    - no. of changes: 2
+  behaviour -&gt; behavior
+    - no. of changes: 0
+  metre -&gt; meter
+    - no. of changes: 0
+  through -&gt; thru
+    - no. of changes: 4
+</code></pre></div>
+<p>Since replaceWords() doesn't report page and character positions, its code is
+somewhat shorter than findWords():</p>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">replaceWords</span><span class="p">(</span><span class="n">XTextDocument</span> <span class="n">doc</span><span class="p">,</span>
+                       <span class="n">String</span><span class="o">[]</span> <span class="n">oldWords</span><span class="p">,</span> <span class="n">String</span><span class="o">[]</span> <span class="n">newWords</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XReplaceable</span> <span class="n">replaceable</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XReplaceable</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">doc</span><span class="p">);</span>
+  <span class="n">XReplaceDescriptor</span> <span class="n">replaceDesc</span> <span class="o">=</span>
+                        <span class="n">replaceable</span><span class="p">.</span><span class="na">createReplaceDescriptor</span><span class="p">();</span>
+
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Change all occurrences of ...&quot;</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">oldWords</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  &quot;</span> <span class="o">+</span> <span class="n">oldWords</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="s">&quot; -&gt; &quot;</span> <span class="o">+</span> <span class="n">newWords</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+    <span class="n">replaceDesc</span><span class="p">.</span><span class="na">setSearchString</span><span class="p">(</span><span class="n">oldWords</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+    <span class="n">replaceDesc</span><span class="p">.</span><span class="na">setReplaceString</span><span class="p">(</span><span class="n">newWords</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+
+    <span class="kt">int</span> <span class="n">numChanges</span> <span class="o">=</span> <span class="n">replaceable</span><span class="p">.</span><span class="na">replaceAll</span><span class="p">(</span><span class="n">replaceDesc</span><span class="p">);</span>
+                           <span class="c1">// replace all occurrence of word</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;    - no. of changes: &quot;</span> <span class="o">+</span> <span class="n">numChanges</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of replaceWords()</span>
+</code></pre></div>
+<p>The XReplaceable and XReplaceDescriptor interfaces are created in a similar way to
+their search versions. The replace descriptor has two set methods, one for the search
+string, the other for the replacement string.</p>
+<h2 id="3-finding-all-matching-phrases">3.  Finding all Matching Phrases</h2>
+<p>ItalicsStyler.java is supplied with a filename and a string on the command line. For
+instance:</p>
+<div class="highlight"><pre><span></span><code>&gt; run ItalicsStyler story.doc scandal
+</code></pre></div>
+<p>The program opens the file and uses the "search all' method in XSearchable to find all
+occurrences of the string in the document. The matching strings are italicized and
+colored red, and the changed document saved as "italicized.doc". These changes are
+not performed using XReplaceable methods.</p>
+<p>Figure 3 shows a fragment of the resulting document, with the "scandal" text in the
+title and header changed. The search ignores case, so the word in the title ("Scandal")
+was correctly modified.</p>
+<p><img alt="" src="images/09-Text_Search-3.png" /></p>
+<p>Figure 3. A Fragment of The Italicized Document.</p>
+<p>The ItalicsStyler program also outputs matching details:</p>
+<div class="highlight"><pre><span></span><code>Searching for all occurrence of &quot;scandal&quot;
+No. of matches: 5
+  - found &quot;scandal&quot;
+    - on page 1
+    - starting at char position: 6
+  - found &quot;Scandal&quot;
+    - on page 1
+    - starting at char position: 2
+  - found &quot;scandal&quot;
+    - on page 6
+    - starting at char position: 13153
+  - found &quot;scandal&quot;
+    - on page 18
+    - starting at char position: 38736
+  - found &quot;scandal&quot;
+    - on page 21
+    - starting at char position: 46425
+</code></pre></div>
+<p>As with TextReplace.java, the printed details include the page and character positions
+of the matches.</p>
+<p>The searching in ItalicsStyler.java is performed by italicizeAll(), which bears a close
+resemblance to findWords():</p>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">italicizeAll</span><span class="p">(</span><span class="n">XTextDocument</span> <span class="n">doc</span><span class="p">,</span> <span class="n">String</span> <span class="n">phrase</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// get the text view cursor and linked page cursor</span>
+  <span class="n">XTextViewCursor</span> <span class="n">tvc</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">getViewCursor</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">tvc</span><span class="p">.</span><span class="na">gotoStart</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+  <span class="n">XPageCursor</span> <span class="n">pageCursor</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPageCursor</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">tvc</span><span class="p">);</span>
+
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">XSearchable</span> <span class="n">xSearchable</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XSearchable</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">doc</span><span class="p">);</span>
+    <span class="n">XSearchDescriptor</span> <span class="n">srchDesc</span> <span class="o">=</span>
+                         <span class="n">xSearchable</span><span class="p">.</span><span class="na">createSearchDescriptor</span><span class="p">();</span>
+
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Searching for all</span>
+<span class="s">                         occurrences of \&quot;&quot;</span> <span class="o">+</span> <span class="n">phrase</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">phraseLen</span> <span class="o">=</span> <span class="n">phrase</span><span class="p">.</span><span class="na">length</span><span class="p">();</span>
+    <span class="n">srchDesc</span><span class="p">.</span><span class="na">setSearchString</span><span class="p">(</span><span class="n">phrase</span><span class="p">);</span>
+    <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">srchDesc</span><span class="p">,</span> <span class="s">&quot;SearchCaseSensitive&quot;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+
+    <span class="n">XIndexAccess</span> <span class="n">matches</span> <span class="o">=</span> <span class="n">xSearchable</span><span class="p">.</span><span class="na">findAll</span><span class="p">(</span><span class="n">srchDesc</span><span class="p">);</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No. of matches: &quot;</span> <span class="o">+</span> <span class="n">matches</span><span class="p">.</span><span class="na">getCount</span><span class="p">());</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">matches</span><span class="p">.</span><span class="na">getCount</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">XTextRange</span> <span class="n">matchTR</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XTextRange</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                                      <span class="n">matches</span><span class="p">.</span><span class="na">getByIndex</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">matchTR</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">tvc</span><span class="p">.</span><span class="na">gotoRange</span><span class="p">(</span><span class="n">matchTR</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  - found \&quot;&quot;</span> <span class="o">+</span>
+                                <span class="n">matchTR</span><span class="p">.</span><span class="na">getString</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;    - on page &quot;</span> <span class="o">+</span>
+                                        <span class="n">pageCursor</span><span class="p">.</span><span class="na">getPage</span><span class="p">());</span>
+        <span class="n">tvc</span><span class="p">.</span><span class="na">gotoStart</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;    - starting at char position: &quot;</span> <span class="o">+</span>
+                    <span class="p">(</span><span class="n">tvc</span><span class="p">.</span><span class="na">getString</span><span class="p">().</span><span class="na">length</span><span class="p">()</span> <span class="o">-</span> <span class="n">phraseLen</span><span class="p">));</span>
+        <span class="n">Props</span><span class="p">.</span><span class="na">setProperties</span><span class="p">(</span><span class="n">matchTR</span><span class="p">,</span>
+                   <span class="k">new</span> <span class="n">String</span><span class="o">[]</span> <span class="p">{</span><span class="s">&quot;CharColor&quot;</span><span class="p">,</span> <span class="s">&quot;CharPosture&quot;</span><span class="p">},</span>
+                   <span class="k">new</span> <span class="n">Object</span><span class="o">[]</span> <span class="p">{</span> <span class="mh">0xFF0000</span><span class="p">,</span>
+                          <span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">FontSlant</span><span class="p">.</span><span class="na">ITALIC</span><span class="p">}</span> <span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">uno</span><span class="p">.</span><span class="na">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of italicizeAll()</span>
+</code></pre></div>
+<p>After the search descriptor string has been defined, the "SearchCaseSensitive"
+property in SearchDescriptor is set to false:</p>
+<div class="highlight"><pre><span></span><code><span class="n">srchDesc</span><span class="p">.</span><span class="na">setSearchString</span><span class="p">(</span><span class="n">phrase</span><span class="p">);</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">srchDesc</span><span class="p">,</span> <span class="s">&quot;SearchCaseSensitive&quot;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+</code></pre></div>
+<p>This allows the search to match text contains both upper and lower case letters, such
+as "Scandal". Many other search variants, such as restricting the search to complete
+words, and the use of search similarity parameters are described in the
+SearchDescriptor documentation (loDoc SearchDescriptor service).</p>
+<p>XSearchable.findAll() returns an XIndexAccess collection, which is examined
+element-by-element inside a for-loop. The text range for each element is obtained by
+applying Lo.qi():</p>
+<div class="highlight"><pre><span></span><code><span class="n">XTextRange</span> <span class="n">matchTR</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qiXTextRange</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">matches</span><span class="p">.</span><span class="na">getByIndex</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+</code></pre></div>
+<p>The reporting of the matching page and character position use text view and page
+cursors in the same way as findWords() in TextReplace.java.</p>
+<p>XTextRange is part of the TextRange service, which inherits ParagraphProperties and
+CharacterProperties. These properties are changed to adjust the character color and
+style of the selected range:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Props</span><span class="p">.</span><span class="na">setProperties</span><span class="p">(</span><span class="n">matchTR</span><span class="p">,</span>
+      <span class="k">new</span> <span class="n">String</span><span class="o">[]</span> <span class="p">{</span><span class="s">&quot;CharColor&quot;</span><span class="p">,</span> <span class="s">&quot;CharPosture&quot;</span><span class="p">},</span>
+      <span class="k">new</span> <span class="n">Object</span><span class="o">[]</span> <span class="p">{</span> <span class="mh">0xFF0000</span><span class="p">,</span> <span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">FontSlant</span><span class="p">.</span><span class="na">ITALIC</span><span class="p">}</span> <span class="p">);</span>
+</code></pre></div>
+<p>This changes the "CharColor" and "CharPosture" properties to red and italic.</p>
                 
               
               

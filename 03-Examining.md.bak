@@ -473,8 +473,8 @@ print methods, it's possible to move around the window's data, looking inside pr
 objects.
 
 One enormously useful feature is automatic code generation, which is possible in a
-variety of different languages, including Java. The code type is set through the Tools
-> Code menu item, and the code appears in a window which is initially of size 0. It's
+variety of different languages, including Java. The code type is set through the Tools,
+Code menu item, and the code appears in a window which is initially of size 0. It's
 hidden below the large window and above the status bar; drag the large window's
 lower border upwards to make the code window visible.
 
@@ -511,7 +511,6 @@ One benefit of using MRI is the large amount of excellent documentation. The
 extension includes a "Help" menu item, and a configurable link to online Office
 documentation. MRI has its own wiki, at https://github.com/hanya/MRI/wiki, and
 there are several forum posts about using it for code generation (e.g.
-
 https://forum.openoffice.org/en/forum/viewtopic.php?f=74&t=49294) and for
 navigating MRI's object hierarchy
 (https://forum.openoffice.org/en/forum/download/file.php?id=17368&sid=373c5d782

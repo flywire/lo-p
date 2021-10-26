@@ -440,54 +440,6 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-id-orgopenofficeenhunspelldictionaries" class="md-nav__link">
-    1.  ID: org.openoffice.en.hunspell.dictionaries
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-id-frenchlinguisticresourcesfromdicollectebyolivierr" class="md-nav__link">
-    2.  ID: French.linguistic.resources.from.Dicollecte.by.OlivierR
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-id-orgopenofficelanguagetooloxt" class="md-nav__link">
-    3.  ID: org.openoffice.languagetool.oxt
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-id-comsunstarcompcalcnlpsolver" class="md-nav__link">
-    4.  ID: com.sun.star.comp.Calc.NLPSolver
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-id-spanishes_anydictsfromrla-es" class="md-nav__link">
-    5.  ID: spanish.es_ANY.dicts.from.rla-es
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-id-comsunwiki-publisher" class="md-nav__link">
-    6.  ID: com.sun.wiki-publisher
-  </a>
-  
-    <nav class="md-nav" aria-label="6.  ID: com.sun.wiki-publisher">
-      <ul class="md-nav__list">
-        
           <li class="md-nav__item">
   <a href="#14-examining-the-lingu-services" class="md-nav__link">
     1.4.  Examining the Lingu Services
@@ -510,20 +462,6 @@
         <li class="md-nav__item">
   <a href="#3-using-the-thesaurus" class="md-nav__link">
     3.  Using the Thesaurus
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-meaning-noun-prestidigitator" class="md-nav__link">
-    1.  Meaning: (noun) prestidigitator
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-meaning-noun-sorcerer" class="md-nav__link">
-    2.  Meaning: (noun) sorcerer
   </a>
   
 </li>
@@ -1350,54 +1288,6 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-id-orgopenofficeenhunspelldictionaries" class="md-nav__link">
-    1.  ID: org.openoffice.en.hunspell.dictionaries
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-id-frenchlinguisticresourcesfromdicollectebyolivierr" class="md-nav__link">
-    2.  ID: French.linguistic.resources.from.Dicollecte.by.OlivierR
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-id-orgopenofficelanguagetooloxt" class="md-nav__link">
-    3.  ID: org.openoffice.languagetool.oxt
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-id-comsunstarcompcalcnlpsolver" class="md-nav__link">
-    4.  ID: com.sun.star.comp.Calc.NLPSolver
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-id-spanishes_anydictsfromrla-es" class="md-nav__link">
-    5.  ID: spanish.es_ANY.dicts.from.rla-es
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-id-comsunwiki-publisher" class="md-nav__link">
-    6.  ID: com.sun.wiki-publisher
-  </a>
-  
-    <nav class="md-nav" aria-label="6.  ID: com.sun.wiki-publisher">
-      <ul class="md-nav__list">
-        
           <li class="md-nav__item">
   <a href="#14-examining-the-lingu-services" class="md-nav__link">
     1.4.  Examining the Lingu Services
@@ -1420,20 +1310,6 @@
         <li class="md-nav__item">
   <a href="#3-using-the-thesaurus" class="md-nav__link">
     3.  Using the Thesaurus
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-meaning-noun-prestidigitator" class="md-nav__link">
-    1.  Meaning: (noun) prestidigitator
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-meaning-noun-sorcerer" class="md-nav__link">
-    2.  Meaning: (noun) sorcerer
   </a>
   
 </li>
@@ -1499,1001 +1375,1077 @@
                 <h1 id="chapter-10-the-linguistics-api">Chapter 10. The Linguistics API</h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
-<p>Linguistic 
-Tools; Using the Spell 
-Checker; Using the 
-Thesaurus; Grammar 
-Checking; Guessing the 
-Language used in a 
-String; Spell Checking 
-and Grammar Checking 
-a Document </p>
-<p>Example folders: "Lingu 
-Tests" and "Utils" </p>
+<p>Linguistic
+Tools; Using the Spell
+Checker; Using the
+Thesaurus; Grammar
+Checking; Guessing the
+Language used in a
+String; Spell Checking
+and Grammar Checking
+a Document</p>
+<p>Example folders: "Lingu
+Tests" and "Utils"</p>
 </div>
-<p>The linguistics API has four main components – a spell 
-checker, a hyphenator, a thesaurus, and a grammar 
-checker (which Office calls a proof reader). I'll look at 
-how to program using the spell checker, thesaurus, and 
-two grammar checkers, but I'll skip the hyphenator which 
-is easier to use interactively through Office's  GUI. </p>
-<p>However, if you have an urge to hyphenate, then 
-LingusticExamples.java in the Developer's Guide 
-examples contains some code; it can be downloaded from 
+<p>The linguistics API has four main components – a spell
+checker, a hyphenator, a thesaurus, and a grammar
+checker (which Office calls a proof reader). I'll look at
+how to program using the spell checker, thesaurus, and
+two grammar checkers, but I'll skip the hyphenator which
+is easier to use interactively through Office's  GUI.</p>
+<p>However, if you have an urge to hyphenate, then
+LingusticExamples.java in the Developer's Guide
+examples contains some code; it can be downloaded from
 http://api.libreoffice.org/examples/DevelopersGuide/OfficeDev/Linguistic/Linguistic
-Examples.java. </p>
-<p>I'll describe two examples, Lingo.java and LingoFile.java. The first lists information 
-about the linguistic services, then uses the spell checker, thesaurus, and grammar 
-checker 'standalone' without having to load an Office document first. LingoFile.java 
-automatically spell checks and grammar checks a complete file, reporting errors 
-without altering the document. </p>
-<p>One topic I'll be ignoring is how to create and edit the data files used by the linguistic 
-services. For that task, you should have a look at PTG (Proofing Tool GUI) developed 
-by Marco Pinto at http://marcoagpinto.cidadevirtual.pt/proofingtoolgui.html. It's an 
-open source tool for editing Office's  dictionary, thesaurus, hyphenation, and 
-autocorrect files.  </p>
-<p>Another area I'll be skipping is the use of events and listeners. Please refer to the 
-"Linguistics" sub-section of chapter 6 of the Developer's Guide for details (loGuide 
-Linguistics). Listener code can be found in LinguisticExamples.java mentioned 
-above. </p>
-<p>The linguistic features accessible through Office's GUI are explained in chapter 3 of 
-the "Writer Guide", available at http://www.libreoffice.org/get-help/documentation/, 
-starting from the section called "Checking spelling and grammar". </p>
-<p>An older information source is the "Lingucomponent Project" page at the OpenOffice 
-website, http://www.openoffice.org/lingucomponent/, which links to some useful 
-tools, such as alternative grammar checkers. An interesting set of slides by Daniel 
-Naber explaining the state of the project in 2005 can be found at 
-http://www.danielnaber.de/publications/, along with more recent material. </p>
+Examples.java.</p>
+<p>I'll describe two examples, Lingo.java and LingoFile.java. The first lists information
+about the linguistic services, then uses the spell checker, thesaurus, and grammar
+checker 'standalone' without having to load an Office document first. LingoFile.java
+automatically spell checks and grammar checks a complete file, reporting errors
+without altering the document.</p>
+<p>One topic I'll be ignoring is how to create and edit the data files used by the linguistic
+services. For that task, you should have a look at PTG (Proofing Tool GUI) developed
+by Marco Pinto at http://marcoagpinto.cidadevirtual.pt/proofingtoolgui.html. It's an
+open source tool for editing Office's  dictionary, thesaurus, hyphenation, and
+autocorrect files.</p>
+<p>Another area I'll be skipping is the use of events and listeners. Please refer to the
+"Linguistics" sub-section of chapter 6 of the Developer's Guide for details
+(<code>loGuide Linguistics</code>). Listener code can be found in LinguisticExamples.java mentioned
+above.</p>
+<p>The linguistic features accessible through Office's GUI are explained in chapter 3 of
+the "Writer Guide", available at http://www.libreoffice.org/get-help/documentation/,
+starting from the section called "Checking spelling and grammar".</p>
+<p>An older information source is the "Lingucomponent Project" page at the OpenOffice
+website, http://www.openoffice.org/lingucomponent/, which links to some useful
+tools, such as alternative grammar checkers. An interesting set of slides by Daniel
+Naber explaining the state of the project in 2005 can be found at
+http://www.danielnaber.de/publications/, along with more recent material.</p>
 <h2 id="1-the-linguistic-tools">1.  The Linguistic Tools</h2>
-<p>Lingo.java prints a variety of information about the linguistics services: </p>
-<p>public static void main(String args[]) 
-{ 
-  Lo.loadOffice(); </p>
-<p>// print linguistics info 
-  Write.dictsInfo(); </p>
-<p>XLinguProperties linguProps = Write.getLinguProperties(); 
-  Props.showProps("Linguistic Manager", linguProps); </p>
-<p>Info.listExtensions(); </p>
-<p>// get lingo manager 
-  XLinguServiceManager2 lingoMgr =<br />
-           Lo.createInstanceMCF(XLinguServiceManager2.class,<br />
-                   "com.sun.star.linguistic2.LinguServiceManager"); 
-  if (lingoMgr == null) { 
-    System.out.println("No linguistics manager found"); 
-    Lo.closeOffice(); 
-    return; 
-  } </p>
-<p>Write.printServicesInfo(lingoMgr); </p>
-<pre><code>: // code for using the services; see later
-</code></pre>
-<p>Lo.closeOffice(); 
-}  // end of main() </p>
+<p>Lingo.java prints a variety of information about the linguistics services:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+
+  <span class="c1">// print linguistics info</span>
+  <span class="n">Write</span><span class="p">.</span><span class="na">dictsInfo</span><span class="p">();</span>
+
+  <span class="n">XLinguProperties</span> <span class="n">linguProps</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">getLinguProperties</span><span class="p">();</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">showProps</span><span class="p">(</span><span class="s">&quot;Linguistic Manager&quot;</span><span class="p">,</span> <span class="n">linguProps</span><span class="p">);</span>
+
+  <span class="n">Info</span><span class="p">.</span><span class="na">listExtensions</span><span class="p">();</span>
+
+  <span class="c1">// get lingo manager</span>
+  <span class="n">XLinguServiceManager2</span> <span class="n">lingoMgr</span> <span class="o">=</span>
+           <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XLinguServiceManager2</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                   <span class="s">&quot;com.sun.star.linguistic2.LinguServiceManager&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">lingoMgr</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No linguistics manager found&quot;</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">Write</span><span class="p">.</span><span class="na">printServicesInfo</span><span class="p">(</span><span class="n">lingoMgr</span><span class="p">);</span>
+
+    <span class="p">:</span> <span class="c1">// code for using the services; see later</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of main()</span>
+</code></pre></div>
 <h3 id="11-dictionary-information">1.1.  Dictionary Information</h3>
-<p>Write.dictsInfo() prints brief details about Office's dictionaries: </p>
-<p>No. of dictionaries: 5 
-  standard.dic (1); active; ""; positive 
-  en-GB.dic (42); active; "GB"; positive 
-  en-US.dic (42); active; "US"; positive 
-  technical.dic (258); active; ""; positive 
-  IgnoreAllList (0); active; ""; positive </p>
-<p>No. of conversion dictionaries: 0 </p>
-<p>Each line includes the name of a dictionary, its number of entries, whether it's active 
-(i.e. being used), its locale, and whether it's a positive, negative, or mixed dictionary. </p>
-<p>A positive dictionary holds correctly spelled words only, while a negative one lists 
-incorrectly spelt words. A mixed dictionary contains both correctly and incorrectly 
-spelt entries. </p>
-<p>If a dictionary has a locale, such as "GB" for en-GB.dic, then it's only utilized during 
-spell checking if its locale matches Office's. The Office locale can be set via the Tools </p>
-<blockquote>
-<p>Options &gt; Language Settings &gt; "Languages" dialog shown in Figure 1. </p>
-</blockquote>
+<p>Write.dictsInfo() prints brief details about Office's dictionaries:</p>
+<div class="highlight"><pre><span></span><code><span class="n">No</span><span class="p">.</span> <span class="n">of</span> <span class="n">dictionaries</span><span class="p">:</span> <span class="mi">5</span>
+  <span class="n">standard</span><span class="p">.</span><span class="na">dic</span> <span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="n">active</span><span class="p">;</span> <span class="s">&quot;&quot;</span><span class="p">;</span> <span class="n">positive</span>
+  <span class="n">en</span><span class="o">-</span><span class="n">GB</span><span class="p">.</span><span class="na">dic</span> <span class="p">(</span><span class="mi">42</span><span class="p">);</span> <span class="n">active</span><span class="p">;</span> <span class="s">&quot;GB&quot;</span><span class="p">;</span> <span class="n">positive</span>
+  <span class="n">en</span><span class="o">-</span><span class="n">US</span><span class="p">.</span><span class="na">dic</span> <span class="p">(</span><span class="mi">42</span><span class="p">);</span> <span class="n">active</span><span class="p">;</span> <span class="s">&quot;US&quot;</span><span class="p">;</span> <span class="n">positive</span>
+  <span class="n">technical</span><span class="p">.</span><span class="na">dic</span> <span class="p">(</span><span class="mi">258</span><span class="p">);</span> <span class="n">active</span><span class="p">;</span> <span class="s">&quot;&quot;</span><span class="p">;</span> <span class="n">positive</span>
+  <span class="nf">IgnoreAllList</span> <span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="n">active</span><span class="p">;</span> <span class="s">&quot;&quot;</span><span class="p">;</span> <span class="n">positive</span>
+
+<span class="n">No</span><span class="p">.</span> <span class="n">of</span> <span class="n">conversion</span> <span class="n">dictionaries</span><span class="p">:</span> <span class="mi">0</span>
+</code></pre></div>
+<p>Each line includes the name of a dictionary, its number of entries, whether it's active
+(i.e. being used), its locale, and whether it's a positive, negative, or mixed dictionary.</p>
+<p>A positive dictionary holds correctly spelled words only, while a negative one lists
+incorrectly spelt words. A mixed dictionary contains both correctly and incorrectly
+spelt entries.</p>
+<p>If a dictionary has a locale, such as "GB" for en-GB.dic, then it's only utilized during
+spell checking if its locale matches Office's. The Office locale can be set via the Tools,
+Options, Language Settings, "Languages" dialog shown in Figure 1.</p>
 <p><img alt="" src="images/10-Linguistics-1.png" /></p>
-<p>Figure 1. The Languages Dialog. </p>
-<p>Figure 1 shows that my version of Office is using the American English locale, and so 
-en-GB.dic won't be consulted when text is spell checked. </p>
-<p>Write.dictsInfo() is defined as: </p>
-<p>// in the Write class 
-public static void dictsInfo() 
-{ 
-  XSearchableDictionaryList dictList =<br />
-           Lo.createInstanceMCF(XSearchableDictionaryList.class,<br />
-                   "com.sun.star.linguistic2.DictionaryList"); 
-  if (dictList == null) 
-    System.out.println("No list of dictionaries found"); 
-  else 
-    printDictsInfo(dictList); </p>
-<p>XConversionDictionaryList cdList =<br />
-           Lo.createInstanceMCF(XConversionDictionaryList.class,<br />
-               "com.sun.star.linguistic2.ConversionDictionaryList"); 
-  if (cdList == null) 
-    System.out.println("No list of conversion dictionaries found"); 
-  else 
-    printConDictsInfo(cdList); 
-}  // end of dictsInfo() </p>
-<p>It retrieves a conventional dictionary list first (called dictList), and iterates through its 
-dictionaries using printDictsInfo(). Then it obtains the conversion dictionary list 
-(called csList), and iterates over that with printConDictsInfo(). </p>
-<p>Figure 3 shows the main services and interfaces used by ordinary dictionaries. </p>
+<p>Figure 1. The Languages Dialog.</p>
+<p>Figure 1 shows that my version of Office is using the American English locale, and so
+en-GB.dic won't be consulted when text is spell checked.</p>
+<p>Write.dictsInfo() is defined as:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Write class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">dictsInfo</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">XSearchableDictionaryList</span> <span class="n">dictList</span> <span class="o">=</span>
+           <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XSearchableDictionaryList</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                   <span class="s">&quot;com.sun.star.linguistic2.DictionaryList&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">dictList</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No list of dictionaries found&quot;</span><span class="p">);</span>
+  <span class="k">else</span>
+    <span class="n">printDictsInfo</span><span class="p">(</span><span class="n">dictList</span><span class="p">);</span>
+
+  <span class="n">XConversionDictionaryList</span> <span class="n">cdList</span> <span class="o">=</span>
+           <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XConversionDictionaryList</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+               <span class="s">&quot;com.sun.star.linguistic2.ConversionDictionaryList&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">cdList</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No list of conversion dictionaries found&quot;</span><span class="p">);</span>
+  <span class="k">else</span>
+    <span class="n">printConDictsInfo</span><span class="p">(</span><span class="n">cdList</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of dictsInfo()</span>
+</code></pre></div>
+<p>It retrieves a conventional dictionary list first (called dictList), and iterates through its
+dictionaries using printDictsInfo(). Then it obtains the conversion dictionary list
+(called csList), and iterates over that with printConDictsInfo().</p>
+<p>Figure 3 shows the main services and interfaces used by ordinary dictionaries.</p>
 <p><img alt="" src="images/10-Linguistics-3.png" /></p>
-<p>Figure 3. The DictionaryList and Dictionary Services. </p>
-<p>Each dictionary in the list has an XDictionary interface which contains methods for 
-accessing and changing its entries. printDictsInfo() retrieves an XDictionary array 
-from the list, and prints out a summary of each dictionary: </p>
-<p>// in the Write class 
-public static void printDictsInfo( 
-                      XSearchableDictionaryList dictList) 
-{ if (dictList == null) { 
-    System.out.println("Dictionary list is null"); 
-    return; 
-  } 
-  System.out.println("No. of dictionaries: " +<br />
-                                     dictList.getCount()); 
-  XDictionary[] dicts = dictList.getDictionaries(); 
-  for(XDictionary dict : dicts) 
-    System.out.println("  " + dict.getName() +<br />
-                    " (" + dict.getCount() +<br />
-                    "); " + (dict.isActive() ? "active" : "na") + 
-                    "; \"" + dict.getLocale().Country +<br />
-                    "\"; " +<br />
-                    getDictType(dict.getDictionaryType())); 
-  System.out.println(); 
-}  // end of printDictsInfo() </p>
-<p>public static String getDictType(DictionaryType dt) 
-{ 
-  if (dt == DictionaryType.POSITIVE) 
-    return "positive"; 
-  else if (dt == DictionaryType.NEGATIVE) 
-    return "negative"; 
-  else if (dt == DictionaryType.MIXED) 
-    return "mixed"; 
-  else 
-    return "??"; 
-}  // end of getDictType() </p>
-<p>Conversion dictionaries map words in one language/dialect to corresponding words in 
-another language/dialect. Figure 4 shows that conversion dictionaries are organized in 
-a similar way to ordinary ones. The interfaces for manipulating a conversion 
-dictionary are XConversionDictionary and XConversionPropertyType. </p>
+<p>Figure 3. The DictionaryList and Dictionary Services.</p>
+<p>Each dictionary in the list has an XDictionary interface which contains methods for
+accessing and changing its entries. printDictsInfo() retrieves an XDictionary array
+from the list, and prints out a summary of each dictionary:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Write class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printDictsInfo</span><span class="p">(</span>
+                      <span class="n">XSearchableDictionaryList</span> <span class="n">dictList</span><span class="p">)</span>
+<span class="p">{</span> <span class="k">if</span> <span class="p">(</span><span class="n">dictList</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Dictionary list is null&quot;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No. of dictionaries: &quot;</span> <span class="o">+</span>
+                                     <span class="n">dictList</span><span class="p">.</span><span class="na">getCount</span><span class="p">());</span>
+  <span class="n">XDictionary</span><span class="o">[]</span> <span class="n">dicts</span> <span class="o">=</span> <span class="n">dictList</span><span class="p">.</span><span class="na">getDictionaries</span><span class="p">();</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">XDictionary</span> <span class="n">dict</span> <span class="p">:</span> <span class="n">dicts</span><span class="p">)</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  &quot;</span> <span class="o">+</span> <span class="n">dict</span><span class="p">.</span><span class="na">getName</span><span class="p">()</span> <span class="o">+</span>
+                    <span class="s">&quot; (&quot;</span> <span class="o">+</span> <span class="n">dict</span><span class="p">.</span><span class="na">getCount</span><span class="p">()</span> <span class="o">+</span>
+                    <span class="s">&quot;); &quot;</span> <span class="o">+</span> <span class="p">(</span><span class="n">dict</span><span class="p">.</span><span class="na">isActive</span><span class="p">()</span> <span class="o">?</span> <span class="s">&quot;active&quot;</span> <span class="p">:</span> <span class="s">&quot;na&quot;</span><span class="p">)</span> <span class="o">+</span>
+                    <span class="s">&quot;; \&quot;&quot;</span> <span class="o">+</span> <span class="n">dict</span><span class="p">.</span><span class="na">getLocale</span><span class="p">().</span><span class="na">Country</span> <span class="o">+</span>
+                    <span class="s">&quot;\&quot;; &quot;</span> <span class="o">+</span>
+                    <span class="n">getDictType</span><span class="p">(</span><span class="n">dict</span><span class="p">.</span><span class="na">getDictionaryType</span><span class="p">()));</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of printDictsInfo()</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">getDictType</span><span class="p">(</span><span class="n">DictionaryType</span> <span class="n">dt</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">dt</span> <span class="o">==</span> <span class="n">DictionaryType</span><span class="p">.</span><span class="na">POSITIVE</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s">&quot;positive&quot;</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">dt</span> <span class="o">==</span> <span class="n">DictionaryType</span><span class="p">.</span><span class="na">NEGATIVE</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s">&quot;negative&quot;</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">dt</span> <span class="o">==</span> <span class="n">DictionaryType</span><span class="p">.</span><span class="na">MIXED</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s">&quot;mixed&quot;</span><span class="p">;</span>
+  <span class="k">else</span>
+    <span class="k">return</span> <span class="s">&quot;??&quot;</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of getDictType()</span>
+</code></pre></div>
+<p>Conversion dictionaries map words in one language/dialect to corresponding words in
+another language/dialect. Figure 4 shows that conversion dictionaries are organized in
+a similar way to ordinary ones. The interfaces for manipulating a conversion
+dictionary are XConversionDictionary and XConversionPropertyType.</p>
 <p><img alt="" src="images/10-Linguistics-4.png" /></p>
-<p>Figure 4. The ConversionDictionaryList and ConversionDictionary Services. </p>
-<p>Write.dictsInfo() calls printConDictsInfo() to print the names of the conversion 
-dictionaries – by extracting an XNameContainer from the dictionary list, and then 
-pulling a list of the names from the container:  </p>
-<p>// in the Write clas 
-public static void printConDictsInfo( 
-                     XConversionDictionaryList cdList) 
-{ if (cdList == null) { 
-    System.out.println("Conversion Dictionary list is null"); 
-    return; 
-  } 
-  XNameContainer dcCon = cdList.getDictionaryContainer();<br />
-  String[] dcNames = dcCon.getElementNames(); 
-  System.out.println("No. of conversion dictionaries: " +<br />
-                                            dcNames.length); 
-  for(String dcName : dcNames) 
-    System.out.println("  " + dcName); 
-  System.out.println(); 
-}  // end of printConDictsInfo() </p>
-<p>Output similar to Write.dictsInfo() can be viewed via Office's Tools &gt; Options&gt; 
-Language Settings &gt; "Writing Aids" dialog, shown in Figure 5. </p>
+<p>Figure 4. The ConversionDictionaryList and ConversionDictionary Services.</p>
+<p>Write.dictsInfo() calls printConDictsInfo() to print the names of the conversion
+dictionaries – by extracting an XNameContainer from the dictionary list, and then
+pulling a list of the names from the container:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Write clas</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printConDictsInfo</span><span class="p">(</span>
+                     <span class="n">XConversionDictionaryList</span> <span class="n">cdList</span><span class="p">)</span>
+<span class="p">{</span> <span class="k">if</span> <span class="p">(</span><span class="n">cdList</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Conversion Dictionary list is null&quot;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">XNameContainer</span> <span class="n">dcCon</span> <span class="o">=</span> <span class="n">cdList</span><span class="p">.</span><span class="na">getDictionaryContainer</span><span class="p">();</span>
+  <span class="n">String</span><span class="o">[]</span> <span class="n">dcNames</span> <span class="o">=</span> <span class="n">dcCon</span><span class="p">.</span><span class="na">getElementNames</span><span class="p">();</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No. of conversion dictionaries: &quot;</span> <span class="o">+</span>
+                                            <span class="n">dcNames</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">String</span> <span class="n">dcName</span> <span class="p">:</span> <span class="n">dcNames</span><span class="p">)</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  &quot;</span> <span class="o">+</span> <span class="n">dcName</span><span class="p">);</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of printConDictsInfo()</span>
+</code></pre></div>
+<p>Output similar to Write.dictsInfo() can be viewed via Office's Tools, Options,
+Language Settings, "Writing Aids" dialog, shown in Figure 5.</p>
 <p><img alt="" src="images/10-Linguistics-5.png" /></p>
-<p>Figure 5. The Writing Aids Dialog. </p>
-<p>The dictionaries are listed in the second pane of the dialog. Also, at the bottom of the 
-window is a "Get more dictionaries online" hyperlink which takes the user to Office's 
-extension website, and displays the "Dictionary" category (see Figure 6). </p>
+<p>Figure 5. The Writing Aids Dialog.</p>
+<p>The dictionaries are listed in the second pane of the dialog. Also, at the bottom of the
+window is a "Get more dictionaries online" hyperlink which takes the user to Office's
+extension website, and displays the "Dictionary" category (see Figure 6).</p>
 <p><img alt="" src="images/10-Linguistics-6.png" /></p>
-<p>Figure 6. The Dictionary Extensions at the LibreOffice Website. </p>
-<p>The URL of the page in Figure 6 is: 
-http://extensions.libreoffice.org/ 
-                 extension-center?getCategories=Dictionary 
-The dictionary category currently has 94 entries, but if you can't find what you're 
-looking for, don't forget the extensions for OpenOffice, at: 
-http://extensions.openoffice.org/ 
-If you're unclear about how to install extensions, the process is explained online at 
-https://wiki.documentfoundation.org/Documentation/HowTo/install_extension, or in 
+<p>Figure 6. The Dictionary Extensions at the LibreOffice Website.</p>
+<p>The URL of the page in Figure 6 is:
+http://extensions.libreoffice.org/
+                 extension-center?getCategories=Dictionary
+The dictionary category currently has 94 entries, but if you can't find what you're
+looking for, don't forget the extensions for OpenOffice, at:
+http://extensions.openoffice.org/
+If you're unclear about how to install extensions, the process is explained online at
+https://wiki.documentfoundation.org/Documentation/HowTo/install_extension, or in
 the "Installing Extensions" guide available at http://www.libreoffice.org/get-
-help/documentation/. </p>
+help/documentation/.</p>
 <h3 id="12-linguistic-properties">1.2.  Linguistic Properties</h3>
-<p>Back in the Lingo.java example, Write.getLinguProperties() returns an instance of 
-XLinguProperties, and its properties are printed by calling Props.showProps(): </p>
-<p>// in Lingo.java 
-XLinguProperties linguProps = Write.getLinguProperties(); 
-Props.showProps("Linguistic Manager", linguProps); </p>
-<p>The output: </p>
-<p>Linguistic Manager Properties 
-  DefaultLanguage == 0 
-  DefaultLocale == com.sun.star.lang.Locale@1f95c5d 
-  DefaultLocale_CJK == com.sun.star.lang.Locale@cd43c2 
-  DefaultLocale_CTL == com.sun.star.lang.Locale@a8f0b4 
-  HyphMinLeading == 2 
-  HyphMinTrailing == 2 
-  HyphMinWordLength == 5 
-  IsGermanPreReform == Any[Type[void], null] 
-  IsHyphAuto == false 
-  IsHyphSpecial == true 
-  IsIgnoreControlCharacters == true 
-  IsSpellAuto == false 
-  IsSpellCapitalization == true 
-  IsSpellHide == Any[Type[void], null] 
-  IsSpellInAllLanguages == Any[Type[void], null] 
-  IsSpellSpecial == true 
-  IsSpellUpperCase == true 
-  IsSpellWithDigits == false 
-  IsUseDictionaryList == true 
-  IsWrapReverse == false </p>
-<p>These properties are explained in the online documentation for the XLinguProperties 
-interface (lodoc XLinguProperties), and also in the Developer's Guide.  </p>
-<p>The properties are spread across several dialogs in Office's GUI, starting from the 
-Tools &gt; Options &gt; "Language Settings" menu item. However,  most of them are in the 
-"Options" pane of the "Writing Aids" Dialog in Figure 5.  </p>
+<p>Back in the Lingo.java example, Write.getLinguProperties() returns an instance of
+XLinguProperties, and its properties are printed by calling Props.showProps():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Lingo.java</span>
+<span class="n">XLinguProperties</span> <span class="n">linguProps</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">getLinguProperties</span><span class="p">();</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">showProps</span><span class="p">(</span><span class="s">&quot;Linguistic Manager&quot;</span><span class="p">,</span> <span class="n">linguProps</span><span class="p">);</span>
+</code></pre></div>
+<p>The output:</p>
+<div class="highlight"><pre><span></span><code>Linguistic Manager Properties
+  DefaultLanguage == 0
+  DefaultLocale == com.sun.star.lang.Locale@1f95c5d
+  DefaultLocale_CJK == com.sun.star.lang.Locale@cd43c2
+  DefaultLocale_CTL == com.sun.star.lang.Locale@a8f0b4
+  HyphMinLeading == 2
+  HyphMinTrailing == 2
+  HyphMinWordLength == 5
+  IsGermanPreReform == Any[Type[void], null]
+  IsHyphAuto == false
+  IsHyphSpecial == true
+  IsIgnoreControlCharacters == true
+  IsSpellAuto == false
+  IsSpellCapitalization == true
+  IsSpellHide == Any[Type[void], null]
+  IsSpellInAllLanguages == Any[Type[void], null]
+  IsSpellSpecial == true
+  IsSpellUpperCase == true
+  IsSpellWithDigits == false
+  IsUseDictionaryList == true
+  IsWrapReverse == false
+</code></pre></div>
+<p>These properties are explained in the online documentation for the XLinguProperties
+interface (lodoc XLinguProperties), and also in the Developer's Guide.</p>
+<p>The properties are spread across several dialogs in Office's GUI, starting from the
+Tools, Options, "Language Settings" menu item. However,  most of them are in the
+"Options" pane of the "Writing Aids" Dialog in Figure 5.</p>
 <h3 id="13-installed-extensions">1.3.  Installed Extensions</h3>
-<p>Additional dictionaries, and other language tools such as grammar checkers, are 
-loaded into Office as extensions, so calling Info.listExtensions() can be informative. </p>
-<p>The output on one of my test machine is: </p>
-<p>Extensions: </p>
-<h2 id="1-id-orgopenofficeenhunspelldictionaries">1.  ID: org.openoffice.en.hunspell.dictionaries</h2>
-<p>Version: 2011.12.05.1 
-   Loc: file:///C:/Program%20Files/LibreOffice%205/program/ 
-            ../share/extensions/dict-en </p>
-<h2 id="2-id-frenchlinguisticresourcesfromdicollectebyolivierr">2.  ID: French.linguistic.resources.from.Dicollecte.by.OlivierR</h2>
-<p>Version: 5.4.1 
-   Loc: file:///C:/Program%20Files/LibreOffice%205/program/ 
-            ../share/extensions/dict-fr </p>
-<h2 id="3-id-orgopenofficelanguagetooloxt">3.  ID: org.openoffice.languagetool.oxt</h2>
-<p>Version: 3.4 
-   Loc: file:///C:/Program%20Files/LibreOffice%205/program/ 
-            ../share/uno_packages/cache/uno_packages/ 
-            lu4156ef34f.tmp_/LanguageTool-3.4.oxt </p>
-<h2 id="4-id-comsunstarcompcalcnlpsolver">4.  ID: com.sun.star.comp.Calc.NLPSolver</h2>
-<p>Version: 0.9 
-   Loc: file:///C:/Program%20Files/LibreOffice%205/program/ 
-            ../share/extensions/nlpsolver </p>
-<h2 id="5-id-spanishes_anydictsfromrla-es">5.  ID: spanish.es_ANY.dicts.from.rla-es</h2>
-<p>Version: 0.8 
-   Loc: file:///C:/Program%20Files/LibreOffice%205/program/ 
-            ../share/extensions/dict-es </p>
-<h2 id="6-id-comsunwiki-publisher">6.  ID: com.sun.wiki-publisher</h2>
-<p>Version: 1.2.0 
-   Loc: file:///C:/Program%20Files/LibreOffice%205/program/ 
-            ../share/extensions/wiki-publisher </p>
-<p>The "Loc" entries are the directories or OXT files containing the extensions. Most 
-extensions are placed in the <OFFICE>\share\extensions\ folder on Windows. </p>
-<p>Office can display similar information via its Tools &gt; "Extension Manager" dialog, as 
-in Figure 7. </p>
+<p>Additional dictionaries, and other language tools such as grammar checkers, are
+loaded into Office as extensions, so calling Info.listExtensions() can be informative.</p>
+<p>The output on one of my test machine is:</p>
+<div class="highlight"><pre><span></span><code>Extensions:
+1.  ID: org.openoffice.en.hunspell.dictionaries
+
+   Version: 2011.12.05.1
+   Loc: file:///C:/Program%20Files/LibreOffice%205/program/
+            ../share/extensions/dict-en
+
+2.  ID: French.linguistic.resources.from.Dicollecte.by.OlivierR
+
+   Version: 5.4.1
+   Loc: file:///C:/Program%20Files/LibreOffice%205/program/
+            ../share/extensions/dict-fr
+
+3.  ID: org.openoffice.languagetool.oxt
+
+   Version: 3.4
+   Loc: file:///C:/Program%20Files/LibreOffice%205/program/
+            ../share/uno_packages/cache/uno_packages/
+            lu4156ef34f.tmp_/LanguageTool-3.4.oxt
+
+4.  ID: com.sun.star.comp.Calc.NLPSolver
+
+   Version: 0.9
+   Loc: file:///C:/Program%20Files/LibreOffice%205/program/
+            ../share/extensions/nlpsolver
+
+5.  ID: spanish.es_ANY.dicts.from.rla-es
+
+   Version: 0.8
+   Loc: file:///C:/Program%20Files/LibreOffice%205/program/
+            ../share/extensions/dict-es
+
+6.  ID: com.sun.wiki-publisher
+
+   Version: 1.2.0
+   Loc: file:///C:/Program%20Files/LibreOffice%205/program/
+            ../share/extensions/wiki-publisher
+</code></pre></div>
+<p>The "Loc" entries are the directories or OXT files containing the extensions. Most
+extensions are placed in the <OFFICE>\share\extensions\ folder on Windows.</p>
+<p>Office can display similar information via its Tools, "Extension Manager" dialog, as
+in Figure 7.</p>
 <p><img alt="" src="images/10-Linguistics-7.png" /></p>
-<p>Figure 7. The Extension Manager Dialog. </p>
-<p>The code for Info.listExtensions(): </p>
-<p>// in the Info class 
-public static void listExtensions() 
-{ 
-  XPackageInformationProvider pip = getPip(); 
-  if (pip == null) 
-    System.out.println("No package info provider found"); 
-  else { 
-    String[][] extsTable = pip.getExtensionList(); 
-    System.out.println("\nExtensions:"); 
-    String serviceName; 
-    for(int i=0; i &lt; extsTable.length; i++) { 
-      System.out.println((i+1) + ". ID: " + extsTable[i][0]); 
-      System.out.println("   Version: " + extsTable[i][1]); 
-      System.out.println("   Loc: " +<br />
-                pip.getPackageLocation(extsTable[i][0])); 
-      System.out.println(); 
-    } 
-  } 
-}  // end of listExtensions() </p>
-<p>public static XPackageInformationProvider getPip() 
-{  return PackageInformationProvider.get(Lo.getContext());  } </p>
-<p>Extensions are accessed via the XPackageInformationProvider interface. </p>
+<p>Figure 7. The Extension Manager Dialog.</p>
+<p>The code for Info.listExtensions():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Info class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">listExtensions</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">XPackageInformationProvider</span> <span class="n">pip</span> <span class="o">=</span> <span class="n">getPip</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">pip</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No package info provider found&quot;</span><span class="p">);</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">String</span><span class="o">[][]</span> <span class="n">extsTable</span> <span class="o">=</span> <span class="n">pip</span><span class="p">.</span><span class="na">getExtensionList</span><span class="p">();</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nExtensions:&quot;</span><span class="p">);</span>
+    <span class="n">String</span> <span class="n">serviceName</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">extsTable</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;. ID: &quot;</span> <span class="o">+</span> <span class="n">extsTable</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;   Version: &quot;</span> <span class="o">+</span> <span class="n">extsTable</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">1</span><span class="o">]</span><span class="p">);</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;   Loc: &quot;</span> <span class="o">+</span>
+                <span class="n">pip</span><span class="p">.</span><span class="na">getPackageLocation</span><span class="p">(</span><span class="n">extsTable</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span><span class="p">));</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of listExtensions()</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XPackageInformationProvider</span> <span class="nf">getPip</span><span class="p">()</span>
+<span class="p">{</span>  <span class="k">return</span> <span class="n">PackageInformationProvider</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Lo</span><span class="p">.</span><span class="na">getContext</span><span class="p">());</span>  <span class="p">}</span>
+</code></pre></div>
+<p>Extensions are accessed via the XPackageInformationProvider interface.</p>
 <h3 id="14-examining-the-lingu-services">1.4.  Examining the Lingu Services</h3>
-<p>The LinguServiceManager provides access to three of the four main linguistic 
-services: the spell checker, the hyphenator, and thesaurus.The proof reader (i.e. the 
-grammar checker) is managed by a separate Proofreader service, which I'll explain 
-later. </p>
-<p>Figure 8 shows the interfaces accessible from the LinguServiceManager service. </p>
+<p>The LinguServiceManager provides access to three of the four main linguistic
+services: the spell checker, the hyphenator, and thesaurus.The proof reader (i.e. the
+grammar checker) is managed by a separate Proofreader service, which I'll explain
+later.</p>
+<p>Figure 8 shows the interfaces accessible from the LinguServiceManager service.</p>
 <p><img alt="" src="images/10-Linguistics-8.png" /></p>
-<p>Figure 8. The LinguServiceManager Service and Interfaces. </p>
-<p>In Lingo.java, the LinguServiceManager is instantiated and then 
-Write.printServicesInfo() reports details about its services: </p>
-<dl>
-<dt>// in Lingo.java</dt>
-<dd>// get lingo manager 
-XLinguServiceManager2 lingoMgr =<br />
-         Lo.createInstanceMCF(XLinguServiceManager2.class,<br />
-                 "com.sun.star.linguistic2.LinguServiceManager"); 
-if (lingoMgr == null) { 
-  System.out.println("No linguistics manager found"); 
-  Lo.closeOffice(); 
-  return; 
-} </dd>
-</dl>
-<p>Write.printServicesInfo(lingoMgr); </p>
-<p>Typical output from Write.printServicesInfo(): </p>
-<p>Available Services: 
-SpellChecker (1): 
-  org.openoffice.lingu.MySpellSpellChecker 
-Thesaurus (1): 
-  org.openoffice.lingu.new.Thesaurus 
-Hyphenator (1): 
-  org.openoffice.lingu.LibHnjHyphenator 
-Proofreader (2): 
-  org.languagetool.openoffice.Main 
-  org.libreoffice.comp.pyuno.Lightproof.en </p>
-<p>Configured Services: 
-SpellChecker (1): 
-  org.openoffice.lingu.MySpellSpellChecker 
-Thesaurus (1): 
-  org.openoffice.lingu.new.Thesaurus 
-Hyphenator (1): 
-  org.openoffice.lingu.LibHnjHyphenator 
-Proofreader (1): 
-  org.languagetool.openoffice.Main </p>
-<p>Locales for SpellChecker (43): 
-  AR  AU  BE  BO  BS  BZ  CA  CA  CH  CL 
-  CO  CR  CU  DO  EC  ES  FR  GB  GH  GT 
-  HN  IE  IN  JM  LU  MC  MW  MX  NA  NI 
-  NZ  PA  PE  PH  PR  PY  SV  TT  US  UY 
-  VE  ZA  ZW </p>
-<p>Locales for Thesaurus (43): 
-  AR  AU  BE  BO  BS  BZ  CA  CA  CH  CL 
-  CO  CR  CU  DO  EC  ES  FR  GB  GH  GT 
-  HN  IE  IN  JM  LU  MC  MW  MX  NA  NI 
-  NZ  PA  PE  PH  PR  PY  SV  TT  US  UY 
-  VE  ZA  ZW </p>
-<p>Locales for Hyphenator (43): 
-  AR  AU  BE  BO  BS  BZ  CA  CA  CH  CL 
-  CO  CR  CU  DO  EC  ES  FR  GB  GH  GT 
-  HN  IE  IN  JM  LU  MC  MW  MX  NA  NI 
-  NZ  PA  PE  PH  PR  PY  SV  TT  US  UY 
-  VE  ZA  ZW </p>
-<p>Locales for Proofreader (94): 
-        AF  AO  AR  AT  AU  BE  BE 
-  BE  BO  BR  BS  BY  BZ  CA  CA  CD  CH 
-  CH  CH  CI  CL  CM  CN  CR  CU  DE  DE 
-  DK  DO  EC  ES  ES  ES  ES  ES  FI  FR 
-  FR  GB  GH  GR  GT  HN  HT  IE  IN  IN 
-  IN  IR  IS  IT  JM  JP  KH  LI  LT  LU 
-  LU  MA  MC  ML  MX  MZ  NA  NI  NL  NZ 
-  PA  PE  PH  PH  PL  PR  PT  PY  RE  RO 
-  RU  SE  SI  SK  SN  SV  TT  UA  US  US 
-  UY  VE  ZA  ZW </p>
-<p>The print-out contains three lists: a list of available services, a list of configured 
-services (i.e. ones that are activated inside Office), and a list of the locales available to 
-each service. </p>
-<p>Figure 8 shows that LinguServiceManager only manages the spell checker, 
-hyphenator, and thesaurus, and yet Write.printServicesInfo() includes information 
-about the proof reader. Somewhat confusingly, although LinguServiceManager 
-cannot instantiate a proof reader it can print information about it. </p>
-<p>The output shows that two proofreader services are available 
-(org.languagetool.openoffice.Main and org.libreoffice.comp.pyuno.Lightproof.en), 
-but only one is configured (i.e. active). I'll explain this setup when I talk about the 
-proof reader later. </p>
-<p>The three lists are generated by Write.printServicesInfo() calling 
-Write.printAvailServiceInfo(), Write.printConfigServiceInfo(), and 
-Write.printLocales(): </p>
-<p>// in the Writer class 
-public static void printServicesInfo( 
-                          XLinguServiceManager2 lingoMgr) 
-{ 
-  com.sun.star.lang.Locale loc =<br />
-                  new com.sun.star.lang.Locale("en","US",""); 
-                        // American English locale </p>
-<p>System.out.println("Available Services:"); 
-  printAvailServiceInfo(lingoMgr, "SpellChecker", loc); 
-  printAvailServiceInfo(lingoMgr, "Thesaurus", loc); 
-  printAvailServiceInfo(lingoMgr, "Hyphenator", loc); 
-  printAvailServiceInfo(lingoMgr, "Proofreader", loc); 
-  System.out.println(); </p>
-<p>System.out.println("Configured Services:"); 
-  printConfigServiceInfo(lingoMgr, "SpellChecker", loc); 
-  printConfigServiceInfo(lingoMgr, "Thesaurus", loc); 
-  printConfigServiceInfo(lingoMgr, "Hyphenator", loc); 
-  printConfigServiceInfo(lingoMgr, "Proofreader", loc); 
-  System.out.println(); </p>
-<p>printLocales("SpellChecker", lingoMgr.getAvailableLocales( 
-                       "com.sun.star.linguistic2.SpellChecker")); 
-  printLocales("Thesaurus", lingoMgr.getAvailableLocales( 
-                       "com.sun.star.linguistic2.Thesaurus")); 
-  printLocales("Hyphenator", lingoMgr.getAvailableLocales( 
-                      "com.sun.star.linguistic2.Hyphenator")); 
-  printLocales("Proofreader", lingoMgr.getAvailableLocales( 
-                      "com.sun.star.linguistic2.Proofreader")); 
-  System.out.println(); </p>
-<p>}  // end of printServicesInfo() </p>
-<p>The choice of services depends on the current locale, so printServicesInfo() begins by 
-creating an American English locale, which matches my version of Office.  </p>
-<p>Write.printAvailServiceInfo() utilizes XLinguServiceManager.getAvailableServices() 
-to retrieve a list of the available services. In a similar way, 
-Write.printConfigServiceInfo() calls 
-XLinguServiceManager.getConfiguredServices(), and printLocales gets an array of 
-Locale objects from XLinguServiceManager.getAvailableLocales(). </p>
+<p>Figure 8. The LinguServiceManager Service and Interfaces.</p>
+<p>In Lingo.java, the LinguServiceManager is instantiated and then
+Write.printServicesInfo() reports details about its services:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Lingo.java</span>
+   <span class="p">:</span>
+<span class="c1">// get lingo manager</span>
+<span class="n">XLinguServiceManager2</span> <span class="n">lingoMgr</span> <span class="o">=</span>
+         <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XLinguServiceManager2</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                 <span class="s">&quot;com.sun.star.linguistic2.LinguServiceManager&quot;</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">lingoMgr</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No linguistics manager found&quot;</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">Write</span><span class="p">.</span><span class="na">printServicesInfo</span><span class="p">(</span><span class="n">lingoMgr</span><span class="p">);</span>
+</code></pre></div>
+<p>Typical output from Write.printServicesInfo():</p>
+<div class="highlight"><pre><span></span><code>Available Services:
+SpellChecker (1):
+  org.openoffice.lingu.MySpellSpellChecker
+Thesaurus (1):
+  org.openoffice.lingu.new.Thesaurus
+Hyphenator (1):
+  org.openoffice.lingu.LibHnjHyphenator
+Proofreader (2):
+  org.languagetool.openoffice.Main
+  org.libreoffice.comp.pyuno.Lightproof.en
+
+Configured Services:
+SpellChecker (1):
+  org.openoffice.lingu.MySpellSpellChecker
+Thesaurus (1):
+  org.openoffice.lingu.new.Thesaurus
+Hyphenator (1):
+  org.openoffice.lingu.LibHnjHyphenator
+Proofreader (1):
+  org.languagetool.openoffice.Main
+
+Locales for SpellChecker (43):
+  AR  AU  BE  BO  BS  BZ  CA  CA  CH  CL
+  CO  CR  CU  DO  EC  ES  FR  GB  GH  GT
+  HN  IE  IN  JM  LU  MC  MW  MX  NA  NI
+  NZ  PA  PE  PH  PR  PY  SV  TT  US  UY
+  VE  ZA  ZW
+
+Locales for Thesaurus (43):
+  AR  AU  BE  BO  BS  BZ  CA  CA  CH  CL
+  CO  CR  CU  DO  EC  ES  FR  GB  GH  GT
+  HN  IE  IN  JM  LU  MC  MW  MX  NA  NI
+  NZ  PA  PE  PH  PR  PY  SV  TT  US  UY
+  VE  ZA  ZW
+
+Locales for Hyphenator (43):
+  AR  AU  BE  BO  BS  BZ  CA  CA  CH  CL
+  CO  CR  CU  DO  EC  ES  FR  GB  GH  GT
+  HN  IE  IN  JM  LU  MC  MW  MX  NA  NI
+  NZ  PA  PE  PH  PR  PY  SV  TT  US  UY
+  VE  ZA  ZW
+
+Locales for Proofreader (94):
+        AF  AO  AR  AT  AU  BE  BE
+  BE  BO  BR  BS  BY  BZ  CA  CA  CD  CH
+  CH  CH  CI  CL  CM  CN  CR  CU  DE  DE
+  DK  DO  EC  ES  ES  ES  ES  ES  FI  FR
+  FR  GB  GH  GR  GT  HN  HT  IE  IN  IN
+  IN  IR  IS  IT  JM  JP  KH  LI  LT  LU
+  LU  MA  MC  ML  MX  MZ  NA  NI  NL  NZ
+  PA  PE  PH  PH  PL  PR  PT  PY  RE  RO
+  RU  SE  SI  SK  SN  SV  TT  UA  US  US
+  UY  VE  ZA  ZW
+</code></pre></div>
+<p>The print-out contains three lists: a list of available services, a list of configured
+services (i.e. ones that are activated inside Office), and a list of the locales available to
+each service.</p>
+<p>Figure 8 shows that LinguServiceManager only manages the spell checker,
+hyphenator, and thesaurus, and yet Write.printServicesInfo() includes information
+about the proof reader. Somewhat confusingly, although LinguServiceManager
+cannot instantiate a proof reader it can print information about it.</p>
+<p>The output shows that two proofreader services are available
+(org.languagetool.openoffice.Main and org.libreoffice.comp.pyuno.Lightproof.en),
+but only one is configured (i.e. active). I'll explain this setup when I talk about the
+proof reader later.</p>
+<p>The three lists are generated by Write.printServicesInfo() calling
+Write.printAvailServiceInfo(), Write.printConfigServiceInfo(), and
+Write.printLocales():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Writer class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printServicesInfo</span><span class="p">(</span>
+                          <span class="n">XLinguServiceManager2</span> <span class="n">lingoMgr</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">Locale</span> <span class="n">loc</span> <span class="o">=</span>
+                  <span class="k">new</span> <span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">Locale</span><span class="p">(</span><span class="s">&quot;en&quot;</span><span class="p">,</span><span class="s">&quot;US&quot;</span><span class="p">,</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+                        <span class="c1">// American English locale</span>
+
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Available Services:&quot;</span><span class="p">);</span>
+  <span class="n">printAvailServiceInfo</span><span class="p">(</span><span class="n">lingoMgr</span><span class="p">,</span> <span class="s">&quot;SpellChecker&quot;</span><span class="p">,</span> <span class="n">loc</span><span class="p">);</span>
+  <span class="n">printAvailServiceInfo</span><span class="p">(</span><span class="n">lingoMgr</span><span class="p">,</span> <span class="s">&quot;Thesaurus&quot;</span><span class="p">,</span> <span class="n">loc</span><span class="p">);</span>
+  <span class="n">printAvailServiceInfo</span><span class="p">(</span><span class="n">lingoMgr</span><span class="p">,</span> <span class="s">&quot;Hyphenator&quot;</span><span class="p">,</span> <span class="n">loc</span><span class="p">);</span>
+  <span class="n">printAvailServiceInfo</span><span class="p">(</span><span class="n">lingoMgr</span><span class="p">,</span> <span class="s">&quot;Proofreader&quot;</span><span class="p">,</span> <span class="n">loc</span><span class="p">);</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Configured Services:&quot;</span><span class="p">);</span>
+  <span class="n">printConfigServiceInfo</span><span class="p">(</span><span class="n">lingoMgr</span><span class="p">,</span> <span class="s">&quot;SpellChecker&quot;</span><span class="p">,</span> <span class="n">loc</span><span class="p">);</span>
+  <span class="n">printConfigServiceInfo</span><span class="p">(</span><span class="n">lingoMgr</span><span class="p">,</span> <span class="s">&quot;Thesaurus&quot;</span><span class="p">,</span> <span class="n">loc</span><span class="p">);</span>
+  <span class="n">printConfigServiceInfo</span><span class="p">(</span><span class="n">lingoMgr</span><span class="p">,</span> <span class="s">&quot;Hyphenator&quot;</span><span class="p">,</span> <span class="n">loc</span><span class="p">);</span>
+  <span class="n">printConfigServiceInfo</span><span class="p">(</span><span class="n">lingoMgr</span><span class="p">,</span> <span class="s">&quot;Proofreader&quot;</span><span class="p">,</span> <span class="n">loc</span><span class="p">);</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+
+  <span class="n">printLocales</span><span class="p">(</span><span class="s">&quot;SpellChecker&quot;</span><span class="p">,</span> <span class="n">lingoMgr</span><span class="p">.</span><span class="na">getAvailableLocales</span><span class="p">(</span>
+                       <span class="s">&quot;com.sun.star.linguistic2.SpellChecker&quot;</span><span class="p">));</span>
+  <span class="n">printLocales</span><span class="p">(</span><span class="s">&quot;Thesaurus&quot;</span><span class="p">,</span> <span class="n">lingoMgr</span><span class="p">.</span><span class="na">getAvailableLocales</span><span class="p">(</span>
+                       <span class="s">&quot;com.sun.star.linguistic2.Thesaurus&quot;</span><span class="p">));</span>
+  <span class="n">printLocales</span><span class="p">(</span><span class="s">&quot;Hyphenator&quot;</span><span class="p">,</span> <span class="n">lingoMgr</span><span class="p">.</span><span class="na">getAvailableLocales</span><span class="p">(</span>
+                      <span class="s">&quot;com.sun.star.linguistic2.Hyphenator&quot;</span><span class="p">));</span>
+  <span class="n">printLocales</span><span class="p">(</span><span class="s">&quot;Proofreader&quot;</span><span class="p">,</span> <span class="n">lingoMgr</span><span class="p">.</span><span class="na">getAvailableLocales</span><span class="p">(</span>
+                      <span class="s">&quot;com.sun.star.linguistic2.Proofreader&quot;</span><span class="p">));</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+
+<span class="p">}</span>  <span class="c1">// end of printServicesInfo()</span>
+</code></pre></div>
+<p>The choice of services depends on the current locale, so printServicesInfo() begins by
+creating an American English locale, which matches my version of Office.</p>
+<p>Write.printAvailServiceInfo() utilizes XLinguServiceManager.getAvailableServices()
+to retrieve a list of the available services. In a similar way,
+Write.printConfigServiceInfo() calls
+XLinguServiceManager.getConfiguredServices(), and printLocales gets an array of
+Locale objects from XLinguServiceManager.getAvailableLocales().</p>
 <h2 id="2-using-the-spell-checker">2.  Using the Spell Checker</h2>
-<p>There's a few examples in Lingo.java of applying the spell checker to individual 
-words: </p>
-<p>// in Lingo.java 
-XSpellChecker speller = lingoMgr.getSpellChecker(); </p>
-<p>Write.spellWord("horseback", speller);<br />
-Write.spellWord("ceurse", speller); 
-Write.spellWord("magisian", speller); 
-Write.spellWord("ellucidate", speller); </p>
-<p>XLinguServiceManager.getSpellChecker() returns a reference to the spell checker, 
-and Write.spellWord() checks the supplied word. For the code above, the following is 
-printed: </p>
-<ul>
-<li>
-<p>"ceurse" is unknown. Try: 
-No. of names: 8 
-  "curse"  "course"  "secateurs"  "cerise" 
-  "surcease"  "secure"  "cease"  "Ceausescu" </p>
-</li>
-<li>
-<p>"magisian" is unknown. Try: 
-No. of names: 7 
-  "magician"  "magnesia"  "Malaysian"  "mismanage" 
-  "imagining"  "mastication"  "fumigation" </p>
-</li>
-<li>
-<p>"ellucidate" is unknown. Try: 
-No. of names: 7 
-  "elucidate"  "elucidation"  "hallucinate"  "pellucid" 
-  "fluoridate"  "elasticated"  "illustrated" </p>
-</li>
-</ul>
-<p>Nothing is reported for "horseback" because that's correctly spelt, and spellWord() 
-returns the boolean true. </p>
-<p>The SpellChecker service and its important interfaces are shown in Figure 9. </p>
+<p>There's a few examples in Lingo.java of applying the spell checker to individual
+words:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Lingo.java</span>
+<span class="n">XSpellChecker</span> <span class="n">speller</span> <span class="o">=</span> <span class="n">lingoMgr</span><span class="p">.</span><span class="na">getSpellChecker</span><span class="p">();</span>
+
+<span class="n">Write</span><span class="p">.</span><span class="na">spellWord</span><span class="p">(</span><span class="s">&quot;horseback&quot;</span><span class="p">,</span> <span class="n">speller</span><span class="p">);</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">spellWord</span><span class="p">(</span><span class="s">&quot;ceurse&quot;</span><span class="p">,</span> <span class="n">speller</span><span class="p">);</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">spellWord</span><span class="p">(</span><span class="s">&quot;magisian&quot;</span><span class="p">,</span> <span class="n">speller</span><span class="p">);</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">spellWord</span><span class="p">(</span><span class="s">&quot;ellucidate&quot;</span><span class="p">,</span> <span class="n">speller</span><span class="p">);</span>
+</code></pre></div>
+<p>XLinguServiceManager.getSpellChecker() returns a reference to the spell checker,
+and Write.spellWord() checks the supplied word. For the code above, the following is
+printed:</p>
+<div class="highlight"><pre><span></span><code>* &quot;ceurse&quot; is unknown. Try:
+No. of names: 8
+  &quot;curse&quot;  &quot;course&quot;  &quot;secateurs&quot;  &quot;cerise&quot;
+  &quot;surcease&quot;  &quot;secure&quot;  &quot;cease&quot;  &quot;Ceausescu&quot;
+
+* &quot;magisian&quot; is unknown. Try:
+No. of names: 7
+  &quot;magician&quot;  &quot;magnesia&quot;  &quot;Malaysian&quot;  &quot;mismanage&quot;
+  &quot;imagining&quot;  &quot;mastication&quot;  &quot;fumigation&quot;
+
+* &quot;ellucidate&quot; is unknown. Try:
+No. of names: 7
+  &quot;elucidate&quot;  &quot;elucidation&quot;  &quot;hallucinate&quot;  &quot;pellucid&quot;
+  &quot;fluoridate&quot;  &quot;elasticated&quot;  &quot;illustrated&quot;
+</code></pre></div>
+<p>Nothing is reported for "horseback" because that's correctly spelt, and spellWord()
+returns the boolean true.</p>
+<p>The SpellChecker service and its important interfaces are shown in Figure 9.</p>
 <p><img alt="" src="images/10-Linguistics-9.png" /></p>
-<p>Figure 9. The SpellChecker Service and Interfaces. </p>
-<p>Write.spellWord() utilizes XSpellChecker.spell() to find a spelling mistake, then 
-prints the alternative spellings: </p>
-<p>// in the Write class 
-public static boolean spellWord(String word, XSpellChecker speller) 
-{ 
-  com.sun.star.lang.Locale loc =<br />
-           new com.sun.star.lang.Locale("en", "US", ""); <br />
-                                   // American English 
-  PropertyValue[] props = new PropertyValue[0]; </p>
-<p>XSpellAlternatives alts = speller.spell(word, loc, props); 
-  if (alts != null) { 
-    System.out.println("* \"" + word + "\" is unknown. Try:"); 
-    String[] altWords = alts.getAlternatives(); 
-    Lo.printNames(altWords); 
-    return false; 
-  } 
-  else 
-    return true; 
-}   // end of spellWord() </p>
-<p>XSpellChecker.spell() requires a locale and an array of properties, which I've left 
-empty. The properties are those associated with XLinguProperties, which were listed 
-above using Write.getLinguProperties(). Its output shows that "IsSpellCapitalization" 
-is presently true, which means that words in all-caps will be checked. The property 
-can be changed to false inside the PropertyValue array passed to 
-XSpellChecker.spell(). For example: </p>
-<p>PropertyValue[] props =<br />
-       Props.makeProps("IsSpellCapitalization", false); 
-XSpellAlternatives alts = speller.spell(word, loc, props); </p>
-<p>Now an incorrectly spelt word in all-caps, such as "CEURSE", will be skipped over. </p>
-<p>This means that Write.spellWord("CEURSE", speller) should return true. </p>
-<p>Unfortunately, XSpellChecker.spell() seems to ignore the property array, and still 
-reports "CEURSE" as incorrectly spelt.  </p>
-<p>Even a property change performed through the XLinguProperties interface, such as: </p>
-<p>XLinguProperties linguProps = Write.getLinguProperties(); 
-Props.setProperty(linguProps, "IsSpellCapitalization", false);  </p>
-<p>fails to change XSpellChecker.spell()'s behavior. The only way to make a change to 
-the linguistic properties that is acted upon is through the "Options" pane in the 
-"Writing Aids" dialog, as in Figure 10. </p>
+<p>Figure 9. The SpellChecker Service and Interfaces.</p>
+<p>Write.spellWord() utilizes XSpellChecker.spell() to find a spelling mistake, then
+prints the alternative spellings:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Write class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">spellWord</span><span class="p">(</span><span class="n">String</span> <span class="n">word</span><span class="p">,</span> <span class="n">XSpellChecker</span> <span class="n">speller</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">Locale</span> <span class="n">loc</span> <span class="o">=</span>
+           <span class="k">new</span> <span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">Locale</span><span class="p">(</span><span class="s">&quot;en&quot;</span><span class="p">,</span> <span class="s">&quot;US&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">);</span>
+                                   <span class="c1">// American English</span>
+  <span class="n">PropertyValue</span><span class="o">[]</span> <span class="n">props</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PropertyValue</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
+
+  <span class="n">XSpellAlternatives</span> <span class="n">alts</span> <span class="o">=</span> <span class="n">speller</span><span class="p">.</span><span class="na">spell</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span> <span class="n">props</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">alts</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;* \&quot;&quot;</span> <span class="o">+</span> <span class="n">word</span> <span class="o">+</span> <span class="s">&quot;\&quot; is unknown. Try:&quot;</span><span class="p">);</span>
+    <span class="n">String</span><span class="o">[]</span> <span class="n">altWords</span> <span class="o">=</span> <span class="n">alts</span><span class="p">.</span><span class="na">getAlternatives</span><span class="p">();</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">printNames</span><span class="p">(</span><span class="n">altWords</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+<span class="p">}</span>   <span class="c1">// end of spellWord()</span>
+</code></pre></div>
+<p>XSpellChecker.spell() requires a locale and an array of properties, which I've left
+empty. The properties are those associated with XLinguProperties, which were listed
+above using Write.getLinguProperties(). Its output shows that "IsSpellCapitalization"
+is presently true, which means that words in all-caps will be checked. The property
+can be changed to false inside the PropertyValue array passed to
+XSpellChecker.spell(). For example:</p>
+<div class="highlight"><pre><span></span><code><span class="n">PropertyValue</span><span class="o">[]</span> <span class="n">props</span> <span class="o">=</span>
+       <span class="n">Props</span><span class="p">.</span><span class="na">makeProps</span><span class="p">(</span><span class="s">&quot;IsSpellCapitalization&quot;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="n">XSpellAlternatives</span> <span class="n">alts</span> <span class="o">=</span> <span class="n">speller</span><span class="p">.</span><span class="na">spell</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span> <span class="n">props</span><span class="p">);</span>
+</code></pre></div>
+<p>Now an incorrectly spelt word in all-caps, such as "CEURSE", will be skipped over.</p>
+<p>This means that Write.spellWord("CEURSE", speller) should return true.</p>
+<p>Unfortunately, XSpellChecker.spell() seems to ignore the property array, and still
+reports "CEURSE" as incorrectly spelt.</p>
+<p>Even a property change performed through the XLinguProperties interface, such as:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XLinguProperties</span> <span class="n">linguProps</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">getLinguProperties</span><span class="p">();</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">linguProps</span><span class="p">,</span> <span class="s">&quot;IsSpellCapitalization&quot;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+</code></pre></div>
+<p>fails to change XSpellChecker.spell()'s behavior. The only way to make a change to
+the linguistic properties that is acted upon is through the "Options" pane in the
+"Writing Aids" dialog, as in Figure 10.</p>
 <p><img alt="" src="images/10-Linguistics-10.png" /></p>
-<p>Figure 10. Changing the Capitalization Property. </p>
-<p>Office's default spell checker is Hunspell (from http://hunspell.github.io/), and has 
-been part of OpenOffice since v.2, when it replaced MySpell, adding several features 
-such as support for Unicode. The "MySpell" name lives on in a few places, such as in 
-the spelling service (org.openoffice.lingu.MySpellSpellChecker). </p>
-<p>Hunspell offers extra properties in addition to those in the "Options" pane of the 
-"Writing Aids" dialog. They can be accessed through the Tools &gt; Options &gt; Language 
-Settings &gt; "English sentence checking" dialog shown in Figure 11. </p>
+<p>Figure 10. Changing the Capitalization Property.</p>
+<p>Office's default spell checker is Hunspell (from http://hunspell.github.io/), and has
+been part of OpenOffice since v.2, when it replaced MySpell, adding several features
+such as support for Unicode. The "MySpell" name lives on in a few places, such as in
+the spelling service (org.openoffice.lingu.MySpellSpellChecker).</p>
+<p>Hunspell offers extra properties in addition to those in the "Options" pane of the
+"Writing Aids" dialog. They can be accessed through the Tools, Options, Language
+Settings, "English sentence checking" dialog shown in Figure 11.</p>
 <p><img alt="" src="images/10-Linguistics-11.png" /></p>
-<p>Figure 11. The English Sentence Checking Dialog. </p>
-<p>The same dialog can also be reached through the Extension Manager window shown 
-back in Figure 7. Click on the "English Spelling dictionaries" extension, and then 
-press the "Options" button which appears as in Figure 12. </p>
+<p>Figure 11. The English Sentence Checking Dialog.</p>
+<p>The same dialog can also be reached through the Extension Manager window shown
+back in Figure 7. Click on the "English Spelling dictionaries" extension, and then
+press the "Options" button which appears as in Figure 12.</p>
 <p><img alt="" src="images/10-Linguistics-12.png" /></p>
-<p>Figure 12. The English Spelling Options Button. </p>
-<p>Unfortunately, there appears to be no API for accessing these Hunspell options. The 
-best that can be done is to use a dispatch message to open the "English Sentence 
-Checking" dialog in Figure 11. This done by calling Write.openSentCheckOptions(): </p>
-<p>GUI.setVisible(doc, true);   // Office must be visible... </p>
-<p>Lo.wait(2000); 
-Write.openSentCheckOptions();  // for the dialog to appear </p>
-<p>Write.openSentCheckOptions() uses an ".uno:OptionsTreeDialog" dispatch along 
-with an URL argument for the dialog's XML definition file: </p>
-<p>// in the Writer class 
-public static void openSentCheckOptions() 
-// open "Options - Language Settings - English sentence checking 
-{ 
-  XPackageInformationProvider pip = Info.getPip(); 
-  String langExt = pip.getPackageLocation( 
-                    "org.openoffice.en.hunspell.dictionaries"); 
-  // System.out.println("Lang Ext: " + langExt); 
-  String url = langExt + "/dialog/en.xdl"; </p>
-<p>PropertyValue[] props = Props.makeProps("OptionsPageURL", url); 
-  Lo.dispatchCmd("OptionsTreeDialog", props); 
-  Lo.wait(2000); 
-}  // end of openSentCheckOptions() </p>
-<p>The XML file's location is obtained in two steps. First the ID of the Hunspell service 
-("org.openoffice.en.hunspell.dictionaries") is passed to 
-XPackageInformationProvider.getPackageLocation() to obtain the spell checker's 
-installation folder. Figure 13 shows the directory on my machine. </p>
+<p>Figure 12. The English Spelling Options Button.</p>
+<p>Unfortunately, there appears to be no API for accessing these Hunspell options. The
+best that can be done is to use a dispatch message to open the "English Sentence
+Checking" dialog in Figure 11. This done by calling Write.openSentCheckOptions():</p>
+<div class="highlight"><pre><span></span><code><span class="n">GUI</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>   <span class="c1">// Office must be visible...</span>
+<span class="n">Lo</span><span class="p">.</span><span class="na">wait</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">openSentCheckOptions</span><span class="p">();</span>  <span class="c1">// for the dialog to appear</span>
+</code></pre></div>
+<p>Write.openSentCheckOptions() uses an ".uno:OptionsTreeDialog" dispatch along
+with an URL argument for the dialog's XML definition file:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Writer class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">openSentCheckOptions</span><span class="p">()</span>
+<span class="c1">// open &quot;Options - Language Settings - English sentence checking</span>
+<span class="p">{</span>
+  <span class="n">XPackageInformationProvider</span> <span class="n">pip</span> <span class="o">=</span> <span class="n">Info</span><span class="p">.</span><span class="na">getPip</span><span class="p">();</span>
+  <span class="n">String</span> <span class="n">langExt</span> <span class="o">=</span> <span class="n">pip</span><span class="p">.</span><span class="na">getPackageLocation</span><span class="p">(</span>
+                    <span class="s">&quot;org.openoffice.en.hunspell.dictionaries&quot;</span><span class="p">);</span>
+  <span class="c1">// System.out.println(&quot;Lang Ext: &quot; + langExt);</span>
+  <span class="n">String</span> <span class="n">url</span> <span class="o">=</span> <span class="n">langExt</span> <span class="o">+</span> <span class="s">&quot;/dialog/en.xdl&quot;</span><span class="p">;</span>
+
+  <span class="n">PropertyValue</span><span class="o">[]</span> <span class="n">props</span> <span class="o">=</span> <span class="n">Props</span><span class="p">.</span><span class="na">makeProps</span><span class="p">(</span><span class="s">&quot;OptionsPageURL&quot;</span><span class="p">,</span> <span class="n">url</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">dispatchCmd</span><span class="p">(</span><span class="s">&quot;OptionsTreeDialog&quot;</span><span class="p">,</span> <span class="n">props</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">wait</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of openSentCheckOptions()</span>
+</code></pre></div>
+<p>The XML file's location is obtained in two steps. First the ID of the Hunspell service
+("org.openoffice.en.hunspell.dictionaries") is passed to
+XPackageInformationProvider.getPackageLocation() to obtain the spell checker's
+installation folder. Figure 13 shows the directory on my machine.</p>
 <p><img alt="" src="images/10-Linguistics-13.png" /></p>
-<p>Figure 13. The Hunspell Installation Folder. </p>
-<p>The directory contains a dialog\ subdirectory, which holds an XXX.xdl file that 
-defines the dialog's XML structure and data. The "XXX" name will be Office's locale 
-language, which in my case is "en".  </p>
-<p>The URL required by the "OptionsTreeDialog" dispatch is constructed by appending 
-"/dialog/en.xdl" to the installation folder string. </p>
+<p>Figure 13. The Hunspell Installation Folder.</p>
+<p>The directory contains a dialog\ subdirectory, which holds an XXX.xdl file that
+defines the dialog's XML structure and data. The "XXX" name will be Office's locale
+language, which in my case is "en".</p>
+<p>The URL required by the "OptionsTreeDialog" dispatch is constructed by appending
+"/dialog/en.xdl" to the installation folder string.</p>
 <h2 id="3-using-the-thesaurus">3.  Using the Thesaurus</h2>
-<p>Lingo.java contains two examples of how to use the thesaurus: </p>
-<dl>
-<dt>// in Lingo.java</dt>
-<dd>
-<dl>
-<dt>XLinguServiceManager2 lingoMgr =</dt>
-<dt>Lo.createInstanceMCF(XLinguServiceManager2.class,</dt>
-<dt>"com.sun.star.linguistic2.LinguServiceManager");</dt>
-<dd>XThesaurus thesaurus = lingoMgr.getThesaurus(); 
-Write.printMeaning("magician", thesaurus); 
-Write.printMeaning("elucidate", thesaurus); </dd>
-</dl>
-</dd>
-</dl>
-<p>The output from the first call to Write.printMeaning() is: </p>
-<p>"magician" found in thesaurus; number of meanings: 2 </p>
-<h2 id="1-meaning-noun-prestidigitator">1.  Meaning: (noun) prestidigitator</h2>
-<p>No. of synonyms: 6 
-    prestidigitator 
-    conjurer 
-    conjuror 
-    illusionist 
-    performer (generic term) 
-    performing artist (generic term) </p>
-<h2 id="2-meaning-noun-sorcerer">2.  Meaning: (noun) sorcerer</h2>
-<p>No. of synonyms: 6 
-    sorcerer 
-    wizard 
-    necromancer 
-    thaumaturge 
-    thaumaturgist 
-    occultist (generic term) </p>
-<p>XLinguServiceManager2.getThesaurus() returns an instance of XThesaurus whose 
-service and main interfaces are shown in Figure 14. </p>
+<p>Lingo.java contains two examples of how to use the thesaurus:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Lingo.java</span>
+   <span class="p">:</span>
+<span class="n">XLinguServiceManager2</span> <span class="n">lingoMgr</span> <span class="o">=</span>
+         <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XLinguServiceManager2</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                 <span class="s">&quot;com.sun.star.linguistic2.LinguServiceManager&quot;</span><span class="p">);</span>
+   <span class="p">:</span>
+<span class="n">XThesaurus</span> <span class="n">thesaurus</span> <span class="o">=</span> <span class="n">lingoMgr</span><span class="p">.</span><span class="na">getThesaurus</span><span class="p">();</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">printMeaning</span><span class="p">(</span><span class="s">&quot;magician&quot;</span><span class="p">,</span> <span class="n">thesaurus</span><span class="p">);</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">printMeaning</span><span class="p">(</span><span class="s">&quot;elucidate&quot;</span><span class="p">,</span> <span class="n">thesaurus</span><span class="p">);</span>
+</code></pre></div>
+<p>The output from the first call to Write.printMeaning() is:</p>
+<div class="highlight"><pre><span></span><code>&quot;magician&quot; found in thesaurus; number of meanings: 2
+1.  Meaning: (noun) prestidigitator
+
+  No. of synonyms: 6
+    prestidigitator
+    conjurer
+    conjuror
+    illusionist
+    performer (generic term)
+    performing artist (generic term)
+
+2.  Meaning: (noun) sorcerer
+
+  No. of synonyms: 6
+    sorcerer
+    wizard
+    necromancer
+    thaumaturge
+    thaumaturgist
+    occultist (generic term)
+</code></pre></div>
+<p>XLinguServiceManager2.getThesaurus() returns an instance of XThesaurus whose
+service and main interfaces are shown in Figure 14.</p>
 <p><img alt="" src="images/10-Linguistics-14.png" /></p>
-<p>Figure 14. The Thesaurus Service and Interfaces. </p>
-<p>Write.printMeaning() calls XThesaurus.queryMeanings(), and prints the array of 
-results: </p>
-<p>public static int printMeaning(String word, XThesaurus thesaurus) 
-{ 
-  com.sun.star.lang.Locale loc =<br />
-               new com.sun.star.lang.Locale("en", "US", ""); <br />
-                                      // American English 
-  PropertyValue[] props = new PropertyValue[0]; </p>
-<p>XMeaning[] meanings = thesaurus.queryMeanings(word, loc, props); 
-  if (meanings == null) { 
-    System.out.println("\"" + word +<br />
-                              "\" NOT found in thesaurus\n"); 
-    return 0; 
-  } 
-  else { 
-    System.out.println("\"" + word + "\" found in thesaurus;<br />
-                   number of meanings: " + meanings.length); 
-    for (int i=0; i &lt; meanings.length; i++) { 
-      System.out.println((i+1) + ". Meaning: " +<br />
-                                       meanings[i].getMeaning()); 
-      String[] synonyms = meanings[i].querySynonyms(); 
-      System.out.println("  No. of synonyms: " + synonyms.length); 
-      for (int k=0; k &lt; synonyms.length; k++) 
-        System.out.println("    " + synonyms[k]); 
-      System.out.println(); 
-    } 
-    return meanings.length; 
-  } 
-}  // end of printMeaning() </p>
-<p>In a similar way to XSpellChecker.spell(), XThesaurus.queryMeanings() requires a 
-locale and an optional array of properties. printMeaning() utilizes American English, 
-and no properties. </p>
-<p>If you need a non-English thesaurus which isn't part of Office, then look through the 
+<p>Figure 14. The Thesaurus Service and Interfaces.</p>
+<p>Write.printMeaning() calls XThesaurus.queryMeanings(), and prints the array of
+results:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">printMeaning</span><span class="p">(</span><span class="n">String</span> <span class="n">word</span><span class="p">,</span> <span class="n">XThesaurus</span> <span class="n">thesaurus</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">Locale</span> <span class="n">loc</span> <span class="o">=</span>
+               <span class="k">new</span> <span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">Locale</span><span class="p">(</span><span class="s">&quot;en&quot;</span><span class="p">,</span> <span class="s">&quot;US&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">);</span>
+                                      <span class="c1">// American English</span>
+  <span class="n">PropertyValue</span><span class="o">[]</span> <span class="n">props</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PropertyValue</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
+
+  <span class="n">XMeaning</span><span class="o">[]</span> <span class="n">meanings</span> <span class="o">=</span> <span class="n">thesaurus</span><span class="p">.</span><span class="na">queryMeanings</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span> <span class="n">props</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">meanings</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\&quot;&quot;</span> <span class="o">+</span> <span class="n">word</span> <span class="o">+</span>
+                              <span class="s">&quot;\&quot; NOT found in thesaurus\n&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\&quot;&quot;</span> <span class="o">+</span> <span class="n">word</span> <span class="o">+</span> <span class="s">&quot;\&quot; found in thesaurus;</span>
+<span class="s">                   number of meanings: &quot;</span> <span class="o">+</span> <span class="n">meanings</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">meanings</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;. Meaning: &quot;</span> <span class="o">+</span>
+                                       <span class="n">meanings</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">getMeaning</span><span class="p">());</span>
+      <span class="n">String</span><span class="o">[]</span> <span class="n">synonyms</span> <span class="o">=</span> <span class="n">meanings</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">querySynonyms</span><span class="p">();</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  No. of synonyms: &quot;</span> <span class="o">+</span> <span class="n">synonyms</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">synonyms</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;    &quot;</span> <span class="o">+</span> <span class="n">synonyms</span><span class="o">[</span><span class="n">k</span><span class="o">]</span><span class="p">);</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">meanings</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of printMeaning()</span>
+</code></pre></div>
+<p>In a similar way to XSpellChecker.spell(), XThesaurus.queryMeanings() requires a
+locale and an optional array of properties. printMeaning() utilizes American English,
+and no properties.</p>
+<p>If you need a non-English thesaurus which isn't part of Office, then look through the
 dictionary extensions at http://extensions.libreoffice.org/extension-
-center?getCategories=Dictionary; many include a thesaurus with the dictionary. </p>
-<p>Thesaurus data is stored as ".idx" and ".dat" files in the same directory as the spell 
-checker (i.e. in <OFFICE>\share\extensions\dict-en), as can be seen in Figure 13.  </p>
+center?getCategories=Dictionary; many include a thesaurus with the dictionary.</p>
+<p>Thesaurus data is stored as ".idx" and ".dat" files in the same directory as the spell
+checker (i.e. in <OFFICE>\share\extensions\dict-en), as can be seen in Figure 13.</p>
 <p>The files are built from WordNet data (http://wordnet.princeton.edu/), but use a text-
-based format explained very briefly in Daniel Naber's slides about the 
+based format explained very briefly in Daniel Naber's slides about the
 Lingucomponent Project (at http://www.danielnaber.de/publications/ooocon2005-
-lingucomponent.pdf). Also, the Lingucomponent website has some C++ code for 
+lingucomponent.pdf). Also, the Lingucomponent website has some C++ code for
 reading ".idx" and '.dat" files (in http://www.openoffice.org/lingucomponent/MyThes-
-1.zip). </p>
-<p>However, if you want to write code using a thesaurus independently of Office, then 
-I'd suggest programming with one of the many APIs for WordNet; there are currently 
-nine for Java, listed at http://wordnet.princeton.edu/wordnet/related-projects/#Java. </p>
+1.zip).</p>
+<p>However, if you want to write code using a thesaurus independently of Office, then
+I'd suggest programming with one of the many APIs for WordNet; there are currently
+nine for Java, listed at http://wordnet.princeton.edu/wordnet/related-projects/#Java.</p>
 <h2 id="4-grammar-checking">4.  Grammar Checking</h2>
-<p>Office's default grammar checker (or proof reader) is Lightproof, a Python application 
-developed by László Németh. Lightproof.py, and its support files, are installed in the 
-same folder as the spell checker and thesaurus; on my machine that's 
-<OFFICE>\share\extensions\dict-en.  </p>
-<p>Older versions of Lightproof are available from OpenOffice's extensions website at 
-http://extensions.services.openoffice.org/project/lightproof. One reason for 
-downloading the old version is that it contains documentation on adding new 
-grammar rules missing from the version installed in Office.  </p>
-<p>Another way to modify Lightproof's grammar rules is with its editor, which can be 
-obtained from http://extensions.libreoffice.org/extension-center/lightproof-editor. </p>
-<p>There are a number of alternative grammar checkers for Office, including "After the 
-Deadline" (http://www.afterthedeadline.com/) and "LanguageTool" 
-(https://www.languagetool.org/), which are easily added to Office as extensions via 
-the "Language Tools" subsection of the website, at 
-http://extensions.libreoffice.org/extension-center?getCategories=Language%20Tools. </p>
-<p>When I first coded my examples, I used the default Lightproof for grammar checking, 
-but it doesn't have a very extensive set of built-in grammar rules (it seems best at 
-catching punctuation mistakes). I switched to LanguageTool because of its larger set 
-of rules, and its support for many languages. I also like that it can be used as a 
-standalone Java library, separate from Office, and that its site includes lots of 
-documentation. Perhaps its biggest drawback is that it requires Java 8 or later.  </p>
-<p>Another issue is that LanguageTool and Lightproof cannot happily coexist inside 
-Office. Lightproof must be disabled and LanguageTool enabled via the Options &gt; 
-Language Settings &gt; Writing aids &gt; "Available language modules" pane at the top of </p>
+<p>Office's default grammar checker (or proof reader) is Lightproof, a Python application
+developed by László Németh. Lightproof.py, and its support files, are installed in the
+same folder as the spell checker and thesaurus; on my machine that's
+<OFFICE>\share\extensions\dict-en.</p>
+<p>Older versions of Lightproof are available from OpenOffice's extensions website at
+http://extensions.services.openoffice.org/project/lightproof. One reason for
+downloading the old version is that it contains documentation on adding new
+grammar rules missing from the version installed in Office.</p>
+<p>Another way to modify Lightproof's grammar rules is with its editor, which can be
+obtained from http://extensions.libreoffice.org/extension-center/lightproof-editor.</p>
+<p>There are a number of alternative grammar checkers for Office, including "After the
+Deadline" (http://www.afterthedeadline.com/) and "LanguageTool"
+(https://www.languagetool.org/), which are easily added to Office as extensions via
+the "Language Tools" subsection of the website, at
+http://extensions.libreoffice.org/extension-center?getCategories=Language%20Tools.</p>
+<p>When I first coded my examples, I used the default Lightproof for grammar checking,
+but it doesn't have a very extensive set of built-in grammar rules (it seems best at
+catching punctuation mistakes). I switched to LanguageTool because of its larger set
+of rules, and its support for many languages. I also like that it can be used as a
+standalone Java library, separate from Office, and that its site includes lots of
+documentation. Perhaps its biggest drawback is that it requires Java 8 or later.</p>
+<p>Another issue is that LanguageTool and Lightproof cannot happily coexist inside
+Office. Lightproof must be disabled and LanguageTool enabled via the Options,
+Language Settings, Writing aids, "Available language modules" pane at the top of
+Figure 15.</p>
 <p><img alt="" src="images/10-Linguistics-15.png" /></p>
-<p>Figure 15. </p>
-<p><img alt="" src="images/10-Linguistics-15.png" /></p>
-<p>Figure 15. Goodbye Lightproof, hello LanguageTool. </p>
-<p>I used Write.printServicesInfo() earlier to list the available and configured services. </p>
-<p>The output included: </p>
-<p>Available Services: 
-    : 
-Proofreader (2): 
-  org.languagetool.openoffice.Main 
-  org.libreoffice.comp.pyuno.Lightproof.en </p>
-<p>Configured Services: 
-    : 
-Proofreader (1): 
-  org.languagetool.openoffice.Main </p>
-<p>"org.languagetool.openoffice.Main" refers to the LanguageTool extension, while 
-"org.libreoffice.comp.pyuno.Lightproof.en" is the English version of Lightproof.  </p>
-<p>This information can be used to set the proof reader. LanguageTool is made the 
-default by calling Write.setConfiguredServices() like so: </p>
-<p>Write.setConfiguredServices(lingoMgr, "Proofreader",<br />
-                          "org.languagetool.openoffice.Main"); </p>
-<p>Alternatively, Lightproof can be enabled with: </p>
-<p>Write.setConfiguredServices(lingoMgr, "Proofreader",<br />
-                    "org.libreoffice.comp.pyuno.Lightproof.en"); </p>
-<p>The code for Write.setConfiguredServices() is: </p>
-<p>// in the Write class 
-public static void setConfiguredServices( 
-                      XLinguServiceManager2 lingoMgr, 
-                      String service, String implName) 
-{<br />
-  com.sun.star.lang.Locale loc =<br />
-                  new com.sun.star.lang.Locale("en","US",""); 
-  String[] implNames = { implName }; 
-  lingoMgr.setConfiguredServices( 
-      "com.sun.star.linguistic2." + service, loc, implNames); 
-}  // end of setConfiguredServices() </p>
-<p>The function utilizes XLinguServiceManager.setConfiguredServices() to attach a 
-particular implementation service (e.g. LanguageTool) to a specified linguistic service 
-(e.g. the Proofreader). </p>
+<p>Figure 15. Goodbye Lightproof, hello LanguageTool.</p>
+<p>I used Write.printServicesInfo() earlier to list the available and configured services.</p>
+<p>The output included:</p>
+<div class="highlight"><pre><span></span><code>Available Services:
+    :
+Proofreader (2):
+  org.languagetool.openoffice.Main
+  org.libreoffice.comp.pyuno.Lightproof.en
+
+Configured Services:
+    :
+Proofreader (1):
+  org.languagetool.openoffice.Main
+</code></pre></div>
+<p>"org.languagetool.openoffice.Main" refers to the LanguageTool extension, while
+"org.libreoffice.comp.pyuno.Lightproof.en" is the English version of Lightproof.</p>
+<p>This information can be used to set the proof reader. LanguageTool is made the
+default by calling Write.setConfiguredServices() like so:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Write</span><span class="p">.</span><span class="na">setConfiguredServices</span><span class="p">(</span><span class="n">lingoMgr</span><span class="p">,</span> <span class="s">&quot;Proofreader&quot;</span><span class="p">,</span>
+                          <span class="s">&quot;org.languagetool.openoffice.Main&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>Alternatively, Lightproof can be enabled with:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Write</span><span class="p">.</span><span class="na">setConfiguredServices</span><span class="p">(</span><span class="n">lingoMgr</span><span class="p">,</span> <span class="s">&quot;Proofreader&quot;</span><span class="p">,</span>
+                    <span class="s">&quot;org.libreoffice.comp.pyuno.Lightproof.en&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>The code for Write.setConfiguredServices() is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Write class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setConfiguredServices</span><span class="p">(</span>
+                      <span class="n">XLinguServiceManager2</span> <span class="n">lingoMgr</span><span class="p">,</span>
+                      <span class="n">String</span> <span class="n">service</span><span class="p">,</span> <span class="n">String</span> <span class="n">implName</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">Locale</span> <span class="n">loc</span> <span class="o">=</span>
+                  <span class="k">new</span> <span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">Locale</span><span class="p">(</span><span class="s">&quot;en&quot;</span><span class="p">,</span><span class="s">&quot;US&quot;</span><span class="p">,</span><span class="s">&quot;&quot;</span><span class="p">);</span>
+  <span class="n">String</span><span class="o">[]</span> <span class="n">implNames</span> <span class="o">=</span> <span class="p">{</span> <span class="n">implName</span> <span class="p">};</span>
+  <span class="n">lingoMgr</span><span class="p">.</span><span class="na">setConfiguredServices</span><span class="p">(</span>
+      <span class="s">&quot;com.sun.star.linguistic2.&quot;</span> <span class="o">+</span> <span class="n">service</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span> <span class="n">implNames</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of setConfiguredServices()</span>
+</code></pre></div>
+<p>The function utilizes XLinguServiceManager.setConfiguredServices() to attach a
+particular implementation service (e.g. LanguageTool) to a specified linguistic service
+(e.g. the Proofreader).</p>
 <h3 id="41-error-reporting-options">4.1.  Error Reporting Options</h3>
-<p>The kinds of errors reported by the proof reader can be adjusted through Office's GUI. </p>
-<p>One configuration pane, used by both Lightproof and LanguageTool, is in the 
-"English Sentence Checking" dialog shown back in Figure 11. If you look closely, the 
-first group of check boxes are titled "Grammar checking". </p>
-<p>If you install LanguageTool, Office's Tools menu will be modified to contain a new 
-"LanguageTool" submenu shown in Figure 16. </p>
+<p>The kinds of errors reported by the proof reader can be adjusted through Office's GUI.</p>
+<p>One configuration pane, used by both Lightproof and LanguageTool, is in the
+"English Sentence Checking" dialog shown back in Figure 11. If you look closely, the
+first group of check boxes are titled "Grammar checking".</p>
+<p>If you install LanguageTool, Office's Tools menu will be modified to contain a new
+"LanguageTool" submenu shown in Figure 16.</p>
 <p><img alt="" src="images/10-Linguistics-16.png" /></p>
-<p>Figure 16. The LanguageTool Submenu. </p>
-<p>The "Options" menu item in the "LanguageTool" submenu brings up an extensive set 
-of options, reflecting the greater number of grammar rules in the checker (see Figure 
-17). </p>
+<p>Figure 16. The LanguageTool Submenu.</p>
+<p>The "Options" menu item in the "LanguageTool" submenu brings up an extensive set
+of options, reflecting the greater number of grammar rules in the checker (see Figure
+17).</p>
 <p><img alt="" src="images/10-Linguistics-17.png" /></p>
-<p>Figure 17. The LanguageTool Options Dialog. </p>
-<p>Unfortunately, there seems to be no way to modify these options through Office's 
-Proofreader API. </p>
+<p>Figure 17. The LanguageTool Options Dialog.</p>
+<p>Unfortunately, there seems to be no way to modify these options through Office's
+Proofreader API.</p>
 <h3 id="42-using-the-proof-reader">4.2.  Using the Proof Reader</h3>
-<p>In Lingo.java the proof reader is loaded and called like so: </p>
-<p>// in Lingo.java 
-    : 
-XProofreader proofreader = Write.loadProofreader(); 
-System.out.println("Proofing..."); 
-int numErrs =<br />
-     Write.proofSentence("i dont have one one dogs.", proofreader); 
-System.out.println("No. of proofing errors: " + numErrs + "\n"); </p>
-<p>The output is: </p>
-<p>Proofing... </p>
-<p>G* This sentence does not start with an uppercase letter in: "i" 
-   Suggested change: "I" </p>
-<p>G* Spelling mistake in: "dont" 
-   Suggested change: "don't" </p>
-<p>G* Word repetition in: "one one" 
-   Suggested change: "one" </p>
-<p>No. of proofing errors: 3 </p>
-<p>The proof reader isn't accessed through the linguistics manager; instead a Proofreader 
-service is created, and its interfaces employed. A simplified view of the services and 
-interfaces are shown in Figure 18. </p>
+<p>In Lingo.java the proof reader is loaded and called like so:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Lingo.java</span>
+    <span class="p">:</span>
+<span class="n">XProofreader</span> <span class="n">proofreader</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">loadProofreader</span><span class="p">();</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Proofing...&quot;</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">numErrs</span> <span class="o">=</span>
+     <span class="n">Write</span><span class="p">.</span><span class="na">proofSentence</span><span class="p">(</span><span class="s">&quot;i dont have one one dogs.&quot;</span><span class="p">,</span> <span class="n">proofreader</span><span class="p">);</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No. of proofing errors: &quot;</span> <span class="o">+</span> <span class="n">numErrs</span> <span class="o">+</span> <span class="s">&quot;\n&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>The output is:</p>
+<p>Proofing...</p>
+<div class="highlight"><pre><span></span><code>G* This sentence does not start with an uppercase letter in: &quot;i&quot;
+   Suggested change: &quot;I&quot;
+
+G* Spelling mistake in: &quot;dont&quot;
+   Suggested change: &quot;don&#39;t&quot;
+
+G* Word repetition in: &quot;one one&quot;
+   Suggested change: &quot;one&quot;
+
+No. of proofing errors: 3
+</code></pre></div>
+<p>The proof reader isn't accessed through the linguistics manager; instead a Proofreader
+service is created, and its interfaces employed. A simplified view of the services and
+interfaces are shown in Figure 18.</p>
 <p><img alt="" src="images/10-Linguistics-18.png" /></p>
-<p>Figure 18. The Proofreader Service and Interfaces. </p>
-<p>Write.loadProofreader() creates the service: </p>
-<p>public static XProofreader loadProofreader() 
-{  return Lo.createInstanceMCF(XProofreader.class, 
-                    "com.sun.star.linguistic2.Proofreader");  } </p>
-<p>Write.proofSentence() passes a sentence to XProofreader.doProofreading(), and prints 
-the errors inside the returned ProofreadingResult instance: </p>
-<p>public static int proofSentence(String sent,<br />
-                                 XProofreader proofreader) 
-{ com.sun.star.lang.Locale loc =<br />
-             new com.sun.star.lang.Locale("en", "US", ""); 
-                     // American English <br />
-  PropertyValue[] props = new PropertyValue[0];<br />
-  int numErrs = 0; 
-  ProofreadingResult prRes =<br />
-           proofreader.doProofreading("1", sent, loc,<br />
-                                      0, sent.length(), props);<br />
-  if (prRes != null) { 
-    SingleProofreadingError[] errs = prRes.aErrors; 
-    if (errs.length &gt; 0) 
-      for(SingleProofreadingError err : errs) { 
-        printProofError(sent, err); 
-        numErrs++; 
-      } 
-  } 
-  return numErrs; 
-}  // end of proofSentence() </p>
-<p>public static void printProofError(String str,<br />
-                              SingleProofreadingError err) 
-{ String errText = str.substring(err.nErrorStart,<br />
-                               err.nErrorStart + err.nErrorLength); 
-  System.out.println("G* " + err.aShortComment +<br />
-                                    " in: \"" + errText + "\""); 
-  if (err.aSuggestions.length &gt; 0) 
-    System.out.println("   Suggested change: \"" +<br />
-                                     err.aSuggestions[0] + "\""); 
-  System.out.println(); 
-}  // end of printProofError() </p>
-<p>XProofreader.doProofreading() requires a locale and properties array in the same way 
-as the earlier spell checking and thesaurus methods. It also needs two indices for the 
-start and end of the sentence being checked, and a document ID which is used in the 
-error results.  </p>
-<p>The results are returned as an array of SingleProofreadingError objects, one for each 
-detected error. It's worth having a look at the documentation for the<br />
-SingleProofreadingError class (use "lodoc SingleProofreadingError"), since the 
-object contains more information than I've used in Write.printProofError(); for 
-example, the ID of the grammar rule that was 'broken', a full comment string, and 
-multiple suggestions in a String array. </p>
-<p>Grammar rule IDs are one area where the proof reader API could be improved. The 
-XProofreader interface includes methods for switching on and off rules based on their 
-IDs, but there's no way to find out what these IDs are except by looking at 
-SingleProofreadingError objects. </p>
+<p>Figure 18. The Proofreader Service and Interfaces.</p>
+<p>Write.loadProofreader() creates the service:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="n">XProofreader</span> <span class="nf">loadProofreader</span><span class="p">()</span>
+<span class="p">{</span>  <span class="k">return</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XProofreader</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                    <span class="s">&quot;com.sun.star.linguistic2.Proofreader&quot;</span><span class="p">);</span>  <span class="p">}</span>
+</code></pre></div>
+<p>Write.proofSentence() passes a sentence to XProofreader.doProofreading(), and prints
+the errors inside the returned ProofreadingResult instance:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">proofSentence</span><span class="p">(</span><span class="n">String</span> <span class="n">sent</span><span class="p">,</span>
+                                 <span class="n">XProofreader</span> <span class="n">proofreader</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">Locale</span> <span class="n">loc</span> <span class="o">=</span>
+             <span class="k">new</span> <span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">Locale</span><span class="p">(</span><span class="s">&quot;en&quot;</span><span class="p">,</span> <span class="s">&quot;US&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">);</span>
+                     <span class="c1">// American English</span>
+  <span class="n">PropertyValue</span><span class="o">[]</span> <span class="n">props</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PropertyValue</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">numErrs</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">ProofreadingResult</span> <span class="n">prRes</span> <span class="o">=</span>
+           <span class="n">proofreader</span><span class="p">.</span><span class="na">doProofreading</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">,</span> <span class="n">sent</span><span class="p">,</span> <span class="n">loc</span><span class="p">,</span>
+                                      <span class="mi">0</span><span class="p">,</span> <span class="n">sent</span><span class="p">.</span><span class="na">length</span><span class="p">(),</span> <span class="n">props</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">prRes</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">SingleProofreadingError</span><span class="o">[]</span> <span class="n">errs</span> <span class="o">=</span> <span class="n">prRes</span><span class="p">.</span><span class="na">aErrors</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">errs</span><span class="p">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="k">for</span><span class="p">(</span><span class="n">SingleProofreadingError</span> <span class="n">err</span> <span class="p">:</span> <span class="n">errs</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printProofError</span><span class="p">(</span><span class="n">sent</span><span class="p">,</span> <span class="n">err</span><span class="p">);</span>
+        <span class="n">numErrs</span><span class="o">++</span><span class="p">;</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">numErrs</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of proofSentence()</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printProofError</span><span class="p">(</span><span class="n">String</span> <span class="n">str</span><span class="p">,</span>
+                              <span class="n">SingleProofreadingError</span> <span class="n">err</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">String</span> <span class="n">errText</span> <span class="o">=</span> <span class="n">str</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="n">err</span><span class="p">.</span><span class="na">nErrorStart</span><span class="p">,</span>
+                               <span class="n">err</span><span class="p">.</span><span class="na">nErrorStart</span> <span class="o">+</span> <span class="n">err</span><span class="p">.</span><span class="na">nErrorLength</span><span class="p">);</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;G* &quot;</span> <span class="o">+</span> <span class="n">err</span><span class="p">.</span><span class="na">aShortComment</span> <span class="o">+</span>
+                                    <span class="s">&quot; in: \&quot;&quot;</span> <span class="o">+</span> <span class="n">errText</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">err</span><span class="p">.</span><span class="na">aSuggestions</span><span class="p">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;   Suggested change: \&quot;&quot;</span> <span class="o">+</span>
+                                     <span class="n">err</span><span class="p">.</span><span class="na">aSuggestions</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of printProofError()</span>
+</code></pre></div>
+<p>XProofreader.doProofreading() requires a locale and properties array in the same way
+as the earlier spell checking and thesaurus methods. It also needs two indices for the
+start and end of the sentence being checked, and a document ID which is used in the
+error results.</p>
+<p>The results are returned as an array of SingleProofreadingError objects, one for each
+detected error. It's worth having a look at the documentation for the
+SingleProofreadingError class (use "lodoc SingleProofreadingError"), since the
+object contains more information than I've used in Write.printProofError(); for
+example, the ID of the grammar rule that was 'broken', a full comment string, and
+multiple suggestions in a String array.</p>
+<p>Grammar rule IDs are one area where the proof reader API could be improved. The
+XProofreader interface includes methods for switching on and off rules based on their
+IDs, but there's no way to find out what these IDs are except by looking at
+SingleProofreadingError objects.</p>
 <h2 id="5-guessing-the-language-used-in-a-string">5.  Guessing the Language used in a String</h2>
-<p>An oft overlooked linguistics API feature is the ability to guess the language used in a 
-string, which is implemented by one service, LanguageGuessing, and a single 
-interface, XLanguageGuessing. The documentation for XLanguageGuessing includes 
-a long list of supported languages, including Irish Gaelic, Scots Gaelic, and Manx 
-Gaelic.  </p>
-<p>There are two examples of language guessing in Lingo.java: </p>
-<dl>
-<dt>// in Lingo.java</dt>
-<dd>Locale loc = Write.guessLocale( 
-              "The rain in Spain stays mainly on the plain."); 
-Write.printLocale(loc); 
-if (loc != null) 
-  System.out.println("Guessed language: " + loc.Language); </dd>
-</dl>
-<p>loc = Write.guessLocale( 
-            "A vaincre sans péril, on triomphe sans gloire."); 
-          // To win without risk is a triumph without glory. </p>
-<p>if (loc != null) 
-  System.out.println("Guessed language: " + loc.Language); </p>
-<p>The output is: </p>
-<p>Locale lang: "English"; country: ""; variant: "" 
-Guessed language: en 
-Guessed language: fr </p>
-<p>Write.guessLocale() creates the service, its interface, and calls 
-XLanguageGuessing.guessPrimaryLanguage(): </p>
-<p>// in the Writer class 
-public static com.sun.star.lang.Locale guessLocale(String testStr) 
-{ 
-  XLanguageGuessing guesser =<br />
-       Lo.createInstanceMCF(XLanguageGuessing.class, 
-               "com.sun.star.linguistic2.LanguageGuessing"); 
-  if (guesser == null) { 
-    System.out.println("No language guesser found"); 
-    return null; 
-  } 
-  else 
-    return guesser.guessPrimaryLanguage(testStr,<br />
-                                         0, testStr.length()); 
-}  // end of guessLocale() </p>
-<p>XLanguageGuessing actually guesses a locale rather than a language, and the locale 
-includes information about the language, country and a variant BCP 47 language 
-label. com.sun.star.lang.Locale stores that information as three strings, but XLocale 
-has additional methods for displaying the string codes in longer formats (e.g. "th" as 
-"Thailand"). Unfortunately, I was unable to get code using XLocale to compile, so fell 
-back to Java's Locale class which includes similar methods.  </p>
-<p>Write.printLocale() converts an Office locale into a Java version, then prints its data 
-in long form: </p>
-<p>public static void printLocale(com.sun.star.lang.Locale loc) 
-{ 
-  if (loc != null)  { 
-    java.util.Locale jloc =<br />
-        new java.util.Locale(loc.Language, loc.Country, loc.Variant); 
-    System.out.println("Locale lang: \"" +<br />
-                                   jloc.getDisplayLanguage() +<br />
-               "\"; country: \"" + jloc.getDisplayCountry() + 
-               "\"; variant: \"" + jloc.getDisplayVariant() + "\""); 
-  } 
-}  // end of printLocale() </p>
+<p>An oft overlooked linguistics API feature is the ability to guess the language used in a
+string, which is implemented by one service, LanguageGuessing, and a single
+interface, XLanguageGuessing. The documentation for XLanguageGuessing includes
+a long list of supported languages, including Irish Gaelic, Scots Gaelic, and Manx
+Gaelic.</p>
+<p>There are two examples of language guessing in Lingo.java:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Lingo.java</span>
+   <span class="p">:</span>
+<span class="n">Locale</span> <span class="n">loc</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">guessLocale</span><span class="p">(</span>
+              <span class="s">&quot;The rain in Spain stays mainly on the plain.&quot;</span><span class="p">);</span>
+<span class="n">Write</span><span class="p">.</span><span class="na">printLocale</span><span class="p">(</span><span class="n">loc</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">loc</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Guessed language: &quot;</span> <span class="o">+</span> <span class="n">loc</span><span class="p">.</span><span class="na">Language</span><span class="p">);</span>
+
+<span class="n">loc</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">guessLocale</span><span class="p">(</span>
+            <span class="s">&quot;A vaincre sans péril, on triomphe sans gloire.&quot;</span><span class="p">);</span>
+          <span class="c1">// To win without risk is a triumph without glory.</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">loc</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Guessed language: &quot;</span> <span class="o">+</span> <span class="n">loc</span><span class="p">.</span><span class="na">Language</span><span class="p">);</span>
+</code></pre></div>
+<p>The output is:</p>
+<div class="highlight"><pre><span></span><code>Locale lang: &quot;English&quot;; country: &quot;&quot;; variant: &quot;&quot;
+Guessed language: en
+Guessed language: fr
+</code></pre></div>
+<p>Write.guessLocale() creates the service, its interface, and calls
+XLanguageGuessing.guessPrimaryLanguage():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Writer class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">Locale</span> <span class="nf">guessLocale</span><span class="p">(</span><span class="n">String</span> <span class="n">testStr</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XLanguageGuessing</span> <span class="n">guesser</span> <span class="o">=</span>
+       <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XLanguageGuessing</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+               <span class="s">&quot;com.sun.star.linguistic2.LanguageGuessing&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">guesser</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No language guesser found&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="k">return</span> <span class="n">guesser</span><span class="p">.</span><span class="na">guessPrimaryLanguage</span><span class="p">(</span><span class="n">testStr</span><span class="p">,</span>
+                                         <span class="mi">0</span><span class="p">,</span> <span class="n">testStr</span><span class="p">.</span><span class="na">length</span><span class="p">());</span>
+<span class="p">}</span>  <span class="c1">// end of guessLocale()</span>
+</code></pre></div>
+<p>XLanguageGuessing actually guesses a locale rather than a language, and the locale
+includes information about the language, country and a variant BCP 47 language
+label. com.sun.star.lang.Locale stores that information as three strings, but XLocale
+has additional methods for displaying the string codes in longer formats (e.g. "th" as
+"Thailand"). Unfortunately, I was unable to get code using XLocale to compile, so fell
+back to Java's Locale class which includes similar methods.</p>
+<p>Write.printLocale() converts an Office locale into a Java version, then prints its data
+in long form:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printLocale</span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">Locale</span> <span class="n">loc</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">loc</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>  <span class="p">{</span>
+    <span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">Locale</span> <span class="n">jloc</span> <span class="o">=</span>
+        <span class="k">new</span> <span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">Locale</span><span class="p">(</span><span class="n">loc</span><span class="p">.</span><span class="na">Language</span><span class="p">,</span> <span class="n">loc</span><span class="p">.</span><span class="na">Country</span><span class="p">,</span> <span class="n">loc</span><span class="p">.</span><span class="na">Variant</span><span class="p">);</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Locale lang: \&quot;&quot;</span> <span class="o">+</span>
+                                   <span class="n">jloc</span><span class="p">.</span><span class="na">getDisplayLanguage</span><span class="p">()</span> <span class="o">+</span>
+               <span class="s">&quot;\&quot;; country: \&quot;&quot;</span> <span class="o">+</span> <span class="n">jloc</span><span class="p">.</span><span class="na">getDisplayCountry</span><span class="p">()</span> <span class="o">+</span>
+               <span class="s">&quot;\&quot;; variant: \&quot;&quot;</span> <span class="o">+</span> <span class="n">jloc</span><span class="p">.</span><span class="na">getDisplayVariant</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of printLocale()</span>
+</code></pre></div>
 <h2 id="6-spell-checking-and-grammar-checking-a-document">6.  Spell Checking and Grammar Checking a Document</h2>
-<p>Lingo.java only spell checks individual words, and grammar checks a single sentence. </p>
-<p>The LingoFile.java example shows how these features can be applied to an entire 
-document. </p>
-<p>One way to scan every sentence in a document is to combine XParagraphCursor and 
-XSentenceCursor, as in the TalkingBook.java example from Chapter 5, section 6. An 
-outer loop iterates over every paragraph using XParagraphCursor, and an inner loop 
-splits each paragraph into sentences with the help of XSentenceCursor. Initially, I 
-coded LingoFile.java in this way, but found that XSentenceCursor  occasionally didn't 
-divide a paragraph into the correct number of sentences; sometimes two sentences 
-were treated as one.  </p>
-<p>So I switched to a combined Office/Java approach – the outer loop in LingoFile.java 
-still utilizes XParagraphCursor to scan the paragraphs, but the sentences in a 
-paragraph are extracted using a sentence-based BreakIterator.  </p>
-<p>The main() function of LingoFile.java: </p>
-<p>public static void main(String args[]) 
-{ 
-  if (args.length &lt; 1) { 
-    System.out.println("Usage: run LingoFile <fnm>"); 
-    return; 
-  } </p>
-<p>XComponentLoader loader = Lo.loadOffice(); 
-  XTextDocument doc = Write.openDoc(args[0], loader); 
-  if (doc == null) { 
-    System.out.println("Could not open " + args[0]); 
-    Lo.closeOffice(); 
-    return; 
-  } </p>
-<p>// load spell checker, proof reader 
-  XSpellChecker speller = Write.loadSpellChecker(); 
-  XProofreader proofreader = Write.loadProofreader(); </p>
-<p>BreakIterator bi = BreakIterator.getSentenceInstance( 
-                                          java.util.Locale.US); </p>
-<p>// iterate through the doc by paragraphs 
-  XParagraphCursor paraCursor = Write.getParagraphCursor(doc); 
-  paraCursor.gotoStart(false);     // go to start of text 
-  String currPara; 
-  do { 
-    paraCursor.gotoEndOfParagraph(true);  <br />
-                          // select all of paragraph 
-    currPara = paraCursor.getString(); 
-    if (currPara.length() &gt; 0) 
-      checkSentences(currPara, bi, speller, proofreader); 
-  } while (paraCursor.gotoNextParagraph(false)); </p>
-<p>Lo.closeDoc(doc); 
-  Lo.closeOffice(); 
-}  // end of main() </p>
-<p>Write.loadSpellChecker() hides the creation of the linguistics manager, and its 
-retrieval of the spell checker: </p>
-<p>// in the Write class 
-public static XSpellChecker loadSpellChecker() 
-{ 
-  XLinguServiceManager lingoMgr =<br />
-           Lo.createInstanceMCF(XLinguServiceManager.class,<br />
-                   "com.sun.star.linguistic2.LinguServiceManager"); 
-  if (lingoMgr == null) { 
-    System.out.println("No linguistics manager found"); 
-    return null; 
-  } 
-  else 
-    return lingoMgr.getSpellChecker(); 
-}  // end of loadSpellChecker() </p>
-<p>The BreakIterator is instantiated in main() using: 
-BreakIterator bi =<br />
-        BreakIterator.getSentenceInstance(java.util.Locale.US); 
-but employed inside checkSentences(), which splits a paragraph into sentences: </p>
-<p>// in LingoFile.java 
-private static void checkSentences(String currPara,<br />
-               BreakIterator bi,<br />
-               XSpellChecker speller, XProofreader proofreader)<br />
-{<br />
-  System.out.println("\n&gt;&gt; " + currPara); 
-  bi.setText(currPara); 
-  int lastIdx = bi.first(); 
-  while (lastIdx != BreakIterator.DONE) { 
-    int firstIdx = lastIdx; 
-    lastIdx = bi.next(); 
-    if (lastIdx != BreakIterator.DONE) { 
-      String sentence = currPara.substring(firstIdx, lastIdx); 
-      Write.proofSentence(sentence, proofreader); 
-      Write.spellSentence(sentence, speller); 
-    } 
-  } 
-}  // end of checkSentences() </p>
-<p>The index positions of the start of the current sentence and the start of the next 
-sentence are stored in firstIdx and lastIdx, and used to extract a substring spanning the 
-current sentence. This is passed to Write.spellSentence() and Write.proofSentence() 
-for spell and proof checking. Write.spellSentence() splits the sentence into an array of 
-words, and calls Write.spellWord() on each one: </p>
-<p>// in the Write class 
-public static int spellSentence(String sent, XSpellChecker speller) 
-{ 
-  String[] words = sent.split("\W+");   // split into words 
-  int count = 0; 
-  boolean isCorrect; 
-  for(String word : words) { 
-    isCorrect = spellWord(word, speller); 
-    count = count + (isCorrect? 0 : 1); 
-  } 
-  return count; 
-}  // end of spellSentence() </p>
-<p>The poorly written "badGrammar.odt" is shown in Figure 19. </p>
+<p>Lingo.java only spell checks individual words, and grammar checks a single sentence.</p>
+<p>The LingoFile.java example shows how these features can be applied to an entire
+document.</p>
+<p>One way to scan every sentence in a document is to combine XParagraphCursor and
+XSentenceCursor, as in the TalkingBook.java example from Chapter 5, section 6. An
+outer loop iterates over every paragraph using XParagraphCursor, and an inner loop
+splits each paragraph into sentences with the help of XSentenceCursor. Initially, I
+coded LingoFile.java in this way, but found that XSentenceCursor  occasionally didn't
+divide a paragraph into the correct number of sentences; sometimes two sentences
+were treated as one.</p>
+<p>So I switched to a combined Office/Java approach – the outer loop in LingoFile.java
+still utilizes XParagraphCursor to scan the paragraphs, but the sentences in a
+paragraph are extracted using a sentence-based BreakIterator.</p>
+<p>The main() function of LingoFile.java:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="na">length</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Usage: run LingoFile &lt;fnm&gt;&quot;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+  <span class="n">XTextDocument</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">openDoc</span><span class="p">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">doc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not open &quot;</span> <span class="o">+</span> <span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// load spell checker, proof reader</span>
+  <span class="n">XSpellChecker</span> <span class="n">speller</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">loadSpellChecker</span><span class="p">();</span>
+  <span class="n">XProofreader</span> <span class="n">proofreader</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">loadProofreader</span><span class="p">();</span>
+
+  <span class="n">BreakIterator</span> <span class="n">bi</span> <span class="o">=</span> <span class="n">BreakIterator</span><span class="p">.</span><span class="na">getSentenceInstance</span><span class="p">(</span>
+                                          <span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">Locale</span><span class="p">.</span><span class="na">US</span><span class="p">);</span>
+
+  <span class="c1">// iterate through the doc by paragraphs</span>
+  <span class="n">XParagraphCursor</span> <span class="n">paraCursor</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">getParagraphCursor</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">paraCursor</span><span class="p">.</span><span class="na">gotoStart</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>     <span class="c1">// go to start of text</span>
+  <span class="n">String</span> <span class="n">currPara</span><span class="p">;</span>
+  <span class="k">do</span> <span class="p">{</span>
+    <span class="n">paraCursor</span><span class="p">.</span><span class="na">gotoEndOfParagraph</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+                          <span class="c1">// select all of paragraph</span>
+    <span class="n">currPara</span> <span class="o">=</span> <span class="n">paraCursor</span><span class="p">.</span><span class="na">getString</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">currPara</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">checkSentences</span><span class="p">(</span><span class="n">currPara</span><span class="p">,</span> <span class="n">bi</span><span class="p">,</span> <span class="n">speller</span><span class="p">,</span> <span class="n">proofreader</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">paraCursor</span><span class="p">.</span><span class="na">gotoNextParagraph</span><span class="p">(</span><span class="kc">false</span><span class="p">));</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of main()</span>
+</code></pre></div>
+<p>Write.loadSpellChecker() hides the creation of the linguistics manager, and its
+retrieval of the spell checker:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Write class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XSpellChecker</span> <span class="nf">loadSpellChecker</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">XLinguServiceManager</span> <span class="n">lingoMgr</span> <span class="o">=</span>
+           <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XLinguServiceManager</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                   <span class="s">&quot;com.sun.star.linguistic2.LinguServiceManager&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">lingoMgr</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No linguistics manager found&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="k">return</span> <span class="n">lingoMgr</span><span class="p">.</span><span class="na">getSpellChecker</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of loadSpellChecker()</span>
+
+<span class="n">The</span> <span class="n">BreakIterator</span> <span class="n">is</span> <span class="n">instantiated</span> <span class="n">in</span> <span class="nf">main</span><span class="p">()</span> <span class="n">using</span><span class="p">:</span>
+<span class="n">BreakIterator</span> <span class="n">bi</span> <span class="o">=</span>
+        <span class="n">BreakIterator</span><span class="p">.</span><span class="na">getSentenceInstance</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">Locale</span><span class="p">.</span><span class="na">US</span><span class="p">);</span>
+<span class="n">but</span> <span class="n">employed</span> <span class="n">inside</span> <span class="nf">checkSentences</span><span class="p">(),</span> <span class="n">which</span> <span class="n">splits</span> <span class="n">a</span> <span class="n">paragraph</span> <span class="n">into</span> <span class="n">sentences</span><span class="p">:</span>
+
+<span class="c1">// in LingoFile.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">checkSentences</span><span class="p">(</span><span class="n">String</span> <span class="n">currPara</span><span class="p">,</span>
+               <span class="n">BreakIterator</span> <span class="n">bi</span><span class="p">,</span>
+               <span class="n">XSpellChecker</span> <span class="n">speller</span><span class="p">,</span> <span class="n">XProofreader</span> <span class="n">proofreader</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n&gt;&gt; &quot;</span> <span class="o">+</span> <span class="n">currPara</span><span class="p">);</span>
+  <span class="n">bi</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">currPara</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">lastIdx</span> <span class="o">=</span> <span class="n">bi</span><span class="p">.</span><span class="na">first</span><span class="p">();</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">lastIdx</span> <span class="o">!=</span> <span class="n">BreakIterator</span><span class="p">.</span><span class="na">DONE</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">firstIdx</span> <span class="o">=</span> <span class="n">lastIdx</span><span class="p">;</span>
+    <span class="n">lastIdx</span> <span class="o">=</span> <span class="n">bi</span><span class="p">.</span><span class="na">next</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">lastIdx</span> <span class="o">!=</span> <span class="n">BreakIterator</span><span class="p">.</span><span class="na">DONE</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">String</span> <span class="n">sentence</span> <span class="o">=</span> <span class="n">currPara</span><span class="p">.</span><span class="na">substring</span><span class="p">(</span><span class="n">firstIdx</span><span class="p">,</span> <span class="n">lastIdx</span><span class="p">);</span>
+      <span class="n">Write</span><span class="p">.</span><span class="na">proofSentence</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="n">proofreader</span><span class="p">);</span>
+      <span class="n">Write</span><span class="p">.</span><span class="na">spellSentence</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="n">speller</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of checkSentences()</span>
+</code></pre></div>
+<p>The index positions of the start of the current sentence and the start of the next
+sentence are stored in firstIdx and lastIdx, and used to extract a substring spanning the
+current sentence. This is passed to Write.spellSentence() and Write.proofSentence()
+for spell and proof checking. Write.spellSentence() splits the sentence into an array of
+words, and calls Write.spellWord() on each one:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Write class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">spellSentence</span><span class="p">(</span><span class="n">String</span> <span class="n">sent</span><span class="p">,</span> <span class="n">XSpellChecker</span> <span class="n">speller</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">String</span><span class="o">[]</span> <span class="n">words</span> <span class="o">=</span> <span class="n">sent</span><span class="p">.</span><span class="na">split</span><span class="p">(</span><span class="s">&quot;\\W+&quot;</span><span class="p">);</span>   <span class="c1">// split into words</span>
+  <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">boolean</span> <span class="n">isCorrect</span><span class="p">;</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">String</span> <span class="n">word</span> <span class="p">:</span> <span class="n">words</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">isCorrect</span> <span class="o">=</span> <span class="n">spellWord</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">speller</span><span class="p">);</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="p">(</span><span class="n">isCorrect</span><span class="o">?</span> <span class="mi">0</span> <span class="p">:</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">count</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of spellSentence()</span>
+</code></pre></div>
+<p>The poorly written "badGrammar.odt" is shown in Figure 19.</p>
 <p><img alt="" src="images/10-Linguistics-19.png" /></p>
-<p>Figure 19. Not a Good Example of my Writing Skills. </p>
-<p>The output from LingoFile.java when given "badGrammar.odt": </p>
-<blockquote>
-<blockquote>
-<p>I have a dogs. I have one dogs. </p>
-</blockquote>
-</blockquote>
-<p>G* Possible agreement error in: "a dogs" 
-   Suggested change: "a dog" </p>
-<blockquote>
-<blockquote>
-<p>I allow of of go home.  i dogs. John don’t like dogs. So recieve 
-no cats also. </p>
-</blockquote>
-</blockquote>
-<p>G* Word repetition in: "of of" 
-   Suggested change: "of" </p>
-<p>G* This sentence does not start with an uppercase letter in: "i" 
-   Suggested change: "I" </p>
-<p>G* Grammatical problem in: "dogs" 
-   Suggested change: "dog" </p>
-<p>G* 'Also' at the end of sentence in: "also" 
-   Suggested change: "as well" </p>
-<ul>
-<li>"recieve" is unknown. Try: 
-No. of names: 8 
-  "receive"  "relieve"  "retrieve"  "reprieve" 
-  "reverie"  "recitative"  "Recife"  "reserve" </li>
-</ul>
-<p>The grammar errors (those starting with "G*") are produced  by the LanguageTool 
-proof checker. If the default Lightproof checker is utilized instead, then less errors are 
-found: </p>
-<blockquote>
-<blockquote>
-<p>I have a dogs. I have one dogs. </p>
-<p>I allow of of go home.  i dogs. John don’t like dogs. So recieve 
-no cats also. </p>
-</blockquote>
-</blockquote>
-<p>G* Word duplication? in: "of of" 
-   Suggested change: "of" </p>
-<p>G* Missing capitalization? in: "i" 
-   Suggested change: "I" </p>
-<ul>
-<li>"recieve" is unknown. Try: 
-No. of names: 8 
-  "receive"  "relieve"  "retrieve"  "reprieve" 
-  "reverie"  "recitative"  "Recife"  "reserve" </li>
-</ul>
-<p>On larger documents, such as the Sherlock Holmes short story in "bigStory.doc", it's a 
-good idea to redirect the voluminous output to a temporary file so it can be examined 
-easily.  </p>
-<p>More than half the errors for "bigStory.doc" are spurious reports of unpaired quotes. </p>
-<p>The output can be considerably reduced if LanguageTool's unpaired rule is disabled, 
-via the Options dialog in Figure 17. Figure 20 shows the dialog with the "Unpaired" 
-checkbox deselected in the Punctuation section. </p>
+<p>Figure 19. Not a Good Example of my Writing Skills.</p>
+<p>The output from LingoFile.java when given "badGrammar.odt":</p>
+<div class="highlight"><pre><span></span><code>&gt;&gt; I have a dogs. I have one dogs.
+
+G* Possible agreement error in: &quot;a dogs&quot;
+   Suggested change: &quot;a dog&quot;
+
+
+&gt;&gt; I allow of of go home.  i dogs. John don’t like dogs. So recieve
+no cats also.
+
+G* Word repetition in: &quot;of of&quot;
+   Suggested change: &quot;of&quot;
+
+G* This sentence does not start with an uppercase letter in: &quot;i&quot;
+   Suggested change: &quot;I&quot;
+
+G* Grammatical problem in: &quot;dogs&quot;
+   Suggested change: &quot;dog&quot;
+
+G* &#39;Also&#39; at the end of sentence in: &quot;also&quot;
+   Suggested change: &quot;as well&quot;
+
+* &quot;recieve&quot; is unknown. Try:
+No. of names: 8
+  &quot;receive&quot;  &quot;relieve&quot;  &quot;retrieve&quot;  &quot;reprieve&quot;
+  &quot;reverie&quot;  &quot;recitative&quot;  &quot;Recife&quot;  &quot;reserve&quot;
+
+The grammar errors (those starting with &quot;G*&quot;) are produced  by the LanguageTool
+proof checker. If the default Lightproof checker is utilized instead, then less errors are
+found:
+
+&gt;&gt; I have a dogs. I have one dogs.
+
+
+&gt;&gt; I allow of of go home.  i dogs. John don’t like dogs. So recieve
+no cats also.
+
+G* Word duplication? in: &quot;of of&quot;
+   Suggested change: &quot;of&quot;
+
+G* Missing capitalization? in: &quot;i&quot;
+   Suggested change: &quot;I&quot;
+
+* &quot;recieve&quot; is unknown. Try:
+No. of names: 8
+  &quot;receive&quot;  &quot;relieve&quot;  &quot;retrieve&quot;  &quot;reprieve&quot;
+  &quot;reverie&quot;  &quot;recitative&quot;  &quot;Recife&quot;  &quot;reserve&quot;
+</code></pre></div>
+<p>On larger documents, such as the Sherlock Holmes short story in "bigStory.doc", it's a
+good idea to redirect the voluminous output to a temporary file so it can be examined
+easily.</p>
+<p>More than half the errors for "bigStory.doc" are spurious reports of unpaired quotes.</p>
+<p>The output can be considerably reduced if LanguageTool's unpaired rule is disabled,
+via the Options dialog in Figure 17. Figure 20 shows the dialog with the "Unpaired"
+checkbox deselected in the Punctuation section.</p>
 <p><img alt="" src="images/10-Linguistics-20.png" /></p>
-<p>Figure 20. The LanguageTool Options Dialog<br />
-with the Unpaired Rule Deselected. </p>
-<p>The majority of the remaining errors are words unknown to the spell checker, such as 
-names and places, and British English spellings. </p>
-<p>Most of the grammar errors relate to how direct speech is written. The grammar 
-checker mistakenly reports an error if the direct speech ends with a question mark or 
-exclamation mark without a comma after the quoted text. </p>
-<p>On balance, I'd say that Sir Arthur Conan Doyle was an excellent speller and 
-grammarian, or his copy editor was. </p>
+<p>Figure 20. The LanguageTool Options Dialog
+with the Unpaired Rule Deselected.</p>
+<p>The majority of the remaining errors are words unknown to the spell checker, such as
+names and places, and British English spellings.</p>
+<p>Most of the grammar errors relate to how direct speech is written. The grammar
+checker mistakenly reports an error if the direct speech ends with a question mark or
+exclamation mark without a comma after the quoted text.</p>
+<p>On balance, I'd say that Sir Arthur Conan Doyle was an excellent speller and
+grammarian, or his copy editor was.</p>
                 
               
               
