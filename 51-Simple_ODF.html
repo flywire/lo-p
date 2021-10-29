@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -1106,6 +1115,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -1120,6 +1130,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1283,6 +1294,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1438,7 +1450,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-51-simple-odf">Chapter 51. Simple ODF</h1>
+                <h1 id="chapter-51-simple-odf">Chapter 51. Simple ODF<a class="headerlink" href="#chapter-51-simple-odf" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 <p>The OpenDocument Format;
@@ -1462,12 +1474,12 @@ zip/unzip and XML features, but that isn't a good idea due
 to the complexity of the formats. This chapter looks at a
 few of these lower-level techniques, but is mainly about the
 Simple API for ODF, a sub-project of the Apache ODF
-Toolkit (http://incubator.apache.org/odftoolkit/simple/). It's
+Toolkit (<a href="http://incubator.apache.org/odftoolkit/simple/">http://incubator.apache.org/odftoolkit/simple/</a>). It's
 a small Java API for creating, modifying and extracting
 data from ODF documents, built on top of the ODFDOM
-library (http://incubator.apache.org/odftoolkit/odfdom/). Rather surprisingly, its
+library (<a href="http://incubator.apache.org/odftoolkit/odfdom/">http://incubator.apache.org/odftoolkit/odfdom/</a>). Rather surprisingly, its
 support for the concatenation of documents is better than that in the Office API.</p>
-<h2 id="1-the-opendocument-format">1.  The OpenDocument Format</h2>
+<h2 id="1-the-opendocument-format">1.  The OpenDocument Format<a class="headerlink" href="#1-the-opendocument-format" title="Permanent link">&para;</a></h2>
 <p>The contents of an ODF document (i.e. the zipped folder) depend on its type (e.g.</p>
 <p>does it contain a spreadsheet, presentation, or text?), but several files always appear
 inside the folder:</p>
@@ -1495,24 +1507,24 @@ utility such as 7-Zip, as in Figure 1.</p>
 Pictures/ stores the images used in the document; Thumbnails/ holds a small 128x128
 picture of the document in thumbnail.png.</p>
 <p>The wikipedia page about ODF is quite informative
-(https://en.wikipedia.org/wiki/OpenDocument), as is its entry for the OpenDocument
+(<a href="https://en.wikipedia.org/wiki/OpenDocument">https://en.wikipedia.org/wiki/OpenDocument</a>), as is its entry for the OpenDocument
 technical specification
-(https://en.wikipedia.org/wiki/OpenDocument_technical_specification). There's a
+(<a href="https://en.wikipedia.org/wiki/OpenDocument_technical_specification">https://en.wikipedia.org/wiki/OpenDocument_technical_specification</a>). There's a
 quick summary of the OpenDocument Format (ODF) at
-https://help.libreoffice.org/Common/XML_File_Formats.</p>
+<a href="https://help.libreoffice.org/Common/XML_File_Formats">https://help.libreoffice.org/Common/XML_File_Formats</a>.</p>
 <p>The ODF standard was developed by the Organization for the Advancement of
-Structured Information Standards (OASIS) consortium  (https://www.oasis-
+Structured Information Standards (OASIS) consortium  (<a href="https://www.oasis-">https://www.oasis-</a>
 open.org/), whose website hosts a lot of information. A related community site is
-http://opendocument.xml.org/</p>
+<a href="http://opendocument.xml.org/">http://opendocument.xml.org/</a></p>
 <p>The most complete textbook on ODF is:</p>
 <p>OASIS OpenDocument Essentials
 J. David Eisenberg, 2005
 http:// books.evc-cit.info/
 The associated website has a free draft of the book, and all the examples and support
 code. The site often seems to be offline, but the book can be found at other locations.</p>
-<p>A recent version can be purchased at Lulu: http://www.lulu.com/shop/j-david-
+<p>A recent version can be purchased at Lulu: <a href="http://www.lulu.com/shop/j-david-">http://www.lulu.com/shop/j-david-</a>
 eisenberg/oasis-opendocument-essentials/paperback/product-392512.html</p>
-<h2 id="2-document-information">2.  Document Information</h2>
+<h2 id="2-document-information">2.  Document Information<a class="headerlink" href="#2-document-information" title="Permanent link">&para;</a></h2>
 <p>There's little need to directly manipulate a document's XML files since the Office API
 offers high-level techniques for accessing most of their information.</p>
 <p>For example, part of meta.xml for algs.odp is:</p>
@@ -1609,7 +1621,7 @@ manipulate almost the same information, but the older XDocumentInfo can retrieve
 the document's MIME-type, which is absent from XDocumentProperties. One way of
 obtaining this would be to access the mimetype file zipped inside the document, as
 shown next.</p>
-<h2 id="3-unzipping-an-odf-document">3.  Unzipping an ODF Document</h2>
+<h2 id="3-unzipping-an-odf-document">3.  Unzipping an ODF Document<a class="headerlink" href="#3-unzipping-an-odf-document" title="Permanent link">&para;</a></h2>
 <p>My DocUnzip.java example shows how it's possible to list the zipped contents of a
 document, access its MIME-type, and extract a zipped file:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// in DocUnzip.java</span>
@@ -1702,7 +1714,7 @@ Extracting content.xml
 Saving to contentCopy.xml
 </code></pre></div>
 <p>Most of the output is a detailed listing of the zipped contents of algs.odp.</p>
-<h3 id="31-listing-the-contents-of-a-zipped-folder">3.1.  Listing the Contents of a Zipped Folder</h3>
+<h3 id="31-listing-the-contents-of-a-zipped-folder">3.1.  Listing the Contents of a Zipped Folder<a class="headerlink" href="#31-listing-the-contents-of-a-zipped-folder" title="Permanent link">&para;</a></h3>
 <p>There are two "zipList" functions in the FileIO utility class. FileIO.zipListUno() is
 simpler since only file and folder names are printed:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// in the FileIO class</span>
@@ -1768,8 +1780,8 @@ implement a more fancy "zipList":</p>
 </code></pre></div>
 <p>Another advantage of switching to Java are the large number of online examples of
 zip manipulation; my zipList() function is closely based on one at
-http://www.drdobbs.com/jvm/java-and-the-zip-file-format/184410339.</p>
-<h3 id="32-extracting-a-mime-type">3.2.  Extracting a MIME-type</h3>
+<a href="http://www.drdobbs.com/jvm/java-and-the-zip-file-format/184410339">http://www.drdobbs.com/jvm/java-and-the-zip-file-format/184410339</a>.</p>
+<h3 id="32-extracting-a-mime-type">3.2.  Extracting a MIME-type<a class="headerlink" href="#32-extracting-a-mime-type" title="Permanent link">&para;</a></h3>
 <p>FileIO.getMimeType() employs XZipFileAccess.getStreamByPattern() to access the
 zipped mimetype file as an input stream.</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// in the FileIO class</span>
@@ -1862,7 +1874,7 @@ in the Lo class:</p>
 <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">MATH_STR</span> <span class="o">=</span> <span class="s">&quot;smath&quot;</span><span class="p">;</span>
 </code></pre></div>
 <p>Lo.docTypeStr() maps document type integers to these strings.</p>
-<h3 id="33-extracting-a-zipped-file">3.3.  Extracting a Zipped File</h3>
+<h3 id="33-extracting-a-zipped-file">3.3.  Extracting a Zipped File<a class="headerlink" href="#33-extracting-a-zipped-file" title="Permanent link">&para;</a></h3>
 <p>The XZipFileAccess.getStreamByPattern() method used in FileIO.getMimeType() is
 also employed by FileIO.unzipFile() to extract a zipped file:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// in FileIO class</span>
@@ -1893,7 +1905,7 @@ ODF document's manifest.xml which is stored in "META-INF/manifest.xml".</p>
 <p>I utilize Office's IO interface, XSimpleFileAccess3, which supports writeFile() to
 directly connect an XInputStream  to a file. The filename of the extracted data is
 constructed from the zipped filename with the addition of "Copy".</p>
-<h2 id="4-higher-level-manipulation-of-odf">4.  Higher-level Manipulation of ODF</h2>
+<h2 id="4-higher-level-manipulation-of-odf">4.  Higher-level Manipulation of ODF<a class="headerlink" href="#4-higher-level-manipulation-of-odf" title="Permanent link">&para;</a></h2>
 <p>Manipulating an ODF document as zipped files and XML is a recipe for highly
 complex (and probably bug-ridden) code. And why bother when the Office API offers
 all the necessary functionality in a higher-level framework?</p>
@@ -1902,28 +1914,28 @@ then everything looks like a nail". In other words, it's useful to know about OD
 other than Office's since they might offer better, easier ways of doing some tasks.</p>
 <p>As a consequence, I'm going to spend the rest of the chapter looking at the Simple
 Java API for ODF, a sub-project of Apache ODF Toolkit
-(http://incubator.apache.org/odftoolkit/simple/). It's a relatively small Java API for
+(<a href="http://incubator.apache.org/odftoolkit/simple/">http://incubator.apache.org/odftoolkit/simple/</a>). It's a relatively small Java API for
 creating, modifying and extracting data from ODF documents, built on top of the
-ODFDOM  library (http://incubator.apache.org/odftoolkit/odfdom/).</p>
+ODFDOM  library (<a href="http://incubator.apache.org/odftoolkit/odfdom/">http://incubator.apache.org/odftoolkit/odfdom/</a>).</p>
 <p>Its best features are the cookbook pages at
-http://incubator.apache.org/odftoolkit/simple/document/cookbook/, the Getting
-Started Guide (http://incubator.apache.org/odftoolkit/simple/gettingstartguide.html),
-and its demo pages (http://incubator.apache.org/odftoolkit/simple/demo/).</p>
+<a href="http://incubator.apache.org/odftoolkit/simple/document/cookbook/">http://incubator.apache.org/odftoolkit/simple/document/cookbook/</a>, the Getting
+Started Guide (<a href="http://incubator.apache.org/odftoolkit/simple/gettingstartguide.html">http://incubator.apache.org/odftoolkit/simple/gettingstartguide.html</a>),
+and its demo pages (<a href="http://incubator.apache.org/odftoolkit/simple/demo/">http://incubator.apache.org/odftoolkit/simple/demo/</a>).</p>
 <p>The cookbook contains examples for manipulating text documents, presentations,
 tables in text documents and spreadsheets, charts, style handling, text navigation, text
 extraction, text fields, text forms, and document metadata. The API documentation is
-at http://incubator.apache.org/odftoolkit/mvn-site/0.8-incubating/simple-odf/apidocs/,
-and a mail archive at http://mail-archives.apache.org/mod_mbox/incubator-odf-users/</p>
+at <a href="http://incubator.apache.org/odftoolkit/mvn-site/0.8-incubating/simple-odf/apidocs/">http://incubator.apache.org/odftoolkit/mvn-site/0.8-incubating/simple-odf/apidocs/</a>,
+and a mail archive at <a href="http://mail-archives.apache.org/mod_mbox/incubator-odf-users/">http://mail-archives.apache.org/mod_mbox/incubator-odf-users/</a></p>
 <p>By far the worst feature of the API is the large number of libraries that must be
 installed before even a lowly "Hello World" example will work. Fortunately, I've
 included copies of those libraries at this chapter's website at
-http://fivedots.coe.psu.ac.th/~ad/jlop/.</p>
+<a href="http://fivedots.coe.psu.ac.th/~ad/jlop/">http://fivedots.coe.psu.ac.th/~ad/jlop/</a>.</p>
 <p>The Simple API doesn't have the depth of features of Office, so it's best suited for the
 creation of simple text documents, spreadsheets, and presentations. However, it has
 better support for combining documents (e.g. concatenating two slide decks into a
 single one), and can move/copy slides in a presentation much more easily than Office;
 look back at Chapter 17, sections 4 and 5 for my complaints about that.</p>
-<h3 id="41-building-simple-documents">4.1.  Building Simple Documents</h3>
+<h3 id="41-building-simple-documents">4.1.  Building Simple Documents<a class="headerlink" href="#41-building-simple-documents" title="Permanent link">&para;</a></h3>
 <p>This subsection looks at how the Simple API can be used to create text, spreadsheet,
 and slide documents.</p>
 <p>Make a Text Document
@@ -1969,8 +1981,8 @@ image rather than to one side.</p>
 paragraph's position. It's probably do-able using the lower-level ODFDOM  library,
 but the programming information for that part of ODF Toolkit is mostly limited to its
 API documentation. However, there's a good introductory tutorial at
-http://www.langintro.com/odfdom_tutorials/.</p>
-<h4 id="make-a-spreadsheet">Make a Spreadsheet</h4>
+<a href="http://www.langintro.com/odfdom_tutorials/">http://www.langintro.com/odfdom_tutorials/</a>.</p>
+<h4 id="make-a-spreadsheet">Make a Spreadsheet<a class="headerlink" href="#make-a-spreadsheet" title="Permanent link">&para;</a></h4>
 <p>The MakeSheet.java example creates a spreadsheet with a single sheet, and a few
 cells of data, as in Figure 5.</p>
 <p><img alt="" src="images/51-Simple_ODF-5.png" /></p>
@@ -1997,7 +2009,7 @@ cells of data, as in Figure 5.</p>
 
 <span class="p">}</span>  <span class="c1">// end of MakeSheet class</span>
 </code></pre></div>
-<h4 id="make-a-slide-deck">Make a Slide Deck</h4>
+<h4 id="make-a-slide-deck">Make a Slide Deck<a class="headerlink" href="#make-a-slide-deck" title="Permanent link">&para;</a></h4>
 <p>The MakeSlides.java example creates a slide deck. The first slide contains a title, the
 second some bulleted text and a picture, and the third slide is blank, as in Figure 6.</p>
 <p><img alt="" src="images/51-Simple_ODF-6.png" /></p>
@@ -2049,7 +2061,7 @@ second some bulleted text and a picture, and the third slide is blank, as in Fig
 <p>Programming with this part of the API is a littlie tricky since slide elements are
 represented by different types of boxes. I also found it hard to determine the position
 of the image, except by trial-and-error.</p>
-<h3 id="42-moving-a-slide">4.2.  Moving a Slide</h3>
+<h3 id="42-moving-a-slide">4.2.  Moving a Slide<a class="headerlink" href="#42-moving-a-slide" title="Permanent link">&para;</a></h3>
 <p>Back in Chapter 17, section 4, I had to use copy and paste dispatch commands in the
 slide-sorter view to rearrange a deck. Moving a slide in the Simple API is much
 easier, as shown in MoveSlide.java, which moves the first slide of the deck to its end:</p>
@@ -2078,11 +2090,11 @@ easier, as shown in MoveSlide.java, which moves the first slide of the deck to i
 why I need to supply numSlides as the second numerical argument rather than
 numSlides-1.</p>
 <p>There's also a PresentationDocument.copySlide() method for copying.</p>
-<h3 id="43-combining-two-documents">4.3.  Combining Two Documents</h3>
+<h3 id="43-combining-two-documents">4.3.  Combining Two Documents<a class="headerlink" href="#43-combining-two-documents" title="Permanent link">&para;</a></h3>
 <p>This subsection presents three short programs that combine two text documents,
 appends the sheets of two spreadsheets, and concatenates two slide decks. These
 examples are much simpler to program than equivalent ones using the Office API.</p>
-<h4 id="combining-text-documents">Combining Text Documents</h4>
+<h4 id="combining-text-documents">Combining Text Documents<a class="headerlink" href="#combining-text-documents" title="Permanent link">&para;</a></h4>
 <p>CombineTexts.java adds the contents of doc2.odt to the end of the contents of
 doc1.odt, separating them with a page break. The result is saved to combined.odt:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CombineTexts</span>
@@ -2111,7 +2123,7 @@ doc1.odt, separating them with a page break. The result is saved to combined.odt
 <span class="p">}</span>  <span class="c1">// end of CombineTexts class</span>
 </code></pre></div>
 <p>The crucial method is TextDocument.insertContentFromDocumentAfter().</p>
-<h4 id="combining-spreadsheets">Combining Spreadsheets</h4>
+<h4 id="combining-spreadsheets">Combining Spreadsheets<a class="headerlink" href="#combining-spreadsheets" title="Permanent link">&para;</a></h4>
 <p>CombineSheets.java places the sheets in ss2.odt after the sheets in ss1.odt, and saves
 the result in combined.ods:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CombineSheets</span>
@@ -2143,7 +2155,7 @@ the result in combined.ods:</p>
 </code></pre></div>
 <p>Sadly there isn't a single method that appends tables. Instead  I've used a loop to
 append each sheet from ss2.ods after the sheets in ss1.ods.</p>
-<h4 id="combining-slide-decks">Combining Slide Decks</h4>
+<h4 id="combining-slide-decks">Combining Slide Decks<a class="headerlink" href="#combining-slide-decks" title="Permanent link">&para;</a></h4>
 <p>CombineDecks.java adds the slides in deck2.odp after the slides in deck1.odp, saving
 the result in combined.odp:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CombineDecks</span>
@@ -2179,6 +2191,7 @@ should be compared to my hacky Office solution in Chapter 17, section 5.</p>
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -2186,7 +2199,8 @@ should be compared to my hacky Office solution in Chapter 17, section 5.</p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="50-Importing_XML.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="50-Importing_XML.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 50. Importing XML" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2207,10 +2221,12 @@ should be compared to my hacky Office solution in Chapter 17, section 5.</p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -2222,10 +2238,10 @@ should be compared to my hacky Office solution in Chapter 17, section 5.</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

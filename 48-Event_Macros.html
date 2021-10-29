@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -1046,6 +1055,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -1060,6 +1070,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1256,6 +1267,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1384,7 +1396,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-48-event-macros">Chapter 48. Event Macros</h1>
+                <h1 id="chapter-48-event-macros">Chapter 48. Event Macros<a class="headerlink" href="#chapter-48-event-macros" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 <p>Macro Locations;
@@ -1418,14 +1430,14 @@ documents.</p>
 macro programming has changed since the guide was produced (e.g. macros can now
 be written in Python), so it's better to read the more current OpenOffice wiki, starting
 at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Scripting/Scripting_Frame
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Scripting/Scripting_Frame">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Scripting/Scripting_Frame</a>
 work (or use <code>loGuide "Scripting Framework"</code>).</p>
 <p>Most macro programming resources employ Office Basic, and Java rarely gets
 mentioned, as in chapter 13, "Getting Started with Macros", of the "Getting Started
-Guide" (available at http://www.libreoffice.org/get-help/documentation/). That
+Guide" (available at <a href="http://www.libreoffice.org/get-help/documentation/">http://www.libreoffice.org/get-help/documentation/</a>). That
 chapter ends with a useful list of online resources, and printed and eBook materials.</p>
 <p>Probably the best source for Office Basic macro coding is Andrew Pitonyak's website
-at http://www.pitonyak.org/oo.php; I recommend starting with his book,
+at <a href="http://www.pitonyak.org/oo.php">http://www.pitonyak.org/oo.php</a>; I recommend starting with his book,
 "OpenOffice.org Macros Explained" (OOME), which is free to download. There's
 also a separate book of collected macros, called AndrewMacros.pdf.</p>
 <p>Another excellent introduction to Office Basic Macros (written in French) is:</p>
@@ -1433,7 +1445,7 @@ also a separate book of collected macros, called AndrewMacros.pdf.</p>
 <li>Programmation OpenOffice.org et LibreOffice: Macros OOoBasic et API
 Bernard Marcelly and Laurent Godard
 Eyrolles, 2011
-http://www.editions-eyrolles.com/Livre/9782212132472/programmation-
+<a href="http://www.editions-eyrolles.com/Livre/9782212132472/programmation-">http://www.editions-eyrolles.com/Livre/9782212132472/programmation-</a>
 openoffice-org-et-libreoffice</li>
 </ul>
 <p>Two textbooks that focus on Office Basic macros in a particular Office application:</p>
@@ -1442,15 +1454,15 @@ openoffice-org-et-libreoffice</li>
 Automation
 Mark Alexander Bain
 Packt Publishing, 2006
-https://www.packtpub.com/hardware-and-creative/learn-openofficeorg-
+<a href="https://www.packtpub.com/hardware-and-creative/learn-openofficeorg-">https://www.packtpub.com/hardware-and-creative/learn-openofficeorg-</a>
 spreadsheet-macro-programming-ooobasic-and-calc-automation</li>
 <li>Database Programming with OpenOffice.org Base and Basic
 Roberto Benitez
 Lulu.com, 2011
-http://www.lulu.com/shop/roberto-benitez/database-programming-with-
+<a href="http://www.lulu.com/shop/roberto-benitez/database-programming-with-">http://www.lulu.com/shop/roberto-benitez/database-programming-with-</a>
 openofficeorg-base-basic/paperback/product-3568728.html</li>
 </ul>
-<h2 id="1-fantastic-macros-and-where-to-find-them">1.  Fantastic Macros and Where to Find Them</h2>
+<h2 id="1-fantastic-macros-and-where-to-find-them">1.  Fantastic Macros and Where to Find Them<a class="headerlink" href="#1-fantastic-macros-and-where-to-find-them" title="Permanent link">&para;</a></h2>
 <p>There are four categories of macros:
 * user: user macros are available only to the user who added them to Office;
 * share: share macros can be called by all users of that copy of Office;
@@ -1483,7 +1495,7 @@ included (see Figure 2). As a consequence, I'll use the Macro Selector dialog of
 Figure 1 from now on.</p>
 <p><img alt="" src="images/48-Event_Macros-2.png" /></p>
 <p>Figure 2. The Tools &gt; Macros &gt; "Organize Macros" Menu.</p>
-<h2 id="2-where-are-macros-stored">2.  Where are Macros Stored?</h2>
+<h2 id="2-where-are-macros-stored">2.  Where are Macros Stored?<a class="headerlink" href="#2-where-are-macros-stored" title="Permanent link">&para;</a></h2>
 <p>Aside from accessing macros through the Office GUI, it's useful to know where
 they're located in the directory structure. This is especially true for user and share
 macros since the easiest way to install them is to copy them into Office's designated
@@ -1493,11 +1505,11 @@ document macros are added to their document using unzipping and zipping.</p>
 depending on if the macros are user or share, coded in Office Basic or another
 language, and on the version of Office and OS.</p>
 <p>The folders for share macros are probably the easiest to find – they're located inside
-<OFFICE>\share\ (e.g. C:\Program Files\LibreOffice 5\share\ on my machine). Basic
-macros are in share\basic\ while macros in other languages, such as Java, are in
-subfolders of share\Scripts\ (e.g. see Figure 3).</p>
+<OFFICE>\share (e.g. C:\Program Files\LibreOffice 5\share on my machine). Basic
+macros are in share\basic while macros in other languages, such as Java, are in
+subfolders of share\Scripts (e.g. see Figure 3).</p>
 <p><img alt="" src="images/48-Event_Macros-3.png" /></p>
-<p>Figure 3. The Non-Basic share\Scripts\ Macros Folders.</p>
+<p>Figure 3. The Non-Basic share\Scripts Macros Folders.</p>
 <p>In other words, Java share macros will be in:</p>
 <div class="highlight"><pre><span></span><code>C:\Program Files\LibreOffice 5\share\Scripts\java
 </code></pre></div>
@@ -1507,17 +1519,17 @@ variable, which you can print out:</p>
 <div class="highlight"><pre><span></span><code>echo %APPDATA%
 </code></pre></div>
 <p>On my work test machine this prints "C:\Users\Ad\AppData\Roaming". You need to
-locate the LibreOffice subdirectory in the Roaming\ folder and then its user\
-subdirectory, which will be inside LibreOffice\5\ or perhaps LibreOffice\4. For
-instance, on one of my test machines the user\ folder is:</p>
+locate the LibreOffice subdirectory in the Roaming folder and then its user\
+subdirectory, which will be inside LibreOffice\5 or perhaps LibreOffice\4. For
+instance, on one of my test machines the user folder is:</p>
 <div class="highlight"><pre><span></span><code>C:\Users\Ad\AppData\Roaming\LibreOffice\4\user
 </code></pre></div>
 <p>If you haven't previously downloaded or created Java user macros, then you'll have to
-create a Scripts\ folder inside user\, and a java\ folder inside Scripts. In other words,
+create a Scripts folder inside user\, and a java folder inside Scripts. In other words,
 the Java user macros will be in:</p>
 <div class="highlight"><pre><span></span><code>C:\Users\Ad\AppData\Roaming\LibreOffice\4\user\Scripts\java
 </code></pre></div>
-<h2 id="3-naming-macro-functions">3.  Naming Macro Functions</h2>
+<h2 id="3-naming-macro-functions">3.  Naming Macro Functions<a class="headerlink" href="#3-naming-macro-functions" title="Permanent link">&para;</a></h2>
 <p>The "Macro Selector dialog displays a list of macros in its right hand window (e.g.</p>
 <p>"GetNumber.get" and "GetText.show" in Figure 1), but more detailed function names
 are required when calling macros from code.</p>
@@ -1540,10 +1552,10 @@ by the Macro Selector dialog (see Figure 1). For example, "GetNumber.get" refers
 the static function get() in the GetNumber class.</p>
 <p>Information about the URI formats for other languages is given on the "Scripting
 Framework URI Specification" page at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Scripting/Scripting_Frame
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Scripting/Scripting_Frame">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Scripting/Scripting_Frame</a>
 work_URI_Specification
 (or use <code>loGuide "Scripting Framework URI Specification"</code>).</p>
-<h4 id="listing-and-finding-macro-names">Listing and Finding Macro Names</h4>
+<h4 id="listing-and-finding-macro-names">Listing and Finding Macro Names<a class="headerlink" href="#listing-and-finding-macro-names" title="Permanent link">&para;</a></h4>
 <p>Knowing a macro's full name is essential, so I've added some helper functions to the
 Macros.java utilities class. The ListMacros.java and FindMacros.java examples show
 how to use them.</p>
@@ -1702,18 +1714,18 @@ one:</p>
 <li>class name: HelloWorld</li>
 <li>function name: printHW</li>
 </ul>
-<p>The HelloWorld\ folder is inside C:\Program Files\LibreOffice 5\share\Scripts\java\,
+<p>The HelloWorld folder is inside C:\Program Files\LibreOffice 5\share\Scripts\java\,
 as confirmed by Figure 5.</p>
 <p><img alt="" src="images/48-Event_Macros-5.png" /></p>
 <p>Figure 5. The HelloWorld Folder in share\Scripts\java.</p>
-<p>Figure 5 also shows Highlight\, MemoryUsage\ and ShowEvent\ folders which hold
+<p>Figure 5 also shows Highlight\, MemoryUsage and ShowEvent folders which hold
 the other three share macros listed by ListMacros.java.</p>
-<p>The HelloWorld\ folder contains the compiled HelloWorld class in a JAR file, and a
+<p>The HelloWorld folder contains the compiled HelloWorld class in a JAR file, and a
 parcel-descriptor.xml configuration file, which I'll explain later. It also has the source
 code for HelloWorld, which isn’t required by Office, but included as an example for
 developers. Figure 6 shows the contents of HelloWorld.</p>
 <p><img alt="" src="images/48-Event_Macros-6.png" /></p>
-<p>Figure 6. The Contents of the HelloWorld\ Folder.</p>
+<p>Figure 6. The Contents of the HelloWorld Folder.</p>
 <p>The format of the HelloWorld class in the JAR file is:</p>
 <p>package org.libreoffice.example.java_scripts;</p>
 <div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HelloWorld</span>
@@ -1746,7 +1758,7 @@ vnd.sun.star.script:HelloWorld.py$HelloWorldPython?
 </code></pre></div>
 <p>Four of the hello-related scripts are share macros written in BeanShell, Java,
 JavaScript, and Python.</p>
-<h2 id="4-calling-the-hello-macros">4.  Calling the "hello" Macros</h2>
+<h2 id="4-calling-the-hello-macros">4.  Calling the "hello" Macros<a class="headerlink" href="#4-calling-the-hello-macros" title="Permanent link">&para;</a></h2>
 <p>The TextMacros.java example creates a text document, and calls the four "hello"
 share macros listed above by FindMacros.java. They each add a short piece of text to
 the document, as displayed on lines 2-5 in Figure 7.</p>
@@ -1856,7 +1868,7 @@ Macros.execute() sets them to null. It's also possible to have the script set ou
 parameters, but my call to XScript.invoke() doesn't use them either.</p>
 <p>There's no need to pass Macros.execute() a reference to the document. An executing
 script only requires Office's current context which is retrieved by Lo.getContext().</p>
-<h3 id="41-macro-security-levels">4.1.  Macro Security Levels</h3>
+<h3 id="41-macro-security-levels">4.1.  Macro Security Levels<a class="headerlink" href="#41-macro-security-levels" title="Permanent link">&para;</a></h3>
 <p>Prior to the macro calls in TextMacros.java, there's a call to Macros.getSecurity(). It
 reports Office's macro execution setting, which is changed to Macros.MEDIUM if the
 current value is Macros.LOW:</p>
@@ -1908,7 +1920,7 @@ its "MacroSecurityLevel" property:</p>
   <span class="p">}</span>
 <span class="p">}</span>  <span class="c1">// end of setSecurity()</span>
 </code></pre></div>
-<h3 id="42-implementing-the-helloworld-java-macro">4.2.  Implementing the HelloWorld Java Macro</h3>
+<h3 id="42-implementing-the-helloworld-java-macro">4.2.  Implementing the HelloWorld Java Macro<a class="headerlink" href="#42-implementing-the-helloworld-java-macro" title="Permanent link">&para;</a></h3>
 <p>The four macros called by TextMacros.java add text to the document, but how
 exactly? The Java macro is called using:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// part of TextMacros.java...</span>
@@ -1949,7 +1961,7 @@ the desktop, and document to be accessed (see lodoc XScriptContext). printHW()
 utilizes XScriptContext.getDocument() to retrieve the document, and casts it to
 XTextDocument. This allows the end of the text to be accessed with XTextRange, so
 a string (""Hello World (in Java)") can be appended to it.</p>
-<h2 id="5-the-librelogo-macro">5.  The LibreLogo Macro</h2>
+<h2 id="5-the-librelogo-macro">5.  The LibreLogo Macro<a class="headerlink" href="#5-the-librelogo-macro" title="Permanent link">&para;</a></h2>
 <p>HelloWorld isn't the most exciting of macro examples. LibreLogo is a fun (and
 educational) share macro for LibreOffice (see Figure 9), which has been a standard
 Office add-on since version 4.0.</p>
@@ -2010,18 +2022,18 @@ the commandline() function inside LibreLogo.py:</p>
 <p>The params[] array is treated as two arguments by XScript.invoke() and passed to
 commandline().</p>
 <p>The quick-start and resources pages at librelogo.org are the places to start learning
-LibreLogo (http://librelogo.org/quick-start/ and http://librelogo.org/resources/).
+LibreLogo (<a href="http://librelogo.org/quick-start/">http://librelogo.org/quick-start/</a> and <a href="http://librelogo.org/resources/">http://librelogo.org/resources/</a>).
 There's also a help page of commands at
-https://help.libreoffice.org/Writer/LibreLogo_Toolbar.</p>
-<p>A good source of examples, slides, and code is http://www.numbertext.org/logo/. The
+<a href="https://help.libreoffice.org/Writer/LibreLogo_Toolbar">https://help.libreoffice.org/Writer/LibreLogo_Toolbar</a>.</p>
+<p>A good source of examples, slides, and code is <a href="http://www.numbertext.org/logo/">http://www.numbertext.org/logo/</a>. The
 best introductory talk at that site is "LibreLogo – Turtle vector graphics for
-everybody" from 2012 (http://www.numbertext.org/logo/librelogo.pdf), and there are
+everybody" from 2012 (<a href="http://www.numbertext.org/logo/librelogo.pdf">http://www.numbertext.org/logo/librelogo.pdf</a>), and there are
 more recent presentations which update the project. One of its aims was to create a
 textbook for Hungarian primary and secondary schools (the project lead, László
 Németh, is Hungarian), which is free to download from
-http://szabadszoftver.kormany.hu/wp-
+<a href="http://szabadszoftver.kormany.hu/wp-">http://szabadszoftver.kormany.hu/wp-</a>
 content/uploads/librelogo_oktatasi_segedanyag_v4.pdf.</p>
-<h2 id="6-writing-a-simple-event-macro">6.  Writing a Simple Event Macro</h2>
+<h2 id="6-writing-a-simple-event-macro">6.  Writing a Simple Event Macro<a class="headerlink" href="#6-writing-a-simple-event-macro" title="Permanent link">&para;</a></h2>
 <p>It's time to start coding our own macros. I'll start by writing a ShowEvent class which
 reports when various events occur. It does this by implementing several versions of a
 static show() method:</p>
@@ -2155,13 +2167,13 @@ component that sent the event:</p>
   <span class="p">}</span>
 <span class="p">}</span> <span class="c1">// end of getSource()</span>
 </code></pre></div>
-<h3 id="61-installing-a-simple-event-macro">6.1.  Installing a Simple Event Macro</h3>
+<h3 id="61-installing-a-simple-event-macro">6.1.  Installing a Simple Event Macro<a class="headerlink" href="#61-installing-a-simple-event-macro" title="Permanent link">&para;</a></h3>
 <p>A Java macro is installed as a JAR file, so ShowEvent.class is packaged as
 ShowEvent.jar after compilation:</p>
 <div class="highlight"><pre><span></span><code>compile ShowEvent.java
 jar cvf ShowEvent.jar ShowEvent.class
 </code></pre></div>
-<p>The JAR is added to a new folder called ShowEvent\ beneath
+<p>The JAR is added to a new folder called ShowEvent beneath
 <OFFICE>\share\Scripts\java\, thereby making it a share macro. It's also necessary to
 include a parcel-descriptor.xml file:</p>
 <div class="highlight"><pre><span></span><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
@@ -2188,7 +2200,7 @@ include a parcel-descriptor.xml file:</p>
 by Office. The <description> text appears in the Macro selector dialog (e.g. see
 Figure 12 below) when the macro is selected, and <languagedepprops> adds the JAR
 to Office's classpath.</p>
-<p>The final contents of the ShowEvent\ folder are a JAR and XML file, as shown in
+<p>The final contents of the ShowEvent folder are a JAR and XML file, as shown in
 Figure 11.</p>
 <p><img alt="" src="images/48-Event_Macros-11.png" /></p>
 <p>Figure 11. The ShowEvent Share Macro Folder.</p>
@@ -2197,7 +2209,7 @@ restarted and the "LibreOffice Macros" subsection of the Macro Selector dialog
 examined. Figure 12 shows the ShowEvent.show macro in the ShowEvent module.</p>
 <p><img alt="" src="images/48-Event_Macros-12.png" /></p>
 <p>Figure 12. Checking for the Presence of ShowEvent.show.</p>
-<h3 id="62-using-showeventshow-in-a-form">6.2.  Using ShowEvent.show in a Form</h3>
+<h3 id="62-using-showeventshow-in-a-form">6.2.  Using ShowEvent.show in a Form<a class="headerlink" href="#62-using-showeventshow-in-a-form" title="Permanent link">&para;</a></h3>
 <p>build.odt is a simple form using textfields and buttons shown in Figure 13.</p>
 <p><img alt="" src="images/48-Event_Macros-13.png" /></p>
 <p>Figure 13. The "build.odt" Form.</p>
@@ -2236,7 +2248,7 @@ by the KeyEvent version of ShowEvent.show:</p>
 <span class="p">{</span>  <span class="n">display</span><span class="p">(</span><span class="s">&quot;key &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">.</span><span class="na">KeyChar</span><span class="p">,</span> <span class="n">getSource</span><span class="p">(</span><span class="n">e</span><span class="p">));</span> <span class="p">}</span>
 </code></pre></div>
 <p>As each letter ("a', 'n', and 'd') is typed, this version of show() is called.</p>
-<h2 id="7-automating-the-assigning-of-event-macros">7.  Automating the Assigning of Event Macros</h2>
+<h2 id="7-automating-the-assigning-of-event-macros">7.  Automating the Assigning of Event Macros<a class="headerlink" href="#7-automating-the-assigning-of-event-macros" title="Permanent link">&para;</a></h2>
 <p>The preceding section illustrates that the assignment of macros to events is
 straightforward, but time-consuming, especially if you have many controls in your
 form. Fortunately, macros can be assigned programmatically.</p>
@@ -2398,6 +2410,7 @@ Forms.assignScript(props, "XTextListener", "textChanged",
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -2405,7 +2418,8 @@ Forms.assignScript(props, "XTextListener", "textChanged",
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="47-Calc_Add-ins.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="47-Calc_Add-ins.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 47. Calc Add-ins" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2420,7 +2434,8 @@ Forms.assignScript(props, "XTextListener", "textChanged",
         </a>
       
       
-        <a href="49-Ext_Doc_Event_Macros.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="49-Ext_Doc_Event_Macros.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 49. Extension and Document Event Macros" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -2440,10 +2455,12 @@ Forms.assignScript(props, "XTextListener", "textChanged",
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -2455,10 +2472,10 @@ Forms.assignScript(props, "XTextListener", "textChanged",
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

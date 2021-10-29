@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -851,6 +860,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -865,6 +875,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1189,6 +1200,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1250,7 +1262,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-37-using-the-driver-manager">Chapter 37. Using the Driver Manager</h1>
+                <h1 id="chapter-37-using-the-driver-manager">Chapter 37. Using the Driver Manager<a class="headerlink" href="#chapter-37-using-the-driver-manager" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 <p>Querying a CSV 
@@ -1279,7 +1291,7 @@ address books. This chapter includes examples of how to query these kinds of fil
 programmer has to supply, including the driver name, the file's URL, and the 
 connection properties. A good source for this information is the Developer's Guide, in 
 the "Driver Specifics" section of chapter 12. It's also accessible online at 
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics 
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics</a> 
 (or use loGuide "Database Driver Specifics"). Unfortunately, the guide was last 
 updated in 2008 for OpenOffice 3.1, and some details have changed since then. A 
 better approach is to query Base's DriverManager at run time which will supply data 
@@ -1294,7 +1306,7 @@ database protocol. XDriver.getPropertyInfo() gives access to the properties that
 set in the driver's connection. </p>
 <p>These interfaces and methods are utilized by my Base.getSupportedDrivers() and 
 Base.printDriverProperties() functions, as seen in CSVQuery.java explained next. </p>
-<h2 id="1-querying-a-csv-file">1.  Querying a CSV File</h2>
+<h2 id="1-querying-a-csv-file">1.  Querying a CSV File<a class="headerlink" href="#1-querying-a-csv-file" title="Permanent link">&para;</a></h2>
 <p>CSVQuery.java opens a CSV file, examines its us-500 table, and prints the first 
 names of the people resident in New York City: </p>
 <p>// part of CSVQuery.java... </p>
@@ -1337,16 +1349,16 @@ public static void main(String[] args)
 <p>XConnection conn = null; 
   try { 
     conn = dm.getConnectionWithInfo(url, props); </p>
-<pre><code>// ArrayList&lt;String&gt; tableNames = Base.getTablesNames(conn); 
+<div class="highlight"><pre><span></span><code>// ArrayList&lt;String&gt; tableNames = Base.getTablesNames(conn); 
 ArrayList&lt;String&gt; tableNames = Base.getTablesNamesMD(conn); 
-System.out.println("No. of tables: " + tableNames.size()); 
+System.out.println(&quot;No. of tables: &quot; + tableNames.size()); 
 System.out.println( Arrays.toString(tableNames.toArray())); 
             // reports all CSV tables ??
 
-XResultSet rs = Base.executeQuery("SELECT \"first_name\" FROM  
-        \"us-500\" WHERE \"City\" = 'New York'", conn); 
+XResultSet rs = Base.executeQuery(&quot;SELECT \&quot;first_name\&quot; FROM  
+        \&quot;us-500\&quot; WHERE \&quot;City\&quot; = &#39;New York&#39;&quot;, conn); 
 BaseTablePrinter.printResultSet(rs);
-</code></pre>
+</code></pre></div>
 <p>} 
   catch(Exception e) { 
     System.out.println(e); 
@@ -1429,17 +1441,17 @@ public static void printDriverProperties(XDriver driver, String url)
   try { 
     System.out.println("Driver Name: " +<br />
                     Info.getImplementationName(driver)); </p>
-<pre><code>DriverPropertyInfo[] dpInfo = driver.getPropertyInfo(url, null); 
+<div class="highlight"><pre><span></span><code>DriverPropertyInfo[] dpInfo = driver.getPropertyInfo(url, null); 
 if (dpInfo == null) { 
-  System.out.println("Properties info for the driver is null"); 
+  System.out.println(&quot;Properties info for the driver is null&quot;); 
   return; 
 } 
-System.out.println("No. of Driver properties: " + dpInfo.length); 
+System.out.println(&quot;No. of Driver properties: &quot; + dpInfo.length); 
 for(int i=0; i &lt; dpInfo.length; i++) 
-   System.out.println("  " + dpInfo[i].Name + " = " +  
+   System.out.println(&quot;  &quot; + dpInfo[i].Name + &quot; = &quot; +  
                              dpInfo[i].Value); 
 System.out.println();
-</code></pre>
+</code></pre></div>
 <p>} 
   catch(SQLException e) { 
     System.out.println("No properties info for the driver"); 
@@ -1485,7 +1497,7 @@ PropertyValue[] props = Props.makeProps(
                 true, ",", "\"\"" } 
       );<br />
 XConnection conn = dm.getConnectionWithInfo(url, props); </p>
-<h2 id="2-finding-out-about-tables">2.  Finding out about Tables</h2>
+<h2 id="2-finding-out-about-tables">2.  Finding out about Tables<a class="headerlink" href="#2-finding-out-about-tables" title="Permanent link">&para;</a></h2>
 <p>A common need when querying databases is knowing their table schemas.  </p>
 <p>In my earlier ODB document examples, I used classes from the sdbcx module to get 
 schema information (see Figure 10). For example, Base.getTablesNames() accesses 
@@ -1527,7 +1539,7 @@ Base.getTablesNamesMD() return a list of table names. The bad news is that the
 generated list is incorrect, including every CSV file name in the current directory. </p>
 <p>This meant that I had to hardwire the "us-500" table name into the query in 
 CSVQuery.java. rather than use the Base.getTablesNamesMD() data. </p>
-<h2 id="3-querying-an-access-file">3.  Querying an Access File</h2>
+<h2 id="3-querying-an-access-file">3.  Querying an Access File<a class="headerlink" href="#3-querying-an-access-file" title="Permanent link">&para;</a></h2>
 <p>AccessQuery.java is almost the same as CSVQuery.java, except for the change in 
 driver and the connection properties. </p>
 <p>The list of drivers printed by Base.getSupportedDrivers() suggests that I should use 
@@ -1569,15 +1581,15 @@ public static void main(String[] args)
   try { 
     conn = dm.getConnectionWithInfo(url, null); 
                   // no connection properties needed </p>
-<pre><code>ArrayList&lt;String&gt; tableNames = Base.getTablesNamesMD(conn); 
-System.out.println("No. of tables: " + tableNames.size()); 
+<div class="highlight"><pre><span></span><code>ArrayList&lt;String&gt; tableNames = Base.getTablesNamesMD(conn); 
+System.out.println(&quot;No. of tables: &quot; + tableNames.size()); 
 System.out.println( Arrays.toString(tableNames.toArray())); 
          // table list includes an empty string
 
 XResultSet rs = Base.executeQuery( 
-                  "SELECT * FROM \"Authors\"", conn); 
+                  &quot;SELECT * FROM \&quot;Authors\&quot;&quot;, conn); 
 BaseTablePrinter.printResultSet(rs);
-</code></pre>
+</code></pre></div>
 <p>} 
   catch(Exception e) { 
     System.out.println(e); 
@@ -1585,7 +1597,7 @@ BaseTablePrinter.printResultSet(rs);
 <p>Base.closeConnection(conn); 
   Lo.closeOffice(); 
 }  // end of main() </p>
-<h2 id="4-querying-a-calc-spreadsheet">4.  Querying a Calc Spreadsheet</h2>
+<h2 id="4-querying-a-calc-spreadsheet">4.  Querying a Calc Spreadsheet<a class="headerlink" href="#4-querying-a-calc-spreadsheet" title="Permanent link">&para;</a></h2>
 <p>CalcQuery.java examines the "Marks" spreadsheet in totals.ods. </p>
 <p>The Calc driver treats each named sheet in the spreadsheet as a separate table. This 
 time, Base.getTablesNamesMD() returns a correct list of the sheet names. </p>
@@ -1606,15 +1618,15 @@ public static void main(String[] args)
   try { 
     conn = dm.getConnectionWithInfo(url, null); 
                   // no connection properties needed </p>
-<pre><code>ArrayList&lt;String&gt; tableNames = Base.getTablesNamesMD(conn); 
-System.out.println("No. of tables: " + tableNames.size()); 
+<div class="highlight"><pre><span></span><code>ArrayList&lt;String&gt; tableNames = Base.getTablesNamesMD(conn); 
+System.out.println(&quot;No. of tables: &quot; + tableNames.size()); 
 System.out.println( Arrays.toString(tableNames.toArray()));
 
 XResultSet rs = Base.executeQuery( 
-       "SELECT \"Stud. No.\", \"Fin/45\" FROM \"Marks\"  
-        WHERE \"Fin/45\" &lt; 20", conn); 
+       &quot;SELECT \&quot;Stud. No.\&quot;, \&quot;Fin/45\&quot; FROM \&quot;Marks\&quot;  
+        WHERE \&quot;Fin/45\&quot; &lt; 20&quot;, conn); 
 BaseTablePrinter.printResultSet(rs);
-</code></pre>
+</code></pre></div>
 <p>} 
   catch(Exception e) { 
     System.out.println(e); 
@@ -1622,16 +1634,16 @@ BaseTablePrinter.printResultSet(rs);
 <p>Base.closeConnection(conn); 
   Lo.closeOffice(); 
 }  // end of main() </p>
-<h2 id="5-querying-a-thunderbird-address-book">5.  Querying a Thunderbird Address Book</h2>
+<h2 id="5-querying-a-thunderbird-address-book">5.  Querying a Thunderbird Address Book<a class="headerlink" href="#5-querying-a-thunderbird-address-book" title="Permanent link">&para;</a></h2>
 <p>One reason for Office being able to access the address books of e-mail software is for 
 implementing mail merge applications. ThunderbirdQuery.java examines the personal 
-addresses in Thunderbird (https://www.mozilla.org/en-US/thunderbird/). </p>
+addresses in Thunderbird (<a href="https://www.mozilla.org/en-US/thunderbird/">https://www.mozilla.org/en-US/thunderbird/</a>). </p>
 <p>The Office documentation at 
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics 
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics</a> 
 mentions support for Mozilla, Outlook, Outlook Express and LDAP, but several 
 forum posts describe updates and changes.  </p>
 <p>"sdbc:address:mozilla" supports SeaMonkey Mail, the 2006 replacement for the 
-Mozilla e-mail reader (http://www.seamonkey-project.org/), and 
+Mozilla e-mail reader (<a href="http://www.seamonkey-project.org/">http://www.seamonkey-project.org/</a>), and 
 "sdbc:address:thunderbird" connects to Thunderbird. Base uses the Mork driver 
 (com.sun.star.comp.sdbc.MorkDriver) to access both SeaMonkey and Thunderbird. </p>
 <p>The Thunderbird e-mail reader on my test machine has two address books, called 
@@ -1647,9 +1659,8 @@ names of the table's columns. Inside Thunderbird, the e-mail column is labeled
 Base.displayTablesSchema() lists the table and column information for the connected 
 database, using sdbcx to get the table names. However, there's a meta data variant 
 which utilizes Base.getTablesNamesMD(), as shown below: </p>
-<p>// in the Base class 
-public static void displayTablesSchema(XConnection conn) 
-{  displayTablesSchema(conn, true);  } </p>
+<p displayTablesSchema_conn_="displayTablesSchema(conn," true_="true);">// in the Base class 
+public static void displayTablesSchema(XConnection conn) </p>
 <p>public static void displayTablesSchema(XConnection conn,<br />
                                        boolean useSDBCX) 
 { 
@@ -1720,21 +1731,21 @@ BaseTablePrinter.printResultSet(rs);   </p>
 +------------------------------+ 
 |            E-mail            | 
 +------------------------------+ 
-| timgarner@compuserve.com     | 
+| <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#116;&#105;&#109;&#103;&#97;&#114;&#110;&#101;&#114;&#64;&#99;&#111;&#109;&#112;&#117;&#115;&#101;&#114;&#118;&#101;&#46;&#99;&#111;&#109;">&#116;&#105;&#109;&#103;&#97;&#114;&#110;&#101;&#114;&#64;&#99;&#111;&#109;&#112;&#117;&#115;&#101;&#114;&#118;&#101;&#46;&#99;&#111;&#109;</a>     | 
 +------------------------------+ 
-| Rohini.Deb@cenveo.com        | 
+| <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#82;&#111;&#104;&#105;&#110;&#105;&#46;&#68;&#101;&#98;&#64;&#99;&#101;&#110;&#118;&#101;&#111;&#46;&#99;&#111;&#109;">&#82;&#111;&#104;&#105;&#110;&#105;&#46;&#68;&#101;&#98;&#64;&#99;&#101;&#110;&#118;&#101;&#111;&#46;&#99;&#111;&#109;</a>        | 
 +------------------------------+ 
-| Patty_Mon@mcgraw-hill.com    | 
+| <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#80;&#97;&#116;&#116;&#121;&#95;&#77;&#111;&#110;&#64;&#109;&#99;&#103;&#114;&#97;&#119;&#45;&#104;&#105;&#108;&#108;&#46;&#99;&#111;&#109;">&#80;&#97;&#116;&#116;&#121;&#95;&#77;&#111;&#110;&#64;&#109;&#99;&#103;&#114;&#97;&#119;&#45;&#104;&#105;&#108;&#108;&#46;&#99;&#111;&#109;</a>    | 
 +------------------------------+ 
-| nutteen@gmail.com            | 
+| <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#110;&#117;&#116;&#116;&#101;&#101;&#110;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#110;&#117;&#116;&#116;&#101;&#101;&#110;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>            | 
 +------------------------------+ 
-| lors.davison@googlemail.com  | 
+| <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#111;&#114;&#115;&#46;&#100;&#97;&#118;&#105;&#115;&#111;&#110;&#64;&#103;&#111;&#111;&#103;&#108;&#101;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#108;&#111;&#114;&#115;&#46;&#100;&#97;&#118;&#105;&#115;&#111;&#110;&#64;&#103;&#111;&#111;&#103;&#108;&#101;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>  | 
 +------------------------------+ 
-| lordkiller.davison@gmail.com | 
+| <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#111;&#114;&#100;&#107;&#105;&#108;&#108;&#101;&#114;&#46;&#100;&#97;&#118;&#105;&#115;&#111;&#110;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#108;&#111;&#114;&#100;&#107;&#105;&#108;&#108;&#101;&#114;&#46;&#100;&#97;&#118;&#105;&#115;&#111;&#110;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a> | 
 +------------------------------+ 
-| lecturer@coe.psu.ac.th       | 
+| <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#101;&#99;&#116;&#117;&#114;&#101;&#114;&#64;&#99;&#111;&#101;&#46;&#112;&#115;&#117;&#46;&#97;&#99;&#46;&#116;&#104;">&#108;&#101;&#99;&#116;&#117;&#114;&#101;&#114;&#64;&#99;&#111;&#101;&#46;&#112;&#115;&#117;&#46;&#97;&#99;&#46;&#116;&#104;</a>       | 
 +------------------------------+ 
-| engteacher@eng.psu.ac.th     | 
+| <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#110;&#103;&#116;&#101;&#97;&#99;&#104;&#101;&#114;&#64;&#101;&#110;&#103;&#46;&#112;&#115;&#117;&#46;&#97;&#99;&#46;&#116;&#104;">&#101;&#110;&#103;&#116;&#101;&#97;&#99;&#104;&#101;&#114;&#64;&#101;&#110;&#103;&#46;&#112;&#115;&#117;&#46;&#97;&#99;&#46;&#116;&#104;</a>     | 
 +------------------------------+ </p>
 <p>The main() function of ThunderbirdQuery.java: </p>
 <p>// in ThunderbirdQuery.java 
@@ -1751,16 +1762,16 @@ public static void main(String[] args)
   try { 
     conn = dm.getConnectionWithInfo( 
                     "sdbc:address:thunderbird", null); </p>
-<pre><code>ArrayList&lt;String&gt; tableNames = Base.getTablesNamesMD(conn); 
-System.out.println("No. of tables: " + tableNames.size()); 
+<div class="highlight"><pre><span></span><code>ArrayList&lt;String&gt; tableNames = Base.getTablesNamesMD(conn); 
+System.out.println(&quot;No. of tables: &quot; + tableNames.size()); 
 System.out.println( Arrays.toString(tableNames.toArray()));
 
 Base.displayTablesSchema(conn, false); // use getTablesNamesMD()
 
 XResultSet rs = Base.executeQuery( 
-        "SELECT \"E-mail\" FROM \"AddressBook\"", conn); 
+        &quot;SELECT \&quot;E-mail\&quot; FROM \&quot;AddressBook\&quot;&quot;, conn); 
 BaseTablePrinter.printResultSet(rs);
-</code></pre>
+</code></pre></div>
 <p>} 
   catch(Exception e) { 
     System.out.println(e); 
@@ -1778,6 +1789,7 @@ BaseTablePrinter.printResultSet(rs);
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -1785,7 +1797,8 @@ BaseTablePrinter.printResultSet(rs);
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="36-RowSets_DB_Context.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="36-RowSets_DB_Context.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 36. Using RowSets and Database Context" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1800,7 +1813,8 @@ BaseTablePrinter.printResultSet(rs);
         </a>
       
       
-        <a href="38-ODB_as_Zip.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="38-ODB_as_Zip.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 38. Treating an ODB File as a Zipped Folder" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -1820,10 +1834,12 @@ BaseTablePrinter.printResultSet(rs);
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -1835,10 +1851,10 @@ BaseTablePrinter.printResultSet(rs);
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

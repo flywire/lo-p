@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -281,6 +290,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -295,6 +305,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1196,6 +1207,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1264,7 +1276,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-4-listening-and-other-techniques">Chapter 4. Listening, and Other Techniques</h1>
+                <h1 id="chapter-4-listening-and-other-techniques">Chapter 4. Listening, and Other Techniques<a class="headerlink" href="#chapter-4-listening-and-other-techniques" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 <p>Window
@@ -1283,8 +1295,8 @@ dispatching messages to the Office GUI, and the Java
 Robot package.</p>
 <p>Once again the examples come from the "Office Tests" directory in the code
 download associated with this book, and make liberal use of the classes in the "Utils"
-directory. For details please visit http://fivedots.coe.psu.ac.th/~ad/jlop/.</p>
-<h2 id="1-listening-to-a-window">1.  Listening to a Window</h2>
+directory. For details please visit <a href="http://fivedots.coe.psu.ac.th/~ad/jlop/">http://fivedots.coe.psu.ac.th/~ad/jlop/</a>.</p>
+<h2 id="1-listening-to-a-window">1.  Listening to a Window<a class="headerlink" href="#1-listening-to-a-window" title="Permanent link">&para;</a></h2>
 <p>I haven't previously mentioned Office's listener interfaces (there are about 140 of
 them), because they work in the same way as listeners in Java.</p>
 <p>Probably the easiest way of obtaining a list of them all is to visit the LibreOffice
@@ -1294,7 +1306,7 @@ XEventListener, and you can click on a subclass box to jump to its documentation
 <p>One nice syntactic feature of listeners is that almost all their names end with
 “Listener”. This makes them easy to find when searching through indices of class
 names, such as the “Class Index” page at
-http://api.libreoffice.org/docs/idl/ref/classes.html.</p>
+<a href="http://api.libreoffice.org/docs/idl/ref/classes.html">http://api.libreoffice.org/docs/idl/ref/classes.html</a>.</p>
 <p>The top-level document window can be monitored for changes using
 XTopWindowListener, which responds to modifications of the window’s state, such
 as when it is opened, closed, minimized, and made active.</p>
@@ -1385,12 +1397,12 @@ is fired, but two closed events are issued. Consequently, there's a single call 
 windowDeactivated() and two to windowClosed(). Strangely, there's no window
 closing event trigger of windowClosing(), and Lo.closeOffice() doesn't cause
 disposing() to fire.</p>
-<h2 id="2-office-manipulation-with-jna">2.  Office Manipulation with JNA</h2>
+<h2 id="2-office-manipulation-with-jna">2.  Office Manipulation with JNA<a class="headerlink" href="#2-office-manipulation-with-jna" title="Permanent link">&para;</a></h2>
 <p>Although XTopWindowListener can detect the minimization and re-activation of the
 document window, there's no way to trigger these changes from the Office API.</p>
 <p>Fixing this requires a trip outside Office because I need a library that can manipulate a
 window controlled by the OS. One very nice API that fits my needs is Java Native
-Access (JNA, https://github.com/twall/jna), which supports OS programming without
+Access (JNA, <a href="https://github.com/twall/jna">https://github.com/twall/jna</a>), which supports OS programming without
 writing anything but Java. JNA comes with numerous classes, representing OS data
 structures, such as window handles and process IDs.</p>
 <p>The JNA-powered methods in my JNAUtils.java utilities class fall roughly into three
@@ -1429,7 +1441,7 @@ means of XSystemDependentWindowPeer (e.g. see the code in
 GUI.getWindowHandle()), but there are no Office methods which utilize this integer.</p>
 <p>JNA methods require a HWND instance, so the handle needs to be obtained using
 JNA.</p>
-<h2 id="3-detecting-office-termination">3.  Detecting Office Termination</h2>
+<h2 id="3-detecting-office-termination">3.  Detecting Office Termination<a class="headerlink" href="#3-detecting-office-termination" title="Permanent link">&para;</a></h2>
 <p>Office termination is most easily observed by attaching a listener to the Desktop
 object, as in DocMonitor.java:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DocMonitor</span>
@@ -1490,7 +1502,7 @@ Office terminated
 <p>XTerminateListener’s queryTermination() and notifyTermination() are called at the
 start and end of the Office closing sequence. As in the DocWindow.java example,
 disposing() is never triggered.</p>
-<h2 id="4-bridge-shutdown-detection">4.  Bridge Shutdown Detection</h2>
+<h2 id="4-bridge-shutdown-detection">4.  Bridge Shutdown Detection<a class="headerlink" href="#4-bridge-shutdown-detection" title="Permanent link">&para;</a></h2>
 <p>There's another way to detect Office closure: by listening for the shutdown of the
 UNO bridge between the Java and Office processes. This can be useful if Office
 crashes independently of your Java code. However, I was only able to get this
@@ -1555,7 +1567,7 @@ Office bridge has gone!!
 Lo.closeOffice() call which triggers the XTerminateListener methods. However, the
 XEventListener attached to the bridge did fire. (If you're wondering, I killed Office by
 opening the Task manager on my test machine, and stopped the soffice process.)</p>
-<h2 id="5-dispatching">5.  Dispatching</h2>
+<h2 id="5-dispatching">5.  Dispatching<a class="headerlink" href="#5-dispatching" title="Permanent link">&para;</a></h2>
 <p>This book is about the Java Office API, which manipulates UNO data structures such
 as services, interfaces, and components. There's an alternative programming style,
 based on the dispatching of messages to Office. These messages are mostly related to
@@ -1567,11 +1579,11 @@ recorder automatically converts a user's interaction with menus into dispatches.
 instance, copying requires the selection of text, which has to be implemented with the
 Office API.</p>
 <p>LibreOffice has a comprehensive webpage listing all the dispatch commands
-(https://wiki.documentfoundation.org/Development/DispatchCommands). An older
+(<a href="https://wiki.documentfoundation.org/Development/DispatchCommands">https://wiki.documentfoundation.org/Development/DispatchCommands</a>). An older
 source is the UICommands.ods spreadsheet, put together by Ariel Constenla-Haile in
-2010, at https://arielch.fedorapeople.org/devel/ooo/UICommands.ods.</p>
+2010, at <a href="https://arielch.fedorapeople.org/devel/ooo/UICommands.ods">https://arielch.fedorapeople.org/devel/ooo/UICommands.ods</a>.</p>
 <p>Another resource is chapter 10 of "OpenOffice.org Macros Explained" by Andrew
-Pitonyak (free online at http://www.pitonyak.org/book/)</p>
+Pitonyak (free online at <a href="http://www.pitonyak.org/book/">http://www.pitonyak.org/book/</a>)</p>
 <p>Creating a dispatcher in Java is a little complicated since XDispatchProvider and
 XDispatchHelper instances are needed. XDispatchProvider is obtained from the frame
 (i.e. window) where the message will be delivered, which is almost always the
@@ -1611,7 +1623,7 @@ Impress document.</p>
 <p>DispatchTest() doesn't close the document or Office at the end, so the user must
 explicitly exit the slideshow and close the Office application himself by clicking on
 its close box.</p>
-<h2 id="6-robot-keys">6.  Robot Keys</h2>
+<h2 id="6-robot-keys">6.  Robot Keys<a class="headerlink" href="#6-robot-keys" title="Permanent link">&para;</a></h2>
 <p>Another menu-related approach to controlling Office is to programmatically send
 menu shortcut key strokes to the currently active window. For example, a loaded
 Impress document is often displayed with a slide selection pane. This can be closed
@@ -1653,7 +1665,7 @@ not currently on-screen then these keys will bring it up. Also, what if the curr
 isn't the one for Impress? Do these combination of keys do something deadly in one
 of Office's other applications?</p>
 <p>One nice feature is that there's lots of documentation on keyboard shortcuts for Office
-in its User guides (downloadable from https://th.libreoffice.org/get-
+in its User guides (downloadable from <a href="https://th.libreoffice.org/get-">https://th.libreoffice.org/get-</a>
 help/documentation/), and these can be easily translated into key presses and releases
 in Robot.</p>
                 
@@ -1666,6 +1678,7 @@ in Robot.</p>
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -1673,7 +1686,8 @@ in Robot.</p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="03-Examining.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="03-Examining.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 3. Examining" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1688,7 +1702,8 @@ in Robot.</p>
         </a>
       
       
-        <a href="05%20Part%202%20Writer.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="05%20Part%202%20Writer.html" class="md-footer__link md-footer__link--next" aria-label="Next: Part 2 Writer" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -1708,10 +1723,12 @@ in Robot.</p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -1723,10 +1740,10 @@ in Robot.</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

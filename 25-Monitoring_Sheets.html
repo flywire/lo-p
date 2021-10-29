@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -641,6 +650,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -655,6 +665,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1202,6 +1213,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1276,7 +1288,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-25-monitoring-sheets">Chapter 25. Monitoring Sheets</h1>
+                <h1 id="chapter-25-monitoring-sheets">Chapter 25. Monitoring Sheets<a class="headerlink" href="#chapter-25-monitoring-sheets" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 <p>Listening for 
@@ -1297,7 +1309,7 @@ spreadsheets: document modification, application closing,
 and cell selection listeners. </p>
 <p>Office's support for listeners was first described back in 
 Chapter 4.  </p>
-<h2 id="1-listening-for-the-users-modifications">1.  Listening for the User's Modifications</h2>
+<h2 id="1-listening-for-the-users-modifications">1.  Listening for the User's Modifications<a class="headerlink" href="#1-listening-for-the-users-modifications" title="Permanent link">&para;</a></h2>
 <p>A common requirement for spreadsheet programming is controlling how the user 
 interacts with the sheet's data. In the extreme case, this might mean preventing the 
 user from changing anything, which is possible through the XProtectable interface 
@@ -1322,9 +1334,9 @@ public class ModifyListener implements XModifyListener
     } 
     GUI.setVisible(doc, true); 
     sheet = Calc.getSheet(doc, 0); </p>
-<pre><code>// insert some data 
-Calc.setCol(sheet, "A1", 
-   new Object[] {"Smith", 42, 58.9, -66.5, 43.4, 44.5, 45.3});
+<div class="highlight"><pre><span></span><code>// insert some data 
+Calc.setCol(sheet, &quot;A1&quot;, 
+   new Object[] {&quot;Smith&quot;, 42, 58.9, -66.5, 43.4, 44.5, 45.3});
 
 // listen for cell modifications 
 XModifyBroadcaster mb = Lo.qi(XModifyBroadcaster.class, doc); 
@@ -1333,31 +1345,29 @@ mb.addModifyListener(this);
 // close down when window close box is clicked 
 XExtendedToolkit tk = Lo.createInstanceMCF( 
                           XExtendedToolkit.class,  
-                          "com.sun.star.awt.Toolkit");
+                          &quot;com.sun.star.awt.Toolkit&quot;);
 
 if (tk != null) 
   tk.addTopWindowListener( new XTopWindowAdapter() { 
     public void windowClosing(EventObject eo) 
-    { System.out.println("Closing");   
-      Lo.saveDoc(doc, "modify.ods"); 
+    { System.out.println(&quot;Closing&quot;);   
+      Lo.saveDoc(doc, &quot;modify.ods&quot;); 
       Lo.closeDoc(doc); 
       Lo.closeOffice(); 
     } 
   });
-</code></pre>
+</code></pre></div>
 <p>}  // end of ModifyListener() </p>
 <p>// ----- XModifyListener methods ------ </p>
-<p>public void disposing(EventObject event) 
-  {  System.out.println("Disposing"); }   </p>
+<p System.out.println_Disposing_="System.out.println(&quot;Disposing&quot;);">public void disposing(EventObject event) </p>
 <p>public void modified(EventObject event) 
   {  // called whenever a cell is modified;<br />
      // the code in this method is explained below 
   }  </p>
-<p>// ------------------------------------ 
-  public static void main(String args[]) 
-  {  new ModifyListener();  } </p>
+<p ModifyListener_="ModifyListener();" new="new">// ------------------------------------ 
+  public static void main(String args[]) </p>
 <p>}  // end of ModifyListener class </p>
-<h3 id="11-listening-to-the-close-box">1.1.  Listening to the Close Box</h3>
+<h3 id="11-listening-to-the-close-box">1.1.  Listening to the Close Box<a class="headerlink" href="#11-listening-to-the-close-box" title="Permanent link">&para;</a></h3>
 <p>main() creates a ModifyListener object and then terminates, which means that the 
 object must deal with the closing of the spreadsheet and the termination of Office. </p>
 <p>This is done by employing another listener: an adapter for XTopWindowListener, 
@@ -1369,7 +1379,7 @@ called XTopWindowAdapter, attached to the Calc application's close box: </p>
 if (tk != null) 
   tk.addTopWindowListener( new XTopWindowAdapter() { 
     public void windowClosing(EventObject eo) 
-    { /<em>  called whenever the appl. is closed  </em>/  } 
+    { /*  called whenever the appl. is closed  */  } 
   } </dd>
 </dl>
 <p>XTopWindowListener was described in Chapter 4, section 1, but 
@@ -1406,7 +1416,7 @@ Office: </p>
   } 
 } </dd>
 </dl>
-<h3 id="12-listening-for-modifications">1.2.  Listening for Modifications</h3>
+<h3 id="12-listening-for-modifications">1.2.  Listening for Modifications<a class="headerlink" href="#12-listening-for-modifications" title="Permanent link">&para;</a></h3>
 <p>ModifyListener is notified of document changes by attaching itself to the document's 
 XModifyBroadcaster: </p>
 <p>// in ModifyListener.java 
@@ -1442,7 +1452,7 @@ by calling Info.showServices(), as in the commented-out code above.  </p>
 means that it can be converted into an XSpreadsheetDocument  interface. Lots of 
 useful things can be accessed through this interface, but that's also commented-out 
 because I can utilize the document via the global variable, doc. </p>
-<h3 id="13-examining-the-changed-cell-or-cells">1.3.  Examining the Changed Cell (or Cells)</h3>
+<h3 id="13-examining-the-changed-cell-or-cells">1.3.  Examining the Changed Cell (or Cells)<a class="headerlink" href="#13-examining-the-changed-cell-or-cells" title="Permanent link">&para;</a></h3>
 <p>While modified() is being executed, the modified cell in the document is still selected 
 (or active), and so can be retrieved: </p>
 <p>// in modified() ... </p>
@@ -1509,7 +1519,7 @@ XCell cell = Calc.getCell(sheet, crAddr.StartColumn,<br />
 </dl>
 <p>This requires the current active sheet, which is obtained through 
 Calc.getActiveSheet(). </p>
-<h3 id="14-problems-with-the-modified-method">1.4.  Problems with the modified() Method</h3>
+<h3 id="14-problems-with-the-modified-method">1.4.  Problems with the modified() Method<a class="headerlink" href="#14-problems-with-the-modified-method" title="Permanent link">&para;</a></h3>
 <p>After all this coding, the bad news is that modified() is still lacking in functionality.  </p>
 <p>One minor problem is that modified() is called twice when the user finishes editing a 
 cell. This occurs when the user presses enter, or tab, or an arrow key, and for reasons I 
@@ -1519,7 +1529,7 @@ counter to control when the code is executed. </p>
 cell, but doesn't know what was overwritten, which would be very useful for 
 implementing data validation. This led me to investigate another form of listening, 
 based on cell selection, which is described next. </p>
-<h2 id="2-listening-for-cell-selections">2.  Listening for Cell Selections</h2>
+<h2 id="2-listening-for-cell-selections">2.  Listening for Cell Selections<a class="headerlink" href="#2-listening-for-cell-selections" title="Permanent link">&para;</a></h2>
 <p>Listening to cell selections on the sheet has the drawback of generating a lot of events, 
 but this abundance of data turns out to be useful; I can use it to report more about cell 
 modifications. </p>
@@ -1544,30 +1554,30 @@ public class SelectListener implements XSelectionChangeListener
     } 
     GUI.setVisible(doc, true); 
     sheet = Calc.getSheet(doc, 0); </p>
-<pre><code>// initialize selected cell's current address and value 
+<div class="highlight"><pre><span></span><code>// initialize selected cell&#39;s current address and value 
 currAddr = Calc.getSelectedCellAddr(doc); 
 currVal = getCellDouble(sheet, currAddr);   // may be null
 
 attachListener(doc);  // listen for cell selections
 
 // insert some data 
-Calc.setCol(sheet, "A1", 
-   new Object[] {"Smith", 42, 58.9, -66.5, 43.4, 44.5, 45.3});
+Calc.setCol(sheet, &quot;A1&quot;, 
+   new Object[] {&quot;Smith&quot;, 42, 58.9, -66.5, 43.4, 44.5, 45.3});
 
 // close down when window close box is clicked 
 XExtendedToolkit tk = Lo.createInstanceMCF( 
                              XExtendedToolkit.class,  
-                             "com.sun.star.awt.Toolkit"); 
+                             &quot;com.sun.star.awt.Toolkit&quot;); 
 if (tk != null) 
   tk.addTopWindowListener( new XTopWindowAdapter() { 
     public void windowClosing(EventObject eo) 
-    { System.out.println("Closing");   
-      Lo.saveDoc(doc, "select.ods"); 
+    { System.out.println(&quot;Closing&quot;);   
+      Lo.saveDoc(doc, &quot;select.ods&quot;); 
       Lo.closeDoc(doc); 
       Lo.closeOffice(); 
     } 
   });
-</code></pre>
+</code></pre></div>
 <p>}  // end of SelectListener() </p>
 <p>SelectListener.java employs four globals instead of the two in ModifyListener: the 
 document and sheet variables are joined by variables holding the address of the 
@@ -1609,14 +1619,14 @@ then the sheet will end up looking like Figure 2, with "B5" being the selected c
 <p><img alt="" src="images/25-Monitoring_Sheets-2.png" /></p>
 <p>Figure 2. The Modified Sheet in SelectListener.java </p>
 <p>During these changes, selectionChanged() will report: </p>
-<p>A1 --&gt; B2 
-B2 --&gt; A4 
+<p>A1 &rarr; B2 
+B2 &rarr; A4 
 A4 value: -66.5 
-A4 --&gt; A5 
+A4 &rarr; A5 
 A5 value: 43.4 
-A5 --&gt; B5 
+A5 &rarr; B5 
 A5 has changed from 43.4 to 4.0 </p>
-<p>The "--&gt;" lines note cell selection changes. The "value" lines state the value of a cell 
+<p>The "&rarr;" lines note cell selection changes. The "value" lines state the value of a cell 
 when it's first selected, and the "changed" lines report whether the cell was left 
 changed when the focus moved to another cell.  </p>
 <p>The output from selectionChanged() shown above shows how the user moved around 
@@ -1639,18 +1649,18 @@ private Double currVal = null;  </p>
     return; </p>
 <p>// is this different from the stored selected address? 
   if (!Calc.isEqualAddresses(addr, currAddr)) { 
-    System.out.println( Calc.getCellStr(currAddr) + " --&gt; " +<br />
+    System.out.println( Calc.getCellStr(currAddr) + " &rarr; " +<br />
                         Calc.getCellStr(addr)); </p>
-<pre><code>// check if currAddr value has changed 
+<div class="highlight"><pre><span></span><code>// check if currAddr value has changed 
 Double d = getCellDouble(sheet, currAddr);  // value right now 
 if (d != null) { 
   if (currVal == null)  // so previously stored value was null 
     System.out.println( Calc.getCellStr(currAddr) + 
-                                           " new value: " + d); 
+                                           &quot; new value: &quot; + d); 
 else {   // currVal has a value; is it different from d? 
     if (currVal.doubleValue() != d.doubleValue()) 
       System.out.println( Calc.getCellStr(currAddr) + 
-                 " has changed from " + currVal + " to " + d); 
+                 &quot; has changed from &quot; + currVal + &quot; to &quot; + d); 
   } 
 }
 
@@ -1659,8 +1669,8 @@ currAddr = addr;
 currVal = getCellDouble(sheet, addr); 
 if (currVal != null)  // print numerical value 
   System.out.println( Calc.getCellStr(currAddr) +  
-                                     " value: " + currVal);
-</code></pre>
+                                     &quot; value: &quot; + currVal);
+</code></pre></div>
 <p>} 
 }  // end of selectionChanged() </p>
 <p>private Double getCellDouble(XSpreadsheet sheet, CellAddress addr) 
@@ -1693,6 +1703,7 @@ on how it's entered from the keyboard. </p>
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -1700,7 +1711,8 @@ on how it's entered from the keyboard. </p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="24-Complex_Data_Manipulation.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="24-Complex_Data_Manipulation.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 24. Complex Data Manipulation" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1715,7 +1727,8 @@ on how it's entered from the keyboard. </p>
         </a>
       
       
-        <a href="26-Search_Replace.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="26-Search_Replace.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 26. Search and Replace" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -1735,10 +1748,12 @@ on how it's entered from the keyboard. </p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -1750,10 +1765,10 @@ on how it's entered from the keyboard. </p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

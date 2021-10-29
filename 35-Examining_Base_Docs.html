@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -821,6 +830,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -835,6 +845,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1285,6 +1296,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1442,7 +1454,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-35-examining-base-documents">Chapter 35. Examining Base Documents</h1>
+                <h1 id="chapter-35-examining-base-documents">Chapter 35. Examining Base Documents<a class="headerlink" href="#chapter-35-examining-base-documents" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 <p>Querying an 
@@ -1475,7 +1487,7 @@ connected to the database. The connection can take two forms – the database ca
 embedded inside the ODB file, or the connection can be a URL which links to an 
 external database. Most of my examples will utilize ODB files that contain embedded 
 databases. </p>
-<h2 id="1-querying-an-embedded-hsqldb-database">1.  Querying an Embedded HSQLDB Database</h2>
+<h2 id="1-querying-an-embedded-hsqldb-database">1.  Querying an Embedded HSQLDB Database<a class="headerlink" href="#1-querying-an-embedded-hsqldb-database" title="Permanent link">&para;</a></h2>
 <p>The following SimpleQuery.java example shows how to query a HSQLDB database 
 embedded inside an ODB file called liangTables.odb. It has three tables, called 
 Course, Enrollment, and Student. Figure 2 shows the data in the Course table, 
@@ -1503,38 +1515,38 @@ public static void main(String[] args)
     XDataSource dataSource = dbDoc.getDataSource(); 
     conn = dataSource.getConnection("", "");  // no login/password 
     XStatement statement = conn.createStatement(); </p>
-<pre><code>// first query 
+<div class="highlight"><pre><span></span><code>// first query 
 XResultSet rs =  
-      statement.executeQuery("SELECT * FROM \"Course\"");
+      statement.executeQuery(&quot;SELECT * FROM \&quot;Course\&quot;&quot;);
 
 XRow xRow = Lo.qi(XRow.class, rs);
 
-System.out.println("CourseID \tSubjectID \tCourseNumber  
-                             \tTitle  \tNumOfCredits"); 
-System.out.println("========================="); 
+System.out.println(&quot;CourseID \tSubjectID \tCourseNumber  
+                             \tTitle  \tNumOfCredits&quot;); 
+System.out.println(&quot;=========================&quot;); 
 while(rs.next()) 
-  System.out.println( xRow.getString(1) + ",   \t" +  
-                      xRow.getString(2) + ",   \t" + 
-                      xRow.getInt(3) + ",   \t" +  
-                      xRow.getString(4) + ",   " + 
+  System.out.println( xRow.getString(1) + &quot;,   \t&quot; +  
+                      xRow.getString(2) + &quot;,   \t&quot; + 
+                      xRow.getInt(3) + &quot;,   \t&quot; +  
+                      xRow.getString(4) + &quot;,   &quot; + 
                       xRow.getInt(5) ); 
-System.out.println("=========================");
+System.out.println(&quot;=========================&quot;);
 
 // second query 
 rs = statement.executeQuery( 
-       "SELECT \"courseNumber\", \"title\" FROM \"Course\""); 
+       &quot;SELECT \&quot;courseNumber\&quot;, \&quot;title\&quot; FROM \&quot;Course\&quot;&quot;); 
 xRow = Lo.qi(XRow.class, rs); 
 XColumnLocate xLoc = Lo.qi( XColumnLocate.class, rs);
 
-System.out.println("CourseNumber \tTitle"); 
-System.out.println("===================================="); 
+System.out.println(&quot;CourseNumber \tTitle&quot;); 
+System.out.println(&quot;====================================&quot;); 
 while(rs.next()) 
   System.out.println(  
-        xRow.getString( xLoc.findColumn("courseNumber")) +  
-        ",   \t" +  
-        xRow.getString( xLoc.findColumn("title")) ); 
-System.out.println("====================================");
-</code></pre>
+        xRow.getString( xLoc.findColumn(&quot;courseNumber&quot;)) +  
+        &quot;,   \t&quot; +  
+        xRow.getString( xLoc.findColumn(&quot;title&quot;)) ); 
+System.out.println(&quot;====================================&quot;);
+</code></pre></div>
 <p>} 
   catch(SQLException e) { 
     System.out.println(e); 
@@ -1623,7 +1635,7 @@ System.out.println("===================================="); </p>
 <p>The program ends by closing the connection to the database (with 
 Base.closeConnection()) and the ODB file (with Base.closeBaseDoc()). Both methods 
 cast their arguments to XCloseable, and then call XCloseable.close(). </p>
-<h2 id="2-using-metadata-when-querying-a-base-document">2.  Using Metadata when Querying a Base Document</h2>
+<h2 id="2-using-metadata-when-querying-a-base-document">2.  Using Metadata when Querying a Base Document<a class="headerlink" href="#2-using-metadata-when-querying-a-base-document" title="Permanent link">&para;</a></h2>
 <p>Metadata is information about a database, such as a table's schema, and driver and 
 database engine details. There are four sources of such information in the Base API: 
  the DataSource service; 
@@ -1634,7 +1646,7 @@ database, and prints rather ugly looking output (see Figure 6). Both these issue
 be addressed by utilizing database metadata information, as in DBQuery.java 
 described next. I'll use the program to illustrate how the four metadata services can be 
 employed. </p>
-<h3 id="21-the-datasource-service">2.1.  The DataSource Service</h3>
+<h3 id="21-the-datasource-service">2.1.  The DataSource Service<a class="headerlink" href="#21-the-datasource-service" title="Permanent link">&para;</a></h3>
 <p>The DataSource service is depicted in Figure 7. </p>
 <p><img alt="" src="images/35-Examining_Base_Docs-7.png" /></p>
 <p>Figure 7. The DataSource Service and Interface. </p>
@@ -1668,7 +1680,7 @@ Is embedded? true </p>
   // : </p>
 <p>Is password required: false 
 Is read-only: false </p>
-<h3 id="22-the-databasedefinition-services">2.2.  The DatabaseDefinition Services</h3>
+<h3 id="22-the-databasedefinition-services">2.2.  The DatabaseDefinition Services<a class="headerlink" href="#22-the-databasedefinition-services" title="Permanent link">&para;</a></h3>
 <p>After a database connection is established, metadata about the structure of the 
 database, its tables, columns, user and group permissions, becomes available. It's 
 accessible through services in the sdbcx module, starting from DatabaseDefinition 
@@ -1700,7 +1712,7 @@ System.out.println( Arrays.toString(tableNames.toArray())); </p>
 'Supplier' interfaces for retrieving details about the database's views, groups, and user 
 accounts. Base.displayTablesInfo() prints all of this information, but the output can be 
 very large if there are more than one or two tables in the database. </p>
-<h3 id="23-the-databasemetadata-service">2.3.  The DatabaseMetaData Service</h3>
+<h3 id="23-the-databasemetadata-service">2.3.  The DatabaseMetaData Service<a class="headerlink" href="#23-the-databasemetadata-service" title="Permanent link">&para;</a></h3>
 <p>Another way to obtain metadata is to utilize the JDBC-inspired XDatabaseMetaData 
 interface by calling XConnection.getMetaData(): </p>
 <p>XConnection conn =  ... // a connection to the database; 
@@ -1712,22 +1724,22 @@ public static void reportDBInfo(XConnection conn)
 { 
   try { 
     XDatabaseMetaData md = conn.getMetaData(); </p>
-<pre><code>String productName = md.getDatabaseProductName(); 
+<div class="highlight"><pre><span></span><code>String productName = md.getDatabaseProductName(); 
 String productVersion = md.getDatabaseProductVersion(); 
-if ((productName == null) || productName.equals("")) 
-  System.out.println("No database info found"); 
+if ((productName == null) || productName.equals(&quot;&quot;)) 
+  System.out.println(&quot;No database info found&quot;); 
 else 
-  System.out.println("DB:  " + productName +  
-                          " v." + productVersion);
+  System.out.println(&quot;DB:  &quot; + productName +  
+                          &quot; v.&quot; + productVersion);
 
 String driverName = md.getDriverName(); 
 String driverVersion = md.getDriverVersion(); 
-if ((driverName == null) || driverName.equals("")) 
-  System.out.println("No driver info found"); 
+if ((driverName == null) || driverName.equals(&quot;&quot;)) 
+  System.out.println(&quot;No driver info found&quot;); 
 else 
-  System.out.println("SDBC driver:  " + driverName +  
-                             " v." + driverVersion);
-</code></pre>
+  System.out.println(&quot;SDBC driver:  &quot; + driverName +  
+                             &quot; v.&quot; + driverVersion);
+</code></pre></div>
 <p>}<br />
   catch (SQLException e)<br />
   {  System.out.println(e);  } 
@@ -1751,7 +1763,7 @@ identical, and that the DataSource (section 2.1) and DataDefinition services (se
 <p>Base.reportSQLTypes() and Base.reportFunctionSupport() utilize 
 XDatabaseMetaData. The former returns a list of SQL types, and the latter a list of 
 functions supported by the database engine; their use is illustrated in DBQuery.java. </p>
-<h3 id="24-the-resultsetmetadata-service">2.4.  The ResultSetMetaData Service</h3>
+<h3 id="24-the-resultsetmetadata-service">2.4.  The ResultSetMetaData Service<a class="headerlink" href="#24-the-resultsetmetadata-service" title="Permanent link">&para;</a></h3>
 <p>XResultSetMetaData data allows a result set to be better formatted. It's used in 
 Base.printResultSet() to print results sets and in Base.displayResultSet() to fill a 
 scrollable JTable displayed inside a JFrame. </p>
@@ -1763,11 +1775,11 @@ XResultSet rs = Base.executeQuery("SELECT * FROM \"" +<br />
 Base.printResultSet(rs); </p>
 <p>The query employs the first string from the tableNames list as the SELECT's table. </p>
 <p>The output for liangTables.odb is: </p>
-<h2 id="courseid-subjectid-coursenumber-title-numofcredits">courseId,  subjectId, courseNumber,      title, numOfCredits</h2>
-<pre><code> 11111,       CSCI,       1301, Introduction to Java I,          4 
+<h2 id="courseid-subjectid-coursenumber-title-numofcredits">courseId,  subjectId, courseNumber,      title, numOfCredits<a class="headerlink" href="#courseid-subjectid-coursenumber-title-numofcredits" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code> 11111,       CSCI,       1301, Introduction to Java I,          4 
  11112,       CSCI,       1302, Introduction to Java II,          3 
  11113,       CSCI,       3720, Database Systems,          4
-</code></pre>
+</code></pre></div>
 <p>The formatting isn't perfect since its quite tricky to determine the maximum width 
 required for a column. Base.printResultSet() uses XResultSetMetaData to determine 
 the number of columns and their names: </p>
@@ -1782,36 +1794,36 @@ public static void printResultSet(XResultSet rs)
     XResultSetMetaDataSupplier rsMetaSupp =<br />
              Lo.qi(XResultSetMetaDataSupplier.class, rs); 
     XResultSetMetaData rsmd = rsMetaSupp.getMetaData(); </p>
-<pre><code>int tableWidth = 0; 
+<div class="highlight"><pre><span></span><code>int tableWidth = 0; 
 int numCols = rsmd.getColumnCount();
 
 String colName; 
 for (int i = 0; i &lt; numCols; i++) { 
   if (i &gt; 0) { 
-    System.out.print(", "); 
+    System.out.print(&quot;, &quot;); 
     tableWidth += 2; 
   } 
   colName = rsmd.getColumnName(i+1); 
-  System.out.printf("%10s", colName); 
+  System.out.printf(&quot;%10s&quot;, colName); 
   tableWidth += Math.max(colName.length(), 10); 
 } 
 System.out.println();
 
 for (int i=0; i &lt; tableWidth; i++) 
-  System.out.print("-"); 
+  System.out.print(&quot;-&quot;); 
 System.out.println();
 
 XRow xRow = Lo.qi(XRow.class, rs); 
 while (rs.next()) { 
   for (int i = 0; i &lt; numCols; i++) { 
     if (i &gt; 0)  
-      System.out.print(", "); 
-    System.out.printf("%10s", xRow.getString(i+1) ); 
+      System.out.print(&quot;, &quot;); 
+    System.out.printf(&quot;%10s&quot;, xRow.getString(i+1) ); 
   } 
   System.out.println();   
 } 
 System.out.println();
-</code></pre>
+</code></pre></div>
 <p>} 
   catch(SQLException e) { 
     System.out.println(e); 
@@ -1819,7 +1831,7 @@ System.out.println();
 }  // end of printResultSet() </p>
 <p>Fortunately, the hard work of writing a good ASCII-based table printer has already 
 been done by Hami Galip Torun with his DBTablePrinter class, available from 
-https://github.com/htorun/dbtableprinter. It offers printTable() and printResultSet() for 
+<a href="https://github.com/htorun/dbtableprinter">https://github.com/htorun/dbtableprinter</a>. It offers printTable() and printResultSet() for 
 printing a JDBC table and result set in beautiful ASCII.  </p>
 <p>I made a few small changes to his class to allow it to handle sdbc tables and result 
 sets, which consisted mainly of changing the Connection, Statement, and ResultSet 
@@ -1852,9 +1864,8 @@ Figure 9 shows the JFrame. </p>
 and column formatting which shows all the data, but not all the headings. However, 
 the user can resize the window and columns, so these drawbacks aren't serious. </p>
 <p>displayResultSet() is coded as: </p>
-<p>// in the Base class 
-public static void displayResultSet(XResultSet rs) 
-{  displayResultSet(rs, "Result set", 0);  } </p>
+<p 0_="0);" _Result="&quot;Result" displayResultSet_rs_="displayResultSet(rs," set_="set&quot;,">// in the Base class 
+public static void displayResultSet(XResultSet rs) </p>
 <p>public static void displayResultSet(XResultSet rs,<br />
                                   String title, int offset) 
 { if (rs == null) { 
@@ -1865,7 +1876,7 @@ public static void displayResultSet(XResultSet rs)
     XResultSetMetaDataSupplier rsMetaSupp =<br />
              Lo.qi(XResultSetMetaDataSupplier.class, rs); 
     XResultSetMetaData rsmd = rsMetaSupp.getMetaData(); </p>
-<pre><code>// names of columns 
+<div class="highlight"><pre><span></span><code>// names of columns 
 int numCols = rsmd.getColumnCount(); 
 String[] headers = new String[numCols]; 
 for (int i=0; i &lt; numCols; i++) { 
@@ -1890,12 +1901,12 @@ SwingUtilities.invokeLater( new Runnable() {
      frame.setBounds(offset, offset, 400, 200); 
      frame.setTitle(title); 
      frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);   
-             // so JFrame closure doesn't kill the main prog 
+             // so JFrame closure doesn&#39;t kill the main prog 
      frame.add(new JScrollPane(table), BorderLayout.CENTER); 
      frame.setVisible(true);  
   } 
 });
-</code></pre>
+</code></pre></div>
 <p>} 
   catch(SQLException e) { 
     System.out.println(e); 
@@ -1913,7 +1924,7 @@ set: </p>
 <p>XRow xRow = Lo.qi(XRow.class, rs); 
 while (rs.next()) 
   tableModel.addRow( getRow(xRow, numCols));  </p>
-<h2 id="3-debugging-database-code">3.  Debugging Database Code</h2>
+<h2 id="3-debugging-database-code">3.  Debugging Database Code<a class="headerlink" href="#3-debugging-database-code" title="Permanent link">&para;</a></h2>
 <p>A useful way to debug larger programs is to display the database tables they're 
 manipulating. The simplest way of doing this is to open the tables inside Base. </p>
 <p>A call to GUI.setVisible() makes Base and the loaded file visible. However, Base's 
@@ -1966,7 +1977,7 @@ so:
 JFrame can be resized and is scrollable, as in Figure 11. </p>
 <p><img alt="" src="images/35-Examining_Base_Docs-11.png" /></p>
 <p>Figure 11.  The liangTables.odb Tables shown in JFrames. </p>
-<h2 id="4-creating-a-base-document">4.  Creating a Base Document</h2>
+<h2 id="4-creating-a-base-document">4.  Creating a Base Document<a class="headerlink" href="#4-creating-a-base-document" title="Permanent link">&para;</a></h2>
 <p>The DBCreate.java example creates a new document called spies.odb which holds a 
 single table of "top-secret" information on spies. Figure 12 shows the table inside 
 Base. </p>
@@ -1991,17 +2002,17 @@ public static void main(String[] args)
   try { 
     XDataSource dataSource = dbDoc.getDataSource(); 
     conn = dataSource.getConnection("", "");  </p>
-<pre><code>// create a table in the database 
-Base.exec("CREATE TABLE SPIES " + 
-     "( FIRSTNAME VARCHAR(50), LASTNAME VARCHAR(50),  
-        ID VARCHAR(50), PRIMARY KEY (ID) )", conn);
+<div class="highlight"><pre><span></span><code>// create a table in the database 
+Base.exec(&quot;CREATE TABLE SPIES &quot; + 
+     &quot;( FIRSTNAME VARCHAR(50), LASTNAME VARCHAR(50),  
+        ID VARCHAR(50), PRIMARY KEY (ID) )&quot;, conn);
 
-Base.exec("INSERT INTO SPIES VALUES(  
-                     'James', 'Bond', '007')", conn); 
-Base.exec("INSERT INTO SPIES VALUES(  
-                     'Johnny', 'English', '013')", conn); 
-Base.exec("INSERT INTO SPIES VALUES(  
-                     'Maxwell', 'Smart', 'Agent 86')", conn);
+Base.exec(&quot;INSERT INTO SPIES VALUES(  
+                     &#39;James&#39;, &#39;Bond&#39;, &#39;007&#39;)&quot;, conn); 
+Base.exec(&quot;INSERT INTO SPIES VALUES(  
+                     &#39;Johnny&#39;, &#39;English&#39;, &#39;013&#39;)&quot;, conn); 
+Base.exec(&quot;INSERT INTO SPIES VALUES(  
+                     &#39;Maxwell&#39;, &#39;Smart&#39;, &#39;Agent 86&#39;)&quot;, conn);
 
 XFlushable flusher = Lo.qi(XFlushable.class, dataSource); 
 flusher.flush();    
@@ -2009,9 +2020,9 @@ flusher.flush();
 
 // test the database with a query 
 System.out.println(); 
-XResultSet rs = Base.executeQuery("SELECT * FROM SPIES", conn); 
+XResultSet rs = Base.executeQuery(&quot;SELECT * FROM SPIES&quot;, conn); 
 BaseTablePrinter.printResultSet(rs);
-</code></pre>
+</code></pre></div>
 <p>} 
   catch(SQLException e) { 
     System.out.println(e); 
@@ -2110,7 +2121,7 @@ public static void refreshTables(XConnection conn)
            Lo.qi(XRefreshable.class, suppTables.getTables()); 
   refresh.refresh(); 
 }  // end of refreshTables() </p>
-<h2 id="5-processing-multiple-sql-commands">5.  Processing Multiple SQL Commands</h2>
+<h2 id="5-processing-multiple-sql-commands">5.  Processing Multiple SQL Commands<a class="headerlink" href="#5-processing-multiple-sql-commands" title="Permanent link">&para;</a></h2>
 <p>The simplest way to build databases with more tables and data is by storing the 
 necessary DDL and DML commands in a text file. This can be loaded by 
 Base.readCmds(), as in the DBCmdsQuery.java example. </p>
@@ -2145,7 +2156,7 @@ public static void main(String[] args)
     XDataSource dataSource = dbDoc.getDataSource(); 
     conn = dataSource.getConnection("", "");  // no login/password 
     processCmds(cmds, conn); </p>
-<pre><code>XFlushable flusher = Lo.qi(XFlushable.class, dataSource); 
+<div class="highlight"><pre><span></span><code>XFlushable flusher = Lo.qi(XFlushable.class, dataSource); 
 flusher.flush();   // needed or data not saved to file
 
 // must refresh the connection or the tables  
@@ -2154,7 +2165,7 @@ Base.refreshTables(conn);
 Base.showTables(dbDoc);   
       // Office may not close cleanly while showing tables 
 Lo.waitEnter();
-</code></pre>
+</code></pre></div>
 <p>} 
   catch(SQLException e) { 
     System.out.println(e); 
@@ -2190,7 +2201,7 @@ and Student, which can be seen in Figure 10. </p>
 <p>The DBCmdsQuery.java example uses the same Base.readCmds() to read in queries 
 applied to a database. The only difference from DBCmdsCreate.java is that a database 
 is opened with Base.openBaseDoc() rather than created from scratch. </p>
-<h2 id="6-displaying-table-relationships">6.  Displaying Table Relationships</h2>
+<h2 id="6-displaying-table-relationships">6.  Displaying Table Relationships<a class="headerlink" href="#6-displaying-table-relationships" title="Permanent link">&para;</a></h2>
 <p>A  good way to understand the relationships between multiple tables in a database is 
 with a relation design diagram, which is generated by the Tools &gt;&gt; Relationships 
 menu item in Base. For example, the diagram for the three tables in liangTables.odb is 
@@ -2224,7 +2235,7 @@ public static void main(String[] args)
   else { 
     GUI.setVisible(dbDoc, true); 
     Lo.delay(500);  // wait for GUI to appear </p>
-<pre><code>Lo.dispatchCmd("DBRelationDesign"); 
+<div class="highlight"><pre><span></span><code>Lo.dispatchCmd(&quot;DBRelationDesign&quot;); 
     // open the relation design diagram window in Base 
 Lo.delay(1000);
 
@@ -2235,11 +2246,11 @@ Lo.delay(1000);
 // read an image from the clipboard, and save it 
 BufferedImage im = Clip.readImage(); 
 if (im != null) 
-  Images.saveImage(im, "relations.png");
+  Images.saveImage(im, &quot;relations.png&quot;);
 
-Lo.dispatchCmd("CloseWin");  // close relation design window 
+Lo.dispatchCmd(&quot;CloseWin&quot;);  // close relation design window 
 Lo.delay(500);
-</code></pre>
+</code></pre></div>
 <p>} </p>
 <p>Base.closeBaseDoc(dbDoc); 
   Lo.closeOffice(); 
@@ -2315,7 +2326,7 @@ public static final String FIREBIRD_EMBEDDED =<br />
 }  // end of getDataSourceType() </p>
 <p>There's also an isHSQLEmbedded() method for checking if the document contains an 
 embedded HSQLDB database. </p>
-<h2 id="7-prepared-statements">7.  Prepared Statements</h2>
+<h2 id="7-prepared-statements">7.  Prepared Statements<a class="headerlink" href="#7-prepared-statements" title="Permanent link">&para;</a></h2>
 <p>Sdbc supports prepared statements, which are SQL commands with Java-level 
 parameters (denoted by '?'s). The PreparedStatement service stores properties related 
 to how the result set is created, and XPreparedStatement contains the methods. </p>
@@ -2340,7 +2351,7 @@ private static void updatePs(XConnection conn) throws SQLException
   ps.setString(1, "Marryland"); 
   ps.setInt(2, 4); 
   preStmt.executeUpdate(); </p>
-<p>// 2nd change of STREET of George to Michigan road<br />
+<p>// 2<sup>nd</sup> change of STREET of George to Michigan road<br />
   // (since SNR is still == 4) 
   ps.setString(1, "Michigan road"); 
   preStmt.executeUpdate(); </p>
@@ -2359,7 +2370,7 @@ twice). The final result is shown in Figure 16. </p>
 <p>Office's XPreparedStatement methods are similar to those in JDBC's 
 PreparedStatement, except that the set() methods for the "?"s are in the XParameters 
 interface. </p>
-<h2 id="8-scrollable-and-updatable-result-sets">8.  Scrollable and Updatable Result Sets</h2>
+<h2 id="8-scrollable-and-updatable-result-sets">8.  Scrollable and Updatable Result Sets<a class="headerlink" href="#8-scrollable-and-updatable-result-sets" title="Permanent link">&para;</a></h2>
 <p>Sdbc's scrollable and updatable result set features are borrowed from JDBC. </p>
 <p>Scrollability lets the result set's cursor move backwards and jump to a particular row. </p>
 <p>It can be combined with sensitivity, which allows the set to be automatically updated 
@@ -2398,9 +2409,9 @@ public static void reportResultSetSupport(XConnection conn)
      FORWARD_ONLY: The result set is not scrollable (default) 
      SCROLL_INSENSITIVE: The result set is scrollable but not<br />
                          sensitive to database changes.  </p>
-<pre><code> SCROLL_SENSITIVE: The result set is scrollable and sensitive to  
+<div class="highlight"><pre><span></span><code> SCROLL_SENSITIVE: The result set is scrollable and sensitive to  
                    database changes.
-</code></pre>
+</code></pre></div>
 <p>Possible 'Concurrency' Values:<br />
       READ_ONLY: The result set cannot be used to update<br />
                  the database (default) 
@@ -2412,11 +2423,11 @@ public static void reportResultSetSupport(XConnection conn)
     if (md.supportsResultSetConcurrency(type,<br />
                                ResultSetConcurrency.READ_ONLY)) 
       System.out.print(" + read-only"); </p>
-<pre><code>if (md.supportsResultSetConcurrency(type,  
+<div class="highlight"><pre><span></span><code>if (md.supportsResultSetConcurrency(type,  
                            ResultSetConcurrency.UPDATABLE)) 
-  System.out.print(" + updatable"); 
+  System.out.print(&quot; + updatable&quot;); 
 System.out.println();
-</code></pre>
+</code></pre></div>
 <p>} 
 }  // end of printTypeConcurrency() </p>
 <p>FancyRS.java contains an example call: 
@@ -2459,35 +2470,35 @@ public static void main(String[] args)
   try { 
     XDataSource dataSource = dbDoc.getDataSource(); 
     conn = dataSource.getConnection("", ""); </p>
-<pre><code>Base.exec("CREATE TABLE SALES " + 
-    "(SALENR INTEGER NOT NULL, " + 
-    " COS_NR INTEGER,  SNR INTEGER, NAME VARCHAR(50)," + 
-    " SALEDATE DATE, PRICE FLOAT(10), PRIMARY KEY(SALENR) )",  
+<div class="highlight"><pre><span></span><code>Base.exec(&quot;CREATE TABLE SALES &quot; + 
+    &quot;(SALENR INTEGER NOT NULL, &quot; + 
+    &quot; COS_NR INTEGER,  SNR INTEGER, NAME VARCHAR(50),&quot; + 
+    &quot; SALEDATE DATE, PRICE FLOAT(10), PRIMARY KEY(SALENR) )&quot;,  
          conn);
 
-Base.exec("INSERT INTO SALES " + 
-    "VALUES (1, '100', '1','Linux','2016-02-12',15)", conn); 
-Base.exec("INSERT INTO SALES " + 
-    "VALUES (2, '101', '2','Beef','2016-10-18',15.78)", conn); 
-Base.exec("INSERT INTO SALES " + 
-    "VALUES (3, '104', '4','Juice','2016-08-09',1.5)", conn);
+Base.exec(&quot;INSERT INTO SALES &quot; + 
+    &quot;VALUES (1, &#39;100&#39;, &#39;1&#39;,&#39;Linux&#39;,&#39;2016-02-12&#39;,15)&quot;, conn); 
+Base.exec(&quot;INSERT INTO SALES &quot; + 
+    &quot;VALUES (2, &#39;101&#39;, &#39;2&#39;,&#39;Beef&#39;,&#39;2016-10-18&#39;,15.78)&quot;, conn); 
+Base.exec(&quot;INSERT INTO SALES &quot; + 
+    &quot;VALUES (3, &#39;104&#39;, &#39;4&#39;,&#39;Juice&#39;,&#39;2016-08-09&#39;,1.5)&quot;, conn);
 
 XFlushable flusher = Lo.qi(XFlushable.class, dataSource); 
 flusher.flush();  
 System.out.println();
 
-System.out.println("DataSource type: " +  
+System.out.println(&quot;DataSource type: &quot; +  
                  Base.getDataSourceType(dbDoc)); 
 Base.reportDBInfo(conn); 
 Base.reportResultSetSupport(conn); 
 System.out.println();
 
-XResultSet rs = Base.executeQuery("SELECT * FROM SALES", conn); 
+XResultSet rs = Base.executeQuery(&quot;SELECT * FROM SALES&quot;, conn); 
 BaseTablePrinter.printResultSet(rs);
 
 useScrollable(conn); 
 useUpdatable(conn);
-</code></pre>
+</code></pre></div>
 <p>} 
   catch(SQLException e) { 
     System.out.println(e); 
@@ -2496,7 +2507,7 @@ useUpdatable(conn);
  Base.closeBaseDoc(dbDoc); 
  Lo.closeOffice(); 
 }  // end of main() </p>
-<h3 id="81-a-firebird-date-bug">8.1.  A Firebird Date Bug</h3>
+<h3 id="81-a-firebird-date-bug">8.1.  A Firebird Date Bug<a class="headerlink" href="#81-a-firebird-date-bug" title="Permanent link">&para;</a></h3>
 <p>FancyRS.java creates the correct embedded HSQLDB database printed above, but if 
 the database type is changed to embedded Firebird (i.e. by changing the second 
 argument of Base.createBaseDoc()), then a well-known LibreOffice/Firebird bug 
@@ -2512,10 +2523,10 @@ month, as shown below: </p>
 |      3 |    104 |   4 | Juice  | 0116-07-09 |   1.500 | 
 +--------+--------+-----+--------+------------+---------+ </p>
 <p>The century is set to 01, and each month is decremented by one. </p>
-<p>This bug is discussed at http://libreoffice-
+<p>This bug is discussed at <a href="http://libreoffice-">http://libreoffice-</a>
 bugs.freedesktop.narkive.com/fPfsZXpa/bug-91324-new-embedded-firebird-current-
 date-gives-wrong-date-back. </p>
-<h3 id="82-using-a-scrollable-result-set">8.2.  Using a Scrollable Result Set</h3>
+<h3 id="82-using-a-scrollable-result-set">8.2.  Using a Scrollable Result Set<a class="headerlink" href="#82-using-a-scrollable-result-set" title="Permanent link">&para;</a></h3>
 <p>useScrollable() in FancyRS.java creates a scrollable result set which is neither 
 sensitive to database changes nor can update the underlying database. In other words, 
 its result set type is assigned ResultSetType.SCROLL_INSENSITIVE and its 
@@ -2542,30 +2553,30 @@ private static void useScrollable(XConnection conn)
     Props.setProperty(stmt, "ResultSetType",<br />
                     ResultSetType.SCROLL_INSENSITIVE); 
           // does not update if there are changes to the database </p>
-<pre><code>Props.setProperty(stmt, "ResultSetConcurrency",  
+<div class="highlight"><pre><span></span><code>Props.setProperty(stmt, &quot;ResultSetConcurrency&quot;,  
                 ResultSetConcurrency.READ_ONLY); 
       // does not update the database
 
 XResultSet srs = stmt.executeQuery( 
-                  "SELECT NAME, PRICE FROM SALES"); 
-System.out.println("\nReport name and price backwards:");
+                  &quot;SELECT NAME, PRICE FROM SALES&quot;); 
+System.out.println(&quot;\nReport name and price backwards:&quot;);
 
 // report in reverse order (works for HSQLDB, but  
 // not supported by Firebird) 
 XRow row = Lo.qi(XRow.class, srs); 
 srs.afterLast();  
 while (srs.previous())   // name: price printed 
-  System.out.println("  " + row.getString(1) +  
-                     ": " + row.getFloat(2)); 
+  System.out.println(&quot;  &quot; + row.getString(1) +  
+                     &quot;: &quot; + row.getFloat(2)); 
 System.out.println();
-</code></pre>
+</code></pre></div>
 <p>} 
   catch(SQLException e) { 
     System.out.println("useScrollable(): " +<br />
                               e.getMessage() + "\n"); 
   } 
 }  // end of useScrollable() </p>
-<h3 id="83-using-an-updatable-result-set">8.3.  Using an Updatable Result Set</h3>
+<h3 id="83-using-an-updatable-result-set">8.3.  Using an Updatable Result Set<a class="headerlink" href="#83-using-an-updatable-result-set" title="Permanent link">&para;</a></h3>
 <p>useUpdatable() in FancyRS.java tries to create a result set that is insensitive to 
 database changes but can write its own changes to the database.  In other words, its 
 result set type is assigned ResultSetType.SCROLL_INSENSITIVE and its 
@@ -2582,12 +2593,12 @@ private static void useUpdatable(XConnection conn)
     Props.setProperty(stmt, "ResultSetType",<br />
                         ResultSetType.SCROLL_INSENSITIVE); 
          // does not update if there are changes to the database </p>
-<pre><code>Props.setProperty(stmt, "ResultSetConcurrency",  
+<div class="highlight"><pre><span></span><code>Props.setProperty(stmt, &quot;ResultSetConcurrency&quot;,  
                     ResultSetConcurrency.UPDATABLE); 
      // tries to update the database
 
 XResultSet srs = stmt.executeQuery( 
-                         "SELECT NAME, PRICE FROM SALES"); 
+                         &quot;SELECT NAME, PRICE FROM SALES&quot;); 
 srs.next(); 
 XRowUpdate updateRow = Lo.qi(XRowUpdate.class,srs); 
 updateRow.updateFloat(2, 25); 
@@ -2599,9 +2610,9 @@ updateRs.updateRow();
   // this call tries to update the data in DBMS;  
   // an exception would occur if execution reached here
 
-XResultSet rs = Base.executeQuery("SELECT * FROM SALES", conn); 
+XResultSet rs = Base.executeQuery(&quot;SELECT * FROM SALES&quot;, conn); 
 BaseTablePrinter.printResultSet(rs);
-</code></pre>
+</code></pre></div>
 <p>} 
   catch(SQLException e) { 
     System.out.println("useUpdatable(): " + e.getMessage() + "\n"); 
@@ -2614,13 +2625,13 @@ and calling updateRow().  </p>
 <p>An exception is raised when XRowUpdate.updateXXX() is called since sdbc (and 
 JDBC) react to the non-support of updating result sets by downgrading the 
 concurrency setting to ResultSetConcurrency.READ_ONLY. </p>
-<h2 id="9-converting-a-database-to-text">9.  Converting a Database to Text</h2>
+<h2 id="9-converting-a-database-to-text">9.  Converting a Database to Text<a class="headerlink" href="#9-converting-a-database-to-text" title="Permanent link">&para;</a></h2>
 <p>Base doesn't have an export feature for saving a database as text. One solution is to 
 utilize the "INTO TEXT" form of the SELECT command, as in: 
 SELECT * INTO TEXT FOO FROM SALES 
 This will store the SALES table as comma-separated rows in the FOO.csv file. </p>
 <p>Unfortunately, although "INTO TEXT" is in HSQLDB (e.g. see 
-http://hsqldb.org/doc/guide/ch06.html), it isn't currently part of the embedded Firebird 
+<a href="http://hsqldb.org/doc/guide/ch06.html">http://hsqldb.org/doc/guide/ch06.html</a>), it isn't currently part of the embedded Firebird 
 engine. </p>
 <p>A more general approach is to obtain the result set for SELECT * FROM SALES, 
 then use Java to write each row into a text file in CSV format. This is implemented by 
@@ -2664,7 +2675,7 @@ public static void saveResultSet(XResultSet rs, String fnm)
   System.out.println("  Writing result set to " + fnm); 
   try { 
     BufferedWriter bw = new BufferedWriter( new FileWriter(fnm)); </p>
-<pre><code>XResultSetMetaDataSupplier rsMetaSupp =  
+<div class="highlight"><pre><span></span><code>XResultSetMetaDataSupplier rsMetaSupp =  
          Lo.qi(XResultSetMetaDataSupplier.class, rs); 
 XResultSetMetaData rsmd = rsMetaSupp.getMetaData(); 
 int numCols = rsmd.getColumnCount();
@@ -2673,7 +2684,7 @@ int numCols = rsmd.getColumnCount();
 StringBuilder sb = new StringBuilder(); 
 for (int i = 0; i &lt; numCols; i++) { 
   if (i &gt; 0)  
-    sb.append(","); 
+    sb.append(&quot;,&quot;); 
   sb.append( rsmd.getColumnName(i+1) ); 
 } 
 bw.write(sb.toString()); 
@@ -2685,14 +2696,14 @@ while (rs.next()) {
   sb = new StringBuilder(); 
   for (int i = 0; i &lt; numCols; i++) { 
     if (i &gt; 0)  
-      sb.append(","); 
+      sb.append(&quot;,&quot;); 
     sb.append(xRow.getString(i+1)); 
   } 
   bw.write(sb.toString()); 
   bw.newLine(); 
 }     
 bw.close();
-</code></pre>
+</code></pre></div>
 <p>}<br />
   catch (java.lang.Exception e) { 
     System.out.println("Unable to store result set to " + fnm); 
@@ -2706,7 +2717,7 @@ XDataSource dataSource = dbDoc.getDataSource();
 XConnection  conn = dataSource.getConnection("", ""); 
 Base.saveDatabase(conn); </p>
 <p>There are third-party libraries for reading and writing CSV files. For example, 
-OpenCSV (http://opencsv.sourceforge.net/) includes a CSVWriter.writeAll() method 
+OpenCSV (<a href="http://opencsv.sourceforge.net/">http://opencsv.sourceforge.net/</a>) includes a CSVWriter.writeAll() method 
 for storing a JDBC result set. I can't utilize it (without changes) since the sdbc result 
 set is a different type. </p>
                 
@@ -2719,6 +2730,7 @@ set is a different type. </p>
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -2726,7 +2738,8 @@ set is a different type. </p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="34-JDBC_to_Base_API.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="34-JDBC_to_Base_API.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 34. From JDBC to the Base API" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2741,7 +2754,8 @@ set is a different type. </p>
         </a>
       
       
-        <a href="36-RowSets_DB_Context.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="36-RowSets_DB_Context.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 36. Using RowSets and Database Context" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -2761,10 +2775,12 @@ set is a different type. </p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -2776,10 +2792,10 @@ set is a different type. </p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

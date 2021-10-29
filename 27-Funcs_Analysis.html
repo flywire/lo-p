@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -671,6 +680,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -685,6 +695,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1286,6 +1297,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1444,7 +1456,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-27-functions-and-data-analysis">Chapter 27. Functions and Data Analysis</h1>
+                <h1 id="chapter-27-functions-and-data-analysis">Chapter 27. Functions and Data Analysis<a class="headerlink" href="#chapter-27-functions-and-data-analysis" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 <p>Calling Calc 
@@ -1462,42 +1474,42 @@ Calc's data analysis features: pivot tables, goal seeking,
 and linear and nonlinear solving. There are two nonlinear 
 examples, one using the SCO solver, the using employing 
 DEPS. </p>
-<h2 id="1-calling-calc-functions-from-code">1.  Calling Calc Functions from Code</h2>
+<h2 id="1-calling-calc-functions-from-code">1.  Calling Calc Functions from Code<a class="headerlink" href="#1-calling-calc-functions-from-code" title="Permanent link">&para;</a></h2>
 <p>Calc comes with an extensive set of functions, which are described in Appendix B of 
-the Calc User Guide, available from https://www.libreoffice.org/get-
+the Calc User Guide, available from <a href="https://www.libreoffice.org/get-">https://www.libreoffice.org/get-</a>
 help/documentation/. The information is also online at 
-https://help.libreoffice.org/Calc/Functions_by_Category, organized into 11 categories: </p>
-<h2 id="1-database-for-extracting-information-from-calc-tables-where-the-data-is">1.  Database: for extracting information from Calc tables, where the data is</h2>
+<a href="https://help.libreoffice.org/Calc/Functions_by_Category">https://help.libreoffice.org/Calc/Functions_by_Category</a>, organized into 11 categories: </p>
+<h2 id="1-database-for-extracting-information-from-calc-tables-where-the-data-is">1.  Database: for extracting information from Calc tables, where the data is<a class="headerlink" href="#1-database-for-extracting-information-from-calc-tables-where-the-data-is" title="Permanent link">&para;</a></h2>
 <p>organized into rows. The "Database" name is a little misleading, but the 
 documentation makes the point that Calc database functions have nothing to 
 do with Base databases.  Chapter 13 of the Calc User Guide ("Calc as a 
 Simple Database") explains the distinction in detail. </p>
-<h2 id="2-date-and-time-eg-see-the-eastersunday-function-below">2.  Date and Time; e.g. see the EASTERSUNDAY function below</h2>
-<h2 id="3-financial-for-business-calculations">3.  Financial: for business calculations;</h2>
-<h2 id="4-information-many-of-these-return-boolean-information-about-cells-such-as">4.  Information: many of these return boolean information about cells, such as</h2>
+<h2 id="2-date-and-time-eg-see-the-eastersunday-function-below">2.  Date and Time; e.g. see the EASTERSUNDAY function below<a class="headerlink" href="#2-date-and-time-eg-see-the-eastersunday-function-below" title="Permanent link">&para;</a></h2>
+<h2 id="3-financial-for-business-calculations">3.  Financial: for business calculations;<a class="headerlink" href="#3-financial-for-business-calculations" title="Permanent link">&para;</a></h2>
+<h2 id="4-information-many-of-these-return-boolean-information-about-cells-such-as">4.  Information: many of these return boolean information about cells, such as<a class="headerlink" href="#4-information-many-of-these-return-boolean-information-about-cells-such-as" title="Permanent link">&para;</a></h2>
 <p>whether a cell contains text or a formula; </p>
-<h2 id="5-logical-functions-for-boolean-logic">5.  Logical: functions for boolean logic;</h2>
-<h2 id="6-mathematical-trigonometric-hyperbolic-logarithmic-and-summation">6.  Mathematical: trigonometric, hyperbolic, logarithmic, and summation</h2>
+<h2 id="5-logical-functions-for-boolean-logic">5.  Logical: functions for boolean logic;<a class="headerlink" href="#5-logical-functions-for-boolean-logic" title="Permanent link">&para;</a></h2>
+<h2 id="6-mathematical-trigonometric-hyperbolic-logarithmic-and-summation">6.  Mathematical: trigonometric, hyperbolic, logarithmic, and summation<a class="headerlink" href="#6-mathematical-trigonometric-hyperbolic-logarithmic-and-summation" title="Permanent link">&para;</a></h2>
 <p>functions; e.g. see ROUND, SIN, and RADIANS below; </p>
-<h2 id="7-array-many-of-these-operations-treat-cell-ranges-like-2d-arrays-eg-see">7.  Array: many of these operations treat cell ranges like 2D arrays; e.g. see</h2>
+<h2 id="7-array-many-of-these-operations-treat-cell-ranges-like-2d-arrays-eg-see">7.  Array: many of these operations treat cell ranges like 2D arrays; e.g. see<a class="headerlink" href="#7-array-many-of-these-operations-treat-cell-ranges-like-2d-arrays-eg-see" title="Permanent link">&para;</a></h2>
 <p>TRANSPOSE below; </p>
-<h2 id="8-statistical-for-statistical-and-probability-calculations-eg-see-average-and">8.  Statistical: for statistical and probability calculations; e.g., see AVERAGE and</h2>
+<h2 id="8-statistical-for-statistical-and-probability-calculations-eg-see-average-and">8.  Statistical: for statistical and probability calculations; e.g., see AVERAGE and<a class="headerlink" href="#8-statistical-for-statistical-and-probability-calculations-eg-see-average-and" title="Permanent link">&para;</a></h2>
 <p>SLOPE below; </p>
-<h2 id="9-spreadsheet-for-finding-values-in-tables-cell-ranges-and-cells">9.  Spreadsheet: for finding values in tables, cell ranges, and cells;</h2>
+<h2 id="9-spreadsheet-for-finding-values-in-tables-cell-ranges-and-cells">9.  Spreadsheet: for finding values in tables, cell ranges, and cells;<a class="headerlink" href="#9-spreadsheet-for-finding-values-in-tables-cell-ranges-and-cells" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Text: string manipulation functions; </li>
 <li>Add-ins: a catch-all category that includes a lot of functions – extra data and 
 time operations, conversion functions between number bases, more statistics, 
 and complex numbers. See IMSUM and ROMAN below for examples. The 
-"Add-ins" documentation starts at https://help.libreoffice.org/Calc/Add-
-in_Functions, and continues in https://help.libreoffice.org/Calc/Add-
+"Add-ins" documentation starts at <a href="https://help.libreoffice.org/Calc/Add-">https://help.libreoffice.org/Calc/Add-</a>
+in_Functions, and continues in <a href="https://help.libreoffice.org/Calc/Add-">https://help.libreoffice.org/Calc/Add-</a>
 in_Functions,_List_of_Analysis_Functions_Part_One and </li>
 </ol>
-<p>https://help.libreoffice.org/Calc/Add-
+<p><a href="https://help.libreoffice.org/Calc/Add-">https://help.libreoffice.org/Calc/Add-</a>
 in_Functions,_List_of_Analysis_Functions_Part_Two. </p>
 <p>A different organization for the functions documentation is used at the OpenOffice 
 site 
-(https://wiki.openoffice.org/wiki/Documentation/How_Tos/Calc:_Functions_listed_b
+(<a href="https://wiki.openoffice.org/wiki/Documentation/How_Tos/Calc:_Functions_listed_b">https://wiki.openoffice.org/wiki/Documentation/How_Tos/Calc:_Functions_listed_b</a>
 y_category), and is probably easy to use when browsing/searching for a suitable 
 function.  </p>
 <p>If you know the name of the function, then a reasonably effective way of finding its 
@@ -1535,8 +1547,8 @@ public static void main(String[] argus)
 <p>// round a double 
   System.out.println("ROUND result for 1.999 is: " +<br />
                      Calc.callFun("ROUND", 1.999) + "\n"); </p>
-<pre><code> :  // more examples, explained below
-</code></pre>
+<div class="highlight"><pre><span></span><code> :  // more examples, explained below
+</code></pre></div>
 <p>Lo.closeOffice(); 
 }  // end of main() </p>
 <p>The value passed to Calc.callFun() in the code above is an ordinary double, but Java 
@@ -1651,11 +1663,11 @@ The output is: </p>
   Description: Converts a number to a Roman numeral. </p>
 <p>Arguments: [Lcom.sun.star.sheet.FunctionArgument;@b3fc9e </p>
 <p>No. of arguments: 2 </p>
-<h2 id="1-argument-name-number">1.  Argument name: Number</h2>
+<h2 id="1-argument-name-number">1.  Argument name: Number<a class="headerlink" href="#1-argument-name-number" title="Permanent link">&para;</a></h2>
 <p>Description: "The number to be converted to a Roman numeral must 
 be in the 0 - 3999 range." 
    Is optional?: false </p>
-<h2 id="2-argument-name-mode">2.  Argument name: Mode</h2>
+<h2 id="2-argument-name-mode">2.  Argument name: Mode<a class="headerlink" href="#2-argument-name-mode" title="Permanent link">&para;</a></h2>
 <p>Description: "The more this value increases, the more the Roman 
 numeral is simplified. The value must be in the 0 - 4 range." 
    Is optional?: true </p>
@@ -1742,7 +1754,7 @@ public static void printFunctionInfo(String funcName)
   printFunArguments(propVals); 
   System.out.println(); 
 }  // end of printFunctionInfo() </p>
-<h2 id="2-pivot-tables">2.  Pivot Tables</h2>
+<h2 id="2-pivot-tables">2.  Pivot Tables<a class="headerlink" href="#2-pivot-tables" title="Permanent link">&para;</a></h2>
 <p>Pivot tables are explained in detail in chapter 8 of the Calc User's Guide. They allow a 
 user to view a spreadsheet consisting of columns of data in a variety of table formats, 
 thereby highlighting the relationships between the columns. For example, Figure 1 
@@ -1836,16 +1848,16 @@ private static void createPivotTable(
   XCellRange cellRange = Calc.findUsedRange(sheet); 
          // find the table data on the sheet </p>
 <p>XDataPilotTables dpTables = Calc.getPilotTables(sheet); </p>
-<p>/<em> create a new pilot descriptor which will later be added 
-     as a new pilot table to the pilot tables </em>/ 
+<p>/* create a new pilot descriptor which will later be added 
+     as a new pilot table to the pilot tables */ 
   XDataPilotDescriptor dpDesc =<br />
                    dpTables.createDataPilotDescriptor(); </p>
-<p>/<em> add the sheet's column data to the descriptor; 
-     this causes the creation of pilot fields </em>/ 
+<p>/* add the sheet's column data to the descriptor; 
+     this causes the creation of pilot fields */ 
   dpDesc.setSourceRange( Calc.getAddress(cellRange) ); </p>
-<p>/<em> assign "Available" (Hidden) pilot fields to the<br />
+<p>/* assign "Available" (Hidden) pilot fields to the<br />
      Page, Column, Row, and Data fields 
-  </em>/ 
+  */ 
   XIndexAccess fields = dpDesc.getHiddenFields(); 
   XPropertySet props; </p>
 <p>// set Page field; not used here 
@@ -1986,7 +1998,7 @@ PivotSheet2.java and PivotTable.java. PivotSheet2.java creates a more complex pi
 table after reading in the spreadsheet stored in pivottable2.ods. PivotTable.java 
 creates its own spreadsheet before generating a table. Both examples only use the 
 methods in PivotSheet1.java, so won't be described here. </p>
-<h2 id="3-seeking-a-goal">3.  Seeking a Goal</h2>
+<h2 id="3-seeking-a-goal">3.  Seeking a Goal<a class="headerlink" href="#3-seeking-a-goal" title="Permanent link">&para;</a></h2>
 <p>The Tools  Goal Seek menu item in Calc allows a formula to be executed 
 'backwards'. Instead of supplying the input to a formula, and obtaining the formula's 
 result, the result is given and "goal seek" works backwards through the formula to 
@@ -2010,8 +2022,8 @@ public static void main(String args[])
                                  // x-var, formula, result 
   System.out.println("x == " + x + " when sqrt(x) == 4\n");<br />
                          // x is 16 </p>
-<pre><code>   :  // more goal seek examples
-</code></pre>
+<div class="highlight"><pre><span></span><code>   :  // more goal seek examples
+</code></pre></div>
 <p>Lo.closeDoc(doc); 
   Lo.closeOffice(); 
 }  // end of main() </p>
@@ -2073,23 +2085,23 @@ System.out.println("x == " + x + " when x+1 == 2\n"); </p>
 <p>The printed x-value is: 1.0000000000000053. </p>
 <p>If a formula requires numerical values, they can be supplied as cell references, which 
 allows them to be adjusted easily. The next "goal seek" example employs an annual 
-interest formula, I = x<em>n</em>i, where I is the annual interest, x the capital, n the number 
+interest formula, I = x*n*i, where I is the annual interest, x the capital, n the number 
 of years, and i the interest rate. As usual, the x-variable has a starting value in a cell, 
 but n and i are also represented by cells so that they can be changed. The code is: </p>
 <p>// in GoalSeek.java 
 Calc.setVal(sheet, "B1", 100000);  // x-variable; possible value 
 Calc.setVal(sheet, "B2", 1);       // n, no. of years 
 Calc.setVal(sheet, "B3", 0.075);   // i, interest rate (7.5%) </p>
-<p>Calc.setVal(sheet, "B4", "=B1<em>B2</em>B3");   // formula<br />
+<p>Calc.setVal(sheet, "B4", "=B1*B2*B3");   // formula<br />
 x= Calc.goalSeek(gs, sheet, "B1", "B4", 15000); 
-System.out.println("x == " + x + " when x<em>" + 
-      Calc.getVal(sheet, "B2") + "</em>" + Calc.getVal(sheet, "B3") + 
+System.out.println("x == " + x + " when x*" + 
+      Calc.getVal(sheet, "B2") + "*" + Calc.getVal(sheet, "B3") + 
       "  == 15000\n");  // x is 200,000 </p>
 <p>"Goal seek" is being asked to determine the x-value when the annual return from the 
 formula is 20000. The values in the cells "B2" and "B3" are employed, and the printed 
 answer is: 
-x == 200000.0 when x<em>1.0</em>0.075  == 15000 </p>
-<h2 id="4-linear-and-nonlinear-solving">4.  Linear and Nonlinear Solving</h2>
+x == 200000.0 when x*1.0*0.075  == 15000 </p>
+<h2 id="4-linear-and-nonlinear-solving">4.  Linear and Nonlinear Solving<a class="headerlink" href="#4-linear-and-nonlinear-solving" title="Permanent link">&para;</a></h2>
 <p>Calc supports both linear and nonlinear programming via its Tools  Solver menu 
 item. The name "linear programming" dates from just after World War II, and doesn't 
 mean programming in the modern sense; in fact, it's probably better to use its other 
@@ -2104,8 +2116,8 @@ be one of the points where the lines intersect. </p>
 linear case where some of the equations are non-linear (e.g. perhaps they involve 
 polynomials, logarithmic, or trigonometric functions). </p>
 <p>A gentle introduction to linear optimization and its graphing can be found at 
-http://www.purplemath.com/modules/linprog.htm, or you can start at the Wikipedia 
-page, https://en.wikipedia.org/wiki/Linear_programming. </p>
+<a href="http://www.purplemath.com/modules/linprog.htm">http://www.purplemath.com/modules/linprog.htm</a>, or you can start at the Wikipedia 
+page, <a href="https://en.wikipedia.org/wiki/Linear_programming">https://en.wikipedia.org/wiki/Linear_programming</a>. </p>
 <p>The Calc documentation on linear and nonlinear solving is rather minimal. There's no 
 mention of it in the Calc Developer's Guide, and just a brief section on its GUI at the 
 end of chapter 9 ("Data Analysis") of the Calc User guide.  </p>
@@ -2123,41 +2135,41 @@ parameters, as in Figure 8. </p>
 which is demonstrated in the first example given below. </p>
 <p>The two linear solvers are implemented as DLLs, located in the <OFFICE>\program 
 folder as lpsolve55.dll and CoinMP.dll. The source code for these libraries is online, 
-at https://docs.libreoffice.org/sccomp/html/files.html, with the code (and graphs of the 
+at <a href="https://docs.libreoffice.org/sccomp/html/files.html">https://docs.libreoffice.org/sccomp/html/files.html</a>, with the code (and graphs of the 
 code) accessible via the "Files" tab. The file names are LpsolveSolver.cxx and 
 CoinMPSolver.cxx. </p>
 <p>The lpsolve55.dll filename strongly suggests that Office's basic linear solver is 
-lp_solve 5.5, which originates online at http://lpsolve.sourceforge.net/. That site has 
+lp_solve 5.5, which originates online at <a href="http://lpsolve.sourceforge.net/">http://lpsolve.sourceforge.net/</a>. That site has 
 extensive documentation, including a great introduction to linear optimization. The 
 first programming example below comes from one of the examples in its 
 documentation. One interesting possibility for the lpsolve library is that it can be 
 called directly from Java without the need for Calc. The necessary steps are described 
 on the "Using lp_solve 5.5 in Java programs" page for lp_solve 5.5 at 
-http://lpsolve.sourceforge.net/. The relevant download is lp_solve_5.5.2.0_java.zip 
-from http://sourceforge.net/projects/lpsolve/files/lpsolve/5.5.2.0/. </p>
+<a href="http://lpsolve.sourceforge.net/">http://lpsolve.sourceforge.net/</a>. The relevant download is lp_solve_5.5.2.0_java.zip 
+from <a href="http://sourceforge.net/projects/lpsolve/files/lpsolve/5.5.2.0/">http://sourceforge.net/projects/lpsolve/files/lpsolve/5.5.2.0/</a>. </p>
 <p>Office's other linear optimizer, the CoinMP solver, comes from the COIN-OR 
 (Computational Infrastructure for Operations Research) open-source project which 
-started at IBM research (http://www.coin-or.org/). According to http://www.coin-
+started at IBM research (<a href="http://www.coin-or.org/">http://www.coin-or.org/</a>). According to <a href="http://www.coin-">http://www.coin-</a>
 or.org/projects/CoinMP.xml, CoinMP implements most of the functionality of three 
 other COIN-OR projects, called CLP (Coin LP), CBC (Coin Branch-and-Cut), and 
 CGL (Cut Generation Library). The CLP and CBC solvers are documented at 
-http://www.coin-or.org/projects/Clp.xml and http://www.coin-
-or.org/projects/Cbc.xml, and come with large user guides, at http://www.coin-
-or.org/Clp/userguide/ and http://www.coin-or.org/Cbc/. The collection of cut 
+<a href="http://www.coin-or.org/projects/Clp.xml">http://www.coin-or.org/projects/Clp.xml</a> and <a href="http://www.coin-">http://www.coin-</a>
+or.org/projects/Cbc.xml, and come with large user guides, at <a href="http://www.coin-">http://www.coin-</a>
+or.org/Clp/userguide/ and <a href="http://www.coin-or.org/Cbc/">http://www.coin-or.org/Cbc/</a>. The collection of cut 
 generators in the CGL library is used to speed up the execution of CLP and CBC (see 
-http://www.coin-or.org/projects/Cgl.xml). </p>
+<a href="http://www.coin-or.org/projects/Cgl.xml">http://www.coin-or.org/projects/Cgl.xml</a>). </p>
 <p>A good overview of COIN-OR can be found in a series of slides by Matthew 
-Saltzman at http://dimacs.rutgers.edu/Workshops/COIN/slides/saltzman.pdf. There's 
+Saltzman at <a href="http://dimacs.rutgers.edu/Workshops/COIN/slides/saltzman.pdf">http://dimacs.rutgers.edu/Workshops/COIN/slides/saltzman.pdf</a>. There's 
 also a Wikipedia page about COIN-OR. </p>
 <p>The two nonlinear solvers are known as DEPS and SCO for short, and are explained 
-in the OpenOffice wiki at https://wiki.openoffice.org/wiki/NLPSolver, along with 
+in the OpenOffice wiki at <a href="https://wiki.openoffice.org/wiki/NLPSolver">https://wiki.openoffice.org/wiki/NLPSolver</a>, along with 
 descriptions of their extensive (and complicated) parameters. They're implemented as 
 JAR files, located in <OFFICE>\share\extensions\nlpsolver as nlpsolver.jar and 
 EvolutionarySolver.jar. Two of the examples below use these solvers. </p>
-<h3 id="41-a-linear-optimization-problem">4.1.  A Linear Optimization Problem</h3>
+<h3 id="41-a-linear-optimization-problem">4.1.  A Linear Optimization Problem<a class="headerlink" href="#41-a-linear-optimization-problem" title="Permanent link">&para;</a></h3>
 <p>The LinearSolverTest.java example shows how to use the basic linear solver, and also 
 CoinMP. It implements the following linear optimization problem, which comes from 
-http://lpsolve.sourceforge.net/5.1/formulate.htm. There are three constraint 
+<a href="http://lpsolve.sourceforge.net/5.1/formulate.htm">http://lpsolve.sourceforge.net/5.1/formulate.htm</a>. There are three constraint 
 inequalities: 
 120x + 210y ≤ 15000 
 110x + 30y ≤ 4000 
@@ -2166,7 +2178,7 @@ The 'profit' expression to be maximized is:
 P = 143x + 60y 
 The maximum P value is 6315.625, when x == 21.875 and y == 53.125. Perhaps the 
 easiest way of calculating this outside of Office is via the  linear optimization tool at 
-http://www.zweigmedia.com/utilities/lpg/index.html?lang=en. Its solution is shown in </p>
+<a href="http://www.zweigmedia.com/utilities/lpg/index.html?lang=en">http://www.zweigmedia.com/utilities/lpg/index.html?lang=en</a>. Its solution is shown in </p>
 <p><img alt="" src="images/27-Funcs_Analysis-9.png" /></p>
 <p>Figure 9. </p>
 <p><img alt="" src="images/27-Funcs_Analysis-9.png" /></p>
@@ -2191,12 +2203,12 @@ public static void main(String args[])
   CellAddress yPos = Calc.getCellAddress(sheet, "B2");   // y 
   CellAddress[] vars = new CellAddress[]{ xPos, yPos }; </p>
 <p>// specify profit equation 
-  Calc.setVal(sheet, "B3", "=143<em>B1 + 60</em>B2");  <br />
+  Calc.setVal(sheet, "B3", "=143*B1 + 60*B2");  <br />
                        // P = 143x + 60y, maximize 
   CellAddress profitEqu = Calc.getCellAddress(sheet, "B3"); </p>
 <p>// set up equation formulae without inequalities 
-  Calc.setVal(sheet, "B4", "=120<em>B1 + 210</em>B2");<br />
-  Calc.setVal(sheet, "B5", "=110<em>B1 + 30</em>B2");<br />
+  Calc.setVal(sheet, "B4", "=120*B1 + 210*B2");<br />
+  Calc.setVal(sheet, "B5", "=110*B1 + 30*B2");<br />
   Calc.setVal(sheet, "B6", "=B1 + B2");  </p>
 <p>// create the constraints 
   // constraints are equations and their inequalities 
@@ -2268,12 +2280,12 @@ CellAddress[] vars = new CellAddress[]{ xPos, yPos }; </p>
 inequality parts: </p>
 <p>// in LinearSolverTest.java 
 // specify profit equation 
-Calc.setVal(sheet, "B3", "=143<em>B1 + 60</em>B2");  <br />
+Calc.setVal(sheet, "B3", "=143*B1 + 60*B2");  <br />
                      // P = 143x + 60y, maximize 
 CellAddress profitEqu = Calc.getCellAddress(sheet, "B3"); </p>
 <p>// set up equation formulae without inequalities 
-Calc.setVal(sheet, "B4", "=120<em>B1 + 210</em>B2");<br />
-Calc.setVal(sheet, "B5", "=110<em>B1 + 30</em>B2");<br />
+Calc.setVal(sheet, "B4", "=120*B1 + 210*B2");<br />
+Calc.setVal(sheet, "B5", "=110*B1 + 30*B2");<br />
 Calc.setVal(sheet, "B6", "=B1 + B2");  </p>
 <p>Now the three equation formulae are converted into SolverConstraint objects by 
 calling Calc.makeConstraint(), and the constraints are stored in an array for later use: </p>
@@ -2294,18 +2306,15 @@ SolverConstraint sc1 =<br />
     new SolverConstraint[]{ sc1, sc2, sc3 }; </p>
 <p>A constraint is the cell name where an equation is stored and an inequality. </p>
 <p>Calc.makeConstraint() is defined as: </p>
-<p>// in the Calc class 
+<p cellName_op_d_="cellName),op,d);" makeConstraint_Calc.getCellAddress_sheet_="makeConstraint(Calc.getCellAddress(sheet," return="return">// in the Calc class 
 public static SolverConstraint makeConstraint( 
                    XSpreadsheet sheet, String cellName,<br />
-                   String op, double d) 
-{ return makeConstraint(Calc.getCellAddress(sheet, cellName),op,d); }  </p>
-<p>public static SolverConstraint makeConstraint( 
-                   CellAddress addr, String op, double d) 
-{ return makeConstraint(addr, toConstraintOp(op), d);   } </p>
-<p>public static SolverConstraint makeConstraint( 
+                   String op, double d) </p>
+<p d_="d);" makeConstraint_addr_="makeConstraint(addr," return="return" toConstraintOp_op_="toConstraintOp(op),">public static SolverConstraint makeConstraint( 
+                   CellAddress addr, String op, double d) </p>
+<p cellName_op_d_="cellName),op,d);" makeConstraint_Calc.getCellAddress_sheet_="makeConstraint(Calc.getCellAddress(sheet," return="return">public static SolverConstraint makeConstraint( 
                    XSpreadsheet sheet, String cellName,<br />
-                   SolverConstraintOperator op, double d) 
-{  return makeConstraint(Calc.getCellAddress(sheet, cellName),op,d);}  </p>
+                   SolverConstraintOperator op, double d) </p>
 <p>public static SolverConstraint makeConstraint(CellAddress addr,<br />
                     SolverConstraintOperator op, double d) 
 { SolverConstraint sc = new SolverConstraint(); 
@@ -2351,7 +2360,7 @@ dialog in Figure 10. </p>
 <p><img alt="" src="images/27-Funcs_Analysis-10.png" /></p>
 <p>Figure 10. The Options Dialog for the Basic Linear Solver. </p>
 <p>As to what these parameters actually mean, you'll have to look through the "lp_solve 
-API reference" section of the documentation at http://lpsolve.sourceforge.net/. For 
+API reference" section of the documentation at <a href="http://lpsolve.sourceforge.net/">http://lpsolve.sourceforge.net/</a>. For 
 example, the "epsilon level" is partly explained under the sub-heading "set_epslevel". </p>
 <p>The only property I've changed in the LinearSolverTest.java example is 
 "NonNegative", which is set to true: 
@@ -2381,15 +2390,15 @@ public static void solverReport(XSolver solver)
     System.out.println("Solver result: "); 
     System.out.printf("  %s == %.4f\n", cellName,<br />
                              solver.getResultValue()); </p>
-<pre><code>CellAddress[] addrs = solver.getVariables(); 
+<div class="highlight"><pre><span></span><code>CellAddress[] addrs = solver.getVariables(); 
 double[] solns = solver.getSolution(); 
-System.out.println("Solver variables: "); 
+System.out.println(&quot;Solver variables: &quot;); 
 for (int i=0; i &lt; solns.length; i++) { 
   cellName = getCellStr(addrs[i]); 
-  System.out.printf("  %s == %.4f\n", cellName, solns[i]); 
+  System.out.printf(&quot;  %s == %.4f\n&quot;, cellName, solns[i]); 
 } 
 System.out.println();
-</code></pre>
+</code></pre></div>
 <p>} 
   else 
     System.out.println("Solver FAILED"); 
@@ -2399,15 +2408,15 @@ the profit equation and the variables (x and y). In a corresponding fashion,
 XSolver.getResultValue() and XSolver.getSolution() return the calculated values for 
 the profit equation and variables. </p>
 <p>A solver may fail, and so solverReport() first calls XSolver.getSuccess(). </p>
-<h3 id="42-another-linear-problem-using-sco">4.2.  Another Linear Problem (using SCO)</h3>
+<h3 id="42-another-linear-problem-using-sco">4.2.  Another Linear Problem (using SCO)<a class="headerlink" href="#42-another-linear-problem-using-sco" title="Permanent link">&para;</a></h3>
 <p>I've coded two examples using the nonlinear optimizers – SolverTest.java utilizes the 
 SCO solver, and SolverTest2.java employs DEPS. As I mentioned earlier, these two 
-solvers are explained at https://wiki.openoffice.org/wiki/NLPSolver. </p>
+solvers are explained at <a href="https://wiki.openoffice.org/wiki/NLPSolver">https://wiki.openoffice.org/wiki/NLPSolver</a>. </p>
 <p>The SolverTest.java example solves a linear problem, but one involving three 
 unknowns. This means that graphically the equations define planes in a 3D space, and 
 solving the profit equation involves examining the corners of the volume defined by 
 how the planes intersect. Unfortunately, the 
-http://www.zweigmedia.com/utilities/lpg/index.html?lang=en website cannot handle 
+<a href="http://www.zweigmedia.com/utilities/lpg/index.html?lang=en">http://www.zweigmedia.com/utilities/lpg/index.html?lang=en</a> website cannot handle 
 linear optimizations involving more than two variables, but no such restriction applies<br />
 to Calc's solvers. </p>
 <p>There are three constraint inequalities: 
@@ -2475,7 +2484,7 @@ solvers. Props.showObjProps() reports: </p>
 <p><img alt="" src="images/27-Funcs_Analysis-11.png" /></p>
 <p>Figure 11. The Options Dialog for the SCO Solver. </p>
 <p>These parameters, most of which apply to the DEPS solver as well, are explained at 
-https://wiki.openoffice.org/wiki/NLPSolver#Options_and_Parameters. </p>
+<a href="https://wiki.openoffice.org/wiki/NLPSolver#Options_and_Parameters">https://wiki.openoffice.org/wiki/NLPSolver#Options_and_Parameters</a>. </p>
 <p>The correct solution reported by Calc.solverReport() is: </p>
 <p>Solver result: 
   B4 == 10.0000 
@@ -2483,11 +2492,11 @@ Solver variables:
   B1 == 6.0000 
   B2 == 8.0000 
   B3 == 4.0000 </p>
-<h3 id="43-a-nonlinear-problem-using-deps-and-sco">4.3.  A Nonlinear Problem (using DEPS and SCO)</h3>
+<h3 id="43-a-nonlinear-problem-using-deps-and-sco">4.3.  A Nonlinear Problem (using DEPS and SCO)<a class="headerlink" href="#43-a-nonlinear-problem-using-deps-and-sco" title="Permanent link">&para;</a></h3>
 <p>SolverTest2.java defines a nonlinear optimization problem, so can only be solved by 
 the DEPS or SCO solver; I'll start with DEPS. </p>
 <p>The problem comes from the Wikipedia page on nonlinear programming 
-(https://en.wikipedia.org/wiki/Nonlinear_programming). There are four constraint 
+(<a href="https://en.wikipedia.org/wiki/Nonlinear_programming">https://en.wikipedia.org/wiki/Nonlinear_programming</a>). There are four constraint 
 inequalities: 
 x ≥ 0 
 y ≥ 0 
@@ -2520,7 +2529,7 @@ CellAddress[] vars = new CellAddress[]{ xPos, yPos }; </p>
 Calc.setVal(sheet, "B3", "=B1+B2");    // x + y 
 CellAddress objective = Calc.getCellAddress(sheet, "B3"); </p>
 <p>// set up equation formula without inequality (only one needed) 
-Calc.setVal(sheet, "B4", "=B1<em>B1 + B2</em>B2");   // x^2 + y^2 </p>
+Calc.setVal(sheet, "B4", "=B1*B1 + B2*B2");   // x^2 + y^2 </p>
 <p>// create two constraints from one equation 
 SolverConstraint sc1 =  Calc.makeConstraint(sheet, "B4", "&gt;=", 1); 
                                     // x^2 + y^2 &gt;= 1 
@@ -2545,7 +2554,7 @@ Props.setProperty(solver, "EnhancedSolverStatus", false);
 solver.solve(); 
 Calc.solverReport(solver); </p>
 <p>Only one inequality equation is defined: 
-Calc.setVal(sheet, "B4", "=B1<em>B1 + B2</em>B2");   // x^2 + y^2 
+Calc.setVal(sheet, "B4", "=B1*B1 + B2*B2");   // x^2 + y^2 
 because it can be used twice to define the nonlinear constraints: </p>
 <p>SolverConstraint sc1 =  Calc.makeConstraint(sheet, "B4", "&gt;=", 1); 
                                     // x^2 + y^2 &gt;= 1 
@@ -2585,6 +2594,7 @@ Solver variables:
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -2592,7 +2602,8 @@ Solver variables:
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="26-Search_Replace.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="26-Search_Replace.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 26. Search and Replace" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2607,7 +2618,8 @@ Solver variables:
         </a>
       
       
-        <a href="28%20Part%205%20Chart.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="28%20Part%205%20Chart.html" class="md-footer__link md-footer__link--next" aria-label="Next: Part 5 Chart" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -2627,10 +2639,12 @@ Solver variables:
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -2642,10 +2656,10 @@ Solver variables:
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

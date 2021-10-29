@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -326,6 +335,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -340,6 +350,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1224,6 +1235,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1320,7 +1332,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-6-text-styles">Chapter 6. Text Styles</h1>
+                <h1 id="chapter-6-text-styles">Chapter 6. Text Styles<a class="headerlink" href="#chapter-6-text-styles" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 <p>Five Style
@@ -1397,7 +1409,7 @@ families, then the style family (e.g. "ParagraphStyle"), and then the style (e.g
 complicated since the calls to getByName() may raise exceptions if their string
 arguments are incorrect.</p>
 <p>The calls to Lo.qi() cast the object returned from a collection into the correct type.</p>
-<h2 id="1-what-properties-are-in-a-propertyset">1.  What Properties are in a PropertySet?</h2>
+<h2 id="1-what-properties-are-in-a-propertyset">1.  What Properties are in a PropertySet?<a class="headerlink" href="#1-what-properties-are-in-a-propertyset" title="Permanent link">&para;</a></h2>
 <p>The "Standard" name in the "ParagraphStyles" style family refers to a property set
 (style). Each set is a collection of name=value pairs, and there are get and set methods
 using a name to get/set its value. This is simple enough, but what names should the
@@ -1472,13 +1484,13 @@ ParagraphCharacter, and CharacterStyle, as indicated in Figure 6.</p>
 <p><img alt="" src="images/06-Text_Styles-6.png" /></p>
 <p>Figure 6. The Paragraph Service and its Superclasses.</p>
 <p>For more information of the styles API, start in the development guide in the "Overall
-Document Features" section, online at: https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Overall_Document_Features
+Document Features" section, online at: <a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Overall_Document_Features">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Overall_Document_Features</a>
 or type <code>loGuide "Overall Document Features"</code></p>
 <p>The character and paragraph style properties are explained in the "Formatting"
 section:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Formatting
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Formatting">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Formatting</a>
 or type  <code>loGuide writer Formatting</code></p>
-<h2 id="2-listing-styles-information">2.  Listing Styles Information</h2>
+<h2 id="2-listing-styles-information">2.  Listing Styles Information<a class="headerlink" href="#2-listing-styles-information" title="Permanent link">&para;</a></h2>
 <p>My StylesInfo.java example illustrates some of the Writer and Info utility functions
 for examining style families and their property sets. The main() function starts by
 listing the style families names:</p>
@@ -1656,7 +1668,7 @@ set) of the "ParagraphStyle" family would require:</p>
 <p>This listing, and in fact any listing of a style from "ParagraphStyles", shows that the
 properties are a mixture of those defined in the Style, ParagraphProperties, and
 CharacterProperties services.</p>
-<h2 id="3-creating-a-new-style">3.  Creating a New Style</h2>
+<h2 id="3-creating-a-new-style">3.  Creating a New Style<a class="headerlink" href="#3-creating-a-new-style" title="Permanent link">&para;</a></h2>
 <p>My StoryCreator.java example adds a new style to the paragraph style family, and
 uses it to format the document's paragraphs.</p>
 <p>The new ParagraphStyle service is referenced using one of its interfaces, the usual one
@@ -1746,7 +1758,7 @@ value isn't a basic type, but a LineSpacing object.</p>
 <p>The ParagraphProperties documentation for "ParaLineSpacing" is shown in Figure 7.</p>
 <p><img alt="" src="images/06-Text_Styles-7.png" /></p>
 <p>Figure 7. The ParaLineSpacing Property in the ParagraphProperties Documentation.</p>
-<p>Clicking on the "com::sun::star::style::LineSpacing" return type will load the
+<p>Clicking on the "com::sun:<img alt="⭐" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/2b50.svg" title=":star:" />:style::LineSpacing" return type will load the
 LineSpacing documentation page  into the browser.</p>
 <p>In StoryCreator.java, createParaStyle() is called like so:</p>
 <div class="highlight"><pre><span></span><code><span class="n">XTextDocument</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">createDoc</span><span class="p">(</span><span class="n">loader</span><span class="p">);</span>
@@ -1759,7 +1771,7 @@ LineSpacing documentation page  into the browser.</p>
 </code></pre></div>
 <p>A new style called "adParagraph" is added to the paragraph style family. It uses
 Times New Roman 12pt font, and leaves a 6mm space between paragraphs.</p>
-<h2 id="4-applying-styles-to-paragraphs-and-characters">4.  Applying Styles to Paragraphs (and Characters)</h2>
+<h2 id="4-applying-styles-to-paragraphs-and-characters">4.  Applying Styles to Paragraphs (and Characters)<a class="headerlink" href="#4-applying-styles-to-paragraphs-and-characters" title="Permanent link">&para;</a></h2>
 <p>I've added an "adParagraph" style to the paragraph style family, but how do I apply
 that style to some paragraphs in the document?
 The easiest way is through the document's XTextRange interface. XTextRange is
@@ -1782,7 +1794,7 @@ paragraph style is applied to a text range by setting its "ParaStyleName" proper
 paragraph style to "adParagraph". Any text added from this position onwards will use
 that style.</p>
 <p>This approach is used in StoryCreator.java: the style is set first, then text is added.</p>
-<h2 id="5-cursors-and-text-ranges">5.  Cursors and Text Ranges</h2>
+<h2 id="5-cursors-and-text-ranges">5.  Cursors and Text Ranges<a class="headerlink" href="#5-cursors-and-text-ranges" title="Permanent link">&para;</a></h2>
 <p>Another technique for applying styles uses a cursor to select a text range. Then the
 text's properties are accessed through the cursor.</p>
 <p>All the different kinds of model and view cursor belong to the TextCursor service,
@@ -1805,7 +1817,7 @@ properties. The following code fragment demonstrates the idea:</p>
 <p>This approach is employed in StoryCreator.java when some paragraphs (such as
 section headers) need to use a paragraph style other than "adParagraph". I'll supply
 details in a moment.</p>
-<h2 id="6-building-a-story-document">6.  Building a Story Document</h2>
+<h2 id="6-building-a-story-document">6.  Building a Story Document<a class="headerlink" href="#6-building-a-story-document" title="Permanent link">&para;</a></h2>
 <p>StoryCreator.java starts by setting the "adParagraph" style, then employs readText()
 to read text from a file and add it to the document:</p>
 <div class="highlight"><pre><span></span><code><span class="n">XTextRange</span> <span class="n">xTextRange</span> <span class="o">=</span> <span class="n">doc</span><span class="p">.</span><span class="na">getText</span><span class="p">().</span><span class="na">getStart</span><span class="p">();</span>
@@ -1938,7 +1950,7 @@ easier to move around across paragraphs.</p>
 <p>readText() calls Write.stylePrevParagraph() with three style names ("Title",
 "Subtitle", and "Heading"). I obtained those names from looking at the "Paragraph
 Styles" dialog window in Figure 3.</p>
-<h2 id="7-style-changes-to-words-and-phrases">7.  Style Changes to Words and Phrases</h2>
+<h2 id="7-style-changes-to-words-and-phrases">7.  Style Changes to Words and Phrases<a class="headerlink" href="#7-style-changes-to-words-and-phrases" title="Permanent link">&para;</a></h2>
 <p>Aside from changing paragraph styles, it's useful to apply style changes to words or
 strings inside a paragraph. For example, to highlight a word in bold, or write several
 words in red italics for emphasis.</p>
@@ -2026,7 +2038,7 @@ Write.styleLeft():</p>
 <p>Unfortunately, styleLeft() depend on integer character positions, which are calculated
 using Write.getPosition(). As I've mentioned before, this method could fail if asked to
 generate too large a string, and this would cause styleLeft() to die.</p>
-<h2 id="8-hyperlink-styling">8.  Hyperlink Styling</h2>
+<h2 id="8-hyperlink-styling">8.  Hyperlink Styling<a class="headerlink" href="#8-hyperlink-styling" title="Permanent link">&para;</a></h2>
 <p>Text hyperlinks are implemented as styles, using "HyperLinkURL", and perhaps
 "HyperLinkName", and "HyperLinkTarget". BuildDoc.java shows how the
 "HyperLinkURL" property is set:</p>
@@ -2047,7 +2059,7 @@ loaded into the browser.</p>
 <p>The "HyperLinkName" property specifies a link name, which can be used when
 searching a document. "HyperLinkTarget" corresponds to the HTML hypertext target
 attribute, and has a default value of "_self".</p>
-<h2 id="9-text-numbering">9.  Text Numbering</h2>
+<h2 id="9-text-numbering">9.  Text Numbering<a class="headerlink" href="#9-text-numbering" title="Permanent link">&para;</a></h2>
 <p>It's straightforward to number paragraphs by using Write.styleLeft() and the
 "NumberingStyleName" property. The following code from BuildDoc.java, numbers
 three paragraphs:</p>
@@ -2080,10 +2092,10 @@ differently from most document styles. Instead of being accessed via
 XStyleFamiliesSupplier, they employ XChapterNumberingSupplier and
 XNumberFormatsSupplier.</p>
 <p>For more details, see the development guide:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Line_Numbering_an
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Line_Numbering_an">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Line_Numbering_an</a>
 d_Outline_Numbering
 or type <code>loGuide "Line Numbering"</code>.</p>
-<h2 id="10-other-style-changes">10.  Other Style Changes</h2>
+<h2 id="10-other-style-changes">10.  Other Style Changes<a class="headerlink" href="#10-other-style-changes" title="Permanent link">&para;</a></h2>
 <p>StoryCreator.java illustrates three other styling effects: the creation of a header,
 setting the page to A4 format, and employing page numbers in the footer. The
 relevant calls are:</p>
@@ -2150,6 +2162,7 @@ added.</p>
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -2157,7 +2170,8 @@ added.</p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="05-Text_API_Overview.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="05-Text_API_Overview.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 5. Text API Overview" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2172,7 +2186,8 @@ added.</p>
         </a>
       
       
-        <a href="07-Non-text_Content.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="07-Non-text_Content.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 7. Text Content Other than Strings" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -2192,10 +2207,12 @@ added.</p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -2207,10 +2224,10 @@ added.</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -941,6 +950,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -955,6 +965,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1237,6 +1248,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1346,7 +1358,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-42-sending-e-mail">Chapter 42. Sending E-mail</h1>
+                <h1 id="chapter-42-sending-e-mail">Chapter 42. Sending E-mail<a class="headerlink" href="#chapter-42-sending-e-mail" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 <p>SimpleSystemMail / 
@@ -1362,9 +1374,9 @@ Merge </p>
 Tests" and "Utils" </p>
 </div>
 <p>The Jargon file is a humorous collection of computer 
-slang (online at http://www.catb.org/jargon/html/), and its 
+slang (online at <a href="http://www.catb.org/jargon/html/">http://www.catb.org/jargon/html/</a>), and its 
 entry for Zawinski's "Law of Software Envelopment" 
-(http://www.catb.org/jargon/html/Z/Zawinskis-Law.html) 
+(<a href="http://www.catb.org/jargon/html/Z/Zawinskis-Law.html">http://www.catb.org/jargon/html/Z/Zawinskis-Law.html</a>) 
 came to mind while I was preparing this chapter. It states: 
 "Every program attempts to expand until it can 
 read mail. Those programs which cannot so 
@@ -1525,13 +1537,13 @@ out is part of other Office-related tasks, such as the run-time generation of a
 document, then its best to use Office's MailServiceProvider service since it nicely 
 integrates with the rest of the API. However, if you plan to write a standalone e-mail 
 application which loads and sends ODF attachments, then JavaMail has more features 
-(https://java.net/projects/javamail/pages/Home).  </p>
+(<a href="https://java.net/projects/javamail/pages/Home">https://java.net/projects/javamail/pages/Home</a>).  </p>
 <p>I'll start this chapter by explaining the Office services for sending e-mail: 
 SimpleSystemMail/SimpleCommandMail, and the newer MailServiceProvider. Then 
 I'll switch to non-Office approaches, looking first at JavaMail, followed by two 
 techniques which don't need an extra JAR file but do require the user to interact with 
 the OSes e-mail client. I'll finish with mail merge in Office. </p>
-<h2 id="1-simplesystemmailsimplecommandmail">1.  SimpleSystemMail/SimpleCommandMail</h2>
+<h2 id="1-simplesystemmailsimplecommandmail">1.  SimpleSystemMail/SimpleCommandMail<a class="headerlink" href="#1-simplesystemmailsimplecommandmail" title="Permanent link">&para;</a></h2>
 <p>The SimpleSystemMail and SimpleCommandMail services in the system module 
 send e-mail using the OSes default e-mail client. They both implement the same 
 interfaces, but SimpleSystemMail is for Windows, and SimpleCommandMail for 
@@ -1572,7 +1584,7 @@ public static void sendEmailByClient(String to, String subject,<br />
         return; 
       } 
     } </p>
-<pre><code>XSimpleMailClient mc = mcSupp.querySimpleMailClient(); 
+<div class="highlight"><pre><span></span><code>XSimpleMailClient mc = mcSupp.querySimpleMailClient(); 
                 // defaults to ThunderBird on my OS
 
 XSimpleMailMessage msg = mc.createSimpleMailMessage(); 
@@ -1590,8 +1602,8 @@ if (fnm != null) {
 
 mc.sendSimpleMailMessage(msg,  
                SimpleMailClientFlags.NO_USER_INTERFACE); 
-     // hides GUI but still displays a "Confirm" dialog
-</code></pre>
+     // hides GUI but still displays a &quot;Confirm&quot; dialog
+</code></pre></div>
 <p>} 
   catch(com.sun.star.uno.Exception e) 
   {  System.out.println(e);  } 
@@ -1612,13 +1624,13 @@ protocol, as depicted in Figure 3. </p>
 <p><img alt="" src="images/42-Sending_E-mail-3.png" /></p>
 <p>Figure 3. The Default E-mail Client of Windows 7. </p>
 <p>A good description of how to set up this association can be found at 
-http://www.ubergizmo.com/how-to/set-default-email-client-windows/ </p>
-<h2 id="2-using-the-mailserviceprovider-service">2.  Using the MailServiceProvider Service</h2>
+<a href="http://www.ubergizmo.com/how-to/set-default-email-client-windows/">http://www.ubergizmo.com/how-to/set-default-email-client-windows/</a> </p>
+<h2 id="2-using-the-mailserviceprovider-service">2.  Using the MailServiceProvider Service<a class="headerlink" href="#2-using-the-mailserviceprovider-service" title="Permanent link">&para;</a></h2>
 <p>The MailServiceProvider service utilizes a Python script called mailmerge.py which 
 creates a socket-based link to the specified mail server. If that link utilizes SSL (or its 
 successor TLS) for encrypted communication, then your code will probably crash 
 with the error message "No SSL support included in this Python".  </p>
-<p>This bug (https://bugs.documentfoundation.org/show_bug.cgi?id=77354) is marked 
+<p>This bug (<a href="https://bugs.documentfoundation.org/show_bug.cgi?id=77354">https://bugs.documentfoundation.org/show_bug.cgi?id=77354</a>) is marked 
 as "RESOLVED NOTOURBUG" at Office's bugzilla website which seems a bit 
 dismissive. The problem appears to be due to the position of Office's application 
 folders in Window's PATH environment variable. When Windows searches for two 
@@ -1637,7 +1649,7 @@ the Gmail server at smtp.gmail.com: </p>
 <p>Mail.sendEmail("fivedots.coe.psu.ac.th", 25, "ad", password, 
       "xxx@xxx", "Test 1", "Body 1", "skinner.png"); </p>
 <p>Mail.sendEmail("smtp.gmail.com", 587,<br />
-               "Andrew.Davison50@gmail.com", password, 
+               "<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#65;&#110;&#100;&#114;&#101;&#119;&#46;&#68;&#97;&#118;&#105;&#115;&#111;&#110;&#53;&#48;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#65;&#110;&#100;&#114;&#101;&#119;&#46;&#68;&#97;&#118;&#105;&#115;&#111;&#110;&#53;&#48;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>", password, 
       "xxx@xxx","Test 2", "Body 2", "addresses.ods"); </p>
 <p>The Mail.sendEmail() arguments are: the mail server address, its port, the login and 
 password for the server, the recipient of the mail, the subject line, the body text, and 
@@ -1668,13 +1680,11 @@ if (service == null) {
   return; 
 } </p>
 <p>A listener can be attached to the service, to report on its connection status: </p>
-<p>// part of Mail.sendEmail() 
+<p System.out.println_Connected="System.out.println(&quot;Connected" _="&quot;" _getServerName_e_="+getServerName(e));" server="server" to="to">// part of Mail.sendEmail() 
       : 
 service.addConnectionListener( new XConnectionListener() { 
-  public void connected(EventObject e) 
-  {  System.out.println("Connected to server " +getServerName(e)); } </p>
-<p>public void disconnected(EventObject e) 
-  {  System.out.println("  Disconnected"); } </p>
+  public void connected(EventObject e) </p>
+<p Disconnected_="Disconnected&quot;);" System.out.println_="System.out.println(&quot;">public void disconnected(EventObject e) </p>
 <p>public void disposing(EventObject e) {} 
 }); </p>
 <p>The connection requires address, port, protocol, login and password details, which are 
@@ -1735,8 +1745,7 @@ public class TextTransferable implements XTransferable
 { 
   private final String text; 
   private final String UNICODE_MIMETYPE ="text/plain;charset=utf-16"; </p>
-<p>public TextTransferable(String s) 
-  {  text = s;  } </p>
+<p text="text">public TextTransferable(String s) </p>
 <p>public Object getTransferData(DataFlavor df)<br />
                          throws UnsupportedFlavorException 
   { if (!df.MimeType.equalsIgnoreCase(UNICODE_MIMETYPE)) 
@@ -1749,8 +1758,7 @@ public class TextTransferable implements XTransferable
                                       new Type(String.class)); 
     return dfs; 
   } </p>
-<p>public boolean isDataFlavorSupported(DataFlavor df) 
-  {  return df.MimeType.equalsIgnoreCase(UNICODE_MIMETYPE);  } </p>
+<p df.MimeType.equalsIgnoreCase_UNICODE_MIMETYPE_="df.MimeType.equalsIgnoreCase(UNICODE_MIMETYPE);" return="return">public boolean isDataFlavorSupported(DataFlavor df) </p>
 <p>}  // end of TextTransferable class </p>
 <p>A DataFlavor object hold three fields: the MIME type string for the data (e.g. </p>
 <p>"text/plain"), a 'human presentable' name for the data (which can be anything), and the 
@@ -1789,8 +1797,7 @@ public class FileTransferable implements XTransferable
                                       new Type(byte[].class)); 
     return flavors; 
   } </p>
-<p>public boolean isDataFlavorSupported(DataFlavor df) 
-  {  return df.MimeType.equalsIgnoreCase(mimeType);  } </p>
+<p df.MimeType.equalsIgnoreCase_mimeType_="df.MimeType.equalsIgnoreCase(mimeType);" return="return">public boolean isDataFlavorSupported(DataFlavor df) </p>
 <p>}  // end of FileTransferable class </p>
 <p>MIME type lookup is implemented by Info.getMIMEType() which uses Java's 
 MimetypesFileTypeMap to examine a file of MIME types stored in my Utils/ folder: </p>
@@ -1815,20 +1822,20 @@ XSmtpService.sendMailMessage(): </p>
 <p>XSmtpService smtpService = Lo.qi(XSmtpService.class, service); 
 smtpService.sendMailMessage(msg); </p>
 <p>service.disconnect(); </p>
-<h2 id="3-using-javamail">3.  Using JavaMail</h2>
+<h2 id="3-using-javamail">3.  Using JavaMail<a class="headerlink" href="#3-using-javamail" title="Permanent link">&para;</a></h2>
 <p>JavaMail can send and receive e-mail via SMTP, POP3 and IMAP (its website is 
-https://java.net/projects/javamail/pages/Home). Although JavaMail is mainly intended 
+<a href="https://java.net/projects/javamail/pages/Home">https://java.net/projects/javamail/pages/Home</a>). Although JavaMail is mainly intended 
 to be a component of Java EE, it can be downloaded as a single JAR file 
 (javax.mail.jar) as an add-on to the JDK. It's being actively developed (the current 
 version is 1.5.6, released in mid 2016), and the website has lots of examples (see 
-http://java.net/projects/javamail/downloads/download/javamail-samples.zip), a FAQ, 
-and API documentation (at https://javamail.java.net/nonav/docs/api/). </p>
+<a href="http://java.net/projects/javamail/downloads/download/javamail-samples.zip">http://java.net/projects/javamail/downloads/download/javamail-samples.zip</a>), a FAQ, 
+and API documentation (at <a href="https://javamail.java.net/nonav/docs/api/">https://javamail.java.net/nonav/docs/api/</a>). </p>
 <p>The main textbook about JavaMail is: 
-JavaMail API 1st Edition 
+JavaMail API 1<sup>st</sup> Edition 
 Elliotte Rusty Harold 
 O'Reilly, 2013 
 This started out as a chapter in Harold's "Java Network Programming" text, but was 
-separated off after the 3rd edition. </p>
+separated off after the 3<sup>rd</sup> edition. </p>
 <p>Another nice resource if you want to build a GUI e-mail client using JavaMail is 
 chapter 5 of The Art of Java by Herbert Schlidt and James Holmes, McGraw Hill, 
 2003. </p>
@@ -1843,7 +1850,7 @@ with JavaMail. The following two calls use the fivedots and Gmail servers: </p>
 <p>JMail.sendEmail("fivedots.coe.psu.ac.th", 25, "ad", password, 
       "xxx@xxx", "Test 1", "Body 1", "skinner.png"); </p>
 <p>JMail.sendEmail("smtp.gmail.com", 587,<br />
-               "Andrew.Davison50@gmail.com", password, 
+               "<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#65;&#110;&#100;&#114;&#101;&#119;&#46;&#68;&#97;&#118;&#105;&#115;&#111;&#110;&#53;&#48;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#65;&#110;&#100;&#114;&#101;&#119;&#46;&#68;&#97;&#118;&#105;&#115;&#111;&#110;&#53;&#48;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>", password, 
       "xxx@xxx","Test 2", "Body 2", "addresses.ods"); </p>
 <p>They're no different from my earlier Mail.sendEmail() examples, except for the name 
 of the support class. The arguments are: the mail server address, its port, the login and 
@@ -1869,21 +1876,17 @@ transport.connect(mailhost, port, user, password); </p>
 <p>JavaMail supports two kinds of listeners, one for the connection and the other for 
 message delivery. Simple implementations are given in JMail.sendEmail(): </p>
 <p>// part of JMail.sendEmail()... </p>
-<pre><code>  :
-</code></pre>
-<p>transport.addConnectionListener( new ConnectionListener() { 
-  public void opened(ConnectionEvent e)<br />
-  {  System.out.println("  Connection opened to: "+e.getSource()); } </p>
-<p>public void disconnected(ConnectionEvent e)<br />
-  {  System.out.println("  Connection disconnected"); } </p>
+<div class="highlight"><pre><span></span><code>  :
+</code></pre></div>
+<p Connection="Connection" System.out.println_="System.out.println(&quot;" _e.getSource_="&quot;+e.getSource());" opened="opened" to:="to:">transport.addConnectionListener( new ConnectionListener() { 
+  public void opened(ConnectionEvent e)<br /></p>
+<p Connection="Connection" System.out.println_="System.out.println(&quot;" disconnected_="disconnected&quot;);">public void disconnected(ConnectionEvent e)<br /></p>
 <p>public void closed(ConnectionEvent e)<br />
   {  System.out.println("  Connection closed"); } 
 }); </p>
-<p>transport.addTransportListener( new TransportListener() { 
-  public void messageDelivered(TransportEvent e)<br />
-  {  System.out.println("  Message delivered");  } </p>
-<p>public void messageNotDelivered(TransportEvent e)<br />
-  {  System.out.println("  Message not delivered");  } </p>
+<p Message="Message" System.out.println_="System.out.println(&quot;" delivered_="delivered&quot;);">transport.addTransportListener( new TransportListener() { 
+  public void messageDelivered(TransportEvent e)<br /></p>
+<p Message="Message" System.out.println_="System.out.println(&quot;" delivered_="delivered&quot;);" not="not">public void messageNotDelivered(TransportEvent e)<br /></p>
 <p>public void messagePartiallyDelivered(TransportEvent e)<br />
   {  System.out.println("  Message partially delivered");  } 
 }); </p>
@@ -1924,14 +1927,14 @@ using SMTPMessage.setText().  </p>
 <p>Once the message has been sent, the link is closed: </p>
 <p>transport.sendMessage(msg, msg.getAllRecipients()); 
 transport.close(); </p>
-<h2 id="4-the-desktop-api">4.  The Desktop API</h2>
+<h2 id="4-the-desktop-api">4.  The Desktop API<a class="headerlink" href="#4-the-desktop-api" title="Permanent link">&para;</a></h2>
 <p>The Java equivalent of Office's SimpleSystemMail/SimpleCommandMail service is 
 the Desktop.mail() method. It utilizes the OSes default e-mail client to post a 
 message, which means that there's no need to download the javax.mail JAR. The 
 delivery doesn't need to explicitly include the mail server address, port, login, and 
 password since they're obtained from the client's settings.  </p>
 <p>Desktop.mail() utilizes the mailto protocol to communicate with the client, but its 
-specification (in RFC 2368, at http://www.ietf.org/rfc/rfc2368.txt) doesn't cover 
+specification (in RFC 2368, at <a href="http://www.ietf.org/rfc/rfc2368.txt">http://www.ietf.org/rfc/rfc2368.txt</a>) doesn't cover 
 attachments. There are unofficial extensions supported by some clients, but they're not 
 part of Thunderbird (but see the next section). </p>
 <p>The mailto syntax is: 
@@ -1948,10 +1951,9 @@ JMail.sendEmailByClient("xxx@xxx", "Hello", "How are you?");
 There's no way in Desktop to suppress the client's GUI, which appears on-screen, and 
 the user must press the "Send" button (or equivalent) to post out the message. </p>
 <p>JMail.sendEmailByClient() is: </p>
-<p>// in the JMail class 
+<p body_="body," null_="null);" sendEmailByClient_to_="sendEmailByClient(to," subject_="subject,">// in the JMail class 
 public static void sendEmailByClient(String to,<br />
-                                    String subject, String body) 
-{  sendEmailByClient(to, subject, body, null);  } </p>
+                                    String subject, String body) </p>
 <p>public static void sendEmailByClient(String to, String subject, <br />
                                      String body, String fnm) 
 {<br />
@@ -1987,11 +1989,11 @@ encoded. </p>
 <p>sendEmailByClient() has an attachment argument mainly because I've read that some 
 clients, such as Outlook, can accept it. But if I try to use an attachment with 
 Thunderbird, the call to Desktop.mail() fails. </p>
-<h2 id="5-thunderbird-scripting">5.  Thunderbird Scripting</h2>
+<h2 id="5-thunderbird-scripting">5.  Thunderbird Scripting<a class="headerlink" href="#5-thunderbird-scripting" title="Permanent link">&para;</a></h2>
 <p>The reason for my uncertainty about Thunderbird supporting attachments is that 
 although it doesn't allow them in "mailto" strings, it can process attachments via its 
 GUI, and the command line (see 
-http://kb.mozillazine.org/Command_line_arguments_-_Thunderbird). Its command 
+<a href="http://kb.mozillazine.org/Command_line_arguments_-_Thunderbird">http://kb.mozillazine.org/Command_line_arguments_-_Thunderbird</a>). Its command 
 line features open up another way of sending e-mail: by having Java execute 
 Thunderbird through an external script.  </p>
 <p>My Windows batch file, called TBExec.bat, applies various checks to its command 
@@ -2021,7 +2023,7 @@ public static void sendEmailByTB(String to, String subject,<br />
 }  // end of sendEmailByTB() </p>
 <p>As with Desktop.mail(), there's no way to stop the Thunderbird GUI from being 
 displayed, and the user has to press the "Send" button to send off the message. </p>
-<h2 id="6-office-mail-merge">6.  Office Mail Merge</h2>
+<h2 id="6-office-mail-merge">6.  Office Mail Merge<a class="headerlink" href="#6-office-mail-merge" title="Permanent link">&para;</a></h2>
 <p>Mail merge usually involves a spreadsheet of data and a form letter stored as a Writer 
 template (an OTT file). Data from the spreadsheet replaces fields in the template, such 
 as <Name> and <Address>, with real names and addresses, creating a series of 
@@ -2032,10 +2034,10 @@ choice that I've included mail merging here. </p>
 <p>Figure 5 pictures the mail merge stages in more detail. </p>
 <p><img alt="" src="images/42-Sending_E-mail-5.png" /></p>
 <p>Figure 5. Mail Merging using a Spreadsheet and a Writer Template. </p>
-<h3 id="61-preparing-the-mail-merge-inputs">6.1.  Preparing the Mail Merge Inputs</h3>
+<h3 id="61-preparing-the-mail-merge-inputs">6.1.  Preparing the Mail Merge Inputs<a class="headerlink" href="#61-preparing-the-mail-merge-inputs" title="Permanent link">&para;</a></h3>
 <p>Mail merge configuration is most easily done using Office's GUI and wizards, and is 
 excellently explained in chapter 11 of the Writer Guide (available from 
-https://th.libreoffice.org/get-help/documentation/). </p>
+<a href="https://th.libreoffice.org/get-help/documentation/">https://th.libreoffice.org/get-help/documentation/</a>). </p>
 <p>A screenshot of a typical spreadsheet is shown in Figure 6. </p>
 <p><img alt="" src="images/42-Sending_E-mail-6.png" /></p>
 <p>Figure 6. The addresses.ods Spreadsheet. </p>
@@ -2059,7 +2061,7 @@ formLetter.ott. </p>
 <p><img alt="" src="images/42-Sending_E-mail-8.png" /></p>
 <p>Figure 8. Part of formLetter.ott. </p>
 <p>The fields are automatically displayed in angled brackets inside gray rectangles.  </p>
-<h3 id="62-programming-the-mail-merge">6.2.  Programming the Mail Merge</h3>
+<h3 id="62-programming-the-mail-merge">6.2.  Programming the Mail Merge<a class="headerlink" href="#62-programming-the-mail-merge" title="Permanent link">&para;</a></h3>
 <p>The MailMerge service is located in the text module; most of its programming 
 involves setting properties, and then calling XJob.execute(). The main services and 
 interfaces are shown in Figure 9. </p>
@@ -2086,7 +2088,7 @@ MailMerge. </p>
 <p>The MailMerge service is created as an XJob interface. Service properties are set, and 
 then the merge is carried out by calling XJob.execute(). The NamedValue array is 
 empty since there's no need to set any more properties using it. </p>
-<h3 id="63-specializing-the-merge">6.3.  Specializing the Merge</h3>
+<h3 id="63-specializing-the-merge">6.3.  Specializing the Merge<a class="headerlink" href="#63-specializing-the-merge" title="Permanent link">&para;</a></h3>
 <p>Mail.mergeTask() is passed numerous property values. To simplify its interface, the 
 call is hidden inside three other functions called Mail.mergeLetter(), 
 Mail.mergePrint(), and Mail.mergeEmail(), which focus on the three different 
@@ -2152,7 +2154,7 @@ public static void mergeEmail(String dataSourceName,<br />
 {<br />
   System.out.println("Merging letters for sending as e-mail..."); 
   boolean isConfigured = checkMailConfig(passwd); 
-  System.out.println("--&gt; Mailhost is " +<br />
+  System.out.println("&rarr; Mailhost is " +<br />
               (isConfigured ? "" : "NOT ") + "configured"); 
   if (isConfigured) 
     mergeTask(dataSourceName, tableName, templateFnm,<br />
@@ -2179,7 +2181,7 @@ button pressed. A second dialog opens, shown on the right in Figure 10, which le
 you enter a login and password for accessing the server. It's good practice not to enter 
 a password since the data is stored as plain text in "registrymodifications.xcu" in 
 Office's user configuration directory (often the folder 
-$APPDATA$\LibreOffice\??\user). It's safer to pass the password to 
+<span class="arithmatex">\(APPDATA\)</span>\LibreOffice\??\user). It's safer to pass the password to 
 Mail.mergeTask() at run time, as I've done in Mail.mergeEmail(). </p>
 <p>mergeEmail() calls Mail.checkMailConfig() to check if the mail server address, port 
 number, username, and password can be found in "registrymodifications.xcu". If the 
@@ -2188,7 +2190,7 @@ aborted. If the password is found, then a stern warning message is printed, but
 merging continues. </p>
 <p>checkMailConfig() calls Info.getRegItemProp() which uses XPath to search through 
 "registrymodifications.xcu" for the specified property names and values.  </p>
-<h3 id="64-mergetask-implementing-mail-merging">6.4.  mergeTask(): Implementing Mail Merging</h3>
+<h3 id="64-mergetask-implementing-mail-merging">6.4.  mergeTask(): Implementing Mail Merging<a class="headerlink" href="#64-mergetask-implementing-mail-merging" title="Permanent link">&para;</a></h3>
 <p>mergeTask() is an expanded version of the code snippet given above which creates an 
 XJob instance, sets properties in the MailMerge service, and calls XJob.execute(). </p>
 <p>The properties settings are spread across if-tests which determine if the task involves 
@@ -2234,17 +2236,17 @@ public static void mergeTask(String dataSourceName,<br />
   else if (outputType == MailMergeType.MAIL) { 
     if (passwd != null) 
       Props.setProperty(props, "OutServerPassword", passwd); </p>
-<pre><code>Props.setProperty(props, "AddressFromColumn", "E-mail");   
+<div class="highlight"><pre><span></span><code>Props.setProperty(props, &quot;AddressFromColumn&quot;, &quot;E-mail&quot;);   
                                   // hardwired column name 
-Props.setProperty(props, "Subject", subject); 
-Props.setProperty(props, "MailBody", body);
+Props.setProperty(props, &quot;Subject&quot;, subject); 
+Props.setProperty(props, &quot;MailBody&quot;, body);
 
-Props.setProperty(props, "SendAsAttachment", true); 
-Props.setProperty(props, "AttachmentName", "letter.pdf");  
+Props.setProperty(props, &quot;SendAsAttachment&quot;, true); 
+Props.setProperty(props, &quot;AttachmentName&quot;, &quot;letter.pdf&quot;);  
                                 // hardwired filename and type 
-Props.setProperty(props, "AttachmentFilter",  
-                                   "writer_pdf_Export");
-</code></pre>
+Props.setProperty(props, &quot;AttachmentFilter&quot;,  
+                                   &quot;writer_pdf_Export&quot;);
+</code></pre></div>
 <p>} </p>
 <p>// monitor task's execution 
   XMailMergeBroadcaster xmmb =<br />
@@ -2253,16 +2255,16 @@ Props.setProperty(props, "AttachmentFilter",
   { 
     int count = 0; 
     long start = System.currentTimeMillis(); </p>
-<pre><code>public void notifyMailMergeEvent(MailMergeEvent e) 
+<div class="highlight"><pre><span></span><code>public void notifyMailMergeEvent(MailMergeEvent e) 
 { count++; 
   XModel model = e.Model; 
-  // Props.showProps("Mail merge event", model.getArgs()); 
+  // Props.showProps(&quot;Mail merge event&quot;, model.getArgs()); 
   long currTime = System.currentTimeMillis(); 
-  System.out.println("  Letter " + count + ": " + 
-                            (currTime - start) + "ms"); 
+  System.out.println(&quot;  Letter &quot; + count + &quot;: &quot; + 
+                            (currTime - start) + &quot;ms&quot;); 
   start = currTime; 
 }
-</code></pre>
+</code></pre></div>
 <p>}); </p>
 <p>try { 
     job.execute(new NamedValue[0]);<br />
@@ -2289,7 +2291,7 @@ created. For my addresses.ods spreadsheet, it's triggered six times since there 
 rows of data (see Figure 6). </p>
 <p>notifyMailMergeEvent() prints only timing information for each letter task, but more 
 details could be obtained by accessing the event's model. </p>
-<h3 id="65-mail-merge-reliability">6.5.  Mail Merge Reliability</h3>
+<h3 id="65-mail-merge-reliability">6.5.  Mail Merge Reliability<a class="headerlink" href="#65-mail-merge-reliability" title="Permanent link">&para;</a></h3>
 <p>Office's  mail merge wizard, which implements the "Office API" parts of Figure 5, 
 and so corresponds to my Mail.mergeTask()function, has a long history of crashing.  </p>
 <p>Mail.mergeTask() has always worked fine in my tests, except that it displays a 
@@ -2305,6 +2307,7 @@ zombie Office processes are left over, so the dialog can be safely ignored and c
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -2312,7 +2315,8 @@ zombie Office processes are left over, so the dialog can be safely ignored and c
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="41-Printing.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="41-Printing.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 41. Printing" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2327,7 +2331,8 @@ zombie Office processes are left over, so the dialog can be safely ignored and c
         </a>
       
       
-        <a href="43-Using_the_Clipboard.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="43-Using_the_Clipboard.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 43. Using the Clipboard" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -2347,10 +2352,12 @@ zombie Office processes are left over, so the dialog can be safely ignored and c
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -2362,10 +2369,10 @@ zombie Office processes are left over, so the dialog can be safely ignored and c
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

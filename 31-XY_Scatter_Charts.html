@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -746,6 +755,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -760,6 +770,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1223,6 +1234,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1318,7 +1330,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-31-xy-scatter-charts">Chapter 31. XY (Scatter) Charts</h1>
+                <h1 id="chapter-31-xy-scatter-charts">Chapter 31. XY (Scatter) Charts<a class="headerlink" href="#chapter-31-xy-scatter-charts" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 </div>
@@ -1329,10 +1341,10 @@
     Curve; Changing Axis 
     Scales; Adding Error 
     Bars </p>
-<pre><code>Example folders: 
-"Chart2 Tests" and 
-"Utils"
-</code></pre>
+<div class="highlight"><pre><span></span><code>Example folders: 
+&quot;Chart2 Tests&quot; and 
+&quot;Utils&quot;
+</code></pre></div>
 <p>This chapter continues using the Chart2Views.java 
 example from previous chapters, but looks at how various 
 kinds of scatter charts can be generated from spreadsheet 
@@ -1353,13 +1365,13 @@ public static void main(String args[])
 <p>scatterChart(doc, sheet);               // see sections 1-3 
   // scatterLineLogChart(doc, sheet);     // section 4 
   // scatterLineErrorChart(doc, sheet);   // section 5 </p>
-<pre><code>     :  // more chart examples
-</code></pre>
+<div class="highlight"><pre><span></span><code>     :  // more chart examples
+</code></pre></div>
 <p>Lo.waitEnter(); 
   Lo.closeDoc(doc); 
   Lo.closeOffice(); 
 }  // end of main() </p>
-<h2 id="1-a-scatter-chart-with-regressions">1.  A Scatter Chart (with Regressions)</h2>
+<h2 id="1-a-scatter-chart-with-regressions">1.  A Scatter Chart (with Regressions)<a class="headerlink" href="#1-a-scatter-chart-with-regressions" title="Permanent link">&para;</a></h2>
 <p>scatterChart() in Chart2Views.java utilizes the "Ice Cream Sales vs. Temperature" 
 table in "chartsData.ods" (see Figure 1) to generate the scatter chart in Figure 2. </p>
 <p><img alt="" src="images/31-XY_Scatter_Charts-1.png" /></p>
@@ -1430,7 +1442,7 @@ Chart2.drawRegressionCurve() then the generated function is f(x) = 544.1 ln(x) â
 2
  value of 0.92. Other regression curves are represented by the Chart2 
 constants EXPONENTIAL, POWER, POLYNOMIAL, and MOVING_AVERAGE. </p>
-<h2 id="2-calculating-regressions">2.  Calculating Regressions</h2>
+<h2 id="2-calculating-regressions">2.  Calculating Regressions<a class="headerlink" href="#2-calculating-regressions" title="Permanent link">&para;</a></h2>
 <p>Chart2.calcRegressions() is: </p>
 <p>// in the Chart2 class 
 // globals 
@@ -1553,9 +1565,9 @@ public static void printLabeledSeqs(XDataSource dataSource)
       System.out.print("  " + val); 
     System.out.println(); 
     String srRep = dataSeqs[i].getValues(). </p>
-<pre><code>                        getSourceRangeRepresentation(); 
-System.out.println("  Source range: " + srRep);
-</code></pre>
+<div class="highlight"><pre><span></span><code>                        getSourceRangeRepresentation(); 
+System.out.println(&quot;  Source range: &quot; + srRep);
+</code></pre></div>
 <p>} 
 }  // end of printLabeledSeqs() </p>
 <p>When these function is applied to the data source for the scatter chart, the following is 
@@ -1563,10 +1575,10 @@ printed: </p>
 <p>No. of sequences in data source: 2 
 Temperature Â°C :  14.2  16.4  11.9  15.2  18.5  22.1  19.4 <br />
                   25.1  23.4  18.1  22.6  17.2 
-Source range: $examples.$A$111:$A$122 </p>
+Source range: <span class="arithmatex">\(examples.\)</span>A<span class="arithmatex">\(111:\)</span>A$122 </p>
 <p>Ice Cream Sales :  215.0  325.0  185.0  332.0  406.0  522.0 <br />
                    412.0  614.0  544.0  421.0  445.0  408.0 
-Source range: $examples.$B$111:$B$122 </p>
+Source range: <span class="arithmatex">\(examples.\)</span>B<span class="arithmatex">\(111:\)</span>B$122 </p>
 <p>This output shows that the data source consists of two XLabeledDataSequence 
 objects, representing the x- and y- values in the data source (see Figure 1). These 
 objects' data are extracted as arrays by calls to Chart2.getChartData(): </p>
@@ -1584,7 +1596,7 @@ prints the function string (using getRepresentation()) and the R
 2
  value (using 
 getCorrelationCoefficient()). </p>
-<h2 id="3-drawing-a-regression-curve">3.  Drawing a Regression Curve</h2>
+<h2 id="3-drawing-a-regression-curve">3.  Drawing a Regression Curve<a class="headerlink" href="#3-drawing-a-regression-curve" title="Permanent link">&para;</a></h2>
 <p>One of the surprising things about drawing a regression curve is that there's no need to 
 explicitly calculate the curve's function with XRegressionCurveCalculator. Instead 
 Chart2.drawRegressionCurve() only has to initialize the curve via the data series' 
@@ -1653,7 +1665,7 @@ the "Format Code" field at the bottom of the dialog. Figure 7 shows that the for
 string for two decimal place numbers is "0.00". This string should be passed to 
 getNumberFormatKey() in drawRegressionCurve(): 
 int key = getNumberFormatKey(chartDoc, "0.00");  </p>
-<h2 id="4-changing-axis-scales">4.  Changing Axis Scales</h2>
+<h2 id="4-changing-axis-scales">4.  Changing Axis Scales<a class="headerlink" href="#4-changing-axis-scales" title="Permanent link">&para;</a></h2>
 <p>Another way to understand scatter data is by changing the chart's axis scaling. </p>
 <p>Alternatives to linear are logarithmic, exponential, or power, although I've found that 
 the latter two cause the chart to be drawn incorrectly.  </p>
@@ -1696,20 +1708,18 @@ private static void scatterLineLogChart(XSpreadsheetDocument doc,
 }  // end of scatterLineLogChart() </p>
 <p>Chart2.scaleXAxis() and Chart2.scaleYAxis() call the more general 
 Chart2.scaleAxis() function: </p>
-<p>// in the Chart2 class 
+<p 0_="0," Chart2.X_AXIS_="Chart2.X_AXIS," return="return" scaleAxis_chartDoc_="scaleAxis(chartDoc," scaleType_="scaleType);">// in the Chart2 class 
 public static XAxis scaleXAxis(XChartDocument chartDoc,<br />
-                                               int scaleType) 
-{  return scaleAxis(chartDoc, Chart2.X_AXIS, 0, scaleType);  } </p>
-<p>public static XAxis scaleYAxis(XChartDocument chartDoc,<br />
-                                               int scaleType) 
-{  return scaleAxis(chartDoc, Chart2.Y_AXIS, 0, scaleType);  } </p>
+                                               int scaleType) </p>
+<p 0_="0," Chart2.Y_AXIS_="Chart2.Y_AXIS," return="return" scaleAxis_chartDoc_="scaleAxis(chartDoc," scaleType_="scaleType);">public static XAxis scaleYAxis(XChartDocument chartDoc,<br />
+                                               int scaleType) </p>
 <p>Chart2.scaleAxis() utilizes XAxis.getScaleData() and XAxis.setScaleData() to access 
 and modify the axis scales: </p>
 <p>// in the Chart2 class 
 public static XAxis scaleAxis(XChartDocument chartDoc, int axisVal,<br />
                                           int idx, int scaleType) 
-/<em> scaleTypes: LINEAR, LOGARITHMIC, EXPONENTIAL, POWER, but 
-   latter two seem unstable </em>/ 
+/* scaleTypes: LINEAR, LOGARITHMIC, EXPONENTIAL, POWER, but 
+   latter two seem unstable */ 
 {<br />
   XAxis axis = getAxis(chartDoc, axisVal, idx); 
   if (axis == null) 
@@ -1737,7 +1747,7 @@ public static XAxis scaleAxis(XChartDocument chartDoc, int axisVal,<br />
 <p>Figure 10. </p>
 <p><img alt="" src="images/31-XY_Scatter_Charts-10.png" /></p>
 <p>Figure 10. The Scaling Services. </p>
-<h2 id="5-adding-error-bars">5.  Adding Error Bars</h2>
+<h2 id="5-adding-error-bars">5.  Adding Error Bars<a class="headerlink" href="#5-adding-error-bars" title="Permanent link">&para;</a></h2>
 <p>scatterLineErrorChart() in Chart2Views.java employs the "Impact Data : 1018 Cold 
 Rolled" table in "chartsData.ods" (see Figure 11).  </p>
 <p><img alt="" src="images/31-XY_Scatter_Charts-11.png" /></p>
@@ -1768,7 +1778,7 @@ private static void scatterLineErrorChart(XSpreadsheetDocument doc,
 }  // end of scatterLineErrorChart() </p>
 <p>The new feature in scatterLineErrorChart() is the call to Chart2.setYErrorBars(), 
 which I'll explain over the next four subsections. </p>
-<h3 id="51-creating-new-chart-data">5.1.  Creating New Chart Data</h3>
+<h3 id="51-creating-new-chart-data">5.1.  Creating New Chart Data<a class="headerlink" href="#51-creating-new-chart-data" title="Permanent link">&para;</a></h3>
 <p>The secret to adding extra data to a chart is XDataSink.setData(). XDataSink is yet 
 another interface for the DataSeries service (see Figure 5). </p>
 <p>There are several stages required, which are depicted in Figure 13. </p>
@@ -1837,7 +1847,7 @@ dataSink.setData(ldSeqArr); </p>
 <p>// add the data sink to the chart ... </p>
 <p>This code fragment leaves two topics unexplained: how the data sink is initially 
 created, and how the data sink is linked to the chart. </p>
-<h3 id="52-creating-the-data-sink">5.2.  Creating the Data Sink</h3>
+<h3 id="52-creating-the-data-sink">5.2.  Creating the Data Sink<a class="headerlink" href="#52-creating-the-data-sink" title="Permanent link">&para;</a></h3>
 <p>The data sink for error bars relies on the ErrorBar service, which is shown in Figure 
 14. </p>
 <p><img alt="" src="images/31-XY_Scatter_Charts-14.png" /></p>
@@ -1854,7 +1864,7 @@ Props.setProperty(props, "ShowNegativeError", true);
 Props.setProperty(props, "ErrorBarStyle", ErrorBarStyle.FROM_DATA); </p>
 <p>XDataSink dataSink = Lo.qi(XDataSink.class, props); </p>
 <p>For details on the ErrorBar service, execute lodoc chart2 ErrorBar. </p>
-<h3 id="53-linking-the-data-sink-to-the-chart">5.3.  Linking the Data Sink to the Chart</h3>
+<h3 id="53-linking-the-data-sink-to-the-chart">5.3.  Linking the Data Sink to the Chart<a class="headerlink" href="#53-linking-the-data-sink-to-the-chart" title="Permanent link">&para;</a></h3>
 <p>Once the data sink has been filled with XLabeledDataSequence objects, it can be 
 linked to the data series in the chart. For error bars this is done via the properties 
 "ErrorBarX" and "ErrorBarY". For example, the following code assigns a data sink to 
@@ -1866,7 +1876,7 @@ XDataSeries ds = dsa[0];
 Props.setProperty(ds, "ErrorBarY", props); </p>
 <p>Note that the value assigned to "ErrorBarY" is not an XDataSink interface (e.g. not 
 dataSink from the earlier code fragment) but its property set (i.e. props). </p>
-<h3 id="54-bringing-it-all-together">5.4.  Bringing it All Together</h3>
+<h3 id="54-bringing-it-all-together">5.4.  Bringing it All Together<a class="headerlink" href="#54-bringing-it-all-together" title="Permanent link">&para;</a></h3>
 <p>Chart2.setYErrorBars() combines the previous code fragments into a single method: 
 the data sink is created (as a property set), XLabeledDataSequence data is added to it, 
 and then the sink is linked to the chart's data series: </p>
@@ -1886,7 +1896,7 @@ public static void setYErrorBars(XChartDocument chartDoc,<br />
 <p>// convert into data sink 
   XDataSink dataSink = Lo.qi(XDataSink.class, errorBarProps); </p>
 <p>// use data provider to create labeled data sequences 
-  // for the +/- error ranges 
+  // for the &plusmn; error ranges 
   XDataProvider dp = chartDoc.getDataProvider(); </p>
 <p>XLabeledDataSequence posErrSeq =<br />
       createLDSeq(dp, "error-bars-y-positive", dataLabel, dataRange); 
@@ -1912,6 +1922,7 @@ next chapter. </p>
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -1919,7 +1930,8 @@ next chapter. </p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 30. Bar, Pie, Area, Line Charts" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1934,7 +1946,8 @@ next chapter. </p>
         </a>
       
       
-        <a href="32-Bubble_Net_Stock_Charts.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="32-Bubble_Net_Stock_Charts.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 32. Bubble, Net, Stock Charts" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -1954,10 +1967,12 @@ next chapter. </p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -1969,10 +1984,10 @@ next chapter. </p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

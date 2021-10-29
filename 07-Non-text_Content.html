@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -341,6 +350,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -355,6 +365,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1236,6 +1247,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1344,7 +1356,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-7-text-content-other-than-strings">Chapter 7. Text Content Other than Strings</h1>
+                <h1 id="chapter-7-text-content-other-than-strings">Chapter 7. Text Content Other than Strings<a class="headerlink" href="#chapter-7-text-content-other-than-strings" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 <p>Accessing Text
@@ -1533,7 +1545,7 @@ later in this chapter.</p>
 <p>Table 1. Creating and Accessing Text Content.</p>
 <p>Rows 3 and 4 are highlighted to indicate that graphical content is discussed in the next
 chapter.</p>
-<h2 id="1-how-to-access-text-content">1.  How to Access Text Content</h2>
+<h2 id="1-how-to-access-text-content">1.  How to Access Text Content<a class="headerlink" href="#1-how-to-access-text-content" title="Permanent link">&para;</a></h2>
 <p>Most of the examples in this chapter create text document content rather than access
 it. This is mainly because the different access functions work in a similar way, so you
 don’t need many examples to get the general idea.</p>
@@ -1577,42 +1589,42 @@ DuckDuckGo chooses the TextGraphicObjects service, and you need to click on the
 <p>Table 1 has many rows without bold entries, which means I won't be looking at them.</p>
 <p>except for the very brief descriptions here; for more please consult the Developer's
 Guide at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Working_with_Text_
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Working_with_Text">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Working_with_Text</a>_
 Documents (or type <code>loGuide "Working with Text Documents"</code>). All the examples
 in that section are in TextDocuments.java at
-http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Text.</p>
+<a href="http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Text">http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Text</a>.</p>
 <p><strong>Text Sections.</strong> A text section is a grouping of paragraphs which can be assigned their
 own style settings. More usefully, a section may be located in another file, which is
 the mechanism underlying master documents. See:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Sections (or
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Sections">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Sections</a> (or
 type <code>loGuide "Text Sections"</code>).</p>
 <p><strong>Footnotes and Endnotes.</strong> Footnotes and endnotes are blocks of text that appear in the
 page footers and at the end of a document. They can be treated as XText objects, so
 manipulated using the same techniques as the main document text. See:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Footnotes_and_Endn
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Footnotes_and_Endn">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Footnotes_and_Endn</a>
 otes (or type <code>loGuide Footnotes</code>).</p>
 <p><strong>Reference Marks.</strong> Reference marks can be inserted throughout a document, and then
 jumped to via GetReference text fields:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Reference_Marks (or
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Reference_Marks">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Reference_Marks</a> (or
 type <code>loGuide "Reference Marks"</code>).</p>
 <p><strong>Indexes and Index Marks.</strong> Index marks, like reference marks, can be inserted
 anywhere in a document, but are used to generate indices (collections of information)
 inside the document. There are several types of index marks used for generating lists
 of chapter headings (i.e. a book's index), lists of key words, illustrations, tables, and a
 bibliography. For details see:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Indexes_and_Index_
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Indexes_and_Index">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Indexes_and_Index</a>_
 Marks (or type <code>loGuide Indexes</code>).</p>
 <p><strong>Link Targets.</strong> A link target (sometimes called a jump mark) labels a location inside a
 document. These labels can be included as part of a filename so that the document can
 be opened at that position. For information, see:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Link_Targets (or
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Link_Targets">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Link_Targets</a> (or
 type <code>loGuide "Link Targets"</code>).</p>
 <p><strong>Redlines.</strong> Redlines are the changes recorded when a user edits a document with track
 changes turned on. Each of the changes is saved as a text fragment (also called a text
 portion) inside a redline object. See:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Redline (or type
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Redline">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Redline</a> (or type
 <code>loGuide Redline</code>).</p>
-<h2 id="2-adding-a-text-frame-to-a-document">2.  Adding a Text Frame to a Document</h2>
+<h2 id="2-adding-a-text-frame-to-a-document">2.  Adding a Text Frame to a Document<a class="headerlink" href="#2-adding-a-text-frame-to-a-document" title="Permanent link">&para;</a></h2>
 <p>The TextFrame service inherits many of its properties and interfaces, so its
 inheritance hierarchy is shown in detail in Figure 3.</p>
 <p><img alt="" src="images/07-Non-text_Content-3.png" /></p>
@@ -1759,7 +1771,7 @@ Figure 3). This means that all the text manipulations possible in a document are
 possible inside a frame.</p>
 <p>The ordering of the tasks at the end of addTextFrame() is important. Office prefers
 that an empty text content be added to the document, and the data inserted afterwards.</p>
-<h2 id="3-adding-a-text-embedded-object-to-a-document">3.  Adding a Text Embedded Object to a Document</h2>
+<h2 id="3-adding-a-text-embedded-object-to-a-document">3.  Adding a Text Embedded Object to a Document<a class="headerlink" href="#3-adding-a-text-embedded-object-to-a-document" title="Permanent link">&para;</a></h2>
 <p>Text embedded object content support OLE (Microsoft's Object Linking and
 Embedding), and is typically used to create a frame linked to an external Office
 document. Probably, its most popular use is to link to a chart, but I'll delay looking at
@@ -1864,16 +1876,16 @@ interface which has a get method for obtaining the object:</p>
 assigned to the "Formula" property:</p>
 <p>XPropertySet formulaProps = Lo.qi(XPropertySet.class, oEmbed);
 formulaProps.setPropertyValue("Formula", formula);</p>
-<h3 id="31-whats-a-formula-string">3.1.  What's a Formula String?</h3>
+<h3 id="31-whats-a-formula-string">3.1.  What's a Formula String?<a class="headerlink" href="#31-whats-a-formula-string" title="Permanent link">&para;</a></h3>
 <p>Although I've explained the working of Write.addFormula(), I haven't explained the
 format of the formula string that's passed to it. There's a good overview of the
 notation in the "Commands Reference" appendix of Office's "Math Guide", available
-at https://www.libreoffice.org/get-help/documentation/
+at <a href="https://www.libreoffice.org/get-help/documentation/">https://www.libreoffice.org/get-help/documentation/</a>
 For example, the formula string:
 "1 {5}over{9} + 3 {5}over{9} = 5 {1}over{9}"
 is rendered as:</p>
-<p>[<strong><em> Formula did not render in MarkDown </em></strong>]</p>
-<h3 id="32-building-formulae">3.2.  Building Formulae</h3>
+<p>[*** Formula did not render in MarkDown ***]</p>
+<h3 id="32-building-formulae">3.2.  Building Formulae<a class="headerlink" href="#32-building-formulae" title="Permanent link">&para;</a></h3>
 <p>MathQuestions.java is mainly a for-loop for randomly generating numbers and
 constructing simple formulae strings. Ten formulae are added to the document, which
 is saved as "mathQuestions.pdf". The main() function:</p>
@@ -1927,7 +1939,7 @@ is saved as "mathQuestions.pdf". The main() function:</p>
 <p>Figure 5 shows a screenshot of part of mathQuestions.pdf.</p>
 <p><img alt="" src="images/07-Non-text_Content-5.png" /></p>
 <p>Figure 5. Math Formulae in a Text Document.</p>
-<h2 id="4-text-fields">4.  Text Fields</h2>
+<h2 id="4-text-fields">4.  Text Fields<a class="headerlink" href="#4-text-fields" title="Permanent link">&para;</a></h2>
 <p>A text field differs from other text content in that its data is generated dynamically by
 the document, or by an external source such as a database . Document-generated text
 fields include text showing the current date, the page number, the total number of
@@ -1938,17 +1950,17 @@ master field representing the external source, and the dependent field for the d
 in the document; only the dependent field is visible. I won't be giving any
 dependent/master field examples, but there's one in the Development Guide section
 on text fields, at:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Fields (or type
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Fields">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Fields</a> (or type
 <code>loGuide "Text Fields"</code>).</p>
 <p>It utilizes the User master field, which allows the external source to be user-defined
 data. The code appears in the TextDocuments.java example at
-http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Text.</p>
+<a href="http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Text">http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Text</a>.</p>
 <p>Different  kinds of text field are implemented as subclasses of the TextField service.
 You can see the complete hierarchy in the online documentation for TextField
 (<code>lodoc TextField service</code>). Figure 6 presents a simplified version.</p>
 <p><img alt="" src="images/07-Non-text_Content-6.png" /></p>
 <p>Figure 6. Simplified Hierarchy for the TextField Service.</p>
-<h3 id="41-the-datetime-textfield">4.1.  The DateTime TextField</h3>
+<h3 id="41-the-datetime-textfield">4.1.  The DateTime TextField<a class="headerlink" href="#41-the-datetime-textfield" title="Permanent link">&para;</a></h3>
 <p>The BuildDoc.java example ends with a few lines that appear to do the same thing
 twice:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// code fragment from BuildDoc.java</span>
@@ -1993,7 +2005,7 @@ most being in the subclass (DateTime in this case).</p>
 <p>The method adds two DateTime text fields to the document. The first has its "IsDate"
 property set to true, so that the current date is inserted; the second sets "IsDate" to
 false so the current time is shown.</p>
-<h3 id="42-the-pagenumber-and-pagecount-text-fields">4.2.  The PageNumber and PageCount Text Fields</h3>
+<h3 id="42-the-pagenumber-and-pagecount-text-fields">4.2.  The PageNumber and PageCount Text Fields<a class="headerlink" href="#42-the-pagenumber-and-pagecount-text-fields" title="Permanent link">&para;</a></h3>
 <p>I discussed most of StoryCreator.java in Chapter 6 on styles, but skipped over how
 page numbers were added to the document's page footer. The footer is shown in
 Figure 8.</p>
@@ -2082,7 +2094,7 @@ and PageCount fields.</p>
 <p>I found out about them by looking at the documentation for their services  (e.g. use
 <code>lodoc TextField.PageNumber</code> service; "TextField." is needed due to PageNumber
 being a common word).</p>
-<h2 id="5-adding-a-text-table-to-a-document">5.  Adding a Text Table to a Document</h2>
+<h2 id="5-adding-a-text-table-to-a-document">5.  Adding a Text Table to a Document<a class="headerlink" href="#5-adding-a-text-table-to-a-document" title="Permanent link">&para;</a></h2>
 <p>The MakeTable.java example reads in data about James Bond movies from
 "bondMovies.txt" and stores it as a text table in "table.odt". The first few rows are
 shown in Figure 9.</p>
@@ -2269,7 +2281,7 @@ the text's color:</p>
   <span class="n">cellText</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
 <span class="p">}</span>  <span class="c1">// end of setCellText()</span>
 </code></pre></div>
-<h2 id="6-adding-a-bookmark-to-the-document">6.  Adding a Bookmark to the Document</h2>
+<h2 id="6-adding-a-bookmark-to-the-document">6.  Adding a Bookmark to the Document<a class="headerlink" href="#6-adding-a-bookmark-to-the-document" title="Permanent link">&para;</a></h2>
 <p>Write.addBookmark() adds a named bookmark at the current cursor position:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">addBookmark</span><span class="p">(</span><span class="n">XTextCursor</span> <span class="n">cursor</span><span class="p">,</span> <span class="n">String</span> <span class="n">name</span><span class="p">)</span>
 <span class="p">{</span>
@@ -2375,6 +2387,7 @@ causes an on-screen change. gotoRange() can be employed with any type of cursor.
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -2382,7 +2395,8 @@ causes an on-screen change. gotoRange() can be employed with any type of cursor.
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="06-Text_Styles.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="06-Text_Styles.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 6. Text Styles" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2397,7 +2411,8 @@ causes an on-screen change. gotoRange() can be employed with any type of cursor.
         </a>
       
       
-        <a href="08-Graphic_Content.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="08-Graphic_Content.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 8. Graphic Content" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -2417,10 +2432,12 @@ causes an on-screen change. gotoRange() can be employed with any type of cursor.
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -2432,10 +2449,10 @@ causes an on-screen change. gotoRange() can be employed with any type of cursor.
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

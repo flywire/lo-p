@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -716,6 +725,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -730,6 +740,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1203,6 +1214,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1278,7 +1290,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-29-column-charts">Chapter 29. Column Charts</h1>
+                <h1 id="chapter-29-column-charts">Chapter 29. Column Charts<a class="headerlink" href="#chapter-29-column-charts" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 <p>Creating a Chart 
@@ -1371,7 +1383,7 @@ together.  </p>
 generated chart will have no titles as in Figure 3. </p>
 <p><img alt="" src="images/29-Column_Charts-3.png" /></p>
 <p>Figure 3. The Column Chart for the Table in Figure 1, with no Titles. </p>
-<h2 id="1-creating-a-chart-title">1.  Creating a Chart Title</h2>
+<h2 id="1-creating-a-chart-title">1.  Creating a Chart Title<a class="headerlink" href="#1-creating-a-chart-title" title="Permanent link">&para;</a></h2>
 <p>Chart2.setTitle() is passed a string which becomes the chart's title. For example: </p>
 <p>// part of colChart() in Chart2Views.java... </p>
 <p>Chart2.setTitle(chartDoc, Calc.getString(sheet, "A1")); </p>
@@ -1384,7 +1396,7 @@ generated chart will have no titles as in Figure 3. </p>
 XTitle object can be assigned to the chart: </p>
 <p>// in the Chart2 class 
 public static void setTitle(XChartDocument chartDoc, String title) 
-/<em> set the title, and use Arial, 14 pt style </em>/ 
+/* set the title, and use Arial, 14 pt style */ 
 { <br />
   System.out.println("Chart title: \"" + title + "\""); 
   XTitled xTitled = Lo.qi(XTitled.class, chartDoc); 
@@ -1441,7 +1453,7 @@ public static void setXTitleFont(XTitle xtitle,<br />
 }  // end of setXTitleFont() </p>
 <p>The "CharFontName" and "CharHeight" properties come from the 
 CharacterProperties class. </p>
-<h2 id="2-creating-axis-titles">2.  Creating Axis Titles</h2>
+<h2 id="2-creating-axis-titles">2.  Creating Axis Titles<a class="headerlink" href="#2-creating-axis-titles" title="Permanent link">&para;</a></h2>
 <p>Setting the axes titles needs a reference to the XAxis interface. Incidentally, this 
 interface name is a little misleading since "X" is the naming convention for interfaces, 
 not a reference to the x-axis.  </p>
@@ -1470,15 +1482,11 @@ public static final int Z_AXIS = 2; </p>
 represents the axis (x-, y-, or  z-), while the second is a primary or secondary index (0 
 or 1) for the chosen axis. Chart2.java includes wrapper functions for Chart2.getAxis() 
 for the most common cases: </p>
-<p>// in the Chart2 class 
-public static XAxis getXAxis(XChartDocument chartDoc) 
-{  return getAxis(chartDoc, Chart2.X_AXIS, 0);  } </p>
-<p>public static XAxis getYAxis(XChartDocument chartDoc) 
-{  return getAxis(chartDoc, Chart2.Y_AXIS, 0);  } </p>
-<p>public static XAxis getXAxis2(XChartDocument chartDoc) 
-{  return getAxis(chartDoc, Chart2.X_AXIS, 1);  } </p>
-<p>public static XAxis getYAxis2(XChartDocument chartDoc) 
-{  return getAxis(chartDoc, Chart2.Y_AXIS, 1);  } </p>
+<p 0_="0);" Chart2.X_AXIS_="Chart2.X_AXIS," getAxis_chartDoc_="getAxis(chartDoc," return="return">// in the Chart2 class 
+public static XAxis getXAxis(XChartDocument chartDoc) </p>
+<p 0_="0);" Chart2.Y_AXIS_="Chart2.Y_AXIS," getAxis_chartDoc_="getAxis(chartDoc," return="return">public static XAxis getYAxis(XChartDocument chartDoc) </p>
+<p 1_="1);" Chart2.X_AXIS_="Chart2.X_AXIS," getAxis_chartDoc_="getAxis(chartDoc," return="return">public static XAxis getXAxis2(XChartDocument chartDoc) </p>
+<p 1_="1);" Chart2.Y_AXIS_="Chart2.Y_AXIS," getAxis_chartDoc_="getAxis(chartDoc," return="return">public static XAxis getYAxis2(XChartDocument chartDoc) </p>
 <p>Chart2.setAxisTitle() calls Chart2.getAxis() to get a reference to the correct axis, and 
 then reuses many of the methods described earlier for setting the chart title: </p>
 <p>// in the Chart2 class 
@@ -1497,30 +1505,25 @@ public static void setAxisTitle(XChartDocument chartDoc,<br />
 }  // end of setAxisTitle() </p>
 <p>As with Chart2.getAxis(), Chart2.java includes wrapper methods for 
 Chart2.setAxisTitle() to simplify common axis cases: </p>
-<p>// in the Chart2 class 
+<p 0_="0);" Chart2.X_AXIS_="Chart2.X_AXIS," setAxisTitle_chartDoc_="setAxisTitle(chartDoc," title_="title,">// in the Chart2 class 
 public static void setXAxisTitle(XChartDocument chartDoc,<br />
-                                 String title) 
-{  setAxisTitle(chartDoc, title, Chart2.X_AXIS, 0);  } </p>
-<p>public static void setYAxisTitle(XChartDocument chartDoc,<br />
-                                 String title) 
-{  setAxisTitle(chartDoc, title, Chart2.Y_AXIS, 0);  } </p>
-<p>public static void setXAxis2Title(XChartDocument chartDoc,<br />
-                                  String title) 
-{  setAxisTitle(chartDoc, title, Chart2.X_AXIS, 1);  } </p>
-<p>public static void setYAxis2Title(XChartDocument chartDoc,<br />
-                                  String title) 
-{  setAxisTitle(chartDoc, title, Chart2.Y_AXIS, 1);  } </p>
-<h2 id="3-rotating-axis-titles">3.  Rotating Axis Titles</h2>
+                                 String title) </p>
+<p 0_="0);" Chart2.Y_AXIS_="Chart2.Y_AXIS," setAxisTitle_chartDoc_="setAxisTitle(chartDoc," title_="title,">public static void setYAxisTitle(XChartDocument chartDoc,<br />
+                                 String title) </p>
+<p 1_="1);" Chart2.X_AXIS_="Chart2.X_AXIS," setAxisTitle_chartDoc_="setAxisTitle(chartDoc," title_="title,">public static void setXAxis2Title(XChartDocument chartDoc,<br />
+                                  String title) </p>
+<p 1_="1);" Chart2.Y_AXIS_="Chart2.Y_AXIS," setAxisTitle_chartDoc_="setAxisTitle(chartDoc," title_="title,">public static void setYAxis2Title(XChartDocument chartDoc,<br />
+                                  String title) </p>
+<h2 id="3-rotating-axis-titles">3.  Rotating Axis Titles<a class="headerlink" href="#3-rotating-axis-titles" title="Permanent link">&para;</a></h2>
 <p>The default orientation for titles is horizontal, which is fine for the chart and x-axis 
 titles, but can cause the y-axis title to occupy too much horizontal space. The solution 
 is to call Chart2.rotateYAxisTitle() with an angle (usually 90 degrees) to turn the text 
 counter-clockwise so it's vertically orientated (see Figure 2). </p>
 <p>The implementation accesses the XTitle interface for the axis title, and then modifies 
 its "TextRotation" property from the Title service (see Figure 5). </p>
-<p>// in the Chart2 class 
+<p 0_="0," Chart2.Y_AXIS_="Chart2.Y_AXIS," angle_="angle);" rotateAxisTitle_chartDoc_="rotateAxisTitle(chartDoc,">// in the Chart2 class 
 public static void rotateYAxisTitle(XChartDocument chartDoc,<br />
-                                    int angle) 
-{  rotateAxisTitle(chartDoc, Chart2.Y_AXIS, 0, angle);  } </p>
+                                    int angle) </p>
 <p>public static void rotateAxisTitle(XChartDocument chartDoc,<br />
                                    int axisVal, int idx, int angle) 
 // + angle is rotation counter-clockwise from horizontal 
@@ -1537,7 +1540,7 @@ public static void rotateYAxisTitle(XChartDocument chartDoc,<br />
   XTitled titledAxis = Lo.qi(XTitled.class, axis); 
   return titledAxis.getTitleObject(); 
 }  // end of getAxisTitle() </p>
-<h2 id="4-what-chart-templates-are-available">4.  What Chart Templates are Available?</h2>
+<h2 id="4-what-chart-templates-are-available">4.  What Chart Templates are Available?<a class="headerlink" href="#4-what-chart-templates-are-available" title="Permanent link">&para;</a></h2>
 <p>colChart() in Chart2Views.java returns its XChartDocument reference. This isn't 
 necessary for rendering the chart, but allows the reference to be passed to 
 Chart2.getChartTemplates(): </p>
@@ -1581,7 +1584,7 @@ public static String[] getAvailableServices(Object obj)
 <p>Sixty-four of those names appear in Chapter 28's Table 1. The two missing are 
 "GL3DBar" and "GL3DBarRoundedRectangle", which were reported as being "not 
 ready for general use" in an OpenOffice forum posting from May 2014. </p>
-<h2 id="5-multiple-columns">5.  Multiple Columns</h2>
+<h2 id="5-multiple-columns">5.  Multiple Columns<a class="headerlink" href="#5-multiple-columns" title="Permanent link">&para;</a></h2>
 <p>The multColChart() method in Chart2Views.java uses a table containing three 
 columns of data (see Figure 7) to generate two column graphs in the same chart, as in </p>
 <p><img alt="" src="images/29-Column_Charts-8.png" /></p>
@@ -1642,7 +1645,7 @@ property classes, but "Show" is from the Legend service. </p>
 <p>Figure 9. The Legend Service. </p>
 <p>The XLegend interface contains no methods, and is used only to access the properties 
 in its defining service. </p>
-<h2 id="6-3d-pizazz">6.  3D Pizazz</h2>
+<h2 id="6-3d-pizazz">6.  3D Pizazz<a class="headerlink" href="#6-3d-pizazz" title="Permanent link">&para;</a></h2>
 <p>I'm not a fan of 3D charts which are often harder to understand than their 2D 
 equivalents, even if they do look more "hi-tech". But if you really want  a 3D version 
 of a chart, it's mostly just a matter of changing the template name in the call to 
@@ -1711,7 +1714,7 @@ public static void setChartShape3D(XChartDocument chartDoc,<br />
       System.out.println("Did not recognize 3D shape: " + shape); 
   } 
 }  // end of setChartShape3D() </p>
-<h2 id="7-the-column-and-line-chart">7.  The Column and Line Chart</h2>
+<h2 id="7-the-column-and-line-chart">7.  The Column and Line Chart<a class="headerlink" href="#7-the-column-and-line-chart" title="Permanent link">&para;</a></h2>
 <p>Another way to display the multiple columns of data in the "States with the Most 
 Colleges" table (Figure 7) is to draw a column and line chart. The column is generated 
 from the first data column, and the line graph uses the second column. The result is 
@@ -1825,6 +1828,7 @@ returns the data series associated with the line chart type. </p>
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -1832,7 +1836,8 @@ returns the data series associated with the line chart type. </p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="28-Chart2_API_Overview.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="28-Chart2_API_Overview.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 28. Chart2 API Overview" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1847,7 +1852,8 @@ returns the data series associated with the line chart type. </p>
         </a>
       
       
-        <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="30-Bar_Pie_Area_Line_Charts.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 30. Bar, Pie, Area, Line Charts" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -1867,10 +1873,12 @@ returns the data series associated with the line chart type. </p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -1882,10 +1890,10 @@ returns the data series associated with the line chart type. </p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

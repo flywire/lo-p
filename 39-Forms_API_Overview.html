@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -896,6 +905,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -910,6 +920,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1264,6 +1275,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1400,7 +1412,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-39-forms-api-overview">Chapter 39. Forms API Overview</h1>
+                <h1 id="chapter-39-forms-api-overview">Chapter 39. Forms API Overview<a class="headerlink" href="#chapter-39-forms-api-overview" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 <p>An Overview of 
@@ -1417,9 +1429,9 @@ employed in Draw, Impress, and Calc. Although Base
 forms are typically employed as front-ends to databases, 
 the same capability is available in Writer and the other 
 Office applications.   </p>
-<p>The LibreOffice "Getting Started Guide" (available at https://th.libreoffice.org/get-
+<p>The LibreOffice "Getting Started Guide" (available at <a href="https://th.libreoffice.org/get-">https://th.libreoffice.org/get-</a>
 help/documentation/) describes the form features of Writer and Base in chapters 4 and </p>
-<h2 id="8-longer-examples-can-be-found-in-the-writer-guide-and-base-handbook">8.  Longer examples can be found in the "Writer Guide" and "Base Handbook"</h2>
+<h2 id="8-longer-examples-can-be-found-in-the-writer-guide-and-base-handbook">8.  Longer examples can be found in the "Writer Guide" and "Base Handbook"<a class="headerlink" href="#8-longer-examples-can-be-found-in-the-writer-guide-and-base-handbook" title="Permanent link">&para;</a></h2>
 <p>documents. </p>
 <p>Chapter 15 of the "Writer Guide" explains how to create a form using the "Form 
 Controls " and "Form Design" toolbars; it's essentially a matter of dragging check 
@@ -1430,7 +1442,7 @@ by right clicking to access a properties dialog window.  </p>
 involve anything more than remembering to save the form-filled document as a PDF 
 file when it's finished. There are several online tutorials that explain the details, such 
 as "Create PDF Forms with OpenOffice" at 
-http://foersom.com/org/HowTo/OoCreatePdfForm.html; although it's written for 
+<a href="http://foersom.com/org/HowTo/OoCreatePdfForm.html">http://foersom.com/org/HowTo/OoCreatePdfForm.html</a>; although it's written for 
 OpenOffice, it can be applied to LibreOffice without change. </p>
 <p>Chapter 4 of the "Base Handbook" explains how to create a data input form for a 
 library loans database, and much of the GUI interface of control toolbars, form 
@@ -1438,10 +1450,10 @@ canvas, and property dialogs is identical to that found in Writer. Even if you'r
 creating a text-based form, it's well worth reading the Base chapter because it goes 
 into detail about the General, Data, and Events tab in the properties dialog. </p>
 <p>A somewhat simpler example, which is purely text-based without data sources, can be 
-found at http://openoffice.blogs.com/forms_fromscratch.pdf. I used this article (which 
+found at <a href="http://openoffice.blogs.com/forms_fromscratch.pdf">http://openoffice.blogs.com/forms_fromscratch.pdf</a>. I used this article (which 
 is titled "Creating Forms from Scratch") to create the scratchExample.odt file used 
 here. </p>
-<h2 id="1-why-bother-programming-forms">1.  Why Bother Programming Forms?</h2>
+<h2 id="1-why-bother-programming-forms">1.  Why Bother Programming Forms?<a class="headerlink" href="#1-why-bother-programming-forms" title="Permanent link">&para;</a></h2>
 <p>It's very easy to build a form using Office's "Form Controls " and "Form Design" 
 toolbars. The GUI provides immediate feedback on how things will look by switching 
 design mode on (where you're building the form) and off (to see how the form will 
@@ -1456,10 +1468,10 @@ example, see chapter 13 of "Getting Started with LibreOffice" and chapter 9 of t
 by programmatically adding controls to a new text document. The form is linked to a 
 local database, and table and list box controls access its tables in different ways. In 
 addition, a variety of listeners are attached to the controls.  </p>
-<h2 id="2-an-overview-of-the-forms-api">2.  An Overview of the Forms API</h2>
+<h2 id="2-an-overview-of-the-forms-api">2.  An Overview of the Forms API<a class="headerlink" href="#2-an-overview-of-the-forms-api" title="Permanent link">&para;</a></h2>
 <p>A key principle behind the forms API is the Model-View-Controller (MVC) pattern 
 (e.g. see 
-https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) which 
+<a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller</a>) which 
 divides each form control in two: a model (or component) representing the control's 
 data, and a view for its GUI. Figure 1 shows the forms MVC model in detail. </p>
 <p><img alt="" src="images/39-Forms_API_Overview-1.png" /></p>
@@ -1471,7 +1483,7 @@ tries to change its state (for instance by typing data into a text field). </p>
 <p>The thick-edged boxes next to the Model, View and Controller rounded rectangles in 
 Figure 1 represent the main Office services and interfaces that implement the model, 
 view and controller.  </p>
-<h3 id="21-control-confusion">2.1.  Control Confusion</h3>
+<h3 id="21-control-confusion">2.1.  Control Confusion<a class="headerlink" href="#21-control-confusion" title="Permanent link">&para;</a></h3>
 <p>The two uses of the word "control" in the API can be confusing. When the 
 documentation refers to a control by name, such as a "button control" or "text field 
 control", then it typically means the data and rendering parts taken as a whole. For 
@@ -1560,15 +1572,15 @@ XButton interface, which allows a listener to be attached to the button. </p>
 <p>Every model (e.g. CommandButton in form.component) inherits the 
 FormControlModel service in the form module. This links the control into the 
 surrounding form. </p>
-<h3 id="22-more-information-on-the-api">2.2.  More Information on the API</h3>
+<h3 id="22-more-information-on-the-api">2.2.  More Information on the API<a class="headerlink" href="#22-more-information-on-the-api" title="Permanent link">&para;</a></h3>
 <p>The principal documentation on the forms API is chapter 13 of the Developer's Guide<br />
 available as 
-https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf. </p>
+<a href="https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf">https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf</a>. </p>
 <p>Alternatively, you can read the chapter online, starting at 
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Forms/Forms (or use 
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Forms/Forms">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Forms/Forms</a> (or use 
 loGuide Forms). The guide's form examples are at 
-http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Forms. </p>
-<h2 id="3-examining-a-text-based-form">3.  Examining a Text-based Form</h2>
+<a href="http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Forms">http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Forms</a>. </p>
+<h2 id="3-examining-a-text-based-form">3.  Examining a Text-based Form<a class="headerlink" href="#3-examining-a-text-based-form" title="Permanent link">&para;</a></h2>
 <p>ExamineForm.java opens a text document containing a form, and attaches button and 
 text field listeners to every button and text field control.  </p>
 <p>Figure 3 shows most of the important data structures used by a form. </p>
@@ -1625,10 +1637,10 @@ public static void main(String args[])
   for(XControlModel model : models) { 
     System.out.println("  " + Forms.getName(model) + ": " + 
                               Forms.getTypeStr(model)); </p>
-<pre><code>// look at the control for each model 
+<div class="highlight"><pre><span></span><code>// look at the control for each model 
 XControl ctrl = Forms.getControl(doc, model); 
 if (ctrl == null)  
-  System.out.println("   No control found"); 
+  System.out.println(&quot;   No control found&quot;); 
 else {   // attach listener if the control is  
          // a button or text field 
   if (Forms.isButton(model)) 
@@ -1636,7 +1648,7 @@ else {   // attach listener if the control is
   else if (Forms.isTextField(model)) 
     attachTextFieldListeners(ctrl); 
 }
-</code></pre>
+</code></pre></div>
 <p>} 
   System.out.println(); 
   GUI.setVisible(doc, true); 
@@ -1653,7 +1665,7 @@ retrieving the control (view) associated with a given model. </p>
 attachTextFieldListeners() are called. These methods are implemented in 
 ExamineForm.java, but I'll delay explaining them until I've covered 
 Forms.getModels() and Forms.getControl(). </p>
-<h3 id="31-from-document-to-drawpages">3.1.  From Document to DrawPages</h3>
+<h3 id="31-from-document-to-drawpages">3.1.  From Document to DrawPages<a class="headerlink" href="#31-from-document-to-drawpages" title="Permanent link">&para;</a></h3>
 <p>Every Office document supports the OfficeDocument service, and the XModel and 
 XComponent interfaces. Using XComponent as a starting interface, it's possible to 
 change the type to XDrawPagesSupplier (or XDrawPageSupplier), which gives access 
@@ -1685,21 +1697,21 @@ public static XNameContainer getForms(XComponent doc)
     // this means that the doc supports multiple DrawPages 
     XDrawPagesSupplier xSuppPages =<br />
                 Lo.qi(XDrawPagesSupplier.class, doc); </p>
-<pre><code>XDrawPages xPages = xSuppPages.getDrawPages(); 
+<div class="highlight"><pre><span></span><code>XDrawPages xPages = xSuppPages.getDrawPages(); 
 try { 
-  System.out.println("Returning first draw page"); 
+  System.out.println(&quot;Returning first draw page&quot;); 
   return Lo.qi(XDrawPage.class, xPages.getByIndex(0)); 
 } 
 catch(Exception e) { 
   System.out.println(e); 
   return null; 
 }
-</code></pre>
+</code></pre></div>
 <p>} 
 }  // end of getDrawPage() </p>
 <p>Forms.getDrawPage() only returns the first draw page in a document, even if many 
 pages are available. </p>
-<h3 id="32-from-drawpage-to-form">3.2.  From DrawPage to Form</h3>
+<h3 id="32-from-drawpage-to-form">3.2.  From DrawPage to Form<a class="headerlink" href="#32-from-drawpage-to-form" title="Permanent link">&para;</a></h3>
 <p>The XDrawPage interface can be cast to XFormsSupplier which makes the page's<br />
 forms accessible. This cast works because of the service hierarchy shown in Figure 6 
 which links the DrawPage service to GenericDrawPage. </p>
@@ -1736,7 +1748,7 @@ public static XForm getForm(XComponent doc, String formName)
     return null; 
   } 
 }  // end of getFormByName() </p>
-<h3 id="33-from-form-to-formcomponents">3.3.  From Form to FormComponents</h3>
+<h3 id="33-from-form-to-formcomponents">3.3.  From Form to FormComponents<a class="headerlink" href="#33-from-form-to-formcomponents" title="Permanent link">&para;</a></h3>
 <p>A form is a FormComponents instance, which holds FormComponent instances (i.e. </p>
 <p>basic controls) and nested FormComponents (i.e. nested forms). Figure 7 shows a 
 simplified service hierarchy for Form, FormComponents, and FormComponent. </p>
@@ -1780,7 +1792,7 @@ document as a named container, then passes it to the recursive getModels() which
 iterates through the container. If an element is a FormComponents instance then it's a 
 nested form, and getModels() is called recursively to collect its controls. If the 
 element is of type FormComponent then it's an ordinary control. </p>
-<h3 id="34-from-formcomponent-to-control-model">3.4.  From FormComponent to Control Model</h3>
+<h3 id="34-from-formcomponent-to-control-model">3.4.  From FormComponent to Control Model<a class="headerlink" href="#34-from-formcomponent-to-control-model" title="Permanent link">&para;</a></h3>
 <p>A FormComponent instance can be cast to XControlModel: 
 XControlModel model = Lo.qi(XControlModel.class, servInfo); 
 XControlModel first appeared at the top of Figure 2 on the left – it’s the interface 
@@ -1801,7 +1813,7 @@ properties, and most of those are NOT in the model's service (i.e. not in
 CommandButton and TextField). Most model properties are in superclasses (i.e. </p>
 <p>UnoControlButtonModel in Figure 8 and UnoControlEditModel in Figure 9), which 
 are located in the awt module. </p>
-<h3 id="35-using-a-control-model">3.5.  Using a Control Model</h3>
+<h3 id="35-using-a-control-model">3.5.  Using a Control Model<a class="headerlink" href="#35-using-a-control-model" title="Permanent link">&para;</a></h3>
 <p>Returning to ExamineForm.java, the relevant bit of code is: </p>
 <p>// part of ExamineForm.java... </p>
 <dl>
@@ -1830,10 +1842,9 @@ interfaces and services for a model: </p>
 Info.showServices("Model", model); </p>
 <p>The Forms.getName() and Forms.getTypeStr() methods called in the code fragment 
 above are defined as: </p>
-<p>// in the Forms class 
+<p Props.getProperty_cModel_="Props.getProperty(cModel," _Name_="&quot;Name&quot;);" _String_="(String)" return="return">// in the Forms class 
 public static String getName(XControlModel cModel) 
-// returns the name of the given form component 
-{  return (String) Props.getProperty(cModel, "Name");  } </p>
+// returns the name of the given form component </p>
 <p>public static String getTypeStr(XControlModel cModel) 
 { 
   int id = getID(cModel); 
@@ -1926,7 +1937,7 @@ public static boolean isButton(XControlModel cModel)
             (id == FormComponentType.PATTERNFIELD) || 
             (id == FormComponentType.TEXTFIELD)); 
 }  // end of isTextField() </p>
-<h3 id="36-from-control-model-to-view">3.6.  From Control Model to View</h3>
+<h3 id="36-from-control-model-to-view">3.6.  From Control Model to View<a class="headerlink" href="#36-from-control-model-to-view" title="Permanent link">&para;</a></h3>
 <p>Having obtained a form's model, it's view becomes accessible, but following the 
 MVC pattern, this requires the use of Office's controller (see Figure 1). One way to 
 reach the controller is through a document reference (XComponent) and 
@@ -1935,9 +1946,8 @@ XControlAccess, due to the service hierarchy shown in Figure 10. </p>
 <p><img alt="" src="images/39-Forms_API_Overview-10.png" /></p>
 <p>Figure 10. Part of the DrawingDocumentDrawView Service Hierarchy. </p>
 <p>These steps are implemented by GUI.getControlAccess(): </p>
-<p>// in the GUI class 
-public static XControlAccess getControlAccess(XComponent doc) 
-{ return Lo.qi(XControlAccess.class, getCurrentController(doc)); } </p>
+<p Lo.qi_XControlAccess.class_="Lo.qi(XControlAccess.class," getCurrentController_doc_="getCurrentController(doc));" return="return">// in the GUI class 
+public static XControlAccess getControlAccess(XComponent doc) </p>
 <p>public static XController getCurrentController(XComponent doc) 
 {<br />
   XModel model = Lo.qi(XModel.class, doc);<br />
@@ -1966,7 +1976,7 @@ public static XControl getControl(XComponent doc,<br />
     return null; 
   } 
 }  // end of getControl() </p>
-<h2 id="4-attaching-listeners-to-a-view">4.  Attaching Listeners to a View</h2>
+<h2 id="4-attaching-listeners-to-a-view">4.  Attaching Listeners to a View<a class="headerlink" href="#4-attaching-listeners-to-a-view" title="Permanent link">&para;</a></h2>
 <p>XControl is an interface of the UnoControl service, which represents an abstract 
 control. This class must be cast to a service for a real control, such as 
 UnoControlButton or UnoControlEdit in order to call listener methods in XButton or 
@@ -1975,8 +1985,8 @@ XTextComponent. This hierarchy is illustrated by Figure 11. </p>
 <p>Figure 11. Part of the Service Hierarchy Below UnoControl. </p>
 <p>Back in ExamineForm.java, every button or text field has listeners attached to it: </p>
 <p>// part of ExamineForms.java... </p>
-<pre><code>:
-</code></pre>
+<div class="highlight"><pre><span></span><code>:
+</code></pre></div>
 <p>// look at the control for each model 
 XControl ctrl = Forms.getControl(doc, model); 
 if (ctrl == null)<br />
@@ -2000,9 +2010,9 @@ private static void attachButtonListener(XControl ctrl,<br />
   xButton.setActionCommand( Forms.getLabel(cModel)); </p>
 <p>xButton.addActionListener( new XActionListener() { 
     public void disposing(com.sun.star.lang.EventObject ev) {} </p>
-<pre><code>public void actionPerformed(ActionEvent ev) 
-{  System.out.println("Pressed \"" + ev.ActionCommand + "\""); }
-</code></pre>
+<div class="highlight"><pre><span></span><code>public void actionPerformed(ActionEvent ev) 
+{  System.out.println(&quot;Pressed \&quot;&quot; + ev.ActionCommand + &quot;\&quot;&quot;); }
+</code></pre></div>
 <p>}); 
 }  // end of attachButtonListener() </p>
 <p>Although XActionListener and Java's ActionListener are similar, they're not the same. </p>
@@ -2042,20 +2052,20 @@ private static void attachTextFieldListeners(XControl ctrl)
       System.out.println( Forms.getName(cModel) +<br />
                  " text: " + Props.getProperty(cModel, "Text")); 
     }  // end of textChanged() </p>
-<pre><code>public void disposing(EventObject ev) {}
-</code></pre>
+<div class="highlight"><pre><span></span><code>public void disposing(EventObject ev) {}
+</code></pre></div>
 <p>}); </p>
 <p>XWindow tfWindow = Lo.qi(XWindow.class, ctrl); 
   tfWindow.addFocusListener( new XFocusListener() { </p>
-<pre><code>public void focusLost(FocusEvent ev) 
+<div class="highlight"><pre><span></span><code>public void focusLost(FocusEvent ev) 
 { XControlModel model = Forms.getEventControlModel(ev); 
-  System.out.println("Leaving text: " +  
-                      Props.getProperty(model, "Text")); 
+  System.out.println(&quot;Leaving text: &quot; +  
+                      Props.getProperty(model, &quot;Text&quot;)); 
 }
 
 public void disposing(EventObject ev) {}  // unused 
 public void focusGained(FocusEvent ev) {}
-</code></pre>
+</code></pre></div>
 <p>}); </p>
 <p>}  // end of attachTextFieldListeners() </p>
 <p>Obtaining the Model 
@@ -2074,7 +2084,7 @@ public static XControlModel getEventControlModel(EventObject ev)
   XControl xControl = Lo.qi(XControl.class, ev.Source); 
   return xControl.getModel(); 
 }  // end of getEventControlModel() </p>
-<h2 id="5-using-examineformjava">5.  Using ExamineForm.java</h2>
+<h2 id="5-using-examineformjava">5.  Using ExamineForm.java<a class="headerlink" href="#5-using-examineformjava" title="Permanent link">&para;</a></h2>
 <p>ExamineForm.java can be called with any form-based ODT file. The simplest one in 
 the examples is form1.odt, which consists of only a text field and a button, as shown 
 in Figure 13. </p>
@@ -2101,6 +2111,7 @@ movement of the mouse by the user from the text field to the button. </p>
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -2108,7 +2119,8 @@ movement of the mouse by the user from the text field to the button. </p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="39%20Part%207%20Cross-application.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="39%20Part%207%20Cross-application.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Part 7 Cross-application" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2123,7 +2135,8 @@ movement of the mouse by the user from the text field to the button. </p>
         </a>
       
       
-        <a href="40-Building_a_Form.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="40-Building_a_Form.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 40. Building a Form Programmatically" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -2143,10 +2156,12 @@ movement of the mouse by the user from the text field to the button. </p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -2158,10 +2173,10 @@ movement of the mouse by the user from the text field to the button. </p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

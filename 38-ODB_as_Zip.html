@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -866,6 +875,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -880,6 +890,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1175,6 +1186,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1222,7 +1234,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-38-treating-an-odb-file-as-a-zipped-folder">Chapter 38. Treating an ODB File as a Zipped Folder</h1>
+                <h1 id="chapter-38-treating-an-odb-file-as-a-zipped-folder">Chapter 38. Treating an ODB File as a Zipped Folder<a class="headerlink" href="#chapter-38-treating-an-odb-file-as-a-zipped-folder" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 <p>Extracting a 
@@ -1236,7 +1248,7 @@ Database </p>
 Tests" and "Utils" </p>
 </div>
 <p>An ODB document can be manipulated as a zipped folder, 
-using tools such as 7-zip (http://www.7-zip.org/). This 
+using tools such as 7-zip (<a href="http://www.7-zip.org/">http://www.7-zip.org/</a>). This 
 means that it's possible to use Java zip classes (in the 
 java.util.zip package) to extract a database from the ODB 
 file. The advantage of this technique is that the resulting 
@@ -1269,23 +1281,23 @@ public static void main(String[] args)
     conn = Jdbc.connectToDB(dbFnms); 
     if (conn == null) 
       return; </p>
-<pre><code>ArrayList&lt;String&gt; tableNames = Jdbc.getTablesNames(conn); 
-System.out.println("No. of tables: " + tableNames.size()); 
+<div class="highlight"><pre><span></span><code>ArrayList&lt;String&gt; tableNames = Jdbc.getTablesNames(conn); 
+System.out.println(&quot;No. of tables: &quot; + tableNames.size()); 
 System.out.println( Arrays.toString(tableNames.toArray()));
 
-ResultSet rs = Jdbc.executeQuery("SELECT * FROM \"" +  
-                     tableNames.get(0) + "\"", conn);
+ResultSet rs = Jdbc.executeQuery(&quot;SELECT * FROM \&quot;&quot; +  
+                     tableNames.get(0) + &quot;\&quot;&quot;, conn);
 
 DBTablePrinter.printResultSet(rs);   
 conn.close();
-</code></pre>
+</code></pre></div>
 <p>} 
   catch(SQLException e) { 
     System.out.println(e); 
    } 
   // FileIO.deleteFiles(dbFnms); 
 }  // end of main() </p>
-<h2 id="1-extracting-a-database-from-an-odb-file">1.  Extracting a Database from an ODB File</h2>
+<h2 id="1-extracting-a-database-from-an-odb-file">1.  Extracting a Database from an ODB File<a class="headerlink" href="#1-extracting-a-database-from-an-odb-file" title="Permanent link">&para;</a></h2>
 <p>Base.extractEmbedded() first determines if the ODB file contains an embedded 
 HSQLDB or Firebird database since the unzipping steps are slightly different for each 
 one. </p>
@@ -1386,7 +1398,7 @@ is made to the name of the extracted firebird.fdb file. </p>
 <p>Back in EmbeddedQuery.java, Jdbc.isFirebirdEmbedded() and 
 Jdbc.isHSQLEmbedded() examine this list to determine what kind of database was 
 retrieved.  </p>
-<h2 id="2-querying-an-extracted-hsqldb-database">2.  Querying an Extracted HSQLDB Database</h2>
+<h2 id="2-querying-an-extracted-hsqldb-database">2.  Querying an Extracted HSQLDB Database<a class="headerlink" href="#2-querying-an-extracted-hsqldb-database" title="Permanent link">&para;</a></h2>
 <p>There's no need to use Base inside EmbeddedQuery.java; all database manipulations 
 can be done with JDBC, along with the help of my Jdbc.java support class. </p>
 <p>The relevant lines in EmbeddedQuery.java are: </p>
@@ -1429,12 +1441,12 @@ public static Connection connectToDB(ArrayList<String> fnms)
 }  // end of connectToDB() </p>
 <p>I'll explain the details of connectToHSQL() here, and connectToFB() in the next 
 section. </p>
-<p>The HSQLDB website (http://hsqldb.org/) contains a lot of documentation on how to 
+<p>The HSQLDB website (<a href="http://hsqldb.org/">http://hsqldb.org/</a>) contains a lot of documentation on how to 
 utilize JDBC, but one thing to remember is that Office's hsqldb.jar is version 1.8 of 
 the engine. The most prominent documentation at the HSQLDB website is for the 
 current version (v.2.3 as I write this). Fortunately, the older 1.8. documentation is still 
-around, beginning at http://www.hsqldb.org/doc/1.8/guide/, and a short JDBC 
-example is in Appendix B at http://www.hsqldb.org/doc/1.8/guide/apb.html. </p>
+around, beginning at <a href="http://www.hsqldb.org/doc/1.8/guide/">http://www.hsqldb.org/doc/1.8/guide/</a>, and a short JDBC 
+example is in Appendix B at <a href="http://www.hsqldb.org/doc/1.8/guide/apb.html">http://www.hsqldb.org/doc/1.8/guide/apb.html</a>. </p>
 <p>Jdbc.connectToHSQL() is based on that example: </p>
 <p>// in the Jdbc class 
 public static Connection connectToHSQL(String filePath) 
@@ -1460,19 +1472,19 @@ public static Connection connectToHSQL(String filePath)
 It's useful to be able to examine a database without having to write Java code first; 
 HSQLDB includes SqlTool for that purpose.  </p>
 <p>SqlTool is explained at length in chapter 8 of the user guide for HSQLDB 1.8 at 
-http://www.hsqldb.org/doc/1.8/guide/ch08.html. It's also possible to get help at 
+<a href="http://www.hsqldb.org/doc/1.8/guide/ch08.html">http://www.hsqldb.org/doc/1.8/guide/ch08.html</a>. It's also possible to get help at 
 runtime by calling hsqldb.jar with the "--help" argument: 
 java -jar <OFFICE>\program\classes\hsqldb.jar --help 
 Figure 4 shows the help generated when the JAR file is called inside the 
 <OFFICE>\program\classes folder. </p>
 <p><img alt="" src="images/38-ODB_as_Zip-4.png" /></p>
 <p>Figure 4. Using SqlTool inside hsqldb.jar. </p>
-<h2 id="3-querying-an-extracted-firebird-database">3.  Querying an Extracted Firebird Database</h2>
+<h2 id="3-querying-an-extracted-firebird-database">3.  Querying an Extracted Firebird Database<a class="headerlink" href="#3-querying-an-extracted-firebird-database" title="Permanent link">&para;</a></h2>
 <p>Accessing a Firebird database without passing through the Office API is a bit more 
 work than for HSQLDB since there's no JAR file inside Office containing the 
 necessary JDBC driver. </p>
 <p>The easiest thing is to download the embedded version of Firebird from 
-http://www.firebirdsql.org/en/downloads/, making sure to grab either the 32-bit or 64-
+<a href="http://www.firebirdsql.org/en/downloads/">http://www.firebirdsql.org/en/downloads/</a>, making sure to grab either the 32-bit or 64-
 bit version for your OS. This should be unzipped to a convenient location (e.g. </p>
 <p>d:\firebird), and the path added to Window's PATH environment variable. </p>
 <p>Bug Note: When I added Firebird 2.5.5 to PATH this caused a problem 
@@ -1484,7 +1496,7 @@ downloaded firebird/ directory which duplicates one in Windows. </p>
 msvcr80.dll (i.e. three files) from the firebird/ directory to some other location 
 (e.g. into an UNUSED/ directory in firebird/). </p>
 <p>The JDBC driver, called Jaybird, is a separate download from 
-http://www.firebirdsql.org/en/jdbc-driver/. This should be unzipped to a convenient 
+<a href="http://www.firebirdsql.org/en/jdbc-driver/">http://www.firebirdsql.org/en/jdbc-driver/</a>. This should be unzipped to a convenient 
 location (e.g. d:\jaybird). </p>
 <p>There's no need to add Jaybird to the classpath of the javac.exe compiler, but calls to 
 java.exe must include the location of its JAR and associated DLL. For example, 
@@ -1524,7 +1536,7 @@ system (called "Classic, Superclassic &amp; Superserver"), and unzip only isql.e
 is in the bin/ directory. Copy isql.exe to the embedded firebird directory on your 
 machine (e.g. into d:\firebird), and make a copy of the fbembed.dll file in that folder, 
 renaming it to fbclient.dll. </p>
-<p>The isql manual is online at http://www.firebirdsql.org/manual/isql.html. isql also has 
+<p>The isql manual is online at <a href="http://www.firebirdsql.org/manual/isql.html">http://www.firebirdsql.org/manual/isql.html</a>. isql also has 
 built-in help, as shown in Figure 5. </p>
 <p><img alt="" src="images/38-ODB_as_Zip-5.png" /></p>
 <p>Figure 5. Using help inside isql.exe. </p>
@@ -1538,6 +1550,7 @@ built-in help, as shown in Figure 5. </p>
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -1545,7 +1558,8 @@ built-in help, as shown in Figure 5. </p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="37-Driver_Manager.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="37-Driver_Manager.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 37. Using the Driver Manager" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1560,7 +1574,8 @@ built-in help, as shown in Figure 5. </p>
         </a>
       
       
-        <a href="39%20Part%207%20Cross-application.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="39%20Part%207%20Cross-application.html" class="md-footer__link md-footer__link--next" aria-label="Next: Part 7 Cross-application" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -1580,10 +1595,12 @@ built-in help, as shown in Figure 5. </p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -1595,10 +1612,10 @@ built-in help, as shown in Figure 5. </p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

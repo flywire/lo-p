@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -431,6 +440,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -445,6 +455,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1175,6 +1186,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1222,328 +1234,365 @@
                   </a>
                 
                 
-                <h1 id="chapter-12-examining-a-drawimpress-document">Chapter 12. Examining a Draw/Impress Document</h1>
+                <h1 id="chapter-12-examining-a-drawimpress-document">Chapter 12. Examining a Draw/Impress Document<a class="headerlink" href="#chapter-12-examining-a-drawimpress-document" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
-<p>Examining 
-Slides/Pages; Page 
-Layers;  Styles </p>
-<p>Example folders: "Draw 
-Tests" and "Utils" </p>
+<p>Examining
+Slides/Pages; Page
+Layers;  Styles</p>
+<p>Example folders: "Draw
+Tests" and "Utils"</p>
 </div>
-<p>This chapter describes the SlidesInfo.java example, which 
-shows the basics of how to open and display a Draw or 
-Impress file. The code also illustrates how the slides or pages can be examined, 
-including how to retrieve information on their layers and styles. </p>
-<p>The SlidesInfo.java main() function: </p>
-<p>public static void main(String args[]) 
-{ 
-  if (args.length != 1) { 
-    System.out.println("Usage: SlidesInfo <filename>"); 
-    return; 
-  } </p>
-<p>XComponentLoader loader = Lo.loadOffice(); 
-  XComponent doc = Lo.openDoc(args[0], loader); 
-  if (doc == null) { 
-    System.out.println("Could not open the file: " + args[0]); 
-    Lo.closeOffice(); 
-    return; 
-  } </p>
-<p>if (!Draw.isShapesBased(doc)) { 
-    System.out.println("-- not a drawing or slides presentation"); 
-    Lo.closeOffice(); 
-    return; 
-  } </p>
-<p>GUI.setVisible(doc, true); 
-  Lo.delay(1000);    // need delay or zoom may not work </p>
-<p>GUI.zoom(doc, GUI.ENTIRE_PAGE); 
-         // or GUI.OPTIMAL, GUI.PAGE_WIDTH, GUI.ENTIRE_PAGE 
-  // GUI.zoomValue(doc, 60);   // percentage size </p>
-<p>System.out.println("\nNo of slides: " +<br />
-                          Draw.getSlidesCount(doc) + "\n"); </p>
-<p>XDrawPage currSlide = Draw.getSlide(doc, 0); // access first page </p>
-<p>Size sz = Draw.getSlideSize(currSlide); 
-  System.out.println("Size of slide (mm): (" +<br />
-                            sz.Width + ", " + sz.Height + ")\n"); 
-  reportLayers(doc); 
-  reportStyles(doc); </p>
-<p>Lo.closeDoc(doc); 
-  Lo.closeOffice(); 
-} // end of main() </p>
-<p>Lo.openDoc() is capable of opening any Office document, and importing documents 
-in other formats, so it's worthwhile checking the resulting XComponent object before 
-progressing. Draw.isShapesBased() returns true if the file holds a Draw or Impress 
-document: </p>
-<p>// in the Draw class 
-public static boolean isShapesBased(XComponent doc) 
-{  return Info.isDocType(doc, Lo.DRAW_SERVICE) ||<br />
-          Info.isDocType(doc, Lo.IMPRESS_SERVICE);  } </p>
-<p>The document is made visible on-screen by calling GUI.setVisible(), and the 
-application view is resized so all the drawing (or slide) is visible inside the window. </p>
-<p>Draw.zoom() can be passed three different constants for showing the entire width of 
-the page, the entire page, or an optimal view that zooms in so all the 'data' on the page 
-is visible without the empty space around it. Alternatively, Draw.zoomValue() allows 
-the user to supply a zooming percentage. </p>
-<p>These two methods are defined using Lo.dispatchCmd(), which was introduced at the 
-end of Chapter 4: </p>
-<p>// in the Draw class 
-public static void zoom(XComponent doc, short view) 
-{ 
-  if (view == OPTIMAL) 
-    Lo.dispatchCmd("ZoomOptimal"); 
-  else if (view == PAGE_WIDTH) 
-    Lo.dispatchCmd("ZoomPageWidth"); 
-  if (view == ENTIRE_PAGE) 
-    Lo.dispatchCmd("ZoomPage"); 
-  else { 
-    System.out.println("Did not recognize zoom view: " +<br />
-                              view + "; using optimal"); 
-    Lo.dispatchCmd("ZoomOptimal"); 
-  } 
-  Lo.delay(500); 
-}  // end of zoom() </p>
-<p>public static void zoomValue(XComponent doc, int value) 
-// zoom to a specific value using a dispatch 
-{ 
-  String[] zoomLabels = {"Zoom.Value", "Zoom.ValueSet", "Zoom.Type"}; 
-  Object[] zoomVals = {(short)value, 28703, 0}; </p>
-<p>Lo.dispatchCmd("Zoom", Props.makeProps(zoomLabels, zoomVals)); 
-  Lo.delay(500); 
-}  // end of zoomValue() </p>
-<p>I found the four dispatch commands ("ZoomOptimal", "ZoomPageWidth", 
-"ZoomPage", and "Zoom") by browsing the "Development/DispatchCommands" 
-documentation page at 
-https://wiki.documentfoundation.org/Development/DispatchCommands. A great 
+<p>This chapter describes the SlidesInfo.java example, which
+shows the basics of how to open and display a Draw or
+Impress file. The code also illustrates how the slides or pages can be examined,
+including how to retrieve information on their layers and styles.</p>
+<p>The SlidesInfo.java main() function:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="na">length</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Usage: SlidesInfo &lt;filename&gt;&quot;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+  <span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">openDoc</span><span class="p">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">doc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not open the file: &quot;</span> <span class="o">+</span> <span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">Draw</span><span class="p">.</span><span class="na">isShapesBased</span><span class="p">(</span><span class="n">doc</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;-- not a drawing or slides presentation&quot;</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">GUI</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>    <span class="c1">// need delay or zoom may not work</span>
+
+  <span class="n">GUI</span><span class="p">.</span><span class="na">zoom</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">GUI</span><span class="p">.</span><span class="na">ENTIRE_PAGE</span><span class="p">);</span>
+         <span class="c1">// or GUI.OPTIMAL, GUI.PAGE_WIDTH, GUI.ENTIRE_PAGE</span>
+  <span class="c1">// GUI.zoomValue(doc, 60);   // percentage size</span>
+
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nNo of slides: &quot;</span> <span class="o">+</span>
+                          <span class="n">Draw</span><span class="p">.</span><span class="na">getSlidesCount</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;\n&quot;</span><span class="p">);</span>
+
+  <span class="n">XDrawPage</span> <span class="n">currSlide</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getSlide</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">// access first page</span>
+
+  <span class="n">Size</span> <span class="n">sz</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getSlideSize</span><span class="p">(</span><span class="n">currSlide</span><span class="p">);</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Size of slide (mm): (&quot;</span> <span class="o">+</span>
+                            <span class="n">sz</span><span class="p">.</span><span class="na">Width</span> <span class="o">+</span> <span class="s">&quot;, &quot;</span> <span class="o">+</span> <span class="n">sz</span><span class="p">.</span><span class="na">Height</span> <span class="o">+</span> <span class="s">&quot;)\n&quot;</span><span class="p">);</span>
+  <span class="n">reportLayers</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">reportStyles</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+<span class="p">}</span> <span class="c1">// end of main()</span>
+</code></pre></div>
+<p>Lo.openDoc() is capable of opening any Office document, and importing documents
+in other formats, so it's worthwhile checking the resulting XComponent object before
+progressing. Draw.isShapesBased() returns true if the file holds a Draw or Impress
+document:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isShapesBased</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">)</span>
+<span class="p">{</span>  <span class="k">return</span> <span class="n">Info</span><span class="p">.</span><span class="na">isDocType</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">Lo</span><span class="p">.</span><span class="na">DRAW_SERVICE</span><span class="p">)</span> <span class="o">||</span>
+          <span class="n">Info</span><span class="p">.</span><span class="na">isDocType</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">Lo</span><span class="p">.</span><span class="na">IMPRESS_SERVICE</span><span class="p">);</span>  <span class="p">}</span>
+</code></pre></div>
+<p>The document is made visible on-screen by calling GUI.setVisible(), and the
+application view is resized so all the drawing (or slide) is visible inside the window.
+Draw.zoom() can be passed three different constants for showing the entire width of
+the page, the entire page, or an optimal view that zooms in so all the 'data' on the page
+is visible without the empty space around it. Alternatively, Draw.zoomValue() allows
+the user to supply a zooming percentage.</p>
+<p>These two methods are defined using Lo.dispatchCmd(), which was introduced at the
+end of Chapter 4:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">zoom</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">,</span> <span class="kt">short</span> <span class="n">view</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">view</span> <span class="o">==</span> <span class="n">OPTIMAL</span><span class="p">)</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">dispatchCmd</span><span class="p">(</span><span class="s">&quot;ZoomOptimal&quot;</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">view</span> <span class="o">==</span> <span class="n">PAGE_WIDTH</span><span class="p">)</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">dispatchCmd</span><span class="p">(</span><span class="s">&quot;ZoomPageWidth&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">view</span> <span class="o">==</span> <span class="n">ENTIRE_PAGE</span><span class="p">)</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">dispatchCmd</span><span class="p">(</span><span class="s">&quot;ZoomPage&quot;</span><span class="p">);</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Did not recognize zoom view: &quot;</span> <span class="o">+</span>
+                              <span class="n">view</span> <span class="o">+</span> <span class="s">&quot;; using optimal&quot;</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">dispatchCmd</span><span class="p">(</span><span class="s">&quot;ZoomOptimal&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of zoom()</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">zoomValue</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">,</span> <span class="kt">int</span> <span class="n">value</span><span class="p">)</span>
+<span class="c1">// zoom to a specific value using a dispatch</span>
+<span class="p">{</span>
+  <span class="n">String</span><span class="o">[]</span> <span class="n">zoomLabels</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;Zoom.Value&quot;</span><span class="p">,</span> <span class="s">&quot;Zoom.ValueSet&quot;</span><span class="p">,</span> <span class="s">&quot;Zoom.Type&quot;</span><span class="p">};</span>
+  <span class="n">Object</span><span class="o">[]</span> <span class="n">zoomVals</span> <span class="o">=</span> <span class="p">{(</span><span class="kt">short</span><span class="p">)</span><span class="n">value</span><span class="p">,</span> <span class="mi">28703</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">dispatchCmd</span><span class="p">(</span><span class="s">&quot;Zoom&quot;</span><span class="p">,</span> <span class="n">Props</span><span class="p">.</span><span class="na">makeProps</span><span class="p">(</span><span class="n">zoomLabels</span><span class="p">,</span> <span class="n">zoomVals</span><span class="p">));</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of zoomValue()</span>
+</code></pre></div>
+<p>I found the four dispatch commands ("ZoomOptimal", "ZoomPageWidth",
+"ZoomPage", and "Zoom") by browsing the "Development/DispatchCommands"
+documentation page at
+<a href="https://wiki.documentfoundation.org/Development/DispatchCommands">https://wiki.documentfoundation.org/Development/DispatchCommands</a>. A great
 offline source is the UICommands.ods spreadsheet, put together by Ariel Constenla-
-Haile, which can be obtained from 
-https://arielch.fedorapeople.org/devel/ooo/UICommands.ods. </p>
-<p>Draw.zoomValue() uses the "Zoom" dispatch which requires the setting of properties. </p>
-<p>Its "Zoom.Type" parameter can be assigned 0, 1, 2, or 3 which correspond to zooming 
-in terms of percentages, an optimal view, entire page, or page width. Unfortunately, I 
-was only able to get the 0 value to work, which is why the others are handled by 
-Draw.zoom(). </p>
-<p>The call to Lo.delay() at the end of the zoom methods gives Office time to carry out 
-the zooming before my code does anything else. The same trick is utilized in the 
-main() function, after the call to GUI.setVisible(). </p>
-<h2 id="1-accessing-slidespages">1.  Accessing Slides/Pages</h2>
-<p>Most of my Draw class method names include the word 'slide' (e.g. </p>
-<p>Draw.getSlidesCount(),  Draw.getSlide(), Draw.getSlideSize()). That's a bit 
-misleading since most of them will work just as well with Draw or Impress 
-documents. For example, Draw.getSlidesCount() will return 1 when applied to a 
-newly created Draw document. </p>
-<p>Draw.getSlidesCount() calls Draw.getSlides() which returns an XDrawPages object; 
-XDrawPages supports a getCount() method: </p>
-<p>// in the Draw class 
-public static int getSlidesCount(XComponent doc) 
-{ 
-  XDrawPages slides = getSlides(doc); 
-  if (slides == null) 
-    return 0; 
-  return slides.getCount(); 
-}  // end of getSlidesCount() </p>
-<p>public static XDrawPages getSlides(XComponent doc) 
-// return all the pages as an XDrawPages object 
-{ 
-  XDrawPagesSupplier supplier = Lo.qi(XDrawPagesSupplier.class, doc); 
-  if (supplier == null) 
-    return null; 
-  return supplier.getDrawPages(); 
-}  // end of getSlides() </p>
-<p>getSlides() employs the XDrawPagesSupplier interface which is part of 
-GenericDrawingDocument shown in Figure 2 of Chapter 11. </p>
-<p>Draw.getSlide() (note: no "s") also calls Draw.getSlides(), but treats the XDrawPages 
-object as an indexed container of XDrawPage objects: </p>
-<p>// in the Draw class 
-public static XDrawPage getSlide(XComponent doc, int idx) 
-{   return getSlide( getSlides(doc), idx);  } </p>
-<p>public static XDrawPage getSlide(XDrawPages slides, int idx) 
-{ 
-  XDrawPage slide = null; 
-  try { 
-    slide = Lo.qi(XDrawPage.class, slides.getByIndex(idx)); 
-  } 
-  catch(Exception e) 
-  {  System.out.println("Could not get slide " + idx);  } 
-  return slide; 
-}  // end of getSlide() </p>
-<p>Draw.getSlideSize() returns a com.sun.star.awt.Size object created from looking up 
-the "Width" and "Height" properties of the supplied slide/page: </p>
-<p>// in the Draw class 
-public static Size getSlideSize(XDrawPage xDrawPage) 
-// get size of the given page (in mm units) 
-{ 
-  try { 
-    XPropertySet props = Lo.qi(XPropertySet.class, xDrawPage); 
-    if (props == null) { 
-       System.out.println("No slide properties found"); 
-       return null; 
-     } 
-    int width = (Integer) props.getPropertyValue("Width"); 
-    int height = (Integer) props.getPropertyValue("Height"); 
-    return new Size(width/100, height/100); 
-  } 
-  catch(Exception e) 
-  {  System.out.println("Could not get page dimensions"); 
-     return null; 
-  } 
-}  // end of getSlideSize() </p>
-<p>These Width" and "Height" properties are stored in XDrawPage's GenericDrawPage 
-service, shown in Figure 5 of Chapter 11.  </p>
-<p>My Draw class specifies measurements in millimeters rather than Office's 1/100 mm 
-units. For instance, Draw.getSlideSize() would return Office page dimensions of 
-28000 by 21000 as (280, 210). </p>
-<h2 id="2-page-layers">2.  Page Layers</h2>
-<p>A Draw or Impress page consists of five layers called "layout", "controls", 
-"measurelines", "background", and "backgroundobjects". The first three are described 
-in the Draw user guide, but"measurelines" is called "Dimension Lines".  </p>
-<p>Probably "layout" is the most important layer since that's where shapes are located. </p>
-<p>Form controls (e.g. buttons) are added to "controls", which is always the top-most 
-layer. "background", and "backgroundobjects" refer to the master page graphic and 
-any shapes on that page.  </p>
-<p>Each layer can be made visible or invisible independent of the others. It's also 
-possible to create new layers.  </p>
-<p>reportLayers() in SlidesInfo.java prints each layer's properties: </p>
-<p>// in SlidesInfo.java 
-private static void reportLayers(XComponent doc) 
-{ 
-  XLayerManager lm = Draw.getLayerManager(doc); 
-  for(int i=0; i &lt; lm.getCount(); i++) 
-    try { 
-      Props.showObjProps(" Layer " + i, lm.getByIndex(i)); 
-    } 
-    catch(com.sun.star.uno.Exception e) {} </p>
-<p>XLayer layer = Draw.getLayer(doc, "backgroundobjects"); 
-  Props.showObjProps("Background Object Props", layer); 
-}  // end of reportLayers() </p>
-<p>Draw.getLayerManager() obtains an XLayerManager instance which can be treated as 
-an indexed container of XLayer objects. Draw.getLayer() converts the 
-XLayerManager into a named container, so it can be searched by layer name. </p>
-<p>Typical output from reportLayers() is: </p>
-<p>Layer 0 Properties 
-  Description == 
-  IsLocked == false 
-  IsPrintable == true 
-  IsVisible == true 
-  Name == layout 
-  Title == </p>
-<p>Layer 1 Properties 
-  Description == 
-  IsLocked == false 
-  IsPrintable == true 
-  IsVisible == true 
-  Name == background 
-  Title == </p>
-<p>Layer 2 Properties 
-  Description == 
-  IsLocked == false 
-  IsPrintable == true 
-  IsVisible == true 
-  Name == backgroundobjects 
-  Title == </p>
-<p>Layer 3 Properties 
-  Description == 
-  IsLocked == false 
-  IsPrintable == true 
-  IsVisible == true 
-  Name == controls 
-  Title == </p>
-<p>Layer 4 Properties 
-  Description == 
-  IsLocked == false 
-  IsPrintable == true 
-  IsVisible == true 
-  Name == measurelines 
-  Title == </p>
-<p>Background Object Props Properties 
-  Description == 
-  IsLocked == false 
-  IsPrintable == true 
-  IsVisible == true 
-  Name == backgroundobjects 
-  Title == </p>
-<p>Each layer contains six properties. Four are defined by the Layer service; use lodoc 
-layer service drawing to see its documentation. The most useful property is 
-probably "IsVisible" which toggles the layer's visibility. </p>
-<h2 id="3-styles">3.  Styles</h2>
-<p>Draw and Impress utilize the same style organization as text documents, which was 
-explained in Chapter 6. Figure 1 shows its structure. </p>
+Haile, which can be obtained from
+<a href="https://arielch.fedorapeople.org/devel/ooo/UICommands.ods">https://arielch.fedorapeople.org/devel/ooo/UICommands.ods</a>.</p>
+<p>Draw.zoomValue() uses the "Zoom" dispatch which requires the setting of properties.
+Its "Zoom.Type" parameter can be assigned 0, 1, 2, or 3 which correspond to zooming
+in terms of percentages, an optimal view, entire page, or page width. Unfortunately, I
+was only able to get the 0 value to work, which is why the others are handled by
+Draw.zoom().</p>
+<p>The call to Lo.delay() at the end of the zoom methods gives Office time to carry out
+the zooming before my code does anything else. The same trick is utilized in the
+main() function, after the call to GUI.setVisible().</p>
+<h2 id="1-accessing-slidespages">1.  Accessing Slides/Pages<a class="headerlink" href="#1-accessing-slidespages" title="Permanent link">&para;</a></h2>
+<p>Most of my Draw class method names include the word 'slide' (e.g.</p>
+<p>Draw.getSlidesCount(),  Draw.getSlide(), Draw.getSlideSize()). That's a bit
+misleading since most of them will work just as well with Draw or Impress
+documents. For example, Draw.getSlidesCount() will return 1 when applied to a
+newly created Draw document.</p>
+<p>Draw.getSlidesCount() calls Draw.getSlides() which returns an XDrawPages object;
+XDrawPages supports a getCount() method:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getSlidesCount</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XDrawPages</span> <span class="n">slides</span> <span class="o">=</span> <span class="n">getSlides</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">slides</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">slides</span><span class="p">.</span><span class="na">getCount</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of getSlidesCount()</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XDrawPages</span> <span class="nf">getSlides</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">)</span>
+<span class="c1">// return all the pages as an XDrawPages object</span>
+<span class="p">{</span>
+  <span class="n">XDrawPagesSupplier</span> <span class="n">supplier</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XDrawPagesSupplier</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">doc</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">supplier</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">supplier</span><span class="p">.</span><span class="na">getDrawPages</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of getSlides()</span>
+</code></pre></div>
+<p>getSlides() employs the XDrawPagesSupplier interface which is part of
+GenericDrawingDocument shown in Figure 2 of Chapter 11.</p>
+<p>Draw.getSlide() (note: no "s") also calls Draw.getSlides(), but treats the XDrawPages
+object as an indexed container of XDrawPage objects:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XDrawPage</span> <span class="nf">getSlide</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">)</span>
+<span class="p">{</span>   <span class="k">return</span> <span class="n">getSlide</span><span class="p">(</span> <span class="n">getSlides</span><span class="p">(</span><span class="n">doc</span><span class="p">),</span> <span class="n">idx</span><span class="p">);</span>  <span class="p">}</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XDrawPage</span> <span class="nf">getSlide</span><span class="p">(</span><span class="n">XDrawPages</span> <span class="n">slides</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XDrawPage</span> <span class="n">slide</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">slide</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XDrawPage</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">slides</span><span class="p">.</span><span class="na">getByIndex</span><span class="p">(</span><span class="n">idx</span><span class="p">));</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not get slide &quot;</span> <span class="o">+</span> <span class="n">idx</span><span class="p">);</span>  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">slide</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of getSlide()</span>
+</code></pre></div>
+<p>Draw.getSlideSize() returns a com.sun.star.awt.Size object created from looking up
+the "Width" and "Height" properties of the supplied slide/page:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">Size</span> <span class="nf">getSlideSize</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">xDrawPage</span><span class="p">)</span>
+<span class="c1">// get size of the given page (in mm units)</span>
+<span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">xDrawPage</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">props</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+       <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No slide properties found&quot;</span><span class="p">);</span>
+       <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+     <span class="p">}</span>
+    <span class="kt">int</span> <span class="n">width</span> <span class="o">=</span> <span class="p">(</span><span class="n">Integer</span><span class="p">)</span> <span class="n">props</span><span class="p">.</span><span class="na">getPropertyValue</span><span class="p">(</span><span class="s">&quot;Width&quot;</span><span class="p">);</span>
+    <span class="kt">int</span> <span class="n">height</span> <span class="o">=</span> <span class="p">(</span><span class="n">Integer</span><span class="p">)</span> <span class="n">props</span><span class="p">.</span><span class="na">getPropertyValue</span><span class="p">(</span><span class="s">&quot;Height&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">Size</span><span class="p">(</span><span class="n">width</span><span class="o">/</span><span class="mi">100</span><span class="p">,</span> <span class="n">height</span><span class="o">/</span><span class="mi">100</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not get page dimensions&quot;</span><span class="p">);</span>
+     <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of getSlideSize()</span>
+</code></pre></div>
+<p>These Width" and "Height" properties are stored in XDrawPage's GenericDrawPage
+service, shown in Figure 5 of Chapter 11.</p>
+<p>My Draw class specifies measurements in millimeters rather than Office's 1/100 mm
+units. For instance, Draw.getSlideSize() would return Office page dimensions of
+28000 by 21000 as (280, 210).</p>
+<h2 id="2-page-layers">2.  Page Layers<a class="headerlink" href="#2-page-layers" title="Permanent link">&para;</a></h2>
+<p>A Draw or Impress page consists of five layers called "layout", "controls",
+"measurelines", "background", and "backgroundobjects". The first three are described
+in the Draw user guide, but"measurelines" is called "Dimension Lines".</p>
+<p>Probably "layout" is the most important layer since that's where shapes are located.
+Form controls (e.g. buttons) are added to "controls", which is always the top-most
+layer. "background", and "backgroundobjects" refer to the master page graphic and
+any shapes on that page.</p>
+<p>Each layer can be made visible or invisible independent of the others. It's also
+possible to create new layers.</p>
+<p>reportLayers() in SlidesInfo.java prints each layer's properties:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in SlidesInfo.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">reportLayers</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XLayerManager</span> <span class="n">lm</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getLayerManager</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">lm</span><span class="p">.</span><span class="na">getCount</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="n">Props</span><span class="p">.</span><span class="na">showObjProps</span><span class="p">(</span><span class="s">&quot; Layer &quot;</span> <span class="o">+</span> <span class="n">i</span><span class="p">,</span> <span class="n">lm</span><span class="p">.</span><span class="na">getByIndex</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="k">catch</span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">uno</span><span class="p">.</span><span class="na">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{}</span>
+
+  <span class="n">XLayer</span> <span class="n">layer</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getLayer</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;backgroundobjects&quot;</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">showObjProps</span><span class="p">(</span><span class="s">&quot;Background Object Props&quot;</span><span class="p">,</span> <span class="n">layer</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of reportLayers()</span>
+</code></pre></div>
+<p>Draw.getLayerManager() obtains an XLayerManager instance which can be treated as
+an indexed container of XLayer objects. Draw.getLayer() converts the
+XLayerManager into a named container, so it can be searched by layer name.</p>
+<p>Typical output from reportLayers() is:</p>
+<div class="highlight"><pre><span></span><code>Layer 0 Properties
+  Description ==
+  IsLocked == false
+  IsPrintable == true
+  IsVisible == true
+  Name == layout
+  Title ==
+
+ Layer 1 Properties
+  Description ==
+  IsLocked == false
+  IsPrintable == true
+  IsVisible == true
+  Name == background
+  Title ==
+
+ Layer 2 Properties
+  Description ==
+  IsLocked == false
+  IsPrintable == true
+  IsVisible == true
+  Name == backgroundobjects
+  Title ==
+
+ Layer 3 Properties
+  Description ==
+  IsLocked == false
+  IsPrintable == true
+  IsVisible == true
+  Name == controls
+  Title ==
+
+ Layer 4 Properties
+  Description ==
+  IsLocked == false
+  IsPrintable == true
+  IsVisible == true
+  Name == measurelines
+  Title ==
+
+Background Object Props Properties
+  Description ==
+  IsLocked == false
+  IsPrintable == true
+  IsVisible == true
+  Name == backgroundobjects
+  Title ==
+</code></pre></div>
+<p>Each layer contains six properties. Four are defined by the Layer service; use
+<code>lodoc layer service drawing</code> to see its documentation. The most useful property is
+probably "IsVisible" which toggles the layer's visibility.</p>
+<h2 id="3-styles">3.  Styles<a class="headerlink" href="#3-styles" title="Permanent link">&para;</a></h2>
+<p>Draw and Impress utilize the same style organization as text documents, which was
+explained in Chapter 6. Figure 1 shows its structure.</p>
 <p><img alt="" src="images/12-Examining_DrawImpress-1.png" /></p>
-<p>Figure 1. Draw/Impress Style Families and their Property Sets. </p>
-<p>The style family names are different from those in text documents. The "Default" 
-style family corresponds to the styles defined in a document's default master page. </p>
-<p>Figure 2 shows this master page in Impress. </p>
+<p>Figure 1. Draw/Impress Style Families and their Property Sets.</p>
+<p>The style family names are different from those in text documents. The "Default"
+style family corresponds to the styles defined in a document's default master page.</p>
+<p>Figure 2 shows this master page in Impress.</p>
 <p><img alt="" src="images/12-Examining_DrawImpress-2.png" /></p>
-<p>Figure 2. The Default Master Page in Impress. </p>
-<p>The master page (also known as a template in Impress' GUI) contains style 
-information related to the title, seven outline levels and background areas (e.g. the 
-date, the footer, and the slide number in Figure 2). Not all the master page styles are 
-shown in Figure 2; for instance, there's a subtitle style, notes area, and a header.  </p>
-<p>If a slide deck is formatted using a master page (Impress template) other than 
-"Default", such as "Inspiration", then the style family name will be changed 
-accordingly. The "Inspiration" family contains the same properties (styles) as 
-"Default", but with different values.  </p>
-<p>Details on coding with master pages and Impress templates are given in the 
-MastersUse.java and PointsBuilder.java examples in Chapter 17.  </p>
-<p>The other Draw/Impress style families are "cell", "graphics" and "table". "table" and 
-"cell" contain styles which affect the colors used to draw a table and its cells. </p>
-<p>"graphics" affects the appearance of shapes. Examples of how to use the "graphics" 
-style family are given in the DrawPictures.java example in Chapter 14. </p>
-<p>The reportStyles() method inside SlidesInfo.java is: </p>
-<p>private static void reportStyles(XComponent doc) 
-// report style information: families, styles, properties 
-{ 
-  String[] styleNames = Info.getStyleFamilyNames(doc); 
-  System.out.println("Style Families in this document:"); 
-  Lo.printNames(styleNames); </p>
-<p>for (String styleName : styleNames) { 
-    String[] conNames = Info.getStyleNames(doc, styleName); 
-    System.out.println("Styles in the \"" +<br />
-                        styleName + "\" style family:"); 
-    Lo.printNames(conNames); 
-  } </p>
-<p>/<em> 
-  XPropertySet props = Info.getStyleProps(doc,<br />
-                                "Default", "outline1"); 
-  XPropertySet props = Info.getStyleProps(doc,<br />
-                                "graphics", "objectwitharrow"); 
-         // accessing a style causes Office to crash upon exiting 
-  Props.showProps("Object Arrow Properties", props);   // long 
-</em>/ 
-}  // end of reportStyles() </p>
-<p>The method prints the names of the style families, and the names of the styles 
-(property sets) inside each family. Typical output is: </p>
-<p>Style Families in this document: 
-  "Inspiration"  "cell"  "graphics"  "table" </p>
-<p>Styles in the "Inspiration" style family: 
-  "background"  "backgroundobjects"  "notes"  "outline1" 
-  "outline2"  "outline3"  "outline4"  "outline5" 
-  "outline6"  "outline7"  "outline8"  "outline9" 
-  "subtitle"  "title" </p>
-<p>Styles in the "cell" style family: 
-  "blue1"  "blue2"  "blue3"  "bw1" 
-  "bw2"  "bw3"  "default"  "earth1" 
-  "earth2"  "earth3"  "gray1"  "gray2" 
-  "gray3"  "green1"  "green2"  "green3" 
-  "lightblue1"  "lightblue2"  "lightblue3"  "orange1" 
-  "orange2"  "orange3"  "seetang1"  "seetang2" 
-  "seetang3"  "sun1"  "sun2"  "sun3" 
-  "turquoise1"  "turquoise2"  "turquoise3"  "yellow1" 
-  "yellow2"  "yellow3" </p>
-<p>Styles in the "graphics" style family: 
- "Object with no fill and no line" "headline" "headline1" "headline2" 
-  "measure" "objectwitharrow" "objectwithoutfill" "objectwithshadow" 
-  "standard"  "text"  "textbody"  "textbodyindent" 
-  "textbodyjustfied"  "title"  "title1"  "title2" </p>
-<p>Styles in the "table" style family: 
-  "blue"  "bw"  "default"  "earth" 
-  "green"  "lightblue"  "orange"  "seetang" 
-  "sun"  "turquoise"  "yellow" </p>
-<p>The final part of reportStyles() prints the properties for a specified style. The code is 
-commented out for two reasons – first, the output can be extremely long, but the main 
-reason is that Office has a problem accessing drawing styles. Although 
-Info.getStyleProps() works, allowing style properties to be accessed and changed, 
-Office crashes when the program exits. It's fairly benign since the Office process is 
-fully terminated, but an error message appears on-screen. </p>
+<p>Figure 2. The Default Master Page in Impress.</p>
+<p>The master page (also known as a template in Impress' GUI) contains style
+information related to the title, seven outline levels and background areas (e.g. the
+date, the footer, and the slide number in Figure 2). Not all the master page styles are
+shown in Figure 2; for instance, there's a subtitle style, notes area, and a header.</p>
+<p>If a slide deck is formatted using a master page (Impress template) other than
+"Default", such as "Inspiration", then the style family name will be changed
+accordingly. The "Inspiration" family contains the same properties (styles) as
+"Default", but with different values.</p>
+<p>Details on coding with master pages and Impress templates are given in the
+MastersUse.java and PointsBuilder.java examples in Chapter 17.</p>
+<p>The other Draw/Impress style families are "cell", "graphics" and "table". "table" and
+"cell" contain styles which affect the colors used to draw a table and its cells.
+"graphics" affects the appearance of shapes. Examples of how to use the "graphics"
+style family are given in the DrawPictures.java example in Chapter 14.</p>
+<p>The reportStyles() method inside SlidesInfo.java is:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">reportStyles</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">)</span>
+<span class="c1">// report style information: families, styles, properties</span>
+<span class="p">{</span>
+  <span class="n">String</span><span class="o">[]</span> <span class="n">styleNames</span> <span class="o">=</span> <span class="n">Info</span><span class="p">.</span><span class="na">getStyleFamilyNames</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Style Families in this document:&quot;</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">printNames</span><span class="p">(</span><span class="n">styleNames</span><span class="p">);</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="n">String</span> <span class="n">styleName</span> <span class="p">:</span> <span class="n">styleNames</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">String</span><span class="o">[]</span> <span class="n">conNames</span> <span class="o">=</span> <span class="n">Info</span><span class="p">.</span><span class="na">getStyleNames</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">styleName</span><span class="p">);</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Styles in the \&quot;&quot;</span> <span class="o">+</span>
+                        <span class="n">styleName</span> <span class="o">+</span> <span class="s">&quot;\&quot; style family:&quot;</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">printNames</span><span class="p">(</span><span class="n">conNames</span><span class="p">);</span>
+  <span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">  XPropertySet props = Info.getStyleProps(doc,</span>
+<span class="cm">                                &quot;Default&quot;, &quot;outline1&quot;);</span>
+<span class="cm">  XPropertySet props = Info.getStyleProps(doc,</span>
+<span class="cm">                                &quot;graphics&quot;, &quot;objectwitharrow&quot;);</span>
+<span class="cm">         // accessing a style causes Office to crash upon exiting</span>
+<span class="cm">  Props.showProps(&quot;Object Arrow Properties&quot;, props);   // long</span>
+<span class="cm">*/</span>
+<span class="p">}</span>  <span class="c1">// end of reportStyles()</span>
+</code></pre></div>
+<p>The method prints the names of the style families, and the names of the styles
+(property sets) inside each family. Typical output is:</p>
+<div class="highlight"><pre><span></span><code>Style Families in this document:
+  &quot;Inspiration&quot;  &quot;cell&quot;  &quot;graphics&quot;  &quot;table&quot;
+
+Styles in the &quot;Inspiration&quot; style family:
+  &quot;background&quot;  &quot;backgroundobjects&quot;  &quot;notes&quot;  &quot;outline1&quot;
+  &quot;outline2&quot;  &quot;outline3&quot;  &quot;outline4&quot;  &quot;outline5&quot;
+  &quot;outline6&quot;  &quot;outline7&quot;  &quot;outline8&quot;  &quot;outline9&quot;
+  &quot;subtitle&quot;  &quot;title&quot;
+
+Styles in the &quot;cell&quot; style family:
+  &quot;blue1&quot;  &quot;blue2&quot;  &quot;blue3&quot;  &quot;bw1&quot;
+  &quot;bw2&quot;  &quot;bw3&quot;  &quot;default&quot;  &quot;earth1&quot;
+  &quot;earth2&quot;  &quot;earth3&quot;  &quot;gray1&quot;  &quot;gray2&quot;
+  &quot;gray3&quot;  &quot;green1&quot;  &quot;green2&quot;  &quot;green3&quot;
+  &quot;lightblue1&quot;  &quot;lightblue2&quot;  &quot;lightblue3&quot;  &quot;orange1&quot;
+  &quot;orange2&quot;  &quot;orange3&quot;  &quot;seetang1&quot;  &quot;seetang2&quot;
+  &quot;seetang3&quot;  &quot;sun1&quot;  &quot;sun2&quot;  &quot;sun3&quot;
+  &quot;turquoise1&quot;  &quot;turquoise2&quot;  &quot;turquoise3&quot;  &quot;yellow1&quot;
+  &quot;yellow2&quot;  &quot;yellow3&quot;
+
+Styles in the &quot;graphics&quot; style family:
+ &quot;Object with no fill and no line&quot; &quot;headline&quot; &quot;headline1&quot; &quot;headline2&quot;
+  &quot;measure&quot; &quot;objectwitharrow&quot; &quot;objectwithoutfill&quot; &quot;objectwithshadow&quot;
+  &quot;standard&quot;  &quot;text&quot;  &quot;textbody&quot;  &quot;textbodyindent&quot;
+  &quot;textbodyjustfied&quot;  &quot;title&quot;  &quot;title1&quot;  &quot;title2&quot;
+
+Styles in the &quot;table&quot; style family:
+  &quot;blue&quot;  &quot;bw&quot;  &quot;default&quot;  &quot;earth&quot;
+  &quot;green&quot;  &quot;lightblue&quot;  &quot;orange&quot;  &quot;seetang&quot;
+  &quot;sun&quot;  &quot;turquoise&quot;  &quot;yellow&quot;
+</code></pre></div>
+<p>The final part of reportStyles() prints the properties for a specified style. The code is
+commented out for two reasons – first, the output can be extremely long, but the main
+reason is that Office has a problem accessing drawing styles. Although
+Info.getStyleProps() works, allowing style properties to be accessed and changed,
+Office crashes when the program exits. It's fairly benign since the Office process is
+fully terminated, but an error message appears on-screen.</p>
                 
               
               
@@ -1554,6 +1603,7 @@ fully terminated, but an error message appears on-screen. </p>
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -1561,7 +1611,8 @@ fully terminated, but an error message appears on-screen. </p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="11-Draw_Impress_APIs.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="11-Draw_Impress_APIs.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 11. Draw/Impress APIs Overview" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1576,7 +1627,8 @@ fully terminated, but an error message appears on-screen. </p>
         </a>
       
       
-        <a href="13-Basic_Shapes.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="13-Basic_Shapes.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 13. Drawing Basic Shapes" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -1596,10 +1648,12 @@ fully terminated, but an error message appears on-screen. </p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -1611,10 +1665,10 @@ fully terminated, but an error message appears on-screen. </p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

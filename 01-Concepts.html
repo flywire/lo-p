@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -236,6 +245,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -250,6 +260,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1230,6 +1241,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1332,7 +1344,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-1-libreoffice-api-concepts">Chapter 1. LibreOffice API Concepts</h1>
+                <h1 id="chapter-1-libreoffice-api-concepts">Chapter 1. LibreOffice API Concepts<a class="headerlink" href="#chapter-1-libreoffice-api-concepts" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 <p>Some History;
@@ -1369,7 +1381,7 @@ from Open Document Format (ODF) files, LibreOffice can import, convert, and
 export a vast number of text, graphic, and other formats, including Microsoft Office
 documents, PDF, HTML, SWF (Flash), and SQL databases.</p>
 <p>LibreOffice is managed and developed by The Document Foundation
-(https://www.libreoffice.org/), and was first released in 2010. However, earlier Office
+(<a href="https://www.libreoffice.org/">https://www.libreoffice.org/</a>), and was first released in 2010. However, earlier Office
 versions date back to the 1980's, and traces of this heritage are visible in many parts
 of its API. Figure 1 shows a simplified timeline of how StarOffice begat OpenOffice,
 and so on to LibreOffice.</p>
@@ -1378,15 +1390,15 @@ and so on to LibreOffice.</p>
 <p>This book is not about how to use LibreOffice's GUI (e.g. where to find the menu
 item for italicizing text). I'm also not going to discuss how to compile the LibreOffice
 source, which is a focus of LibreOffice's development webpage
-(https://wiki.documentfoundation.org/Development). My intention is to explain the
+(<a href="https://wiki.documentfoundation.org/Development">https://wiki.documentfoundation.org/Development</a>). My intention is to explain the
 Java API that comes as part of the LibreOffice SDK, which you can obtain from
-https://www.libreoffice.org/download/libreoffice-still/.</p>
+<a href="https://www.libreoffice.org/download/libreoffice-still/">https://www.libreoffice.org/download/libreoffice-still/</a>.</p>
 <p>If you're unsure how to install the SDK then please refer to the website accompanying
-this book (http://fivedots.coe.psu.ac.th/~ad/jlop/). The "Installing the code for Java
-LibreOffice Programming" page at http://fivedots.coe.psu.ac.th/~ad/jlop/install.html
+this book (<a href="http://fivedots.coe.psu.ac.th/~ad/jlop/">http://fivedots.coe.psu.ac.th/~ad/jlop/</a>). The "Installing the code for Java
+LibreOffice Programming" page at <a href="http://fivedots.coe.psu.ac.th/~ad/jlop/install.html">http://fivedots.coe.psu.ac.th/~ad/jlop/install.html</a>
 gives step-by-step instructions, and also explains how to download the book's utility
 classes and examples.</p>
-<h2 id="1-sources-for-api-information">1.  Sources for API Information</h2>
+<h2 id="1-sources-for-api-information">1.  Sources for API Information<a class="headerlink" href="#1-sources-for-api-information" title="Permanent link">&para;</a></h2>
 <p>Rather amazingly, today's API in LibreOffice is almost 100% compatible with
 OpenOffice, which means that code developed 10-15 years ago (i.e. during the Sun
 and Oracle stewardships of Office) still works with no (or very minor) changes.</p>
@@ -1394,13 +1406,13 @@ and Oracle stewardships of Office) still works with no (or very minor) changes.<
 documentation or the older OpenOffice material since, apart from formatting
 differences, they're virtually the same. However, my preference is for the LibreOffice
 pages because of the clickable inheritance diagrams, as I'll explain later.</p>
-<p>Indeed, the examples at the LibreOffice API website (http://api.libreoffice.org/) link
+<p>Indeed, the examples at the LibreOffice API website (<a href="http://api.libreoffice.org/">http://api.libreoffice.org/</a>) link
 to the OpenOffice Developer's Guide at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/OpenOffice.org_Develope
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/OpenOffice.org_Develope">https://wiki.openoffice.org/wiki/Documentation/DevGuide/OpenOffice.org_Develope</a>
 rs_Guide. Sadly, that rather old manual (for OpenOffice v3.1 released in 2009) is the
 only long description of the Java Office API, and is overly technical in places. It can
 be downloaded as a single PDF file from
-https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf. The PDF
+<a href="https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf">https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf</a>. The PDF
 version has two drawbacks – its sections and sub-sections are unnumbered, making
 the overall structure of each chapter somewhat confusing. Another problem is that
 many of the code examples are missing newline characters, so are hard to read.</p>
@@ -1409,7 +1421,7 @@ many of the code examples are missing newline characters, so are hard to read.</
 API due to their similarities. I believe that everything I say about LibreOffice Java
 programming applies to OpenOffice. But, to be honest, I've only tested my examples
 in LibreOffice on Windows 7. If you do find any inconsistencies, then please contact
-me at ad@fivedots.coe.psu.ac.th with details.</p>
+me at <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#100;&#64;&#102;&#105;&#118;&#101;&#100;&#111;&#116;&#115;&#46;&#99;&#111;&#101;&#46;&#112;&#115;&#117;&#46;&#97;&#99;&#46;&#116;&#104;">&#97;&#100;&#64;&#102;&#105;&#118;&#101;&#100;&#111;&#116;&#115;&#46;&#99;&#111;&#101;&#46;&#112;&#115;&#117;&#46;&#97;&#99;&#46;&#116;&#104;</a> with details.</p>
 <p>I hope this book will make the more esoteric materials in the developer's guide easier
 to understand. One of the ways I'll be flattening the learning curve is by hiding parts
 of the API behind my own collection of utility classes. This is far from being a novel
@@ -1419,19 +1431,19 @@ liberally from those intrepid programmers, but I take full responsibility for my
 choices.</p>
 <p>There's a lot of Java Office API examples and code snippets online (as you might
 expect after 15+ years of existence). Your first stop should be the two groups of
-examples at http://api.libreoffice.org/examples/examples.html (in the Java and
+examples at <a href="http://api.libreoffice.org/examples/examples.html">http://api.libreoffice.org/examples/examples.html</a> (in the Java and
 Developer's Guide subdirectories). They can also be found in the Office download in
 <OFFICE>/sdk/examples; Basic, C++ and Python code is there as well. By the way,
 <OFFICE> is my way of writing the path to the LibreOffice directory, which for
 example is "C:\Program Files\LibreOffice 5" on my 32-bit test machine.</p>
 <p>You should also browse the LibreOffice development forums
-(http://www.imaccanici.org/en.libreofficeforum.org/) and the corresponding ones for
-OpenOffice (https://forum.openoffice.org/en/forum/). Look for the sub-forums that
+(<a href="http://www.imaccanici.org/en.libreofficeforum.org/">http://www.imaccanici.org/en.libreofficeforum.org/</a>) and the corresponding ones for
+OpenOffice (<a href="https://forum.openoffice.org/en/forum/">https://forum.openoffice.org/en/forum/</a>). Look for the sub-forums that
 talk about the UNO API and/or macros. Sadly, imaccanici.org is an archive of the
-defunct http://en.libreofficeforum.org/ site, but the OpenOffice forum is still going
+defunct <a href="http://en.libreofficeforum.org/">http://en.libreofficeforum.org/</a> site, but the OpenOffice forum is still going
 strong, and very relevant. LibreOffice has a question-posing page, at
-https://ask.libreoffice.org/en/questions/, which is a good source of information.</p>
-<p>http://www.oooforum.org/ is an older forum site, which has the unfortunate habit of
+<a href="https://ask.libreoffice.org/en/questions/">https://ask.libreoffice.org/en/questions/</a>, which is a good source of information.</p>
+<p><a href="http://www.oooforum.org/">http://www.oooforum.org/</a> is an older forum site, which has the unfortunate habit of
 periodically disappearing from the Web. Often the only way to access one of its posts
 or threads is via cached pages maintained by Google.</p>
 <p>The Office API has been ported to many programming languages. The API was first
@@ -1442,25 +1454,25 @@ documents, or in the Office application. A big advantage of Basic is its lack of
 which simplifies its version of the API. Basic macros utilize a similar set of Office
 API functions as Java, so can be a useful source of ideas.</p>
 <p>Perhaps the best place for learning about Office macro programming is Andrew
-Pitonyak's website (http://www.pitonyak.org/), which includes an excellent free-to-
+Pitonyak's website (<a href="http://www.pitonyak.org/">http://www.pitonyak.org/</a>), which includes an excellent free-to-
 download book: "OpenOffice.org Macros Explained", a macros cookbook, and a
 document focusing on database macros.</p>
-<p>Another great site is http://openoffice3.web.fc2.com/, which is mostly written in
+<p>Another great site is <a href="http://openoffice3.web.fc2.com/">http://openoffice3.web.fc2.com/</a>, which is mostly written in
 Japanese. This shouldn't put off non-Japanese readers since Google is quite happy to
 translate the pages for you, and the code examples are mostly ASCII.</p>
-<h4 id="finding-api-documentation-online">Finding API Documentation Online</h4>
+<h4 id="finding-api-documentation-online">Finding API Documentation Online<a class="headerlink" href="#finding-api-documentation-online" title="Permanent link">&para;</a></h4>
 <p>The online API documentation can be time-consuming to search due to its great size.</p>
 <p>If you want to have a browse, start at
-http://api.libreoffice.org/docs/idl/ref/namespaces.html, which takes a while to load.</p>
+<a href="http://api.libreoffice.org/docs/idl/ref/namespaces.html">http://api.libreoffice.org/docs/idl/ref/namespaces.html</a>, which takes a while to load.</p>
 <p>Each Office application (e.g. Writer, Draw, Impress, Calc, Base, Math) is supported
 by multiple modules (similar to Java packages). For example, most of Writer's API is
 in Office's "text" module, while Impress' functionality comes from the "presentation"
 and "drawing" modules. These modules are located in com.sun.star package, which is
 documented at
-http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star.html.</p>
+<a href="http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star.html">http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star.html</a>.</p>
 <p>Rather than searching manually through a module for a given class, it's a lot quicker
 to get a search engine to do it for you. This is the purpose of my lodoc.bat batch file,
-which utilizes DuckDuckGo (https://duckduckgo.com/). For instance, at the command
+which utilizes DuckDuckGo (<a href="https://duckduckgo.com/">https://duckduckgo.com/</a>). For instance, at the command
 line, you can type:</p>
 <p><code>lodoc xtext</code></p>
 <p>and the Office API documentation on the XText interface will open in your browser.</p>
@@ -1484,7 +1496,7 @@ rather than Google? Google doesn't seem to like me querying it from the command
 line. It periodically keeps asking me to type in a captcha string when I call it from
 lodoc.bat. Another problem is that Google likes to replace my search strings with
 'more likely' strings.</p>
-<h4 id="searching-the-online-developers-guide">Searching the Online Developer's Guide</h4>
+<h4 id="searching-the-online-developers-guide">Searching the Online Developer's Guide<a class="headerlink" href="#searching-the-online-developers-guide" title="Permanent link">&para;</a></h4>
 <p>The online Developer's Guide can also be time-consuming to search because it's both
 long (around 1650 pages), and poorly organized. To help, I've written a small batch
 file called loGuide.bat which is quite similar to loDoc.bat. It calls DuckDuckGo,
@@ -1509,7 +1521,7 @@ chapter on that topic. For example:</p>
 <p>opens the guide at the start of the "Text Documents" chapter.</p>
 <p>Calling loGuide.bat with no arguments, makes the browser load the first page of the
 guide.</p>
-<h2 id="2-office-as-a-process">2.  Office as a Process</h2>
+<h2 id="2-office-as-a-process">2.  Office as a Process<a class="headerlink" href="#2-office-as-a-process" title="Permanent link">&para;</a></h2>
 <p>Office is started as an OS process, and a Java program communicates with it via a
 socket or named pipe. This necessarily complicates the Java/Office link, which is
 illustrated in Figure 2.</p>
@@ -1555,7 +1567,7 @@ example, for historical reasons, Office supports two slightly different service
 managers (one that requires an explicit component context argument, and an older one
 that doesn't). I've chosen to add both of them to the component context, as a
 convenience to the programmer; this detail is hidden by my Lo util class.</p>
-<h2 id="3-api-data-structures-interface-property-service-and-component">3.  API Data Structures: interface, property, service, and component</h2>
+<h2 id="3-api-data-structures-interface-property-service-and-component">3.  API Data Structures: interface, property, service, and component<a class="headerlink" href="#3-api-data-structures-interface-property-service-and-component" title="Permanent link">&para;</a></h2>
 <p>There are four main data structures used by the API: interface, property, service, and
 component.</p>
 <p>The use of the word 'interface' is obviously influenced by its meaning in Java, but it's
@@ -1612,7 +1624,7 @@ shown in Figure 7.</p>
 <p>Figure 7. Part of the Inheritance Diagram for the OfficeDocument Service.</p>
 <p>Each box in the diagram can be clicked upon to jump to the documentation for that
 subclass or superclass.</p>
-<h2 id="4-two-inheritance-hierarchies-for-services-and-interfaces">4.  Two Inheritance Hierarchies for Services and interfaces</h2>
+<h2 id="4-two-inheritance-hierarchies-for-services-and-interfaces">4.  Two Inheritance Hierarchies for Services and interfaces<a class="headerlink" href="#4-two-inheritance-hierarchies-for-services-and-interfaces" title="Permanent link">&para;</a></h2>
 <p>Services and interfaces both use inheritance, as shown by the UML diagram in Figure
 8.</p>
 <p><img alt="" src="images/01-Concepts-8.png" /></p>
@@ -1631,7 +1643,7 @@ interface inherits XComponent and XInterface, as in Figure 10.</p>
 also represents the "contains" relationship between services and interfaces as
 inheritance, rather than as lines with circles as in the developer's guide (e.g. see
 Figures 5 and 6).</p>
-<h2 id="5-the-fcm-relationship">5.  The FCM Relationship</h2>
+<h2 id="5-the-fcm-relationship">5.  The FCM Relationship<a class="headerlink" href="#5-the-fcm-relationship" title="Permanent link">&para;</a></h2>
 <p>The Frame-Controller-Model (FCM) relationship (or design pattern) is a part of
 Office which programmers will encounter frequently. It appears in the API as
 connections between the XFrame, XController, and XModel interfaces, as shown in
@@ -1662,7 +1674,7 @@ one of the first three objects stored in the remote component context when we st
 Office. This means that we can move around the frames in the Office GUI starting
 from the loaded document, or from the root frame referred to from XDesktop. For
 example, XDesktop provides getCurrentFrame() to access the currently active frame.</p>
-<h2 id="6-components-again">6.  Components Again</h2>
+<h2 id="6-components-again">6.  Components Again<a class="headerlink" href="#6-components-again" title="Permanent link">&para;</a></h2>
 <p>A knowledge of the FCM relationship, and its XFrame, XController, and XModel
 interfaces, lets me give a more detailed definition of a component. Back in section 3
 (and in Figure 4), I said a component was an implemented service. Another way of
@@ -1680,7 +1692,7 @@ for simple GUI elements, such as Office's help windows.</li>
 <p>Of these three types, the component-as-document (number 1) is the most important
 for our needs. In particular, I'll be using the component loader in the remote
 component context to load Office documents.</p>
-<h2 id="7-whats-an-extension">7.  What's an Extension?</h2>
+<h2 id="7-whats-an-extension">7.  What's an Extension?<a class="headerlink" href="#7-whats-an-extension" title="Permanent link">&para;</a></h2>
 <p>The Office developer's guide often uses the words 'extension', 'add-on', and 'add-in'.
 I'll be spending four chapters on these features in Part 8 (along with macro
 programming in Java), but it's worth briefly explaining them now.</p>
@@ -1693,7 +1705,7 @@ the service, it may also be referred to as a component.</p>
 in the same way as standard Office elements.</p>
 <p>An add-in or, to use its full name, a Calc Add-in, is an extension that adds a new
 function to Calc.</p>
-<h2 id="8-a-comparison-with-the-basic-api">8.  A Comparison with the Basic API</h2>
+<h2 id="8-a-comparison-with-the-basic-api">8.  A Comparison with the Basic API<a class="headerlink" href="#8-a-comparison-with-the-basic-api" title="Permanent link">&para;</a></h2>
 <p>If you start searching the forums, newsgroups, blogs, and web sites for Office
 examples, it soon becomes clear that Java is not the language of choice for most
 Office programmers. Basic (sometimes called StarBasic, OpenOffice.org Basic,
@@ -1702,9 +1714,9 @@ coding crowd.</p>
 <p>This is understandable since Office (both LibreOffice and OpenOffice) includes an
 IDE for editing and debugging Basic macros. Also, there's a lot of good resources on
 how to utilize these tools (e.g. start browsing the LibreOffice wiki page "LibreOffice
-Basic Help", https://help.libreoffice.org/Basic/Basic_Help). The few books that have
+Basic Help", <a href="https://help.libreoffice.org/Basic/Basic_Help">https://help.libreoffice.org/Basic/Basic_Help</a>). The few books that have
 been written about programming the Office API have all used Basic (e.g. Pitonyak's
-"OpenOffice.org Macros Explained" at http://www.pitonyak.org/book/).</p>
+"OpenOffice.org Macros Explained" at <a href="http://www.pitonyak.org/book/">http://www.pitonyak.org/book/</a>).</p>
 <p>There are two styles of Basic macro programming – scripts can be attached to specific
 documents, or to the Office application. In a document, a macro can respond to Office
 events, such as the loading of the document, or its modification. The macro can
@@ -1776,6 +1788,7 @@ the Office API.</p>
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -1783,7 +1796,8 @@ the Office API.</p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="01%20Part%201%20Basics.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="01%20Part%201%20Basics.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Part 1 Basics" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1798,7 +1812,8 @@ the Office API.</p>
         </a>
       
       
-        <a href="02-Starting_and_Stopping.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="02-Starting_and_Stopping.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 2. Starting and Stopping" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -1818,10 +1833,12 @@ the Office API.</p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -1833,10 +1850,10 @@ the Office API.</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

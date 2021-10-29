@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -251,6 +260,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -265,6 +275,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1249,6 +1260,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1370,7 +1382,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-2-starting-and-stopping">Chapter 2. Starting and Stopping</h1>
+                <h1 id="chapter-2-starting-and-stopping">Chapter 2. Starting and Stopping<a class="headerlink" href="#chapter-2-starting-and-stopping" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 <p>Starting Office;
@@ -1395,13 +1407,13 @@ DocConverter.java example at the end pulls these together to show how to convert
 document into another format.</p>
 <p>All the examples come from the "Office Tests" directory in the code download
 associated with this book, and make liberal use of the classes in the "Utils" directory.
-For details please visit http://fivedots.coe.psu.ac.th/~ad/jlop/.</p>
+For details please visit <a href="http://fivedots.coe.psu.ac.th/~ad/jlop/">http://fivedots.coe.psu.ac.th/~ad/jlop/</a>.</p>
 <p>My aim with these utilities is to hide some of the verbiage of Office. When (if?) a
 programmer feels ready for more detail, then my code is documented. I'll only explain
 functions here that illustrate Office ideas, such as service managers and components.</p>
 <p>This is the first chapter with code, and so the first where programs could crash!
 Section 8 gives a few tips on bug detection and reporting.</p>
-<h2 id="1-starting-office">1.  Starting Office</h2>
+<h2 id="1-starting-office">1.  Starting Office<a class="headerlink" href="#1-starting-office" title="Permanent link">&para;</a></h2>
 <p>Every program must load Office before working with a document, and shut it down
 before exiting. These tasks are handled by loadOffice() and closeOffice() from the Lo
 utility class. A typical program will look like the following:</p>
@@ -1514,7 +1526,7 @@ UnoRuntime.queryInterface() are very common.</p>
 interface object. Unfortunately, generics aren't utilized in the Office API, which relies
 instead on Object, Office's Any class, or the XInterface class which is inherited by all
 interfaces.</p>
-<h4 id="a-quick-look-at-sockets">A Quick Look at Sockets</h4>
+<h4 id="a-quick-look-at-sockets">A Quick Look at Sockets<a class="headerlink" href="#a-quick-look-at-sockets" title="Permanent link">&para;</a></h4>
 <p>Note: you can skip this section if socket communication with Office isn't of interest.</p>
 <p>loadOffice() starts by calling bootstrapContext() or socketContext() to create a remote
 component context. bootstrapContext() is very short since it build a UNO bridge
@@ -1543,9 +1555,9 @@ variable. The relevant code fragment is:</p>
 check the socket’s status outside Office. For example, on Windows, I type:
 <code>netstat | grep 8100</code>
 If you wondering where grep comes from, I got it from gow
-(https://github.com/bmatzelle/gow), a light-weight installer of UNIX command line
+(<a href="https://github.com/bmatzelle/gow">https://github.com/bmatzelle/gow</a>), a light-weight installer of UNIX command line
 utilities for Windows.</p>
-<h2 id="2-closing-downkilling-office">2.  Closing Down/Killing Office</h2>
+<h2 id="2-closing-downkilling-office">2.  Closing Down/Killing Office<a class="headerlink" href="#2-closing-downkilling-office" title="Permanent link">&para;</a></h2>
 <p>Lo.closeOffice() shuts down Office by calling terminate() on the XDesktop instance
 created inside loadOffice():
 <code>boolean isDead = xDesktop.terminate()</code>
@@ -1584,7 +1596,7 @@ inside Java:</p>
 </code></pre></div>
 <p>The code is nasty since it relies on there being a cmd.exe OS tool and a lokill.bat
 batch file in the current directory.</p>
-<h2 id="3-opening-a-document">3.  Opening a Document</h2>
+<h2 id="3-opening-a-document">3.  Opening a Document<a class="headerlink" href="#3-opening-a-document" title="Permanent link">&para;</a></h2>
 <p>The general format of a program that opens a document, manipulates it in some way,
 and then saves it, is:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span>
@@ -1656,7 +1668,7 @@ important ones are listed in Table 1.</p>
 </tbody>
 </table>
 <p>Table 1. Some Document Properties.</p>
-<h2 id="4-creating-a-document">4.  Creating a Document</h2>
+<h2 id="4-creating-a-document">4.  Creating a Document<a class="headerlink" href="#4-creating-a-document" title="Permanent link">&para;</a></h2>
 <p>A new document is created by calling
 XComponentLoader.loadComponentFromURL() with a special URL string for the
 document type. The possible strings are listed in Table 2.</p>
@@ -1738,7 +1750,7 @@ document type. The possible strings are listed in Table 2.</p>
 </code></pre></div>
 <p>The utility classes include code for simplifying the creation of Writer, Draw, Impress,
 Calc, and Base documents, which I'll be looking at in later chapters.</p>
-<h5 id="a-second-service-manager">A Second Service Manager</h5>
+<h5 id="a-second-service-manager">A Second Service Manager<a class="headerlink" href="#a-second-service-manager" title="Permanent link">&para;</a></h5>
 <p>Lo.loadDoc() and Lo.createDoc() do a bit of additional work after document
 loading/creation – they instantiate a XMultiServiceFactory service manager which is
 stored in the Lo class. This is done by applying Lo.qi() to the document:</p>
@@ -1765,7 +1777,7 @@ XMultiServiceFactory service manager, so both are supported in the Lo class.</p>
 <p>Another difference between the managers is that the XMultiComponentFactory
 manager is available as soon as Office is loaded, while the XMultiServiceFactory
 manager is initialized only when a document is loaded or created.</p>
-<h2 id="5-saving-a-document">5.  Saving a Document</h2>
+<h2 id="5-saving-a-document">5.  Saving a Document<a class="headerlink" href="#5-saving-a-document" title="Permanent link">&para;</a></h2>
 <p>One of the great strengths of Office is that it can export a document in a vast number
 of formats, but the programmer must specify the output format (which is called a filter
 in the Office documentation).</p>
@@ -1791,7 +1803,7 @@ properties. If you don't want a password, then the third property should be left
 <p>Lo.qi() is used again to cast an interface, this time from XComponent to XStoreable.</p>
 <p>Figure 5 in Chapter 1 shows that XStoreable is part of the OfficeDocument service,
 which means that it's inherited by all Office document types.</p>
-<h4 id="whats-a-filter-name">What's a Filter Name?</h4>
+<h4 id="whats-a-filter-name">What's a Filter Name?<a class="headerlink" href="#whats-a-filter-name" title="Permanent link">&para;</a></h4>
 <p>XStorable.storeToURL() needs a "FilterName" property value, but what should the
 string be to export the document in Word format for example?</p>
 <p>Info.getFilterNames() returns an array of all the filter names supported by Office.</p>
@@ -1856,7 +1868,7 @@ small subset of Office's 250+ filter names, so if you try to save a file with an
 extension then my code will most likely break.</p>
 <p>If you want to study the details, start with Lo.saveDoc(), and burrow down; the
 trickiest part is Lo.ext2Format().</p>
-<h2 id="6-closing-a-document">6.  Closing a Document</h2>
+<h2 id="6-closing-a-document">6.  Closing a Document<a class="headerlink" href="#6-closing-a-document" title="Permanent link">&para;</a></h2>
 <p>Closing a document is a pain if you want to check with the user beforehand: should a
 modified file be saved, thereby overwriting the old version? My solution is not to
 bother the user, so the file is closed without saving, irrespective of any modifications.
@@ -1867,7 +1879,7 @@ XCloseable:</p>
 <div class="highlight"><pre><span></span><code><span class="n">XCloseable</span> <span class="n">closeable</span> <span class="o">=</span>  <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XCloseable</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">doc</span><span class="p">);</span>
 <span class="n">closeable</span><span class="p">.</span><span class="na">close</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>   <span class="c1">// doc. closed without saving</span>
 </code></pre></div>
-<h2 id="7-a-general-purpose-converter">7.  A General Purpose Converter</h2>
+<h2 id="7-a-general-purpose-converter">7.  A General Purpose Converter<a class="headerlink" href="#7-a-general-purpose-converter" title="Permanent link">&para;</a></h2>
 <p>The DocConverter.java example in "Office Tests/" takes two command line
 arguments: the name of an input file and the extension that should be used when
 saving the loaded document. For instance:</p>
@@ -1908,17 +1920,17 @@ converts a JPEG image into PNG:
 
 <span class="p">}</span>  <span class="c1">// end of DocConverter class</span>
 </code></pre></div>
-<h2 id="8-bug-detection-and-reporting">8.  Bug Detection and Reporting</h2>
+<h2 id="8-bug-detection-and-reporting">8.  Bug Detection and Reporting<a class="headerlink" href="#8-bug-detection-and-reporting" title="Permanent link">&para;</a></h2>
 <p>This chapter began our coding with the Office API, and so the possibility of bugs also
 becomes an issue. If you find a problem with one of my support classes (e.g. in
 Lo.java) or one of my examples (e.g. in DocConverter.java), then please contact me at
-ad@fivedots.coe.psu.ac.th, supplying as much detail as possible.</p>
+<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#100;&#64;&#102;&#105;&#118;&#101;&#100;&#111;&#116;&#115;&#46;&#99;&#111;&#101;&#46;&#112;&#115;&#117;&#46;&#97;&#99;&#46;&#116;&#104;">&#97;&#100;&#64;&#102;&#105;&#118;&#101;&#100;&#111;&#116;&#115;&#46;&#99;&#111;&#101;&#46;&#112;&#115;&#117;&#46;&#97;&#99;&#46;&#116;&#104;</a>, supplying as much detail as possible.</p>
 <p>Another source of bugs is the LibreOffice API itself, which is hardly a surprise
 considering its complexity and age. If you find a problem, then you should first search
-LibreOffice's Bugzilla site at https://bugs.documentfoundation.org/ to see if the
+LibreOffice's Bugzilla site at <a href="https://bugs.documentfoundation.org/">https://bugs.documentfoundation.org/</a> to see if the
 problem has been reported previously (it probably has). Various types of search are
 explained in the Bugzilla documentation at
-https://bugs.documentfoundation.org/docs/en/html/using/
+<a href="https://bugs.documentfoundation.org/docs/en/html/using/">https://bugs.documentfoundation.org/docs/en/html/using/</a>
 If you want to report a new bug, then you'll need to set up an account, which is quite
 simple, and also explained by the documentation.</p>
 <p>Often when people report bugs they don't include enough information, perhaps
@@ -1927,14 +1939,14 @@ typical crash report window  is shown in Figure 1.</p>
 <p><img alt="" src="images/02-Starting_and_Stopping-1.png" /></p>
 <p>Figure 1. The LibreOffice Crash Reported by Windows 7.</p>
 <p>If you're going to make an official report, you should first read the article "How to
-Report Bugs in LibreOffice" (https://wiki.documentfoundation.org/QA/BugReport).</p>
+Report Bugs in LibreOffice" (<a href="https://wiki.documentfoundation.org/QA/BugReport">https://wiki.documentfoundation.org/QA/BugReport</a>).</p>
 <p>Expert forum members and Bugzilla maintainers sometimes point people towards
 WinDbg for Windows as a tool for producing good debugging details. The wiki has a
 detailed explanation of how to install and use it
-(https://wiki.documentfoundation.org/How_to_get_a_backtrace_with_WinDbg),
+(<a href="https://wiki.documentfoundation.org/How_to_get_a_backtrace_with_WinDbg">https://wiki.documentfoundation.org/How_to_get_a_backtrace_with_WinDbg</a>),
 which is a bit scary in its complexity.</p>
 <p>A much easier alternative is the <code>WinCrashReport</code> application from NirSoft
-(http://www.nirsoft.net/utils/application_crash_report.html). It presents the Windows
+(<a href="http://www.nirsoft.net/utils/application_crash_report.html">http://www.nirsoft.net/utils/application_crash_report.html</a>). It presents the Windows
 Error Reporting (WER) data generated by a crash in a readable form.</p>
 <p>When a crash window appears (like the one in Figure 1), start WinCrashReport to
 examine the automatically-generated error report, as in Figure 2.</p>
@@ -1946,7 +1958,7 @@ exception code 0xC0000005) to a memory address.</p>
 in <OFFICE>/program. Most Office DLLs are located in that directory, but it's useful
 to have a fast file search utility on your machine to find files that might be in third-
 party libraries or in Windows. I use <code>SwiftSearch</code>
-(https://sourceforge.net/projects/swiftsearch/).</p>
+(<a href="https://sourceforge.net/projects/swiftsearch/">https://sourceforge.net/projects/swiftsearch/</a>).</p>
 <p>WinCrashReport generates two alternative call stacks, with slightly more information
 in the second in this case. mergedlo.dll is called by the uno_getCurrentEnvironment()
 function in cppu3.dll, as indicated in Figure 3.</p>
@@ -1954,7 +1966,7 @@ function in cppu3.dll, as indicated in Figure 3.</p>
 <p>Figure 3. The Second Call Stack in WinCrashReport.</p>
 <p>This narrows the problem to a specific function and two DLLs, which is very helpful.</p>
 <p>If you want to better understand the DLLs, they can be examined using <code>DLL Export
-Viewer</code>, another NirSoft tool (http://www.nirsoft.net/utils/dll_export_viewer.html),
+Viewer</code>, another NirSoft tool (<a href="http://www.nirsoft.net/utils/dll_export_viewer.html">http://www.nirsoft.net/utils/dll_export_viewer.html</a>),
 which lists a DLL's exported functions. Running it on mergedlo.dll turns up nothing,
 but the details for cppu3.dll are shown in Figure 4.</p>
 <p><img alt="" src="images/02-Starting_and_Stopping-4.png" /></p>
@@ -1962,13 +1974,13 @@ but the details for cppu3.dll are shown in Figure 4.</p>
 <p>mergedlo.dll appears to be empty inside DLL Export Viewer because it exports no
 functions. That probably means it's being used as a store for resources, such as icons,
 cursors, and images. There's another NirSoft tool for looking at DLL resources, called
-ResourcesExtract (http://www.nirsoft.net/utils/resources_extract.html).</p>
+ResourcesExtract (<a href="http://www.nirsoft.net/utils/resources_extract.html">http://www.nirsoft.net/utils/resources_extract.html</a>).</p>
 <p>The offending function must be uno_getCurrentEnvironment() which Figure 4
 confirms to be in cppu3.dll.</p>
 <p>Looking at the Source Code
 You might want to narrow the problem down further by looking at
 uno_getCurrentEnvironment()'s source. This is easy with  the "OpenGrok for
-LibreOffice" website (http://opengrok.libreoffice.org/) for searching the gigantic code
+LibreOffice" website (<a href="http://opengrok.libreoffice.org/">http://opengrok.libreoffice.org/</a>) for searching the gigantic code
 base. Figure 5 shows the results for an "uno_getCurrentEnvironment" search.</p>
 <p><img alt="" src="images/02-Starting_and_Stopping-5.png" /></p>
 <p>Figure 5. OpenGrok Results for "uno_getCurrentEnvironment"</p>
@@ -1976,8 +1988,8 @@ base. Figure 5 shows the results for an "uno_getCurrentEnvironment" search.</p>
 linked function name shown at the bottom of Figure 5.</p>
 <p>If you're interested in exploring the code base more widely, there are some very good
 blog posts about it by Eilidh McAdam: "Exploring the LibreOffice code base"
-(http://www.lanedo.com/exploring-the-libreoffice-code-base/) and "LibreOffice
-Development Howto" (http://www.lanedo.com/libreoffice-development-howto/).</p>
+(<a href="http://www.lanedo.com/exploring-the-libreoffice-code-base/">http://www.lanedo.com/exploring-the-libreoffice-code-base/</a>) and "LibreOffice
+Development Howto" (<a href="http://www.lanedo.com/libreoffice-development-howto/">http://www.lanedo.com/libreoffice-development-howto/</a>).</p>
                 
               
               
@@ -1988,6 +2000,7 @@ Development Howto" (http://www.lanedo.com/libreoffice-development-howto/).</p>
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -1995,7 +2008,8 @@ Development Howto" (http://www.lanedo.com/libreoffice-development-howto/).</p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="01-Concepts.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="01-Concepts.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 1. LibreOffice API Concepts" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2010,7 +2024,8 @@ Development Howto" (http://www.lanedo.com/libreoffice-development-howto/).</p>
         </a>
       
       
-        <a href="03-Examining.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="03-Examining.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 3. Examining" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -2030,10 +2045,12 @@ Development Howto" (http://www.lanedo.com/libreoffice-development-howto/).</p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -2045,10 +2062,10 @@ Development Howto" (http://www.lanedo.com/libreoffice-development-howto/).</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

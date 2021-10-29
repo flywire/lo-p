@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -476,6 +485,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -490,6 +500,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -513,28 +524,7 @@
     2.  Shape Composition
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-grouping-the-shapes-form-a-single-shape-without-being-changed-in-any-way" class="md-nav__link">
-    1.  grouping: the shapes form a single shape without being changed in any way.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-binding-this-is-similar-to-grouping-but-also-draws-connector-lines-between-the" class="md-nav__link">
-    2.  binding: this is similar to grouping, but also draws connector lines between the
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-combining-the-new-shape-is-built-by-changing-the-original-shapes-if-they" class="md-nav__link">
-    3.  combining: the new shape is built by changing the original shapes if they
-  </a>
-  
-    <nav class="md-nav" aria-label="3.  combining: the new shape is built by changing the original shapes if they">
+    <nav class="md-nav" aria-label="2.  Shape Composition">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1257,6 +1247,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1278,28 +1269,7 @@
     2.  Shape Composition
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-grouping-the-shapes-form-a-single-shape-without-being-changed-in-any-way" class="md-nav__link">
-    1.  grouping: the shapes form a single shape without being changed in any way.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-binding-this-is-similar-to-grouping-but-also-draws-connector-lines-between-the" class="md-nav__link">
-    2.  binding: this is similar to grouping, but also draws connector lines between the
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-combining-the-new-shape-is-built-by-changing-the-original-shapes-if-they" class="md-nav__link">
-    3.  combining: the new shape is built by changing the original shapes if they
-  </a>
-  
-    <nav class="md-nav" aria-label="3.  combining: the new shape is built by changing the original shapes if they">
+    <nav class="md-nav" aria-label="2.  Shape Composition">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1386,623 +1356,683 @@
                   </a>
                 
                 
-                <h1 id="chapter-15-complex-shapes">Chapter 15. Complex Shapes</h1>
+                <h1 id="chapter-15-complex-shapes">Chapter 15. Complex Shapes<a class="headerlink" href="#chapter-15-complex-shapes" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
-<p>Connecting Two 
-Rectangles; Shape 
-Composition (grouping, 
-binding, and 
-combining); Combining 
-with Dispatches; 
-Undoing Composition; 
-Bezier Curves (simple 
-and complex) </p>
-<p>Example folders: "Draw 
-Tests" and "Utils" </p>
+<p>Connecting Two
+Rectangles; Shape
+Composition (grouping,
+binding, and
+combining); Combining
+with Dispatches;
+Undoing Composition;
+Bezier Curves (simple
+and complex)</p>
+<p>Example folders: "Draw
+Tests" and "Utils"</p>
 </div>
-<p>This chapter looks at three complex topics involving 
-shapes: connecting rectangles, shape composition, and 
-drawing Bezier curves. </p>
-<h2 id="1-connecting-two-rectangles">1.  Connecting Two Rectangles</h2>
-<p>A line can be drawn between two shapes using a 
-LineShape. But it's much easier to join the shapes with a 
-ConnectorShape, which can be attached precisely by 
-linking its two ends to glue points on the shapes. Glue points are the little blue circles 
-which appear on a shape when you use connectors in Draw. They occur in the middle 
-of the upper, lower, left, and right sides of the shape, although it's possible to create 
-extra ones. </p>
-<p>By default a connector is drawn using multiple horizontal and vertical lines. It's 
-possible to change this to a curve, a single line, or a connection made up of multiple 
-lines which are mostly horizontal and vertical. Figure 1 shows the four types linking 
-the same two rectangles. </p>
+<p>This chapter looks at three complex topics involving
+shapes: connecting rectangles, shape composition, and
+drawing Bezier curves.</p>
+<h2 id="1-connecting-two-rectangles">1.  Connecting Two Rectangles<a class="headerlink" href="#1-connecting-two-rectangles" title="Permanent link">&para;</a></h2>
+<p>A line can be drawn between two shapes using a
+LineShape. But it's much easier to join the shapes with a
+ConnectorShape, which can be attached precisely by
+linking its two ends to glue points on the shapes. Glue points are the little blue circles
+which appear on a shape when you use connectors in Draw. They occur in the middle
+of the upper, lower, left, and right sides of the shape, although it's possible to create
+extra ones.</p>
+<p>By default a connector is drawn using multiple horizontal and vertical lines. It's
+possible to change this to a curve, a single line, or a connection made up of multiple
+lines which are mostly horizontal and vertical. Figure 1 shows the four types linking
+the same two rectangles.</p>
 <p><img alt="" src="images/15-Complex_Shapes-1.png" /></p>
-<p>Figure 1. Different Styles of Connector. </p>
-<p>Grouper.java contains code for generating the top-left example in Figure 1: </p>
-<p>// Grouper.java 
-public static void main (String args[]) 
-{ 
-  XComponentLoader loader = Lo.loadOffice(); 
-  XComponent doc = Draw.createDrawDoc(loader); 
-  if (doc == null) { 
-    System.out.println("Draw doc creation failed"); 
-    Lo.closeOffice(); 
-    return; 
-  } </p>
-<p>GUI.setVisible(doc, true); 
-  Lo.delay(1000);    // need delay or zoom may not occur 
-  GUI.zoom(doc, GUI.ENTIRE_PAGE); </p>
-<p>XDrawPage currSlide = Draw.getSlide(doc, 0); //access first page </p>
-<p>System.out.println("\nConnecting rectangles ..."); 
-  XNameContainer gStyles = Info.getStyleContainer(doc, "graphics"); 
-  connectRectangles(currSlide, gStyles); </p>
-<pre><code> : // code for grouping, binding, and combining shape, 
- : // discussed later
-</code></pre>
-<p>Lo.saveDoc(doc, "grouper.odg"); 
-  Lo.closeDoc(doc); 
-  Lo.closeOffice(); 
-} </p>
-<p>The connectRectangles() function creates two labeled rectangles, and links them with 
-a standard connector. The connector starts on the bottom edge of the green rectangle 
-and finishes at the top edge of the blue one (as shown in the top-left of Figure 1). The 
-method also prints out some information about the glue points of the blue rectangle. </p>
-<p>// in Grouper.java 
-private static void connectRectangles(XDrawPage currSlide, 
-                                       XNameContainer gStyles) 
-{ 
-  // dark green rectangle with shadow and text 
-  XShape greenRect = Draw.drawRectangle(currSlide,<br />
-                                          70, 180, 50, 25); 
-  Props.setProperty(greenRect, "FillColor",<br />
-             Lo.getColorInt(java.awt.Color.GREEN.darker())); 
-  Props.setProperty(greenRect, "Shadow", true); 
-  Draw.addText(greenRect, "Green Rect"); </p>
-<p>// (blue, the default color) rectangle with shadow and text 
-  XShape blueRect = Draw.drawRectangle(currSlide,<br />
-                                         140, 220, 50, 25); 
-  Props.setProperty(blueRect, "Shadow", true); 
-  Draw.addText(blueRect, "Blue Rect"); </p>
-<p>// connect the two rectangles; from the first shape to the second 
-  XShape connShape = Draw.addConnector(currSlide,<br />
-                          greenRect, Draw.CONNECT_BOTTOM,<br />
-                          blueRect, Draw.CONNECT_TOP); </p>
-<p>// Draw.setStyle(connShape, gStyles, "objectwitharrow"); 
-  Props.setProperty(connShape, "LineWidth", 100);  // 1mm 
-  Props.setProperty(connShape, "FillColor", 7512015);// dark blue </p>
-<p>// report the glue points for the blue rectangle 
-  GluePoint2[] gps = Draw.getGluePoints(blueRect); 
-  if (gps != null) { 
-    System.out.println("Glue Points for blue rectangle"); 
-    for(int i=0; i &lt; gps.length; i++) { 
-      Point pos = gps[i].Position; 
-      System.out.println("  Glue point " + i + ": (" +<br />
-                                 pos.X + ", " + pos.Y + ")"); 
-    } 
-  } 
-}  // end of connectRectangles() </p>
-<p>Note that Draw.addText() is used to label the shapes. </p>
-<p>Draw.addConnector() links the two rectangles based on glue point names supplied as 
-arguments. These names are defined in the Draw class: </p>
-<p>// in the Draw class 
-public static final int CONNECT_TOP = 0; 
-public static final int CONNECT_RIGHT = 1; 
-public static final int CONNECT_BOTTOM = 2; 
-public static final int CONNECT_LEFT = 3; </p>
-<p>Draw.addConnector() creates a ConnectorShape object and sets several of its 
-properties. A simplified inheritance hierarchy for ConnectorShape is shown in Figure 
-2, with the parts important for connectors drawn in red. </p>
-<p><img alt="" src="images/15-Complex_Shapes-2.png" /></p>
-<p>Figure 2. The ConnectorShape Hierarchy. </p>
-<p>Unlike many shapes, such as the RectangleShape, ConnectorShape doesn't have a 
-FillProperties class; instead it has ConnectorProperties (see lodoc 
-ConnectorProperties), which holds most of the properties used by 
-Draw.addConnector(). addConnector() is defined as: </p>
-<p>// in the Draw class 
-public static XShape addConnector(XDrawPage slide,<br />
-                        XShape shape1, int fromConnect,<br />
-                        XShape shape2, int toConnect) 
-{ 
-  XShape xConnector = addShape(slide, "ConnectorShape", 0,0,0,0); </p>
-<p>XPropertySet props = Lo.qi(XPropertySet.class, xConnector); 
-  try {<br />
-    props.setPropertyValue("StartShape", shape1); 
-    props.setPropertyValue("StartGluePointIndex", fromConnect); </p>
-<pre><code>props.setPropertyValue("EndShape", shape2); 
-props.setPropertyValue("EndGluePointIndex", toConnect);
+<p>Figure 1. Different Styles of Connector.</p>
+<p>Grouper.java contains code for generating the top-left example in Figure 1:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Grouper.java</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+  <span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">createDrawDoc</span><span class="p">(</span><span class="n">loader</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">doc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Draw doc creation failed&quot;</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
 
-props.setPropertyValue("EdgeKind", ConnectorType.STANDARD);  
-                    // STANDARD, CURVE, LINE, LINES
-</code></pre>
-<p>} 
-  catch(Exception e) 
-  {  System.out.println("Could not connect the shapes");  } </p>
-<p>return xConnector; 
-}  // end of addConnectorShape() </p>
-<p>Draw.addShape() is called with a (0,0) position, zero width and height. The real 
-position and dimensions of the connector are set via its properties. "StartShape" and 
-"StartGluePointIndex"  specify the starting shape and its glue point, and "EndShape" 
-and "EndGluePointIndex" define the ending shape and its glue point. "EdgeKind" 
-specifies one of the connection types from Figure 1. </p>
-<p>Grouper.java's connectRectangles() has some code for retrieving an array of glue 
-points for a shape: </p>
-<p>// in connectRectangles() in Grouper.java 
-GluePoint2[] gps = Draw.getGluePoints(blueRect); </p>
-<p>Draw.getGluePoints() converts the shape into an XGluePointsSupplier, and calls its 
-getGluePoints() method to retrieve an indexed container of GluePoint2 objects. To 
-simplify the access to the points data, this structure is returned as an array: </p>
-<p>public static GluePoint2[] getGluePoints(XShape shape) 
-{ 
-  XGluePointsSupplier gpSupp =<br />
-               Lo.qi( XGluePointsSupplier.class, shape); 
-  XIndexContainer gluePts = gpSupp.getGluePoints(); </p>
-<p>int numGPs = gluePts.getCount();  // should be 4 by default 
-  if (numGPs == 0) { 
-    System.out.println("No glue points for this shape"); 
-    return null; 
-  } 
-  GluePoint2[] gps = new GluePoint2[numGPs]; 
-  for(int i=0; i &lt; numGPs; i++) { 
-    try { 
-      gps[i] = Lo.qi(GluePoint2.class, gluePts.getByIndex(i)); 
-    } 
-    catch(com.sun.star.uno.Exception e) 
-    {  System.out.println("Could not access glue point " + i);  } 
-  } 
-  return gps; 
-}  // end of getGluePoints() </p>
-<p>connectRectangles() doesn't do much with this data, aside from printing out each glue 
-points coordinate. They're specified in 1/100 mm units relative to the center of the 
-shape.  </p>
-<p>Figure 1 shows that connectors don't have arrows, but this can be remedied by 
-changing the connector's graphics style. The "graphics" style family is obtained by 
-Info.getStyleContainer(), and passed to connectRectangles(): </p>
-<p>// in main() of Grouper.java 
-XNameContainer gStyles = Info.getStyleContainer(doc, "graphics"); 
-connectRectangles(currSlide, gStyles); </p>
-<p>Inside connectRectangles(), the connector's graphic style is changed to use arrows: </p>
-<p>// in connectRectangles() of Grouper.java 
-Draw.setStyle(connShape, gStyles, "objectwitharrow"); 
-Props.setProperty(connShape, "LineWidth", 50);  // 0.5 mm 
-Props.setProperty(connShape, "FillColor", 7512015);// dark blue </p>
-<p>The "objectwitharrow" style creates thick black arrows, with the head at the 'from' end 
-of the connector (i.e. pointing at the green rectangle in my example). The line width 
-can be adjusted by setting the shape's "LineWidth" property (which is defined in the 
-LineProperties class), and its color with "FillColor". However, the change to 
-"FillColor" has no effect for some reason, and so the arrow remains black, as shown 
-in Figure 3. </p>
+  <span class="n">GUI</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>    <span class="c1">// need delay or zoom may not occur</span>
+  <span class="n">GUI</span><span class="p">.</span><span class="na">zoom</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">GUI</span><span class="p">.</span><span class="na">ENTIRE_PAGE</span><span class="p">);</span>
+
+  <span class="n">XDrawPage</span> <span class="n">currSlide</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getSlide</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">//access first page</span>
+
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nConnecting rectangles ...&quot;</span><span class="p">);</span>
+  <span class="n">XNameContainer</span> <span class="n">gStyles</span> <span class="o">=</span> <span class="n">Info</span><span class="p">.</span><span class="na">getStyleContainer</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;graphics&quot;</span><span class="p">);</span>
+  <span class="n">connectRectangles</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="n">gStyles</span><span class="p">);</span>
+
+     <span class="p">:</span> <span class="c1">// code for grouping, binding, and combining shape,</span>
+     <span class="p">:</span> <span class="c1">// discussed later</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">saveDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;grouper.odg&quot;</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The connectRectangles() function creates two labeled rectangles, and links them with
+a standard connector. The connector starts on the bottom edge of the green rectangle
+and finishes at the top edge of the blue one (as shown in the top-left of Figure 1). The
+method also prints out some information about the glue points of the blue rectangle.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Grouper.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">connectRectangles</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">currSlide</span><span class="p">,</span>
+                                       <span class="n">XNameContainer</span> <span class="n">gStyles</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// dark green rectangle with shadow and text</span>
+  <span class="n">XShape</span> <span class="n">greenRect</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawRectangle</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span>
+                                          <span class="mi">70</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">greenRect</span><span class="p">,</span> <span class="s">&quot;FillColor&quot;</span><span class="p">,</span>
+             <span class="n">Lo</span><span class="p">.</span><span class="na">getColorInt</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">Color</span><span class="p">.</span><span class="na">GREEN</span><span class="p">.</span><span class="na">darker</span><span class="p">()));</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">greenRect</span><span class="p">,</span> <span class="s">&quot;Shadow&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="n">Draw</span><span class="p">.</span><span class="na">addText</span><span class="p">(</span><span class="n">greenRect</span><span class="p">,</span> <span class="s">&quot;Green Rect&quot;</span><span class="p">);</span>
+
+  <span class="c1">// (blue, the default color) rectangle with shadow and text</span>
+  <span class="n">XShape</span> <span class="n">blueRect</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawRectangle</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span>
+                                         <span class="mi">140</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">blueRect</span><span class="p">,</span> <span class="s">&quot;Shadow&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="n">Draw</span><span class="p">.</span><span class="na">addText</span><span class="p">(</span><span class="n">blueRect</span><span class="p">,</span> <span class="s">&quot;Blue Rect&quot;</span><span class="p">);</span>
+
+  <span class="c1">// connect the two rectangles; from the first shape to the second</span>
+  <span class="n">XShape</span> <span class="n">connShape</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">addConnector</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span>
+                          <span class="n">greenRect</span><span class="p">,</span> <span class="n">Draw</span><span class="p">.</span><span class="na">CONNECT_BOTTOM</span><span class="p">,</span>
+                          <span class="n">blueRect</span><span class="p">,</span> <span class="n">Draw</span><span class="p">.</span><span class="na">CONNECT_TOP</span><span class="p">);</span>
+
+  <span class="c1">// Draw.setStyle(connShape, gStyles, &quot;objectwitharrow&quot;);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">connShape</span><span class="p">,</span> <span class="s">&quot;LineWidth&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>  <span class="c1">// 1mm</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">connShape</span><span class="p">,</span> <span class="s">&quot;FillColor&quot;</span><span class="p">,</span> <span class="mi">7512015</span><span class="p">);</span><span class="c1">// dark blue</span>
+
+  <span class="c1">// report the glue points for the blue rectangle</span>
+  <span class="n">GluePoint2</span><span class="o">[]</span> <span class="n">gps</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getGluePoints</span><span class="p">(</span><span class="n">blueRect</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">gps</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Glue Points for blue rectangle&quot;</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">gps</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">Point</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">gps</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">Position</span><span class="p">;</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  Glue point &quot;</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">&quot;: (&quot;</span> <span class="o">+</span>
+                                 <span class="n">pos</span><span class="p">.</span><span class="na">X</span> <span class="o">+</span> <span class="s">&quot;, &quot;</span> <span class="o">+</span> <span class="n">pos</span><span class="p">.</span><span class="na">Y</span> <span class="o">+</span> <span class="s">&quot;)&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of connectRectangles()</span>
+</code></pre></div>
+<p>Note that Draw.addText() is used to label the shapes.</p>
+<p>Draw.addConnector() links the two rectangles based on glue point names supplied as
+arguments. These names are defined in the Draw class:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">CONNECT_TOP</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">CONNECT_RIGHT</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">CONNECT_BOTTOM</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">CONNECT_LEFT</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</code></pre></div>
+<p>Draw.addConnector() creates a ConnectorShape object and sets several of its
+properties. A simplified inheritance hierarchy for ConnectorShape is shown in Figure
+2, with the parts important for connectors drawn in red.</p>
+<p><img alt="" src="images/15-Complex_Shapes-2.png" /></p>
+<p>Figure 2. The ConnectorShape Hierarchy.</p>
+<p>Unlike many shapes, such as the RectangleShape, ConnectorShape doesn't have a
+FillProperties class; instead it has ConnectorProperties (see lodoc
+ConnectorProperties), which holds most of the properties used by
+Draw.addConnector(). addConnector() is defined as:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XShape</span> <span class="nf">addConnector</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">slide</span><span class="p">,</span>
+                        <span class="n">XShape</span> <span class="n">shape1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fromConnect</span><span class="p">,</span>
+                        <span class="n">XShape</span> <span class="n">shape2</span><span class="p">,</span> <span class="kt">int</span> <span class="n">toConnect</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XShape</span> <span class="n">xConnector</span> <span class="o">=</span> <span class="n">addShape</span><span class="p">(</span><span class="n">slide</span><span class="p">,</span> <span class="s">&quot;ConnectorShape&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+
+  <span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">xConnector</span><span class="p">);</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;StartShape&quot;</span><span class="p">,</span> <span class="n">shape1</span><span class="p">);</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;StartGluePointIndex&quot;</span><span class="p">,</span> <span class="n">fromConnect</span><span class="p">);</span>
+
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;EndShape&quot;</span><span class="p">,</span> <span class="n">shape2</span><span class="p">);</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;EndGluePointIndex&quot;</span><span class="p">,</span> <span class="n">toConnect</span><span class="p">);</span>
+
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;EdgeKind&quot;</span><span class="p">,</span> <span class="n">ConnectorType</span><span class="p">.</span><span class="na">STANDARD</span><span class="p">);</span>
+                        <span class="c1">// STANDARD, CURVE, LINE, LINES</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not connect the shapes&quot;</span><span class="p">);</span>  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">xConnector</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of addConnectorShape()</span>
+</code></pre></div>
+<p>Draw.addShape() is called with a (0,0) position, zero width and height. The real
+position and dimensions of the connector are set via its properties. "StartShape" and
+"StartGluePointIndex"  specify the starting shape and its glue point, and "EndShape"
+and "EndGluePointIndex" define the ending shape and its glue point. "EdgeKind"
+specifies one of the connection types from Figure 1.</p>
+<p>Grouper.java's connectRectangles() has some code for retrieving an array of glue
+points for a shape:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in connectRectangles() in Grouper.java</span>
+<span class="n">GluePoint2</span><span class="o">[]</span> <span class="n">gps</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getGluePoints</span><span class="p">(</span><span class="n">blueRect</span><span class="p">);</span>
+</code></pre></div>
+<p>Draw.getGluePoints() converts the shape into an XGluePointsSupplier, and calls its
+getGluePoints() method to retrieve an indexed container of GluePoint2 objects. To
+simplify the access to the points data, this structure is returned as an array:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="n">GluePoint2</span><span class="o">[]</span> <span class="nf">getGluePoints</span><span class="p">(</span><span class="n">XShape</span> <span class="n">shape</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XGluePointsSupplier</span> <span class="n">gpSupp</span> <span class="o">=</span>
+               <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span> <span class="n">XGluePointsSupplier</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">shape</span><span class="p">);</span>
+  <span class="n">XIndexContainer</span> <span class="n">gluePts</span> <span class="o">=</span> <span class="n">gpSupp</span><span class="p">.</span><span class="na">getGluePoints</span><span class="p">();</span>
+
+  <span class="kt">int</span> <span class="n">numGPs</span> <span class="o">=</span> <span class="n">gluePts</span><span class="p">.</span><span class="na">getCount</span><span class="p">();</span>  <span class="c1">// should be 4 by default</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">numGPs</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No glue points for this shape&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">GluePoint2</span><span class="o">[]</span> <span class="n">gps</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GluePoint2</span><span class="o">[</span><span class="n">numGPs</span><span class="o">]</span><span class="p">;</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numGPs</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="n">gps</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">GluePoint2</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">gluePts</span><span class="p">.</span><span class="na">getByIndex</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="k">catch</span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">uno</span><span class="p">.</span><span class="na">Exception</span> <span class="n">e</span><span class="p">)</span>
+    <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not access glue point &quot;</span> <span class="o">+</span> <span class="n">i</span><span class="p">);</span>  <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">gps</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of getGluePoints()</span>
+</code></pre></div>
+<p>connectRectangles() doesn't do much with this data, aside from printing out each glue
+points coordinate. They're specified in 1/100 mm units relative to the center of the
+shape.</p>
+<p>Figure 1 shows that connectors don't have arrows, but this can be remedied by
+changing the connector's graphics style. The "graphics" style family is obtained by
+Info.getStyleContainer(), and passed to connectRectangles():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in main() of Grouper.java</span>
+<span class="n">XNameContainer</span> <span class="n">gStyles</span> <span class="o">=</span> <span class="n">Info</span><span class="p">.</span><span class="na">getStyleContainer</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;graphics&quot;</span><span class="p">);</span>
+<span class="n">connectRectangles</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="n">gStyles</span><span class="p">);</span>
+</code></pre></div>
+<p>Inside connectRectangles(), the connector's graphic style is changed to use arrows:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in connectRectangles() of Grouper.java</span>
+<span class="n">Draw</span><span class="p">.</span><span class="na">setStyle</span><span class="p">(</span><span class="n">connShape</span><span class="p">,</span> <span class="n">gStyles</span><span class="p">,</span> <span class="s">&quot;objectwitharrow&quot;</span><span class="p">);</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">connShape</span><span class="p">,</span> <span class="s">&quot;LineWidth&quot;</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>  <span class="c1">// 0.5 mm</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">connShape</span><span class="p">,</span> <span class="s">&quot;FillColor&quot;</span><span class="p">,</span> <span class="mi">7512015</span><span class="p">);</span><span class="c1">// dark blue</span>
+</code></pre></div>
+<p>The "objectwitharrow" style creates thick black arrows, with the head at the 'from' end
+of the connector (i.e. pointing at the green rectangle in my example). The line width
+can be adjusted by setting the shape's "LineWidth" property (which is defined in the
+LineProperties class), and its color with "FillColor". However, the change to
+"FillColor" has no effect for some reason, and so the arrow remains black, as shown
+in Figure 3.</p>
 <p><img alt="" src="images/15-Complex_Shapes-3.png" /></p>
-<p>Figure 3. A Connector with an Arrow. </p>
-<p>The arrow head is too big and extends too far over the shape. This can be modified by 
-changing the arrow name assigned to the connector's "LineStartName" property, and 
-by setting "LineStartCenter " to false. The place to find names for arrow heads is the 
-Line dialog box in LibreOffice's "Line and Filling" toolbar. The names appear in the 
-"Start styles" combobox, as shown in Figure 4. </p>
+<p>Figure 3. A Connector with an Arrow.</p>
+<p>The arrow head is too big and extends too far over the shape. This can be modified by
+changing the arrow name assigned to the connector's "LineStartName" property, and
+by setting "LineStartCenter " to false. The place to find names for arrow heads is the
+Line dialog box in LibreOffice's "Line and Filling" toolbar. The names appear in the
+"Start styles" combobox, as shown in Figure 4.</p>
 <p><img alt="" src="images/15-Complex_Shapes-4.png" /></p>
-<p>Figure 4. The Arrow Styles in LibreOffice. </p>
-<p>If the properties are set to: </p>
-<p>// in connectRectangles() of Grouper.java 
-Props.setProperty(connShape, "LineStartCenter", false); 
-Props.setProperty(connShape, "LineStartName", "Short line arrow"); </p>
-<p>then the arrow head changes to that shown in Figure 5. </p>
+<p>Figure 4. The Arrow Styles in LibreOffice.</p>
+<p>If the properties are set to:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in connectRectangles() of Grouper.java</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">connShape</span><span class="p">,</span> <span class="s">&quot;LineStartCenter&quot;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">connShape</span><span class="p">,</span> <span class="s">&quot;LineStartName&quot;</span><span class="p">,</span> <span class="s">&quot;Short line arrow&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>then the arrow head changes to that shown in Figure 5.</p>
 <p><img alt="" src="images/15-Complex_Shapes-5.png" /></p>
-<p>Figure 5. A More Beautiful Arrow. </p>
-<p>An arrow can be added to the other end of the connector by adjusting its 
-"LineEndCenter" and "LineEndName" properties. </p>
-<p>I found out about these "objectwitharrow" style properties by listing its property set 
-returned by Info.getStyleProps(): </p>
-<p>// in main() of Grouper.java 
-// print the "objectwitharrow" style in the "graphics" style family 
-Props.showObjProps("Objects with Arrow Graphics Style",<br />
-     Info.getStyleProps(doc, "graphics", "objectwitharrow")); </p>
-<p>Alternatively, you can browse through the LineProperties class inherited by 
-ConnectorShape (shown in Figure 2; use lodoc LineProperties). </p>
-<p>There's a drawback to calling Info.getStyleProps()  – it causes Office to crash when 
-the Grouper.java exits. Office doesn't leave behind a zombie process, but an error 
-message appears on-screen. </p>
-<h2 id="2-shape-composition">2.  Shape Composition</h2>
-<p>Office supports three kinds of shape composition for converting multiple shapes into a 
-single shape. The new shape is automatically added to the page, and the old shapes 
-are removed. The three techniques are: </p>
-<h2 id="1-grouping-the-shapes-form-a-single-shape-without-being-changed-in-any-way">1.  grouping: the shapes form a single shape without being changed in any way.</h2>
-<p>Office has two mechanisms for grouping: the ShapeGroup shape and the 
-deprecated XShapeGrouper interface; </p>
-<h2 id="2-binding-this-is-similar-to-grouping-but-also-draws-connector-lines-between-the">2.  binding: this is similar to grouping, but also draws connector lines between the</h2>
-<p>original shapes; </p>
-<h2 id="3-combining-the-new-shape-is-built-by-changing-the-original-shapes-if-they">3.  combining: the new shape is built by changing the original shapes if they</h2>
-<p>overlap each other. Office supports four combination styles, called merging, 
-subtraction, intersection, and combination (the default). </p>
-<p>Grouper.java illustrates these techniques: </p>
-<p>// in main() of Grouper.java 
-//   : 
-Size slideSize = Draw.getSlideSize(currSlide); 
-int width = 40; 
-int height = 20; 
-int x = (slideSize.Width*3)/4 - width/2; 
-int y1 = 20; 
-int y2 = slideSize.Height/2 - (y1 + height);  // so separated 
-// int y2 = 30;     // so overlapping </p>
-<p>// create two ellipses, s1 and s2 
-XShape s1 = Draw.drawEllipse(currSlide, x, y1, width, height); 
-XShape s2 = Draw.drawEllipse(currSlide, x, y2, width, height); </p>
-<p>Draw.showShapesInfo(currSlide); </p>
-<p>// group/bind/combine the ellipses 
-groupEllipses(currSlide, s1, s2); 
-// bindEllipses(currSlide, s1, s2); 
-// combineEllipses(currSlide, s1, s2); </p>
-<p>Draw.showShapesInfo(currSlide); </p>
-<dl>
-<dt>// 2. combine some rectangles</dt>
-<dt>XShape compShape = combineRects(doc, currSlide);</dt>
-<dt>Draw.showShapesInfo(currSlide);</dt>
-<dt>Lo.delay(2000);   // delay so user can see composition</dt>
-<dd></dd>
-</dl>
-<p>Two ellipses are created, and positioned at the top-right of the page. </p>
-<p>Draw.showShapesInfo() is called to supply information about all the shapes on the 
-page: </p>
-<p>Draw Page shapes: 
-  Shape service: com.sun.star.drawing.RectangleShape; z-order: 0 
-  Shape service: com.sun.star.drawing.RectangleShape; z-order: 1 
-  Shape service: com.sun.star.drawing.ConnectorShape; z-order: 2 
-  Shape service: com.sun.star.drawing.EllipseShape; z-order: 3 
-  Shape service: com.sun.star.drawing.EllipseShape; z-order: 4 </p>
-<p>The two rectangles and the connector listed first are the results of calling 
-connectRectangles() earlier in Grouper.java. The two ellipses were just created in the 
-code snipper given above. </p>
-<h3 id="21-grouping-shapes">2.1.  Grouping Shapes</h3>
-<p>Grouper.java calls groupEllipses() to group the two ellipses: </p>
-<p>// in Grouper.java 
-XShape s1 = Draw.drawEllipse(currSlide, x, y1, width, height); 
-XShape s2 = Draw.drawEllipse(currSlide, x, y2, width, height); 
-groupEllipses(currSlide, s1, s2); </p>
-<p>groupElllipses() is: </p>
-<p>// in Grouper.java 
-private static void groupEllipses(XDrawPage currSlide,<br />
-                                       XShape s1, XShape s2) 
-{ 
-  XShape shapeGroup = Draw.addShape(currSlide, "GroupShape",0,0,0,0); 
-  XShapes shapes = Lo.qi(XShapes.class, shapeGroup); 
-  shapes.add(s1); 
-  shapes.add(s2); 
-}  // end of groupEllipses() </p>
-<p>The GroupShape is converted to an XShapes interface so the two ellipses can be 
-added to it. Note that GroupShape has no position or size; they are determined from 
-the added shapes. </p>
-<p>An alternative approach for grouping is the deprecated XShapeGrouper, but it 
-requires a few more lines of coding. An example can be found in the Developer's 
-Guide, at 
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Drawings/Grouping,_Com
-bining_and_Binding (use loguide "Grouping, Combining and Binding"). </p>
-<p>The on-screen result of groupEllipses() is that the two ellipses become a single shape, 
-as poorly shown in Figure 6. </p>
+<p>Figure 5. A More Beautiful Arrow.</p>
+<p>An arrow can be added to the other end of the connector by adjusting its
+"LineEndCenter" and "LineEndName" properties.</p>
+<p>I found out about these "objectwitharrow" style properties by listing its property set
+returned by Info.getStyleProps():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in main() of Grouper.java</span>
+<span class="c1">// print the &quot;objectwitharrow&quot; style in the &quot;graphics&quot; style family</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">showObjProps</span><span class="p">(</span><span class="s">&quot;Objects with Arrow Graphics Style&quot;</span><span class="p">,</span>
+     <span class="n">Info</span><span class="p">.</span><span class="na">getStyleProps</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;graphics&quot;</span><span class="p">,</span> <span class="s">&quot;objectwitharrow&quot;</span><span class="p">));</span>
+</code></pre></div>
+<p>Alternatively, you can browse through the LineProperties class inherited by
+ConnectorShape (shown in Figure 2; use <code>lodoc LineProperties</code>).</p>
+<p>There's a drawback to calling Info.getStyleProps()  – it causes Office to crash when
+the Grouper.java exits. Office doesn't leave behind a zombie process, but an error
+message appears on-screen.</p>
+<h2 id="2-shape-composition">2.  Shape Composition<a class="headerlink" href="#2-shape-composition" title="Permanent link">&para;</a></h2>
+<p>Office supports three kinds of shape composition for converting multiple shapes into a
+single shape. The new shape is automatically added to the page, and the old shapes
+are removed. The three techniques are:</p>
+<ol>
+<li>grouping: the shapes form a single shape without being changed in any way.
+Office has two mechanisms for grouping: the ShapeGroup shape and the
+deprecated XShapeGrouper interface;</li>
+<li>binding: this is similar to grouping, but also draws connector lines between the
+original shapes;</li>
+<li>combining: the new shape is built by changing the original shapes if they
+overlap each other. Office supports four combination styles, called merging,
+subtraction, intersection, and combination (the default).</li>
+</ol>
+<p>Grouper.java illustrates these techniques:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in main() of Grouper.java</span>
+<span class="c1">//   :</span>
+<span class="n">Size</span> <span class="n">slideSize</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getSlideSize</span><span class="p">(</span><span class="n">currSlide</span><span class="p">);</span>
+<span class="kt">int</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">40</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">slideSize</span><span class="p">.</span><span class="na">Width</span><span class="o">*</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span> <span class="o">-</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">y1</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">slideSize</span><span class="p">.</span><span class="na">Height</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="n">y1</span> <span class="o">+</span> <span class="n">height</span><span class="p">);</span>  <span class="c1">// so separated</span>
+<span class="c1">// int y2 = 30;     // so overlapping</span>
+
+<span class="c1">// create two ellipses, s1 and s2</span>
+<span class="n">XShape</span> <span class="n">s1</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawEllipse</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+<span class="n">XShape</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawEllipse</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+
+<span class="n">Draw</span><span class="p">.</span><span class="na">showShapesInfo</span><span class="p">(</span><span class="n">currSlide</span><span class="p">);</span>
+
+<span class="c1">// group/bind/combine the ellipses</span>
+<span class="n">groupEllipses</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">);</span>
+<span class="c1">// bindEllipses(currSlide, s1, s2);</span>
+<span class="c1">// combineEllipses(currSlide, s1, s2);</span>
+
+<span class="n">Draw</span><span class="p">.</span><span class="na">showShapesInfo</span><span class="p">(</span><span class="n">currSlide</span><span class="p">);</span>
+
+<span class="c1">// 2. combine some rectangles</span>
+<span class="n">XShape</span> <span class="n">compShape</span> <span class="o">=</span> <span class="n">combineRects</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">currSlide</span><span class="p">);</span>
+<span class="n">Draw</span><span class="p">.</span><span class="na">showShapesInfo</span><span class="p">(</span><span class="n">currSlide</span><span class="p">);</span>
+<span class="n">Lo</span><span class="p">.</span><span class="na">delay</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span>   <span class="c1">// delay so user can see composition</span>
+  <span class="p">:</span>
+</code></pre></div>
+<p>Two ellipses are created, and positioned at the top-right of the page.</p>
+<p>Draw.showShapesInfo() is called to supply information about all the shapes on the
+page:</p>
+<div class="highlight"><pre><span></span><code>Draw Page shapes:
+  Shape service: com.sun.star.drawing.RectangleShape; z-order: 0
+  Shape service: com.sun.star.drawing.RectangleShape; z-order: 1
+  Shape service: com.sun.star.drawing.ConnectorShape; z-order: 2
+  Shape service: com.sun.star.drawing.EllipseShape; z-order: 3
+  Shape service: com.sun.star.drawing.EllipseShape; z-order: 4
+</code></pre></div>
+<p>The two rectangles and the connector listed first are the results of calling
+connectRectangles() earlier in Grouper.java. The two ellipses were just created in the
+code snipper given above.</p>
+<h3 id="21-grouping-shapes">2.1.  Grouping Shapes<a class="headerlink" href="#21-grouping-shapes" title="Permanent link">&para;</a></h3>
+<p>Grouper.java calls groupEllipses() to group the two ellipses:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Grouper.java</span>
+<span class="n">XShape</span> <span class="n">s1</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawEllipse</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+<span class="n">XShape</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawEllipse</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+<span class="n">groupEllipses</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">);</span>
+</code></pre></div>
+<p>groupElllipses() is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Grouper.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">groupEllipses</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">currSlide</span><span class="p">,</span>
+                                       <span class="n">XShape</span> <span class="n">s1</span><span class="p">,</span> <span class="n">XShape</span> <span class="n">s2</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XShape</span> <span class="n">shapeGroup</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">addShape</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="s">&quot;GroupShape&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+  <span class="n">XShapes</span> <span class="n">shapes</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XShapes</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">shapeGroup</span><span class="p">);</span>
+  <span class="n">shapes</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">s1</span><span class="p">);</span>
+  <span class="n">shapes</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">s2</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of groupEllipses()</span>
+</code></pre></div>
+<p>The GroupShape is converted to an XShapes interface so the two ellipses can be
+added to it. Note that GroupShape has no position or size; they are determined from
+the added shapes.</p>
+<p>An alternative approach for grouping is the deprecated XShapeGrouper, but it
+requires a few more lines of coding. An example can be found in the Developer's
+Guide, at
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Drawings/Grouping,_Com">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Drawings/Grouping,_Com</a>
+bining_and_Binding (use <code>loguide "Grouping, Combining and Binding"</code>).</p>
+<p>The on-screen result of groupEllipses() is that the two ellipses become a single shape,
+as poorly shown in Figure 6.</p>
 <p><img alt="" src="images/15-Complex_Shapes-6.png" /></p>
-<p>Figure 6. The Grouped Ellipses. </p>
-<p>There's no noticeable difference from two ellipses until you click on one of them, 
-which causes both to be selected as a single shape. </p>
-<p>The change is better shown by a second call to Draw.showShapesInfo(), which 
-reports: </p>
-<p>Draw Page shapes: 
-  Shape service: com.sun.star.drawing.RectangleShape; z-order: 0 
-  Shape service: com.sun.star.drawing.RectangleShape; z-order: 1 
-  Shape service: com.sun.star.drawing.ConnectorShape; z-order: 2 
-  Shape service: com.sun.star.drawing.GroupShape; z-order: 3 </p>
-<p>The two ellipses have disappeared, replaced by a single GroupShape. </p>
-<h3 id="22-binding-shapes">2.2.  Binding Shapes</h3>
-<p>Instead of groupEllipses(), it's possible to call bindEllipses() in Grouper.java: </p>
-<p>// in Grouper.java 
-XShape s1 = Draw.drawEllipse(currSlide, x, y1, width, height); 
-XShape s2 = Draw.drawEllipse(currSlide, x, y2, width, height); 
-bindEllipses(currSlide, s1, s2); </p>
-<p>The function is defined as: </p>
-<p>// in Grouper.java 
-private static void bindEllipses(XDrawPage currSlide,<br />
-                                    XShape s1, XShape s2) 
-{ 
-  XShapes shapes =  Lo.createInstanceMCF(XShapes.class,<br />
-                      "com.sun.star.drawing.ShapeCollection"); 
-  shapes.add(s1); 
-  shapes.add(s2); 
-  XShapeBinder binder = Lo.qi(XShapeBinder.class, currSlide); 
-  binder.bind(shapes); 
-}  // end of bindEllipses() </p>
-<p>An empty XShapes shape is created, then filled with the component shapes. The 
-shapes inside XShapes are converted into a single object XShapeBinder.bind().  </p>
-<p>The result is like the grouped ellipses but with a connector linking the shapes, as in </p>
+<p>Figure 6. The Grouped Ellipses.</p>
+<p>There's no noticeable difference from two ellipses until you click on one of them,
+which causes both to be selected as a single shape.</p>
+<p>The change is better shown by a second call to Draw.showShapesInfo(), which
+reports:</p>
+<div class="highlight"><pre><span></span><code>Draw Page shapes:
+  Shape service: com.sun.star.drawing.RectangleShape; z-order: 0
+  Shape service: com.sun.star.drawing.RectangleShape; z-order: 1
+  Shape service: com.sun.star.drawing.ConnectorShape; z-order: 2
+  Shape service: com.sun.star.drawing.GroupShape; z-order: 3
+</code></pre></div>
+<p>The two ellipses have disappeared, replaced by a single GroupShape.</p>
+<h3 id="22-binding-shapes">2.2.  Binding Shapes<a class="headerlink" href="#22-binding-shapes" title="Permanent link">&para;</a></h3>
+<p>Instead of groupEllipses(), it's possible to call bindEllipses() in Grouper.java:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Grouper.java</span>
+<span class="n">XShape</span> <span class="n">s1</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawEllipse</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+<span class="n">XShape</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawEllipse</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+<span class="n">bindEllipses</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">);</span>
+</code></pre></div>
+<p>The function is defined as:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Grouper.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">bindEllipses</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">currSlide</span><span class="p">,</span>
+                                    <span class="n">XShape</span> <span class="n">s1</span><span class="p">,</span> <span class="n">XShape</span> <span class="n">s2</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XShapes</span> <span class="n">shapes</span> <span class="o">=</span>  <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XShapes</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                      <span class="s">&quot;com.sun.star.drawing.ShapeCollection&quot;</span><span class="p">);</span>
+  <span class="n">shapes</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">s1</span><span class="p">);</span>
+  <span class="n">shapes</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">s2</span><span class="p">);</span>
+  <span class="n">XShapeBinder</span> <span class="n">binder</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XShapeBinder</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">currSlide</span><span class="p">);</span>
+  <span class="n">binder</span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="n">shapes</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of bindEllipses()</span>
+</code></pre></div>
+<p>An empty XShapes shape is created, then filled with the component shapes. The
+shapes inside XShapes are converted into a single object XShapeBinder.bind().</p>
+<p>The result is like the grouped ellipses but with a connector linking the shapes, as in
+Figure 7.</p>
 <p><img alt="" src="images/15-Complex_Shapes-7.png" /></p>
-<p>Figure 7. </p>
-<p><img alt="" src="images/15-Complex_Shapes-7.png" /></p>
-<p>Figure 7. The Bound Ellipses. </p>
-<p>The result is also visible in a call to Draw.showShapesInfo(): </p>
-<p>Draw Page shapes: 
-  Shape service: com.sun.star.drawing.RectangleShape; z-order: 0 
-  Shape service: com.sun.star.drawing.RectangleShape; z-order: 1 
-  Shape service: com.sun.star.drawing.ConnectorShape; z-order: 2 
-  Shape service: com.sun.star.drawing.ClosedBezierShape; z-order: 3 </p>
-<p>The two ellipses have been replaced by a closed Bezier shape. </p>
-<p>In my opinion, it's easier to link shapes explicitly with connectors, using code like that 
-in connectRectangles() from section 1. If the result needs to be a single shape, then 
-grouping (not binding) can be applied to the shapes and the connector. </p>
-<h3 id="23-combining-shapes-with-xshapecombiner">2.3.  Combining Shapes with XShapeCombiner</h3>
-<p>Grouper.java calls combineEllipse() to combine the two ellipses: </p>
-<p>// in Grouper.java 
-XShape s1 = Draw.drawEllipse(currSlide, x, y1, width, height); 
-XShape s2 = Draw.drawEllipse(currSlide, x, y2, width, height); 
-combineEllipses(currSlide, s1, s2); </p>
-<p>combineEllipses() employs the XShapeCombiner interface, which is used in the same 
-way as XShapeBinder: </p>
-<p>// in Grouper.java 
-private static void combineEllipses(XDrawPage currSlide,<br />
-                                      XShape s1, XShape s2) 
-{ 
-  XShapes shapes =  Lo.createInstanceMCF(XShapes.class,<br />
-                          "com.sun.star.drawing.ShapeCollection"); 
-  shapes.add(s1); 
-  shapes.add(s2); 
-  XShapeCombiner combiner = Lo.qi(XShapeCombiner.class, currSlide); 
-  combiner.combine(shapes); 
-}  // end of combineEllipses() </p>
-<p>The combined shape only differs from grouping if the two ellipses are initially 
-overlapping. Figure 8 shows that the interesecting areas of the two shapes is removed 
-from the combination. </p>
+<p>Figure 7. The Bound Ellipses.</p>
+<p>The result is also visible in a call to Draw.showShapesInfo():</p>
+<div class="highlight"><pre><span></span><code>Draw Page shapes:
+  Shape service: com.sun.star.drawing.RectangleShape; z-order: 0
+  Shape service: com.sun.star.drawing.RectangleShape; z-order: 1
+  Shape service: com.sun.star.drawing.ConnectorShape; z-order: 2
+  Shape service: com.sun.star.drawing.ClosedBezierShape; z-order: 3
+</code></pre></div>
+<p>The two ellipses have been replaced by a closed Bezier shape.</p>
+<p>In my opinion, it's easier to link shapes explicitly with connectors, using code like that
+in connectRectangles() from section 1. If the result needs to be a single shape, then
+grouping (not binding) can be applied to the shapes and the connector.</p>
+<h3 id="23-combining-shapes-with-xshapecombiner">2.3.  Combining Shapes with XShapeCombiner<a class="headerlink" href="#23-combining-shapes-with-xshapecombiner" title="Permanent link">&para;</a></h3>
+<p>Grouper.java calls combineEllipse() to combine the two ellipses:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Grouper.java</span>
+<span class="n">XShape</span> <span class="n">s1</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawEllipse</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+<span class="n">XShape</span> <span class="n">s2</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawEllipse</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+<span class="n">combineEllipses</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">);</span>
+</code></pre></div>
+<p>combineEllipses() employs the XShapeCombiner interface, which is used in the same
+way as XShapeBinder:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Grouper.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">combineEllipses</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">currSlide</span><span class="p">,</span>
+                                      <span class="n">XShape</span> <span class="n">s1</span><span class="p">,</span> <span class="n">XShape</span> <span class="n">s2</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XShapes</span> <span class="n">shapes</span> <span class="o">=</span>  <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XShapes</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                          <span class="s">&quot;com.sun.star.drawing.ShapeCollection&quot;</span><span class="p">);</span>
+  <span class="n">shapes</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">s1</span><span class="p">);</span>
+  <span class="n">shapes</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">s2</span><span class="p">);</span>
+  <span class="n">XShapeCombiner</span> <span class="n">combiner</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XShapeCombiner</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">currSlide</span><span class="p">);</span>
+  <span class="n">combiner</span><span class="p">.</span><span class="na">combine</span><span class="p">(</span><span class="n">shapes</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of combineEllipses()</span>
+</code></pre></div>
+<p>The combined shape only differs from grouping if the two ellipses are initially
+overlapping. Figure 8 shows that the interesecting areas of the two shapes is removed
+from the combination.</p>
 <p><img alt="" src="images/15-Complex_Shapes-8.png" /></p>
-<p>Figure 8. Combining Shapes with  XShapeCombiner. </p>
-<p>The result is also visible in a call to Draw.showShapesInfo(): </p>
-<p>Draw Page shapes: 
-  Shape service: com.sun.star.drawing.RectangleShape; z-order: 0 
-  Shape service: com.sun.star.drawing.RectangleShape; z-order: 1 
-  Shape service: com.sun.star.drawing.ConnectorShape; z-order: 2 
-  Shape service: com.sun.star.drawing.ClosedBezierShape; z-order: 3 </p>
-<p>The two ellipses have again been replaced by a closed Bezier shape . </p>
-<h3 id="24-richer-shape-combination-by-dispatch">2.4.  Richer Shape Combination by Dispatch</h3>
-<p>The drawback of XShapeCombiner that it only supports combination, not merging, 
-subtraction, or intersection. I had to implement those effects by using dispatches, as 
-shown in combineRects() in Grouper.java: </p>
-<p>// in Grouper.java 
-private static XShape combineRects(XComponent doc,<br />
-                                     XDrawPage currSlide) 
-{ 
-  System.out.println("\nCombining rectangles ..."); 
-  XShape r1 = Draw.drawRectangle(currSlide, 50, 20, 40, 20); 
-  XShape r2 = Draw.drawRectangle(currSlide, 70, 25, 40, 20); </p>
-<p>XShapes shapes =  Lo.createInstanceMCF(XShapes.class,<br />
-                          "com.sun.star.drawing.ShapeCollection"); 
-  shapes.add(r1); 
-  shapes.add(r2); 
-  return Draw.combineShape(doc, shapes, Draw.COMBINE); 
-       // Draw.MERGE, Draw.SUBTRACT, Draw.INTERSECT, Draw.COMBINE 
-}  // end of combineRects() </p>
-<p>The dispatching is performed by Draw.combineShape(), which is passed an array of 
-XShapes and a constant representing one of the four combining techniques. </p>
-<p>Figure 9 shows the results when the two rectangles created in combineRects() are 
-combined in the different ways. </p>
+<p>Figure 8. Combining Shapes with  XShapeCombiner.</p>
+<p>The result is also visible in a call to Draw.showShapesInfo():</p>
+<div class="highlight"><pre><span></span><code>Draw Page shapes:
+  Shape service: com.sun.star.drawing.RectangleShape; z-order: 0
+  Shape service: com.sun.star.drawing.RectangleShape; z-order: 1
+  Shape service: com.sun.star.drawing.ConnectorShape; z-order: 2
+  Shape service: com.sun.star.drawing.ClosedBezierShape; z-order: 3
+</code></pre></div>
+<p>The two ellipses have again been replaced by a closed Bezier shape .</p>
+<h3 id="24-richer-shape-combination-by-dispatch">2.4.  Richer Shape Combination by Dispatch<a class="headerlink" href="#24-richer-shape-combination-by-dispatch" title="Permanent link">&para;</a></h3>
+<p>The drawback of XShapeCombiner that it only supports combination, not merging,
+subtraction, or intersection. I had to implement those effects by using dispatches, as
+shown in combineRects() in Grouper.java:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Grouper.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="n">XShape</span> <span class="nf">combineRects</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">,</span>
+                                     <span class="n">XDrawPage</span> <span class="n">currSlide</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nCombining rectangles ...&quot;</span><span class="p">);</span>
+  <span class="n">XShape</span> <span class="n">r1</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawRectangle</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+  <span class="n">XShape</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawRectangle</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+
+  <span class="n">XShapes</span> <span class="n">shapes</span> <span class="o">=</span>  <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XShapes</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                          <span class="s">&quot;com.sun.star.drawing.ShapeCollection&quot;</span><span class="p">);</span>
+  <span class="n">shapes</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">r1</span><span class="p">);</span>
+  <span class="n">shapes</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">r2</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">Draw</span><span class="p">.</span><span class="na">combineShape</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">shapes</span><span class="p">,</span> <span class="n">Draw</span><span class="p">.</span><span class="na">COMBINE</span><span class="p">);</span>
+       <span class="c1">// Draw.MERGE, Draw.SUBTRACT, Draw.INTERSECT, Draw.COMBINE</span>
+<span class="p">}</span>  <span class="c1">// end of combineRects()</span>
+</code></pre></div>
+<p>The dispatching is performed by Draw.combineShape(), which is passed an array of
+XShapes and a constant representing one of the four combining techniques.</p>
+<p>Figure 9 shows the results when the two rectangles created in combineRects() are
+combined in the different ways.</p>
 <p><img alt="" src="images/15-Complex_Shapes-9.png" /></p>
-<p>Figure 9. The Four Ways of Combining Shapes. </p>
-<p>The merging change in Figure 9 is a bit subtle – notice that there's no black outline 
-between the rectangles after merging; the merged object is a single shape. </p>
-<p>When combineRects() returns, Draw.showShapesInfo() reports: </p>
-<p>Draw Page shapes: 
-  Shape service: com.sun.star.drawing.RectangleShape; z-order: 0 
-  Shape service: com.sun.star.drawing.RectangleShape; z-order: 1 
-  Shape service: com.sun.star.drawing.ConnectorShape; z-order: 2 
-  Shape service: com.sun.star.drawing.ClosedBezierShape; z-order: 3 
-  Shape service: com.sun.star.drawing.PolyPolygonShape; z-order: 4 </p>
-<p>The combined shape is a PolyPolygonShape, which means that the shape is created 
-from multiple polygons.  </p>
-<p>One tricky aspect of combining shapes with dispatches is that the shapes must be 
-selected prior to the dispatch being sent. After the dispatch has been processed, the 
-selection will have been changed to contain only the single new shape. This approach 
-is implemented in combineShape(): </p>
-<p>public static XShape combineShape(XComponent doc,<br />
-                              XShapes shapes, int combineOp) 
-{ 
-  // select the shapes for the dispatch to apply to 
-  XSelectionSupplier selSupp =  Lo.qi(XSelectionSupplier.class,<br />
-                                   GUI.getCurrentController(doc)); 
-  selSupp.select(shapes); </p>
-<p>if (combineOp == MERGE) 
-    Lo.dispatchCmd("Merge"); 
-  else if (combineOp == INTERSECT) 
-    Lo.dispatchCmd("Intersect"); 
-  else if (combineOp == SUBTRACT) 
-    Lo.dispatchCmd("Substract");   // misspelt! 
-  else if (combineOp == COMBINE) 
-    Lo.dispatchCmd("Combine");<br />
-  else { 
-     System.out.println("Did not recognize op: " +<br />
-                               combineOp + "; using merge"); 
-     Lo.dispatchCmd("Merge"); 
-  } 
-  Lo.delay(500);   // give time for dispatch to be processed </p>
-<p>// extract the new single shape from the modified selection 
-  XShapes xs = Lo.qi(XShapes.class, selSupp.getSelection()); 
-  XShape combinedShape = null; 
-  try { 
-    combinedShape = Lo.qi(XShape.class, xs.getByIndex(0)); 
-  } 
-  catch(com.sun.star.uno.Exception e) 
-  {  System.out.println("Could not get combined shape");  } </p>
-<p>return combinedShape; 
-}  // end of combineShape() </p>
-<p>The shapes are selected by adding them to an XSelectionSupplier. The requested 
-dispatch is sent to the selection, and then the function briefly sleeps to ensure that the 
-dispatch has been processed. An XShapes object is obtained from the changed 
-selection, and the new PolyPolygonShape is extracted and returned. </p>
-<h2 id="3-undoing-a-groupingbindingcombining">3.  Undoing a Grouping/Binding/Combining</h2>
-<p>Any shapes which have been grouped, bound, or combined can be ungrouped, 
-unbound, or uncombined. On screen the separated shapes will look the same as 
-before, but may not have the same shape types as the originals. </p>
-<p>The main() function of Grouper.java shows how the combination of the two 
-rectangles can be undone: </p>
-<p>// in Grouper.java 
-    : 
-XShape compShape = combineRects(doc, currSlide); 
-    : 
-XShapeCombiner combiner = Lo.qi(XShapeCombiner.class, currSlide); 
-combiner.split(compShape);  // split the rectangles 
-Draw.showShapesInfo(currSlide); </p>
-<p>The combined rectangles shape is passed to XShapeCombiner.split() which removes 
-the combined shape from the slide, replacing it by its components. </p>
-<p>Draw.showShapesInfo() shows this result: </p>
-<p>Draw Page shapes: 
-  Shape service: com.sun.star.drawing.RectangleShape; z-order: 0 
-  Shape service: com.sun.star.drawing.RectangleShape; z-order: 1 
-  Shape service: com.sun.star.drawing.ConnectorShape; z-order: 2 
-  Shape service: com.sun.star.drawing.ClosedBezierShape; z-order: 3 
-  Shape service: com.sun.star.drawing.PolyPolygonShape; z-order: 4 
-  Shape service: com.sun.star.drawing.PolyPolygonShape; z-order: 5 </p>
-<p>The last two shapes listed are the separated rectangles, but represented now by two 
-PolyPolygonShapes.  </p>
-<p>XShapeCombiner.split() only works on shapes that were combined using a 
-"COMBINE" dispatch. Shapes that were composed using merging, subtraction, or 
-intersection, can not be separated. </p>
-<p>For grouped and bound shapes, the methods for breaking apart a shape are 
-XShapeGrouper.ungroup() and XShapeBinder.unbind(). For example: </p>
-<p>XShapeGrouper grouper = Lo.qi(XShapeGrouper.class, currSlide); 
-grouper.ungroup(compShape); </p>
-<h2 id="4-bezier-curves">4.  Bezier Curves</h2>
-<p>The simplest Bezier curve is defined using four coordinates, as in Figure 10. </p>
+<p>Figure 9. The Four Ways of Combining Shapes.</p>
+<p>The merging change in Figure 9 is a bit subtle – notice that there's no black outline
+between the rectangles after merging; the merged object is a single shape.</p>
+<p>When combineRects() returns, Draw.showShapesInfo() reports:</p>
+<div class="highlight"><pre><span></span><code>Draw Page shapes:
+  Shape service: com.sun.star.drawing.RectangleShape; z-order: 0
+  Shape service: com.sun.star.drawing.RectangleShape; z-order: 1
+  Shape service: com.sun.star.drawing.ConnectorShape; z-order: 2
+  Shape service: com.sun.star.drawing.ClosedBezierShape; z-order: 3
+  Shape service: com.sun.star.drawing.PolyPolygonShape; z-order: 4
+</code></pre></div>
+<p>The combined shape is a PolyPolygonShape, which means that the shape is created
+from multiple polygons.</p>
+<p>One tricky aspect of combining shapes with dispatches is that the shapes must be
+selected prior to the dispatch being sent. After the dispatch has been processed, the
+selection will have been changed to contain only the single new shape. This approach
+is implemented in combineShape():</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="n">XShape</span> <span class="nf">combineShape</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">,</span>
+                              <span class="n">XShapes</span> <span class="n">shapes</span><span class="p">,</span> <span class="kt">int</span> <span class="n">combineOp</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// select the shapes for the dispatch to apply to</span>
+  <span class="n">XSelectionSupplier</span> <span class="n">selSupp</span> <span class="o">=</span>  <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XSelectionSupplier</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                                   <span class="n">GUI</span><span class="p">.</span><span class="na">getCurrentController</span><span class="p">(</span><span class="n">doc</span><span class="p">));</span>
+  <span class="n">selSupp</span><span class="p">.</span><span class="na">select</span><span class="p">(</span><span class="n">shapes</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">combineOp</span> <span class="o">==</span> <span class="n">MERGE</span><span class="p">)</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">dispatchCmd</span><span class="p">(</span><span class="s">&quot;Merge&quot;</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">combineOp</span> <span class="o">==</span> <span class="n">INTERSECT</span><span class="p">)</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">dispatchCmd</span><span class="p">(</span><span class="s">&quot;Intersect&quot;</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">combineOp</span> <span class="o">==</span> <span class="n">SUBTRACT</span><span class="p">)</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">dispatchCmd</span><span class="p">(</span><span class="s">&quot;Substract&quot;</span><span class="p">);</span>   <span class="c1">// misspelt!</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">combineOp</span> <span class="o">==</span> <span class="n">COMBINE</span><span class="p">)</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">dispatchCmd</span><span class="p">(</span><span class="s">&quot;Combine&quot;</span><span class="p">);</span>
+  <span class="k">else</span> <span class="p">{</span>
+     <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Did not recognize op: &quot;</span> <span class="o">+</span>
+                               <span class="n">combineOp</span> <span class="o">+</span> <span class="s">&quot;; using merge&quot;</span><span class="p">);</span>
+     <span class="n">Lo</span><span class="p">.</span><span class="na">dispatchCmd</span><span class="p">(</span><span class="s">&quot;Merge&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>   <span class="c1">// give time for dispatch to be processed</span>
+
+  <span class="c1">// extract the new single shape from the modified selection</span>
+  <span class="n">XShapes</span> <span class="n">xs</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XShapes</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">selSupp</span><span class="p">.</span><span class="na">getSelection</span><span class="p">());</span>
+  <span class="n">XShape</span> <span class="n">combinedShape</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">combinedShape</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XShape</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">xs</span><span class="p">.</span><span class="na">getByIndex</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">uno</span><span class="p">.</span><span class="na">Exception</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not get combined shape&quot;</span><span class="p">);</span>  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">combinedShape</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of combineShape()</span>
+</code></pre></div>
+<p>The shapes are selected by adding them to an XSelectionSupplier. The requested
+dispatch is sent to the selection, and then the function briefly sleeps to ensure that the
+dispatch has been processed. An XShapes object is obtained from the changed
+selection, and the new PolyPolygonShape is extracted and returned.</p>
+<h2 id="3-undoing-a-groupingbindingcombining">3.  Undoing a Grouping/Binding/Combining<a class="headerlink" href="#3-undoing-a-groupingbindingcombining" title="Permanent link">&para;</a></h2>
+<p>Any shapes which have been grouped, bound, or combined can be ungrouped,
+unbound, or uncombined. On screen the separated shapes will look the same as
+before, but may not have the same shape types as the originals.</p>
+<p>The main() function of Grouper.java shows how the combination of the two
+rectangles can be undone:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Grouper.java</span>
+    <span class="p">:</span>
+<span class="n">XShape</span> <span class="n">compShape</span> <span class="o">=</span> <span class="n">combineRects</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">currSlide</span><span class="p">);</span>
+    <span class="p">:</span>
+<span class="n">XShapeCombiner</span> <span class="n">combiner</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XShapeCombiner</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">currSlide</span><span class="p">);</span>
+<span class="n">combiner</span><span class="p">.</span><span class="na">split</span><span class="p">(</span><span class="n">compShape</span><span class="p">);</span>  <span class="c1">// split the rectangles</span>
+<span class="n">Draw</span><span class="p">.</span><span class="na">showShapesInfo</span><span class="p">(</span><span class="n">currSlide</span><span class="p">);</span>
+</code></pre></div>
+<p>The combined rectangles shape is passed to XShapeCombiner.split() which removes
+the combined shape from the slide, replacing it by its components.
+Draw.showShapesInfo() shows this result:</p>
+<div class="highlight"><pre><span></span><code>Draw Page shapes:
+  Shape service: com.sun.star.drawing.RectangleShape; z-order: 0
+  Shape service: com.sun.star.drawing.RectangleShape; z-order: 1
+  Shape service: com.sun.star.drawing.ConnectorShape; z-order: 2
+  Shape service: com.sun.star.drawing.ClosedBezierShape; z-order: 3
+  Shape service: com.sun.star.drawing.PolyPolygonShape; z-order: 4
+  Shape service: com.sun.star.drawing.PolyPolygonShape; z-order: 5
+</code></pre></div>
+<p>The last two shapes listed are the separated rectangles, but represented now by two
+PolyPolygonShapes.</p>
+<p>XShapeCombiner.split() only works on shapes that were combined using a
+"COMBINE" dispatch. Shapes that were composed using merging, subtraction, or
+intersection, can not be separated.</p>
+<p>For grouped and bound shapes, the methods for breaking apart a shape are
+XShapeGrouper.ungroup() and XShapeBinder.unbind(). For example:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XShapeGrouper</span> <span class="n">grouper</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XShapeGrouper</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">currSlide</span><span class="p">);</span>
+<span class="n">grouper</span><span class="p">.</span><span class="na">ungroup</span><span class="p">(</span><span class="n">compShape</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="4-bezier-curves">4.  Bezier Curves<a class="headerlink" href="#4-bezier-curves" title="Permanent link">&para;</a></h2>
+<p>The simplest Bezier curve is defined using four coordinates, as in Figure 10.</p>
 <p><img alt="" src="images/15-Complex_Shapes-10.png" /></p>
-<p>Figure 10. A Cubic Bezier Curve. </p>
-<p>P0 and P3 are the start and end points of the curve (also called nodes or anchors), and 
-P1 and P2 are control points, which specify how the curve bends between the start 
-and finish. A curve using four points in this way is a cubic Bezier curve, the default 
-type in Office.  </p>
-<p>The code for generating Figure 10 is in drawCurve() in BezierBuilder.java: </p>
-<p>// in drawCurve() in BezierBuilder.java 
-private static XShape drawCurve(XDrawPage currSlide) 
-{ 
-  Point[] pathPts = new Point[4]; 
-  PolygonFlags[] pathFlags = new PolygonFlags[4]; </p>
-<p>pathPts[0] = new Point(1000, 2500); 
-  pathFlags[0] = PolygonFlags.NORMAL; </p>
-<p>pathPts[1] = new Point(1000,1000);    // control point 
-  pathFlags[1] = PolygonFlags.CONTROL; </p>
-<p>pathPts[2] = new Point(4000,1000);    // control point 
-  pathFlags[2] = PolygonFlags.CONTROL; </p>
-<p>pathPts[3] = new Point(4000,2500); 
-  pathFlags[3] = PolygonFlags.NORMAL; </p>
-<p>return Draw.drawBezier(currSlide, pathPts, pathFlags, true); 
-}  // end of drawCurve() </p>
-<p>Most of the curve generation is done by Draw.drawBezier(), but the programmer must 
-still define two arrays and a boolean. The pathPts[] array holds the four coordinates, 
-and pathFlags[] specify their types. The final boolean argument of Draw.drawBezier() 
-indicates whether the generated curve is to be open or closed. </p>
-<p>Figure 11 shows how the curve is rendered. </p>
+<p>Figure 10. A Cubic Bezier Curve.</p>
+<p>P0 and P3 are the start and end points of the curve (also called nodes or anchors), and
+P1 and P2 are control points, which specify how the curve bends between the start
+and finish. A curve using four points in this way is a cubic Bezier curve, the default
+type in Office.</p>
+<p>The code for generating Figure 10 is in drawCurve() in BezierBuilder.java:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in drawCurve() in BezierBuilder.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="n">XShape</span> <span class="nf">drawCurve</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">currSlide</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">Point</span><span class="o">[]</span> <span class="n">pathPts</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="o">[</span><span class="mi">4</span><span class="o">]</span><span class="p">;</span>
+  <span class="n">PolygonFlags</span><span class="o">[]</span> <span class="n">pathFlags</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PolygonFlags</span><span class="o">[</span><span class="mi">4</span><span class="o">]</span><span class="p">;</span>
+
+  <span class="n">pathPts</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">2500</span><span class="p">);</span>
+  <span class="n">pathFlags</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">PolygonFlags</span><span class="p">.</span><span class="na">NORMAL</span><span class="p">;</span>
+
+  <span class="n">pathPts</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="mi">1000</span><span class="p">);</span>    <span class="c1">// control point</span>
+  <span class="n">pathFlags</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">PolygonFlags</span><span class="p">.</span><span class="na">CONTROL</span><span class="p">;</span>
+
+  <span class="n">pathPts</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="p">(</span><span class="mi">4000</span><span class="p">,</span><span class="mi">1000</span><span class="p">);</span>    <span class="c1">// control point</span>
+  <span class="n">pathFlags</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="n">PolygonFlags</span><span class="p">.</span><span class="na">CONTROL</span><span class="p">;</span>
+
+  <span class="n">pathPts</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="p">(</span><span class="mi">4000</span><span class="p">,</span><span class="mi">2500</span><span class="p">);</span>
+  <span class="n">pathFlags</span><span class="o">[</span><span class="mi">3</span><span class="o">]</span> <span class="o">=</span> <span class="n">PolygonFlags</span><span class="p">.</span><span class="na">NORMAL</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawBezier</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="n">pathPts</span><span class="p">,</span> <span class="n">pathFlags</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of drawCurve()</span>
+</code></pre></div>
+<p>Most of the curve generation is done by Draw.drawBezier(), but the programmer must
+still define two arrays and a boolean. The pathPts[] array holds the four coordinates,
+and pathFlags[] specify their types. The final boolean argument of Draw.drawBezier()
+indicates whether the generated curve is to be open or closed.</p>
+<p>Figure 11 shows how the curve is rendered.</p>
 <p><img alt="" src="images/15-Complex_Shapes-11.png" /></p>
-<p>Figure 11. The Drawn Bezier Curve. </p>
-<p>Draw.drawBezier() uses the isOpen boolean to decide whether to create an 
-OpenBezierShape or a ClosedBezierShape. Then it fills a PolyPolygonBezierCoords 
-data structure with the coordinates and flags before assigning the structure to the 
-shape's "PolyPolygonBezier" property: </p>
-<p>public static XShape drawBezier(XDrawPage slide,<br />
-              Point[] pts, PolygonFlags[] flags, boolean isOpen) 
-{ 
-  if (pts.length != flags.length) { 
-    System.out.println("Mismatch in lengths of<br />
-                                   points and flags array"); 
-    return null; 
-  } </p>
-<p>String bezierType = isOpen ? "OpenBezierShape" :<br />
-                               "ClosedBezierShape"; 
-  XShape bezierPoly = addShape(slide, bezierType, 0, 0, 0, 0); </p>
-<p>// create space for one Bezier shape 
-  PolyPolygonBezierCoords aCoords = new PolyPolygonBezierCoords(); 
-              // for shapes formed by one <em>or more</em> Bezier polygons 
-  aCoords.Coordinates = new Point[1][]; 
-  aCoords.Flags = new PolygonFlags[1][]; 
-  aCoords.Coordinates[0] = pts; 
-  aCoords.Flags[0] = flags; </p>
-<p>Props.setProperty(bezierPoly, "PolyPolygonBezier", aCoords); 
-  return bezierPoly; 
-}  // end of drawBezier() </p>
-<p>A PolyPolygonBezierCoords object can store multiple Bezier curves, but 
-Draw.drawBezier() only assigns one curve to it. Each curve is defined by an array of 
-coordinates and a set of flags. </p>
-<h3 id="41-drawing-a-simple-bezier">4.1.  Drawing a Simple Bezier</h3>
-<p>The hard part of writing drawCurve() in BezierBuilder.java is knowing what 
-coordinates to put into pathPts[]. Probably the 'easiest' solution is to use a SVG editor 
-to draw the curve by hand, and then extract the coordinates from the generated file.  </p>
-<p>As the quotes around 'easiest' suggest, this isn't actually that easy since a curve can be 
-much more complex than my example. A real example may be composed from 
-multiple curves, straight lines, quadratic Bezier sub-curves (i.e. ones which use only a 
-single control point between anchors), arcs, and smoothing. The official specification 
-can be found at http://www.w3.org/TR/SVG/paths.html, and there are many tutorials 
-on the topic, such as http://www.svgbasics.com/curves.html and 
-http://www.w3schools.com/svg/svg_path.asp. </p>
-<p>Even if you're careful and only draw curves like mine, the generated SVG is not quite 
-the same as the coordinates used by Office's PolyPolygonBezierCoords. However, the 
-translation is fairly straightforward, once you've done one or two. </p>
-<p>One good online site for drawing simple curves is 
-http://blogs.sitepointstatic.com/examples/tech/svg-curves/cubic-curve.html, 
-developed by Craig Buckler. It restricts you to manipulating a curve made up of two 
-anchors and two controls, like mine, and displays the corresponding SVG path data, 
-as in Figure 12. </p>
+<p>Figure 11. The Drawn Bezier Curve.</p>
+<p>Draw.drawBezier() uses the isOpen boolean to decide whether to create an
+OpenBezierShape or a ClosedBezierShape. Then it fills a PolyPolygonBezierCoords
+data structure with the coordinates and flags before assigning the structure to the
+shape's "PolyPolygonBezier" property:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="n">XShape</span> <span class="nf">drawBezier</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">slide</span><span class="p">,</span>
+              <span class="n">Point</span><span class="o">[]</span> <span class="n">pts</span><span class="p">,</span> <span class="n">PolygonFlags</span><span class="o">[]</span> <span class="n">flags</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">isOpen</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">pts</span><span class="p">.</span><span class="na">length</span> <span class="o">!=</span> <span class="n">flags</span><span class="p">.</span><span class="na">length</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Mismatch in lengths of</span>
+<span class="s">                                   points and flags array&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">String</span> <span class="n">bezierType</span> <span class="o">=</span> <span class="n">isOpen</span> <span class="o">?</span> <span class="s">&quot;OpenBezierShape&quot;</span> <span class="p">:</span>
+                               <span class="s">&quot;ClosedBezierShape&quot;</span><span class="p">;</span>
+  <span class="n">XShape</span> <span class="n">bezierPoly</span> <span class="o">=</span> <span class="n">addShape</span><span class="p">(</span><span class="n">slide</span><span class="p">,</span> <span class="n">bezierType</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+  <span class="c1">// create space for one Bezier shape</span>
+  <span class="n">PolyPolygonBezierCoords</span> <span class="n">aCoords</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PolyPolygonBezierCoords</span><span class="p">();</span>
+              <span class="c1">// for shapes formed by one *or more* Bezier polygons</span>
+  <span class="n">aCoords</span><span class="p">.</span><span class="na">Coordinates</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="o">[</span><span class="mi">1</span><span class="o">][]</span><span class="p">;</span>
+  <span class="n">aCoords</span><span class="p">.</span><span class="na">Flags</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PolygonFlags</span><span class="o">[</span><span class="mi">1</span><span class="o">][]</span><span class="p">;</span>
+  <span class="n">aCoords</span><span class="p">.</span><span class="na">Coordinates</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">pts</span><span class="p">;</span>
+  <span class="n">aCoords</span><span class="p">.</span><span class="na">Flags</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">flags</span><span class="p">;</span>
+
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">bezierPoly</span><span class="p">,</span> <span class="s">&quot;PolyPolygonBezier&quot;</span><span class="p">,</span> <span class="n">aCoords</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">bezierPoly</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of drawBezier()</span>
+</code></pre></div>
+<p>A PolyPolygonBezierCoords object can store multiple Bezier curves, but
+Draw.drawBezier() only assigns one curve to it. Each curve is defined by an array of
+coordinates and a set of flags.</p>
+<h3 id="41-drawing-a-simple-bezier">4.1.  Drawing a Simple Bezier<a class="headerlink" href="#41-drawing-a-simple-bezier" title="Permanent link">&para;</a></h3>
+<p>The hard part of writing drawCurve() in BezierBuilder.java is knowing what
+coordinates to put into pathPts[]. Probably the 'easiest' solution is to use a SVG editor
+to draw the curve by hand, and then extract the coordinates from the generated file.</p>
+<p>As the quotes around 'easiest' suggest, this isn't actually that easy since a curve can be
+much more complex than my example. A real example may be composed from
+multiple curves, straight lines, quadratic Bezier sub-curves (i.e. ones which use only a
+single control point between anchors), arcs, and smoothing. The official specification
+can be found at <a href="http://www.w3.org/TR/SVG/paths.html">http://www.w3.org/TR/SVG/paths.html</a>, and there are many tutorials
+on the topic, such as <a href="http://www.svgbasics.com/curves.html">http://www.svgbasics.com/curves.html</a> and
+<a href="http://www.w3schools.com/svg/svg_path.asp">http://www.w3schools.com/svg/svg_path.asp</a>.</p>
+<p>Even if you're careful and only draw curves like mine, the generated SVG is not quite
+the same as the coordinates used by Office's PolyPolygonBezierCoords. However, the
+translation is fairly straightforward, once you've done one or two.</p>
+<p>One good online site for drawing simple curves is
+<a href="http://blogs.sitepointstatic.com/examples/tech/svg-curves/cubic-curve.html">http://blogs.sitepointstatic.com/examples/tech/svg-curves/cubic-curve.html</a>,
+developed by Craig Buckler. It restricts you to manipulating a curve made up of two
+anchors and two controls, like mine, and displays the corresponding SVG path data,
+as in Figure 12.</p>
 <p><img alt="" src="images/15-Complex_Shapes-11.png" /></p>
-<p>Figure 11. Drawing a Curve Online. </p>
-<p>Figure 12 is a bit small – the path data at the top-right is: 
-<path d="M100,250 C100,100 400,100 400,250" /> 
-The path contains two operations: "M" and "C". "M" moves the drawing point to a 
-specified coordinate (in this case (100, 250)). The "C" is followed by three 
-coordinates: (100,100),  (400, 100), and (400, 250). The first two are the control 
-points and the last is the end point of the curve. There's no start point since the result 
-of the "M" operation is used by default. </p>
-<p>Translating this to Office coordinates means using the "M" coordinate as the start 
-point, and applying some scaling of the values to make the curve visible on the page. </p>
-<p>Remember that Office uses 1/100 mm units for drawing. A simple scale factor is to 
-multiply all the numbers by 10, producing: (1000, 2500), (1000,1000),  (4000, 1000), 
-and (4000, 2500). These are the numbers in Figure 10, and utilized by drawCurve() in 
-BezierBuilder.java. </p>
-<h3 id="42-drawing-a-complicated-bezier-curve">4.2.  Drawing a Complicated Bezier Curve</h3>
-<p>What if you want to draw a curve of more than four points? I use Office's Draw 
-application to draw the curve manually, save it as an SVG file, and then extract the 
-path coordinates from that file.   </p>
-<p>I use Draw because it generates path coordinates using 1/100 mm units, which saves 
-me from having to do any scaling. </p>
-<p>You might be thinking that if Draw can generate SVG data then why not just import 
-that data as a Bezier curve into the code? Unfortunately, this isn't quite possible at 
-present – it's true that you can import an SVG file into Office, but it's stored as an 
-image. In particular, it's available as a GraphicObjectShape not a OpenBezierShape or 
-a ClosedBezierShape. This means that you cannot examine or change its points. </p>
-<p>As an example of my approach, consider the complex curve in Figure 13 which I 
-drew in Draw and exported as an SVG file. </p>
+<p>Figure 11. Drawing a Curve Online.</p>
+<p>Figure 12 is a bit small – the path data at the top-right is:
+<path d="M100,250 C100,100 400,100 400,250" />
+The path contains two operations: "M" and "C". "M" moves the drawing point to a
+specified coordinate (in this case (100, 250)). The "C" is followed by three
+coordinates: (100,100),  (400, 100), and (400, 250). The first two are the control
+points and the last is the end point of the curve. There's no start point since the result
+of the "M" operation is used by default.</p>
+<p>Translating this to Office coordinates means using the "M" coordinate as the start
+point, and applying some scaling of the values to make the curve visible on the page.
+Remember that Office uses 1/100 mm units for drawing. A simple scale factor is to
+multiply all the numbers by 10, producing: (1000, 2500), (1000,1000),  (4000, 1000),
+and (4000, 2500). These are the numbers in Figure 10, and utilized by drawCurve() in
+BezierBuilder.java.</p>
+<h3 id="42-drawing-a-complicated-bezier-curve">4.2.  Drawing a Complicated Bezier Curve<a class="headerlink" href="#42-drawing-a-complicated-bezier-curve" title="Permanent link">&para;</a></h3>
+<p>What if you want to draw a curve of more than four points? I use Office's Draw
+application to draw the curve manually, save it as an SVG file, and then extract the
+path coordinates from that file.</p>
+<p>I use Draw because it generates path coordinates using 1/100 mm units, which saves
+me from having to do any scaling.</p>
+<p>You might be thinking that if Draw can generate SVG data then why not just import
+that data as a Bezier curve into the code? Unfortunately, this isn't quite possible at
+present – it's true that you can import an SVG file into Office, but it's stored as an
+image. In particular, it's available as a GraphicObjectShape not a OpenBezierShape or
+a ClosedBezierShape. This means that you cannot examine or change its points.</p>
+<p>As an example of my approach, consider the complex curve in Figure 13 which I
+drew in Draw and exported as an SVG file.</p>
 <p><img alt="" src="images/15-Complex_Shapes-13.png" /></p>
-<p>Figure 13. A Complex Bezier Curve, manually produced in Draw. </p>
-<p>Details on how to draw Bezier curves are explained in the Draw user guide, at the end 
-of section 11 on advanced techniques.  </p>
-<p>The SVG file format is XML-based, so the saved file can be opened by a text editor.  </p>
-<p>The coordinate information for this OpenBezierShape is near the end of the file: </p>
-<p><g class="com.sun.star.drawing.OpenBezierShape"> 
-  <g id="id3"> 
-    <path fill="none" stroke="rgb(0,0,0)" d="M 5586,13954 C 
-5713,13954 4443,2905 8253,7477 12063,12049 8634,19415 15619,10906 
+<p>Figure 13. A Complex Bezier Curve, manually produced in Draw.</p>
+<p>Details on how to draw Bezier curves are explained in the Draw user guide, at the end
+of section 11 on advanced techniques.</p>
+<p>The SVG file format is XML-based, so the saved file can be opened by a text editor.</p>
+<p>The coordinate information for this OpenBezierShape is near the end of the file:</p>
+<div class="highlight"><pre><span></span><code>&lt;g class=&quot;com.sun.star.drawing.OpenBezierShape&quot;&gt;
+  &lt;g id=&quot;id3&quot;&gt;
+    &lt;path fill=&quot;none&quot; stroke=&quot;rgb(0,0,0)&quot; d=&quot;M 5586,13954 C
+5713,13954 4443,2905 8253,7477 12063,12049 8634,19415 15619,10906
 22604,2397 11682,1381 10285,6334 8888,11287 21207,21447 8253,17002 -
-4701,12557 11174,15986 11174,15986"/> 
-  </g> 
-</g> </p>
-<p>The path consists of a single "M" operation, and a long "C" operation, which should 
-be read as a series of cubic Bezier curves. Each curve in the "C" list is made from 
-three coordinates, since the start point is implicitly given by the initial "M" move or 
-the end point of the previous curve in the list. </p>
-<p>Copy the data and save it as two lines in a text file (e.g. in bpts2.txt): </p>
-<p>M 5586,13954  </p>
-<p>C 5713,13954 4443,2905 8253,7477 12063,12049 8634,19415 15619,10906 
-22604,2397 11682,1381 10285,6334 8888,11287 21207,21447 8253,17002 -
-4701,12557 11174,15986 11174,15986 </p>
-<p>BuildBezier.java contains some functions for reading in this data and building the 
-arrays required by Draw.drawBezier(). So when the following is called: 
-run BezierBuilder bpts2.txt 
-the curve shown in Figure 14 appears on a page. </p>
+4701,12557 11174,15986 11174,15986&quot;/&gt;
+  &lt;/g&gt;
+&lt;/g&gt;
+</code></pre></div>
+<p>The path consists of a single "M" operation, and a long "C" operation, which should
+be read as a series of cubic Bezier curves. Each curve in the "C" list is made from
+three coordinates, since the start point is implicitly given by the initial "M" move or
+the end point of the previous curve in the list.</p>
+<p>Copy the data and save it as two lines in a text file (e.g. in bpts2.txt):</p>
+<div class="highlight"><pre><span></span><code><span class="n">M</span> <span class="mi">5586</span><span class="p">,</span><span class="mi">13954</span>
+
+<span class="n">C</span> <span class="mi">5713</span><span class="p">,</span><span class="mi">13954</span> <span class="mi">4443</span><span class="p">,</span><span class="mi">2905</span> <span class="mi">8253</span><span class="p">,</span><span class="mi">7477</span> <span class="mi">12063</span><span class="p">,</span><span class="mi">12049</span> <span class="mi">8634</span><span class="p">,</span><span class="mi">19415</span> <span class="mi">15619</span><span class="p">,</span><span class="mi">10906</span>
+<span class="mi">22604</span><span class="p">,</span><span class="mi">2397</span> <span class="mi">11682</span><span class="p">,</span><span class="mi">1381</span> <span class="mi">10285</span><span class="p">,</span><span class="mi">6334</span> <span class="mi">8888</span><span class="p">,</span><span class="mi">11287</span> <span class="mi">21207</span><span class="p">,</span><span class="mi">21447</span> <span class="mi">8253</span><span class="p">,</span><span class="mi">17002</span> <span class="o">-</span>
+<span class="mi">4701</span><span class="p">,</span><span class="mi">12557</span> <span class="mi">11174</span><span class="p">,</span><span class="mi">15986</span> <span class="mi">11174</span><span class="p">,</span><span class="mi">15986</span>
+</code></pre></div>
+<p>BuildBezier.java contains some functions for reading in this data and building the
+arrays required by Draw.drawBezier(). So when the following is called:</p>
+<div class="highlight"><pre><span></span><code><span class="n">run</span> <span class="n">BezierBuilder</span> <span class="n">bpts2</span><span class="p">.</span><span class="na">txt</span>
+</code></pre></div>
+<p>the curve shown in Figure 14 appears on a page.</p>
 <p><img alt="" src="images/15-Complex_Shapes-14.png" /></p>
-<p>Figure 14. The Curve Drawn by BuildBezier.java </p>
-<p>The BuildBezier.java data-reading functions can only handle a single "M" and "C" 
-operation. If the curve you draw has straight lines, arcs, smoothing, or multiple parts, 
-then the SVG file will contain operations that my code cannot process.  </p>
-<p>However, the data-reading functions do recognize the "Z" operation, which specifies 
-that the curve should be closed. If "Z" is added as a new line at the end of the 
-bpts2.txt, then the closed Bezier curve in Figure 15 is generated. </p>
+<p>Figure 14. The Curve Drawn by BuildBezier.java</p>
+<p>The BuildBezier.java data-reading functions can only handle a single "M" and "C"
+operation. If the curve you draw has straight lines, arcs, smoothing, or multiple parts,
+then the SVG file will contain operations that my code cannot process.</p>
+<p>However, the data-reading functions do recognize the "Z" operation, which specifies
+that the curve should be closed. If "Z" is added as a new line at the end of the
+bpts2.txt, then the closed Bezier curve in Figure 15 is generated.</p>
 <p><img alt="" src="images/15-Complex_Shapes-15.png" /></p>
-<p>Figure 15. The Closed Curve Drawn by BuildBezier.java </p>
+<p>Figure 15. The Closed Curve Drawn by BuildBezier.java</p>
                 
               
               
@@ -2013,6 +2043,7 @@ bpts2.txt, then the closed Bezier curve in Figure 15 is generated. </p>
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -2020,7 +2051,8 @@ bpts2.txt, then the closed Bezier curve in Figure 15 is generated. </p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="14-Animation.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="14-Animation.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 14. Animation" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2035,7 +2067,8 @@ bpts2.txt, then the closed Bezier curve in Figure 15 is generated. </p>
         </a>
       
       
-        <a href="16-Making_Slides.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="16-Making_Slides.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 16. Making Slides" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -2055,10 +2088,12 @@ bpts2.txt, then the closed Bezier curve in Figure 15 is generated. </p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -2070,10 +2105,10 @@ bpts2.txt, then the closed Bezier curve in Figure 15 is generated. </p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

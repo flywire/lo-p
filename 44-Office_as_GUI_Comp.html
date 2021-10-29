@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -971,6 +980,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -985,6 +995,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1243,6 +1254,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1358,7 +1370,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-44-office-as-a-gui-component">Chapter 44. Office as a GUI Component</h1>
+                <h1 id="chapter-44-office-as-a-gui-component">Chapter 44. Office as a GUI Component<a class="headerlink" href="#chapter-44-office-as-a-gui-component" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 <p>OOoBean; 
@@ -1387,18 +1399,18 @@ only the document visible. I'll also explore two variations
 of this 'blank look': adding a item to a toolbar, and creating 
 a new menu. These GUI entities aren't permanently added to Office, and are 
 controlled and monitored by the program. </p>
-<h2 id="1-ooobean">1.  OOoBean</h2>
+<h2 id="1-ooobean">1.  OOoBean<a class="headerlink" href="#1-ooobean" title="Permanent link">&para;</a></h2>
 <p>The OOoBean class and its com.sun.star.comp.beans package aren't documented in 
 LibreOffice, but there's an entire chapter about them in the Developer's Guide 
 (chapter 16, "JavaBean for Office Components"), at 
-https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf, and<br />
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/JavaBean/JavaBean_for_
+<a href="https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf">https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf</a>, and<br />
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/JavaBean/JavaBean_for">https://wiki.openoffice.org/wiki/Documentation/DevGuide/JavaBean/JavaBean_for</a>_
 Office_Components (or use loGuide JavaBean). The chapter's example, 
 OOoBeanViewer, wraps OOoBean in an old-style Applet (not a JApplet), and can be 
 downloaded from 
-http://api.libreoffice.org/examples/DevelopersGuide/examples.html#OfficeBean. </p>
+<a href="http://api.libreoffice.org/examples/DevelopersGuide/examples.html#OfficeBean">http://api.libreoffice.org/examples/DevelopersGuide/examples.html#OfficeBean</a>. </p>
 <p>Another source of information is the OOoBean code at 
-https://github.com/LibreOffice/core/blob/master/bean/com/sun/star/comp/beans/OOo
+<a href="https://github.com/LibreOffice/core/blob/master/bean/com/sun/star/comp/beans/OOo">https://github.com/LibreOffice/core/blob/master/bean/com/sun/star/comp/beans/OOo</a>
 Bean.java. It's also possible to decompile OOoBean 's JAR file, which you'll find in<br />
 <Office>\program\classes\officebean.jar. </p>
 <p>As you browse the documentation and source code, you may get the feeling that 
@@ -1432,10 +1444,10 @@ light orange and blue. </p>
 better by the LayoutManager service explained later. </p>
 <p>There's a table of one-line descriptions of OOoBean's methods in chapter 16 of the 
 Developer's Guide, and online at 
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/JavaBean/API_Overview 
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/JavaBean/API_Overview">https://wiki.openoffice.org/wiki/Documentation/DevGuide/JavaBean/API_Overview</a> 
 (or use loGuide JavaBean "API Overview"). I'll only explain the methods used in 
 my OBeanPanel class. </p>
-<h2 id="2-wrapping-ooobean-in-a-jpanel">2.  Wrapping OOoBean in a JPanel</h2>
+<h2 id="2-wrapping-ooobean-in-a-jpanel">2.  Wrapping OOoBean in a JPanel<a class="headerlink" href="#2-wrapping-ooobean-in-a-jpanel" title="Permanent link">&para;</a></h2>
 <p>OBeanPanel wraps an OOoBean instance inside a JPanel so its heavyweight canvas<br />
 doesn't affect the rendering of lightweight components in the surrounding application.  </p>
 <p>The class diagram for OBeanPanel in Figure 3 shows that it's a JPanel subclass, and 
@@ -1504,13 +1516,13 @@ private XComponent doc = null; </p>
   try  { 
     String fileURL = FileIO.fnmToURL(fnm); 
     oob.loadFromURL(fileURL, props);  // real work done here! </p>
-<pre><code>Lo.setOOoBean(oob);   // initialize Lo class so 
+<div class="highlight"><pre><span></span><code>Lo.setOOoBean(oob);   // initialize Lo class so 
                       // support classes are useable 
 doc = getDoc(); 
 int docType = Info.reportDocType(doc);
 
 if (docType == Lo.BASE) 
-  Lo.dispatchCmd(getFrame(), "DBViewTables", null);     
+  Lo.dispatchCmd(getFrame(), &quot;DBViewTables&quot;, null);     
                           // switch to tables view in Base docs
 
 XLayoutManager lm = GUI.getLayoutManager(doc); 
@@ -1523,10 +1535,9 @@ uii.addKeyHandler(this);
 
 revalidate();   // needs a refresh to appear 
 Lo.delay(1000);
-</code></pre>
-<p>} 
-  catch(java.lang.Exception e) 
-  {  System.out.println(e);  } </p>
+</code></pre></div>
+<p System.out.println_e_="System.out.println(e);">} 
+  catch(java.lang.Exception e) </p>
 <p>return doc; 
 }   // end of loadDoc() </p>
 <p>OOoBean.loadFromURL()'s two arguments are the document's URL and a <br />
@@ -1557,10 +1568,10 @@ public static void setOOoBean(OOoBean oob)
         System.out.println("No component context in OOoBean"); 
       else 
         mcFactory = xcc.getServiceManager(); </p>
-<pre><code>  xDesktop = oob.getOOoDesktop(); 
+<div class="highlight"><pre><span></span><code>  xDesktop = oob.getOOoDesktop(); 
   msFactory = oob.getMultiServiceFactory(); 
 }
-</code></pre>
+</code></pre></div>
 <p>} 
   catch (java.lang.Exception e) { 
     System.out.println("Couldn't init LO using OOoBean: " + e); 
@@ -1626,9 +1637,8 @@ event should be passed on to other listeners; false means the event should be se
 true causes it to be consumed. </p>
 <p>The key release handler is similarly short, but the key press handler deals with a 
 keyboard focus bug: </p>
-<p>// in the OBeanPanel class 
-public boolean keyReleased(com.sun.star.awt.KeyEvent e) 
-{ return false; } </p>
+<p false_="false;" return="return">// in the OBeanPanel class 
+public boolean keyReleased(com.sun.star.awt.KeyEvent e) </p>
 <p>@SuppressWarnings("deprecation") 
 public boolean keyPressed(com.sun.star.awt.KeyEvent e) 
 {<br />
@@ -1639,14 +1649,14 @@ public boolean keyPressed(com.sun.star.awt.KeyEvent e)
            // force focus away from bean; 
            // must suppress deprecation warning 
     oob.aquireSystemWindow(); </p>
-<pre><code>// Impress redisplays toolbars; remove them again 
+<div class="highlight"><pre><span></span><code>// Impress redisplays toolbars; remove them again 
 XLayoutManager lm = GUI.getLayoutManager(doc); 
 lm.setVisible(false);
 
-Lo.dispatchCmd("LeftPaneImpress",  
-            Props.makeProps("LeftPaneImpress", false) );     
+Lo.dispatchCmd(&quot;LeftPaneImpress&quot;,  
+            Props.makeProps(&quot;LeftPaneImpress&quot;, false) );     
             // hide slides pane
-</code></pre>
+</code></pre></div>
 <p>} 
   catch(java.lang.Exception ex) {} 
   return false; 
@@ -1656,12 +1666,12 @@ OOoBean.aquireSystemWindow() to force the bean to release the keyboard focus;
 this allows the user to select and type text into other text fields, such as the page jump 
 field in the SwingViewer.java example described below. I found this trick in a forum 
 post by Martin Illguth at 
-https://forum.openoffice.org/en/forum/viewtopic.php?f=20&amp;t=63008. </p>
+<a href="https://forum.openoffice.org/en/forum/viewtopic.php?f=20&amp;t=63008">https://forum.openoffice.org/en/forum/viewtopic.php?f=20&amp;t=63008</a>. </p>
 <p>keyPressed() also deals with a side-effect of displaying Impress slides – clicking on a 
 slide inside the bean causes hidden toolbars and the slides pane to be made visible. </p>
 <p>Another call to the layout manager deals with the toolbars, but the slides pane, which 
 isn't a toolbar, is hidden with a ".uno:LeftPaneImpress" dispatch. </p>
-<h2 id="3-using-the-obeanpanel">3.  Using the OBeanPanel</h2>
+<h2 id="3-using-the-obeanpanel">3.  Using the OBeanPanel<a class="headerlink" href="#3-using-the-obeanpanel" title="Permanent link">&para;</a></h2>
 <p>Figure 4 shows SwingViewer.java at start-up; the buttons on the right are for quickly 
 moving through a multi-page (or multi-slide) document, and for zooming in and out 
 on a document. The controls at the bottom show the number of pages (or slides) in the 
@@ -1767,9 +1777,9 @@ private XDrawPages xDrawPages = null; </p>
     xDrawPages = Draw.getSlides(doc); 
     pageCount = Draw.getSlidesCount(doc); 
     setLastPage(pageCount); </p>
-<pre><code>// get a slide view 
+<div class="highlight"><pre><span></span><code>// get a slide view 
 xDrawView = Lo.qi(XDrawView.class, officePanel.getController());
-</code></pre>
+</code></pre></div>
 <p>} 
   catch(java.lang.Exception e)<br />
   {  System.out.println("Could not access document pages");  } <br />
@@ -1801,7 +1811,7 @@ upButton.addActionListener(new ActionListener() {
 <p>textChange() utilizes the visible text cursor, while slideChange() uses the 
 XDrawPages and XDrawView variables. If the document isn't textual or a slide deck, 
 then pageChange() returns without doing anything. </p>
-<h2 id="4-using-an-undecorated-office-window">4.  Using an Undecorated Office Window</h2>
+<h2 id="4-using-an-undecorated-office-window">4.  Using an Undecorated Office Window<a class="headerlink" href="#4-using-an-undecorated-office-window" title="Permanent link">&para;</a></h2>
 <p>As I mentioned at the start, there are two ways of employing Office as a GUI 
 component: one is to use OOoBean inside a JPanel, as just explained. The other is to 
 have the program make Office visible on-screen, which I've done many times in 
@@ -1946,7 +1956,7 @@ property with the value true or false. For example: </p>
 <p>This call sends a ".uno:LeftPanelImpress" dispatch to Office to make the slides pane 
 visible. </p>
 <p>The easiest way to find dispatch names is to browse through the long list at 
-https://wiki.documentfoundation.org/Development/DispatchCommands. It's divided 
+<a href="https://wiki.documentfoundation.org/Development/DispatchCommands">https://wiki.documentfoundation.org/Development/DispatchCommands</a>. It's divided 
 into application and tool subcategories, which narrows the search a little. Also, each 
 entry includes a "Label value" field which for UI elements (i.e. toolbars, panes, and 
 menus) corresponds to its name in Office's GUI. </p>
@@ -1956,10 +1966,9 @@ menus) corresponds to its name in Office's GUI. </p>
 <p>Listening to User Input and the Window 
 OffViewer implements four listeners for mouse presses, keyboard handling, window 
 changes, and document events: </p>
-<p>public class OffViewer implements<br />
+<p class="..">public class OffViewer implements<br />
                XMouseClickHandler, XKeyHandler, XWindowListener,<br />
-               com.sun.star.document.XEventListener 
-{ ... } </p>
+               com.sun.star.document.XEventListener </p>
 <p>The listeners are attached in the constructor for OffViewer, which implements all the 
 methods itself: </p>
 <p>// part of OffViewer()... </p>
@@ -1984,15 +1993,11 @@ Lo.closeOffice() is insufficient, causing Office to hang. </p>
   System.exit(0); 
 }  </p>
 <p>The window, mouse, and keyboard handlers print simple information: </p>
-<p>// XWindow listener methods 
-public void windowShown(com.sun.star.lang.EventObject e)<br />
-{  System.out.println("Doc window has become visible");  }  </p>
-<p>public void windowHidden(com.sun.star.lang.EventObject e)<br />
-{  System.out.println("Doc window has been hidden");  }  </p>
-<p>public void windowResized(WindowEvent e) 
-{  System.out.println("Resized to " +e.Width +" x " +e.Height); }  </p>
-<p>public void windowMoved(WindowEvent e) 
-{  System.out.println("Moved to (" + e.X + ", " + e.Y + ")");  }  </p>
+<p System.out.println_Doc="System.out.println(&quot;Doc" become="become" has="has" visible_="visible&quot;);" window="window">// XWindow listener methods 
+public void windowShown(com.sun.star.lang.EventObject e)<br /></p>
+<p System.out.println_Doc="System.out.println(&quot;Doc" been="been" has="has" hidden_="hidden&quot;);" window="window">public void windowHidden(com.sun.star.lang.EventObject e)<br /></p>
+<p System.out.println_Resized="System.out.println(&quot;Resized" _="&quot;" _e.Height_="+e.Height);" _e.Width="+e.Width" to="to" x="x">public void windowResized(WindowEvent e) </p>
+<p System.out.println_Moved="System.out.println(&quot;Moved" _="&quot;)&quot;);" e.X="e.X" e.Y="e.Y" to="to">public void windowMoved(WindowEvent e) </p>
 <p>// XMouseClickHandler methods 
 public boolean mousePressed(MouseEvent e) 
 { System.out.println("Mouse pressed (" + e.X + ", " + e.Y + ")"); 
@@ -2013,7 +2018,7 @@ public boolean keyPressed(KeyEvent e)
 } </p>
 <p>The mouse handlers allow their events to be used by other handlers (i.e. they return 
 false), but the keyboard handlers consume their inputs. </p>
-<h2 id="5-augmenting-the-user-interface-a-new-toolbar-item">5.  Augmenting the User Interface: a New Toolbar Item</h2>
+<h2 id="5-augmenting-the-user-interface-a-new-toolbar-item">5.  Augmenting the User Interface: a New Toolbar Item<a class="headerlink" href="#5-augmenting-the-user-interface-a-new-toolbar-item" title="Permanent link">&para;</a></h2>
 <p>TBViewer.java is a variant of OffViewer which adds a toolbar item called "Hello" to 
 the "Find" toolbar, as shown in Figure 8 on the left. </p>
 <p><img alt="" src="images/44-Office_as_GUI_Comp-8.png" /></p>
@@ -2077,7 +2082,7 @@ public void clicked(String itemName, URL cmdURL,<br />
 { GUI.showMessageBox("Item Dialog", "Processing the \"" +<br />
                                         itemName + "\" command"); 
 }  // end of clicked() </p>
-<h3 id="51-intercepting-dispatches">5.1.  Intercepting Dispatches</h3>
+<h3 id="51-intercepting-dispatches">5.1.  Intercepting Dispatches<a class="headerlink" href="#51-intercepting-dispatches" title="Permanent link">&para;</a></h3>
 <p>ItemInterceptor implements XDispatchProviderInterceptor and XDispatch so it can 
 both intercept dispatches and process them: </p>
 <p>public class ItemInterceptor implements<br />
@@ -2111,15 +2116,11 @@ GUI.addItemToToolbar(), as shown below). </p>
 <p>Office adds the ItemInterceptor object to an interceptors list, which is doubly-linked 
 so that each node points to the previous (master) and next (slave) list element. These 
 are accessible through get/set master/slave methods: </p>
-<p>// in ItemInterceptor class 
-public void setMasterDispatchProvider(XDispatchProvider dp) 
-{  masterDP = dp;  } </p>
-<p>public void setSlaveDispatchProvider(XDispatchProvider dp) 
-{  slaveDP = dp;  } </p>
-<p>public XDispatchProvider getMasterDispatchProvider() 
-{  return masterDP;  } </p>
-<p>public XDispatchProvider getSlaveDispatchProvider() 
-{  return slaveDP;  } </p>
+<p masterDP="masterDP">// in ItemInterceptor class 
+public void setMasterDispatchProvider(XDispatchProvider dp) </p>
+<p slaveDP="slaveDP">public void setSlaveDispatchProvider(XDispatchProvider dp) </p>
+<p masterDP_="masterDP;" return="return">public XDispatchProvider getMasterDispatchProvider() </p>
+<p return="return" slaveDP_="slaveDP;">public XDispatchProvider getSlaveDispatchProvider() </p>
 <p>XDispatchProviderInterceptor also requires implementations for queryDispatches() 
 and queryDispatch(). queryDispatches() iterates through the array of dispatch 
 descriptors passed to it, and calls queryDispatch() on each one: </p>
@@ -2155,14 +2156,13 @@ which is implemented by ItemInterceptor: </p>
 <p>// in ItemInterceptor class 
 // global 
 private ToolbarItemListener viewer;   // object sent dispatch info </p>
-<p>public void dispatch(URL cmdURL, PropertyValue[] props)<br />
-{  viewer.clicked(itemName, cmdURL, props);  } </p>
+<p cmdURL_="cmdURL," props_="props);" viewer.clicked_itemName_="viewer.clicked(itemName,">public void dispatch(URL cmdURL, PropertyValue[] props)<br /></p>
 <p>Control is passed to the listener's clicked() method, which is in TBViewer. </p>
 <p>For more information on dispatch interception, see chapter 6 of the Developer's 
 Guide, which is also online at 
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Dispatch_Inter
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Dispatch_Inter">https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Dispatch_Inter</a>
 ception (or use loGuide "Dispatch Interception"). </p>
-<h3 id="52-displaying-a-message-box">5.2.  Displaying a Message Box</h3>
+<h3 id="52-displaying-a-message-box">5.2.  Displaying a Message Box<a class="headerlink" href="#52-displaying-a-message-box" title="Permanent link">&para;</a></h3>
 <p>TBViewer's clicked() creates an Office message dialog (see Figure 10) by calling 
 GUI.showMessageBox(). This dialog requires some complicated coding, and you may 
 wonder why I didn't just use Java's dialogs. For example, as in 
@@ -2211,7 +2211,7 @@ public static void showMessageBox(String title, String message)
 <p>A WindowDescriptor object is initialized to specify the type of window that will be 
 created, including its parent (the Office window). The descriptor is used to create a 
 XWindowPeer object, which is converted into an XMessageBox. </p>
-<h3 id="53-adding-hello-to-the-toolbar">5.3.  Adding "Hello" to the Toolbar</h3>
+<h3 id="53-adding-hello-to-the-toolbar">5.3.  Adding "Hello" to the Toolbar<a class="headerlink" href="#53-adding-hello-to-the-toolbar" title="Permanent link">&para;</a></h3>
 <p>GUI.addItemToToolbar() adds the "Hello" item to the "Find" toolbar: 
 GUI.addItemToToolbar(doc, GUI.FIND_BAR, "Hello", "h.png"); 
 The code: </p>
@@ -2234,7 +2234,7 @@ public static void addItemToToolbar(XComponent doc,<br />
     XGraphic[] pics = new XGraphic[1]; 
     pics[0] = Images.loadGraphicFile(imFnm); 
     imageMan.insertImages((short)0, cmds, pics); </p>
-<pre><code>// add item to toolbar 
+<div class="highlight"><pre><span></span><code>// add item to toolbar 
 XIndexAccess settings = confMan.getSettings(toolbarName, true); 
 XIndexContainer conSettings =  
                         Lo.qi(XIndexContainer.class, settings); 
@@ -2242,7 +2242,7 @@ PropertyValue[] itemProps = Props.makeBarItem(cmd, itemName);
 conSettings.insertByIndex(0, itemProps);    
                        // place first in the toolbar 
 confMan.replaceSettings(toolbarName, conSettings);
-</code></pre>
+</code></pre></div>
 <p>} 
   catch (java.lang.Exception e) 
   {  System.out.println(e);  } 
@@ -2254,7 +2254,7 @@ XImageManager. As Figure 8 shows, this image doesn't appear, although it has bee
 loaded since it's listed in the "Visible Buttons" window in Figure 10. </p>
 <p><img alt="" src="images/44-Office_as_GUI_Comp-10.png" /></p>
 <p>Figure 10. The "Visible Buttons" Window for the Toolbar. </p>
-<h2 id="6-augmenting-the-user-interface-a-new-menu-item">6.  Augmenting the User Interface: a New Menu Item</h2>
+<h2 id="6-augmenting-the-user-interface-a-new-menu-item">6.  Augmenting the User Interface: a New Menu Item<a class="headerlink" href="#6-augmenting-the-user-interface-a-new-menu-item" title="Permanent link">&para;</a></h2>
 <p>MenuViewer.java is a variant of OffViewer which either adds a menu at the end of 
 Office's menubar (see Figure 11a), or creates a new menubar for the menu (see Figure 
 11b). </p>
@@ -2288,21 +2288,21 @@ private short id = 0;   // used for menu IDs </p>
 <p>// create new menubar 
   GUI.showNone(doc);  // hide all toolbars 
   makeMenubar(win); </p>
-<p>/<em> 
+<p>/* 
   // or modify the existing menubar 
   GUI.showOne(doc, GUI.MENU_BAR); <br />
              // hide all toolbars except the menubar 
   setMenubar(doc); 
-</em>/ 
+*/ 
 }  // end of MenuViewer() </p>
 <p>This MenuViewer example is based on one in the "Creating Menus" section at the end 
 of chapter 19, "Graphical user Interfaces", in the Developer's Guide; it can be found 
 online at 
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/GUI/Creating_Menus (or 
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/GUI/Creating_Menus">https://wiki.openoffice.org/wiki/Documentation/DevGuide/GUI/Creating_Menus</a> (or 
 use  loGuide "Creating Menus"). The corresponding code is at 
-http://api.libreoffice.org/examples/DevelopersGuide/examples.html#GraphicalUserInt
+<a href="http://api.libreoffice.org/examples/DevelopersGuide/examples.html#GraphicalUserInt">http://api.libreoffice.org/examples/DevelopersGuide/examples.html#GraphicalUserInt</a>
 erfaces, and includes the use of a context menu, which I don't consider here. </p>
-<h3 id="61-creating-a-new-menubar">6.1.  Creating a New Menubar</h3>
+<h3 id="61-creating-a-new-menubar">6.1.  Creating a New Menubar<a class="headerlink" href="#61-creating-a-new-menubar" title="Permanent link">&para;</a></h3>
 <p>makeMenubar() attaches an XMenubar instance to the Office window using 
 XTopWindow.setMenuBar(): </p>
 <p>// in MenuViewer.java 
@@ -2355,13 +2355,13 @@ private static final String CMD_HELLO = "Cmd_Hello";
 private static final String CMD_QUIT = "Cmd_Quit"; </p>
 <p>private short id = 0;   // used for menu IDs </p>
 <p>public XPopupMenu makePopupMenu() 
-/<em> Popup menu consists of: 
+/* Popup menu consists of: 
             * Hello + image 
             * three radio buttons (only one on) 
             * a separator 
             * two check boxes 
             * Quit 
-</em>/ 
+*/ 
 { XPopupMenu pum = Lo.createInstanceMCF(XPopupMenu.class,<br />
                                  "com.sun.star.awt.PopupMenu"); 
   if (pum == null) { 
@@ -2469,15 +2469,15 @@ public void disposing(com.sun.star.lang.EventObject e)
    Lo.killOffice();<br />
    System.exit(0); 
 }  </p>
-<h3 id="62-adding-to-the-existing-menubar">6.2.  Adding to the Existing Menubar</h3>
+<h3 id="62-adding-to-the-existing-menubar">6.2.  Adding to the Existing Menubar<a class="headerlink" href="#62-adding-to-the-existing-menubar" title="Permanent link">&para;</a></h3>
 <p>MenuViewer.java can be edited to add the menu to Office's menubar rather than 
 create a new one. The end of the constructor becomes: </p>
 <p>// end of MenuViewer()... </p>
-<p>/<em> 
+<p>/* 
   // create new menu bar 
   GUI.showNone(doc); 
   makeMenubar(win); 
-</em>/ 
+*/ 
   // or modify the existing menubar 
   GUI.showOne(doc, GUI.MENU_BAR); 
   setMenubar(doc); </p>
@@ -2498,10 +2498,10 @@ private short id = 0;   // used for menu IDs </p>
     short maxID = GUI.getMenuMaxID(menubar);  <br />
             // find the largest menu item ID 
     id = (short)(maxID + (short)100);    // hacky 
-      /<em> add a big number to account for the IDs used by 
-         menu items in the menu  </em>/ </p>
-<pre><code>addMenu(menubar, menuCount);
-</code></pre>
+      /* add a big number to account for the IDs used by 
+         menu items in the menu  */ </p>
+<div class="highlight"><pre><span></span><code>addMenu(menubar, menuCount);
+</code></pre></div>
 <p>} 
 }  // end of setMenubar() </p>
 <p>The XMenuBar reference is retrieved from a property in the XUIElement for the bar: </p>
@@ -2564,6 +2564,7 @@ makeMenubar() from earlier; it creates the menu and adds it to the bar. </p>
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -2571,7 +2572,8 @@ makeMenubar() from earlier; it creates the menu and adds it to the bar. </p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="43-Using_the_Clipboard.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="43-Using_the_Clipboard.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 43. Using the Clipboard" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2586,7 +2588,8 @@ makeMenubar() from earlier; it creates the menu and adds it to the bar. </p>
         </a>
       
       
-        <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="45%20Part%208%20Extending%20LibreOffice.html" class="md-footer__link md-footer__link--next" aria-label="Next: Part 8 Extending LibreOffice" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -2606,10 +2609,12 @@ makeMenubar() from earlier; it creates the menu and adds it to the bar. </p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -2621,10 +2626,10 @@ makeMenubar() from earlier; it creates the menu and adds it to the bar. </p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

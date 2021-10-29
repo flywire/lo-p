@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -1061,6 +1070,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -1075,6 +1085,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1236,6 +1247,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1344,7 +1356,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-49-extension-and-document-event-macros">Chapter 49. Extension and Document Event Macros</h1>
+                <h1 id="chapter-49-extension-and-document-event-macros">Chapter 49. Extension and Document Event Macros<a class="headerlink" href="#chapter-49-extension-and-document-event-macros" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 <p>Form Macros as
@@ -1367,13 +1379,13 @@ how a simple macro could be installed by copying it to a
 specific Office directory. This chapter looks at two other
 ways to package macros: as extensions, and by attaching
 them to documents.</p>
-<h2 id="1-form-macros-as-an-extension">1.  Form Macros as an Extension</h2>
+<h2 id="1-form-macros-as-an-extension">1.  Form Macros as an Extension<a class="headerlink" href="#1-form-macros-as-an-extension" title="Permanent link">&para;</a></h2>
 <p>Adding a macro to Office by installing it as an extension means that the user doesn't
 need to grapple with Office folders and copying files since Office's extension
 manager does it for them. This section also uses more complex macros than the ones
 in the previous chapter, namely ones that utilize their own dialogs and employ my
 utility classes.</p>
-<p>The FormMacros.oxt extension is created by zipping up a FormMacros\ folder, which
+<p>The FormMacros.oxt extension is created by zipping up a FormMacros folder, which
 is listed below:</p>
 <div class="highlight"><pre><span></span><code>FormMacros
  |   description.xml
@@ -1394,7 +1406,7 @@ is listed below:</p>
          parcel-descriptor.xml
          Utils.jar
 </code></pre></div>
-<p>The macros are in the Utils\ folder, and are utilized by the form stored in
+<p>The macros are in the Utils folder, and are utilized by the form stored in
 FormMacrosTest.odt in the ways shown in Figure 1.</p>
 <p><img alt="" src="images/49-Ext_Doc_Event_Macros-1.png" /></p>
 <p>Figure 1. A Form and its Macros.</p>
@@ -1406,15 +1418,15 @@ replacing the text by a number or clearing the textfield.</p>
 <p>To simplify the example a little, FormMacrosTest.odt was created by hand rather than
 programmatically. Also, I'm going to attach the extension's macros to the button and
 textfield using Office's GUI, as explained shortly.</p>
-<p>I won’t explain all the contents of the FormMacros\ folder, because most of them
+<p>I won’t explain all the contents of the FormMacros folder, because most of them
 were covered in early chapters, particularly in Chapter 45. For example, I won't be
 describing how I drew the "Number Extractor" dialog stored in
 dialogLibrary\NumExtractor.xdl since that technique was covered in the last chapter,
 in section 5.</p>
-<p>The new elements of FormMacros\ are the contents of manifest.xml and parcel-
+<p>The new elements of FormMacros are the contents of manifest.xml and parcel-
 descriptor.xml.</p>
 <p>manifest.xml states the location of the macros inside the extension, which in my case
-are in the Utils\ subdirectory. This is encoded as:</p>
+are in the Utils subdirectory. This is encoded as:</p>
 <div class="highlight"><pre><span></span><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;manifest:manifest
      xmlns:manifest=&quot;http://openoffice.org/2001/manifest&quot;&gt;
@@ -1487,7 +1499,7 @@ to install it. The extension manager displays the "Form Macros" as in Figure 2.<
 Selector dialog in Figure 3.</p>
 <p><img alt="" src="images/49-Ext_Doc_Event_Macros-3.png" /></p>
 <p>Figure 3. The User Extension Macros in the Macro Selector.</p>
-<p>The Utils\ subdirectory of the extension has become a module called Utils.</p>
+<p>The Utils subdirectory of the extension has become a module called Utils.</p>
 <p>The full names of the extension macros can be obtained using my ListMacros.java or
 FindMacros.java examples. For example:</p>
 <div class="highlight"><pre><span></span><code>run FindMacros Utils
@@ -1500,7 +1512,7 @@ FindMacros.java examples. For example:</p>
   vnd.sun.star.script:Utils.GetText.show?
       language=Java&amp;location=user:uno_packages/FormMacros.oxt
 </code></pre></div>
-<h3 id="11-the-gettextshow-macro">1.1.  The GetText.show Macro</h3>
+<h3 id="11-the-gettextshow-macro">1.1.  The GetText.show Macro<a class="headerlink" href="#11-the-gettextshow-macro" title="Permanent link">&para;</a></h3>
 <p>GetText.show is triggered when a button is pressed; it displays the text currently in
 the "Text Box 1" textfield inside a message box (see Figure 1). The code for the class
 is:</p>
@@ -1603,7 +1615,7 @@ Forms.getControlModel() to reference the textfield control:</p>
 <span class="n">String</span> <span class="n">textContents</span> <span class="o">=</span> <span class="p">(</span><span class="n">String</span><span class="p">)</span><span class="n">Props</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="n">textBox</span><span class="p">,</span> <span class="s">&quot;Text&quot;</span><span class="p">);</span>
 <span class="n">GUI</span><span class="p">.</span><span class="na">showXMessageBox</span><span class="p">(</span><span class="s">&quot;Textbox text&quot;</span><span class="p">,</span> <span class="n">textContents</span><span class="p">);</span>
 </code></pre></div>
-<h3 id="12-the-getnumberget-macro">1.2.  The GetNumber.get Macro</h3>
+<h3 id="12-the-getnumberget-macro">1.2.  The GetNumber.get Macro<a class="headerlink" href="#12-the-getnumberget-macro" title="Permanent link">&para;</a></h3>
 <p>The second textfield in Figure 1 is called "AgeText". Its listener processes the text
 when the user types <RETURN>, which is implemented using a keypress listener, as
 shown in Figure 5.</p>
@@ -1639,7 +1651,7 @@ two ways – either loadXDLDialog() loads the dialog's XML from
 dialogLibrary\NumExtractor.xdl inside the extension, or runtimeDialog() creates the
 dialog dynamically by calling methods in my Dialogs utility class. I'll look at each
 approach in the next two sections.</p>
-<h3 id="13-loading-an-xml-dialog">1.3.  Loading an XML Dialog</h3>
+<h3 id="13-loading-an-xml-dialog">1.3.  Loading an XML Dialog<a class="headerlink" href="#13-loading-an-xml-dialog" title="Permanent link">&para;</a></h3>
 <p>Chapter 46 on Add-ons describes how to use Office's dialog editor to create a dialog
 and export it as an XDL file. The same steps were used to create NumExtractor.xdl,
 which is shown in Figure 6.</p>
@@ -1736,7 +1748,7 @@ XDialog.execute():</p>
 </code></pre></div>
 <p>Dialogs.findControl() finds the dialog's textfield and buttons using the IDs that we
 saw in NumExtractor.xdl.</p>
-<p>The NumActionListener class is included in the extension's Utils\ folder. It's a
+<p>The NumActionListener class is included in the extension's Utils folder. It's a
 standard button listener, but uses Office's XActionListener and ActionEvent not the
 Java classes with similar names:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// in NumActionListener.java</span>
@@ -1778,7 +1790,7 @@ Java classes with similar names:</p>
 constructor, along with a reference to the control. If the user presses "Ok" then the
 number is written into the textfield, otherwise an empty string is used to clear its
 contents.</p>
-<h3 id="14-building-a-dialog-at-runtime">1.4.  Building a Dialog at Runtime</h3>
+<h3 id="14-building-a-dialog-at-runtime">1.4.  Building a Dialog at Runtime<a class="headerlink" href="#14-building-a-dialog-at-runtime" title="Permanent link">&para;</a></h3>
 <p>Office's dialog editor is the easiest way to construct a dialog, but there may be
 situations where you want to create a simple dialog at run time. The commented-out
 call to runtimeDialog() in GetNumber.get shows how to do this using my Dialog class
@@ -1847,7 +1859,7 @@ I confirmed this for the runtime dialog by writing their name to the log file:</
 <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">log</span><span class="p">(</span><span class="n">String</span> <span class="n">msg</span><span class="p">)</span>
 <span class="p">{</span>  <span class="n">FileIO</span><span class="p">.</span><span class="na">appendTo</span><span class="p">(</span><span class="n">LOG_FNM</span><span class="p">,</span> <span class="n">msg</span><span class="p">);</span>  <span class="p">}</span>
 </code></pre></div>
-<h3 id="15-dialogs-and-their-controls">1.5.  Dialogs and their Controls</h3>
+<h3 id="15-dialogs-and-their-controls">1.5.  Dialogs and their Controls<a class="headerlink" href="#15-dialogs-and-their-controls" title="Permanent link">&para;</a></h3>
 <p>Dialog controls utilize the same model-view framework as form controls (which were
 described back in Chapter 39). Controls store data as properties spread over a
 hierarchy centered around UnoControlModel in the com.sun.star.awt module. A small
@@ -1991,14 +2003,14 @@ Office window by Dialogs.createDialogPeer():</p>
   <span class="k">return</span> <span class="n">getDialog</span><span class="p">(</span><span class="n">dialogCtrl</span><span class="p">);</span>
 <span class="p">}</span>  <span class="c1">// end of createDialogPeer()</span>
 </code></pre></div>
-<h2 id="2-storing-macros-inside-the-form-document">2.  Storing Macros inside the (Form) Document</h2>
+<h2 id="2-storing-macros-inside-the-form-document">2.  Storing Macros inside the (Form) Document<a class="headerlink" href="#2-storing-macros-inside-the-form-document" title="Permanent link">&para;</a></h2>
 <p>The previous section examined how to add macros to Office as extensions. Another
 popular way of utilizing macros is to embed them inside documents.</p>
 <p>I'll create a variation of the previous form, with the same functionality for its text
 fields, but GetText.show and GetNumber.get (and its dialog and listener) will be
 stored inside the document.</p>
 <p>Office documents, such as FormMacrosTest.odt, can be manipulated as zip files; I
-chose 7-Zip (http://www.7-zip.org/) for the purpose, because it's powerful, open
+chose 7-Zip (<a href="http://www.7-zip.org/">http://www.7-zip.org/</a>) for the purpose, because it's powerful, open
 source, and can be executed from the command line and from DOS batch scripts.</p>
 <p>I'm reusing the same form from the previous section, but stored in
 FormDocMacros.odt. It's unzipped using my unzipDoc.bat script to create a folder
@@ -2006,9 +2018,9 @@ called FormDocMacros_odt. The macros are added by modifying this folder: two
 new subdirectories are created, and the manifest.xml file changed, as illustrated by
 Figure 11.</p>
 <p><img alt="" src="images/49-Ext_Doc_Event_Macros-11.png" /></p>
-<p>Figure 11. The Changed FormDocMacros_odt\ Folder</p>
-<p>The dialogLibrary\ folder contains the same "Number Extractor" dialog definition as
-before. The Scripts\java\Utils\ folder contains Macros.jar, and a new version of
+<p>Figure 11. The Changed FormDocMacros_odt Folder</p>
+<p>The dialogLibrary folder contains the same "Number Extractor" dialog definition as
+before. The Scripts\java\Utils folder contains Macros.jar, and a new version of
 parcel-descriptor.xml.</p>
 <p>Macros.jar is different from the earlier extension, which used three classes
 (GetText.class, GetNumber.class, and NumActionListener.class) and Utils.jar.</p>
@@ -2019,7 +2031,7 @@ NumActionListener.class added to it.</p>
 classpath entries for the two macros become:
 <prop name="classpath" value="Macros.jar"/>
 manifest.xml specifies the structure of FormDocMacros_odt\, so lines are added
-describing dialogLibrary\ and Scripts\:</p>
+describing dialogLibrary and Scripts:</p>
 <div class="highlight"><pre><span></span><code>// added to manifest.xml
 
 &lt;manifest:file-entry manifest:media-type=&quot;text/xml&quot;
@@ -2042,7 +2054,7 @@ describing dialogLibrary\ and Scripts\:</p>
 &lt;manifest:file-entry manifest:media-type=&quot;application/binary&quot;
        manifest:full-path=&quot;Scripts/java/Utils/Macros.jar&quot;/&gt;
 </code></pre></div>
-<p>FormDocMacros_odt\ is re-zipped, becoming FormDocMacros.odt. Double-clicking
+<p>FormDocMacros_odt is re-zipped, becoming FormDocMacros.odt. Double-clicking
 on it causes it to open, to display the same form as before, but only after the user has
 clicked "Enable Macros" in the security warning (see Figure 12).</p>
 <p><img alt="" src="images/49-Ext_Doc_Event_Macros-12.png" /></p>
@@ -2056,11 +2068,11 @@ the document, as in Figure 13.</p>
 <p>The resulting event is displayed in Figure 14.</p>
 <p><img alt="" src="images/49-Ext_Doc_Event_Macros-14.png" /></p>
 <p>Figure 14. The "Execute action" Event.</p>
-<h2 id="3-attaching-macros-to-other-events">3.  Attaching Macros to Other Events</h2>
+<h2 id="3-attaching-macros-to-other-events">3.  Attaching Macros to Other Events<a class="headerlink" href="#3-attaching-macros-to-other-events" title="Permanent link">&para;</a></h2>
 <p>This chapter and the last have concentrated on adding macros to form controls, but
 other parts of Office, and other documents, can utilize event macros as well.</p>
 <p>A summary of the different ways that event macros can be employed is given on the
-wiki page "Scripting LibreOffice" at https://help.libreoffice.org/Common/Scripting. It
+wiki page "Scripting LibreOffice" at <a href="https://help.libreoffice.org/Common/Scripting">https://help.libreoffice.org/Common/Scripting</a>. It
 lists uses for event macros such as:</p>
 <ul>
 <li>attached to form controls (already described);</li>
@@ -2092,7 +2104,7 @@ class:</p>
                       <span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">document</span><span class="p">.</span><span class="na">DocumentEvent</span> <span class="n">e</span><span class="p">)</span>
 <span class="p">{</span>  <span class="n">display</span><span class="p">(</span><span class="s">&quot;document&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="na">EventName</span><span class="p">);</span>  <span class="p">}</span>
 </code></pre></div>
-<h4 id="automatic-macro-attachment">Automatic Macro Attachment</h4>
+<h4 id="automatic-macro-attachment">Automatic Macro Attachment<a class="headerlink" href="#automatic-macro-attachment" title="Permanent link">&para;</a></h4>
 <p>It's possible to automate the attachment of macros to Office and document events, as
 illustrated by the DocEvents.java example:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// in DocEvents.java</span>
@@ -2284,7 +2296,7 @@ events, as in Figure 18.</p>
 <p>Figure 18. The Event tab of the Tools &gt; Customize Dialog.</p>
 <p>Note that the "Save in:" pop-down list at the bottom of the dialog shows the document
 name instead of "LibreOffice".</p>
-<h2 id="4-executing-macros-from-the-command-line">4.  Executing Macros from the Command Line</h2>
+<h2 id="4-executing-macros-from-the-command-line">4.  Executing Macros from the Command Line<a class="headerlink" href="#4-executing-macros-from-the-command-line" title="Permanent link">&para;</a></h2>
 <p>One of the show() method in the ShowEvent class doesn't have an event argument:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// part of ShowEvent.java</span>
 <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">show</span><span class="p">(</span><span class="n">XScriptContext</span> <span class="n">sc</span><span class="p">)</span>
@@ -2316,6 +2328,7 @@ parameters.</p>
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -2323,7 +2336,8 @@ parameters.</p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="48-Event_Macros.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="48-Event_Macros.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 48. Event Macros" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2338,7 +2352,8 @@ parameters.</p>
         </a>
       
       
-        <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="50%20Part%209%20The%20ODF%20Format.html" class="md-footer__link md-footer__link--next" aria-label="Next: Part 9 The ODF Format" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -2358,10 +2373,12 @@ parameters.</p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -2373,10 +2390,10 @@ parameters.</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

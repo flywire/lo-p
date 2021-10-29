@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -446,6 +455,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -460,6 +470,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -545,6 +556,19 @@
     5.  Text
   </a>
   
+    <nav class="md-nav" aria-label="5.  Text">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#some-help-with-text-properties" class="md-nav__link">
+    Some Help with Text Properties
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -566,11 +590,38 @@
     8.  A Math formula as an OLE Shape
   </a>
   
+    <nav class="md-nav" aria-label="8.  A Math formula as an OLE Shape">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-other-kinds-of-ole-shape" class="md-nav__link">
+    Creating Other Kinds of OLE Shape
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#9-polygons" class="md-nav__link">
     9.  Polygons
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-mult-line-shapes" class="md-nav__link">
+    10. Mult-line Shapes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-partial-ellipses" class="md-nav__link">
+    11.  Partial Ellipses
   </a>
   
 </li>
@@ -1258,6 +1309,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1341,6 +1393,19 @@
     5.  Text
   </a>
   
+    <nav class="md-nav" aria-label="5.  Text">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#some-help-with-text-properties" class="md-nav__link">
+    Some Help with Text Properties
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1362,11 +1427,38 @@
     8.  A Math formula as an OLE Shape
   </a>
   
+    <nav class="md-nav" aria-label="8.  A Math formula as an OLE Shape">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-other-kinds-of-ole-shape" class="md-nav__link">
+    Creating Other Kinds of OLE Shape
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#9-polygons" class="md-nav__link">
     9.  Polygons
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-mult-line-shapes" class="md-nav__link">
+    10. Mult-line Shapes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-partial-ellipses" class="md-nav__link">
+    11.  Partial Ellipses
   </a>
   
 </li>
@@ -1388,745 +1480,829 @@
                   </a>
                 
                 
-                <h1 id="chapter-13-drawing-basic-shapes">Chapter 13. Drawing Basic Shapes</h1>
+                <h1 id="chapter-13-drawing-basic-shapes">Chapter 13. Drawing Basic Shapes<a class="headerlink" href="#chapter-13-drawing-basic-shapes" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
-<p>A Black Dashed 
-Line; A Red Ellipse; 
-Filled Rectangles; Text; 
-Shape Names; A 
-Transparent Circle and a 
-Polar Line; A Math 
-Formula as an OLE 
-Shape; Polygons; 
-Multiple Lines, Partial 
-Elipses </p>
-<p>Example folders: "Draw 
-Tests" and "Utils" </p>
+<p>A Black Dashed
+Line; A Red Ellipse;
+Filled Rectangles; Text;
+Shape Names; A
+Transparent Circle and a
+Polar Line; A Math
+Formula as an OLE
+Shape; Polygons;
+Multiple Lines, Partial
+Elipses</p>
+<p>Example folders: "Draw
+Tests" and "Utils"</p>
 </div>
-<p>This chapter contains an assortment of basic shape 
-creation examples, including the following: 
- simple shapes: line, ellipse, rectangle, text; 
- shape fills: solid, gradients, hatching, bitmaps; 
- an OLE shape (a math formulae); 
- polygons, multiple lines, partial ellipses. </p>
-<p>The examples come from two files, DrawPicture.java and 
-AnimBicycle.java. The main() function of DrawPicture.java: </p>
-<p>public static void main (String args[]) 
-{ 
-  XComponentLoader loader = Lo.loadOffice(); 
-  XComponent doc = Draw.createDrawDoc(loader); 
-  if (doc == null) { 
-    System.out.println("Draw doc creation failed"); 
-    Lo.closeOffice(); 
-    return; 
-  } </p>
-<p>GUI.setVisible(doc, true); 
-  Lo.delay(1000);    // need delay or zoom may not work 
-  GUI.zoom(doc, GUI.ENTIRE_PAGE); </p>
-<p>XDrawPage currSlide = Draw.getSlide(doc, 0); //access first page 
-  drawShapes(currSlide); </p>
-<p>Draw.drawFormula(currSlide, "func e^{i %pi} + 1 = 0", <br />
-                                           23, 20, 20, 40); 
-  // animShapes(currSlide);  // explained in Chapter 9 </p>
-<p>XShape s = Draw.findShapeByName(currSlide, "text1"); 
-  Draw.reportPosSize(s); </p>
-<p>Lo.saveDoc(doc, "picture.odg"); 
-  Lo.closeDoc(doc); 
-  Lo.closeOffice(); 
-} // end of main() </p>
-<p>DrawPicture.java creates a new Draw document, and finishes by saving it to the file 
-"picture.odg": </p>
-<p>XComponent doc = Draw.createDrawDoc(loader); 
-       :  // add shapes to the document 
-       : 
-Lo.saveDoc(doc, "picture.odg"); // "odg" is Draw's extension </p>
-<p>Aside from saving Office formats,  Lo.saveDoc() recognizes other graphical forms 
-based on the filename extension (e.g. a document saved to "picture.png" will create a 
-PNG file). </p>
-<p>Draw.createDrawDoc() is a wrapper around Lo.createDoc() to create a  Draw 
-document: </p>
-<p>public static XComponent createDrawDoc(XComponentLoader loader) 
-{  return Lo.createDoc("sdraw", loader);  } </p>
-<p>There's also Draw.createImpressDoc(): </p>
-<p>public static XComponent createImpressDoc(XComponentLoader loader) 
-{  return Lo.createDoc("simpress", loader);  } </p>
-<h2 id="1-drawing-shapes">1.  Drawing Shapes</h2>
-<p>The drawShapes() method inside DrawPictures.java draws the six shapes shown in </p>
+<p>This chapter contains an assortment of basic shape
+creation examples, including the following:</p>
+<ul>
+<li>simple shapes: line, ellipse, rectangle, text;</li>
+<li>shape fills: solid, gradients, hatching, bitmaps;</li>
+<li>an OLE shape (a math formulae);</li>
+<li>polygons, multiple lines, partial ellipses.</li>
+</ul>
+<p>The examples come from two files, DrawPicture.java and
+AnimBicycle.java. The main() function of DrawPicture.java:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+  <span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">createDrawDoc</span><span class="p">(</span><span class="n">loader</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">doc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Draw doc creation failed&quot;</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">GUI</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>    <span class="c1">// need delay or zoom may not work</span>
+  <span class="n">GUI</span><span class="p">.</span><span class="na">zoom</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">GUI</span><span class="p">.</span><span class="na">ENTIRE_PAGE</span><span class="p">);</span>
+
+  <span class="n">XDrawPage</span> <span class="n">currSlide</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getSlide</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="c1">//access first page</span>
+  <span class="n">drawShapes</span><span class="p">(</span><span class="n">currSlide</span><span class="p">);</span>
+
+  <span class="n">Draw</span><span class="p">.</span><span class="na">drawFormula</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="s">&quot;func e^{i %pi} + 1 = 0&quot;</span><span class="p">,</span>
+                                           <span class="mi">23</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">);</span>
+  <span class="c1">// animShapes(currSlide);  // explained in Chapter 9</span>
+
+  <span class="n">XShape</span> <span class="n">s</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">findShapeByName</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="s">&quot;text1&quot;</span><span class="p">);</span>
+  <span class="n">Draw</span><span class="p">.</span><span class="na">reportPosSize</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">saveDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;picture.odg&quot;</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+<span class="p">}</span> <span class="c1">// end of main()</span>
+</code></pre></div>
+<p>DrawPicture.java creates a new Draw document, and finishes by saving it to the file
+"picture.odg":</p>
+<div class="highlight"><pre><span></span><code><span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">createDrawDoc</span><span class="p">(</span><span class="n">loader</span><span class="p">);</span>
+       <span class="p">:</span>  <span class="c1">// add shapes to the document</span>
+       <span class="p">:</span>
+<span class="n">Lo</span><span class="p">.</span><span class="na">saveDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;picture.odg&quot;</span><span class="p">);</span> <span class="c1">// &quot;odg&quot; is Draw&#39;s extension</span>
+</code></pre></div>
+<p>Aside from saving Office formats,  Lo.saveDoc() recognizes other graphical forms
+based on the filename extension (e.g. a document saved to "picture.png" will create a
+PNG file).</p>
+<p>Draw.createDrawDoc() is a wrapper around Lo.createDoc() to create a  Draw
+document:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="n">XComponent</span> <span class="nf">createDrawDoc</span><span class="p">(</span><span class="n">XComponentLoader</span> <span class="n">loader</span><span class="p">)</span>
+<span class="p">{</span>  <span class="k">return</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createDoc</span><span class="p">(</span><span class="s">&quot;sdraw&quot;</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>  <span class="p">}</span>
+</code></pre></div>
+<p>There's also Draw.createImpressDoc():</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="n">XComponent</span> <span class="nf">createImpressDoc</span><span class="p">(</span><span class="n">XComponentLoader</span> <span class="n">loader</span><span class="p">)</span>
+<span class="p">{</span>  <span class="k">return</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createDoc</span><span class="p">(</span><span class="s">&quot;simpress&quot;</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>  <span class="p">}</span>
+</code></pre></div>
+<h2 id="1-drawing-shapes">1.  Drawing Shapes<a class="headerlink" href="#1-drawing-shapes" title="Permanent link">&para;</a></h2>
+<p>The drawShapes() method inside DrawPictures.java draws the six shapes shown in
+Figure 1.</p>
 <p><img alt="" src="images/13-Basic_Shapes-1.jpg" /></p>
-<p>Figure 1. </p>
-<p><img alt="" src="images/13-Basic_Shapes-1.jpg" /></p>
-<p>Figure 1. The Six Shapes Drawn by drawShapes(). </p>
-<p>Almost every Draw method call Draw.makeShape() which creates a shape instance 
-and sets its size and position on the page: </p>
-<p>// in the Draw class 
-public static XShape makeShape(String shapeType,<br />
-                       int x, int y, int width, int height) 
-{ XShape shape = null; 
-  try { 
-    shape = Lo.createInstanceMSF(XShape.class,<br />
-                         "com.sun.star.drawing." + shapeType); 
-    shape.setPosition( new Point(x<em>100,y</em>100) ); 
-    shape.setSize( new Size(width<em>100, height</em>100) ); 
-  } 
-  catch(Exception e) 
-  {  System.out.println("Unable to create shape: " + shapeType);  } </p>
-<p>return shape; 
-}  // end of makeShape() </p>
-<p>The method assumes that the shape is defined inside the com.sun.star.drawing 
-package, i.e. that it's a shape which subclasses com.sun.star.drawing.Shape, like those 
-in Figure 6 of Chapter 11. The code converts the supplied (x, y) coordinate, width, 
-and height from millimeters to Office's 1/100 mm values.  </p>
-<p>The exact meaning of the position and the size of a shape is a little tricky. If its width 
-and height are positive, then the position is the top-left corner of the rectangle defined 
-by those dimensions. However, the user can supply negative dimensions, which 
-means that "top-left corner" may be on the right or bottom of the rectangle (see Figure 
-2(a)). Office handles this by storing the rectangle with a new top-left point, so all the 
-dimensions can be positive (see Figure 2(b)).  </p>
+<p>Figure 1. The Six Shapes Drawn by drawShapes().</p>
+<p>Almost every Draw method call Draw.makeShape() which creates a shape instance
+and sets its size and position on the page:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XShape</span> <span class="nf">makeShape</span><span class="p">(</span><span class="n">String</span> <span class="n">shapeType</span><span class="p">,</span>
+                       <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">XShape</span> <span class="n">shape</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMSF</span><span class="p">(</span><span class="n">XShape</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                         <span class="s">&quot;com.sun.star.drawing.&quot;</span> <span class="o">+</span> <span class="n">shapeType</span><span class="p">);</span>
+    <span class="n">shape</span><span class="p">.</span><span class="na">setPosition</span><span class="p">(</span> <span class="k">new</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="n">y</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span> <span class="p">);</span>
+    <span class="n">shape</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span> <span class="k">new</span> <span class="n">Size</span><span class="p">(</span><span class="n">width</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">height</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span> <span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Unable to create shape: &quot;</span> <span class="o">+</span> <span class="n">shapeType</span><span class="p">);</span>  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">shape</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of makeShape()</span>
+</code></pre></div>
+<p>The method assumes that the shape is defined inside the com.sun.star.drawing
+package, i.e. that it's a shape which subclasses com.sun.star.drawing.Shape, like those
+in Figure 6 of Chapter 11. The code converts the supplied (x, y) coordinate, width,
+and height from millimeters to Office's 1/100 mm values.</p>
+<p>The exact meaning of the position and the size of a shape is a little tricky. If its width
+and height are positive, then the position is the top-left corner of the rectangle defined
+by those dimensions. However, the user can supply negative dimensions, which
+means that "top-left corner" may be on the right or bottom of the rectangle (see Figure
+2(a)). Office handles this by storing the rectangle with a new top-left point, so all the
+dimensions can be positive (see Figure 2(b)).</p>
 <p><img alt="" src="images/13-Basic_Shapes-2.png" /></p>
-<p>Figure 2. How Office Stores a Shape with a Negative Height. </p>
-<p>This means that your code should not assume that the position and size of a shape 
-remain unchanged after being set with XShape.setPosition() and XShape.setSize(). </p>
-<p>makeShape() is called by Draw.addShape() which adds the generated shape to the 
-page. It also check if the (x, y) coordinate is located on the page. If it isn't, 
-warnPosition() prints a warning message. </p>
-<p>// in the Draw class 
-public static XShape addShape(XDrawPage slide, String shapeType,<br />
-                            int x, int y, int width, int height) 
-{ warnsPosition(slide, x, y); 
-  XShape shape = makeShape(shapeType, x, y, width, height); 
-  if (shape != null) 
-    slide.add(shape); 
-  return shape; 
-}  // end of addShape() </p>
-<p>drawShapes() in the DrawPicture.java example is shown below. It creates the six 
-shapes shown in Figure 1. </p>
-<p>// in DrawPicture.java 
-private static void drawShapes(XDrawPage currSlide) 
-{ 
-  // black dashed line; uses (x1, y1) (x2, y2) 
-  XShape line1 = Draw.drawLine(currSlide, 50, 50, 200, 200); 
-  Props.setProperty(line1, "LineColor", 0x000000);   // black 
-  Draw.setDashedLine(line1, true); 
-  // Lo.delay(2000);  // to reduce the speed of the change 
-  // Draw.setDashedLine(line1, false); </p>
-<p>// red ellipse; uses (x, y) width, height 
-  XShape circle1 = Draw.drawEllipse(currSlide, 100, 100, 75, 25); 
-  Props.setProperty(circle1, "FillColor", 0xFF0000); </p>
-<p>// rectangle with different fills; uses (x, y) width, height 
-  XShape rect1 = Draw.drawRectangle(currSlide, 70, 70, 25, 50); 
-  // Props.setProperty(rect1, "FillColor", 0x00FF00); // green 
-  // Draw.setGradientColor(rect1, "Gradient 4"); 
-                               // "Radial red/yellow"); 
-  // Draw.setGradientColor(rect1, java.awt.Color.GREEN,<br />
-                                  java.awt.Color.RED); 
-  // Draw.setHatchingColor(rect1, "Red crossed 45 degrees"); 
-  // Draw.setBitmapColor(rect1, "Roses"); 
-  Draw.setBitmapFileColor(rect1, "crazy_blue.jpg"); </p>
-<p>// text defined using (x, y), width, height [size] 
-  XShape text1 = Draw.drawText(currSlide, "Hello LibreOffice",<br />
-                                     120, 120, 60, 30, 24); 
-  Props.setProperty(text1, "Name", "text1"); 
-  Props.showProps("TextShape's Text Properties", <br />
-                              Draw.getTextProperties(text1)); </p>
-<p>// gray transparent circle; uses (x,y), radius 
-  XShape circle2 = Draw.drawCircle(currSlide, 40, 150, 20); 
-  Props.setProperty(circle2, "FillColor",<br />
-                      Lo.getColorInt(java.awt.Color.GRAY)); 
-  Draw.setTransparency(circle2, 25); </p>
-<p>// thick line; uses (x,y), angle clockwise from x-axis, length 
-  XShape line2 = Draw.drawPolarLine(currSlide, 60, 200, 45, 100); 
-  Props.setProperty(line2, "LineWidth", 300);    // 3mm 
-}  // end of drawShapes() </p>
-<p>There's a number of variations possible for each shape, represented by commented out 
-code. The following sections look at how the six shapes are drawn. </p>
-<h2 id="2-a-black-dashed-line">2.  A Black Dashed Line</h2>
-<p>Draw.drawLine() calls Draw.addShape() to create a com.sun.star.drawing.LineShape 
-instance. In common with other shapes, a line is defined in terms of its enclosing 
-rectangle, represented by its top-left corner, width, and height. Draw.drawLine() 
-allows the programmer to define the line using its endpoints: </p>
-<p>// in the Draw class 
-public static XShape drawLine(XDrawPage slide,<br />
-                  int x1, int y1, int x2, int y2) 
-{ 
-  // make sure size is non-zero 
-  if ((x1 == x2) &amp;&amp; (y1 == y2)) { 
-    System.out.println("Line is a point"); 
-    return null; 
-  } 
-  int width = x2 - x1;   // may be negative 
-  int height = y2 - y1;  // may be negative 
-  return addShape(slide, "LineShape",  x1, y1, width, height); 
-}  // end of drawLine() </p>
-<p>As mentioned above, Office will store a shape with a modified position and size if one 
-or both of its dimensions is negative. As an example, consider if Draw.drawLine() is 
-called with the coordinates (10,20) and (20,10). The call to addShape() would be 
-passed a positive width (10mm) and a negative height (-10mm). This would be drawn 
-as in Figure 3(a) but would be stored using the shape position and size in Figure 3(c). </p>
+<p>Figure 2. How Office Stores a Shape with a Negative Height.</p>
+<p>This means that your code should not assume that the position and size of a shape
+remain unchanged after being set with XShape.setPosition() and XShape.setSize().</p>
+<p>makeShape() is called by Draw.addShape() which adds the generated shape to the
+page. It also check if the (x, y) coordinate is located on the page. If it isn't,
+warnPosition() prints a warning message.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XShape</span> <span class="nf">addShape</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">slide</span><span class="p">,</span> <span class="n">String</span> <span class="n">shapeType</span><span class="p">,</span>
+                            <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">warnsPosition</span><span class="p">(</span><span class="n">slide</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+  <span class="n">XShape</span> <span class="n">shape</span> <span class="o">=</span> <span class="n">makeShape</span><span class="p">(</span><span class="n">shapeType</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">shape</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="n">slide</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">shape</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">shape</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of addShape()</span>
+</code></pre></div>
+<p>drawShapes() in the DrawPicture.java example is shown below. It creates the six
+shapes shown in Figure 1.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in DrawPicture.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">drawShapes</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">currSlide</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// black dashed line; uses (x1, y1) (x2, y2)</span>
+  <span class="n">XShape</span> <span class="n">line1</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawLine</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">line1</span><span class="p">,</span> <span class="s">&quot;LineColor&quot;</span><span class="p">,</span> <span class="mh">0x000000</span><span class="p">);</span>   <span class="c1">// black</span>
+  <span class="n">Draw</span><span class="p">.</span><span class="na">setDashedLine</span><span class="p">(</span><span class="n">line1</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="c1">// Lo.delay(2000);  // to reduce the speed of the change</span>
+  <span class="c1">// Draw.setDashedLine(line1, false);</span>
+
+
+  <span class="c1">// red ellipse; uses (x, y) width, height</span>
+  <span class="n">XShape</span> <span class="n">circle1</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawEllipse</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">circle1</span><span class="p">,</span> <span class="s">&quot;FillColor&quot;</span><span class="p">,</span> <span class="mh">0xFF0000</span><span class="p">);</span>
+
+
+  <span class="c1">// rectangle with different fills; uses (x, y) width, height</span>
+  <span class="n">XShape</span> <span class="n">rect1</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawRectangle</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+  <span class="c1">// Props.setProperty(rect1, &quot;FillColor&quot;, 0x00FF00); // green</span>
+  <span class="c1">// Draw.setGradientColor(rect1, &quot;Gradient 4&quot;);</span>
+                               <span class="c1">// &quot;Radial red/yellow&quot;);</span>
+  <span class="c1">// Draw.setGradientColor(rect1, java.awt.Color.GREEN,</span>
+                                  <span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">Color</span><span class="p">.</span><span class="na">RED</span><span class="p">);</span>
+  <span class="c1">// Draw.setHatchingColor(rect1, &quot;Red crossed 45 degrees&quot;);</span>
+  <span class="c1">// Draw.setBitmapColor(rect1, &quot;Roses&quot;);</span>
+  <span class="n">Draw</span><span class="p">.</span><span class="na">setBitmapFileColor</span><span class="p">(</span><span class="n">rect1</span><span class="p">,</span> <span class="s">&quot;crazy_blue.jpg&quot;</span><span class="p">);</span>
+
+
+  <span class="c1">// text defined using (x, y), width, height [size]</span>
+  <span class="n">XShape</span> <span class="n">text1</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawText</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="s">&quot;Hello LibreOffice&quot;</span><span class="p">,</span>
+                                     <span class="mi">120</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">24</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">text1</span><span class="p">,</span> <span class="s">&quot;Name&quot;</span><span class="p">,</span> <span class="s">&quot;text1&quot;</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">showProps</span><span class="p">(</span><span class="s">&quot;TextShape&#39;s Text Properties&quot;</span><span class="p">,</span>
+                              <span class="n">Draw</span><span class="p">.</span><span class="na">getTextProperties</span><span class="p">(</span><span class="n">text1</span><span class="p">));</span>
+
+
+  <span class="c1">// gray transparent circle; uses (x,y), radius</span>
+  <span class="n">XShape</span> <span class="n">circle2</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawCircle</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">circle2</span><span class="p">,</span> <span class="s">&quot;FillColor&quot;</span><span class="p">,</span>
+                      <span class="n">Lo</span><span class="p">.</span><span class="na">getColorInt</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">Color</span><span class="p">.</span><span class="na">GRAY</span><span class="p">));</span>
+  <span class="n">Draw</span><span class="p">.</span><span class="na">setTransparency</span><span class="p">(</span><span class="n">circle2</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
+
+
+  <span class="c1">// thick line; uses (x,y), angle clockwise from x-axis, length</span>
+  <span class="n">XShape</span> <span class="n">line2</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawPolarLine</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">line2</span><span class="p">,</span> <span class="s">&quot;LineWidth&quot;</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>    <span class="c1">// 3mm</span>
+<span class="p">}</span>  <span class="c1">// end of drawShapes()</span>
+</code></pre></div>
+<p>There's a number of variations possible for each shape, represented by commented out
+code. The following sections look at how the six shapes are drawn.</p>
+<h2 id="2-a-black-dashed-line">2.  A Black Dashed Line<a class="headerlink" href="#2-a-black-dashed-line" title="Permanent link">&para;</a></h2>
+<p>Draw.drawLine() calls Draw.addShape() to create a com.sun.star.drawing.LineShape
+instance. In common with other shapes, a line is defined in terms of its enclosing
+rectangle, represented by its top-left corner, width, and height. Draw.drawLine()
+allows the programmer to define the line using its endpoints:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XShape</span> <span class="nf">drawLine</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">slide</span><span class="p">,</span>
+                  <span class="kt">int</span> <span class="n">x1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">x2</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y2</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// make sure size is non-zero</span>
+  <span class="k">if</span> <span class="p">((</span><span class="n">x1</span> <span class="o">==</span> <span class="n">x2</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">y1</span> <span class="o">==</span> <span class="n">y2</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Line is a point&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="kt">int</span> <span class="n">width</span> <span class="o">=</span> <span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span><span class="p">;</span>   <span class="c1">// may be negative</span>
+  <span class="kt">int</span> <span class="n">height</span> <span class="o">=</span> <span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span><span class="p">;</span>  <span class="c1">// may be negative</span>
+  <span class="k">return</span> <span class="n">addShape</span><span class="p">(</span><span class="n">slide</span><span class="p">,</span> <span class="s">&quot;LineShape&quot;</span><span class="p">,</span>  <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of drawLine()</span>
+</code></pre></div>
+<p>As mentioned above, Office will store a shape with a modified position and size if one
+or both of its dimensions is negative. As an example, consider if Draw.drawLine() is
+called with the coordinates (10,20) and (20,10). The call to addShape() would be
+passed a positive width (10mm) and a negative height (-10mm). This would be drawn
+as in Figure 3(a) but would be stored using the shape position and size in Figure 3&copy;.</p>
 <p><img alt="" src="images/13-Basic_Shapes-3.png" /></p>
-<p>Figure 3. How a Line with a Negative Height is Stored as a Shape. </p>
-<p>This kind of transformation may be important if your code modifies a shape after it 
-has been added to the slide, as my animation examples do in the next chapter. </p>
-<p>Back in DrawPicture.java's drawShapes(), the line's properties are adjusted. The 
-hardest part of this is finding the property's name in the API documentation, because 
-properties are typically defined across multiple services, including LineShape, Shape, 
-FillProperties, ShadowProperties, LineProperties, and RotationDescriptor. If the 
-property is related to the shape's text then you should check TextProperties, 
-CharacterProperties, and ParagraphProperties as well. Figure 7 of Chapter 11 shows 
-the situation for RectangleShape, and its much the same for other shapes. You should 
-start looking in the documentation for the shape (i.e. use lodoc LineShape 
-drawing), and move up the hierarchy. </p>
-<p>You can click on the inheritance diagram at the top of the page (e.g. like the one in 
-Figure 4) to look in the different services. </p>
+<p>Figure 3. How a Line with a Negative Height is Stored as a Shape.</p>
+<p>This kind of transformation may be important if your code modifies a shape after it
+has been added to the slide, as my animation examples do in the next chapter.</p>
+<p>Back in DrawPicture.java's drawShapes(), the line's properties are adjusted. The
+hardest part of this is finding the property's name in the API documentation, because
+properties are typically defined across multiple services, including LineShape, Shape,
+FillProperties, ShadowProperties, LineProperties, and RotationDescriptor. If the
+property is related to the shape's text then you should check TextProperties,
+CharacterProperties, and ParagraphProperties as well. Figure 7 of Chapter 11 shows
+the situation for RectangleShape, and its much the same for other shapes. You should
+start looking in the documentation for the shape (i.e. use
+<code>lodoc LineShape drawing</code>), and move up the hierarchy.</p>
+<p>You can click on the inheritance diagram at the top of the page (e.g. like the one in
+Figure 4) to look in the different services.</p>
 <p><img alt="" src="images/13-Basic_Shapes-4.png" /></p>
-<p>Figure 4. The LineShape Inheritance Diagram in the<br />
-LibreOffice Online Documentation. </p>
-<p>drawShapes() will color the line black and make it dashed, which suggests that I 
-should examine the LineProperties class. Its relevant properties are "LineColor" for 
-color and "LineStyle" and "LineDash" for creating dashes, as in Figure 5. </p>
+<p>Figure 4. The LineShape Inheritance Diagram in the
+LibreOffice Online Documentation.</p>
+<p>drawShapes() will color the line black and make it dashed, which suggests that I
+should examine the LineProperties class. Its relevant properties are "LineColor" for
+color and "LineStyle" and "LineDash" for creating dashes, as in Figure 5.</p>
 <p><img alt="" src="images/13-Basic_Shapes-5.png" /></p>
-<p>Figure 5. Relevant Properties in the LineProperties Class. </p>
-<p>Line color can be set with a single call to Props.setProperty(), but line dashing is a 
-little more complicated, so is handled by Draw.setDashedLine(): </p>
-<p>// in drawShapes() in DrawPicture.java 
-Props.setProperty(line1, "LineColor", 0x000000);   // black 
-Draw.setDashedLine(line1, true); </p>
-<p>The color parameter for "LineColor" is an RGB hexadecimal. There are other ways of 
-defining color, which I'll explain in a moment. </p>
-<p>Draw.setDashedLine() has to assign a LineStyle object to "LineStyle" and a LineDash 
-object to "LineDash". The line style is easily set since LineStyle is an enumeration 
-with three possible values. A LineDash object requires more work: </p>
-<p>// in the Draw class 
-public static void setDashedLine(XShape shape, boolean isDashed) 
-{ 
-  // create a LineDash object 
-  LineDash ld = new LineDash();<br />
-  ld.Dots = 0; ld.DotLen = 100;  // dashes only; no dots 
-  ld.Dashes = 5; 
-  ld.DashLen = 200; 
-  ld.Distance = 200; </p>
-<p>// set the properties for the line 
-  XPropertySet props = Lo.qi(XPropertySet.class, shape); 
-  try { 
-    if (isDashed) {  // draw a dashed line 
-      props.setPropertyValue("LineStyle", LineStyle.DASH); 
-      props.setPropertyValue("LineDash", ld); 
-    } 
-    else // draw a solid line 
-      props.setPropertyValue("LineStyle", LineStyle.SOLID); 
-  } 
-  catch(Exception e) 
-  {  System.out.println("Could not set dashed line property");  } 
-}  // end of setDashedLine() </p>
-<p>setDashedLine() can be used to toggle a line's dashes on or off. </p>
-<h2 id="3-a-red-ellipse">3.  A Red Ellipse</h2>
-<p>A red ellipse is drawn using: </p>
-<p>// in drawShapes() in DrawPicture.java 
-XShape circle1 = Draw.drawEllipse(currSlide, 100, 100, 75, 25); 
-Props.setProperty(circle1, "FillColor", 0xFF0000); </p>
-<p>Draw.drawEllipse() is similar to drawLine() except that an EllipseShape is created by 
-Draw.addShape(): </p>
-<p>// in the Draw class 
-public static XShape drawEllipse(XDrawPage slide,<br />
-                           int x, int y, int width, int height) 
-{  return addShape(slide, "EllipseShape", x, y, width, height);  } </p>
-<p>I want to fill the circle with a solid color, which suggests the setting of a property in 
-FillProperties. A visit to the online documentation for EllipseShape reveals an 
-inheritance diagram like the one in Figure 6. </p>
+<p>Figure 5. Relevant Properties in the LineProperties Class.</p>
+<p>Line color can be set with a single call to Props.setProperty(), but line dashing is a
+little more complicated, so is handled by Draw.setDashedLine():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in drawShapes() in DrawPicture.java</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">line1</span><span class="p">,</span> <span class="s">&quot;LineColor&quot;</span><span class="p">,</span> <span class="mh">0x000000</span><span class="p">);</span>   <span class="c1">// black</span>
+<span class="n">Draw</span><span class="p">.</span><span class="na">setDashedLine</span><span class="p">(</span><span class="n">line1</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+</code></pre></div>
+<p>The color parameter for "LineColor" is an RGB hexadecimal. There are other ways of
+defining color, which I'll explain in a moment.</p>
+<p>Draw.setDashedLine() has to assign a LineStyle object to "LineStyle" and a LineDash
+object to "LineDash". The line style is easily set since LineStyle is an enumeration
+with three possible values. A LineDash object requires more work:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setDashedLine</span><span class="p">(</span><span class="n">XShape</span> <span class="n">shape</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">isDashed</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// create a LineDash object</span>
+  <span class="n">LineDash</span> <span class="n">ld</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LineDash</span><span class="p">();</span>
+  <span class="n">ld</span><span class="p">.</span><span class="na">Dots</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">ld</span><span class="p">.</span><span class="na">DotLen</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>  <span class="c1">// dashes only; no dots</span>
+  <span class="n">ld</span><span class="p">.</span><span class="na">Dashes</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+  <span class="n">ld</span><span class="p">.</span><span class="na">DashLen</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+  <span class="n">ld</span><span class="p">.</span><span class="na">Distance</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+
+  <span class="c1">// set the properties for the line</span>
+  <span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">shape</span><span class="p">);</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">isDashed</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// draw a dashed line</span>
+      <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;LineStyle&quot;</span><span class="p">,</span> <span class="n">LineStyle</span><span class="p">.</span><span class="na">DASH</span><span class="p">);</span>
+      <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;LineDash&quot;</span><span class="p">,</span> <span class="n">ld</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="c1">// draw a solid line</span>
+      <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;LineStyle&quot;</span><span class="p">,</span> <span class="n">LineStyle</span><span class="p">.</span><span class="na">SOLID</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not set dashed line property&quot;</span><span class="p">);</span>  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of setDashedLine()</span>
+</code></pre></div>
+<p>setDashedLine() can be used to toggle a line's dashes on or off.</p>
+<h2 id="3-a-red-ellipse">3.  A Red Ellipse<a class="headerlink" href="#3-a-red-ellipse" title="Permanent link">&para;</a></h2>
+<p>A red ellipse is drawn using:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in drawShapes() in DrawPicture.java</span>
+<span class="n">XShape</span> <span class="n">circle1</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawEllipse</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">circle1</span><span class="p">,</span> <span class="s">&quot;FillColor&quot;</span><span class="p">,</span> <span class="mh">0xFF0000</span><span class="p">);</span>
+</code></pre></div>
+<p>Draw.drawEllipse() is similar to drawLine() except that an EllipseShape is created by
+Draw.addShape():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XShape</span> <span class="nf">drawEllipse</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">slide</span><span class="p">,</span>
+                           <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">)</span>
+<span class="p">{</span>  <span class="k">return</span> <span class="n">addShape</span><span class="p">(</span><span class="n">slide</span><span class="p">,</span> <span class="s">&quot;EllipseShape&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>  <span class="p">}</span>
+</code></pre></div>
+<p>I want to fill the circle with a solid color, which suggests the setting of a property in
+FillProperties. A visit to the online documentation for EllipseShape reveals an
+inheritance diagram like the one in Figure 6.</p>
 <p><img alt="" src="images/13-Basic_Shapes-6.png" /></p>
-<p>Figure 6. The EllipseShape Inheritance Diagram in the<br />
-LibreOffice Online Documentation. </p>
-<p>Clicking on the FillProperties rectangle jumps to its documentation, which lists a 
-"FillColor" property (see Figure 7). </p>
+<p>Figure 6. The EllipseShape Inheritance Diagram in the
+LibreOffice Online Documentation.</p>
+<p>Clicking on the FillProperties rectangle jumps to its documentation, which lists a
+"FillColor" property (see Figure 7).</p>
 <p><img alt="" src="images/13-Basic_Shapes-7.png" /></p>
-<p>Figure 7. Relevant Properties in the FillProperties Class. </p>
-<p>Both the "FillColor" and "FillStyle" properties should be set, but the default value for 
-"FillStyle" is already FillStyle.SOLID, which is what's needed. </p>
-<h2 id="4-a-rectangle-with-a-variety-of-fills">4.  A Rectangle with a Variety of Fills</h2>
-<p>The rectangle example in drawShapes() comes in six different colors: </p>
-<p>// in drawShapes() in DrawPicture.java 
-  // rectangle with different fills 
-  XShape rect1 = Draw.drawRectangle(currSlide, 70, 70, 25, 50); 
-  // Props.setProperty(rect1, "FillColor", 0x00FF00); // green </p>
-<p>// Draw.setGradientColor(rect1, "Gradient 4"); 
-                                      // "Radial red/yellow"); </p>
-<p>// Draw.setGradientColor(rect1, java.awt.Color.GREEN,<br />
-                                  java.awt.Color.RED); </p>
-<p>// Draw.setHatchingColor(rect1, "Red crossed 45 degrees"); </p>
-<p>// Draw.setBitmapColor(rect1, "Roses"); </p>
-<p>Draw.setBitmapFileColor(rect1, "crazy_blue.jpg"); </p>
-<p>They're shown in Figure 8. </p>
+<p>Figure 7. Relevant Properties in the FillProperties Class.</p>
+<p>Both the "FillColor" and "FillStyle" properties should be set, but the default value for
+"FillStyle" is already FillStyle.SOLID, which is what's needed.</p>
+<h2 id="4-a-rectangle-with-a-variety-of-fills">4.  A Rectangle with a Variety of Fills<a class="headerlink" href="#4-a-rectangle-with-a-variety-of-fills" title="Permanent link">&para;</a></h2>
+<p>The rectangle example in drawShapes() comes in six different colors:</p>
+<div class="highlight"><pre><span></span><code>  <span class="c1">// in drawShapes() in DrawPicture.java</span>
+  <span class="c1">// rectangle with different fills</span>
+  <span class="n">XShape</span> <span class="n">rect1</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawRectangle</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+  <span class="c1">// Props.setProperty(rect1, &quot;FillColor&quot;, 0x00FF00); // green</span>
+
+  <span class="c1">// Draw.setGradientColor(rect1, &quot;Gradient 4&quot;);</span>
+                                      <span class="c1">// &quot;Radial red/yellow&quot;);</span>
+
+  <span class="c1">// Draw.setGradientColor(rect1, java.awt.Color.GREEN,</span>
+                                  <span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">Color</span><span class="p">.</span><span class="na">RED</span><span class="p">);</span>
+
+  <span class="c1">// Draw.setHatchingColor(rect1, &quot;Red crossed 45 degrees&quot;);</span>
+
+  <span class="c1">// Draw.setBitmapColor(rect1, &quot;Roses&quot;);</span>
+
+  <span class="n">Draw</span><span class="p">.</span><span class="na">setBitmapFileColor</span><span class="p">(</span><span class="n">rect1</span><span class="p">,</span> <span class="s">&quot;crazy_blue.jpg&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>They're shown in Figure 8.</p>
 <p><img alt="" src="images/13-Basic_Shapes-8.jpg" /></p>
-<p>Figure 8. Six Ways of Filling a Rectangle. </p>
-<h3 id="41-gradient-color">4.1.  Gradient Color</h3>
-<p>The second example in Figure 8 ("gradient color") is implemented using 
-Draw.setGradientColor(): </p>
-<p>// in the Draw class 
-public static void setGradientColor(XShape shape, String name) 
-{ 
-  XPropertySet props = Lo.qi(XPropertySet.class, shape); 
-  try { 
-    props.setPropertyValue("FillStyle", FillStyle.GRADIENT); 
-    props.setPropertyValue("FillGradientName", name); 
-  } 
-  catch(com.sun.star.lang.IllegalArgumentException e) 
-  {  System.out.println("\"" + name + "\" is not a<br />
-                        recognized gradient color name");  } 
-  catch(Exception e) 
-  {  System.out.println("Could not set to \"" + name + "\"");  } 
-}  // end of setGradientColor() </p>
-<p>The hardest part of using this function is determining what name value to pass to the 
-"FillGradientName" property (e.g. "Gradient 4" in the call in drawShapes()). The 
-easiest solution is to fire up Office's Draw application, and check out the gradient 
-names listed in the "Line and Filling" toolbar. Figure 9 shows what happens when the 
-user selects a shape and chooses the "Gradient" menu item from the combo box. </p>
+<p>Figure 8. Six Ways of Filling a Rectangle.</p>
+<h3 id="41-gradient-color">4.1.  Gradient Color<a class="headerlink" href="#41-gradient-color" title="Permanent link">&para;</a></h3>
+<p>The second example in Figure 8 ("gradient color") is implemented using
+Draw.setGradientColor():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setGradientColor</span><span class="p">(</span><span class="n">XShape</span> <span class="n">shape</span><span class="p">,</span> <span class="n">String</span> <span class="n">name</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">shape</span><span class="p">);</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;FillStyle&quot;</span><span class="p">,</span> <span class="n">FillStyle</span><span class="p">.</span><span class="na">GRADIENT</span><span class="p">);</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;FillGradientName&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">IllegalArgumentException</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\&quot;&quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s">&quot;\&quot; is not a</span>
+<span class="s">                        recognized gradient color name&quot;</span><span class="p">);</span>  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not set to \&quot;&quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of setGradientColor()</span>
+</code></pre></div>
+<p>The hardest part of using this function is determining what name value to pass to the
+"FillGradientName" property (e.g. "Gradient 4" in the call in drawShapes()). The
+easiest solution is to fire up Office's Draw application, and check out the gradient
+names listed in the "Line and Filling" toolbar. Figure 9 shows what happens when the
+user selects a shape and chooses the "Gradient" menu item from the combo box.</p>
 <p><img alt="" src="images/13-Basic_Shapes-9.png" /></p>
-<p>Figure 9. The Gradient Names in LibreOffice. </p>
-<p>If you supply a name which is not in Figure 9's list, then "Linear blue/white" is used 
-instead. </p>
-<h3 id="42-gradient-awt-color">4.2.  Gradient AWT Color</h3>
-<p>The third example in Figure 8 shows what happens when you define your own 
-gradient and angle of change. In drawShapes(), the call is: 
-Draw.setGradientColor(rect1, java.awt.Color.GREEN,<br />
-                                  java.awt.Color.RED); 
-This creates a gradient change from green to red downwards through the shape. </p>
-<p>Draw.setGradientColor() calls a four argument version of itself which specifies the 
-gradient angle: </p>
-<p>// in the Draw class 
-public static void setGradientColor(XShape shape,<br />
-              java.awt.Color startColor, java.awt.Color endColor) 
-{  setGradientColor(shape, startColor, endColor, 0);  } </p>
-<p>public static void setGradientColor(XShape shape,<br />
-   java.awt.Color startColor, java.awt.Color endColor, int angle) 
-/<em> if angle == 90 then the gradient changes from the left 
-   to the right side of the shape </em>/ 
-{ 
-  // create Gradient object 
-  Gradient grad = new Gradient();<br />
-  grad.Style = GradientStyle.LINEAR;<br />
-  grad.StartColor = Lo.getColorInt(startColor);<br />
-  grad.EndColor = Lo.getColorInt(endColor);  </p>
-<p>grad.Angle = (short)(angle*10);    // in 1/10 degree units 
-  grad.Border = 0;<br />
-  grad.XOffset = 0; grad.YOffset = 0;<br />
-  grad.StartIntensity = 100; grad.EndIntensity = 100;<br />
-  grad.StepCount = 10;  </p>
-<p>XPropertySet props = Lo.qi(XPropertySet.class, shape); 
-  try { 
-    props.setPropertyValue("FillStyle", FillStyle.GRADIENT); 
-    props.setPropertyValue("FillGradient", grad); 
-  } 
-  catch(Exception e) 
-  {  System.out.println("Could not set gradient colors");  } 
-}  // end of setGradientColor() </p>
-<p>setGradientColor() sets the properties "FillStyle" and "FillGradient". The latter 
-requires a Gradient object, which is documented in the FillProperties class, as shown 
-in Figure 10. </p>
+<p>Figure 9. The Gradient Names in LibreOffice.</p>
+<p>If you supply a name which is not in Figure 9's list, then "Linear blue/white" is used
+instead.</p>
+<h3 id="42-gradient-awt-color">4.2.  Gradient AWT Color<a class="headerlink" href="#42-gradient-awt-color" title="Permanent link">&para;</a></h3>
+<p>The third example in Figure 8 shows what happens when you define your own
+gradient and angle of change. In drawShapes(), the call is:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Draw</span><span class="p">.</span><span class="na">setGradientColor</span><span class="p">(</span><span class="n">rect1</span><span class="p">,</span> <span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">Color</span><span class="p">.</span><span class="na">GREEN</span><span class="p">,</span>
+                                  <span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">Color</span><span class="p">.</span><span class="na">RED</span><span class="p">);</span>
+</code></pre></div>
+<p>This creates a gradient change from green to red downwards through the shape.</p>
+<p>Draw.setGradientColor() calls a four argument version of itself which specifies the
+gradient angle:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setGradientColor</span><span class="p">(</span><span class="n">XShape</span> <span class="n">shape</span><span class="p">,</span>
+              <span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">Color</span> <span class="n">startColor</span><span class="p">,</span> <span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">Color</span> <span class="n">endColor</span><span class="p">)</span>
+<span class="p">{</span>  <span class="n">setGradientColor</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">startColor</span><span class="p">,</span> <span class="n">endColor</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>  <span class="p">}</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setGradientColor</span><span class="p">(</span><span class="n">XShape</span> <span class="n">shape</span><span class="p">,</span>
+   <span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">Color</span> <span class="n">startColor</span><span class="p">,</span> <span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">Color</span> <span class="n">endColor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">angle</span><span class="p">)</span>
+<span class="cm">/* if angle == 90 then the gradient changes from the left</span>
+<span class="cm">   to the right side of the shape */</span>
+<span class="p">{</span>
+  <span class="c1">// create Gradient object</span>
+  <span class="n">Gradient</span> <span class="n">grad</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Gradient</span><span class="p">();</span>
+  <span class="n">grad</span><span class="p">.</span><span class="na">Style</span> <span class="o">=</span> <span class="n">GradientStyle</span><span class="p">.</span><span class="na">LINEAR</span><span class="p">;</span>
+  <span class="n">grad</span><span class="p">.</span><span class="na">StartColor</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">getColorInt</span><span class="p">(</span><span class="n">startColor</span><span class="p">);</span>
+  <span class="n">grad</span><span class="p">.</span><span class="na">EndColor</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">getColorInt</span><span class="p">(</span><span class="n">endColor</span><span class="p">);</span>
+
+  <span class="n">grad</span><span class="p">.</span><span class="na">Angle</span> <span class="o">=</span> <span class="p">(</span><span class="kt">short</span><span class="p">)(</span><span class="n">angle</span><span class="o">*</span><span class="mi">10</span><span class="p">);</span>    <span class="c1">// in 1/10 degree units</span>
+  <span class="n">grad</span><span class="p">.</span><span class="na">Border</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">grad</span><span class="p">.</span><span class="na">XOffset</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">grad</span><span class="p">.</span><span class="na">YOffset</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">grad</span><span class="p">.</span><span class="na">StartIntensity</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span> <span class="n">grad</span><span class="p">.</span><span class="na">EndIntensity</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+  <span class="n">grad</span><span class="p">.</span><span class="na">StepCount</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+
+  <span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">shape</span><span class="p">);</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;FillStyle&quot;</span><span class="p">,</span> <span class="n">FillStyle</span><span class="p">.</span><span class="na">GRADIENT</span><span class="p">);</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;FillGradient&quot;</span><span class="p">,</span> <span class="n">grad</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not set gradient colors&quot;</span><span class="p">);</span>  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of setGradientColor()</span>
+</code></pre></div>
+<p>setGradientColor() sets the properties "FillStyle" and "FillGradient". The latter
+requires a Gradient object, which is documented in the FillProperties class, as shown
+in Figure 10.</p>
 <p><img alt="" src="images/13-Basic_Shapes-10.png" /></p>
-<p>Figure 10. The "FillGradient" Property in the FillProperties Class. </p>
-<p>The online documentation for FillProperties can be reached using lodoc 
-FillProperties service reference. </p>
-<p>Clicking on the "com::sun::star::awt::Gradient" name in Figure 10 loads its 
-documentation, which lists ten fields that need to be set. </p>
-<p>The colors passed to Draw.setGradientColor() are the Java AWT constants for red and 
-green (java.awt.Color.RED and java.awt.Color.GREEN), but any Color objects could 
-be used. They're converted to hexadecimals by Lo.getColorInt(): </p>
-<p>public static int getColorInt(java.awt.Color color)<br />
-// return the color as an integer, ignoring the alpha channel 
-{  <br />
-  if (color == null) { 
-    System.out.println("No color supplied"); 
-    return 0; 
-  } 
-  else 
-    return (color.getRGB() &amp; 0xffffff); 
-} // end of getColorInt() </p>
-<h3 id="43-hatching">4.3.  Hatching</h3>
-<p>The fourth fill in Figure 8 employs hatching. In drawShapes(), the call is: </p>
-<p>Draw.setHatchingColor(rect1, "Red crossed 45 degrees"); </p>
-<p>Draw.setHatchingColor() is: </p>
-<p>public static void setHatchingColor(XShape shape, String name) 
-{ 
-  XPropertySet props = Lo.qi(XPropertySet.class, shape); 
-  try { 
-    props.setPropertyValue("FillStyle", FillStyle.HATCH); 
-    props.setPropertyValue("FillHatchName", name); 
-  } 
-  catch(com.sun.star.lang.IllegalArgumentException e) 
-  {  System.out.println("\"" + name + "\" not a hatching name");  } 
-  catch(Exception e) 
-  {  System.out.println("Could not set color \"" + name + "\"");  } 
-}  // end of setHatchingColor() </p>
-<p>This function is much the same as setGradientColor() except that it utilizes 
-"FillHatchName" rather than "FillGradientName", and the fill style is set to 
-FillStyle.HATCH. Suitable hatching names can be found by looking at the relevant 
-list in Draw's "Line and Filling" toolbar. Figure 11 shows the "Hatching" menu item. </p>
+<p>Figure 10. The "FillGradient" Property in the FillProperties Class.</p>
+<p>The online documentation for FillProperties can be reached using lodoc
+FillProperties service reference.</p>
+<p>Clicking on the "com::sun:<img alt="⭐" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/2b50.svg" title=":star:" />:awt::Gradient" name in Figure 10 loads its
+documentation, which lists ten fields that need to be set.</p>
+<p>The colors passed to Draw.setGradientColor() are the Java AWT constants for red and
+green (java.awt.Color.RED and java.awt.Color.GREEN), but any Color objects could
+be used. They're converted to hexadecimals by Lo.getColorInt():</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getColorInt</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">Color</span> <span class="n">color</span><span class="p">)</span>
+<span class="c1">// return the color as an integer, ignoring the alpha channel</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">color</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No color supplied&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">color</span><span class="p">.</span><span class="na">getRGB</span><span class="p">()</span> <span class="o">&amp;</span> <span class="mh">0xffffff</span><span class="p">);</span>
+<span class="p">}</span> <span class="c1">// end of getColorInt()</span>
+</code></pre></div>
+<h3 id="43-hatching">4.3.  Hatching<a class="headerlink" href="#43-hatching" title="Permanent link">&para;</a></h3>
+<p>The fourth fill in Figure 8 employs hatching. In drawShapes(), the call is:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Draw</span><span class="p">.</span><span class="na">setHatchingColor</span><span class="p">(</span><span class="n">rect1</span><span class="p">,</span> <span class="s">&quot;Red crossed 45 degrees&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>Draw.setHatchingColor() is:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setHatchingColor</span><span class="p">(</span><span class="n">XShape</span> <span class="n">shape</span><span class="p">,</span> <span class="n">String</span> <span class="n">name</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">shape</span><span class="p">);</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;FillStyle&quot;</span><span class="p">,</span> <span class="n">FillStyle</span><span class="p">.</span><span class="na">HATCH</span><span class="p">);</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;FillHatchName&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">IllegalArgumentException</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\&quot;&quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s">&quot;\&quot; not a hatching name&quot;</span><span class="p">);</span>  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not set color \&quot;&quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of setHatchingColor()</span>
+</code></pre></div>
+<p>This function is much the same as setGradientColor() except that it utilizes
+"FillHatchName" rather than "FillGradientName", and the fill style is set to
+FillStyle.HATCH. Suitable hatching names can be found by looking at the relevant
+list in Draw's "Line and Filling" toolbar. Figure 11 shows the "Hatching" menu item.</p>
 <p><img alt="" src="images/13-Basic_Shapes-11.png" /></p>
-<p>Figure 11. The Hatching Names in LibreOffice. </p>
-<h3 id="44-bitmap-color">4.4.  Bitmap Color</h3>
-<p>The fifth rectangle fill in Figure 8 utilizes a bitmap color: 
-Draw.setBitmapColor(rect1, "Roses"); 
-The function is: </p>
-<p>public static void setBitmapColor(XShape shape, String name) 
-{ 
-  XPropertySet props = Lo.qi(XPropertySet.class, shape); 
-  try { 
-    props.setPropertyValue("FillStyle", FillStyle.BITMAP); 
-    props.setPropertyValue("FillBitmapName", name); 
-  } 
-  catch(com.sun.star.lang.IllegalArgumentException e) 
-  {  System.out.println("\"" + name + "\" is not a bitmap");  } 
-  catch(Exception e) 
-  {  System.out.println("Could not set to \"" + name + "\"");  } 
-}  // end of setBitmapColor() </p>
-<p>This is also similar to setGradientColor() and setHatchingColor() but uses a different 
-"FillStyle" value, and assigns a name to "FillBitmapName". As you might have 
-guessed by now, the best source for these names is the  "Line and Filling" toolbar 
-shown in Figure 12. </p>
+<p>Figure 11. The Hatching Names in LibreOffice.</p>
+<h3 id="44-bitmap-color">4.4.  Bitmap Color<a class="headerlink" href="#44-bitmap-color" title="Permanent link">&para;</a></h3>
+<p>The fifth rectangle fill in Figure 8 utilizes a bitmap color:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Draw</span><span class="p">.</span><span class="na">setBitmapColor</span><span class="p">(</span><span class="n">rect1</span><span class="p">,</span> <span class="s">&quot;Roses&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>The function is:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setBitmapColor</span><span class="p">(</span><span class="n">XShape</span> <span class="n">shape</span><span class="p">,</span> <span class="n">String</span> <span class="n">name</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">shape</span><span class="p">);</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;FillStyle&quot;</span><span class="p">,</span> <span class="n">FillStyle</span><span class="p">.</span><span class="na">BITMAP</span><span class="p">);</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;FillBitmapName&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">IllegalArgumentException</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\&quot;&quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s">&quot;\&quot; is not a bitmap&quot;</span><span class="p">);</span>  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not set to \&quot;&quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of setBitmapColor()</span>
+</code></pre></div>
+<p>This is also similar to setGradientColor() and setHatchingColor() but uses a different
+"FillStyle" value, and assigns a name to "FillBitmapName". As you might have
+guessed by now, the best source for these names is the  "Line and Filling" toolbar
+shown in Figure 12.</p>
 <p><img alt="" src="images/13-Basic_Shapes-12.png" /></p>
-<p>Figure 12. The Bitmap Names in LibreOffice. </p>
-<h3 id="45-bitmap-file-color">4.5.  Bitmap File Color</h3>
-<p>The final fill in Figure 8 loads a bitmap from "crazy_blue.jpg": 
-Draw.setBitmapFileColor(rect1, "crazy_blue.jpg"); 
-setBitmapFileColor() is: </p>
-<p>public static void setBitmapFileColor(XShape shape, String fnm) 
-{ 
-  XPropertySet props = Lo.qi(XPropertySet.class, shape); 
-  try { 
-    props.setPropertyValue("FillStyle", FillStyle.BITMAP); 
-    props.setPropertyValue("FillBitmapURL", FileIO.fnmToURL(fnm)); 
-  } 
-  catch(Exception e) 
-  {  System.out.println("Could not set color \"" + fnm + "\"");  } 
-}  // end of setBitmapFileColor() </p>
-<p>The "FillBitmapURL" property requires a URL, so the filename is converted by 
-FileIO.fnmToURL(). </p>
-<h2 id="5-text">5.  Text</h2>
-<p>The "Hello LibreOffice" text shape in Figure 1 is created by calling Draw.drawText(): </p>
-<p>XShape text1 = Draw.drawText(currSlide, "Hello LibreOffice",<br />
-                             120, 120, 60, 30, 24); </p>
-<p>The first four numerical parameters define the shape's bounding rectangle in terms of<br />
-its top-left coordinate, width, and height. The fifth, optional number specifies a font 
-size (in this case, 24pt). </p>
-<p>drawText() calls addShape() with "TextShape": </p>
-<p>// in the Draw class 
-public static XShape drawText(XDrawPage slide, String msg, 
-            int x, int y, int width, int height, int fontSize) 
-{ XShape shape = addShape(slide, "TextShape", x,y, width, height); 
-  addText(shape, msg, fontSize); 
-  return shape; 
-}  // end of drawText() </p>
-<p>addText() adds the message to the shape, and sets its font size: </p>
-<p>public static void addText(XShape shape, String msg, int fontSize) 
-{ 
-  XText xText = Lo.qi(XText.class, shape); 
-  XTextCursor cursor = xText.createTextCursor(); 
-  cursor.gotoEnd(false); 
-  if (fontSize &gt; 0) 
-    Props.setProperty(cursor, "CharHeight", fontSize); 
-  XTextRange range = Lo.qi(XTextRange.class, cursor); 
-  range.setString(msg); 
-}  // end of addText() </p>
-<p>The shape is converted into an XText reference, and the text range selected with a 
-cursor. </p>
-<p>The "CharHeight" property comes from the CharacterProperties service, which is 
-inherited by the Text service (as shown in Figure 7 of Chapter 11). </p>
-<p>Some Help with Text Properties 
-The text-related properties for a shape can be accessed with 
-Draw.getTextProperties(): </p>
-<p>public static XPropertySet getTextProperties(XShape xShape) 
-{ 
-  XText xText = Lo.qi(XText.class, xShape); 
-  XTextCursor cursor = xText.createTextCursor(); 
-  cursor.gotoStart(false); 
-  cursor.gotoEnd(true); 
-  XTextRange xTextRange = Lo.qi(XTextRange.class, cursor); 
-  return Lo.qi(XPropertySet.class, xTextRange); 
-}  // end of getTextProperties() </p>
-<p>drawShapes() in DrawPicture.java calls Draw.getTextProperties() on the text1 
-TextShape, and prints all its properties: </p>
-<p>// in drawShapes() in DrawPicture.java 
-Props.showProps("TextShape's Text Properties", <br />
-                                Draw.getTextProperties(text1)); </p>
-<p>The output is long, but includes the line: 
-CharHeight == 24.0 
-which indicates that the font size was correctly changed by the earlier call to 
-Draw.drawText(). </p>
-<h2 id="6-using-a-shape-name">6.  Using a Shape Name</h2>
-<p>Immediately after the call to Draw.drawText(), the shape's name is set: </p>
-<p>// in drawShapes() in DrawPicture.java 
-Props.setProperty(text1, "Name", "text1"); </p>
-<p>The "Name" property, which is defined in the Shape class, is a useful way of referring 
-to a shape. The main() function of DrawPicture.java passes a name to 
-Draw.findShapeByName(): </p>
-<p>// in main() in DrawPicture.java 
-XShape s = Draw.findShapeByName(currSlide, "text1"); 
-Draw.reportPosSize(s); </p>
-<p>Draw.findShapeByName() iterates through a list of shapes extracted from the slide, 
-and returns the shape with the supplied name: </p>
-<p>// in the Draw class 
-public static XShape findShapeByName(XDrawPage slide,<br />
-                                     String shapeName) 
-{ ArrayList<XShape> shapes = getShapes(slide); 
-  if (shapes == null) { 
-    System.out.println("No shapes were found in the draw page"); 
-    return null; 
-  } </p>
-<p>for (XShape shape : shapes) { 
-    String nm = (String)Props.getProperty(shape, "Name"); 
-    if (shapeName.equals(nm)) 
-      return shape; 
-  } </p>
-<p>System.out.println("No shape named \"" + shapeName + "\""); 
-  return null; 
-}  // end of findShapeByName() </p>
-<p>Draw.getShapes() builds a list of shapes by iterating through the XDrawPage object 
-as an indexed container of shapes: </p>
-<p>// in the Draw class 
-public static ArrayList<XShape> getShapes(XDrawPage slide) 
-{ 
-  if (slide == null) { 
-    System.out.println("Slide is null"); 
-    return null; 
-  } 
-  if (slide.getCount() == 0) { 
-    System.out.println("Slide does not contain any shapes"); 
-    return null; 
-  } </p>
-<p>ArrayList<XShape> xShapesList = new ArrayList<XShape>(); 
-  try { 
-    for(int j=0; j &lt; slide.getCount(); j++) 
-      xShapesList.add( Lo.qi(XShape.class, slide.getByIndex(j))); 
-  } 
-  catch(Exception e) 
-  {   System.out.println("Shapes extraction error in slide");  } </p>
-<p>return xShapesList; 
-}  // end of getShapes() </p>
-<p>Draw.reportPosSize() prints some brief information about a shape, including its name, 
-shape type, position, and size: </p>
-<p>// in the Draw class 
-public static void reportPosSize(XShape shape) 
-{ 
-  if (shape == null) { 
-    System.out.println("The shape is null"); 
-    return; 
-  } 
-  System.out.println("Shape name: " +<br />
-                        Props.getProperty(shape, "Name")); 
-  System.out.println("  Type: " + shape.getShapeType()); 
-  Point pt = shape.getPosition(); 
-  Size sz = shape.getSize(); 
-  System.out.println("  Position/size: (" +<br />
-               pt.X/100 + ", " +  pt.Y/100 +  ") / (" +<br />
-               sz.Width/100 + ", " + sz.Height/100 + ")"); 
-}  // end of reportPosSize() </p>
-<p>XShape.getShapeType() returns the class name of the shape as a string (in this case, 
-"com.sun.star.drawing.TextShape"). </p>
-<h2 id="7-a-transparent-circle-and-a-polar-line">7.  A Transparent Circle and a Polar Line</h2>
-<p>The last two shapes created by DrawPicture.java's drawShapes() are a gray 
-transparent circle and a polar line.  </p>
-<p>// in drawShapes() in DrawPicture.java 
-// gray transparent circle; uses (x,y), radius 
-XShape circle2 = Draw.drawCircle(currSlide, 40, 150, 20); 
-Props.setProperty(circle2, "FillColor",<br />
-                  Lo.getColorInt(java.awt.Color.GRAY)); 
-Draw.setTransparency(circle2, 25); </p>
-<p>// thick line; uses (x,y), angle clockwise from x-axis, length 
-XShape line2 = Draw.drawPolarLine(currSlide, 60, 200, 45, 100); 
-Props.setProperty(line2, "LineWidth", 300);    // 3mm </p>
-<p>A polar line is one defined using polar coordinates, which specifies the coordinate of 
-one end of the line, and the angle and length of the line from that point. </p>
-<p>Draw.drawCircle() uses an EllipseShape, and Draw.drawPolarLine() converts the 
-polar values into two coordinates so Draw.drawLine() can be called. </p>
-<h2 id="8-a-math-formula-as-an-ole-shape">8.  A Math formula as an OLE Shape</h2>
-<p>Draw/Impress documents can include OLE objects through OLE2Shape, which 
-allows a shape to link to an external document. Probably the most popular kind of 
-OLE shape is the chart, but I'll delay a detailed discussion of that topic until Part 5, 
-although there is a code snippet below. </p>
-<p>The best way of finding out what OLE objects are available is to go to Draw's (or 
-Impress') Insert menu  Object  "OLE Object" dialog. It lists Office spreadsheet, 
-chart, drawing, presentation, and formula documents, and a range of Microsoft and 
-PDF types (when you click on "Further objects").  </p>
-<p>The DrawPicture.java OLE example displays a mathematical formula, as in Figure 13. </p>
+<p>Figure 12. The Bitmap Names in LibreOffice.</p>
+<h3 id="45-bitmap-file-color">4.5.  Bitmap File Color<a class="headerlink" href="#45-bitmap-file-color" title="Permanent link">&para;</a></h3>
+<p>The final fill in Figure 8 loads a bitmap from "crazy_blue.jpg":
+Draw.setBitmapFileColor(rect1, "crazy_blue.jpg");
+setBitmapFileColor() is:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setBitmapFileColor</span><span class="p">(</span><span class="n">XShape</span> <span class="n">shape</span><span class="p">,</span> <span class="n">String</span> <span class="n">fnm</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">shape</span><span class="p">);</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;FillStyle&quot;</span><span class="p">,</span> <span class="n">FillStyle</span><span class="p">.</span><span class="na">BITMAP</span><span class="p">);</span>
+    <span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;FillBitmapURL&quot;</span><span class="p">,</span> <span class="n">FileIO</span><span class="p">.</span><span class="na">fnmToURL</span><span class="p">(</span><span class="n">fnm</span><span class="p">));</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not set color \&quot;&quot;</span> <span class="o">+</span> <span class="n">fnm</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of setBitmapFileColor()</span>
+</code></pre></div>
+<p>The "FillBitmapURL" property requires a URL, so the filename is converted by
+FileIO.fnmToURL().</p>
+<h2 id="5-text">5.  Text<a class="headerlink" href="#5-text" title="Permanent link">&para;</a></h2>
+<p>The "Hello LibreOffice" text shape in Figure 1 is created by calling Draw.drawText():</p>
+<div class="highlight"><pre><span></span><code><span class="n">XShape</span> <span class="n">text1</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawText</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="s">&quot;Hello LibreOffice&quot;</span><span class="p">,</span>
+                             <span class="mi">120</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">24</span><span class="p">);</span>
+</code></pre></div>
+<p>The first four numerical parameters define the shape's bounding rectangle in terms of
+its top-left coordinate, width, and height. The fifth, optional number specifies a font
+size (in this case, 24pt).</p>
+<p>drawText() calls addShape() with "TextShape":</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XShape</span> <span class="nf">drawText</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">slide</span><span class="p">,</span> <span class="n">String</span> <span class="n">msg</span><span class="p">,</span>
+            <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fontSize</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">XShape</span> <span class="n">shape</span> <span class="o">=</span> <span class="n">addShape</span><span class="p">(</span><span class="n">slide</span><span class="p">,</span> <span class="s">&quot;TextShape&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+  <span class="n">addText</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">fontSize</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">shape</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of drawText()</span>
+</code></pre></div>
+<p>addText() adds the message to the shape, and sets its font size:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">addText</span><span class="p">(</span><span class="n">XShape</span> <span class="n">shape</span><span class="p">,</span> <span class="n">String</span> <span class="n">msg</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fontSize</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XText</span> <span class="n">xText</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XText</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">shape</span><span class="p">);</span>
+  <span class="n">XTextCursor</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">xText</span><span class="p">.</span><span class="na">createTextCursor</span><span class="p">();</span>
+  <span class="n">cursor</span><span class="p">.</span><span class="na">gotoEnd</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">fontSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="s">&quot;CharHeight&quot;</span><span class="p">,</span> <span class="n">fontSize</span><span class="p">);</span>
+  <span class="n">XTextRange</span> <span class="n">range</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XTextRange</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">cursor</span><span class="p">);</span>
+  <span class="n">range</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of addText()</span>
+</code></pre></div>
+<p>The shape is converted into an XText reference, and the text range selected with a
+cursor.</p>
+<p>The "CharHeight" property comes from the CharacterProperties service, which is
+inherited by the Text service (as shown in Figure 7 of Chapter 11).</p>
+<h4 id="some-help-with-text-properties">Some Help with Text Properties<a class="headerlink" href="#some-help-with-text-properties" title="Permanent link">&para;</a></h4>
+<p>The text-related properties for a shape can be accessed with
+Draw.getTextProperties():</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="n">XPropertySet</span> <span class="nf">getTextProperties</span><span class="p">(</span><span class="n">XShape</span> <span class="n">xShape</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XText</span> <span class="n">xText</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XText</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">xShape</span><span class="p">);</span>
+  <span class="n">XTextCursor</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">xText</span><span class="p">.</span><span class="na">createTextCursor</span><span class="p">();</span>
+  <span class="n">cursor</span><span class="p">.</span><span class="na">gotoStart</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+  <span class="n">cursor</span><span class="p">.</span><span class="na">gotoEnd</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+  <span class="n">XTextRange</span> <span class="n">xTextRange</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XTextRange</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">cursor</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">xTextRange</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of getTextProperties()</span>
+</code></pre></div>
+<p>drawShapes() in DrawPicture.java calls Draw.getTextProperties() on the text1
+TextShape, and prints all its properties:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in drawShapes() in DrawPicture.java</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">showProps</span><span class="p">(</span><span class="s">&quot;TextShape&#39;s Text Properties&quot;</span><span class="p">,</span>
+                                <span class="n">Draw</span><span class="p">.</span><span class="na">getTextProperties</span><span class="p">(</span><span class="n">text1</span><span class="p">));</span>
+</code></pre></div>
+<p>The output is long, but includes the line:</p>
+<div class="highlight"><pre><span></span><code>CharHeight == 24.0
+</code></pre></div>
+<p>which indicates that the font size was correctly changed by the earlier call to
+Draw.drawText().</p>
+<h2 id="6-using-a-shape-name">6.  Using a Shape Name<a class="headerlink" href="#6-using-a-shape-name" title="Permanent link">&para;</a></h2>
+<p>Immediately after the call to Draw.drawText(), the shape's name is set:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in drawShapes() in DrawPicture.java</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">text1</span><span class="p">,</span> <span class="s">&quot;Name&quot;</span><span class="p">,</span> <span class="s">&quot;text1&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>The "Name" property, which is defined in the Shape class, is a useful way of referring
+to a shape. The main() function of DrawPicture.java passes a name to
+Draw.findShapeByName():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in main() in DrawPicture.java</span>
+<span class="n">XShape</span> <span class="n">s</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">findShapeByName</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="s">&quot;text1&quot;</span><span class="p">);</span>
+<span class="n">Draw</span><span class="p">.</span><span class="na">reportPosSize</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+
+<span class="n">Draw</span><span class="p">.</span><span class="na">findShapeByName</span><span class="p">()</span> <span class="n">iterates</span> <span class="n">through</span> <span class="n">a</span> <span class="n">list</span> <span class="n">of</span> <span class="n">shapes</span> <span class="n">extracted</span> <span class="n">from</span> <span class="n">the</span> <span class="n">slide</span><span class="p">,</span>
+<span class="n">and</span> <span class="n">returns</span> <span class="n">the</span> <span class="n">shape</span> <span class="n">with</span> <span class="n">the</span> <span class="n">supplied</span> <span class="n">name</span><span class="p">:</span>
+
+<span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XShape</span> <span class="nf">findShapeByName</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">slide</span><span class="p">,</span>
+                                     <span class="n">String</span> <span class="n">shapeName</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">XShape</span><span class="o">&gt;</span> <span class="n">shapes</span> <span class="o">=</span> <span class="n">getShapes</span><span class="p">(</span><span class="n">slide</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">shapes</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No shapes were found in the draw page&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="n">XShape</span> <span class="n">shape</span> <span class="p">:</span> <span class="n">shapes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">String</span> <span class="n">nm</span> <span class="o">=</span> <span class="p">(</span><span class="n">String</span><span class="p">)</span><span class="n">Props</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="s">&quot;Name&quot;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">shapeName</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">nm</span><span class="p">))</span>
+      <span class="k">return</span> <span class="n">shape</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No shape named \&quot;&quot;</span> <span class="o">+</span> <span class="n">shapeName</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>
+  <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of findShapeByName()</span>
+</code></pre></div>
+<p>Draw.getShapes() builds a list of shapes by iterating through the XDrawPage object
+as an indexed container of shapes:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">XShape</span><span class="o">&gt;</span> <span class="nf">getShapes</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">slide</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">slide</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Slide is null&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">slide</span><span class="p">.</span><span class="na">getCount</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Slide does not contain any shapes&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">XShape</span><span class="o">&gt;</span> <span class="n">xShapesList</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">XShape</span><span class="o">&gt;</span><span class="p">();</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">slide</span><span class="p">.</span><span class="na">getCount</span><span class="p">();</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+      <span class="n">xShapesList</span><span class="p">.</span><span class="na">add</span><span class="p">(</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XShape</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">slide</span><span class="p">.</span><span class="na">getByIndex</span><span class="p">(</span><span class="n">j</span><span class="p">)));</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>   <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Shapes extraction error in slide&quot;</span><span class="p">);</span>  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">xShapesList</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of getShapes()</span>
+</code></pre></div>
+<p>Draw.reportPosSize() prints some brief information about a shape, including its name,
+shape type, position, and size:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">reportPosSize</span><span class="p">(</span><span class="n">XShape</span> <span class="n">shape</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">shape</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;The shape is null&quot;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Shape name: &quot;</span> <span class="o">+</span>
+                        <span class="n">Props</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="s">&quot;Name&quot;</span><span class="p">));</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  Type: &quot;</span> <span class="o">+</span> <span class="n">shape</span><span class="p">.</span><span class="na">getShapeType</span><span class="p">());</span>
+  <span class="n">Point</span> <span class="n">pt</span> <span class="o">=</span> <span class="n">shape</span><span class="p">.</span><span class="na">getPosition</span><span class="p">();</span>
+  <span class="n">Size</span> <span class="n">sz</span> <span class="o">=</span> <span class="n">shape</span><span class="p">.</span><span class="na">getSize</span><span class="p">();</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  Position/size: (&quot;</span> <span class="o">+</span>
+               <span class="n">pt</span><span class="p">.</span><span class="na">X</span><span class="o">/</span><span class="mi">100</span> <span class="o">+</span> <span class="s">&quot;, &quot;</span> <span class="o">+</span>  <span class="n">pt</span><span class="p">.</span><span class="na">Y</span><span class="o">/</span><span class="mi">100</span> <span class="o">+</span>  <span class="s">&quot;) / (&quot;</span> <span class="o">+</span>
+               <span class="n">sz</span><span class="p">.</span><span class="na">Width</span><span class="o">/</span><span class="mi">100</span> <span class="o">+</span> <span class="s">&quot;, &quot;</span> <span class="o">+</span> <span class="n">sz</span><span class="p">.</span><span class="na">Height</span><span class="o">/</span><span class="mi">100</span> <span class="o">+</span> <span class="s">&quot;)&quot;</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of reportPosSize()</span>
+</code></pre></div>
+<p>XShape.getShapeType() returns the class name of the shape as a string (in this case,
+"com.sun.star.drawing.TextShape").</p>
+<h2 id="7-a-transparent-circle-and-a-polar-line">7.  A Transparent Circle and a Polar Line<a class="headerlink" href="#7-a-transparent-circle-and-a-polar-line" title="Permanent link">&para;</a></h2>
+<p>The last two shapes created by DrawPicture.java's drawShapes() are a gray
+transparent circle and a polar line.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in drawShapes() in DrawPicture.java</span>
+<span class="c1">// gray transparent circle; uses (x,y), radius</span>
+<span class="n">XShape</span> <span class="n">circle2</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawCircle</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">circle2</span><span class="p">,</span> <span class="s">&quot;FillColor&quot;</span><span class="p">,</span>
+                  <span class="n">Lo</span><span class="p">.</span><span class="na">getColorInt</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">awt</span><span class="p">.</span><span class="na">Color</span><span class="p">.</span><span class="na">GRAY</span><span class="p">));</span>
+<span class="n">Draw</span><span class="p">.</span><span class="na">setTransparency</span><span class="p">(</span><span class="n">circle2</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
+
+<span class="c1">// thick line; uses (x,y), angle clockwise from x-axis, length</span>
+<span class="n">XShape</span> <span class="n">line2</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawPolarLine</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">line2</span><span class="p">,</span> <span class="s">&quot;LineWidth&quot;</span><span class="p">,</span> <span class="mi">300</span><span class="p">);</span>    <span class="c1">// 3mm</span>
+</code></pre></div>
+<p>A polar line is one defined using polar coordinates, which specifies the coordinate of
+one end of the line, and the angle and length of the line from that point.</p>
+<p>Draw.drawCircle() uses an EllipseShape, and Draw.drawPolarLine() converts the
+polar values into two coordinates so Draw.drawLine() can be called.</p>
+<h2 id="8-a-math-formula-as-an-ole-shape">8.  A Math formula as an OLE Shape<a class="headerlink" href="#8-a-math-formula-as-an-ole-shape" title="Permanent link">&para;</a></h2>
+<p>Draw/Impress documents can include OLE objects through OLE2Shape, which
+allows a shape to link to an external document. Probably the most popular kind of
+OLE shape is the chart, but I'll delay a detailed discussion of that topic until Part 5,
+although there is a code snippet below.</p>
+<p>The best way of finding out what OLE objects are available is to go to Draw's (or
+Impress') Insert menu, Object, "OLE Object" dialog. It lists Office spreadsheet,
+chart, drawing, presentation, and formula documents, and a range of Microsoft and
+PDF types (when you click on "Further objects").</p>
+<p>The DrawPicture.java OLE example displays a mathematical formula, as in Figure 13.</p>
 <p><img alt="" src="images/13-Basic_Shapes-13.png" /></p>
-<p>Figure 13. A Math Formula in a Draw Document. </p>
-<p>DrawPicture.java renders the formula by calling Draw.addFormula(), which hides the 
-tricky aspects of instatiating the OLE shape: </p>
-<p>// in main() in DrawPicture.java 
-Draw.drawFormula(currSlide, "func e^{i %pi} + 1 = 0", <br />
-                                         23, 20, 20, 40); </p>
-<p>The second argument is a formula string, written using Office's Math notation. For an 
-overview, see the "Commands Reference" appendix of the "Math Guide", available 
-from https://www.libreoffice.org/get-help/documentation/. </p>
-<p>Draw.drawFormula() is coded as: </p>
-<p>public static XShape drawFormula(XDrawPage slide, String formula, 
-                                 int x, int y, int width, int height) 
-{ <br />
-  XShape shape = addShape(slide, "OLE2Shape", x, y, width, height); 
-  Props.setProperty(shape, "CLSID", Lo.MATH_CLSID);  // a formula </p>
-<p>XModel model = Lo.qi(XModel.class,<br />
-                          Props.getProperty(shape, "Model") ); 
-  Props.setProperty(model, "Formula", formula);  <br />
-                      // from FormulaProperties 
-  return shape; 
-}  // end of drawFormula() </p>
-<p>OLE2Shape uses a "CLSID" property to hold the class ID of the OLE object. Setting 
-this property affects the shape's model (data format), which is stored in the "Model" 
-property. drawFormula() casts this property to XModel and, since the model 
-represents formula data, it has a "Formula" property where the formula string is 
-stored. </p>
-<p>Creating Other Kinds of OLE Shape 
-The use of a "Formula" property in Draw.drawFormula() only works for an OLE 
-shape representing a formula. How are other kinds of data stored? 
-The first step is to set the OLE shape's class ID to the correct value, which will affect 
-its "Model" property. A short list of class ID constants are included at the start of the 
-Lo utility class, along with a few commented out IDs which I haven’t tested. </p>
-<p>Creating an OLE2Shape for a chart begins like so: </p>
-<p>XShape shape = addShape(slide, "OLE2Shape", x, y, width, height); 
-Props.setProperty(shape, "CLSID", Lo.CHART_CLSID);  // a chart </p>
-<p>XModel model = Lo.qi(XModel.class,<br />
-                          Props.getProperty(shape, "Model") ); </p>
-<p>Online information on how to use XModel to store a chart, a graphic, or something 
-else, is pretty sparse. I've found the best start is to list the services that support the 
-XModel reference. This is done by calling Info.showServices(): 
-Info.showServices("OLE2Shape Model", model); 
-For the version of model in drawFormula(), it reports: </p>
-<p>OLE2Shape Model Supported Services (2) 
-  "com.sun.star.document.OfficeDocument" 
-  "com.sun.star.formula.FormulaProperties" </p>
-<p>This gives a strong hint to look inside the FormulaProperties service, to find a 
-property for storing the formula string. A look at the documentation (lodoc 
-FormulaProperties service) reveals a "Formula" property, which I used in 
-drawFormula(). </p>
-<p>When the model refers to chart data, the same call to Info.showServices() prints: </p>
-<p>OLE2Shape Model Supported Services (3) 
-  "com.sun.star.chart.ChartDocument" 
-  "com.sun.star.chart2.ChartDocument" 
-  "com.sun.star.document.OfficeDocument" </p>
-<p>The com.sun.star.chart2 package is the newer way of manipulating charts, which 
-suggests that the XModel interfaces should be converted to an interface of 
-com.sun.star.chart2.ChartDocument. The most useful is XChartDocument, which is 
-obtained via: 
-XChartDocument chartDoc = Lo.qi(XChartDocument.class, model); 
-XChartDocument supports a rich set of chart manipulation methods.  I'll return to 
-charts in Part 5. </p>
-<h2 id="9-polygons">9.  Polygons</h2>
-<p>The main() function of AnimBicycle.java calls Draw.drawPolygon() twice to create 
-regular polygons for a square and pentagon: </p>
-<p>// in AnimBicycle.java 
-XShape square = Draw.drawPolygon(currSlide, 125, 125, 25, 4); 
-                                  // (x,y), radius, no. of sides 
-Props.setProperty(square, "FillColor", 0x3fe694);  // pale green </p>
-<p>XShape pentagon = Draw.drawPolygon(currSlide, 150, 75, 5); 
-                                  // (x,y), no. of sides 
-                                  // radius uses a default value 
-Props.setProperty(pentagon, "FillColor", 0xe7b9c7);  // purple </p>
-<p>The polygons can be seen in Figure 14. </p>
+<p>Figure 13. A Math Formula in a Draw Document.</p>
+<p>DrawPicture.java renders the formula by calling Draw.addFormula(), which hides the
+tricky aspects of instatiating the OLE shape:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in main() in DrawPicture.java</span>
+<span class="n">Draw</span><span class="p">.</span><span class="na">drawFormula</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="s">&quot;func e^{i %pi} + 1 = 0&quot;</span><span class="p">,</span>
+                                         <span class="mi">23</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">);</span>
+</code></pre></div>
+<p>The second argument is a formula string, written using Office's Math notation. For an
+overview, see the "Commands Reference" appendix of the "Math Guide", available
+from <a href="https://www.libreoffice.org/get-help/documentation/">https://www.libreoffice.org/get-help/documentation/</a>.</p>
+<p>Draw.drawFormula() is coded as:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="n">XShape</span> <span class="nf">drawFormula</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">slide</span><span class="p">,</span> <span class="n">String</span> <span class="n">formula</span><span class="p">,</span>
+                                 <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XShape</span> <span class="n">shape</span> <span class="o">=</span> <span class="n">addShape</span><span class="p">(</span><span class="n">slide</span><span class="p">,</span> <span class="s">&quot;OLE2Shape&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="s">&quot;CLSID&quot;</span><span class="p">,</span> <span class="n">Lo</span><span class="p">.</span><span class="na">MATH_CLSID</span><span class="p">);</span>  <span class="c1">// a formula</span>
+
+  <span class="n">XModel</span> <span class="n">model</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XModel</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                          <span class="n">Props</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="s">&quot;Model&quot;</span><span class="p">)</span> <span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s">&quot;Formula&quot;</span><span class="p">,</span> <span class="n">formula</span><span class="p">);</span>
+                      <span class="c1">// from FormulaProperties</span>
+  <span class="k">return</span> <span class="n">shape</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of drawFormula()</span>
+</code></pre></div>
+<p>OLE2Shape uses a "CLSID" property to hold the class ID of the OLE object. Setting
+this property affects the shape's model (data format), which is stored in the "Model"
+property. drawFormula() casts this property to XModel and, since the model
+represents formula data, it has a "Formula" property where the formula string is
+stored.</p>
+<h4 id="creating-other-kinds-of-ole-shape">Creating Other Kinds of OLE Shape<a class="headerlink" href="#creating-other-kinds-of-ole-shape" title="Permanent link">&para;</a></h4>
+<p>The use of a "Formula" property in Draw.drawFormula() only works for an OLE
+shape representing a formula. How are other kinds of data stored?</p>
+<p>The first step is to set the OLE shape's class ID to the correct value, which will affect
+its "Model" property. A short list of class ID constants are included at the start of the
+Lo utility class, along with a few commented out IDs which I haven’t tested.</p>
+<div class="highlight"><pre><span></span><code><span class="n">Creating</span> <span class="n">an</span> <span class="n">OLE2Shape</span> <span class="k">for</span> <span class="n">a</span> <span class="n">chart</span> <span class="n">begins</span> <span class="n">like</span> <span class="n">so</span><span class="p">:</span>
+
+<span class="n">XShape</span> <span class="n">shape</span> <span class="o">=</span> <span class="n">addShape</span><span class="p">(</span><span class="n">slide</span><span class="p">,</span> <span class="s">&quot;OLE2Shape&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="s">&quot;CLSID&quot;</span><span class="p">,</span> <span class="n">Lo</span><span class="p">.</span><span class="na">CHART_CLSID</span><span class="p">);</span>  <span class="c1">// a chart</span>
+
+<span class="n">XModel</span> <span class="n">model</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XModel</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                          <span class="n">Props</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="s">&quot;Model&quot;</span><span class="p">)</span> <span class="p">);</span>
+</code></pre></div>
+<p>Online information on how to use XModel to store a chart, a graphic, or something
+else, is pretty sparse. I've found the best start is to list the services that support the
+XModel reference. This is done by calling Info.showServices():</p>
+<div class="highlight"><pre><span></span><code><span class="n">Info</span><span class="p">.</span><span class="na">showServices</span><span class="p">(</span><span class="s">&quot;OLE2Shape Model&quot;</span><span class="p">,</span> <span class="n">model</span><span class="p">);</span>
+</code></pre></div>
+<p>For the version of model in drawFormula(), it reports:</p>
+<div class="highlight"><pre><span></span><code>OLE2Shape Model Supported Services (2)
+  &quot;com.sun.star.document.OfficeDocument&quot;
+  &quot;com.sun.star.formula.FormulaProperties&quot;
+</code></pre></div>
+<p>This gives a strong hint to look inside the FormulaProperties service, to find a
+property for storing the formula string. A look at the documentation
+(<code>lodoc FormulaProperties service</code>) reveals a "Formula" property, which I used in
+drawFormula().</p>
+<p>When the model refers to chart data, the same call to Info.showServices() prints:</p>
+<div class="highlight"><pre><span></span><code>OLE2Shape Model Supported Services (3)
+  &quot;com.sun.star.chart.ChartDocument&quot;
+  &quot;com.sun.star.chart2.ChartDocument&quot;
+  &quot;com.sun.star.document.OfficeDocument&quot;
+</code></pre></div>
+<p>The com.sun.star.chart2 package is the newer way of manipulating charts, which
+suggests that the XModel interfaces should be converted to an interface of
+com.sun.star.chart2.ChartDocument. The most useful is XChartDocument, which is
+obtained via:
+XChartDocument chartDoc = Lo.qi(XChartDocument.class, model);
+XChartDocument supports a rich set of chart manipulation methods.  I'll return to
+charts in Part 5.</p>
+<h2 id="9-polygons">9.  Polygons<a class="headerlink" href="#9-polygons" title="Permanent link">&para;</a></h2>
+<p>The main() function of AnimBicycle.java calls Draw.drawPolygon() twice to create
+regular polygons for a square and pentagon:</p>
+<p>// in AnimBicycle.java
+XShape square = Draw.drawPolygon(currSlide, 125, 125, 25, 4);
+                                  // (x,y), radius, no. of sides
+Props.setProperty(square, "FillColor", 0x3fe694);  // pale green</p>
+<p>XShape pentagon = Draw.drawPolygon(currSlide, 150, 75, 5);
+                                  // (x,y), no. of sides
+                                  // radius uses a default value
+Props.setProperty(pentagon, "FillColor", 0xe7b9c7);  // purple</p>
+<p>The polygons can be seen in Figure 14.</p>
 <p><img alt="" src="images/13-Basic_Shapes-14.png" /></p>
-<p>Figure 14. Bicycle and Shapes. </p>
-<p>Draw.drawPolygon() is: </p>
-<p>// in the Draw class 
-public static XShape drawPolygon(XDrawPage slide, 
-                    int x, int y, int radius, int nSides) 
-{ 
-  XShape polygon = addShape(slide, "PolyPolygonShape", 0, 0, 0, 0); 
-     // for shapes formed by one <em>or more</em> polygons </p>
-<p>Point[] pts = genPolygonPoints(x, y, radius, nSides); 
-  Point[][] polys = new Point[][] {pts}; 
-     // an array of Point arrays, one Point array for each polygon </p>
-<p>Props.setProperty(polygon, "PolyPolygon", polys); 
-  return polygon; 
-}  // end of drawPolygon() </p>
-<p>drawPolygon() creates a "PolyPolygonShape" shape which is designed to store 
-multiple polygons. This is why the polys data structure instantiated at the end of 
-drawPolygon()  is an array of points arrays, since the shape's "PolyPolygon" property 
-can hold multiple point arrays. However, drawPolygon() only creates a single points 
-array by calling genPolygonPoints(). </p>
-<p>A points array defining the four points of a square could be: </p>
-<p>Point[] pts = new Point[4]; 
-pts[0] = new Point(4000, 1200); 
-pts[1] = new Point(4000, 2000); 
-pts[2] = new Point(5000, 2000); 
-pts[3] = new Point(5000, 1200); </p>
-<p>Note that the coordinates of each point use Office's 1/100 mm units.   </p>
-<p>genPolygonPoints() generates a points array for a regular polygon based on the 
-coordinate of the center of the polygon, the distance from the center to each point (the 
-shape's radius), and the required number of sides: </p>
-<p>private static Point[] genPolygonPoints(int x, int y,<br />
-                                  int radius, int nSides) 
-{ if (nSides &lt; 3) { 
-    System.out.println("Too few sides; must be 3 or more"); 
-    nSides = 3; 
-  } 
-  else if (nSides &gt; 30) { 
-    System.out.println("Too many sides; must be 30 or less"); 
-    nSides = 30; 
-  } </p>
-<p>Point[] pts = new Point[nSides]; 
-  double angleStep = Math.PI/nSides; 
-  for (int i = 0; i &lt; nSides; i++) { 
-    pts[i] = new Point( 
-       (int) Math.round(x<em>100 +<br />
-                        radius</em>100 * Math.cos(i<em>2</em>angleStep)), 
-       (int) Math.round(y<em>100 +<br />
-                        radius</em>100 * Math.sin(i<em>2</em>angleStep)) ); 
-  } 
-  return pts; 
-}  // end of genPolygonPoints() </p>
-<ol>
-<li>Mult-line Shapes 
-A PolyLineShape can hold multiple line paths, where a path is a sequence of 
-connected lines. Draw.drawLines() only creates a single line path, based on being 
-passed arrays of x- and  y- axis coordinates. For example, the following code in 
-AnimBicycle creates the crossed lines at the top-left of Figure 14: </li>
-</ol>
-<p>// in AnimBicycle.java 
-int[] xs = {10, 30, 10, 30}; 
-int[] ys = {10, 100, 100, 10}; 
-Draw.drawLines(currSlide, xs, ys); </p>
-<p>Draw.drawLines() is: </p>
-<p>// in the Draw class 
-public static XShape drawLines(XDrawPage slide, int[] xs, int[] ys) 
-{ 
-  if (xs.length != ys.length) { 
-    System.out.println("The two arrays must be the same length"); 
-    return null; 
-  } </p>
-<p>int numPoints = xs.length; 
-  Point[] pts = new Point[numPoints]; 
-  for (int i = 0; i &lt; numPoints; i++) 
-    pts[i] = new Point(xs[i]<em>100, ys[i]</em>100);  //in 1/100 mm units </p>
-<p>Point[][] linePaths = new Point[][] {pts}; 
-    // an array of Point arrays, one Point array for each line path </p>
-<p>XShape polyLine = addShape(slide, "PolyLineShape", 0, 0, 0, 0); 
-     // for a shape formed from multiple line paths </p>
-<p>Props.setProperty(polyLine, "PolyPolygon", linePaths); 
-  return polyLine; 
-}  // end of drawLines() </p>
-<p>drawLines() creates an array of Point arrays which is stored in the PolyLineShape 
-property called "PolyPolygon". However, drawLines() only adds a single points array 
-to the linePaths data structure since only one line path is being created. </p>
-<ol>
-<li>Partial Ellipses 
-EllipseShape contains a "CircleKind" property that determines whether the entire 
-ellipse should be drawn, or only a portion of it. The properties "CircleStartAngle" and 
-"CircleEndAngle" define the angles where the solid part of the ellipse starts and 
-finishes. Zero degrees is the positive x-axis, and the angle increase in 1/100 degrees 
-units counter-clockwise around the center of the ellipse. </li>
-</ol>
-<p>AnimBicycle.java contains the following example: </p>
-<p>// in AnimBicycle.java 
-XShape pie = Draw.drawEllipse(currSlide, 30,<br />
-                               slideSize.Width-100, 40, 20); </p>
-<p>Props.setProperty(pie, "CircleStartAngle", 9000); // 90 degrees ccw 
-Props.setProperty(pie, "CircleEndAngle", 36000);  // 360 degrees ccw </p>
-<p>Props.setProperty(pie, "CircleKind", CircleKind.SECTION); 
-                         // CircleKind.CUT, CircleKind.ARC </p>
-<p>This creates the blue partial ellipse shown at the bottom left of Figure 14. </p>
-<p>Figure 15 shows the different results when "CircleKind" is set to 
-CircleKind.SECTION, CircleKind.CUT, and CircleKind.ARC. </p>
+<p>Figure 14. Bicycle and Shapes.</p>
+<p>Draw.drawPolygon() is:</p>
+<p>// in the Draw class
+public static XShape drawPolygon(XDrawPage slide,
+                    int x, int y, int radius, int nSides)
+{
+  XShape polygon = addShape(slide, "PolyPolygonShape", 0, 0, 0, 0);
+     // for shapes formed by one <em>or more</em> polygons</p>
+<p>Point[] pts = genPolygonPoints(x, y, radius, nSides);
+  Point[][] polys = new Point[][] {pts};
+     // an array of Point arrays, one Point array for each polygon</p>
+<p>Props.setProperty(polygon, "PolyPolygon", polys);
+  return polygon;
+}  // end of drawPolygon()</p>
+<p>drawPolygon() creates a "PolyPolygonShape" shape which is designed to store
+multiple polygons. This is why the polys data structure instantiated at the end of
+drawPolygon()  is an array of points arrays, since the shape's "PolyPolygon" property
+can hold multiple point arrays. However, drawPolygon() only creates a single points
+array by calling genPolygonPoints().</p>
+<p>A points array defining the four points of a square could be:</p>
+<div class="highlight"><pre><span></span><code>Point[] pts = new Point[4];
+pts[0] = new Point(4000, 1200);
+pts[1] = new Point(4000, 2000);
+pts[2] = new Point(5000, 2000);
+pts[3] = new Point(5000, 1200);
+</code></pre></div>
+<p>Note that the coordinates of each point use Office's 1/100 mm units.</p>
+<p>genPolygonPoints() generates a points array for a regular polygon based on the
+coordinate of the center of the polygon, the distance from the center to each point (the
+shape's radius), and the required number of sides:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">static</span> <span class="n">Point</span><span class="o">[]</span> <span class="nf">genPolygonPoints</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span>
+                                  <span class="kt">int</span> <span class="n">radius</span><span class="p">,</span> <span class="kt">int</span> <span class="n">nSides</span><span class="p">)</span>
+<span class="p">{</span> <span class="k">if</span> <span class="p">(</span><span class="n">nSides</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Too few sides; must be 3 or more&quot;</span><span class="p">);</span>
+    <span class="n">nSides</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">nSides</span> <span class="o">&gt;</span> <span class="mi">30</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Too many sides; must be 30 or less&quot;</span><span class="p">);</span>
+    <span class="n">nSides</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">Point</span><span class="o">[]</span> <span class="n">pts</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="o">[</span><span class="n">nSides</span><span class="o">]</span><span class="p">;</span>
+  <span class="kt">double</span> <span class="n">angleStep</span> <span class="o">=</span> <span class="n">Math</span><span class="p">.</span><span class="na">PI</span><span class="o">/</span><span class="n">nSides</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nSides</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">pts</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="p">(</span>
+       <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">Math</span><span class="p">.</span><span class="na">round</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="mi">100</span> <span class="o">+</span>
+                        <span class="n">radius</span><span class="o">*</span><span class="mi">100</span> <span class="o">*</span> <span class="n">Math</span><span class="p">.</span><span class="na">cos</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">angleStep</span><span class="p">)),</span>
+       <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">Math</span><span class="p">.</span><span class="na">round</span><span class="p">(</span><span class="n">y</span><span class="o">*</span><span class="mi">100</span> <span class="o">+</span>
+                        <span class="n">radius</span><span class="o">*</span><span class="mi">100</span> <span class="o">*</span> <span class="n">Math</span><span class="p">.</span><span class="na">sin</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">angleStep</span><span class="p">))</span> <span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">pts</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of genPolygonPoints()</span>
+</code></pre></div>
+<h2 id="10-mult-line-shapes">10. Mult-line Shapes<a class="headerlink" href="#10-mult-line-shapes" title="Permanent link">&para;</a></h2>
+<p>A PolyLineShape can hold multiple line paths, where a path is a sequence of
+connected lines. Draw.drawLines() only creates a single line path, based on being
+passed arrays of x- and  y- axis coordinates. For example, the following code in
+AnimBicycle creates the crossed lines at the top-left of Figure 14:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in AnimBicycle.java</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">xs</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">};</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">ys</span> <span class="o">=</span> <span class="p">{</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">};</span>
+<span class="n">Draw</span><span class="p">.</span><span class="na">drawLines</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">);</span>
+</code></pre></div>
+<p>Draw.drawLines() is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XShape</span> <span class="nf">drawLines</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">slide</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">xs</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">ys</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">xs</span><span class="p">.</span><span class="na">length</span> <span class="o">!=</span> <span class="n">ys</span><span class="p">.</span><span class="na">length</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;The two arrays must be the same length&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kt">int</span> <span class="n">numPoints</span> <span class="o">=</span> <span class="n">xs</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>
+  <span class="n">Point</span><span class="o">[]</span> <span class="n">pts</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="o">[</span><span class="n">numPoints</span><span class="o">]</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numPoints</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">pts</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="p">(</span><span class="n">xs</span><span class="o">[</span><span class="n">i</span><span class="o">]*</span><span class="mi">100</span><span class="p">,</span> <span class="n">ys</span><span class="o">[</span><span class="n">i</span><span class="o">]*</span><span class="mi">100</span><span class="p">);</span>  <span class="c1">//in 1/100 mm units</span>
+
+  <span class="n">Point</span><span class="o">[][]</span> <span class="n">linePaths</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="o">[][]</span> <span class="p">{</span><span class="n">pts</span><span class="p">};</span>
+    <span class="c1">// an array of Point arrays, one Point array for each line path</span>
+
+  <span class="n">XShape</span> <span class="n">polyLine</span> <span class="o">=</span> <span class="n">addShape</span><span class="p">(</span><span class="n">slide</span><span class="p">,</span> <span class="s">&quot;PolyLineShape&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+     <span class="c1">// for a shape formed from multiple line paths</span>
+
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">polyLine</span><span class="p">,</span> <span class="s">&quot;PolyPolygon&quot;</span><span class="p">,</span> <span class="n">linePaths</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">polyLine</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of drawLines()</span>
+</code></pre></div>
+<p>drawLines() creates an array of Point arrays which is stored in the PolyLineShape
+property called "PolyPolygon". However, drawLines() only adds a single points array
+to the linePaths data structure since only one line path is being created.</p>
+<h2 id="11-partial-ellipses">11.  Partial Ellipses<a class="headerlink" href="#11-partial-ellipses" title="Permanent link">&para;</a></h2>
+<p>EllipseShape contains a "CircleKind" property that determines whether the entire
+ellipse should be drawn, or only a portion of it. The properties "CircleStartAngle" and
+"CircleEndAngle" define the angles where the solid part of the ellipse starts and
+finishes. Zero degrees is the positive x-axis, and the angle increase in 1/100 degrees
+units counter-clockwise around the center of the ellipse.</p>
+<p>AnimBicycle.java contains the following example:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in AnimBicycle.java</span>
+<span class="n">XShape</span> <span class="n">pie</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawEllipse</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span>
+                               <span class="n">slideSize</span><span class="p">.</span><span class="na">Width</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">pie</span><span class="p">,</span> <span class="s">&quot;CircleStartAngle&quot;</span><span class="p">,</span> <span class="mi">9000</span><span class="p">);</span> <span class="c1">// 90 degrees ccw</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">pie</span><span class="p">,</span> <span class="s">&quot;CircleEndAngle&quot;</span><span class="p">,</span> <span class="mi">36000</span><span class="p">);</span>  <span class="c1">// 360 degrees ccw</span>
+
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">pie</span><span class="p">,</span> <span class="s">&quot;CircleKind&quot;</span><span class="p">,</span> <span class="n">CircleKind</span><span class="p">.</span><span class="na">SECTION</span><span class="p">);</span>
+                         <span class="c1">// CircleKind.CUT, CircleKind.ARC</span>
+</code></pre></div>
+<p>This creates the blue partial ellipse shown at the bottom left of Figure 14.</p>
+<p>Figure 15 shows the different results when "CircleKind" is set to
+CircleKind.SECTION, CircleKind.CUT, and CircleKind.ARC.</p>
 <p><img alt="" src="images/13-Basic_Shapes-15.png" /></p>
-<p>Figure 15. Different Types of Partial Ellipse </p>
+<p>Figure 15. Different Types of Partial Ellipse</p>
                 
               
               
@@ -2137,6 +2313,7 @@ CircleKind.SECTION, CircleKind.CUT, and CircleKind.ARC. </p>
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -2144,7 +2321,8 @@ CircleKind.SECTION, CircleKind.CUT, and CircleKind.ARC. </p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="12-Examining_DrawImpress.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="12-Examining_DrawImpress.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 12. Examining a Draw/Impress Document" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2159,7 +2337,8 @@ CircleKind.SECTION, CircleKind.CUT, and CircleKind.ARC. </p>
         </a>
       
       
-        <a href="14-Animation.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="14-Animation.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 14. Animation" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -2179,10 +2358,12 @@ CircleKind.SECTION, CircleKind.CUT, and CircleKind.ARC. </p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -2194,10 +2375,10 @@ CircleKind.SECTION, CircleKind.CUT, and CircleKind.ARC. </p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

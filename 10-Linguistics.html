@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -386,6 +395,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -400,6 +410,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1250,6 +1261,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1372,7 +1384,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-10-the-linguistics-api">Chapter 10. The Linguistics API</h1>
+                <h1 id="chapter-10-the-linguistics-api">Chapter 10. The Linguistics API<a class="headerlink" href="#chapter-10-the-linguistics-api" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 <p>Linguistic
@@ -1396,7 +1408,7 @@ is easier to use interactively through Office's  GUI.</p>
 <p>However, if you have an urge to hyphenate, then
 LingusticExamples.java in the Developer's Guide
 examples contains some code; it can be downloaded from
-http://api.libreoffice.org/examples/DevelopersGuide/OfficeDev/Linguistic/Linguistic
+<a href="http://api.libreoffice.org/examples/DevelopersGuide/OfficeDev/Linguistic/Linguistic">http://api.libreoffice.org/examples/DevelopersGuide/OfficeDev/Linguistic/Linguistic</a>
 Examples.java.</p>
 <p>I'll describe two examples, Lingo.java and LingoFile.java. The first lists information
 about the linguistic services, then uses the spell checker, thesaurus, and grammar
@@ -1405,7 +1417,7 @@ automatically spell checks and grammar checks a complete file, reporting errors
 without altering the document.</p>
 <p>One topic I'll be ignoring is how to create and edit the data files used by the linguistic
 services. For that task, you should have a look at PTG (Proofing Tool GUI) developed
-by Marco Pinto at http://marcoagpinto.cidadevirtual.pt/proofingtoolgui.html. It's an
+by Marco Pinto at <a href="http://marcoagpinto.cidadevirtual.pt/proofingtoolgui.html">http://marcoagpinto.cidadevirtual.pt/proofingtoolgui.html</a>. It's an
 open source tool for editing Office's  dictionary, thesaurus, hyphenation, and
 autocorrect files.</p>
 <p>Another area I'll be skipping is the use of events and listeners. Please refer to the
@@ -1413,14 +1425,14 @@ autocorrect files.</p>
 (<code>loGuide Linguistics</code>). Listener code can be found in LinguisticExamples.java mentioned
 above.</p>
 <p>The linguistic features accessible through Office's GUI are explained in chapter 3 of
-the "Writer Guide", available at http://www.libreoffice.org/get-help/documentation/,
+the "Writer Guide", available at <a href="http://www.libreoffice.org/get-help/documentation/">http://www.libreoffice.org/get-help/documentation/</a>,
 starting from the section called "Checking spelling and grammar".</p>
 <p>An older information source is the "Lingucomponent Project" page at the OpenOffice
-website, http://www.openoffice.org/lingucomponent/, which links to some useful
+website, <a href="http://www.openoffice.org/lingucomponent/">http://www.openoffice.org/lingucomponent/</a>, which links to some useful
 tools, such as alternative grammar checkers. An interesting set of slides by Daniel
 Naber explaining the state of the project in 2005 can be found at
-http://www.danielnaber.de/publications/, along with more recent material.</p>
-<h2 id="1-the-linguistic-tools">1.  The Linguistic Tools</h2>
+<a href="http://www.danielnaber.de/publications/">http://www.danielnaber.de/publications/</a>, along with more recent material.</p>
+<h2 id="1-the-linguistic-tools">1.  The Linguistic Tools<a class="headerlink" href="#1-the-linguistic-tools" title="Permanent link">&para;</a></h2>
 <p>Lingo.java prints a variety of information about the linguistics services:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span>
 <span class="p">{</span>
@@ -1451,7 +1463,7 @@ http://www.danielnaber.de/publications/, along with more recent material.</p>
   <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
 <span class="p">}</span>  <span class="c1">// end of main()</span>
 </code></pre></div>
-<h3 id="11-dictionary-information">1.1.  Dictionary Information</h3>
+<h3 id="11-dictionary-information">1.1.  Dictionary Information<a class="headerlink" href="#11-dictionary-information" title="Permanent link">&para;</a></h3>
 <p>Write.dictsInfo() prints brief details about Office's dictionaries:</p>
 <div class="highlight"><pre><span></span><code><span class="n">No</span><span class="p">.</span> <span class="n">of</span> <span class="n">dictionaries</span><span class="p">:</span> <span class="mi">5</span>
   <span class="n">standard</span><span class="p">.</span><span class="na">dic</span> <span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="n">active</span><span class="p">;</span> <span class="s">&quot;&quot;</span><span class="p">;</span> <span class="n">positive</span>
@@ -1572,16 +1584,16 @@ extension website, and displays the "Dictionary" category (see Figure 6).</p>
 <p><img alt="" src="images/10-Linguistics-6.png" /></p>
 <p>Figure 6. The Dictionary Extensions at the LibreOffice Website.</p>
 <p>The URL of the page in Figure 6 is:
-http://extensions.libreoffice.org/
+<a href="http://extensions.libreoffice.org/">http://extensions.libreoffice.org/</a>
                  extension-center?getCategories=Dictionary
 The dictionary category currently has 94 entries, but if you can't find what you're
 looking for, don't forget the extensions for OpenOffice, at:
-http://extensions.openoffice.org/
+<a href="http://extensions.openoffice.org/">http://extensions.openoffice.org/</a>
 If you're unclear about how to install extensions, the process is explained online at
-https://wiki.documentfoundation.org/Documentation/HowTo/install_extension, or in
-the "Installing Extensions" guide available at http://www.libreoffice.org/get-
+<a href="https://wiki.documentfoundation.org/Documentation/HowTo/install_extension">https://wiki.documentfoundation.org/Documentation/HowTo/install_extension</a>, or in
+the "Installing Extensions" guide available at <a href="http://www.libreoffice.org/get-">http://www.libreoffice.org/get-</a>
 help/documentation/.</p>
-<h3 id="12-linguistic-properties">1.2.  Linguistic Properties</h3>
+<h3 id="12-linguistic-properties">1.2.  Linguistic Properties<a class="headerlink" href="#12-linguistic-properties" title="Permanent link">&para;</a></h3>
 <p>Back in the Lingo.java example, Write.getLinguProperties() returns an instance of
 XLinguProperties, and its properties are printed by calling Props.showProps():</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// in Lingo.java</span>
@@ -1616,7 +1628,7 @@ interface (lodoc XLinguProperties), and also in the Developer's Guide.</p>
 <p>The properties are spread across several dialogs in Office's GUI, starting from the
 Tools, Options, "Language Settings" menu item. However,  most of them are in the
 "Options" pane of the "Writing Aids" Dialog in Figure 5.</p>
-<h3 id="13-installed-extensions">1.3.  Installed Extensions</h3>
+<h3 id="13-installed-extensions">1.3.  Installed Extensions<a class="headerlink" href="#13-installed-extensions" title="Permanent link">&para;</a></h3>
 <p>Additional dictionaries, and other language tools such as grammar checkers, are
 loaded into Office as extensions, so calling Info.listExtensions() can be informative.</p>
 <p>The output on one of my test machine is:</p>
@@ -1659,7 +1671,7 @@ loaded into Office as extensions, so calling Info.listExtensions() can be inform
             ../share/extensions/wiki-publisher
 </code></pre></div>
 <p>The "Loc" entries are the directories or OXT files containing the extensions. Most
-extensions are placed in the <OFFICE>\share\extensions\ folder on Windows.</p>
+extensions are placed in the <OFFICE>\share\extensions folder on Windows.</p>
 <p>Office can display similar information via its Tools, "Extension Manager" dialog, as
 in Figure 7.</p>
 <p><img alt="" src="images/10-Linguistics-7.png" /></p>
@@ -1690,7 +1702,7 @@ in Figure 7.</p>
 <span class="p">{</span>  <span class="k">return</span> <span class="n">PackageInformationProvider</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">Lo</span><span class="p">.</span><span class="na">getContext</span><span class="p">());</span>  <span class="p">}</span>
 </code></pre></div>
 <p>Extensions are accessed via the XPackageInformationProvider interface.</p>
-<h3 id="14-examining-the-lingu-services">1.4.  Examining the Lingu Services</h3>
+<h3 id="14-examining-the-lingu-services">1.4.  Examining the Lingu Services<a class="headerlink" href="#14-examining-the-lingu-services" title="Permanent link">&para;</a></h3>
 <p>The LinguServiceManager provides access to three of the four main linguistic
 services: the spell checker, the hyphenator, and thesaurus.The proof reader (i.e. the
 grammar checker) is managed by a separate Proofreader service, which I'll explain
@@ -1824,7 +1836,7 @@ to retrieve a list of the available services. In a similar way,
 Write.printConfigServiceInfo() calls
 XLinguServiceManager.getConfiguredServices(), and printLocales gets an array of
 Locale objects from XLinguServiceManager.getAvailableLocales().</p>
-<h2 id="2-using-the-spell-checker">2.  Using the Spell Checker</h2>
+<h2 id="2-using-the-spell-checker">2.  Using the Spell Checker<a class="headerlink" href="#2-using-the-spell-checker" title="Permanent link">&para;</a></h2>
 <p>There's a few examples in Lingo.java of applying the spell checker to individual
 words:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// in Lingo.java</span>
@@ -1902,7 +1914,7 @@ the linguistic properties that is acted upon is through the "Options" pane in th
 "Writing Aids" dialog, as in Figure 10.</p>
 <p><img alt="" src="images/10-Linguistics-10.png" /></p>
 <p>Figure 10. Changing the Capitalization Property.</p>
-<p>Office's default spell checker is Hunspell (from http://hunspell.github.io/), and has
+<p>Office's default spell checker is Hunspell (from <a href="http://hunspell.github.io/">http://hunspell.github.io/</a>), and has
 been part of OpenOffice since v.2, when it replaced MySpell, adding several features
 such as support for Unicode. The "MySpell" name lives on in a few places, such as in
 the spelling service (org.openoffice.lingu.MySpellSpellChecker).</p>
@@ -1946,12 +1958,12 @@ XPackageInformationProvider.getPackageLocation() to obtain the spell checker's
 installation folder. Figure 13 shows the directory on my machine.</p>
 <p><img alt="" src="images/10-Linguistics-13.png" /></p>
 <p>Figure 13. The Hunspell Installation Folder.</p>
-<p>The directory contains a dialog\ subdirectory, which holds an XXX.xdl file that
+<p>The directory contains a dialog subdirectory, which holds an XXX.xdl file that
 defines the dialog's XML structure and data. The "XXX" name will be Office's locale
 language, which in my case is "en".</p>
 <p>The URL required by the "OptionsTreeDialog" dispatch is constructed by appending
 "/dialog/en.xdl" to the installation folder string.</p>
-<h2 id="3-using-the-thesaurus">3.  Using the Thesaurus</h2>
+<h2 id="3-using-the-thesaurus">3.  Using the Thesaurus<a class="headerlink" href="#3-using-the-thesaurus" title="Permanent link">&para;</a></h2>
 <p>Lingo.java contains two examples of how to use the thesaurus:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// in Lingo.java</span>
    <span class="p">:</span>
@@ -2024,35 +2036,35 @@ results:</p>
 locale and an optional array of properties. printMeaning() utilizes American English,
 and no properties.</p>
 <p>If you need a non-English thesaurus which isn't part of Office, then look through the
-dictionary extensions at http://extensions.libreoffice.org/extension-
+dictionary extensions at <a href="http://extensions.libreoffice.org/extension-">http://extensions.libreoffice.org/extension-</a>
 center?getCategories=Dictionary; many include a thesaurus with the dictionary.</p>
 <p>Thesaurus data is stored as ".idx" and ".dat" files in the same directory as the spell
 checker (i.e. in <OFFICE>\share\extensions\dict-en), as can be seen in Figure 13.</p>
-<p>The files are built from WordNet data (http://wordnet.princeton.edu/), but use a text-
+<p>The files are built from WordNet data (<a href="http://wordnet.princeton.edu/">http://wordnet.princeton.edu/</a>), but use a text-
 based format explained very briefly in Daniel Naber's slides about the
-Lingucomponent Project (at http://www.danielnaber.de/publications/ooocon2005-
+Lingucomponent Project (at <a href="http://www.danielnaber.de/publications/ooocon2005-">http://www.danielnaber.de/publications/ooocon2005-</a>
 lingucomponent.pdf). Also, the Lingucomponent website has some C++ code for
-reading ".idx" and '.dat" files (in http://www.openoffice.org/lingucomponent/MyThes-
+reading ".idx" and '.dat" files (in <a href="http://www.openoffice.org/lingucomponent/MyThes-">http://www.openoffice.org/lingucomponent/MyThes-</a>
 1.zip).</p>
 <p>However, if you want to write code using a thesaurus independently of Office, then
 I'd suggest programming with one of the many APIs for WordNet; there are currently
-nine for Java, listed at http://wordnet.princeton.edu/wordnet/related-projects/#Java.</p>
-<h2 id="4-grammar-checking">4.  Grammar Checking</h2>
+nine for Java, listed at <a href="http://wordnet.princeton.edu/wordnet/related-projects/#Java">http://wordnet.princeton.edu/wordnet/related-projects/#Java</a>.</p>
+<h2 id="4-grammar-checking">4.  Grammar Checking<a class="headerlink" href="#4-grammar-checking" title="Permanent link">&para;</a></h2>
 <p>Office's default grammar checker (or proof reader) is Lightproof, a Python application
 developed by László Németh. Lightproof.py, and its support files, are installed in the
 same folder as the spell checker and thesaurus; on my machine that's
 <OFFICE>\share\extensions\dict-en.</p>
 <p>Older versions of Lightproof are available from OpenOffice's extensions website at
-http://extensions.services.openoffice.org/project/lightproof. One reason for
+<a href="http://extensions.services.openoffice.org/project/lightproof">http://extensions.services.openoffice.org/project/lightproof</a>. One reason for
 downloading the old version is that it contains documentation on adding new
 grammar rules missing from the version installed in Office.</p>
 <p>Another way to modify Lightproof's grammar rules is with its editor, which can be
-obtained from http://extensions.libreoffice.org/extension-center/lightproof-editor.</p>
+obtained from <a href="http://extensions.libreoffice.org/extension-center/lightproof-editor">http://extensions.libreoffice.org/extension-center/lightproof-editor</a>.</p>
 <p>There are a number of alternative grammar checkers for Office, including "After the
-Deadline" (http://www.afterthedeadline.com/) and "LanguageTool"
-(https://www.languagetool.org/), which are easily added to Office as extensions via
+Deadline" (<a href="http://www.afterthedeadline.com/">http://www.afterthedeadline.com/</a>) and "LanguageTool"
+(<a href="https://www.languagetool.org/">https://www.languagetool.org/</a>), which are easily added to Office as extensions via
 the "Language Tools" subsection of the website, at
-http://extensions.libreoffice.org/extension-center?getCategories=Language%20Tools.</p>
+<a href="http://extensions.libreoffice.org/extension-center?getCategories=Language%20Tools">http://extensions.libreoffice.org/extension-center?getCategories=Language%20Tools</a>.</p>
 <p>When I first coded my examples, I used the default Lightproof for grammar checking,
 but it doesn't have a very extensive set of built-in grammar rules (it seems best at
 catching punctuation mistakes). I switched to LanguageTool because of its larger set
@@ -2105,7 +2117,7 @@ default by calling Write.setConfiguredServices() like so:</p>
 <p>The function utilizes XLinguServiceManager.setConfiguredServices() to attach a
 particular implementation service (e.g. LanguageTool) to a specified linguistic service
 (e.g. the Proofreader).</p>
-<h3 id="41-error-reporting-options">4.1.  Error Reporting Options</h3>
+<h3 id="41-error-reporting-options">4.1.  Error Reporting Options<a class="headerlink" href="#41-error-reporting-options" title="Permanent link">&para;</a></h3>
 <p>The kinds of errors reported by the proof reader can be adjusted through Office's GUI.</p>
 <p>One configuration pane, used by both Lightproof and LanguageTool, is in the
 "English Sentence Checking" dialog shown back in Figure 11. If you look closely, the
@@ -2121,7 +2133,7 @@ of options, reflecting the greater number of grammar rules in the checker (see F
 <p>Figure 17. The LanguageTool Options Dialog.</p>
 <p>Unfortunately, there seems to be no way to modify these options through Office's
 Proofreader API.</p>
-<h3 id="42-using-the-proof-reader">4.2.  Using the Proof Reader</h3>
+<h3 id="42-using-the-proof-reader">4.2.  Using the Proof Reader<a class="headerlink" href="#42-using-the-proof-reader" title="Permanent link">&para;</a></h3>
 <p>In Lingo.java the proof reader is loaded and called like so:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// in Lingo.java</span>
     <span class="p">:</span>
@@ -2203,7 +2215,7 @@ multiple suggestions in a String array.</p>
 XProofreader interface includes methods for switching on and off rules based on their
 IDs, but there's no way to find out what these IDs are except by looking at
 SingleProofreadingError objects.</p>
-<h2 id="5-guessing-the-language-used-in-a-string">5.  Guessing the Language used in a String</h2>
+<h2 id="5-guessing-the-language-used-in-a-string">5.  Guessing the Language used in a String<a class="headerlink" href="#5-guessing-the-language-used-in-a-string" title="Permanent link">&para;</a></h2>
 <p>An oft overlooked linguistics API feature is the ability to guess the language used in a
 string, which is implemented by one service, LanguageGuessing, and a single
 interface, XLanguageGuessing. The documentation for XLanguageGuessing includes
@@ -2267,7 +2279,7 @@ in long form:</p>
   <span class="p">}</span>
 <span class="p">}</span>  <span class="c1">// end of printLocale()</span>
 </code></pre></div>
-<h2 id="6-spell-checking-and-grammar-checking-a-document">6.  Spell Checking and Grammar Checking a Document</h2>
+<h2 id="6-spell-checking-and-grammar-checking-a-document">6.  Spell Checking and Grammar Checking a Document<a class="headerlink" href="#6-spell-checking-and-grammar-checking-a-document" title="Permanent link">&para;</a></h2>
 <p>Lingo.java only spell checks individual words, and grammar checks a single sentence.</p>
 <p>The LingoFile.java example shows how these features can be applied to an entire
 document.</p>
@@ -2456,6 +2468,7 @@ grammarian, or his copy editor was.</p>
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -2463,7 +2476,8 @@ grammarian, or his copy editor was.</p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="09-Text_Search.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="09-Text_Search.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 9. Text Search and Replace" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2478,7 +2492,8 @@ grammarian, or his copy editor was.</p>
         </a>
       
       
-        <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="11%20Part%203%20Draw%20%26%20Impress.html" class="md-footer__link md-footer__link--next" aria-label="Next: Part 3 Draw &amp; Impress" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -2498,10 +2513,12 @@ grammarian, or his copy editor was.</p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -2513,10 +2530,10 @@ grammarian, or his copy editor was.</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -761,6 +770,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -775,6 +785,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1202,6 +1213,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1276,7 +1288,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-32-bubble-net-stock-charts">Chapter 32. Bubble, Net, Stock Charts</h1>
+                <h1 id="chapter-32-bubble-net-stock-charts">Chapter 32. Bubble, Net, Stock Charts<a class="headerlink" href="#chapter-32-bubble-net-stock-charts" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 <p>The Bubble 
@@ -1309,7 +1321,7 @@ public static void main(String args[])
   Lo.closeDoc(doc); 
   Lo.closeOffice(); 
 }  // end of main() </p>
-<h2 id="1-the-bubble-chart">1.  The Bubble Chart</h2>
+<h2 id="1-the-bubble-chart">1.  The Bubble Chart<a class="headerlink" href="#1-the-bubble-chart" title="Permanent link">&para;</a></h2>
 <p>A bubble chart is a variation of a scatter chart where each data point shows the 
 relationship between three variables. Two variables are used for a bubble's (x, y) 
 coordinate, and the third affects the bubble's size.  </p>
@@ -1344,12 +1356,12 @@ private static void labeledBubbleChart(XSpreadsheetDocument doc,
   Props.setProperty(ds[0], "BorderColor", Calc.RED); </p>
 <p>Props.setProperty(ds[0], "LabelPlacement", Chart2.DP_CENTER); 
   // Chart2.setDataPointLabels(chartDoc, Chart2.DP_NUMBER); </p>
-<p>/<em> 
+<p>/* 
   String sheetName = Calc.getSheetName(sheet); 
   String label = sheetName + "." + "K63"; 
   String names = sheetName + "." + "K64:K93"; 
   Chart2.addCatLabels(chartDoc, label, names); 
-</em>/ 
+*/ 
   }  // end of labeledBubbleChart() </p>
 <p>The transparency and border properties of all the data points are set via the 
 DataPointProperties class for the data series. Without transparency, large bubbles 
@@ -1386,12 +1398,12 @@ public static void addCatLabels(XChartDocument chartDoc,<br />
 }  // end of addCatLabels() </p>
 <p>When setDataPointLabels() displays category data for the points, the new x-axis 
 categories are utilized. </p>
-<h2 id="2-the-net-chart">2.  The Net Chart</h2>
+<h2 id="2-the-net-chart">2.  The Net Chart<a class="headerlink" href="#2-the-net-chart" title="Permanent link">&para;</a></h2>
 <p>The net chart (also called a radar chart) is useful for comparing multiple columns of 
 data (often between three and eight columns) in a 2D arrangement that resembles a 
 spider's web. Although net charts have an interesting look, a lot of people dislike them 
 (e.g. see "A Critique of Radar Charts" by Graham Odds at 
-http://blog.scottlogic.com/2011/09/23/a-critique-of-radar-charts.html). </p>
+<a href="http://blog.scottlogic.com/2011/09/23/a-critique-of-radar-charts.html">http://blog.scottlogic.com/2011/09/23/a-critique-of-radar-charts.html</a>). </p>
 <p>netChart() in Chart2Views.java utilizes the "No of Calls per Day" table in 
 "chartsData.ods" (see Figure 5).  </p>
 <p><img alt="" src="images/32-Bubble_Net_Stock_Charts-5.png" /></p>
@@ -1424,7 +1436,7 @@ the lines to be stacked or displayed as percentages. </p>
 default, the axis is drawn in a counter-clockwise direction starting from the top of the 
 net. This order doesn't seem right for the days of the week in this example, so I made 
 the order clockwise, as in Figure 6. </p>
-<h2 id="3-the-stock-chart">3.  The Stock Chart</h2>
+<h2 id="3-the-stock-chart">3.  The Stock Chart<a class="headerlink" href="#3-the-stock-chart" title="Permanent link">&para;</a></h2>
 <p>A stock chart is a specialized column graph for displaying stocks and shares 
 information. All stock chart templates require at least three columns of data 
 concerning the lowest price, highest price, and closing price of a stock (or share). It's 
@@ -1477,7 +1489,7 @@ private static void happyStockChart(XSpreadsheetDocument doc,
   Chart2.rotateYAxis2Title(chartDoc, 90); </p>
 <p>Chart2.setDataPointLabels(chartDoc, Chart2.DP_NONE);<br />
                      // too cluttered if numerical data is shown </p>
-<p>// change 2nd y-axis min and max; default is poor ($0 - $20) 
+<p>// change 2<sup>nd</sup> y-axis min and max; default is poor ($0 - $20) 
   XAxis yAxis2 = Chart2.getYAxis2(chartDoc); 
   ScaleData sd = yAxis2.getScaleData(); 
   sd.Minimum = 83; 
@@ -1492,7 +1504,7 @@ Chart2.rotateYAxisTitle() described in Chapter 29, section 3. </p>
 <p>happyStockChart() also changes the second y-axis' range; the default shows prices 
 between $0 and $20, which is too low. New minimum and maximum values are 
 assigned to the axis' scale data. </p>
-<h3 id="31-modifying-the-chart-dates">3.1.  Modifying the Chart Dates</h3>
+<h3 id="31-modifying-the-chart-dates">3.1.  Modifying the Chart Dates<a class="headerlink" href="#31-modifying-the-chart-dates" title="Permanent link">&para;</a></h3>
 <p>A common problem is that date information clutters the stock chart, making it harder 
 to read. Figure 8 shows that the stock template is clever enough to only draw every 
 second date, but this is still too much information for the limited space. </p>
@@ -1503,8 +1515,8 @@ drawn for every third day, as in Figure 10. </p>
 <p>Changing the interval is implemented by adjusting the time increment for the x-axis in 
 its ScaleData object: </p>
 <p>// part of happyStockChart() in Chart2Views.java... </p>
-<pre><code>:
-</code></pre>
+<div class="highlight"><pre><span></span><code>:
+</code></pre></div>
 <p>// change x-axis type from number to date 
 XAxis xAxis = Chart2.getXAxis(chartDoc); 
 sd = xAxis.getScaleData(); 
@@ -1521,8 +1533,8 @@ scaledata. </p>
 <p>Another technique for making the dates easier to read is to rotate their labels. The 
 following code rotates each label counter-clockwise by 45 degrees: </p>
 <p>// part of happyStockChart() in Chart2Views.java... </p>
-<pre><code>:
-</code></pre>
+<div class="highlight"><pre><span></span><code>:
+</code></pre></div>
 <p>XAxis xAxis = Chart2.getXAxis(chartDoc); 
 Props.setProperty(xAxis, "TextRotation", 45); </p>
 <p>The resulting chart is shown in Figure 11. </p>
@@ -1530,7 +1542,7 @@ Props.setProperty(xAxis, "TextRotation", 45); </p>
 <p>Figure 11. Stock Chart with Rotated X-Axis Labels. </p>
 <p>Note that the template has automatically switched back to showing every date instead 
 of every second one in Figure 8. </p>
-<h3 id="32-changing-the-stock-values-appearance">3.2.  Changing the Stock Values Appearance</h3>
+<h3 id="32-changing-the-stock-values-appearance">3.2.  Changing the Stock Values Appearance<a class="headerlink" href="#32-changing-the-stock-values-appearance" title="Permanent link">&para;</a></h3>
 <p>This section describes two changes to the candle stick part of the chart: adjusting the 
 colors used in the "white days" and "black days" blocks, and making the high-low 
 stock line easier to read. The results appear in Figure 12. </p>
@@ -1560,8 +1572,8 @@ and the CandleStickChartType subclass.  </p>
 properties store sets containing multiple values from the FillProperties and 
 LineProperties services. They can be accessed like so: </p>
 <p>// part of happyStockChart() in Chart2Views.java... </p>
-<pre><code>:
-</code></pre>
+<div class="highlight"><pre><span></span><code>:
+</code></pre></div>
 <p>XChartType candleCT = Chart2.findChartType(chartDoc,<br />
                                    "CandleStickChartType"); 
 XPropertySet props = Lo.qi(XPropertySet.class,<br />
@@ -1582,18 +1594,18 @@ public static void colorStockBars(XChartType ct,
     XPropertySet props = Lo.qi(XPropertySet.class,<br />
                           Props.getProperty(ct, "WhiteDay")); 
     Props.setProperty(props, "FillColor", wDayColor); </p>
-<pre><code>props = Lo.qi(XPropertySet.class,  
-                      Props.getProperty(ct, "BlackDay")); 
-Props.setProperty(props, "FillColor", bDayColor);
-</code></pre>
+<div class="highlight"><pre><span></span><code>props = Lo.qi(XPropertySet.class,  
+                      Props.getProperty(ct, &quot;BlackDay&quot;)); 
+Props.setProperty(props, &quot;FillColor&quot;, bDayColor);
+</code></pre></div>
 <p>} 
 }  // end of colorStockBars() </p>
 <p>Chart2.findChartType() and Chart2.colorStockBars() are called at the end of 
 happyStockChart() to change the "white day" blocks to green and the "black day" 
 blocks to red: </p>
 <p>// part of happyStockChart() in Chart2Views.java... </p>
-<pre><code>:
-</code></pre>
+<div class="highlight"><pre><span></span><code>:
+</code></pre></div>
 <p>XChartType candleCT = Chart2.findChartType(chartDoc,<br />
                                    "CandleStickChartType"); 
 Chart2.colorStockBars(candleCT, Calc.GREEN, Calc.RED); </p>
@@ -1605,13 +1617,13 @@ XDataSeries[] ds = Chart2.getDataSeries(chartDoc,<br />
 The high-low lines are adjusted via the "LineWidth" and "Color" properties in the 
 series. The code at the end of  happyStockChart() is: </p>
 <p>// part of happyStockChart() in Chart2Views.java... </p>
-<pre><code>:
-</code></pre>
+<div class="highlight"><pre><span></span><code>:
+</code></pre></div>
 <p>XDataSeries[] ds = Chart2.getDataSeries(chartDoc,<br />
                                   "CandleStickChartType"); 
 Props.setProperty(ds[0], "LineWidth", 120);   // in 1/100 mm<br />
 Props.setProperty(ds[0], "Color", Calc.YELLOW); </p>
-<h2 id="4-adding-a-line-graph-to-a-stock-chart">4.  Adding a Line Graph to a Stock Chart</h2>
+<h2 id="4-adding-a-line-graph-to-a-stock-chart">4.  Adding a Line Graph to a Stock Chart<a class="headerlink" href="#4-adding-a-line-graph-to-a-stock-chart" title="Permanent link">&para;</a></h2>
 <p>stockPricesChart() in Chart2Views.java utilizes the "Calc Guide Stock Prices" table in 
 "chartsData.ods" (see Figure 14).  </p>
 <p><img alt="" src="images/32-Bubble_Net_Stock_Charts-14.png" /></p>
@@ -1642,8 +1654,8 @@ private static void stockPricesChart(XSpreadsheetDocument doc,
 <p>A line graph showing the movement of "Pork Bellies" is added to the chart by 
 Chart2.addStockLine(). The additional code at the end of stockPricesChart() is: </p>
 <p>// part of stockPricesChart() in Chart2Views.java... </p>
-<pre><code>:
-</code></pre>
+<div class="highlight"><pre><span></span><code>:
+</code></pre></div>
 <p>String sheetName = Calc.getSheetName(sheet); 
 String porkLabel = sheetName + "." + "J141"; 
 String porkPoints = sheetName + "." + "J142:J146"; 
@@ -1682,8 +1694,8 @@ public static XChartType addChartType(XChartDocument chartDoc,<br />
 <p>Chart2.addChartType() returns a reference to the new chart type, and an empty data 
 series is added to it by converting the chart type into an XDataSeriesContainer: </p>
 <p>// part of Chart2.addStockLine(); see below... </p>
-<pre><code>:
-</code></pre>
+<div class="highlight"><pre><span></span><code>:
+</code></pre></div>
 <p>XChartType ct = addChartType(chartDoc, "LineChartType"); 
 XDataSeriesContainer dataSeriesCnt =<br />
                         Lo.qi(XDataSeriesContainer.class, ct); </p>
@@ -1706,8 +1718,8 @@ Chart2.createLDSeq(), which I used in Chapter 31, section 5.1 to add error bars 
 scatter chart, and in section 1 to place category labels in a bubble chart.  </p>
 <p>The code is: </p>
 <p>// part of Chart2.addStockLine(); see below... </p>
-<pre><code>:
-</code></pre>
+<div class="highlight"><pre><span></span><code>:
+</code></pre></div>
 <p>// treat series as a data sink 
 XDataSink dataSink = Lo.qi(XDataSink.class, ds); </p>
 <p>// build a sequence representing the y-axis data 
@@ -1748,8 +1760,8 @@ public static void addStockLine(XChartDocument chartDoc,<br />
 <p>Chart2.addStockLine() is passed a reference to the chart document, and references to 
 the label and data for the line graph: </p>
 <p>// part of stockPricesChart() in Chart2Views.java... </p>
-<pre><code>:
-</code></pre>
+<div class="highlight"><pre><span></span><code>:
+</code></pre></div>
 <p>String sheetName = Calc.getSheetName(sheet); 
 String porkLabel = sheetName + "." + "J141"; 
 String porkPoints = sheetName + "." + "J142:J146"; 
@@ -1764,6 +1776,7 @@ Chart2.addStockLine(chartDoc, porkLabel, porkPoints); </p>
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -1771,7 +1784,8 @@ Chart2.addStockLine(chartDoc, porkLabel, porkPoints); </p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="31-XY_Scatter_Charts.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="31-XY_Scatter_Charts.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 31. XY (Scatter) Charts" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1786,7 +1800,8 @@ Chart2.addStockLine(chartDoc, porkLabel, porkPoints); </p>
         </a>
       
       
-        <a href="33-Charts_in_Others_Docs.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="33-Charts_in_Others_Docs.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 33. Using Charts in Other Documents" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -1806,10 +1821,12 @@ Chart2.addStockLine(chartDoc, porkLabel, porkPoints); </p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -1821,10 +1838,10 @@ Chart2.addStockLine(chartDoc, porkLabel, porkPoints); </p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

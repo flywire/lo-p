@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -506,6 +515,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -520,6 +530,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1237,6 +1248,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1346,976 +1358,1083 @@
                   </a>
                 
                 
-                <h1 id="chapter-17-slide-deck-manipulation">Chapter 17. Slide Deck Manipulation</h1>
+                <h1 id="chapter-17-slide-deck-manipulation">Chapter 17. Slide Deck Manipulation<a class="headerlink" href="#chapter-17-slide-deck-manipulation" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
-<p>Deck Building; 
-Master Pages; Adding a 
-Slide to  a Deck; 
-Rearranging a Deck; 
-Appending Two Decks; 
-Exporting a Slide as an 
-Image; Extracting the 
-Text from a Deck </p>
-<p>Example folders: "Draw 
-Tests" and "Utils" </p>
+<p>Deck Building;
+Master Pages; Adding a
+Slide to  a Deck;
+Rearranging a Deck;
+Appending Two Decks;
+Exporting a Slide as an
+Image; Extracting the
+Text from a Deck</p>
+<p>Example folders: "Draw
+Tests" and "Utils"</p>
 </div>
-<p>This chapter looks at a number of common tasks 
-performed with slide decks: 
- building a slide deck based on a file of text notes; 
- using, changing, and creating master pages for 
-slide decks; 
- adding a slide to an existing deck; 
- rearranging the slides in a deck; 
- appending two (or more) decks; 
- exporting a slide from a deck as an image; 
- extracting all the text from a slide deck. </p>
-<h2 id="1-building-a-deck-from-notes">1.  Building a Deck from Notes</h2>
-<p>With Draw methods such as titleSlide() and bulletsSlide() it's quite easy to write a 
-program that converts a set of notes in a text file into a slides deck. The 
-PointsBuilder.java example does just that, using textual input formatted as shown 
-below: </p>
-<p>What is a Algorithm?  </p>
-<blockquote>
-<p>An algorithm is a finite set of unambiguous instructions for 
-solving a problem. </p>
-<blockquote>
-<p>An algorithm is correct if on all legitimate inputs, it outputs 
-the right answer in a finite amount of time </p>
-</blockquote>
-<p>Can be expressed as </p>
-<blockquote>
-<p>pseudocode 
-flow charts 
-text in a natural language (e.g. English) 
-computer code </p>
-</blockquote>
-</blockquote>
-<p>Algorithm Design </p>
-<blockquote>
-<p>The theoretical  study of how to solve  computational problems </p>
-<blockquote>
-<p>sorting a list of numbers 
-  finding a shortest route on a map 
-scheduling when to work on homework 
-answering web search queries 
-and so on... </p>
-</blockquote>
-</blockquote>
-<p>When PointsBuilder reads this text, it generates three slides, and saves them to 
-"points.odp" which is shown in Figure 1. </p>
+<p>This chapter looks at a number of common tasks
+performed with slide decks:</p>
+<ul>
+<li>building a slide deck based on a file of text notes;</li>
+<li>using, changing, and creating master pages for slide decks;</li>
+<li>adding a slide to an existing deck;</li>
+<li>rearranging the slides in a deck;</li>
+<li>appending two (or more) decks;</li>
+<li>exporting a slide from a deck as an image;</li>
+<li>extracting all the text from a slide deck.</li>
+</ul>
+<h2 id="1-building-a-deck-from-notes">1.  Building a Deck from Notes<a class="headerlink" href="#1-building-a-deck-from-notes" title="Permanent link">&para;</a></h2>
+<p>With Draw methods such as titleSlide() and bulletsSlide() it's quite easy to write a
+program that converts a set of notes in a text file into a slides deck. The
+PointsBuilder.java example does just that, using textual input formatted as shown
+below:</p>
+<div class="highlight"><pre><span></span><code>What is a Algorithm?
+
+&gt; An algorithm is a finite set of unambiguous instructions for
+solving a problem.
+
+
+&gt;&gt; An algorithm is correct if on all legitimate inputs, it outputs
+the right answer in a finite amount of time
+
+&gt; Can be expressed as
+&gt;&gt;pseudocode
+&gt;&gt;flow charts
+&gt;&gt;text in a natural language (e.g. English)
+&gt;&gt;computer code
+
+
+Algorithm Design
+
+&gt; The theoretical  study of how to solve  computational problems
+&gt;&gt;sorting a list of numbers
+&gt;&gt;   finding a shortest route on a map
+&gt;&gt; scheduling when to work on homework
+&gt;&gt; answering web search queries
+&gt;&gt; and so on...
+</code></pre></div>
+<p>When PointsBuilder reads this text, it generates three slides, and saves them to
+"points.odp" which is shown in Figure 1.</p>
 <p><img alt="" src="images/17-Slide_Deck_Manipulation-1.png" /></p>
-<p>Figure 1. Slides Generated by PointsBuilder.java </p>
-<p>The title slide in Figure 1 is generated automatically, but the other slides are created 
-from the input text by calling Draw.bulletsSlide() and Draw.addBullet(). </p>
-<p>The reason the output looks so good is that PointsBuilder.java uses one of Impress' 
-templates, "Inspiration.otp". These files are listed in Impress when you open the 
-"Master Pages" section of the Tasks pane, part of which is shown in Figure 2. </p>
+<p>Figure 1. Slides Generated by PointsBuilder.java</p>
+<p>The title slide in Figure 1 is generated automatically, but the other slides are created
+from the input text by calling Draw.bulletsSlide() and Draw.addBullet().</p>
+<p>The reason the output looks so good is that PointsBuilder.java uses one of Impress'
+templates, "Inspiration.otp". These files are listed in Impress when you open the
+"Master Pages" section of the Tasks pane, part of which is shown in Figure 2.</p>
 <p><img alt="" src="images/17-Slide_Deck_Manipulation-2.jpg" /></p>
-<p>Figure 2. The List of Master Pages in Impress. </p>
-<p>If you move the cursor over the thumbnail images, the name of the template file is 
-displayed as a tooltip. </p>
-<p>The main() function of PointsBuilder.java starts by printing the names of all the 
-available templates, before using "Inspiration.otp" to create a new presentation 
-document: </p>
-<p>public static void main (String args[]) 
-{ 
-  if (args.length != 1) { 
-    System.out.println("Usage: PointsBuilder <points fnm>"); 
-    return; 
-  } 
-  XComponentLoader loader = Lo.loadOffice(); 
-  reportTemplates(); </p>
-<p>String templateFnm = Draw.getSlideTemplatePath() +<br />
-                                       "Inspiration.otp"; 
-  XComponent doc = Lo.createDocFromTemplate(templateFnm, loader); 
-  if (doc == null) { 
-    System.out.println("Impress doc creation failed"); 
-    Lo.closeOffice(); 
-    return; 
-  } </p>
-<p>readPoints(args[0], doc); 
-  System.out.println("Total no. of slides: " +<br />
-                              Draw.getSlidesCount(doc)); 
-  Lo.saveDoc(doc, "points.odp");<br />
-  Lo.closeDoc(doc); 
-  Lo.closeOffice(); 
-}  // end of main() </p>
-<p>reportTemplates() uses Info.getDirs("Template") to retrieve a list of all the directories 
-examined by Office when looking for templates. It also calls 
-Draw.getSlideTemplatePath() to retrieve the default slide template directory, and 
-prints the names of the files in that folder: </p>
-<p>// in PointsBuilder.java 
-private static void reportTemplates() 
-{ 
-  String[] templateDirs = Info.getDirs("Template"); 
-  System.out.println("Templates dirs:"); 
-  for(String dir : templateDirs) 
-    System.out.println("  " + dir); </p>
-<p>String templateDir = Draw.getSlideTemplatePath(); 
-  System.out.println("\nTemplates files in \"" +<br />
-                                       templateDir + "\""); 
-  String[] templatesFnms = FileIO.getFileNames(templateDir); 
-  for(String fnm : templatesFnms) 
-    System.out.println("  " + fnm); 
-}  // end of reportTemplates() </p>
-<p>reportTemplates()'s output: </p>
-<p>Templates dirs: 
-  C:\Program Files\LibreOffice 4\share\template\en-US 
-  C:\Program Files\LibreOffice 4\share\template\common 
-  C:\Users\Ad\Desktop\LibreOffice Tests\ 
-       Draw Tests\$BUNDLED_EXTENSIONS\wiki-publisher\templates 
-  C:\Users\Ad\AppData\Roaming\LibreOffice\4\user\template </p>
-<p>Templates files in "C:\Program Files\LibreOffice 4\ 
-                           share/template/common/layout/" 
-  AbstractGreen.otp 
-  AbstractRed.otp 
-  AbstractYellow.otp 
-  BrightBlue.otp 
-  DNA.otp 
-  Inspiration.otp 
-  LushGreen.otp 
-  Metropolis.otp 
-  Sunset.otp 
-  Vintage.otp </p>
-<p>PointsBuilder employs the "Inspiration.otp" template, via the call: </p>
-<p>String templateFnm = Draw.getSlideTemplatePath() + "Inspiration.otp"; 
-XComponent doc = Lo.createDocFromTemplate(templateFnm, loader); </p>
-<p>Lo.createDocFromTemplate() is a variant of  Lo.createDoc() which specifies a 
-template for the new document. It calls 
-XComponentLoader.loadComponentFromURL() with the template file as an 
-argument, and sets the "AsTemplate" property: </p>
-<p>// in the Lo class 
-// global 
-private static XMultiServiceFactory msFactory = null; </p>
-<p>public static XComponent createDocFromTemplate(String templatePath, 
-                                      XComponentLoader loader) 
-// create a new document using the specified template 
-{ 
-  if (!FileIO.isOpenable(templatePath)) 
-    return null; 
-  System.out.println("Opening template " + templatePath); 
-  String templateURL = FileIO.fnmToURL(templatePath); 
-  if (templateURL == null) 
-    return null; </p>
-<p>PropertyValue[] props =<br />
-      Props.makeProps("Hidden", true, "AsTemplate", true); 
-  XComponent doc = null; 
-  try { 
-    doc = loader.loadComponentFromURL(templateURL,"_blank",0,props); 
-    msFactory =  Lo.qi(XMultiServiceFactory.class, doc); 
-  } 
-  catch (Exception e) { 
-    System.out.println("Could not create doc from template: " + e); 
-  } 
-  return doc; 
-}  // end of createDocFromTemplate() </p>
-<p>The readPoints() method in PointsBuilder.java loads the text points file line-by-line. It 
-ignores blank lines and lines starting with "//", and examines the first character on 
-each line: </p>
-<p>// in PointsBuilder.java 
-private static void readPoints(String fnm, XComponent doc) 
-{<br />
-  XDrawPage currSlide  = Draw.getSlide(doc, 0); 
-  Draw.titleSlide(currSlide, "Java-Generated Slides",<br />
-                             "Using LibreOffice"); 
-  XText body = null; 
-  try { 
-    BufferedReader br = new BufferedReader( new FileReader(fnm)); 
-    String line; 
-    char ch; 
-    while((line = br.readLine()) != null) { 
-      if (line.length() == 0)  // blank line 
-        continue; 
-      if (line.startsWith("//"))   // comment 
-        continue; 
-      ch = line.charAt(0); 
-      if (ch == '&gt;')  // a bullet with some indentation 
-        processBullet(line, body); 
-      else {  // a title for a new slide 
-        currSlide = Draw.addSlide(doc); 
-        body = Draw.bulletsSlide(currSlide, line); 
-      } 
-    } 
-    br.close(); 
-    System.out.println("Read in points file: " + fnm); 
-  }<br />
-  catch (IOException e)<br />
-  { System.out.println("Error reading points file: " + fnm); } 
-}  // end of readPoints() </p>
-<p>If the line starts with a '&gt;', then processBullet() is called to determine how many '&gt;'s 
-start the line. Depending on the number, Draw.addBullet() is called with a different 
-bullet indentation level value. If the line doesn't start with a '&gt;', then it's assumed to be 
-the title line of a new slide, and Draw.addSlide() and Draw.bulletsSlide() create a new 
-bullets-based slide. </p>
-<h2 id="2-master-pages">2.  Master Pages</h2>
-<p>When a new slide deck is created it always has a single slide and a default master 
-page, and every slide created subsequently will use this master page to format its 
-background. The easiest way to view the master page is through the Impress GUI – by 
-clicking on the View &gt; Master &gt; Slide Master menu, which displays something like </p>
+<p>Figure 2. The List of Master Pages in Impress.</p>
+<p>If you move the cursor over the thumbnail images, the name of the template file is
+displayed as a tooltip.</p>
+<p>The main() function of PointsBuilder.java starts by printing the names of all the
+available templates, before using "Inspiration.otp" to create a new presentation
+document:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span> <span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="na">length</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Usage: PointsBuilder &lt;points fnm&gt;&quot;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+  <span class="n">reportTemplates</span><span class="p">();</span>
+
+  <span class="n">String</span> <span class="n">templateFnm</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getSlideTemplatePath</span><span class="p">()</span> <span class="o">+</span>
+                                       <span class="s">&quot;Inspiration.otp&quot;</span><span class="p">;</span>
+  <span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createDocFromTemplate</span><span class="p">(</span><span class="n">templateFnm</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">doc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Impress doc creation failed&quot;</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">readPoints</span><span class="p">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">doc</span><span class="p">);</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Total no. of slides: &quot;</span> <span class="o">+</span>
+                              <span class="n">Draw</span><span class="p">.</span><span class="na">getSlidesCount</span><span class="p">(</span><span class="n">doc</span><span class="p">));</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">saveDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;points.odp&quot;</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of main()</span>
+</code></pre></div>
+<p>reportTemplates() uses Info.getDirs("Template") to retrieve a list of all the directories
+examined by Office when looking for templates. It also calls
+Draw.getSlideTemplatePath() to retrieve the default slide template directory, and
+prints the names of the files in that folder:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in PointsBuilder.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">reportTemplates</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">String</span><span class="o">[]</span> <span class="n">templateDirs</span> <span class="o">=</span> <span class="n">Info</span><span class="p">.</span><span class="na">getDirs</span><span class="p">(</span><span class="s">&quot;Template&quot;</span><span class="p">);</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Templates dirs:&quot;</span><span class="p">);</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">String</span> <span class="n">dir</span> <span class="p">:</span> <span class="n">templateDirs</span><span class="p">)</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  &quot;</span> <span class="o">+</span> <span class="n">dir</span><span class="p">);</span>
+
+  <span class="n">String</span> <span class="n">templateDir</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getSlideTemplatePath</span><span class="p">();</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\nTemplates files in \&quot;&quot;</span> <span class="o">+</span>
+                                       <span class="n">templateDir</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>
+  <span class="n">String</span><span class="o">[]</span> <span class="n">templatesFnms</span> <span class="o">=</span> <span class="n">FileIO</span><span class="p">.</span><span class="na">getFileNames</span><span class="p">(</span><span class="n">templateDir</span><span class="p">);</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">String</span> <span class="n">fnm</span> <span class="p">:</span> <span class="n">templatesFnms</span><span class="p">)</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  &quot;</span> <span class="o">+</span> <span class="n">fnm</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of reportTemplates()</span>
+</code></pre></div>
+<p>reportTemplates()'s output:</p>
+<div class="highlight"><pre><span></span><code>Templates dirs:
+  C:\Program Files\LibreOffice 4\share\template\en-US
+  C:\Program Files\LibreOffice 4\share\template\common
+  C:\Users\Ad\Desktop\LibreOffice Tests\
+       Draw Tests\$BUNDLED_EXTENSIONS\wiki-publisher\templates
+  C:\Users\Ad\AppData\Roaming\LibreOffice\4\user\template
+
+Templates files in &quot;C:\Program Files\LibreOffice 4\
+                           share/template/common/layout/&quot;
+  AbstractGreen.otp
+  AbstractRed.otp
+  AbstractYellow.otp
+  BrightBlue.otp
+  DNA.otp
+  Inspiration.otp
+  LushGreen.otp
+  Metropolis.otp
+  Sunset.otp
+  Vintage.otp
+</code></pre></div>
+<p>PointsBuilder employs the "Inspiration.otp" template, via the call:</p>
+<div class="highlight"><pre><span></span><code><span class="n">String</span> <span class="n">templateFnm</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getSlideTemplatePath</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot;Inspiration.otp&quot;</span><span class="p">;</span>
+<span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createDocFromTemplate</span><span class="p">(</span><span class="n">templateFnm</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>
+</code></pre></div>
+<p>Lo.createDocFromTemplate() is a variant of  Lo.createDoc() which specifies a
+template for the new document. It calls
+XComponentLoader.loadComponentFromURL() with the template file as an
+argument, and sets the "AsTemplate" property:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Lo class</span>
+<span class="c1">// global</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="n">XMultiServiceFactory</span> <span class="n">msFactory</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XComponent</span> <span class="nf">createDocFromTemplate</span><span class="p">(</span><span class="n">String</span> <span class="n">templatePath</span><span class="p">,</span>
+                                      <span class="n">XComponentLoader</span> <span class="n">loader</span><span class="p">)</span>
+<span class="c1">// create a new document using the specified template</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">FileIO</span><span class="p">.</span><span class="na">isOpenable</span><span class="p">(</span><span class="n">templatePath</span><span class="p">))</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Opening template &quot;</span> <span class="o">+</span> <span class="n">templatePath</span><span class="p">);</span>
+  <span class="n">String</span> <span class="n">templateURL</span> <span class="o">=</span> <span class="n">FileIO</span><span class="p">.</span><span class="na">fnmToURL</span><span class="p">(</span><span class="n">templatePath</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">templateURL</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+
+  <span class="n">PropertyValue</span><span class="o">[]</span> <span class="n">props</span> <span class="o">=</span>
+      <span class="n">Props</span><span class="p">.</span><span class="na">makeProps</span><span class="p">(</span><span class="s">&quot;Hidden&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="s">&quot;AsTemplate&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">loader</span><span class="p">.</span><span class="na">loadComponentFromURL</span><span class="p">(</span><span class="n">templateURL</span><span class="p">,</span><span class="s">&quot;_blank&quot;</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">props</span><span class="p">);</span>
+    <span class="n">msFactory</span> <span class="o">=</span>  <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XMultiServiceFactory</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">doc</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not create doc from template: &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">doc</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of createDocFromTemplate()</span>
+</code></pre></div>
+<p>The readPoints() method in PointsBuilder.java loads the text points file line-by-line. It
+ignores blank lines and lines starting with "//", and examines the first character on
+each line:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in PointsBuilder.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">readPoints</span><span class="p">(</span><span class="n">String</span> <span class="n">fnm</span><span class="p">,</span> <span class="n">XComponent</span> <span class="n">doc</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XDrawPage</span> <span class="n">currSlide</span>  <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getSlide</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">Draw</span><span class="p">.</span><span class="na">titleSlide</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="s">&quot;Java-Generated Slides&quot;</span><span class="p">,</span>
+                             <span class="s">&quot;Using LibreOffice&quot;</span><span class="p">);</span>
+  <span class="n">XText</span> <span class="n">body</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="p">(</span> <span class="k">new</span> <span class="n">FileReader</span><span class="p">(</span><span class="n">fnm</span><span class="p">));</span>
+    <span class="n">String</span> <span class="n">line</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">ch</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">((</span><span class="n">line</span> <span class="o">=</span> <span class="n">br</span><span class="p">.</span><span class="na">readLine</span><span class="p">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">line</span><span class="p">.</span><span class="na">length</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1">// blank line</span>
+        <span class="k">continue</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">line</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">&quot;//&quot;</span><span class="p">))</span>   <span class="c1">// comment</span>
+        <span class="k">continue</span><span class="p">;</span>
+      <span class="n">ch</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39;&gt;&#39;</span><span class="p">)</span>  <span class="c1">// a bullet with some indentation</span>
+        <span class="n">processBullet</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">body</span><span class="p">);</span>
+      <span class="k">else</span> <span class="p">{</span>  <span class="c1">// a title for a new slide</span>
+        <span class="n">currSlide</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">addSlide</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">bulletsSlide</span><span class="p">(</span><span class="n">currSlide</span><span class="p">,</span> <span class="n">line</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">br</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Read in points file: &quot;</span> <span class="o">+</span> <span class="n">fnm</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error reading points file: &quot;</span> <span class="o">+</span> <span class="n">fnm</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of readPoints()</span>
+</code></pre></div>
+<p>If the line starts with a '&gt;', then processBullet() is called to determine how many '&gt;'s
+start the line. Depending on the number, Draw.addBullet() is called with a different
+bullet indentation level value. If the line doesn't start with a '&gt;', then it's assumed to be
+the title line of a new slide, and Draw.addSlide() and Draw.bulletsSlide() create a new
+bullets-based slide.</p>
+<h2 id="2-master-pages">2.  Master Pages<a class="headerlink" href="#2-master-pages" title="Permanent link">&para;</a></h2>
+<p>When a new slide deck is created it always has a single slide and a default master
+page, and every slide created subsequently will use this master page to format its
+background. The easiest way to view the master page is through the Impress GUI – by
+clicking on the View, Master, Slide Master menu, which displays something like
+Figure 3.</p>
 <p><img alt="" src="images/17-Slide_Deck_Manipulation-3.png" /></p>
-<p>Figure 3. </p>
-<p><img alt="" src="images/17-Slide_Deck_Manipulation-3.png" /></p>
-<p>Figure 3. The Default Master Page. </p>
-<p>There are five presentation shapes in Figure 3. From top-to-bottom, left-to-right, they 
-are TitleTextShape, OutlinerShape , DateTimeShape. FooterShape, and 
-SlideNumberShape. </p>
-<p>Even though a new slide links to this master page, the date/time, footer, and slide 
-number text are not automatically displayed on the slide; their rendering must be 
-turned on. </p>
-<p>It's possible to create more master pages in addition to the default one in Figure 3, and 
-link a slide to one of those.  </p>
-<p>The MastersUse.java example illustrates a number of master page features: the default 
-master page has text added to its footer section, and a shape and text are placed in its 
-top-left corner. The slide deck holds four slides – three of them link to the default 
-master page, and are set to display its footer and slide number. However, the third 
-slide in the deck links to a second master page with a slightly different appearance. </p>
-<p>Figure 4 shows the all the slides in the deck. </p>
+<p>Figure 3. The Default Master Page.</p>
+<p>There are five presentation shapes in Figure 3. From top-to-bottom, left-to-right, they
+are TitleTextShape, OutlinerShape , DateTimeShape. FooterShape, and
+SlideNumberShape.</p>
+<p>Even though a new slide links to this master page, the date/time, footer, and slide
+number text are not automatically displayed on the slide; their rendering must be
+turned on.</p>
+<p>It's possible to create more master pages in addition to the default one in Figure 3, and
+link a slide to one of those.</p>
+<p>The MastersUse.java example illustrates a number of master page features: the default
+master page has text added to its footer section, and a shape and text are placed in its
+top-left corner. The slide deck holds four slides – three of them link to the default
+master page, and are set to display its footer and slide number. However, the third
+slide in the deck links to a second master page with a slightly different appearance.</p>
+<p>Figure 4 shows the all the slides in the deck.</p>
 <p><img alt="" src="images/17-Slide_Deck_Manipulation-4.png" /></p>
-<p>Figure 4. A Slide Deck with Two Master Pages. </p>
-<p>Slides 1, 2, and 4 use the default master page, while slide 3 uses the new master. </p>
-<p>The main() function for MastersUse.java is: </p>
-<p>public static void main(String args[]) 
-{ 
-  XComponentLoader loader = Lo.loadOffice(); </p>
-<p>XComponent doc = Draw.createImpressDoc(loader); 
-  if (doc == null) { 
-    System.out.println("Impress doc creation failed"); 
-    Lo.closeOffice(); 
-    return; 
-  } </p>
-<p>// report the shapes on the default master page 
-  XDrawPage masterPage = Draw.getMasterPage(doc, 0); 
-  System.out.println("Default Master Page"); 
-  Draw.showShapesInfo(masterPage); </p>
-<p>// set the master page's footer text 
-  Draw.setMasterFooter(masterPage, "Master Use Slides"); </p>
-<p>// add a rectangle and text to the default master page 
-  // at the top-left of the slide 
-  Size sz = Draw.getSlideSize(masterPage); 
-  Draw.drawRectangle(masterPage, 5, 7, sz.Width/6, sz.Height/6); 
-  Draw.drawText(masterPage, "Default Master Page", 10,15,100,10,24); </p>
-<p>/<em> set slide 1 to use the master page's slide number 
-     but its own footer text </em>/ 
-  XDrawPage slide1 = Draw.getSlide(doc, 0); 
-  Draw.titleSlide(slide1, "Slide 1", ""); 
-  Props.setProperty(slide1, "IsPageNumberVisible", true); 
-      // use the master page's slide number 
-  Props.setProperty(slide1, "IsFooterVisible", true); 
-  Props.setProperty(slide1, "FooterText", "MU Slides"); 
-      // change master page's footer for first slide (does not work) </p>
-<p>/<em> add three more slides, which use the master page's<br />
-     slide number and footer </em>/ 
-  for(int i=1; i &lt; 4; i++) { 
-    XDrawPage slide = Draw.insertSlide(doc, i); 
-    Draw.bulletsSlide(slide, "Slide " + (i+1)); 
-    Props.setProperty(slide, "IsPageNumberVisible", true); 
-    Props.setProperty(slide, "IsFooterVisible", true); 
-  } </p>
-<p>// create master page 2 
-  XDrawPage masterPage2 = Draw.insertMasterPage(doc, 1); 
-  Draw.addSlideNumber(masterPage2);   // add slide number 
-  System.out.println("Master Page 2"); 
-  Draw.showShapesInfo(masterPage2); </p>
-<p>// link third slide to master page 2 
-  Draw.setMasterPage(Draw.getSlide(doc, 2), masterPage2); </p>
-<p>// put green ellipse and text on master page 2 
-  XShape ellipse = Draw.drawEllipse(masterPage2, 5, 7,<br />
-                                   sz.Width/6, sz.Height/6); 
-  Props.setProperty(ellipse, "FillColor", 0xCCFF33);  //neon green 
-  Draw.drawText(masterPage2, "Master Page 2", 10, 15, 100, 10, 24); </p>
-<p>Lo.saveDoc(doc, "muSlides.odp"); 
-  Lo.closeDoc(doc); 
-  Lo.closeOffice(); 
-}  // end of main() </p>
-<h3 id="21-accessing-a-master-page">2.1.  Accessing a Master Page</h3>
-<p>A presentation (or drawing) document can access its master pages through the 
-XMasterPagesSupplier interface in the GenericDrawingDocument service. </p>
-<p>XMasterPagesSupplier.getMasterPages() returns a single XDrawPages object: </p>
-<p>XMasterPagesSupplier mpSupp = Lo.qi(XMasterPagesSupplier.class, doc); 
-XDrawPages pgs = mpSupp.getMasterPages(); </p>
-<p>The XDrawPages object is an indexed collection, with the default master page at 
-position 0: 
-XDrawPage masterPage = Lo.qi(XDrawPage.class, pgs.getByIndex(0)); 
-Note that there's no "XMasterPage" interface – both slides and master pages are 
-manipulated using XDrawPage. </p>
-<p>These preceding lines are packaged up as Draw.getMasterPage(): </p>
-<p>// in the Draw class 
-public static XDrawPage getMasterPage(XComponent doc, int idx) 
-// get master page by index 
-{ 
-  try { 
-    XMasterPagesSupplier mpSupp =<br />
-              Lo.qi(XMasterPagesSupplier.class, doc); 
-    XDrawPages pgs = mpSupp.getMasterPages(); 
-    return Lo.qi(XDrawPage.class, pgs.getByIndex(idx)); 
-  } 
-  catch(Exception e) 
-  {  System.out.println("Could not find master slide " + idx); <br />
-     return null; 
-  } 
-}  // end of getMasterPage() </p>
-<p>There's a second way of obtaining a master page, via the link between a slide and its 
-master; the linked master is called a target. This is implemented by a second 
-Draw.getMasterPage() method: </p>
-<p>// in the Draw class 
-public static XDrawPage getMasterPage(XDrawPage slide) 
-// return master page for the slide 
-{ 
-  XMasterPageTarget mpTarget =<br />
-                       Lo.qi(XMasterPageTarget.class, slide); 
-  return mpTarget.getMasterPage(); 
-}  // end of getMasterPage() </p>
-<h3 id="22-whats-on-a-master-page">2.2.  What's on a Master Page?</h3>
-<p>The default master page was shown in Figure 3, and its structure is confirmed in 
-MastersUse.java when Draw.showShapesInfo() is called: </p>
-<p>// in main() of MastersUse.java 
-XDrawPage masterPage = Draw.getMasterPage(doc, 0); 
-System.out.println("Default Master Page"); 
-Draw.showShapesInfo(masterPage); </p>
-<p>The output: 
-Default Master Page 
-Draw Page shapes: 
-  Shape service: com.sun.star.presentation.TitleTextShape; z-order: 0 
-  Shape service: com.sun.star.presentation.OutlinerShape; z-order: 1 
-  Shape service: com.sun.star.presentation.DateTimeShape; z-order: 2 
-  Shape service: com.sun.star.presentation.FooterShape; z-order: 3 
-  Shape service: com.sun.star.presentation.SlideNumberShape;z-order:4 </p>
-<p>A new master page is created  by using XMasterPagesSupplier.getMasterPages() and 
-XDrawPages.insertNewByIndex(), as shown in Draw.insertMasterPage(): </p>
-<p>// in the Draw class 
-public static XDrawPage insertMasterPage(XComponent doc, int idx) 
-// creates new master page at the given index position, 
-{ 
-  XMasterPagesSupplier mpSupp =<br />
-                          Lo.qi(XMasterPagesSupplier.class, doc); 
-  XDrawPages pgs = mpSupp.getMasterPages(); 
-  return pgs.insertNewByIndex(idx); 
-}  // end of insertMasterPage() </p>
-<p>The new master page contains no presentation shapes (unlike the default one). They 
-must be added separately. </p>
-<h3 id="23-modifying-a-master-page">2.3.  Modifying a Master Page</h3>
-<p>MastersUse.java changes the default master page in three ways: it adds text to the 
-footer shape (which is empty by default), and places a blue rectangle and some text in 
-the top-left corner of the master: </p>
-<p>// in main() of MastersUse.java 
-// set the master page's footer text 
-Draw.setMasterFooter(masterPage, "Master Use Slides"); </p>
-<p>// add a rectangle and text to the default master page 
-// at the top-left of the slide 
-Size sz = Draw.getSlideSize(masterPage); 
-Draw.drawRectangle(masterPage, 5, 7, sz.Width/6, sz.Height/6); 
-Draw.drawText(masterPage, "Default Master Page", 10,15, 100,10, 24); </p>
-<p>Draw.setMasterFooter() searches through the shapes on the page looking for a 
-FooterShape. The shape is cast to a text interface, and a string added: </p>
-<p>// in Draw 
-public static void setMasterFooter(XDrawPage master, String text) 
-// set the master page's footer text 
-{ 
-  XShape footerShape = Draw.findShapeByType(master,<br />
-                          "com.sun.star.presentation.FooterShape"); 
-  XText textField = Lo.qi(XText.class, footerShape); 
-  textField.setString(text); 
-}  // end of setMasterFooter() </p>
-<p>MastersUse's second master page contains no shapes initially. An ellipse and some 
-text are added to it in the same way as for the default master page: </p>
-<p>// in main() of MastersUse.java 
-XDrawPage masterPage2 = Draw.insertMasterPage(doc, 1); 
-          : 
-// put ellipse and text on master page 2 
-XShape ellipse = Draw.drawEllipse(masterPage2, 5, 7,<br />
-                                  sz.Width/6, sz.Height/6); 
-Props.setProperty(ellipse, "FillColor", 0xCCFF33); // neon green 
-Draw.drawText(masterPage2, "Master Page 2", 10, 15, 100, 10, 24); </p>
-<p>Unlike the default master page, a number shape must be explicitly added to the 
-second master, by calling Draw.addSlideNumber(): 
-Draw.addSlideNumber(masterPage2); 
-It is implemented as: </p>
-<p>// in the Draw class 
-public static XShape addSlideNumber(XDrawPage slide) 
-// add slide number at bottom right (like on the default master) 
-{ 
-  Size sz = Draw.getSlideSize(slide); 
-  int width = 60; 
-  int height = 15; 
-  return Draw.addPresShape(slide, "SlideNumberShape",<br />
-          sz.Width-width-12, sz.Height-height-4, width, height);<br />
-}  // end of addSlideNumber() </p>
-<p>Draw.addPresShape() creates a shape from the "com.sun.star.presentation" package: </p>
-<p>// in the Draw class 
-public static XShape addPresShape(XDrawPage slide,<br />
-                       String shapeType,<br />
-                       int x, int y, int width, int height) 
-{ warnsPosition(slide, x, y); 
-  XShape shape = Lo.createInstanceMSF(XShape.class,<br />
-                      "com.sun.star.presentation."+shapeType); 
-  if (shape != null) { 
-    slide.add(shape); 
-    setPosition(shape, x, y); 
-    setSize(shape, width, height); 
-  } 
-  return shape; 
-}  // end of addPresShape() </p>
-<h3 id="24-using-a-master-page">2.4.  Using a Master Page</h3>
-<p>New slides are automatically linked to the default master page, but properties must be 
-explicitly set in order for the master's date/time, footer, and page number to be visible 
-on the slide. For example, the footer and page number are drawn on a slide like so: </p>
-<p>// in main() of MastersUse.java 
-XDrawPage slide1 = Draw.getSlide(doc, 0); 
-     : 
-Props.setProperty(slide1, "IsPageNumberVisible", true); 
-Props.setProperty(slide1, "IsFooterVisible", true); </p>
-<p>The relevant property for showing the date/time is "IsDateTimeVisible". All these 
-properties are define in the com.sun.star.presentation.DrawPage service. </p>
-<p>A related property is "FooterText", which changes the footer text for a specific slide. </p>
-<p>For example: 
-Props.setProperty(slide1, "FooterText", "MU Slides"); 
-However, this only works if the linked master page doesn't have its own footer text. </p>
-<p>A slide can be linked to a different master by calling Draw.setMasterPage(): </p>
-<p>// in main() of MastersUse.java 
-// link third slide to second master 
-XDrawPage slide3 = Draw.getSlide(doc, 2); 
-Draw.setMasterPage(slide3, masterPage2); </p>
-<p>It uses the XMasterPageTarget interface to create the new link: </p>
-<p>// in the Draw class 
-public static void setMasterPage(XDrawPage slide, XDrawPage mPg) 
-{ XMasterPageTarget mpTarget =<br />
-                Lo.qi(XMasterPageTarget.class, slide); 
-  mpTarget.setMasterPage(mPg); 
-}   </p>
-<h2 id="3-adding-a-slide-to-a-deck">3.  Adding a Slide to a Deck</h2>
-<p>The last section used XDrawPages.insertNewByIndex() to add a master page to the 
-deck The same method is more commonly employed to add an ordinary slide.  </p>
-<p>An example is shown in ModifySlides.java: its main() function opens a file, adds a 
-title-only slide at the end of the deck, and a title/subtitle slide at the beginning. It 
-finishes by saving the modified deck to a new file: </p>
-<p>public static void main(String args[]) 
-{ 
-  if (args.length != 1) { 
-    System.out.println("Usage: ModifySlides fnm"); 
-    return; 
-  } </p>
-<p>XComponentLoader loader = Lo.loadOffice(); 
-  XComponent doc = Lo.openDoc(args[0], loader); 
-  if (!Info.isDocType(doc, Lo.IMPRESS_SERVICE)) { 
-    System.out.println("-- not a slides presentation"); 
-    Lo.closeOffice(); 
-    return; 
-  } </p>
-<p>XDrawPages slides = Draw.getSlides(doc); </p>
-<p>// add a title-only slide with a graphic at the end 
-  XDrawPage lastPage = slides.insertNewByIndex(numSlides); 
-  Draw.titleOnlySlide(lastPage, "Any Questions?"); 
-  Draw.drawImage(lastPage, "questions.png"); </p>
-<p>// add a title/subtitle slide at the start 
-  XDrawPage firstPage = slides.insertNewByIndex(0);   <br />
-                            // this is added after first slide! 
-  Draw.titleSlide(firstPage, "Interesting Slides", "Andrew"); </p>
-<p>Lo.saveDoc(doc, Info.getName(args[0]) + "_Mod." +<br />
-                                     Info.getExt(args[0])); 
-  Lo.closeDoc(doc); 
-  Lo.closeOffice(); 
-} // end of main() </p>
-<p>But if you examine the new file, you'll see that the title/subtitle slide has become the 
-second slide in the deck. This highlights a restriction on 
-XDrawPages.insertNewByIndex(), which is that a new slide cannot be inserted at 
-index position 0. Instead, it will be inserted at the next spot, position 1.  </p>
-<h2 id="4-rearranging-a-slide-deck">4.  Rearranging a Slide Deck</h2>
-<p>A surprising gap in the presentation API is the lack of a simple way  to rearrange 
-slides: for example, to move the second slide to the fifth position.  </p>
-<p>The closest the API comes is the ability to duplicate a slide, but the copy is always 
-inserted after the original, so isn't of much use. If you did want to do this, the code 
-would be something like: </p>
-<p>XDrawPageDuplicator dup = Lo.qi(XDrawPageDuplicator.class, doc); <br />
-XDrawPage dupSlide = dup.duplicate(slide);  <br />
-      // dupSlide is located after original slide in the deck </p>
-<p>The only way to rearrange slides inside Office is with dispatch commands, in 
-particular with the "Copy" and "Paste" commands. This is complicated by the fact that 
-copying an entire slide is only possible when the deck is displayed in slide-sorter 
-mode.   </p>
-<p>The CopySlide.java example illustrates the technique but, as with most uses of 
-dispatching, is quite fragile. The better answer is to utilize a third-part API, the ODF 
-Toolkit, which is the topic of Chapter 51.  </p>
-<p>CopySlide.java is called with three arguments – the filename and two slide indices. </p>
-<p>The first index is the source slide's position in the deck, and the second is the position 
-after which the copied slide will appear. For instance: </p>
-<blockquote>
-<p>run CopySlide points.odp 1 4 
-will copy the second slide of the deck to after the fifth slide. </p>
-</blockquote>
-<p>The main() function of CopySlide.java: </p>
-<p>public static void main(String args[]) 
-{ 
-  if (args.length != 3) { 
-    System.out.println("Usage: CopySlide fnm from-index to-index"); 
-    return; 
-  } </p>
-<p>XComponentLoader loader = Lo.loadOffice(); 
-  XComponent doc = Lo.openDoc(args[0], loader); 
-  if (doc == null) { 
-    System.out.println("Could not open the file: " + args[0]); 
-    Lo.closeOffice(); 
-    return; 
-  } </p>
-<p>int fromIdx = Lo.parseInt(args[1]); 
-  int toIdx = Lo.parseInt(args[2]); 
-  int numSlides = Draw.getSlidesCount(doc); 
-  if ((fromIdx &lt; 0) || (toIdx &lt; 0) ||<br />
-      (fromIdx &gt;= numSlides) || (toIdx &gt;= numSlides)) { 
-    System.out.println("One or both indices are out of range"); 
-    Lo.closeOffice(); 
-    return; 
-  } </p>
-<p>GUI.setVisible(doc, true); </p>
-<p>copyTo(doc, fromIdx, toIdx); 
-  // Draw.deleteSlide(doc, fromIdx);  <br />
-      // a problem if the copying changes the indices </p>
-<p>Lo.save(doc);   // overwrite 
-  Lo.closeDoc(doc); 
-  Lo.closeOffice(); 
-} // end of main() </p>
-<p>All the interesting stuff is performed by copyTo(). One minor thing to note is the call 
-to Lo.save() which causes the changed slide deck to be saved back to its original file. </p>
-<p>It is defined as: </p>
-<p>// in the Lo class 
-public static void save(XComponent doc) 
-{<br />
-  XStorable store = Lo.qi(XStorable.class, doc); 
-  try { 
-    store.store(); 
-    System.out.println("Saved the document by overwriting"); 
-  } 
-  catch (IOException e) { 
-     System.out.println("Could not save the document"); 
-  } 
-}  // end of save() </p>
-<p>I usually avoid calling Lo.save() due to the fact that it overwrites the input file; I 
-prefer to create a new file to hold changes. </p>
-<p>I've commented out the call to Draw.deleteSlide() in main() due to its potential to 
-cause damage. The problem is that the new slide may cause the overall indexing of 
-the slide deck to change. For example, consider what happens if the fourth slide is 
-copied to after the second slide. This will create a new third slide, moving the old 
-third slide, and all later slides, to the right. If the program now deletes the fourth slide, 
-that's not the slide that's just been copied, but the repositioned third slide. </p>
-<p>The copyTo() function in CopySlide.java: </p>
-<p>// in CopySlide.java 
-private static void copyTo(XComponent doc, int fromIdx, int toIdx) 
-/* Copy fromIdx slide to the clipboard in slide-sorter mode, 
-   then paste it to after the toIdx slide.  </p>
-<p>*/ 
-{ XController ctrl = GUI.getCurrentController(doc); </p>
-<p>Lo.dispatchCmd("DiaMode"); 
-      // Switch to slide-sorter view so that slides can be copied 
-  Lo.delay(5000);   // give Office plenty of time to do it </p>
-<p>XDrawPage fromSlide = Draw.getSlide(doc, fromIdx); 
-  XDrawPage toSlide = Draw.getSlide(doc, toIdx); </p>
-<p>Draw.gotoPage(ctrl, fromSlide);  // select this slide 
-  Lo.dispatchCmd("Copy"); 
-  System.out.println("Copied " + fromIdx); </p>
-<p>Draw.gotoPage(ctrl, toSlide);  <br />
-  Lo.dispatchCmd("Paste"); 
-  System.out.println("Pasted to after " + toIdx); </p>
-<p>Lo.dispatchCmd("DrawingMode");<br />
-}  // end of copyTo() </p>
-<p>The method sends out four dispatches: the "DiaMode" command switches the 
-application into slide-sorter mode, and is followed by "Copy", "Paste", and finally 
-"DrawingMode" which switches the mode back to normal. </p>
-<p>There are a few complications. One is that Draw.gotoPage() must be called twice. The 
-first call ensures that the source slide is the visible, active window before the "Copy" 
-is processed. The second Draw.gotoPage() call makes sure the destination slide is now 
-visible. This means that "Paste" will insert the copied slide after the destination slide, 
-as required.  </p>
-<p>I usually call Draw.gotoPage() with a document argument (e.g. Draw.gotoPage(doc, 
-fromSlide)). This does not work correctly for the pasting of the slide, for reasons I'm 
-unsure about. The solution is to use a reference to the document's controller, as shown 
-in copyTo(): </p>
-<dl>
-<dt>XController ctrl = GUI.getCurrentController(doc);</dt>
-<dd>
-<dl>
-<dt>Draw.gotoPage(ctrl, fromSlide);</dt>
-<dd>Draw.gotoPage(ctrl, toSlide);  </dd>
-</dl>
-</dd>
-</dl>
-<h2 id="5-appending-slide-decks-together">5.  Appending Slide Decks Together</h2>
-<p>A common Office forum question is how to add the slides of one deck to the end of 
-another. One solution is to use "Copy" and "Paste" dispatches as in section 4, but in a 
-more complicated fashion. As you might guess, the ODF Toolkit library described in 
-Chapter 51 is a better solution, but I'll focus on using Office here. </p>
-<p>This approach means that two application windows could be open at the same time: 
-one containing the deck that is being copied, and another for the destination slide 
-deck. This requires references to two different application views and frames, which 
-can be a problem because of the design of my utility classes. </p>
-<p>Another problem is caused by the issue of master page copying. When a slide using a 
-different master page is copied to a deck, Impress will query the user with an 
-'Adaption' dialog asking if the copied slide's format (i.e. its master page) should be 
-copied over to the destination deck. The dialog looks like Figure 5. </p>
+<p>Figure 4. A Slide Deck with Two Master Pages.</p>
+<p>Slides 1, 2, and 4 use the default master page, while slide 3 uses the new master.</p>
+<p>The main() function for MastersUse.java is:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+
+  <span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">createImpressDoc</span><span class="p">(</span><span class="n">loader</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">doc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Impress doc creation failed&quot;</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// report the shapes on the default master page</span>
+  <span class="n">XDrawPage</span> <span class="n">masterPage</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getMasterPage</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Default Master Page&quot;</span><span class="p">);</span>
+  <span class="n">Draw</span><span class="p">.</span><span class="na">showShapesInfo</span><span class="p">(</span><span class="n">masterPage</span><span class="p">);</span>
+
+  <span class="c1">// set the master page&#39;s footer text</span>
+  <span class="n">Draw</span><span class="p">.</span><span class="na">setMasterFooter</span><span class="p">(</span><span class="n">masterPage</span><span class="p">,</span> <span class="s">&quot;Master Use Slides&quot;</span><span class="p">);</span>
+
+  <span class="c1">// add a rectangle and text to the default master page</span>
+  <span class="c1">// at the top-left of the slide</span>
+  <span class="n">Size</span> <span class="n">sz</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getSlideSize</span><span class="p">(</span><span class="n">masterPage</span><span class="p">);</span>
+  <span class="n">Draw</span><span class="p">.</span><span class="na">drawRectangle</span><span class="p">(</span><span class="n">masterPage</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">sz</span><span class="p">.</span><span class="na">Width</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="n">sz</span><span class="p">.</span><span class="na">Height</span><span class="o">/</span><span class="mi">6</span><span class="p">);</span>
+  <span class="n">Draw</span><span class="p">.</span><span class="na">drawText</span><span class="p">(</span><span class="n">masterPage</span><span class="p">,</span> <span class="s">&quot;Default Master Page&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">24</span><span class="p">);</span>
+
+  <span class="cm">/* set slide 1 to use the master page&#39;s slide number</span>
+<span class="cm">     but its own footer text */</span>
+  <span class="n">XDrawPage</span> <span class="n">slide1</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getSlide</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="n">Draw</span><span class="p">.</span><span class="na">titleSlide</span><span class="p">(</span><span class="n">slide1</span><span class="p">,</span> <span class="s">&quot;Slide 1&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">slide1</span><span class="p">,</span> <span class="s">&quot;IsPageNumberVisible&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+      <span class="c1">// use the master page&#39;s slide number</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">slide1</span><span class="p">,</span> <span class="s">&quot;IsFooterVisible&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">slide1</span><span class="p">,</span> <span class="s">&quot;FooterText&quot;</span><span class="p">,</span> <span class="s">&quot;MU Slides&quot;</span><span class="p">);</span>
+      <span class="c1">// change master page&#39;s footer for first slide (does not work)</span>
+
+  <span class="cm">/* add three more slides, which use the master page&#39;s</span>
+<span class="cm">     slide number and footer */</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">XDrawPage</span> <span class="n">slide</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">insertSlide</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+    <span class="n">Draw</span><span class="p">.</span><span class="na">bulletsSlide</span><span class="p">(</span><span class="n">slide</span><span class="p">,</span> <span class="s">&quot;Slide &quot;</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span>
+    <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">slide</span><span class="p">,</span> <span class="s">&quot;IsPageNumberVisible&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">slide</span><span class="p">,</span> <span class="s">&quot;IsFooterVisible&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// create master page 2</span>
+  <span class="n">XDrawPage</span> <span class="n">masterPage2</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">insertMasterPage</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="n">Draw</span><span class="p">.</span><span class="na">addSlideNumber</span><span class="p">(</span><span class="n">masterPage2</span><span class="p">);</span>   <span class="c1">// add slide number</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Master Page 2&quot;</span><span class="p">);</span>
+  <span class="n">Draw</span><span class="p">.</span><span class="na">showShapesInfo</span><span class="p">(</span><span class="n">masterPage2</span><span class="p">);</span>
+
+  <span class="c1">// link third slide to master page 2</span>
+  <span class="n">Draw</span><span class="p">.</span><span class="na">setMasterPage</span><span class="p">(</span><span class="n">Draw</span><span class="p">.</span><span class="na">getSlide</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">masterPage2</span><span class="p">);</span>
+
+  <span class="c1">// put green ellipse and text on master page 2</span>
+  <span class="n">XShape</span> <span class="n">ellipse</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawEllipse</span><span class="p">(</span><span class="n">masterPage2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span>
+                                   <span class="n">sz</span><span class="p">.</span><span class="na">Width</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="n">sz</span><span class="p">.</span><span class="na">Height</span><span class="o">/</span><span class="mi">6</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">ellipse</span><span class="p">,</span> <span class="s">&quot;FillColor&quot;</span><span class="p">,</span> <span class="mh">0xCCFF33</span><span class="p">);</span>  <span class="c1">//neon green</span>
+  <span class="n">Draw</span><span class="p">.</span><span class="na">drawText</span><span class="p">(</span><span class="n">masterPage2</span><span class="p">,</span> <span class="s">&quot;Master Page 2&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">24</span><span class="p">);</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">saveDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;muSlides.odp&quot;</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of main()</span>
+</code></pre></div>
+<h3 id="21-accessing-a-master-page">2.1.  Accessing a Master Page<a class="headerlink" href="#21-accessing-a-master-page" title="Permanent link">&para;</a></h3>
+<p>A presentation (or drawing) document can access its master pages through the
+XMasterPagesSupplier interface in the GenericDrawingDocument service.
+XMasterPagesSupplier.getMasterPages() returns a single XDrawPages object:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XMasterPagesSupplier</span> <span class="n">mpSupp</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XMasterPagesSupplier</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">doc</span><span class="p">);</span>
+<span class="n">XDrawPages</span> <span class="n">pgs</span> <span class="o">=</span> <span class="n">mpSupp</span><span class="p">.</span><span class="na">getMasterPages</span><span class="p">();</span>
+</code></pre></div>
+<p>The XDrawPages object is an indexed collection, with the default master page at
+position 0:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XDrawPage</span> <span class="n">masterPage</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XDrawPage</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">pgs</span><span class="p">.</span><span class="na">getByIndex</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+</code></pre></div>
+<p>Note that there's no "XMasterPage" interface – both slides and master pages are
+manipulated using XDrawPage.</p>
+<p>These preceding lines are packaged up as Draw.getMasterPage():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XDrawPage</span> <span class="nf">getMasterPage</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">)</span>
+<span class="c1">// get master page by index</span>
+<span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">XMasterPagesSupplier</span> <span class="n">mpSupp</span> <span class="o">=</span>
+              <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XMasterPagesSupplier</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">doc</span><span class="p">);</span>
+    <span class="n">XDrawPages</span> <span class="n">pgs</span> <span class="o">=</span> <span class="n">mpSupp</span><span class="p">.</span><span class="na">getMasterPages</span><span class="p">();</span>
+    <span class="k">return</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XDrawPage</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">pgs</span><span class="p">.</span><span class="na">getByIndex</span><span class="p">(</span><span class="n">idx</span><span class="p">));</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not find master slide &quot;</span> <span class="o">+</span> <span class="n">idx</span><span class="p">);</span>
+     <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of getMasterPage()</span>
+</code></pre></div>
+<p>There's a second way of obtaining a master page, via the link between a slide and its
+master; the linked master is called a target. This is implemented by a second
+Draw.getMasterPage() method:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XDrawPage</span> <span class="nf">getMasterPage</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">slide</span><span class="p">)</span>
+<span class="c1">// return master page for the slide</span>
+<span class="p">{</span>
+  <span class="n">XMasterPageTarget</span> <span class="n">mpTarget</span> <span class="o">=</span>
+                       <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XMasterPageTarget</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">slide</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">mpTarget</span><span class="p">.</span><span class="na">getMasterPage</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of getMasterPage()</span>
+</code></pre></div>
+<h3 id="22-whats-on-a-master-page">2.2.  What's on a Master Page?<a class="headerlink" href="#22-whats-on-a-master-page" title="Permanent link">&para;</a></h3>
+<p>The default master page was shown in Figure 3, and its structure is confirmed in
+MastersUse.java when Draw.showShapesInfo() is called:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in main() of MastersUse.java</span>
+<span class="n">XDrawPage</span> <span class="n">masterPage</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getMasterPage</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Default Master Page&quot;</span><span class="p">);</span>
+<span class="n">Draw</span><span class="p">.</span><span class="na">showShapesInfo</span><span class="p">(</span><span class="n">masterPage</span><span class="p">);</span>
+</code></pre></div>
+<p>The output:</p>
+<div class="highlight"><pre><span></span><code>Default Master Page
+Draw Page shapes:
+  Shape service: com.sun.star.presentation.TitleTextShape; z-order: 0
+  Shape service: com.sun.star.presentation.OutlinerShape; z-order: 1
+  Shape service: com.sun.star.presentation.DateTimeShape; z-order: 2
+  Shape service: com.sun.star.presentation.FooterShape; z-order: 3
+  Shape service: com.sun.star.presentation.SlideNumberShape;z-order:4
+</code></pre></div>
+<p>A new master page is created  by using XMasterPagesSupplier.getMasterPages() and
+XDrawPages.insertNewByIndex(), as shown in Draw.insertMasterPage():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XDrawPage</span> <span class="nf">insertMasterPage</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">)</span>
+<span class="c1">// creates new master page at the given index position,</span>
+<span class="p">{</span>
+  <span class="n">XMasterPagesSupplier</span> <span class="n">mpSupp</span> <span class="o">=</span>
+                          <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XMasterPagesSupplier</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">doc</span><span class="p">);</span>
+  <span class="n">XDrawPages</span> <span class="n">pgs</span> <span class="o">=</span> <span class="n">mpSupp</span><span class="p">.</span><span class="na">getMasterPages</span><span class="p">();</span>
+  <span class="k">return</span> <span class="n">pgs</span><span class="p">.</span><span class="na">insertNewByIndex</span><span class="p">(</span><span class="n">idx</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of insertMasterPage()</span>
+</code></pre></div>
+<p>The new master page contains no presentation shapes (unlike the default one). They
+must be added separately.</p>
+<h3 id="23-modifying-a-master-page">2.3.  Modifying a Master Page<a class="headerlink" href="#23-modifying-a-master-page" title="Permanent link">&para;</a></h3>
+<p>MastersUse.java changes the default master page in three ways: it adds text to the
+footer shape (which is empty by default), and places a blue rectangle and some text in
+the top-left corner of the master:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in main() of MastersUse.java</span>
+<span class="c1">// set the master page&#39;s footer text</span>
+<span class="n">Draw</span><span class="p">.</span><span class="na">setMasterFooter</span><span class="p">(</span><span class="n">masterPage</span><span class="p">,</span> <span class="s">&quot;Master Use Slides&quot;</span><span class="p">);</span>
+
+<span class="c1">// add a rectangle and text to the default master page</span>
+<span class="c1">// at the top-left of the slide</span>
+<span class="n">Size</span> <span class="n">sz</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getSlideSize</span><span class="p">(</span><span class="n">masterPage</span><span class="p">);</span>
+<span class="n">Draw</span><span class="p">.</span><span class="na">drawRectangle</span><span class="p">(</span><span class="n">masterPage</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">sz</span><span class="p">.</span><span class="na">Width</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="n">sz</span><span class="p">.</span><span class="na">Height</span><span class="o">/</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">Draw</span><span class="p">.</span><span class="na">drawText</span><span class="p">(</span><span class="n">masterPage</span><span class="p">,</span> <span class="s">&quot;Default Master Page&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span> <span class="mi">24</span><span class="p">);</span>
+</code></pre></div>
+<p>Draw.setMasterFooter() searches through the shapes on the page looking for a
+FooterShape. The shape is cast to a text interface, and a string added:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Draw</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setMasterFooter</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">master</span><span class="p">,</span> <span class="n">String</span> <span class="n">text</span><span class="p">)</span>
+<span class="c1">// set the master page&#39;s footer text</span>
+<span class="p">{</span>
+  <span class="n">XShape</span> <span class="n">footerShape</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">findShapeByType</span><span class="p">(</span><span class="n">master</span><span class="p">,</span>
+                          <span class="s">&quot;com.sun.star.presentation.FooterShape&quot;</span><span class="p">);</span>
+  <span class="n">XText</span> <span class="n">textField</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XText</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">footerShape</span><span class="p">);</span>
+  <span class="n">textField</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of setMasterFooter()</span>
+</code></pre></div>
+<p>MastersUse's second master page contains no shapes initially. An ellipse and some
+text are added to it in the same way as for the default master page:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in main() of MastersUse.java</span>
+<span class="n">XDrawPage</span> <span class="n">masterPage2</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">insertMasterPage</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+          <span class="p">:</span>
+<span class="c1">// put ellipse and text on master page 2</span>
+<span class="n">XShape</span> <span class="n">ellipse</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">drawEllipse</span><span class="p">(</span><span class="n">masterPage2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span>
+                                  <span class="n">sz</span><span class="p">.</span><span class="na">Width</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="n">sz</span><span class="p">.</span><span class="na">Height</span><span class="o">/</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">ellipse</span><span class="p">,</span> <span class="s">&quot;FillColor&quot;</span><span class="p">,</span> <span class="mh">0xCCFF33</span><span class="p">);</span> <span class="c1">// neon green</span>
+<span class="n">Draw</span><span class="p">.</span><span class="na">drawText</span><span class="p">(</span><span class="n">masterPage2</span><span class="p">,</span> <span class="s">&quot;Master Page 2&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">24</span><span class="p">);</span>
+</code></pre></div>
+<p>Unlike the default master page, a number shape must be explicitly added to the
+second master, by calling Draw.addSlideNumber():</p>
+<div class="highlight"><pre><span></span><code><span class="n">Draw</span><span class="p">.</span><span class="na">addSlideNumber</span><span class="p">(</span><span class="n">masterPage2</span><span class="p">);</span>
+</code></pre></div>
+<p>It is implemented as:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XShape</span> <span class="nf">addSlideNumber</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">slide</span><span class="p">)</span>
+<span class="c1">// add slide number at bottom right (like on the default master)</span>
+<span class="p">{</span>
+  <span class="n">Size</span> <span class="n">sz</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getSlideSize</span><span class="p">(</span><span class="n">slide</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">60</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">Draw</span><span class="p">.</span><span class="na">addPresShape</span><span class="p">(</span><span class="n">slide</span><span class="p">,</span> <span class="s">&quot;SlideNumberShape&quot;</span><span class="p">,</span>
+          <span class="n">sz</span><span class="p">.</span><span class="na">Width</span><span class="o">-</span><span class="n">width</span><span class="o">-</span><span class="mi">12</span><span class="p">,</span> <span class="n">sz</span><span class="p">.</span><span class="na">Height</span><span class="o">-</span><span class="n">height</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of addSlideNumber()</span>
+</code></pre></div>
+<p>Draw.addPresShape() creates a shape from the "com.sun.star.presentation" package:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XShape</span> <span class="nf">addPresShape</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">slide</span><span class="p">,</span>
+                       <span class="n">String</span> <span class="n">shapeType</span><span class="p">,</span>
+                       <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">warnsPosition</span><span class="p">(</span><span class="n">slide</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+  <span class="n">XShape</span> <span class="n">shape</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMSF</span><span class="p">(</span><span class="n">XShape</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                      <span class="s">&quot;com.sun.star.presentation.&quot;</span><span class="o">+</span><span class="n">shapeType</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">shape</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">slide</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">shape</span><span class="p">);</span>
+    <span class="n">setPosition</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+    <span class="n">setSize</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">shape</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of addPresShape()</span>
+</code></pre></div>
+<h3 id="24-using-a-master-page">2.4.  Using a Master Page<a class="headerlink" href="#24-using-a-master-page" title="Permanent link">&para;</a></h3>
+<p>New slides are automatically linked to the default master page, but properties must be
+explicitly set in order for the master's date/time, footer, and page number to be visible
+on the slide. For example, the footer and page number are drawn on a slide like so:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in main() of MastersUse.java</span>
+<span class="n">XDrawPage</span> <span class="n">slide1</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getSlide</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+     <span class="p">:</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">slide1</span><span class="p">,</span> <span class="s">&quot;IsPageNumberVisible&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">slide1</span><span class="p">,</span> <span class="s">&quot;IsFooterVisible&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+</code></pre></div>
+<p>The relevant property for showing the date/time is "IsDateTimeVisible". All these
+properties are define in the com.sun.star.presentation.DrawPage service.</p>
+<p>A related property is "FooterText", which changes the footer text for a specific slide.</p>
+<p>For example:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">slide1</span><span class="p">,</span> <span class="s">&quot;FooterText&quot;</span><span class="p">,</span> <span class="s">&quot;MU Slides&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>However, this only works if the linked master page doesn't have its own footer text.</p>
+<p>A slide can be linked to a different master by calling Draw.setMasterPage():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in main() of MastersUse.java</span>
+<span class="c1">// link third slide to second master</span>
+<span class="n">XDrawPage</span> <span class="n">slide3</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getSlide</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">Draw</span><span class="p">.</span><span class="na">setMasterPage</span><span class="p">(</span><span class="n">slide3</span><span class="p">,</span> <span class="n">masterPage2</span><span class="p">);</span>
+</code></pre></div>
+<p>It uses the XMasterPageTarget interface to create the new link:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setMasterPage</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">slide</span><span class="p">,</span> <span class="n">XDrawPage</span> <span class="n">mPg</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">XMasterPageTarget</span> <span class="n">mpTarget</span> <span class="o">=</span>
+                <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XMasterPageTarget</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">slide</span><span class="p">);</span>
+  <span class="n">mpTarget</span><span class="p">.</span><span class="na">setMasterPage</span><span class="p">(</span><span class="n">mPg</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="3-adding-a-slide-to-a-deck">3.  Adding a Slide to a Deck<a class="headerlink" href="#3-adding-a-slide-to-a-deck" title="Permanent link">&para;</a></h2>
+<p>The last section used XDrawPages.insertNewByIndex() to add a master page to the
+deck The same method is more commonly employed to add an ordinary slide.</p>
+<p>An example is shown in ModifySlides.java: its main() function opens a file, adds a
+title-only slide at the end of the deck, and a title/subtitle slide at the beginning. It
+finishes by saving the modified deck to a new file:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="na">length</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Usage: ModifySlides fnm&quot;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+  <span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">openDoc</span><span class="p">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">Info</span><span class="p">.</span><span class="na">isDocType</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">Lo</span><span class="p">.</span><span class="na">IMPRESS_SERVICE</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;-- not a slides presentation&quot;</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">XDrawPages</span> <span class="n">slides</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getSlides</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+
+  <span class="c1">// add a title-only slide with a graphic at the end</span>
+  <span class="n">XDrawPage</span> <span class="n">lastPage</span> <span class="o">=</span> <span class="n">slides</span><span class="p">.</span><span class="na">insertNewByIndex</span><span class="p">(</span><span class="n">numSlides</span><span class="p">);</span>
+  <span class="n">Draw</span><span class="p">.</span><span class="na">titleOnlySlide</span><span class="p">(</span><span class="n">lastPage</span><span class="p">,</span> <span class="s">&quot;Any Questions?&quot;</span><span class="p">);</span>
+  <span class="n">Draw</span><span class="p">.</span><span class="na">drawImage</span><span class="p">(</span><span class="n">lastPage</span><span class="p">,</span> <span class="s">&quot;questions.png&quot;</span><span class="p">);</span>
+
+  <span class="c1">// add a title/subtitle slide at the start</span>
+  <span class="n">XDrawPage</span> <span class="n">firstPage</span> <span class="o">=</span> <span class="n">slides</span><span class="p">.</span><span class="na">insertNewByIndex</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+                            <span class="c1">// this is added after first slide!</span>
+  <span class="n">Draw</span><span class="p">.</span><span class="na">titleSlide</span><span class="p">(</span><span class="n">firstPage</span><span class="p">,</span> <span class="s">&quot;Interesting Slides&quot;</span><span class="p">,</span> <span class="s">&quot;Andrew&quot;</span><span class="p">);</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">saveDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">Info</span><span class="p">.</span><span class="na">getName</span><span class="p">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;_Mod.&quot;</span> <span class="o">+</span>
+                                     <span class="n">Info</span><span class="p">.</span><span class="na">getExt</span><span class="p">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">));</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+<span class="p">}</span> <span class="c1">// end of main()</span>
+</code></pre></div>
+<p>But if you examine the new file, you'll see that the title/subtitle slide has become the
+second slide in the deck. This highlights a restriction on
+XDrawPages.insertNewByIndex(), which is that a new slide cannot be inserted at
+index position 0. Instead, it will be inserted at the next spot, position 1.</p>
+<h2 id="4-rearranging-a-slide-deck">4.  Rearranging a Slide Deck<a class="headerlink" href="#4-rearranging-a-slide-deck" title="Permanent link">&para;</a></h2>
+<p>A surprising gap in the presentation API is the lack of a simple way  to rearrange
+slides: for example, to move the second slide to the fifth position.</p>
+<p>The closest the API comes is the ability to duplicate a slide, but the copy is always
+inserted after the original, so isn't of much use. If you did want to do this, the code
+would be something like:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XDrawPageDuplicator</span> <span class="n">dup</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XDrawPageDuplicator</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">doc</span><span class="p">);</span>
+<span class="n">XDrawPage</span> <span class="n">dupSlide</span> <span class="o">=</span> <span class="n">dup</span><span class="p">.</span><span class="na">duplicate</span><span class="p">(</span><span class="n">slide</span><span class="p">);</span>
+      <span class="c1">// dupSlide is located after original slide in the deck</span>
+</code></pre></div>
+<p>The only way to rearrange slides inside Office is with dispatch commands, in
+particular with the "Copy" and "Paste" commands. This is complicated by the fact that
+copying an entire slide is only possible when the deck is displayed in slide-sorter
+mode.</p>
+<p>The CopySlide.java example illustrates the technique but, as with most uses of
+dispatching, is quite fragile. The better answer is to utilize a third-part API, the ODF
+Toolkit, which is the topic of Chapter 51.</p>
+<p>CopySlide.java is called with three arguments – the filename and two slide indices.</p>
+<p>The first index is the source slide's position in the deck, and the second is the position
+after which the copied slide will appear. For instance:</p>
+<div class="highlight"><pre><span></span><code>&gt; run CopySlide points.odp 1 4
+</code></pre></div>
+<p>will copy the second slide of the deck to after the fifth slide.</p>
+<p>The main() function of CopySlide.java:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="na">length</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Usage: CopySlide fnm from-index to-index&quot;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+  <span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">openDoc</span><span class="p">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">doc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not open the file: &quot;</span> <span class="o">+</span> <span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kt">int</span> <span class="n">fromIdx</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">args</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">toIdx</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">args</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">numSlides</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getSlidesCount</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">((</span><span class="n">fromIdx</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">toIdx</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span>
+      <span class="p">(</span><span class="n">fromIdx</span> <span class="o">&gt;=</span> <span class="n">numSlides</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">toIdx</span> <span class="o">&gt;=</span> <span class="n">numSlides</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;One or both indices are out of range&quot;</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">GUI</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+  <span class="n">copyTo</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">fromIdx</span><span class="p">,</span> <span class="n">toIdx</span><span class="p">);</span>
+  <span class="c1">// Draw.deleteSlide(doc, fromIdx);</span>
+      <span class="c1">// a problem if the copying changes the indices</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>   <span class="c1">// overwrite</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+<span class="p">}</span> <span class="c1">// end of main()</span>
+</code></pre></div>
+<p>All the interesting stuff is performed by copyTo(). One minor thing to note is the call
+to Lo.save() which causes the changed slide deck to be saved back to its original file.</p>
+<p>It is defined as:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Lo class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">save</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XStorable</span> <span class="n">store</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XStorable</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">doc</span><span class="p">);</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">store</span><span class="p">.</span><span class="na">store</span><span class="p">();</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Saved the document by overwriting&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+     <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not save the document&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of save()</span>
+</code></pre></div>
+<p>I usually avoid calling Lo.save() due to the fact that it overwrites the input file; I
+prefer to create a new file to hold changes.</p>
+<p>I've commented out the call to Draw.deleteSlide() in main() due to its potential to
+cause damage. The problem is that the new slide may cause the overall indexing of
+the slide deck to change. For example, consider what happens if the fourth slide is
+copied to after the second slide. This will create a new third slide, moving the old
+third slide, and all later slides, to the right. If the program now deletes the fourth slide,
+that's not the slide that's just been copied, but the repositioned third slide.</p>
+<p>The copyTo() function in CopySlide.java:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in CopySlide.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">copyTo</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">,</span> <span class="kt">int</span> <span class="n">fromIdx</span><span class="p">,</span> <span class="kt">int</span> <span class="n">toIdx</span><span class="p">)</span>
+<span class="cm">/* Copy fromIdx slide to the clipboard in slide-sorter mode,</span>
+<span class="cm">   then paste it to after the toIdx slide.</span>
+
+<span class="cm">*/</span>
+<span class="p">{</span> <span class="n">XController</span> <span class="n">ctrl</span> <span class="o">=</span> <span class="n">GUI</span><span class="p">.</span><span class="na">getCurrentController</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">dispatchCmd</span><span class="p">(</span><span class="s">&quot;DiaMode&quot;</span><span class="p">);</span>
+      <span class="c1">// Switch to slide-sorter view so that slides can be copied</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">delay</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span>   <span class="c1">// give Office plenty of time to do it</span>
+
+  <span class="n">XDrawPage</span> <span class="n">fromSlide</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getSlide</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">fromIdx</span><span class="p">);</span>
+  <span class="n">XDrawPage</span> <span class="n">toSlide</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getSlide</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">toIdx</span><span class="p">);</span>
+
+  <span class="n">Draw</span><span class="p">.</span><span class="na">gotoPage</span><span class="p">(</span><span class="n">ctrl</span><span class="p">,</span> <span class="n">fromSlide</span><span class="p">);</span>  <span class="c1">// select this slide</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">dispatchCmd</span><span class="p">(</span><span class="s">&quot;Copy&quot;</span><span class="p">);</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Copied &quot;</span> <span class="o">+</span> <span class="n">fromIdx</span><span class="p">);</span>
+
+  <span class="n">Draw</span><span class="p">.</span><span class="na">gotoPage</span><span class="p">(</span><span class="n">ctrl</span><span class="p">,</span> <span class="n">toSlide</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">dispatchCmd</span><span class="p">(</span><span class="s">&quot;Paste&quot;</span><span class="p">);</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Pasted to after &quot;</span> <span class="o">+</span> <span class="n">toIdx</span><span class="p">);</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">dispatchCmd</span><span class="p">(</span><span class="s">&quot;DrawingMode&quot;</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of copyTo()</span>
+</code></pre></div>
+<p>The method sends out four dispatches: the "DiaMode" command switches the
+application into slide-sorter mode, and is followed by "Copy", "Paste", and finally
+"DrawingMode" which switches the mode back to normal.</p>
+<p>There are a few complications. One is that Draw.gotoPage() must be called twice. The
+first call ensures that the source slide is the visible, active window before the "Copy"
+is processed. The second Draw.gotoPage() call makes sure the destination slide is now
+visible. This means that "Paste" will insert the copied slide after the destination slide,
+as required.</p>
+<p>I usually call Draw.gotoPage() with a document argument (e.g. Draw.gotoPage(doc,
+fromSlide)). This does not work correctly for the pasting of the slide, for reasons I'm
+unsure about. The solution is to use a reference to the document's controller, as shown
+in copyTo():</p>
+<div class="highlight"><pre><span></span><code><span class="n">XController</span> <span class="n">ctrl</span> <span class="o">=</span> <span class="n">GUI</span><span class="p">.</span><span class="na">getCurrentController</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="p">:</span>
+<span class="n">Draw</span><span class="p">.</span><span class="na">gotoPage</span><span class="p">(</span><span class="n">ctrl</span><span class="p">,</span> <span class="n">fromSlide</span><span class="p">);</span>
+  <span class="p">:</span>
+<span class="n">Draw</span><span class="p">.</span><span class="na">gotoPage</span><span class="p">(</span><span class="n">ctrl</span><span class="p">,</span> <span class="n">toSlide</span><span class="p">);</span>
+</code></pre></div>
+<h2 id="5-appending-slide-decks-together">5.  Appending Slide Decks Together<a class="headerlink" href="#5-appending-slide-decks-together" title="Permanent link">&para;</a></h2>
+<p>A common Office forum question is how to add the slides of one deck to the end of
+another. One solution is to use "Copy" and "Paste" dispatches as in section 4, but in a
+more complicated fashion. As you might guess, the ODF Toolkit library described in
+Chapter 51 is a better solution, but I'll focus on using Office here.</p>
+<p>This approach means that two application windows could be open at the same time:
+one containing the deck that is being copied, and another for the destination slide
+deck. This requires references to two different application views and frames, which
+can be a problem because of the design of my utility classes.</p>
+<p>Another problem is caused by the issue of master page copying. When a slide using a
+different master page is copied to a deck, Impress will query the user with an
+'Adaption' dialog asking if the copied slide's format (i.e. its master page) should be
+copied over to the destination deck. The dialog looks like Figure 5.</p>
 <p><img alt="" src="images/17-Slide_Deck_Manipulation-5.png" /></p>
-<p>Figure 5. Adaption Dialog. </p>
-<p>If you want the format of the copied deck to be retained in its new location, then you 
-have to click the "Yes" button.  Carrying out this clicking action programmatically 
-requires stepping outside the Office API, and using JNA to interact with the dialog 
-box. </p>
-<p>The resulting code is in the AppendSlides.java example. The main() function mostly 
-processes the program's command line arguments, a list of filenames. The first file is 
-the destination deck for the slides copied from the other files: </p>
-<p>// globals: controller and frame for the destination deck 
-private static XController toCtrl; 
-private static XFrame toFrame; </p>
-<p>public static void main(String args[]) 
-{ 
-  if (args.length &lt; 2) { 
-    System.out.println("Usage: AppendSlides fnm1 fnm2 ..."); 
-    return; 
-  } </p>
-<p>XComponentLoader loader = Lo.loadOffice(); 
-  XComponent doc = Lo.openDoc(args[0], loader); 
-  if (doc == null) { 
-    System.out.println("Could not open first file: " + args[0]); 
-    Lo.closeOffice(); 
-    return; 
-  } </p>
-<p>GUI.setVisible(doc, true); </p>
-<p>// controller and frame refs for the destination deck 
-  toCtrl = GUI.getCurrentController(doc); 
-  toFrame = GUI.getFrame(doc); </p>
-<p>Lo.dispatchCmd(toFrame, "DiaMode", null); 
-      // Switch to slide-sorter view so that slides can be pasted </p>
-<p>XDrawPages toSlides = Draw.getSlides(doc); </p>
-<p>// process the other files on the command line 
-  for(int i=1; i &lt; args.length; i++) {  // start at 1 
-    XComponent appDoc = Lo.openDoc(args[i], loader); 
-    if (appDoc == null) 
-      System.out.println("Could not open the file: " + args[i]); 
-    else 
-      appendDoc(toSlides, appDoc); 
-  } </p>
-<p>Lo.saveDoc(doc, Info.getName(args[0]) + "_Append." +<br />
-                                     Info.getExt(args[0])); </p>
-<p>Lo.dispatchCmd(toFrame, "PageMode", null); <br />
-             // back to normal mode (does not work) 
-  Lo.closeDoc(doc); 
-  Lo.closeOffice(); 
-} // end of main() </p>
-<p>Note that the controller and frame reference for the destination deck are saved as 
-globals. I've done this to reduce the number of arguments passed between the 
-functions. </p>
-<p>The for-loop in the middle of main() processes each of the slide decks in turn, 
-appending their slides to the destination deck. </p>
-<p>appendDoc() accesses a slide deck in a second Impress window, which means that a 
-second controller and frame reference are needed; they're stored in fromCtrl and 
-fromFrame: </p>
-<p>// in AppendSlides.java 
-private static void appendDoc(XDrawPages toSlides, XComponent doc) 
-/* Append doc to the end of toSlides. </p>
-<p>Access the slides in the document, and the<br />
-   document's controller and frame refs. </p>
-<p>Switch to slide-sorter view so that slides can be copied. </p>
-<p>*/ 
-{ 
-  GUI.setVisible(doc, true); </p>
-<p>// get this document's controller and frame refs 
-  XController fromCtrl = GUI.getCurrentController(doc); 
-  XFrame fromFrame = GUI.getFrame(doc); </p>
-<p>Lo.dispatchCmd(fromFrame, "DiaMode", null);<br />
-          // switch this document to slide-sorter mode </p>
-<p>XDrawPages fromSlides = Draw.getSlides(doc); 
-  if (fromSlides == null) 
-    System.out.println("- No slides found"); 
-  else { 
-    System.out.println("- Adding slides"); 
-    appendSlides(toSlides, fromSlides, fromCtrl, fromFrame); 
-  } </p>
-<p>Lo.dispatchCmd(fromFrame, "PageMode", null); <br />
-       // change back to normal slide view (does not work) 
-  Lo.closeDoc(doc); 
-  System.out.println(); 
-}  // end of appendDoc() </p>
-<p>appendDoc() calls appendSlides() to cycle through the slides, copying each one to the 
-destination deck: </p>
-<p>// in AppendSlides.java 
-private static void appendSlides(XDrawPages toSlides,<br />
-                                 XDrawPages fromSlides, 
-                    XController fromCtrl, XFrame fromFrame) 
-/* Append fromSlides to the end of toSlides 
-   Loop through the fromSlides, copying each one. </p>
-<p><em>/ 
-{ for (int i=0; i &lt; fromSlides.getCount(); i++) { 
-    XDrawPage fromSlide = Draw.getSlide(fromSlides, i); 
-    XDrawPage toSlide = Draw.getSlide(toSlides,<br />
-                                    toSlides.getCount()-1); 
-         // the copy of fromSlide will be placed </em>after* toSlide 
-    copyTo(fromSlide,fromCtrl,fromFrame, toSlide,toCtrl,toFrame); 
-  } 
-}  // end of appendSlides() </p>
-<p>The for-loop in appendSlides() calls copyTo() which copies and pastes a slide using 
-dispatch commands. In addition, it deals with the 'Adaption' dialog in Figure 5. </p>
-<p>// in AppendSlides.java 
-private static void copyTo(XDrawPage fromSlide, 
-                           XController fromCtrl, XFrame fromFrame, 
-                           XDrawPage toSlide, 
-                           XController toCtrl, XFrame toFrame) 
-// copy fromSlide to <em>after</em> toSlide 
-{ 
-  Draw.gotoPage(fromCtrl, fromSlide);  // select this slide 
-  System.out.print("-- Copy --&gt; "); 
-  Lo.dispatchCmd(fromFrame, "Copy", null); 
-  Lo.delay(1000);  </p>
-<p>Draw.gotoPage(toCtrl, toSlide);   // select this slide 
-  System.out.println("Paste"); </p>
-<p>// wait for "Adaption" dialog and click it 
-  Thread monitorThread = new Thread() { 
-    public void run() { 
-      Lo.delay(500);<br />
-      clickWindow("LibreOffice"); 
-    } 
-  }; 
-  monitorThread.start(); </p>
-<p>Lo.dispatchCmd(toFrame, "Paste", null); 
-}  // end of copyTo() </p>
-<p>The dialog is handled by starting a Java thread which executes clickWindow(). This 
-waits for the dialog by suspending until a window with a title starting with 
-"LibreOffice" appears. I chose this string since it's what appears at the start of the 
-dialog's title bar in Figure 5: </p>
-<p>// in AppendSlides.java 
-private static void clickWindow(String windowTitle) 
-{ 
-  HWND handle = JNAUtils.findTitledWin(windowTitle); 
-  if (handle == null) 
-    return; </p>
-<p>Rectangle bounds = JNAUtils.getBounds(handle); 
-  int xCenter = bounds.x + 64;   // hard-wired loc for "Yes"<br />
-  int yCenter = bounds.y + 91; 
-  JNAUtils.doClick( new Point(xCenter, yCenter)); 
-}  // end of clickWindow() </p>
-<p>JNAUtils.findTitledWin() returns a handle to the window it has detected. The bounds 
-of the window are obtained, and a click event is sent to the (64, 91) coordinate inside 
-that window. These 'magic' coordinates are the location of the "Yes" button in the 
-dialog. This is both ugly and fragile since the position is almost certain to change 
-across different platforms and versions of Office.  </p>
-<p>Let's also not forget that if the title of the "Adaption" dialog changes in a future 
-version of Office, then JNAUtils.findTitledWin() may end up looking forever for the 
-window. </p>
-<p>The AppendSlides.java and CopySlide.java examples highlight important missing 
-features in the presentation API. Copying and pasting a slide in a deck should be 
-available as methods in XDrawPages.  </p>
-<p>If you need a robust way of doing these tasks, I suggest looking at the ODF Toolkit 
-library in Chapter 51. </p>
-<h2 id="6-exporting-a-slide-as-an-image">6.  Exporting a Slide as an Image</h2>
-<p>A drawing or slide can be exported as an image by using the GraphicExportFilter 
-service and its XGraphicExportFilter interface. The service is represented in Figure 6. </p>
+<p>Figure 5. Adaption Dialog.</p>
+<p>If you want the format of the copied deck to be retained in its new location, then you
+have to click the "Yes" button.  Carrying out this clicking action programmatically
+requires stepping outside the Office API, and using JNA to interact with the dialog
+box.</p>
+<p>The resulting code is in the AppendSlides.java example. The main() function mostly
+processes the program's command line arguments, a list of filenames. The first file is
+the destination deck for the slides copied from the other files:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// globals: controller and frame for the destination deck</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="n">XController</span> <span class="n">toCtrl</span><span class="p">;</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="n">XFrame</span> <span class="n">toFrame</span><span class="p">;</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="na">length</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Usage: AppendSlides fnm1 fnm2 ...&quot;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+  <span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">openDoc</span><span class="p">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">doc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not open first file: &quot;</span> <span class="o">+</span> <span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">GUI</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+  <span class="c1">// controller and frame refs for the destination deck</span>
+  <span class="n">toCtrl</span> <span class="o">=</span> <span class="n">GUI</span><span class="p">.</span><span class="na">getCurrentController</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">toFrame</span> <span class="o">=</span> <span class="n">GUI</span><span class="p">.</span><span class="na">getFrame</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">dispatchCmd</span><span class="p">(</span><span class="n">toFrame</span><span class="p">,</span> <span class="s">&quot;DiaMode&quot;</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+      <span class="c1">// Switch to slide-sorter view so that slides can be pasted</span>
+
+  <span class="n">XDrawPages</span> <span class="n">toSlides</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getSlides</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+
+  <span class="c1">// process the other files on the command line</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">args</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// start at 1</span>
+    <span class="n">XComponent</span> <span class="n">appDoc</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">openDoc</span><span class="p">(</span><span class="n">args</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">appDoc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not open the file: &quot;</span> <span class="o">+</span> <span class="n">args</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+    <span class="k">else</span>
+      <span class="n">appendDoc</span><span class="p">(</span><span class="n">toSlides</span><span class="p">,</span> <span class="n">appDoc</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">saveDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">Info</span><span class="p">.</span><span class="na">getName</span><span class="p">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;_Append.&quot;</span> <span class="o">+</span>
+                                     <span class="n">Info</span><span class="p">.</span><span class="na">getExt</span><span class="p">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">));</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">dispatchCmd</span><span class="p">(</span><span class="n">toFrame</span><span class="p">,</span> <span class="s">&quot;PageMode&quot;</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+             <span class="c1">// back to normal mode (does not work)</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+<span class="p">}</span> <span class="c1">// end of main()</span>
+</code></pre></div>
+<p>Note that the controller and frame reference for the destination deck are saved as
+globals. I've done this to reduce the number of arguments passed between the
+functions.</p>
+<p>The for-loop in the middle of main() processes each of the slide decks in turn,
+appending their slides to the destination deck.</p>
+<p>appendDoc() accesses a slide deck in a second Impress window, which means that a
+second controller and frame reference are needed; they're stored in fromCtrl and
+fromFrame:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in AppendSlides.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">appendDoc</span><span class="p">(</span><span class="n">XDrawPages</span> <span class="n">toSlides</span><span class="p">,</span> <span class="n">XComponent</span> <span class="n">doc</span><span class="p">)</span>
+<span class="cm">/* Append doc to the end of toSlides.</span>
+
+<span class="cm">   Access the slides in the document, and the</span>
+<span class="cm">   document&#39;s controller and frame refs.</span>
+
+<span class="cm">   Switch to slide-sorter view so that slides can be copied.</span>
+
+<span class="cm">*/</span>
+<span class="p">{</span>
+  <span class="n">GUI</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+  <span class="c1">// get this document&#39;s controller and frame refs</span>
+  <span class="n">XController</span> <span class="n">fromCtrl</span> <span class="o">=</span> <span class="n">GUI</span><span class="p">.</span><span class="na">getCurrentController</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">XFrame</span> <span class="n">fromFrame</span> <span class="o">=</span> <span class="n">GUI</span><span class="p">.</span><span class="na">getFrame</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">dispatchCmd</span><span class="p">(</span><span class="n">fromFrame</span><span class="p">,</span> <span class="s">&quot;DiaMode&quot;</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+          <span class="c1">// switch this document to slide-sorter mode</span>
+
+  <span class="n">XDrawPages</span> <span class="n">fromSlides</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getSlides</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">fromSlides</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;- No slides found&quot;</span><span class="p">);</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;- Adding slides&quot;</span><span class="p">);</span>
+    <span class="n">appendSlides</span><span class="p">(</span><span class="n">toSlides</span><span class="p">,</span> <span class="n">fromSlides</span><span class="p">,</span> <span class="n">fromCtrl</span><span class="p">,</span> <span class="n">fromFrame</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">dispatchCmd</span><span class="p">(</span><span class="n">fromFrame</span><span class="p">,</span> <span class="s">&quot;PageMode&quot;</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+       <span class="c1">// change back to normal slide view (does not work)</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of appendDoc()</span>
+</code></pre></div>
+<p>appendDoc() calls appendSlides() to cycle through the slides, copying each one to the
+destination deck:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in AppendSlides.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">appendSlides</span><span class="p">(</span><span class="n">XDrawPages</span> <span class="n">toSlides</span><span class="p">,</span>
+                                 <span class="n">XDrawPages</span> <span class="n">fromSlides</span><span class="p">,</span>
+                    <span class="n">XController</span> <span class="n">fromCtrl</span><span class="p">,</span> <span class="n">XFrame</span> <span class="n">fromFrame</span><span class="p">)</span>
+<span class="cm">/* Append fromSlides to the end of toSlides</span>
+<span class="cm">   Loop through the fromSlides, copying each one.</span>
+
+<span class="cm">*/</span>
+<span class="p">{</span> <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">fromSlides</span><span class="p">.</span><span class="na">getCount</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">XDrawPage</span> <span class="n">fromSlide</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getSlide</span><span class="p">(</span><span class="n">fromSlides</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+    <span class="n">XDrawPage</span> <span class="n">toSlide</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getSlide</span><span class="p">(</span><span class="n">toSlides</span><span class="p">,</span>
+                                    <span class="n">toSlides</span><span class="p">.</span><span class="na">getCount</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+         <span class="c1">// the copy of fromSlide will be placed *after* toSlide</span>
+    <span class="n">copyTo</span><span class="p">(</span><span class="n">fromSlide</span><span class="p">,</span><span class="n">fromCtrl</span><span class="p">,</span><span class="n">fromFrame</span><span class="p">,</span> <span class="n">toSlide</span><span class="p">,</span><span class="n">toCtrl</span><span class="p">,</span><span class="n">toFrame</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of appendSlides()</span>
+</code></pre></div>
+<p>The for-loop in appendSlides() calls copyTo() which copies and pastes a slide using
+dispatch commands. In addition, it deals with the 'Adaption' dialog in Figure 5.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in AppendSlides.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">copyTo</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">fromSlide</span><span class="p">,</span>
+                           <span class="n">XController</span> <span class="n">fromCtrl</span><span class="p">,</span> <span class="n">XFrame</span> <span class="n">fromFrame</span><span class="p">,</span>
+                           <span class="n">XDrawPage</span> <span class="n">toSlide</span><span class="p">,</span>
+                           <span class="n">XController</span> <span class="n">toCtrl</span><span class="p">,</span> <span class="n">XFrame</span> <span class="n">toFrame</span><span class="p">)</span>
+<span class="c1">// copy fromSlide to *after* toSlide</span>
+<span class="p">{</span>
+  <span class="n">Draw</span><span class="p">.</span><span class="na">gotoPage</span><span class="p">(</span><span class="n">fromCtrl</span><span class="p">,</span> <span class="n">fromSlide</span><span class="p">);</span>  <span class="c1">// select this slide</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;-- Copy --&gt; &quot;</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">dispatchCmd</span><span class="p">(</span><span class="n">fromFrame</span><span class="p">,</span> <span class="s">&quot;Copy&quot;</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+
+  <span class="n">Draw</span><span class="p">.</span><span class="na">gotoPage</span><span class="p">(</span><span class="n">toCtrl</span><span class="p">,</span> <span class="n">toSlide</span><span class="p">);</span>   <span class="c1">// select this slide</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Paste&quot;</span><span class="p">);</span>
+
+  <span class="c1">// wait for &quot;Adaption&quot; dialog and click it</span>
+  <span class="n">Thread</span> <span class="n">monitorThread</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Thread</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
+      <span class="n">Lo</span><span class="p">.</span><span class="na">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+      <span class="n">clickWindow</span><span class="p">(</span><span class="s">&quot;LibreOffice&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+  <span class="n">monitorThread</span><span class="p">.</span><span class="na">start</span><span class="p">();</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">dispatchCmd</span><span class="p">(</span><span class="n">toFrame</span><span class="p">,</span> <span class="s">&quot;Paste&quot;</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of copyTo()</span>
+</code></pre></div>
+<p>The dialog is handled by starting a Java thread which executes clickWindow(). This
+waits for the dialog by suspending until a window with a title starting with
+"LibreOffice" appears. I chose this string since it's what appears at the start of the
+dialog's title bar in Figure 5:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in AppendSlides.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">clickWindow</span><span class="p">(</span><span class="n">String</span> <span class="n">windowTitle</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">HWND</span> <span class="n">handle</span> <span class="o">=</span> <span class="n">JNAUtils</span><span class="p">.</span><span class="na">findTitledWin</span><span class="p">(</span><span class="n">windowTitle</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">handle</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">;</span>
+
+  <span class="n">Rectangle</span> <span class="n">bounds</span> <span class="o">=</span> <span class="n">JNAUtils</span><span class="p">.</span><span class="na">getBounds</span><span class="p">(</span><span class="n">handle</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">xCenter</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">.</span><span class="na">x</span> <span class="o">+</span> <span class="mi">64</span><span class="p">;</span>   <span class="c1">// hard-wired loc for &quot;Yes&quot;</span>
+  <span class="kt">int</span> <span class="n">yCenter</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">.</span><span class="na">y</span> <span class="o">+</span> <span class="mi">91</span><span class="p">;</span>
+  <span class="n">JNAUtils</span><span class="p">.</span><span class="na">doClick</span><span class="p">(</span> <span class="k">new</span> <span class="n">Point</span><span class="p">(</span><span class="n">xCenter</span><span class="p">,</span> <span class="n">yCenter</span><span class="p">));</span>
+<span class="p">}</span>  <span class="c1">// end of clickWindow()</span>
+</code></pre></div>
+<p>JNAUtils.findTitledWin() returns a handle to the window it has detected. The bounds
+of the window are obtained, and a click event is sent to the (64, 91) coordinate inside
+that window. These 'magic' coordinates are the location of the "Yes" button in the
+dialog. This is both ugly and fragile since the position is almost certain to change
+across different platforms and versions of Office.</p>
+<p>Let's also not forget that if the title of the "Adaption" dialog changes in a future
+version of Office, then JNAUtils.findTitledWin() may end up looking forever for the
+window.</p>
+<p>The AppendSlides.java and CopySlide.java examples highlight important missing
+features in the presentation API. Copying and pasting a slide in a deck should be
+available as methods in XDrawPages.</p>
+<p>If you need a robust way of doing these tasks, I suggest looking at the ODF Toolkit
+library in Chapter 51.</p>
+<h2 id="6-exporting-a-slide-as-an-image">6.  Exporting a Slide as an Image<a class="headerlink" href="#6-exporting-a-slide-as-an-image" title="Permanent link">&para;</a></h2>
+<p>A drawing or slide can be exported as an image by using the GraphicExportFilter
+service and its XGraphicExportFilter interface. The service is represented in Figure 6.</p>
 <p><img alt="" src="images/17-Slide_Deck_Manipulation-6.png" /></p>
-<p>Figure 6. The GraphicExportFilter Service, Interfaces, and Methods. </p>
-<p>In older documentation, such as the Developer's Guide, there's no mention of 
-XGraphicExportFilter. The guide claims that GraphicExportFilter directly supports 
-XExporter, XFilter, and XMimeTypeInfo. Use lodoc XGraphicExportFilter to 
-access the online documentation for the interface. </p>
-<p>The Slides2Image.java example reads three arguments from the command line: the 
-filename of the slide deck, the index number of the slide, and the format used for 
-saving the slide's image. For example: </p>
-<blockquote>
-<p>run Slide2Image algs.ppt 2 png 
-The index number value may be a source of confusion since slides are numbered from 
-1 inside Impress' GUI, but from 0 in the API. In this case, '2' means the third slide in 
-the deck. </p>
-</blockquote>
-<p>The main() function for Slide2Image.java: </p>
-<p>public static void main(String args[]) 
-{ 
-  if (args.length != 3) { 
-    System.out.println("Usage: Slide2Image fnm index imageFormat"); 
-    return; 
-  } 
-  String fnm = args[0]; 
-  int idx = Lo.parseInt(args[1]); 
-  String imFormat = args[2]; </p>
-<p>XComponentLoader loader = Lo.loadOffice(); 
-  XComponent doc = Lo.openDoc(fnm, loader); 
-  if (doc == null) { 
-    System.out.println("Could not open " + fnm); 
-    Lo.closeOffice(); 
-    return; 
-  } </p>
-<p>XDrawPage slide = Draw.getSlide(doc, idx); 
-  if (slide == null) { 
-    Lo.closeOffice(); 
-    return; 
-  } </p>
-<p>String[] names = Images.getMimeTypes(); 
-  System.out.println("Known GraphicExportFilter mime types:"); 
-  for (int i=0; i &lt; names.length; i++)<br />
-    System.out.println("  " + names[i]);  </p>
-<p>String outFnm = Info.getName(fnm) + idx + "." + imFormat; 
-  System.out.println("Saving page " + idx + " to \"" +outFnm+ "\""); 
-  String mime = Images.changeToMime(imFormat); 
-  Draw.savePage(slide, outFnm, mime); 
-  Lo.closeDoc(doc); 
-  Lo.closeOffice(); 
-}  // end of main() </p>
-<p>The example uses two mime functions: Images.getMimeTypes() and 
-Images.changeToMime(). The first returns an array of all the mime types supported 
-by GraphicExportFilter by calling XMimeTypeInfo.getSupportedMimeTypeNames(): </p>
-<p>// in the Images class 
-public static String[] getMimeTypes() 
-{ 
-  XMimeTypeInfo mi = Lo.createInstanceMCF(XMimeTypeInfo.class, 
-             "com.sun.star.drawing.GraphicExportFilter"); 
-  return mi.getSupportedMimeTypeNames(); 
-}  </p>
-<p>The printed array is: </p>
-<p>Known GraphicExportFilter mime types: 
-  image/x-MS-bmp 
-  image/x-emf 
-  image/x-eps 
-  image/gif 
-  image/jpeg 
-  image/x-met 
-  image/x-portable-bitmap 
-  image/x-pict 
-  image/x-portable-graymap 
-  image/png 
-  image/x-portable-pixmap 
-  image/x-cmu-raster 
-  image/svg+xml 
-  image/x-svm 
-  image/tiff 
-  image/x-wmf 
-  image/x-xpixmap </p>
-<p>Images.changeToMime() looks through the mime array for a type that contains the 
-supplied format as a substring: </p>
-<p>// in the Images class 
-public static String changeToMime(String imFormat) 
-{ 
-  String[] names = getMimeTypes(); 
-  String imf = imFormat.toLowerCase().trim(); 
-  for (int i=0; i &lt; names.length; i++) { 
-    if (names[i].contains(imf)) { 
-      System.out.println("Using mime type: " + names[i]); 
-      return names[i]; 
-    } 
-  } </p>
-<p>System.out.println("No matching mime type, so using image/png"); 
-  return "image/png"; 
-}  // end of changeToMime() </p>
-<p>Draw.savePage() creates an XGraphicExportFilter object, configuring it with the page 
-to be exported and the mime type filter: </p>
-<p>// in the Draw class 
-public static void savePage(XDrawPage page, String fnm,<br />
-                                         String mimeType) 
-{ String saveFileURL = FileIO.fnmToURL(fnm); 
-  if (saveFileURL == null) 
-    return; 
-  System.out.println("Saving page in " + fnm); </p>
-<p>// create graphics exporter 
-  XGraphicExportFilter gef =<br />
-           Lo.createInstanceMCF(XGraphicExportFilter.class, 
-                     "com.sun.star.drawing.GraphicExportFilter"); </p>
-<p>// set the output 'document' to be specified page 
-  XComponent doc = Lo.qi(XComponent.class, page); 
-  gef.setSourceDocument(doc);    // link exporter to the document </p>
-<p>// export the page by converting to the specified mime type 
-  PropertyValue props[] = Props.makeProps("MediaType", mimeType, 
-                                          "URL", saveFileURL); 
-  gef.filter(props); 
-  System.out.println("Export completed"); 
-}  // end of savePage() </p>
-<p>The name of the XExporter.setSourceDocument() method is a bit misleading since its 
-input argument should either be an XDrawPage (a slide, as here), XShape (a shape on 
-the slide), or an XShapes object (a collection of shapes on a slide). </p>
-<p>XFilter.filter() exports the slide (or shape), based on values supplied in a properties 
-array. The array should contain the mime type and the URL of the output file. </p>
-<h2 id="7-extracting-the-text-from-a-slide-deck">7.  Extracting the Text from a Slide Deck</h2>
-<p>Draw.getShapesText() supports the fairly common task of extracting all the text from 
-a presentation. It is used by the ExtractText.java example: </p>
-<p>// from ExtractText.java 
-     : 
-if (Draw.isShapesBased(doc)) { 
-  String text = Draw.getShapesText(doc); 
-  System.out.println("----- Text Content -----"); 
-  System.out.println(text); 
-  System.out.println("------------------------"); 
-} 
-else 
-  System.out.println("Extraction unsupported"); 
-    : </p>
-<p>Draw.getShapesText() calls getOrderedShapes() to collect all the shapes from all the 
-slides in the document. It then iterates over the shapes list, converting each shape to 
-text and adding it to a StringBuffer: </p>
-<p>// in the Draw class 
-public static String getShapesText(XComponent doc) 
-{ 
-  StringBuilder sb = new StringBuilder(); 
-  ArrayList<XShape> xShapes = getOrderedShapes(doc); 
-  for(XShape xShape : xShapes) { 
-    String text = getShapeText(xShape); 
-    sb.append(text + "\n"); 
-  } 
-  return sb.toString(); 
-}  // end of getShapeText() </p>
-<p>Draw.getShapeText() pulls the text from a shape by casting it to a text interface, then 
-uses a cursor to select the text: </p>
-<p>public static String getShapeText(XShape xShape) 
-// get text from inside a shape 
-{ 
-  XText xText = Lo.qi(XText.class, xShape); 
-  XTextCursor xTextCursor = xText.createTextCursor(); 
-  XTextRange xTextRange = Lo.qi(XTextRange.class, xTextCursor); 
-  return xTextRange.getString(); 
-}  // end of getShapeText() </p>
-<p>getOrderedShapes() iterates over each slide in the document calling another version of 
-itself to extract the shapes from a slide: </p>
-<p>public static ArrayList<XShape> getOrderedShapes(XComponent doc) 
-//  get shapes from all pages of the doc 
-{ 
-  XDrawPage[] slides = getSlidesArr(doc); 
-  if (slides == null) 
-    return null; </p>
-<p>ArrayList<XShape> shapes = new ArrayList<XShape>();<br />
-  for(XDrawPage slide : slides) 
-    shapes.addAll( getOrderedShapes(slide)); 
-  return shapes; 
-}  // end of getOrderedShapes()  </p>
+<p>Figure 6. The GraphicExportFilter Service, Interfaces, and Methods.</p>
+<p>In older documentation, such as the Developer's Guide, there's no mention of
+XGraphicExportFilter. The guide claims that GraphicExportFilter directly supports
+XExporter, XFilter, and XMimeTypeInfo. Use <code>lodoc XGraphicExportFilter</code> to
+access the online documentation for the interface.</p>
+<p>The Slides2Image.java example reads three arguments from the command line: the
+filename of the slide deck, the index number of the slide, and the format used for
+saving the slide's image. For example:</p>
+<div class="highlight"><pre><span></span><code>&gt; run Slide2Image algs.ppt 2 png
+</code></pre></div>
+<p>The index number value may be a source of confusion since slides are numbered from
+1 inside Impress' GUI, but from 0 in the API. In this case, '2' means the third slide in
+the deck.</p>
+<p>The main() function for Slide2Image.java:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="na">length</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Usage: Slide2Image fnm index imageFormat&quot;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">String</span> <span class="n">fnm</span> <span class="o">=</span> <span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">parseInt</span><span class="p">(</span><span class="n">args</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">);</span>
+  <span class="n">String</span> <span class="n">imFormat</span> <span class="o">=</span> <span class="n">args</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span><span class="p">;</span>
+
+  <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+  <span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">openDoc</span><span class="p">(</span><span class="n">fnm</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">doc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not open &quot;</span> <span class="o">+</span> <span class="n">fnm</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">XDrawPage</span> <span class="n">slide</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getSlide</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">idx</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">slide</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">String</span><span class="o">[]</span> <span class="n">names</span> <span class="o">=</span> <span class="n">Images</span><span class="p">.</span><span class="na">getMimeTypes</span><span class="p">();</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Known GraphicExportFilter mime types:&quot;</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">names</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  &quot;</span> <span class="o">+</span> <span class="n">names</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+
+  <span class="n">String</span> <span class="n">outFnm</span> <span class="o">=</span> <span class="n">Info</span><span class="p">.</span><span class="na">getName</span><span class="p">(</span><span class="n">fnm</span><span class="p">)</span> <span class="o">+</span> <span class="n">idx</span> <span class="o">+</span> <span class="s">&quot;.&quot;</span> <span class="o">+</span> <span class="n">imFormat</span><span class="p">;</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Saving page &quot;</span> <span class="o">+</span> <span class="n">idx</span> <span class="o">+</span> <span class="s">&quot; to \&quot;&quot;</span> <span class="o">+</span><span class="n">outFnm</span><span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>
+  <span class="n">String</span> <span class="n">mime</span> <span class="o">=</span> <span class="n">Images</span><span class="p">.</span><span class="na">changeToMime</span><span class="p">(</span><span class="n">imFormat</span><span class="p">);</span>
+  <span class="n">Draw</span><span class="p">.</span><span class="na">savePage</span><span class="p">(</span><span class="n">slide</span><span class="p">,</span> <span class="n">outFnm</span><span class="p">,</span> <span class="n">mime</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of main()</span>
+</code></pre></div>
+<p>The example uses two mime functions: Images.getMimeTypes() and
+Images.changeToMime(). The first returns an array of all the mime types supported
+by GraphicExportFilter by calling XMimeTypeInfo.getSupportedMimeTypeNames():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Images class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">getMimeTypes</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">XMimeTypeInfo</span> <span class="n">mi</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XMimeTypeInfo</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+             <span class="s">&quot;com.sun.star.drawing.GraphicExportFilter&quot;</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">mi</span><span class="p">.</span><span class="na">getSupportedMimeTypeNames</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The printed array is:</p>
+<div class="highlight"><pre><span></span><code>Known GraphicExportFilter mime types:
+  image/x-MS-bmp
+  image/x-emf
+  image/x-eps
+  image/gif
+  image/jpeg
+  image/x-met
+  image/x-portable-bitmap
+  image/x-pict
+  image/x-portable-graymap
+  image/png
+  image/x-portable-pixmap
+  image/x-cmu-raster
+  image/svg+xml
+  image/x-svm
+  image/tiff
+  image/x-wmf
+  image/x-xpixmap
+</code></pre></div>
+<p>Images.changeToMime() looks through the mime array for a type that contains the
+supplied format as a substring:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Images class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">changeToMime</span><span class="p">(</span><span class="n">String</span> <span class="n">imFormat</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">String</span><span class="o">[]</span> <span class="n">names</span> <span class="o">=</span> <span class="n">getMimeTypes</span><span class="p">();</span>
+  <span class="n">String</span> <span class="n">imf</span> <span class="o">=</span> <span class="n">imFormat</span><span class="p">.</span><span class="na">toLowerCase</span><span class="p">().</span><span class="na">trim</span><span class="p">();</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">names</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">names</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">imf</span><span class="p">))</span> <span class="p">{</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Using mime type: &quot;</span> <span class="o">+</span> <span class="n">names</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+      <span class="k">return</span> <span class="n">names</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No matching mime type, so using image/png&quot;</span><span class="p">);</span>
+  <span class="k">return</span> <span class="s">&quot;image/png&quot;</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of changeToMime()</span>
+</code></pre></div>
+<p>Draw.savePage() creates an XGraphicExportFilter object, configuring it with the page
+to be exported and the mime type filter:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">savePage</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">page</span><span class="p">,</span> <span class="n">String</span> <span class="n">fnm</span><span class="p">,</span>
+                                         <span class="n">String</span> <span class="n">mimeType</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">String</span> <span class="n">saveFileURL</span> <span class="o">=</span> <span class="n">FileIO</span><span class="p">.</span><span class="na">fnmToURL</span><span class="p">(</span><span class="n">fnm</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">saveFileURL</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Saving page in &quot;</span> <span class="o">+</span> <span class="n">fnm</span><span class="p">);</span>
+
+  <span class="c1">// create graphics exporter</span>
+  <span class="n">XGraphicExportFilter</span> <span class="n">gef</span> <span class="o">=</span>
+           <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XGraphicExportFilter</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                     <span class="s">&quot;com.sun.star.drawing.GraphicExportFilter&quot;</span><span class="p">);</span>
+
+  <span class="c1">// set the output &#39;document&#39; to be specified page</span>
+  <span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XComponent</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">page</span><span class="p">);</span>
+  <span class="n">gef</span><span class="p">.</span><span class="na">setSourceDocument</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>    <span class="c1">// link exporter to the document</span>
+
+  <span class="c1">// export the page by converting to the specified mime type</span>
+  <span class="n">PropertyValue</span> <span class="n">props</span><span class="o">[]</span> <span class="o">=</span> <span class="n">Props</span><span class="p">.</span><span class="na">makeProps</span><span class="p">(</span><span class="s">&quot;MediaType&quot;</span><span class="p">,</span> <span class="n">mimeType</span><span class="p">,</span>
+                                          <span class="s">&quot;URL&quot;</span><span class="p">,</span> <span class="n">saveFileURL</span><span class="p">);</span>
+  <span class="n">gef</span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Export completed&quot;</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of savePage()</span>
+</code></pre></div>
+<p>The name of the XExporter.setSourceDocument() method is a bit misleading since its
+input argument should either be an XDrawPage (a slide, as here), XShape (a shape on
+the slide), or an XShapes object (a collection of shapes on a slide).</p>
+<p>XFilter.filter() exports the slide (or shape), based on values supplied in a properties
+array. The array should contain the mime type and the URL of the output file.</p>
+<h2 id="7-extracting-the-text-from-a-slide-deck">7.  Extracting the Text from a Slide Deck<a class="headerlink" href="#7-extracting-the-text-from-a-slide-deck" title="Permanent link">&para;</a></h2>
+<p>Draw.getShapesText() supports the fairly common task of extracting all the text from
+a presentation. It is used by the ExtractText.java example:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// from ExtractText.java</span>
+     <span class="p">:</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">Draw</span><span class="p">.</span><span class="na">isShapesBased</span><span class="p">(</span><span class="n">doc</span><span class="p">))</span> <span class="p">{</span>
+  <span class="n">String</span> <span class="n">text</span> <span class="o">=</span> <span class="n">Draw</span><span class="p">.</span><span class="na">getShapesText</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;----- Text Content -----&quot;</span><span class="p">);</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;------------------------&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">else</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Extraction unsupported&quot;</span><span class="p">);</span>
+    <span class="p">:</span>
+</code></pre></div>
+<p>Draw.getShapesText() calls getOrderedShapes() to collect all the shapes from all the
+slides in the document. It then iterates over the shapes list, converting each shape to
+text and adding it to a StringBuffer:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Draw class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">getShapesText</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+  <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">XShape</span><span class="o">&gt;</span> <span class="n">xShapes</span> <span class="o">=</span> <span class="n">getOrderedShapes</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">XShape</span> <span class="n">xShape</span> <span class="p">:</span> <span class="n">xShapes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">String</span> <span class="n">text</span> <span class="o">=</span> <span class="n">getShapeText</span><span class="p">(</span><span class="n">xShape</span><span class="p">);</span>
+    <span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">text</span> <span class="o">+</span> <span class="s">&quot;\n&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">sb</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of getShapeText()</span>
+</code></pre></div>
+<p>Draw.getShapeText() pulls the text from a shape by casting it to a text interface, then
+uses a cursor to select the text:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">getShapeText</span><span class="p">(</span><span class="n">XShape</span> <span class="n">xShape</span><span class="p">)</span>
+<span class="c1">// get text from inside a shape</span>
+<span class="p">{</span>
+  <span class="n">XText</span> <span class="n">xText</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XText</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">xShape</span><span class="p">);</span>
+  <span class="n">XTextCursor</span> <span class="n">xTextCursor</span> <span class="o">=</span> <span class="n">xText</span><span class="p">.</span><span class="na">createTextCursor</span><span class="p">();</span>
+  <span class="n">XTextRange</span> <span class="n">xTextRange</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XTextRange</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">xTextCursor</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">xTextRange</span><span class="p">.</span><span class="na">getString</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of getShapeText()</span>
+</code></pre></div>
+<p>getOrderedShapes() iterates over each slide in the document calling another version of
+itself to extract the shapes from a slide:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">XShape</span><span class="o">&gt;</span> <span class="nf">getOrderedShapes</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">)</span>
+<span class="c1">//  get shapes from all pages of the doc</span>
+<span class="p">{</span>
+  <span class="n">XDrawPage</span><span class="o">[]</span> <span class="n">slides</span> <span class="o">=</span> <span class="n">getSlidesArr</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">slides</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+
+  <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">XShape</span><span class="o">&gt;</span> <span class="n">shapes</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">XShape</span><span class="o">&gt;</span><span class="p">();</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">slide</span> <span class="p">:</span> <span class="n">slides</span><span class="p">)</span>
+    <span class="n">shapes</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span> <span class="n">getOrderedShapes</span><span class="p">(</span><span class="n">slide</span><span class="p">));</span>
+  <span class="k">return</span> <span class="n">shapes</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of getOrderedShapes()</span>
+</code></pre></div>
 <p>The ordering of the shapes in a slide may not match their reading order  (i.e. top-
-down, left-to-right). For example, I read a slide by first looking at the text in the 
-TitleShape, before reading the bullets below in the OutlinerShape. However, 
-TitleShape may be stored at the end of the slide's container.  </p>
-<p>getOrderedShapes() deals with the problem by extracting all the shapes from the slide 
-into a list, and then sorting it based on each shape's z-order. A shape with z-order 0 
-will be moved before a shape with z-order 1. This almost always corresponds to the 
-user's reading order of the shapes. For example, TitleShape usually has a z-order of 0. </p>
-<p>public static ArrayList<XShape> getOrderedShapes(XDrawPage slide) 
-//  get all the shapes on the slide in increasing z-order 
-{ 
-  ArrayList<XShape> shapes = getShapes(slide); 
-  Collections.sort(shapes, new Comparator<XShape>() { 
-     public int compare(XShape s1, XShape s2)<br />
-     {  return (getZOrder(s1) &gt; getZOrder(s2)) ? -1 : 1;  } 
-  }); 
-  return shapes; 
-}  // end of getOrderedShapes() </p>
-<p>public static int getZOrder(XShape shape) 
-{  return (Integer) Props.getProperty(shape, "ZOrder");  } </p>
-<p>getShapes() extracts all the shapes from a slide as a list: </p>
-<p>public static ArrayList<XShape> getShapes(XDrawPage slide) 
-{ 
-  if (slide == null) { 
-    System.out.println("Slide is null"); 
-    return null; 
-  } 
-  if (slide.getCount() == 0) { 
-    System.out.println("Slide does not contain any shapes"); 
-    return null; 
-  } </p>
-<p>ArrayList<XShape> shapes = new ArrayList<XShape>(); 
-  try { 
-    for(int j=0; j &lt; slide.getCount(); j++) 
-      shapes.add( Lo.qi(XShape.class, slide.getByIndex(j))); 
-  } 
-  catch(Exception e) 
-  {   System.out.println("Shapes extraction error in slide");  } </p>
-<p>return shapes; 
-}  // end of getShapes() </p>
+down, left-to-right). For example, I read a slide by first looking at the text in the
+TitleShape, before reading the bullets below in the OutlinerShape. However,
+TitleShape may be stored at the end of the slide's container.</p>
+<p>getOrderedShapes() deals with the problem by extracting all the shapes from the slide
+into a list, and then sorting it based on each shape's z-order. A shape with z-order 0
+will be moved before a shape with z-order 1. This almost always corresponds to the
+user's reading order of the shapes. For example, TitleShape usually has a z-order of 0.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">XShape</span><span class="o">&gt;</span> <span class="nf">getOrderedShapes</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">slide</span><span class="p">)</span>
+<span class="c1">//  get all the shapes on the slide in increasing z-order</span>
+<span class="p">{</span>
+  <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">XShape</span><span class="o">&gt;</span> <span class="n">shapes</span> <span class="o">=</span> <span class="n">getShapes</span><span class="p">(</span><span class="n">slide</span><span class="p">);</span>
+  <span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">shapes</span><span class="p">,</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">XShape</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">{</span>
+     <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="p">(</span><span class="n">XShape</span> <span class="n">s1</span><span class="p">,</span> <span class="n">XShape</span> <span class="n">s2</span><span class="p">)</span>
+     <span class="p">{</span>  <span class="k">return</span> <span class="p">(</span><span class="n">getZOrder</span><span class="p">(</span><span class="n">s1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">getZOrder</span><span class="p">(</span><span class="n">s2</span><span class="p">))</span> <span class="o">?</span> <span class="o">-</span><span class="mi">1</span> <span class="p">:</span> <span class="mi">1</span><span class="p">;</span>  <span class="p">}</span>
+  <span class="p">});</span>
+  <span class="k">return</span> <span class="n">shapes</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of getOrderedShapes()</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getZOrder</span><span class="p">(</span><span class="n">XShape</span> <span class="n">shape</span><span class="p">)</span>
+<span class="p">{</span>  <span class="k">return</span> <span class="p">(</span><span class="n">Integer</span><span class="p">)</span> <span class="n">Props</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="s">&quot;ZOrder&quot;</span><span class="p">);</span>  <span class="p">}</span>
+</code></pre></div>
+<p>getShapes() extracts all the shapes from a slide as a list:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">XShape</span><span class="o">&gt;</span> <span class="nf">getShapes</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">slide</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">slide</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Slide is null&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">slide</span><span class="p">.</span><span class="na">getCount</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Slide does not contain any shapes&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">XShape</span><span class="o">&gt;</span> <span class="n">shapes</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">XShape</span><span class="o">&gt;</span><span class="p">();</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">slide</span><span class="p">.</span><span class="na">getCount</span><span class="p">();</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+      <span class="n">shapes</span><span class="p">.</span><span class="na">add</span><span class="p">(</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XShape</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">slide</span><span class="p">.</span><span class="na">getByIndex</span><span class="p">(</span><span class="n">j</span><span class="p">)));</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>   <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Shapes extraction error in slide&quot;</span><span class="p">);</span>  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">shapes</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of getShapes()</span>
+</code></pre></div>
                 
               
               
@@ -2326,6 +2445,7 @@ user's reading order of the shapes. For example, TitleShape usually has a z-orde
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -2333,7 +2453,8 @@ user's reading order of the shapes. For example, TitleShape usually has a z-orde
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="16-Making_Slides.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="16-Making_Slides.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 16. Making Slides" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2348,7 +2469,8 @@ user's reading order of the shapes. For example, TitleShape usually has a z-orde
         </a>
       
       
-        <a href="18-Slide_Shows.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="18-Slide_Shows.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 18. Slide Shows" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -2368,10 +2490,12 @@ user's reading order of the shapes. For example, TitleShape usually has a z-orde
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -2383,10 +2507,10 @@ user's reading order of the shapes. For example, TitleShape usually has a z-orde
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

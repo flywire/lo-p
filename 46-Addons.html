@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -1016,6 +1025,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -1030,6 +1040,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1284,6 +1295,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1440,7 +1452,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-46-add-ons">Chapter 46. Add-ons</h1>
+                <h1 id="chapter-46-add-ons">Chapter 46. Add-ons<a class="headerlink" href="#chapter-46-add-ons" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 <p>What is an Add-
@@ -1489,7 +1501,7 @@ the number of changes reported in the "Count:" field.</p>
 <p>Clicking on the help item causes a simple message box to appear, as in Figure 6.</p>
 <p><img alt="" src="images/46-Addons-6.png" /></p>
 <p>Figure 6. The EzHighlight Help Message Box.</p>
-<h2 id="1-what-is-an-add-on">1.  What is an Add-on?</h2>
+<h2 id="1-what-is-an-add-on">1.  What is an Add-on?<a class="headerlink" href="#1-what-is-an-add-on" title="Permanent link">&para;</a></h2>
 <p>Office supports two kinds of add-on: job add-ons and ProtocolHandler add-ons.</p>
 <p>A job add-on is a component triggered by events inside Office, such as when the
 application is first opened or about to terminate, or when a document is loaded,
@@ -1513,15 +1525,15 @@ a dispatch object. Fortunately, most of the dispatch handling behavior in an add
 can be generated automatically.</p>
 <p>The main source of information for job and ProtocolHandler add-ons is chapter 3 of
 the Developer's Guide (available at
-https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf), or
+<a href="https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf">https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf</a>), or
 online at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Integrating_
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Integrating">https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Integrating</a>_
 Components_into_OpenOffice.org and
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/AddOns/Ad
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/AddOns/Ad">https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/AddOns/Ad</a>
 d-Ons (or use <code>loGuide "Integrating Components"</code> and <code>loGuide add-ons</code>).</p>
 <p>The Developer's Guide add-on example can be found at
-http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Components</p>
-<h2 id="2-creating-the-ezhighlight-add-on">2.  Creating the EzHighlight Add-on</h2>
+<a href="http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Components">http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Components</a></p>
+<h2 id="2-creating-the-ezhighlight-add-on">2.  Creating the EzHighlight Add-on<a class="headerlink" href="#2-creating-the-ezhighlight-add-on" title="Permanent link">&para;</a></h2>
 <p>There's an overlap between the steps required to create an UNO component and an
 add-on. The main similarity is the need for an OXT file containing a JAR and a
 description.xml. However, there's no need for an IDL file or type database (a RDB
@@ -1535,7 +1547,7 @@ skeletonmaker which can also be employed to generate add-ons and Calc addins.
 Unfortunately, I was unable to get its add-on features to work.</p>
 <p>This was not a great loss since I'd already been thinking about replacing uno-
 skeletonmaker with FreeMarker, a powerful template processing library
-(http://freemarker.org/). FreeMarker can easily duplicate all the features of  uno-
+(<a href="http://freemarker.org/">http://freemarker.org/</a>). FreeMarker can easily duplicate all the features of  uno-
 skeletonmaker, creating a Java class with the boilerplate code for creating a service
 and handling command URLs. Also, by switching to FreeMarker, I was able to add
 more automatic code generation, including code for a user input dialog and a
@@ -1545,7 +1557,7 @@ debugging window.</p>
 Figures 2 and 3), and ProtocolHandler.xcu which says which command URLs are
 processed by the add-on's dispatch handler.</p>
 <p>The toolchain in Figure 7 will be explained in more detail in the rest of this chapter.</p>
-<h2 id="3-creating-a-partial-add-on-implementation">3.  Creating a Partial Add-on Implementation</h2>
+<h2 id="3-creating-a-partial-add-on-implementation">3.  Creating a Partial Add-on Implementation<a class="headerlink" href="#3-creating-a-partial-add-on-implementation" title="Permanent link">&para;</a></h2>
 <p>Figure 8 shows the main elements needed to use the FreeMarker template library: a
 FTL template file, and a program that instantiates the template by employing a
 collection of FreeMarker variables and their bindings.</p>
@@ -1577,7 +1589,7 @@ Figure 6. However, after the user has typed <ENTER> in the dialog or pressed the
 "Ok" button, no processing is carried out on the Office document.</p>
 <p>First I'll give an overview of the features in the generated EzHighlightAddonImpl
 class, then explain the additional highlighting code in a later section.</p>
-<h2 id="4-the-freemarker-generated-ezhighlightaddonimpl">4.  The FreeMarker-generated EzHighlightAddonImpl</h2>
+<h2 id="4-the-freemarker-generated-ezhighlightaddonimpl">4.  The FreeMarker-generated EzHighlightAddonImpl<a class="headerlink" href="#4-the-freemarker-generated-ezhighlightaddonimpl" title="Permanent link">&para;</a></h2>
 <p>The template in addonImpl.ftl represents a single Java class, which extends
 WeakBase and implements seven interfaces:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">$</span><span class="p">{</span><span class="n">className</span><span class="p">}</span> <span class="kd">extends</span> <span class="n">WeakBase</span> <span class="kd">implements</span>
@@ -1730,15 +1742,15 @@ and the call at the end hides it. These lines should be commented out of the com
 add-on, so the window doesn't appear.</p>
 <p>The dialog is handled by methods from my Dialogs support class, and by listeners set
 up in initDialog().</p>
-<h2 id="5-creating-the-dialog">5.  Creating the Dialog</h2>
+<h2 id="5-creating-the-dialog">5.  Creating the Dialog<a class="headerlink" href="#5-creating-the-dialog" title="Permanent link">&para;</a></h2>
 <p>There are two approaches for dialog creation: the easy way uses Office's dialog editor,
 and the hard way calls functions in my Dialogs support class to programmatically
 create the dialog's components. I'll use the editor in this chapter, and employ Dialogs
 methods in my macros in Chapter 48.</p>
 <p>The Developer's Guide has some information on the dialog editor in chapter 11,
 "OpenOffice.org Basic". The relevant sub-sections are online at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Dialog_Editor and
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Creating_Dialogs
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Dialog_Editor">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Dialog_Editor</a> and
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Creating_Dialogs">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Creating_Dialogs</a>
 (or use loGuide "Dialog Editor" and loGuide "Creating Dialogs").</p>
 <p>The editor utilizes drag-and-drop to place GUI elements in a dialog drawing area,
 with property windows for specializing each element. The editor is reached via
@@ -1795,7 +1807,7 @@ area (the icon includes a floppy disk which will leave young programmers mystifi
 "TextField1" and a button called "CommandButton1", which is true of the XDL
 shown above. Of course, it's possible to add more GUI components, as in the next
 section.</p>
-<h3 id="51-the-ezhighlight-dialog">5.1.  The EzHighlight Dialog</h3>
+<h3 id="51-the-ezhighlight-dialog">5.1.  The EzHighlight Dialog<a class="headerlink" href="#51-the-ezhighlight-dialog" title="Permanent link">&para;</a></h3>
 <p>The dialog editor has an import icon to the left of the export icon, which can be used
 to load an XDL file for modification.</p>
 <p>I copied the "Basic" XDL file, renaming it to "EzHighlight.xdl", and imported it; a
@@ -1886,7 +1898,7 @@ dialog name:</p>
                                        <span class="n">dialogLibrary</span><span class="o">/</span><span class="n">EzHighlight</span>
 </code></pre></div>
 <p>The dialog is loaded from the ezhighlightAddon extension.</p>
-<h3 id="52-listening-to-the-dialog">5.2.  Listening to the Dialog</h3>
+<h3 id="52-listening-to-the-dialog">5.2.  Listening to the Dialog<a class="headerlink" href="#52-listening-to-the-dialog" title="Permanent link">&para;</a></h3>
 <p>Back in processCmd(), listeners are attached to the loaded dialog, and the dialog is
 made visible on-screen:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// in processCmd() in EzHighlightAddonInpl.java...</span>
@@ -1993,7 +2005,7 @@ XKeyListener.keyPressed() captures the user typing <ENTER> into the text field:<
 </code></pre></div>
 <p>The template generated code for actionPerformed() and keyPressed() only print
 information to the Console window. Add-on specific functionality is added next.</p>
-<h2 id="6-completing-the-implementation-of-ezhighlightaddoninpl">6.  Completing the Implementation of EzHighlightAddonInpl</h2>
+<h2 id="6-completing-the-implementation-of-ezhighlightaddoninpl">6.  Completing the Implementation of EzHighlightAddonInpl<a class="headerlink" href="#6-completing-the-implementation-of-ezhighlightaddoninpl" title="Permanent link">&para;</a></h2>
 <p>The completion of EzHighlightAddonInpl.java takes the form of new code in
 processCmd(), initDialog(), actionPerformed(), and keyPressed(), and a few new
 global variables.</p>
@@ -2090,10 +2102,10 @@ Chapter 9. applyEzHighlighting() is:</p>
   <span class="k">return</span> <span class="n">repl</span><span class="p">.</span><span class="na">replaceAll</span><span class="p">(</span><span class="n">desc</span><span class="p">);</span>
 <span class="p">}</span>  <span class="c1">// end of applyEzHighlighting()</span>
 </code></pre></div>
-<h2 id="7-configuring-the-add-on">7.  Configuring the Add-on</h2>
+<h2 id="7-configuring-the-add-on">7.  Configuring the Add-on<a class="headerlink" href="#7-configuring-the-add-on" title="Permanent link">&para;</a></h2>
 <p>An add-on OXT file requires two configuration files not used by an UNO component:
 ProtocolHandler.xcu and Addon.xcs.</p>
-<h3 id="71-protocolhandlerxcu">7.1.  ProtocolHandler.xcu</h3>
+<h3 id="71-protocolhandlerxcu">7.1.  ProtocolHandler.xcu<a class="headerlink" href="#71-protocolhandlerxcu" title="Permanent link">&para;</a></h3>
 <p>ProtocolHandler.xcu specifies which command URLs will be handled by the
 component. The contents of the file for EzHighlight are:</p>
 <div class="highlight"><pre><span></span><code>&lt;?xml version=&#39;1.0&#39; encoding=&#39;UTF-8&#39;?&gt;
@@ -2117,7 +2129,7 @@ component. The contents of the file for EzHighlight are:</p>
 <p>The "EzHighlightAddonImpl" component will handle all command URLs that begin
 with the "org.openoffice.ezhighlightAddon" extension ID. The "all" is specified using
 the * wildcard. The component name is the name of the generated Java class.</p>
-<h3 id="72-addonxcs">7.2.  Addon.xcs</h3>
+<h3 id="72-addonxcs">7.2.  Addon.xcs<a class="headerlink" href="#72-addonxcs" title="Permanent link">&para;</a></h3>
 <p>Addon.xcs defines the add-on's GUI elements, such as its menu and toolbar items (i.e.
 as seen in Figures 2, 3, and 5). Figure 14 illustrates how the file may set up to five
 attributes:</p>
@@ -2140,9 +2152,9 @@ with five sub-attributes: URL, Title, ImageIdentifier, Context, and Target; I'll
 using sub-menu attributes.</p>
 <p>The best explanation of Addon.xcs' structure is "How to distribute your macros with
 an Addon" by Bernard Marcelly at
-http://www.openoffice.org/documentation/HOW_TO/various_topics/Addons1_1en.pdf,
+<a href="http://www.openoffice.org/documentation/HOW_TO/various_topics/Addons1_1en.pdf">http://www.openoffice.org/documentation/HOW_TO/various_topics/Addons1_1en.pdf</a>,
 which dates from 2003.</p>
-<h4 id="addonmenu-attribute">"AddonMenu" Attribute</h4>
+<h4 id="addonmenu-attribute">"AddonMenu" Attribute<a class="headerlink" href="#addonmenu-attribute" title="Permanent link">&para;</a></h4>
 <p>The "AddonMenu" attribute used by the EzHighlight add-on is:</p>
 <div class="highlight"><pre><span></span><code>&lt;node oor:name=&quot;AddonMenu&quot;&gt;
   &lt;node oor:name=&quot;org.openoffice.ezhighlightAddon&quot;
@@ -2223,7 +2235,7 @@ in Table 1.</p>
 Office's applications.</p>
 <p>The "Target" field can be assigned four values: "_top", "_parent", "_blank", and
 "_self", but I've never seen any other value used but "_self".</p>
-<h4 id="officetoolbar-attribute">"OfficeToolbar" Attribute</h4>
+<h4 id="officetoolbar-attribute">"OfficeToolbar" Attribute<a class="headerlink" href="#officetoolbar-attribute" title="Permanent link">&para;</a></h4>
 <p>Figure 2 (EzHighlight's menu item) and Figure 3 (its toolbar item) look the same, and
 respond in the same way when clicked, so it's no great surprise that the
 "OfficeToolbar" attribute in Addon.xcs is almost exactly the same as "AddonMenu":</p>
@@ -2258,7 +2270,7 @@ respond in the same way when clicked, so it's no great surprise that the
 <p>The difference is an extra <node> attribute which allows a toolbar to hold several
 items. In the description above, there's one item labeled as "m1". The labels can be
 any unique string, but "m" followed by a number is used in most examples.</p>
-<h4 id="officehelp-attribute">"OfficeHelp" Attribute</h4>
+<h4 id="officehelp-attribute">"OfficeHelp" Attribute<a class="headerlink" href="#officehelp-attribute" title="Permanent link">&para;</a></h4>
 <p>The "OfficeHelp" attribute is similar to "OfficeToolbar" and "AddonMenu", but
 dispatches a different command URL ("org.openoffice.ezhighlightAddon:help") and
 its menu item uses a different title ("About EzHighlight").</p>
@@ -2288,7 +2300,7 @@ its menu item uses a different title ("About EzHighlight").</p>
    &lt;/node&gt;
 &lt;/node&gt;
 </code></pre></div>
-<h4 id="images-attribute">"Images" Attribute</h4>
+<h4 id="images-attribute">"Images" Attribute<a class="headerlink" href="#images-attribute" title="Permanent link">&para;</a></h4>
 <p>The "Images" attribute specifies the icons used by the GUI elements. An image can be
 either big or small (26x26 or 16x16 pixels), high contrast or normal, and loaded from
 a file or coded as hexadecimal text. These different combinations mean there are eight
@@ -2368,7 +2380,7 @@ images don't appear, as shown in Figures 2 and 3.</p>
 <p>One way to obtain an image's hexadecimal text is to call my ImageHex.java program
 which prints it to stdout. Unfortunately, the icon still doesn't appear, even when
 specified in this form.</p>
-<h2 id="8-building-and-installing-the-oxt-file">8.  Building and Installing the OXT File</h2>
+<h2 id="8-building-and-installing-the-oxt-file">8.  Building and Installing the OXT File<a class="headerlink" href="#8-building-and-installing-the-oxt-file" title="Permanent link">&para;</a></h2>
 <p>Figure 7 shows the stages in building and installing the add-on as an extension. These
 steps are carried out by my installAddon.bat script, which assumes that the various
 configuration files have already been created and are in certain locations.</p>
@@ -2474,6 +2486,7 @@ Addon.xcs.</p>
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -2481,7 +2494,8 @@ Addon.xcs.</p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="45-UNO_Components.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="45-UNO_Components.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 45. Coding UNO Components" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2496,7 +2510,8 @@ Addon.xcs.</p>
         </a>
       
       
-        <a href="47-Calc_Add-ins.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="47-Calc_Add-ins.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 47. Calc Add-ins" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -2516,10 +2531,12 @@ Addon.xcs.</p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -2531,10 +2548,10 @@ Addon.xcs.</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

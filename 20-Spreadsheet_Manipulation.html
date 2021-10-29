@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -566,6 +575,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -580,6 +590,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1257,6 +1268,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1386,7 +1398,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-20-spreadsheet-displaying-and-creation">Chapter 20. Spreadsheet Displaying and Creation</h1>
+                <h1 id="chapter-20-spreadsheet-displaying-and-creation">Chapter 20. Spreadsheet Displaying and Creation<a class="headerlink" href="#chapter-20-spreadsheet-displaying-and-creation" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 <p>Displaying a 
@@ -1415,7 +1427,7 @@ by zooming. </p>
 <p>Document creation illustrates the use of cell names and 
 ranges, the setting of cell data using arrays, rows, and columns, and adding a picture 
 and a chart to a sheet. </p>
-<h2 id="1-displaying-a-document">1.  Displaying a Document</h2>
+<h2 id="1-displaying-a-document">1.  Displaying a Document<a class="headerlink" href="#1-displaying-a-document" title="Permanent link">&para;</a></h2>
 <p>The ShowSheet.java example shows how to open a spreadsheet document, and 
 display its first sheet. If the program is called with a filename argument, then the 
 document is saved to that file before the program closes. The extension of the output 
@@ -1535,21 +1547,21 @@ public static String ext2Format(int docType, String ext)
     case "docx": return "Office Open XML Text"; 
        : 
        :   // many more cases </p>
-<pre><code>case "pdf":  
+<div class="highlight"><pre><span></span><code>case &quot;pdf&quot;:  
   if (docType == Lo.WRITER) 
-    return "writer_pdf_Export"; 
+    return &quot;writer_pdf_Export&quot;; 
   else if (docType == Lo.IMPRESS) 
-    return "impress_pdf_Export"; 
+    return &quot;impress_pdf_Export&quot;; 
   else if (docType == Lo.DRAW) 
-    return "draw_pdf_Export"; 
+    return &quot;draw_pdf_Export&quot;; 
   else if (docType == Lo.CALC) 
-    return "calc_pdf_Export"; 
+    return &quot;calc_pdf_Export&quot;; 
   else if (docType == Lo.MATH) 
-    return "math_pdf_Export"; 
+    return &quot;math_pdf_Export&quot;; 
   else  
-    return "writer_pdf_Export"; 
+    return &quot;writer_pdf_Export&quot;; 
     :  // many more cases
-</code></pre>
+</code></pre></div>
 <p>}   // end of ext2Format() </p>
 <p>The "pdf" case is selected when the output file extension is "pdf", but the export 
 format also depends on the Office document. For ShowSheet.java, the docType value 
@@ -1557,7 +1569,7 @@ will be Lo.CALC, which causes ext2Format() to return "calc_pdf_Export". </p>
 <p>Lo.ext2Format() is very far from comprehensive, but understands Office and MS 
 spreadsheet formats, CSV, RTF, text, HTML, XHTML, and PDF. Other mappings 
 can be added as required. </p>
-<h3 id="11-read-only-and-protected-viewing">1.1.  Read-only and Protected Viewing</h3>
+<h3 id="11-read-only-and-protected-viewing">1.1.  Read-only and Protected Viewing<a class="headerlink" href="#11-read-only-and-protected-viewing" title="Permanent link">&para;</a></h3>
 <p>One variant of ShowSheet.java prevents a user from changing the spreadsheet. </p>
 <p>Unfortunately, implementing this by opening the document read-only isn't particularly 
 robust because Office always displays a message asking if the user wants to override 
@@ -1610,7 +1622,7 @@ public static String getPassword(String title, String inputMsg)<br />
   else<br />
     return null; 
 }  // end of getPassword() </p>
-<h3 id="12-changing-the-active-sheet">1.2.  Changing the Active Sheet</h3>
+<h3 id="12-changing-the-active-sheet">1.2.  Changing the Active Sheet<a class="headerlink" href="#12-changing-the-active-sheet" title="Permanent link">&para;</a></h3>
 <p>Another variation of ShowSheet allows the user to specify which sheet to make 
 active, and so be displayed in Office. It's not enough to execute Calc.getSheet() with a 
 sheet index; Calc.setActiveSheet() must also be called to make that sheet active: </p>
@@ -1633,7 +1645,7 @@ SpreadsheetViewSettings class, which can be listed by calling Props.showObjProps
 XSpreadsheetView ssView =<br />
           Lo.qi(XSpreadsheetView.class, getController(doc)); 
 Props.showObjProps("Spreadsheet view", ssView); </p>
-<h3 id="13-sheet-names">1.3.  Sheet Names</h3>
+<h3 id="13-sheet-names">1.3.  Sheet Names<a class="headerlink" href="#13-sheet-names" title="Permanent link">&para;</a></h3>
 <p>Default spreadsheet names use "Sheet" followed by a positive integer. For example, a 
 new document will name its first sheet "Sheet1". Calc.getSheet() can accept a sheet 
 name, as in the following code which makes "Sheet1" active: </p>
@@ -1655,7 +1667,7 @@ public static String[] getSheetNames(XSpreadsheetDocument doc)
   else 
     xNamed.setName(name); 
 }  // end of setSheetName() </p>
-<h3 id="14-zooming">1.4.  Zooming</h3>
+<h3 id="14-zooming">1.4.  Zooming<a class="headerlink" href="#14-zooming" title="Permanent link">&para;</a></h3>
 <p>Zooming the view of a document is done by adjusting properties in 
 SpreadsheetViewSettings (see Figure 1 above). The "ZoomType" property specifies 
 the kind of zooming, which may be a size percentage or a constant indicating a 
@@ -1683,7 +1695,7 @@ public static void zoomValue(XSpreadsheetDocument doc, int value)
   Props.setProperty(ctrl, "ZoomType", BY_VALUE); 
   Props.setProperty(ctrl, "ZoomValue", (short)value);        <br />
 } </p>
-<h2 id="2-creating-a-document">2.  Creating a Document</h2>
+<h2 id="2-creating-a-document">2.  Creating a Document<a class="headerlink" href="#2-creating-a-document" title="Permanent link">&para;</a></h2>
 <p>The BuildTable.java example shows how to create a new spreadsheet document, 
 populate it with data, apply cell styling, and save it to a file. I'll look at styling in the 
 next chapter, and will concentrate here on the different ways to add data to a sheet. </p>
@@ -1715,7 +1727,7 @@ public static void main(String args[])
 functions for filling cells and cell ranges. convertAddresses() illustrates the Calc.java 
 methods for converting between cell names and positions, and between cell range 
 names and position intervals. </p>
-<h3 id="21-switching-between-cell-names-cell-ranges-and-positions">2.1.  Switching between Cell Names, Cell Ranges, and Positions</h3>
+<h3 id="21-switching-between-cell-names-cell-ranges-and-positions">2.1.  Switching between Cell Names, Cell Ranges, and Positions<a class="headerlink" href="#21-switching-between-cell-names-cell-ranges-and-positions" title="Permanent link">&para;</a></h3>
 <p>Although the Calc.java get/set methods for cells, columns, rows, and cell ranges 
 support both name and position based addressing (e.g. "D5" and (3, 4)), it's still 
 sometimes necessary to convert between the different formats. convertAddresses() 
@@ -1723,14 +1735,14 @@ demonstrates those methods: </p>
 <p>// in BuildTable.java 
 private static void convertAddresses(XSpreadsheet sheet) 
 { 
-  // cell name &lt;--&gt; position 
+  // cell name &harr; position 
   java.awt.Point pos = Calc.getCellPosition("AA2"); 
   System.out.println("Position of AA2: (" +pos.x+", "+pos.y+")"); </p>
 <p>XCell cell = Calc.getCell(sheet, pos.x, pos.y); 
   Calc.printCellAddress(cell); </p>
 <p>System.out.println("AA2: " + Calc.getCellStr(pos.x, pos.y)); 
   System.out.println(); </p>
-<p>// cell range name &lt;--&gt; position 
+<p>// cell range name &harr; position 
   java.awt.Point[] range = Calc.getCellRangePositions("A1:D5"); 
   System.out.println("Range of A1:D5: (" +<br />
                       range[0].x + ", " +  range[0].y + <br />
@@ -1789,11 +1801,11 @@ public static XCell getCell(XSpreadsheet sheet, int column, int row)
 <p>A second version of getCell() refers to a cell by name: 
 XCell cell = Calc.getCell(sheet, "AA2"); 
 The code: </p>
-<p>// 2nd version of Calc.getCell() 
+<p>// 2<sup>nd</sup> version of Calc.getCell() 
 public static XCell getCell(XSpreadsheet sheet, String cellName) 
 {<br />
   XCellRange cellRange = sheet.getCellRangeByName(cellName); 
-  return getCell(cellRange, 0, 0);   // calls 1st getCell() 
+  return getCell(cellRange, 0, 0);   // calls 1<sup>st</sup> getCell() 
 }  </p>
 <p>The call to XCellRange.getCellRangeByName() with a single cell name returns a cell 
 range made up of one cell. This XCellRange reference can be passed to Calc.getCell() 
@@ -1825,7 +1837,7 @@ public static XCellRange getCellRange(XSpreadsheet sheet,<br />
     System.out.println("Could not access: \"" + rangeName + "\"" ); 
   return cellRange; 
 } </p>
-<h3 id="22-changing-cell-values">2.2.  Changing Cell Values</h3>
+<h3 id="22-changing-cell-values">2.2.  Changing Cell Values<a class="headerlink" href="#22-changing-cell-values" title="Permanent link">&para;</a></h3>
 <p>Back in BuildTable.java, the buildCells() methods shows how individual cells can be 
 assigned values. The code uses two versions of Calc.setVal(), one that accepts a cell 
 position, the other a cell name. For example: </p>
@@ -1861,7 +1873,7 @@ public static void setVal(XSpreadsheet sheet,<br />
 }  // end of setVal() </p>
 <p>The third setVal() function examines the type of the value to decide whether to call 
 XCell.setValue() or XCell.setFormula(). </p>
-<h3 id="23-storing-2d-arrays-of-data">2.3.  Storing 2D Arrays of Data</h3>
+<h3 id="23-storing-2d-arrays-of-data">2.3.  Storing 2D Arrays of Data<a class="headerlink" href="#23-storing-2d-arrays-of-data" title="Permanent link">&para;</a></h3>
 <p>The buildArray() method in BuildTables.java shows how a block of data can be stored 
 by Calc.setArray(): </p>
 <p>// in BuildTable.java 
@@ -1931,7 +1943,7 @@ public static void setArray(XSpreadsheet sheet,<br />
 <p>The storage of the array is performed by Calc.setCellRangeArray() which is passed an 
 XCellRange object and a 2D array. XCellRange is converted into XCellRangeData 
 which has a setDataArray() method. </p>
-<h3 id="24-storing-rows-of-data">2.4.  Storing Rows of Data</h3>
+<h3 id="24-storing-rows-of-data">2.4.  Storing Rows of Data<a class="headerlink" href="#24-storing-rows-of-data" title="Permanent link">&para;</a></h3>
 <p>Calc.setRow() lets the programmer store a 1D array as a row of data: </p>
 <p>Calc.setRow(sheet, "B2", <br />
            new Object[] {42, 58.9, -66.5, 43.4, 44.5, 45.3,<br />
@@ -1956,7 +1968,7 @@ public static void setRow(XSpreadsheet sheet,<br />
   crData.setDataArray( new Object[][]{values});  <br />
        // store the row as a 2D array containing one row of data 
 }  // end of setRow() </p>
-<h3 id="25-storing-columns-of-data">2.5.  Storing Columns of Data</h3>
+<h3 id="25-storing-columns-of-data">2.5.  Storing Columns of Data<a class="headerlink" href="#25-storing-columns-of-data" title="Permanent link">&para;</a></h3>
 <p>Calc.setCol() lets the programmer store a column of data, as shown in 
 BuildTable.java in its buildCols() method: </p>
 <p>// in BuildTable.java 
@@ -2008,7 +2020,7 @@ public static void setCol(XSpreadsheet sheet,<br />
     setVal(xCell, values[i]); 
   } 
 }  // end of setCol() </p>
-<h3 id="26-adding-a-picture">2.6.  Adding a Picture</h3>
+<h3 id="26-adding-a-picture">2.6.  Adding a Picture<a class="headerlink" href="#26-adding-a-picture" title="Permanent link">&para;</a></h3>
 <p>Adding an image to a spreadsheet is straightforward since every sheet is also a draw 
 page. The Spreadsheet service has an XDrawPageSupplier interface, which has a 
 getDrawPage() method. The returned XDrawPage reference points to a transparent 
@@ -2038,7 +2050,7 @@ as in: </p>
 XComponent compDoc = Lo.qi(XComponent.class, doc); 
 System.out.println("No of draw pages: " +<br />
                              Draw.getSlidesCount(compDoc)); </p>
-<h3 id="27-adding-a-chart">2.7.  Adding a Chart</h3>
+<h3 id="27-adding-a-chart">2.7.  Adding a Chart<a class="headerlink" href="#27-adding-a-chart" title="Permanent link">&para;</a></h3>
 <p>I'll be discussing charting at length in Part 5, but I'll give a taster of it here since a 
 CellRangeAddress object is used to pass data to the charting methods. For example, 
 the cell range for "A1:N4" is passed to Chart2.insertChart(): </p>
@@ -2061,6 +2073,7 @@ chart looks like. </p>
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -2068,7 +2081,8 @@ chart looks like. </p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="19-Calc_API_Overview.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="19-Calc_API_Overview.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 19. Calc API Overview" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2083,7 +2097,8 @@ chart looks like. </p>
         </a>
       
       
-        <a href="21-Extracting_Data.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="21-Extracting_Data.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 21. Extracting Data" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -2103,10 +2118,12 @@ chart looks like. </p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -2118,10 +2135,10 @@ chart looks like. </p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -911,6 +920,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -925,6 +935,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1210,6 +1221,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1292,7 +1304,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-40-building-a-form-programmatically">Chapter 40. Building a Form Programmatically</h1>
+                <h1 id="chapter-40-building-a-form-programmatically">Chapter 40. Building a Form Programmatically<a class="headerlink" href="#chapter-40-building-a-form-programmatically" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 <p>Creating 
@@ -1356,7 +1368,7 @@ public BuildForm()
   Lo.closeDoc(doc); 
   Lo.closeOffice(); 
 }  // end of BuildForm() </p>
-<h2 id="1-creating-controls">1.  Creating Controls</h2>
+<h2 id="1-creating-controls">1.  Creating Controls<a class="headerlink" href="#1-creating-controls" title="Permanent link">&para;</a></h2>
 <p>createForm() makes many calls to Forms.addControl(), and other Forms.addXXX() 
 methods which indirectly use Forms.addControl(). For example, the call that creates 
 the "No automatic generation" radio button at the top of the form is: </p>
@@ -1395,7 +1407,7 @@ public static XPropertySet addControl(XComponent doc,<br />
     XControlShape cShape = 
         Lo.createInstanceMSF(XControlShape.class,<br />
                         "com.sun.star.drawing.ControlShape"); </p>
-<pre><code>// position and size of the shape 
+<div class="highlight"><pre><span></span><code>// position and size of the shape 
 cShape.setSize(new Size(width*100, height * 100)); 
 cShape.setPosition(new Point(x * 100, y * 100));
 
@@ -1403,31 +1415,31 @@ cShape.setPosition(new Point(x * 100, y * 100));
 XPropertySet shapeProps = Lo.qi(XPropertySet.class, cShape); 
 TextContentAnchorType eAnchorType =  
                    TextContentAnchorType.AT_PARAGRAPH; 
-shapeProps.setPropertyValue("AnchorType", eAnchorType);
+shapeProps.setPropertyValue(&quot;AnchorType&quot;, eAnchorType);
 
-// create the control's model 
+// create the control&#39;s model 
 XControlModel cModel =  
            Lo.createInstanceMSF(XControlModel.class,  
-               "com.sun.star.form.component." + compKind);
+               &quot;com.sun.star.form.component.&quot; + compKind);
 
-// insert the model into the form (or default to "Form") 
+// insert the model into the form (or default to &quot;Form&quot;) 
 if (parentForm != null) 
   parentForm.insertByName(name, cModel);
 
 // link model to the shape 
 cShape.setControl(cModel);
 
-// add shape to shapes collection of the doc's draw page 
+// add shape to shapes collection of the doc&#39;s draw page 
 XDrawPage drawPage = getDrawPage(doc); 
 XShapes formShape s= Lo.qi(XShapes.class, drawPage ); 
 formShapes.add(cShape);
 
 // set Name and Label properties for the model 
 modelProps = Lo.qi(XPropertySet.class, cModel); 
-modelProps.setPropertyValue("Name", name); 
+modelProps.setPropertyValue(&quot;Name&quot;, name); 
 if (label != null) 
-  modelProps.setPropertyValue("Label", label);
-</code></pre>
+  modelProps.setPropertyValue(&quot;Label&quot;, label);
+</code></pre></div>
 <p>} 
   catch (Exception e) { 
     System.out.println(e); 
@@ -1453,12 +1465,12 @@ public static XPropertySet addButton(XComponent doc,<br />
     buttonProps = addControl(doc, name, label, "CommandButton",<br />
                              x, y, width, height); 
     buttonProps.setPropertyValue("HelpText", name); </p>
-<pre><code>// don't want button to be accessible by the "tab" key 
-buttonProps.setPropertyValue("Tabstop", false);
+<div class="highlight"><pre><span></span><code>// don&#39;t want button to be accessible by the &quot;tab&quot; key 
+buttonProps.setPropertyValue(&quot;Tabstop&quot;, false);
 
 // the button should not steal focus when clicked 
-buttonProps.setPropertyValue("FocusOnClick", false);
-</code></pre>
+buttonProps.setPropertyValue(&quot;FocusOnClick&quot;, false);
+</code></pre></div>
 <p>} 
   catch (Exception e) { 
     System.out.println(e); 
@@ -1474,10 +1486,9 @@ addControl() twice to attach a text label to the control. For instance, the
 <p>XPropertySet props = 
     Forms.addLabelledControl(doc, "FIRSTNAME", "TextField", 11); </p>
 <p>The Forms.addLabelledControl() code: </p>
-<p>// in the Forms class 
+<p 2_="2," 6_="6);" addLabelledControl_doc_="addLabelledControl(doc," compKind_="compKind," label_="label," return="return" y_="y,">// in the Forms class 
 public static XPropertySet addLabelledControl(XComponent doc,<br />
-          String label, String compKind, int y) 
-{  return addLabelledControl(doc, label, compKind, 2, y, 6);  } </p>
+          String label, String compKind, int y) </p>
 <p>public static XPropertySet addLabelledControl(XComponent doc,<br />
         String label, String compKind, int x, int y, int height) 
 { 
@@ -1487,14 +1498,14 @@ public static XPropertySet addLabelledControl(XComponent doc,<br />
     String name = label + "_Label"; 
     XPropertySet labelProps =<br />
        addControl(doc, name, label, "FixedText", x, y, 25, 6); </p>
-<pre><code>// create data field control 
+<div class="highlight"><pre><span></span><code>// create data field control 
 ctrlProps = addControl(doc, label, null, compKind,  
            x + 26, y, 40, height);  // to the right 
-ctrlProps.setPropertyValue("DataField", label);
+ctrlProps.setPropertyValue(&quot;DataField&quot;, label);
 
 // add label props to the control 
-ctrlProps.setPropertyValue("LabelControl", labelProps);
-</code></pre>
+ctrlProps.setPropertyValue(&quot;LabelControl&quot;, labelProps);
+</code></pre></div>
 <p>} 
   catch (Exception e) { 
     System.out.println(e); 
@@ -1503,7 +1514,7 @@ ctrlProps.setPropertyValue("LabelControl", labelProps);
 }  // end of addLabelledControl() </p>
 <p>The label is of type com.sun.star.form.component.FixedText, and linked to the text 
 field by setting its "DataField" and "LabelControl" properties. </p>
-<h2 id="2-assigning-a-data-source-to-a-form">2.  Assigning a Data Source to a Form</h2>
+<h2 id="2-assigning-a-data-source-to-a-form">2.  Assigning a Data Source to a Form<a class="headerlink" href="#2-assigning-a-data-source-to-a-form" title="Permanent link">&para;</a></h2>
 <p>The "Form" and "GridForm" forms are both 'data aware', which means they're 
 connected to external databases. Data awareness is supported by the DataForm 
 subclass of the Form service, which is also connected to the RowSet and ResultSet 
@@ -1550,7 +1561,7 @@ public static void bindFormToSQL(XForm xForm,
 <p>It's not clear to me why the command type must be CommandType.COMMAND in 
 Forms.bindFormToSQL() since the SELECT query should be processable by 
 CommandType.TABLE, but using that type cause a run-time error. </p>
-<h2 id="3-creating-data-aware-controls">3.  Creating Data-aware Controls</h2>
+<h2 id="3-creating-data-aware-controls">3.  Creating Data-aware Controls<a class="headerlink" href="#3-creating-data-aware-controls" title="Permanent link">&para;</a></h2>
 <p>Some control models have subclasses that support data-awareness, which means they 
 can access the form's data source using SELECT queries. The different types are 
 shown in Table 2. </p>
@@ -1607,12 +1618,12 @@ public static XPropertySet addDatabaseList(XComponent doc,<br />
     listProps.setPropertyValue("Dropdown", true); 
     listProps.setPropertyValue("MultiSelection", false); 
     listProps.setPropertyValue("BoundColumn", (short) 0); </p>
-<pre><code>// data-aware properties 
-listProps.setPropertyValue("ListSourceType",  
+<div class="highlight"><pre><span></span><code>// data-aware properties 
+listProps.setPropertyValue(&quot;ListSourceType&quot;,  
                                     ListSourceType.SQL); 
-listProps.setPropertyValue("ListSource",  
+listProps.setPropertyValue(&quot;ListSource&quot;,  
                                  new String[] { sqlCmd });
-</code></pre>
+</code></pre></div>
 <p>} 
   catch (Exception e) { 
     System.out.println(e); 
@@ -1624,7 +1635,7 @@ model's properties are configured.  </p>
 <p>Setting the list's default selection to be its first value causes Office to hang, so I've 
 commented out that line in addDatabaseList() above. This means that the list boxes 
 appear to be empty until the user clicks on them. </p>
-<h2 id="4-initializing-the-gridcontrol">4.  Initializing the GridControl</h2>
+<h2 id="4-initializing-the-gridcontrol">4.  Initializing the GridControl<a class="headerlink" href="#4-initializing-the-gridcontrol" title="Permanent link">&para;</a></h2>
 <p>The GridControl is created by calling Forms.addControl() with "GridControl" as the 
 model string. Also, since this is the only control not inside the "Form" default form, 
 it's necessary to include a reference to the nameContainer for "GridForm": </p>
@@ -1672,24 +1683,24 @@ public static void createGridColumn(XControlModel gridModel,<br />
                     Lo.qi(XIndexContainer.class, gridModel); 
     XGridColumnFactory colFactory =<br />
                     Lo.qi(XGridColumnFactory.class, gridModel); </p>
-<pre><code>// create the column 
+<div class="highlight"><pre><span></span><code>// create the column 
 XPropertySet colProps = colFactory.createColumn(colKind); 
-colProps.setPropertyValue("DataField", dataField);   
+colProps.setPropertyValue(&quot;DataField&quot;, dataField);   
             // connect column to this result set column 
-colProps.setPropertyValue("Label", dataField); 
-colProps.setPropertyValue("Name", dataField); 
+colProps.setPropertyValue(&quot;Label&quot;, dataField); 
+colProps.setPropertyValue(&quot;Name&quot;, dataField); 
 if (width &gt; 0) 
-  colProps.setPropertyValue("Width", new Integer(width * 10));
+  colProps.setPropertyValue(&quot;Width&quot;, new Integer(width * 10));
 
 // add properties column to container 
 colContainer.insertByIndex(colContainer.getCount(), colProps);
-</code></pre>
+</code></pre></div>
 <p>} 
   catch (Exception e) { 
     System.out.println(e); 
   } 
 }  // end of createGridColumn() </p>
-<h2 id="5-attaching-listeners">5.  Attaching Listeners</h2>
+<h2 id="5-attaching-listeners">5.  Attaching Listeners<a class="headerlink" href="#5-attaching-listeners" title="Permanent link">&para;</a></h2>
 <p>Table 1 shows that nine Office  listeners are used with the controls. To reduce coding, 
 BuildForm implements their methods: </p>
 <dl>
@@ -1713,7 +1724,7 @@ BuildForm implements their methods: </p>
 <dt>// XActionListener  </dt>
 <dt>  public void actionPerformed(ActionEvent ev) </dt>
 <dt>  // called when a button has been pressed </dt>
-<dt>  {  System.out.println("Pressed \"" + ev.ActionCommand + "\"");  }   </dt>
+<dt System.out.println_Pressed="System.out.println(&quot;Pressed" _="&quot;\&quot;&quot;);" ev.ActionCommand="ev.ActionCommand"></dt>
 <dd>
 <p>// many more listener methods </p>
 </dd>
@@ -1741,7 +1752,7 @@ public void listenToButton(XPropertySet props)
 <p>xButton.setActionCommand(Forms.getName(cModel)); 
   xButton.addActionListener(this);  // use BuildForms as the listener 
 }  // end of listenToButton() </p>
-<h2 id="6-listening-for-grid-control-selection-changes">6.  Listening for Grid Control Selection Changes</h2>
+<h2 id="6-listening-for-grid-control-selection-changes">6.  Listening for Grid Control Selection Changes<a class="headerlink" href="#6-listening-for-grid-control-selection-changes" title="Permanent link">&para;</a></h2>
 <p>Grid selection changes occur when the user clicks on a cell in the table, as in Figure 7. </p>
 <p><img alt="" src="images/40-Building_a_Form-7.png" /></p>
 <p>Figure 7. Grid Control Selection Change. </p>
@@ -1776,7 +1787,7 @@ columnChanged() method is only triggered when the data in a column changes, whic
 never occurs. However, XSelectionChangeListener.selectionChanged() is sent an 
 event whenever the user's selection changes, which is what we're interested in 
 reporting. </p>
-<h2 id="7-using-the-result-set">7.  Using the Result Set</h2>
+<h2 id="7-using-the-result-set">7.  Using the Result Set<a class="headerlink" href="#7-using-the-result-set" title="Permanent link">&para;</a></h2>
 <p>The XGridControl interface for GridControl doesn't offer all the methods I need for 
 announcing selection changes.  </p>
 <p>XGridControl inherits XGrid and XGridFieldDataSupplier. XGrid can retrieve the 
@@ -1824,7 +1835,7 @@ public void selectionChanged(EventObject ev)
 column and row in the table. The selected column is obtained by calling 
 XGridControl.getCurrentColumnPosition(), and the current row comes from 
 XResultSet.getRow(). </p>
-<h2 id="8-some-bugs">8.  Some Bugs</h2>
+<h2 id="8-some-bugs">8.  Some Bugs<a class="headerlink" href="#8-some-bugs" title="Permanent link">&para;</a></h2>
 <p>My first version of BuildForm.java had a few problems which caused it to hang.  </p>
 <p>The most serious occurred when I tried to include an image button in the form. The 
 relevant lines in createForm() in BuildForm.java were: </p>
@@ -1852,6 +1863,7 @@ the user clicks on the list. </p>
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -1859,7 +1871,8 @@ the user clicks on the list. </p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="39-Forms_API_Overview.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="39-Forms_API_Overview.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 39. Forms API Overview" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1874,7 +1887,8 @@ the user clicks on the list. </p>
         </a>
       
       
-        <a href="41-Printing.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="41-Printing.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 41. Printing" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -1894,10 +1908,12 @@ the user clicks on the list. </p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -1909,10 +1925,10 @@ the user clicks on the list. </p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

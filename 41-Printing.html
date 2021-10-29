@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -926,6 +935,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -940,6 +950,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1339,6 +1350,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1550,7 +1562,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-41-printing">Chapter 41. Printing</h1>
+                <h1 id="chapter-41-printing">Chapter 41. Printing<a class="headerlink" href="#chapter-41-printing" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 <p>The Java Print 
@@ -1588,18 +1600,18 @@ handouts, work flawlessly in the GUI. </p>
 <p>I'll finish with a short discussion of command line printing in Windows. The OS has 
 several print utilities that are a little hard to find and use. Also, Office can be started 
 from the command line in order to print documents. </p>
-<h2 id="1-the-java-print-service-jps">1.  The Java Print Service (JPS)</h2>
+<h2 id="1-the-java-print-service-jps">1.  The Java Print Service (JPS)<a class="headerlink" href="#1-the-java-print-service-jps" title="Permanent link">&para;</a></h2>
 <p>Java 1.4 saw the introduction of the Java Print service (JPS) API which allows a 
 printer to be selected based on document types and attributes such as color output, 
 paper sizes, and double-sided printing. </p>
 <p>JPS printing passes through four stages: </p>
-<h2 id="1-selection-of-a-print-service-ie-a-printer-or-print-driver-represented-by-a">1.  Selection of a print service (i.e. a printer or print driver), represented by a</h2>
+<h2 id="1-selection-of-a-print-service-ie-a-printer-or-print-driver-represented-by-a">1.  Selection of a print service (i.e. a printer or print driver), represented by a<a class="headerlink" href="#1-selection-of-a-print-service-ie-a-printer-or-print-driver-represented-by-a" title="Permanent link">&para;</a></h2>
 <p>PrintService instance. The programmer can supply document types and printer 
 attributes to limit the search. </p>
-<h2 id="2-creation-of-a-doc-object-for-the-document-thats-to-be-printed">2.  Creation of a Doc object for the document that's to be printed.</h2>
-<h2 id="3-creation-of-a-print-job-combining-the-doc-object-and-print-request-attributes-a">3.  Creation of a print job combining the Doc object and print request attributes. A</h2>
+<h2 id="2-creation-of-a-doc-object-for-the-document-thats-to-be-printed">2.  Creation of a Doc object for the document that's to be printed.<a class="headerlink" href="#2-creation-of-a-doc-object-for-the-document-thats-to-be-printed" title="Permanent link">&para;</a></h2>
+<h2 id="3-creation-of-a-print-job-combining-the-doc-object-and-print-request-attributes-a">3.  Creation of a print job combining the Doc object and print request attributes. A<a class="headerlink" href="#3-creation-of-a-print-job-combining-the-doc-object-and-print-request-attributes-a" title="Permanent link">&para;</a></h2>
 <p>listener can be attached to monitor what's happening during the printing. </p>
-<h2 id="4-the-printing-is-started-and-performed-asynchronously">4.  The printing is started, and performed asynchronously.</h2>
+<h2 id="4-the-printing-is-started-and-performed-asynchronously">4.  The printing is started, and performed asynchronously.<a class="headerlink" href="#4-the-printing-is-started-and-performed-asynchronously" title="Permanent link">&para;</a></h2>
 <p>Document types are encoded as DocFlavor objects which contain data source details 
 (e.g. whether the document comes from an input stream or a URL), and a MIME type 
 (e.g. image/gif, application/pdf). A common misconception about DocFlavor is that it 
@@ -1637,7 +1649,7 @@ PrintService[] services =<br />
 the four kinds of attributes. </p>
 <p>The easiest way to find out about particular attribute  is via the Attribute interface 
 documentation at 
-https://docs.oracle.com/javase/8/docs/api/index.html?java/util/jar/Attributes.html, 
+<a href="https://docs.oracle.com/javase/8/docs/api/index.html?java/util/jar/Attributes.html">https://docs.oracle.com/javase/8/docs/api/index.html?java/util/jar/Attributes.html</a>, 
 which lists the attribute subclasses, such as MediaSizeName and Sides used in the 
 example above. </p>
 <p>The next fragment creates a Doc object for a GIF file, a stage 2 task in JPS printing: </p>
@@ -1655,7 +1667,7 @@ attributes (PJAs). </p>
 <p>Stage 4 starts the printing: 
 job.print(doc, null);<br />
 The second argument of print() can be a set of print request attributes (PRAs). </p>
-<h3 id="11-listing-the-printers">1.1.  Listing the Printers</h3>
+<h3 id="11-listing-the-printers">1.1.  Listing the Printers<a class="headerlink" href="#11-listing-the-printers" title="Permanent link">&para;</a></h3>
 <p>The ListPrinters.java example in this section focuses on JPS stage 1. It prints short 
 details about all the available printers, fuller information about the default printer, and 
 a list of printer names. The main() function: </p>
@@ -1675,14 +1687,14 @@ public static void main(String [] args)
 <p>Most of the functionality is implemented by the JPrint.java utility class.  </p>
 <p>JPrint.listServices() on one of my test machines prints the following: </p>
 <p>-------- Print services (16) ---------- </p>
-<h2 id="1-send-to-onenote-2010">1.  "Send To OneNote 2010"</h2>
+<h2 id="1-send-to-onenote-2010">1.  "Send To OneNote 2010"<a class="headerlink" href="#1-send-to-onenote-2010" title="Permanent link">&para;</a></h2>
 <p>color-supported:supported 
   printer-name:Send To OneNote 2010 
   queued-job-count:0 
   printer-is-accepting-jobs:accepting-jobs 
   Supported doc types:  image/gif image/jpeg image/png<br />
                         application/octet-stream </p>
-<h2 id="2-ricoh-aficio-mp-2000-pclblack-office-room">2.  "Ricoh Aficio MP 2000 PCL(Black Office Room)"</h2>
+<h2 id="2-ricoh-aficio-mp-2000-pclblack-office-room">2.  "Ricoh Aficio MP 2000 PCL(Black Office Room)"<a class="headerlink" href="#2-ricoh-aficio-mp-2000-pclblack-office-room" title="Permanent link">&para;</a></h2>
 <dl>
 <dt>color-supported:not-supported </dt>
 <dt>  printer-name:Ricoh Aficio MP 2000 PCL(Black Office Room) </dt>
@@ -1740,11 +1752,11 @@ public static void listServices(boolean showAll)
   for (int j = 0; j &lt; flavors.length; j++) { 
     // Filter out DocFlavors that have a representation class other 
     // than java.io.InputStream.   </p>
-<pre><code>String repclass = flavors[j].getRepresentationClassName(); 
-if (!repclass.equals("java.io.InputStream")) // restrict to files 
+<div class="highlight"><pre><span></span><code>String repclass = flavors[j].getRepresentationClassName(); 
+if (!repclass.equals(&quot;java.io.InputStream&quot;)) // restrict to files 
   continue; 
-System.out.print(" " + flavors[j].getMimeType());
-</code></pre>
+System.out.print(&quot; &quot; + flavors[j].getMimeType());
+</code></pre></div>
 <p>} 
   System.out.println(); </p>
 <p>// print every printer attribute 
@@ -1766,7 +1778,7 @@ attribute. </p>
 <p>The four attributes returned by PrintService.getAttributes() are the tip of a very large 
 iceberg. Java supports a multitude of attributes as seen if you look at the Java 8 
 Attribute documentation at 
-https://docs.oracle.com/javase/8/docs/api/javax/print/attribute/Attribute.html. Over 70 
+<a href="https://docs.oracle.com/javase/8/docs/api/javax/print/attribute/Attribute.html">https://docs.oracle.com/javase/8/docs/api/javax/print/attribute/Attribute.html</a>. Over 70 
 subclasses are listed, including PrinterName, Sides, and Chromacity. A taste of what 
 can be printed occurs when the default printer's details are listed: </p>
 <p>// in ListPrinters.java... </p>
@@ -1804,7 +1816,7 @@ to each other. Probably the attribute the user really wants to examne is "color-
 supported" which shows that this printer only offers grayscales.  </p>
 <p>The main drawback of printing all these attributes is the time required to collect them, 
 sort them, and remove duplicates; each printer may take several seconds to process. </p>
-<h3 id="12-discovering-print-services">1.2.  Discovering Print Services</h3>
+<h3 id="12-discovering-print-services">1.2.  Discovering Print Services<a class="headerlink" href="#12-discovering-print-services" title="Permanent link">&para;</a></h3>
 <p>PrintServiceLookup.lookupPrintServices() should be called with DocFlavor and/or 
 print request attributes to narrow down the search. Some examples can be found in 
 Discovery.java. For instance, the following fragment looks for printers that can 
@@ -1893,7 +1905,7 @@ if (ps != null) {
 <p>Figure 1. The ServiceUI.printDialog() Dialog. </p>
 <p>Pressing the "Print" button returns a PrintService reference; pressing "Cancel" returns 
 null. </p>
-<h3 id="13-printing-using-java">1.3.  Printing Using Java</h3>
+<h3 id="13-printing-using-java">1.3.  Printing Using Java<a class="headerlink" href="#13-printing-using-java" title="Permanent link">&para;</a></h3>
 <p>After a print service has been selected, JPS stages 2-4 involve instantiating a Doc 
 object, creating a print job, and starting the printing. These are managed by my 
 JPrint.printFile(): </p>
@@ -1934,8 +1946,8 @@ public static DocFlavor getFlavor(PrintService ps, String fnm)
 <p>public static DocFlavor getFlavorFromFnm(String fnm) 
 { 
   String ext = fnm.substring(fnm.lastIndexOf('.') + 1). </p>
-<pre><code>                                  toLowerCase();
-</code></pre>
+<div class="highlight"><pre><span></span><code>                                  toLowerCase();
+</code></pre></div>
 <p>if (ext.equals("gif")) 
     return DocFlavor.INPUT_STREAM.GIF; 
   else if (ext.equals("jpeg")) 
@@ -1992,39 +2004,33 @@ or printing error. </p>
 <p>DocPrintJob printJob = ps.createPrintJob(); 
 printJob.addPrintJobListener(new PJWatcher()); </p>
 <p>PJWatcher implements the PrintJobListener interface: </p>
-<p>// in the JPrint class 
+<p Data="Data" System.out.println_="System.out.println(&quot;" _="&gt;&gt;" printer_="printer&quot;);" to="to" transferred="transferred">// in the JPrint class 
 private static class PJWatcher implements PrintJobListener 
 { 
-  public void printDataTransferCompleted(PrintJobEvent pje) 
-  {  System.out.println(" &gt;&gt; Data transferred to printer"); } </p>
-<p>public void printJobCanceled(PrintJobEvent pje) 
-  {  System.out.println(" &gt;&gt; Print job was cancelled");  } </p>
-<p>public void printJobCompleted(PrintJobEvent pje) 
-  {  System.out.println(" &gt;&gt; Print job completed successfully");  } </p>
-<p>public void printJobFailed(PrintJobEvent pje) 
-  {  System.out.println(" &gt;&gt; Print job failed");  } </p>
-<p>public void printJobNoMoreEvents(PrintJobEvent pje) 
-  {  System.out.println(" &gt;&gt; No more events will be delivered");  } </p>
-<p>public void printJobRequiresAttention(PrintJobEvent pje) 
-  {  System.out.println(" &gt;&gt; Print job needs attention"); } </p>
+  public void printDataTransferCompleted(PrintJobEvent pje) </p>
+<p Print="Print" System.out.println_="System.out.println(&quot;" _="&gt;&gt;" cancelled_="cancelled&quot;);" job="job" was="was">public void printJobCanceled(PrintJobEvent pje) </p>
+<p Print="Print" System.out.println_="System.out.println(&quot;" _="&gt;&gt;" completed="completed" job="job" successfully_="successfully&quot;);">public void printJobCompleted(PrintJobEvent pje) </p>
+<p Print="Print" System.out.println_="System.out.println(&quot;" _="&gt;&gt;" failed_="failed&quot;);" job="job">public void printJobFailed(PrintJobEvent pje) </p>
+<p No="No" System.out.println_="System.out.println(&quot;" _="&gt;&gt;" be="be" delivered_="delivered&quot;);" events="events" more="more" will="will">public void printJobNoMoreEvents(PrintJobEvent pje) </p>
+<p Print="Print" System.out.println_="System.out.println(&quot;" _="&gt;&gt;" attention_="attention&quot;);" job="job" needs="needs">public void printJobRequiresAttention(PrintJobEvent pje) </p>
 <p>}  // end of PJWatcher class </p>
-<h3 id="14-more-information-on-javaxprint">1.4.  More Information on javax.print</h3>
+<h3 id="14-more-information-on-javaxprint">1.4.  More Information on javax.print<a class="headerlink" href="#14-more-information-on-javaxprint" title="Permanent link">&para;</a></h3>
 <p>Good sources of information on Java printing include the tutorial at 
-https://docs.oracle.com/javase/tutorial/2d/printing/ which covers JPS and the older 
+<a href="https://docs.oracle.com/javase/tutorial/2d/printing/">https://docs.oracle.com/javase/tutorial/2d/printing/</a> which covers JPS and the older 
 Java 2D printing API, and the JPS API user guide at 
-https://docs.oracle.com/javase/8/docs/technotes/guides/jps/spec/JPSTOC.fm.html. </p>
+<a href="https://docs.oracle.com/javase/8/docs/technotes/guides/jps/spec/JPSTOC.fm.html">https://docs.oracle.com/javase/8/docs/technotes/guides/jps/spec/JPSTOC.fm.html</a>. </p>
 <p>Two books I've found useful: 
  Core Java, Volume II -- Advanced Features 
 Cay S. Horstmann; Gary Cornell 
-Prentice Hall, 2016, 10th ed.  </p>
-<p>http://horstmann.com/corejava.html 
+Prentice Hall, 2016, 10<sup>th</sup> ed.  </p>
+<p><a href="http://horstmann.com/corejava.html">http://horstmann.com/corejava.html</a> 
 Chapter 7 includes a section on printing, including a table of attributes. </p>
 <p> Pro Java 8 Programming 
 Terrill Brett Spell 
-Apress, 2015, 3rd ed. </p>
-<p>http://www.apress.com/9781484206423 
+Apress, 2015, 3<sup>rd</sup> ed. </p>
+<p><a href="http://www.apress.com/9781484206423">http://www.apress.com/9781484206423</a> 
 Chapter 11 is about printing. </p>
-<h2 id="2-printing-in-office">2.  Printing in Office</h2>
+<h2 id="2-printing-in-office">2.  Printing in Office<a class="headerlink" href="#2-printing-in-office" title="Permanent link">&para;</a></h2>
 <p>In this section I'll employ the print service search methods in JPrint.java to find a 
 printer for Office. The service name is passed to functions that use the Office API to 
 send a document to the printer.  </p>
@@ -2058,7 +2064,7 @@ which configure printing properties within a document. These are summarized by <
 <p><img alt="" src="images/41-Printing-3.png" /></p>
 <p>Figure 3. The Setting Services. </p>
 <p>The rounded rectangles refer to property tables described later in this chapter. </p>
-<h2 id="3-printing-any-document">3.  Printing any Document</h2>
+<h2 id="3-printing-any-document">3.  Printing any Document<a class="headerlink" href="#3-printing-any-document" title="Permanent link">&para;</a></h2>
 <p>At this point you may be thinking that Office printing is rather complex. In fact, if 
 you're happy to print a document using the default printing settings then it's fairly 
 simple. The DocPrinter.java example illustrates this by printing any Office document 
@@ -2182,7 +2188,7 @@ class' documentation online (type "lodoc PrinterDescriptor"). </p>
 </tr>
 <tr>
 <td>PaperSize</td>
-<td>Paper size in 100th mm</td>
+<td>Paper size in 100<sup>th</sup> mm</td>
 </tr>
 <tr>
 <td></td>
@@ -2226,9 +2232,9 @@ public static void setListener(XPrintable xp)
      public void printJobEvent(PrintJobEvent e)<br />
      { System.out.println("Print Job status: " +<br />
                               printableState(e.State));  } </p>
-<pre><code> public void disposing(com.sun.star.lang.EventObject e) 
- {  System.out.println("Disposing of print job: " + e);  }
-</code></pre>
+<div class="highlight"><pre><span></span><code> public void disposing(com.sun.star.lang.EventObject e) 
+ {  System.out.println(&quot;Disposing of print job: &quot; + e);  }
+</code></pre></div>
 <p>}); 
 }  // end of setListener() </p>
 <p>XPrintJobListener.printJobEvent() is called at different stages during the job's 
@@ -2449,7 +2455,7 @@ wasn't included then DocPrinter could continue and perhaps close Office before i
 fully transmitted the document to the printer. This would cause a crash. </p>
 <p>Note that there's no need to set the "PrinterName" property since its already been 
 supplied as one of the PrintDescriptor properties. </p>
-<h2 id="4-viewing-a-documents-print-properties">4.  Viewing a Document's Print Properties</h2>
+<h2 id="4-viewing-a-documents-print-properties">4.  Viewing a Document's Print Properties<a class="headerlink" href="#4-viewing-a-documents-print-properties" title="Permanent link">&para;</a></h2>
 <p>The previous section looked at printer-related properties stored in PrinterDescriptor 
 (Table 1) and PrintOptions (Table 2). But the real property mother lode are those 
 related to documents, which are stored in the many subclasses below the Settings 
@@ -2873,7 +2879,7 @@ HeaderFooterSettings"), which add the properties in Table 8. </p>
 </tbody>
 </table>
 <p>Table 8. Properties in com.sun.star.document.HeaderFooterSettings. </p>
-<h3 id="41-additional-writer-print-properties">4.1.  Additional Writer Print Properties</h3>
+<h3 id="41-additional-writer-print-properties">4.1.  Additional Writer Print Properties<a class="headerlink" href="#41-additional-writer-print-properties" title="Permanent link">&para;</a></h3>
 <p>As Figure 2 indicates, Writer Documents have access to an XPagePrintable interface 
 offered by the GenericTextDocument service (see "lodoc XPagePrintable"). It has a 
 print method, XPagePrintable.printPages() which utilizes properties stored in the 
@@ -2952,7 +2958,7 @@ printing multiple pages on a single sheet. </p>
   HoriMargin: 0 
   VertMargin: 0 
   IsLandscape: false </p>
-<h3 id="42-additional-calc-print-properties">4.2.  Additional Calc Print Properties</h3>
+<h3 id="42-additional-calc-print-properties">4.2.  Additional Calc Print Properties<a class="headerlink" href="#42-additional-calc-print-properties" title="Permanent link">&para;</a></h3>
 <p>Figure 3 indicates that a Calc document has three sources of printing-related 
 properties: DocumentSettings in the sheet module, GlobalSheetSettings also in the 
 sheet module, and PageStyle in the style module. </p>
@@ -3221,7 +3227,7 @@ in Table 11. </p>
 </tbody>
 </table>
 <p>Table 12. Printing-related Properties in com.sun.star.sheet.TablePageStyle. </p>
-<h2 id="5-specialized-printing">5.  Specialized Printing</h2>
+<h2 id="5-specialized-printing">5.  Specialized Printing<a class="headerlink" href="#5-specialized-printing" title="Permanent link">&para;</a></h2>
 <p>In this section I'll use some of the document properties just described to control how 
 Writer, Impress, and Calc documents are printed. The example code is in 
 TextPrinter.java, ImpressPrinter.java, SheetPrinter.java, and PrintSheet.java. </p>
@@ -3232,7 +3238,7 @@ are correctly printed if the properties are set via Office's GUI. </p>
 <p>Aside from this, the print GUI in Office offers more functionality than the API. For 
 example, it's possible to output multiple slides and sheets on a single page through the 
 print dialog but not with API calls. </p>
-<h3 id="51-printing-a-text-document">5.1.  Printing a Text Document</h3>
+<h3 id="51-printing-a-text-document">5.1.  Printing a Text Document<a class="headerlink" href="#51-printing-a-text-document" title="Permanent link">&para;</a></h3>
 <p>TextPrinter.java sends a text document to a specified printer, with two pages printed 
 on each sheet. </p>
 <p>After the document has been loaded, the printing is carried out by: </p>
@@ -3266,7 +3272,7 @@ something like Figure 5. </p>
 <p><img alt="" src="images/41-Printing-6.png" /></p>
 <p>Figure 6. The "Page Layout" Tabbed Window in the Print Dialog. </p>
 <p>When "Ok" is pressed, the document is printed correctly. </p>
-<h3 id="52-printing-an-impress-document">5.2.  Printing an Impress Document</h3>
+<h3 id="52-printing-an-impress-document">5.2.  Printing an Impress Document<a class="headerlink" href="#52-printing-an-impress-document" title="Permanent link">&para;</a></h3>
 <p>ImpressPrinter.java prints an Impress document to the specified printer in handout 
 format, six slides per sheet, in black and white. A4 paper in landscape mode is 
 utilized. </p>
@@ -3308,7 +3314,7 @@ looks like Figure 7. </p>
 <p>Figure 7. The Impress application's Print Dialog. </p>
 <p>This is much closer to what I want to output, although I couldn't print the handouts in 
 landscape mode. </p>
-<h3 id="53-printing-a-calc-document">5.3.  Printing a Calc Document</h3>
+<h3 id="53-printing-a-calc-document">5.3.  Printing a Calc Document<a class="headerlink" href="#53-printing-a-calc-document" title="Permanent link">&para;</a></h3>
 <p>SheetPrinter.java prints the first sheet of a Calc document, scaled so that two pages 
 are used in the vertical direction. Also, the paper is set to landscape mode and A4 
 size, and the header's central field is modified. In addition, commented-out code 
@@ -3454,7 +3460,7 @@ printAreas.setPrintAreas(new CellRangeAddress[] {});  <br />
 <p>CellRangeAddress addr = Calc.getAddress(sheet, "E1:E111"); 
 printAreas.setPrintAreas(new CellRangeAddress[]{ addr });  <br />
                     // set area to be the "E" column </p>
-<h3 id="54-printing-a-single-sheet">5.4.  Printing a Single Sheet</h3>
+<h3 id="54-printing-a-single-sheet">5.4.  Printing a Single Sheet<a class="headerlink" href="#54-printing-a-single-sheet" title="Permanent link">&para;</a></h3>
 <p>My thanks to user "villeroy" on the OpenOffice forums for suggesting this example: 
 how is a single sheet of a multi-sheet spreadsheet printed? 
 One part of the solution is to set the "PrintAllSheets" property to false in the 
@@ -3510,7 +3516,7 @@ public static void main(String args[])
 <p>One issue with changing GlobalSheet settings is that they are remembered after Office 
 has closed, and will be used by default during future prints. In that case, it's a good 
 idea to reset the "PrintAllSheets" to true after the Print.print() call. </p>
-<h2 id="6-a-bad-idea-hacking-the-gui">6.  A Bad Idea: Hacking the GUI</h2>
+<h2 id="6-a-bad-idea-hacking-the-gui">6.  A Bad Idea: Hacking the GUI<a class="headerlink" href="#6-a-bad-idea-hacking-the-gui" title="Permanent link">&para;</a></h2>
 <p>A recurring observation of the last few sections is that printer dialogs inside Office are 
 less buggy and more feature-rich than the API. In previous chapters, I've sometimes 
 resorted to using Office's GUI by sending dispatch messages, and key presses to the 
@@ -3549,14 +3555,14 @@ depends on the tab ordering of each window. </p>
 window, there's still the problem of entering data and 'pressing' the "Ok" button 
 afterwards.  </p>
 <p>On balance, I decided not to bother implementing this 'solution'. </p>
-<h2 id="7-command-prompt-printing">7.  Command Prompt Printing</h2>
+<h2 id="7-command-prompt-printing">7.  Command Prompt Printing<a class="headerlink" href="#7-command-prompt-printing" title="Permanent link">&para;</a></h2>
 <p>Another approach to printing documents, which avoids the use of Java, is to utilize 
 command line utilities. </p>
 <p>There's no shortage of command line printing tools in Linux and the Mac OS, based 
-around the CUPS printing system ( http://www.cups.org/), and plenty of sites 
+around the CUPS printing system ( <a href="http://www.cups.org/">http://www.cups.org/</a>), and plenty of sites 
 explaining how to use lp, lpq, lpstat and others (e.g. </p>
-<p>http://www.computerhope.com/unix/ulp.htm, 
-http://www.eecs.utk.edu/resources/it/kb/printing/linux-command-line).  </p>
+<p><a href="http://www.computerhope.com/unix/ulp.htm">http://www.computerhope.com/unix/ulp.htm</a>, 
+<a href="http://www.eecs.utk.edu/resources/it/kb/printing/linux-command-line">http://www.eecs.utk.edu/resources/it/kb/printing/linux-command-line</a>).  </p>
 <p>Perhaps less well known are the printing utilities in Windows, listed in Table 13. </p>
 <table>
 <thead>
@@ -3642,13 +3648,13 @@ http://www.eecs.utk.edu/resources/it/kb/printing/linux-command-line).  </p>
 </table>
 <p>Table 13. Windows 7's VBScript Printing Utilities. </p>
 <p>The utilities are Visual Basic scripts, located in the 
-C:\Windows\System32\Printing_Admin_Scripts\en-US\ folder which isn't a standard 
+C:\Windows\System32\Printing_Admin_Scripts\en-US folder which isn't a standard 
 part of Window's PATH environment variable. </p>
 <p>One way of finding documentation on these tools is by starting "Windows Help" and 
 then following the links to the commands reference section. This will eventually take 
 you to Microsoft's TechNet website. A slightly easier alternative is the TechRepublic 
 article "How to take advantage of the hidden VBScript print utilities in Windows 10" 
-by Greg Shultz at http://www.techrepublic.com/article/how-to-take-advantage-of-the-
+by Greg Shultz at <a href="http://www.techrepublic.com/article/how-to-take-advantage-of-the-">http://www.techrepublic.com/article/how-to-take-advantage-of-the-</a>
 hidden-vbscript-print-utilities-in-windows-10/. </p>
 <p>In my "Printing Tests" examples folder, there are four Batch files (printersList.bat, 
 printerStatus.bat, printerJobs.bat, and printerClean.bat) which use these VBScripts in 
@@ -3699,7 +3705,7 @@ Prints a text file. </p>
 <p>PRINT [/D:device] [[drive:][path]filename[...]] 
    /D:device   Specifies a print device. </p>
 <p>An alternative is "printui" which starts Window's printui.dll 
-(https://technet.microsoft.com/en-us/library/ee624057(v=ws.11).aspx).  </p>
+(<a href="https://technet.microsoft.com/en-us/library/ee624057(v=ws.11).aspx">https://technet.microsoft.com/en-us/library/ee624057(v=ws.11).aspx</a>).  </p>
 <p>However, I'd not recommend "print" or "printui" since Office is a much better 
 command line printing tool. </p>
 <p>If you open a command prompt in the Office directory (e.g. in C:\Program 
@@ -3712,7 +3718,7 @@ Figure 9 shows the top half of a long window. </p>
 <p>Figure 9. Some of Office Command Line Arguments. </p>
 <p>Another information source is the "Starting the LibreOffice Software With 
 Parameters" webpage at 
-https://help.libreoffice.org/Common/Starting_the_Software_With_Parameters. </p>
+<a href="https://help.libreoffice.org/Common/Starting_the_Software_With_Parameters">https://help.libreoffice.org/Common/Starting_the_Software_With_Parameters</a>. </p>
 <p>The relevant parameters for printing are "-p" and "--pt", which can be seen near the 
 bottom of Figure 9. "-p" prints a file to the default printer, while "--pt" (note the two '-
 's)  sends the document to the named printer. A suitable name can be obtained from 
@@ -3736,6 +3742,7 @@ prints the cover.odg Draw file to the HP laserjet. </p>
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -3743,7 +3750,8 @@ prints the cover.odg Draw file to the HP laserjet. </p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="40-Building_a_Form.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="40-Building_a_Form.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Chapter 40. Building a Form Programmatically" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -3758,7 +3766,8 @@ prints the cover.odg Draw file to the HP laserjet. </p>
         </a>
       
       
-        <a href="42-Sending_E-mail.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="42-Sending_E-mail.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 42. Sending E-mail" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -3778,10 +3787,12 @@ prints the cover.odg Draw file to the HP laserjet. </p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -3793,10 +3804,10 @@ prints the cover.odg Draw file to the HP laserjet. </p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

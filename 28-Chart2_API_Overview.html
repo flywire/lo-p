@@ -12,7 +12,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.0.6">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -20,10 +20,10 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.2c0c5eaf.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -42,6 +42,8 @@
     
     
       
+
+
     
     
   </head>
@@ -53,10 +55,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="" data-md-color-accent="">
-      
-        <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
-      
   
+    
+    <script>function __prefix(e){return new URL(".",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -73,7 +74,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="index.html" title="LibreOffice Programming" class="md-header__button md-logo" aria-label="LibreOffice Programming" data-md-component="logo">
       
@@ -100,9 +103,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -112,14 +114,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -140,7 +146,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -149,11 +155,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -183,7 +192,7 @@
 <a href="https://github.com/flywire/lo-p/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     lo-p
@@ -701,6 +710,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -715,6 +725,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -1285,6 +1296,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -1442,7 +1454,7 @@
                   </a>
                 
                 
-                <h1 id="chapter-28-chart2-api-overview">Chapter 28. Chart2 API Overview</h1>
+                <h1 id="chapter-28-chart2-api-overview">Chapter 28. Chart2 API Overview<a class="headerlink" href="#chapter-28-chart2-api-overview" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
 <p>Charting 
@@ -1465,7 +1477,7 @@ major parts of the Office API. That's mostly true, except
 for one omission – there's no mention of the chart2 
 charting module. It's absent from the guide, the online 
 examples, and only makes a brief appearance in the Wiki, 
-at https://wiki.openoffice.org/wiki/Chart. </p>
+at <a href="https://wiki.openoffice.org/wiki/Chart">https://wiki.openoffice.org/wiki/Chart</a>. </p>
 <p>That's not to say that chart creation isn't explained in the 
 guide; chapter 10 is all about that topic, but using the older 
 charting module, called chart (as you might guess). One 
@@ -1487,10 +1499,10 @@ using chart2. </p>
 received much notice. I'll be rectifying that by concentrating solely on chart2 
 programming; I won't be using the old chart API. </p>
 <p>The primary source of online information about chart2 is its API documentation at 
-http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1chart2.html, 
+<a href="http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1chart2.html">http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1chart2.html</a>, 
 or you can access it with lodoc chart2. </p>
 <p>The only extensive programming resource I've found on chart2 is a Japanese site 
-(http://hermione.s41.xrea.com/pukiwiki/index.php?OOoBasic%2FCalc%2Fchart2) 
+(<a href="http://hermione.s41.xrea.com/pukiwiki/index.php?OOoBasic%2FCalc%2Fchart2">http://hermione.s41.xrea.com/pukiwiki/index.php?OOoBasic%2FCalc%2Fchart2</a>) 
 which uses the OOoBasic version of the API. It's a great site, but often offline; one 
 partly remedy is to use Google's cached copies of some of its pages. </p>
 <p>One problem with searching the Web for examples is that programs using the chart2 
@@ -1503,11 +1515,11 @@ word "Diagram" (e.g. BarDiagram, DonutDiagram, LineDiagram) whereas the chart2
 names either end with the word "ChartType" (e.g. BarChartType, PieChartType, 
 LineChartType), or with no special word (e.g. Bar, Donut, Line). </p>
 <p>A good way to get a feel for chart2's functionality is to look at chapter 3 of Calc's user 
-guide, available from https://www.libreoffice.org/get-help/documentation/. It 
+guide, available from <a href="https://www.libreoffice.org/get-help/documentation/">https://www.libreoffice.org/get-help/documentation/</a>. It 
 describes the charting wizard, which acts as a very nice GUI for most of the chart2 
 API. The chapter also introduces a lot of charting terminology (e.g. chart types, data 
 ranges, data series) used in the API. </p>
-<h2 id="1-charting-elements">1.  Charting Elements</h2>
+<h2 id="1-charting-elements">1.  Charting Elements<a class="headerlink" href="#1-charting-elements" title="Permanent link">&para;</a></h2>
 <p>Different chart types share many common elements, as illustrated in Figure 1. </p>
 <p><img alt="" src="images/28-Chart2_API_Overview-1.jpg" /></p>
 <p>Figure 1. Typical Chart Elements. </p>
@@ -1783,11 +1795,11 @@ of ColumnChartType and BarChartType. </p>
 I want to add extra data to an existing chart (e.g. add a line graph to a stock chart). </p>
 <p>The chart2 module is quite complex, so I've hidden a lot of details inside methods in 
 my Chart2.java class. It simplifies four kinds of operation: </p>
-<h2 id="1-the-creation-of-a-new-chart-in-a-spreadsheet-document-based-on-a-template-name">1.  The creation of a new chart in a spreadsheet document, based on a template name.</h2>
-<h2 id="2-the-accessing-and-modification-of-elements-inside-a-chart-such-as-the-title">2.  The accessing and modification of elements inside a chart, such as the title,</h2>
+<h2 id="1-the-creation-of-a-new-chart-in-a-spreadsheet-document-based-on-a-template-name">1.  The creation of a new chart in a spreadsheet document, based on a template name.<a class="headerlink" href="#1-the-creation-of-a-new-chart-in-a-spreadsheet-document-based-on-a-template-name" title="Permanent link">&para;</a></h2>
+<h2 id="2-the-accessing-and-modification-of-elements-inside-a-chart-such-as-the-title">2.  The accessing and modification of elements inside a chart, such as the title,<a class="headerlink" href="#2-the-accessing-and-modification-of-elements-inside-a-chart-such-as-the-title" title="Permanent link">&para;</a></h2>
 <p>legend, axes, and colors. </p>
-<h2 id="3-the-addition-of-extra-data-to-a-chart-such-as-error-bars-or-a-second-graph">3.  The addition of extra data to a chart, such as error bars or a second graph.</h2>
-<h2 id="4-the-embedding-of-a-chart-in-a-document-other-than-a-spreadsheet-namely-in-a-text">4.  The embedding of a chart in a document other than a spreadsheet, namely in a text</h2>
+<h2 id="3-the-addition-of-extra-data-to-a-chart-such-as-error-bars-or-a-second-graph">3.  The addition of extra data to a chart, such as error bars or a second graph.<a class="headerlink" href="#3-the-addition-of-extra-data-to-a-chart-such-as-error-bars-or-a-second-graph" title="Permanent link">&para;</a></h2>
+<h2 id="4-the-embedding-of-a-chart-in-a-document-other-than-a-spreadsheet-namely-in-a-text">4.  The embedding of a chart in a document other than a spreadsheet, namely in a text<a class="headerlink" href="#4-the-embedding-of-a-chart-in-a-document-other-than-a-spreadsheet-namely-in-a-text" title="Permanent link">&para;</a></h2>
 <p>document or slide presentation.  </p>
 <p>Operations no. 1 (chart creation) and no. 2 (element modification) are used by all my 
 examples, so the rest of this chapter will give an overview of how the corresponding 
@@ -1798,14 +1810,14 @@ chapters:
  bar, pie, area, line: chapter 30; 
  XY (scatter): chapter 31; 
  bubble, net, stock: chapter 32. </p>
-<h2 id="2-chart-creation">2.  Chart Creation</h2>
+<h2 id="2-chart-creation">2.  Chart Creation<a class="headerlink" href="#2-chart-creation" title="Permanent link">&para;</a></h2>
 <p>Chart creation can be divided into three steps: </p>
-<h2 id="1-a-tablechart-service-is-created-inside-the-spreadsheet">1.  A TableChart service is created inside the spreadsheet.</h2>
-<h2 id="2-the-chartdocument-service-is-accessed-inside-the-tablechart">2.  The ChartDocument service is accessed inside the TableChart.</h2>
-<h2 id="3-the-chartdocument-is-initialized-by-linking-together-a-chart-template-diagram">3.  The ChartDocument is initialized by linking together a chart template, diagram,</h2>
+<h2 id="1-a-tablechart-service-is-created-inside-the-spreadsheet">1.  A TableChart service is created inside the spreadsheet.<a class="headerlink" href="#1-a-tablechart-service-is-created-inside-the-spreadsheet" title="Permanent link">&para;</a></h2>
+<h2 id="2-the-chartdocument-service-is-accessed-inside-the-tablechart">2.  The ChartDocument service is accessed inside the TableChart.<a class="headerlink" href="#2-the-chartdocument-service-is-accessed-inside-the-tablechart" title="Permanent link">&para;</a></h2>
+<h2 id="3-the-chartdocument-is-initialized-by-linking-together-a-chart-template-diagram">3.  The ChartDocument is initialized by linking together a chart template, diagram,<a class="headerlink" href="#3-the-chartdocument-is-initialized-by-linking-together-a-chart-template-diagram" title="Permanent link">&para;</a></h2>
 <p>and data source. </p>
 <p>The details are explained in the following sub-sections. </p>
-<h3 id="21-creating-a-table-chart">2.1.  Creating a Table Chart</h3>
+<h3 id="21-creating-a-table-chart">2.1.  Creating a Table Chart<a class="headerlink" href="#21-creating-a-table-chart" title="Permanent link">&para;</a></h3>
 <p>XTableCharts.addNewByName() adds a new TableChart to the TableCharts 
 collection in a spreadsheet. This is shown graphically in Figure 4, and is implemented 
 by Chart2.addTableChart(). </p>
@@ -1823,7 +1835,7 @@ public static void addTableChart(XSpreadsheet sheet,<br />
   XTableCharts tableCharts = chartsSupplier.getCharts(); </p>
 <p>com.sun.star.awt.Point pos = Calc.getCellPos(sheet, cellName); 
   Rectangle rect = new Rectangle(pos.X, pos.Y,<br />
-                                 width<em>1000, height</em>1000); </p>
+                                 width*1000, height*1000); </p>
 <p>CellRangeAddress[] addrs = new CellRangeAddress[]{ cellsRange }; 
   tableCharts.addNewByName(chartName, rect, addrs, true, true); 
 }  // end of addTableChart() </p>
@@ -1852,7 +1864,7 @@ later chapters. </p>
 in Chart2.addTableChart() by setting its last two arguments to true. This specifies that 
 the top row and left column will be used as categories and/or labels. More specific 
 format information will be supplied later. </p>
-<h3 id="22-accessing-the-chart-document">2.2.  Accessing the Chart Document</h3>
+<h3 id="22-accessing-the-chart-document">2.2.  Accessing the Chart Document<a class="headerlink" href="#22-accessing-the-chart-document" title="Permanent link">&para;</a></h3>
 <p>Although Chart2.addTableChart() adds a table chart to the spreadsheet, it doesn't 
 return a reference to the new chart document. That's obtained by calling 
 Chart2.getChartDoc(): </p>
@@ -1898,7 +1910,7 @@ public static XChartDocument getChartDoc(XSpreadsheet sheet,<br />
   {  System.out.println("Could not access " + chartName); } 
   return tableChart; 
 }  // end of getTableChart() </p>
-<h3 id="23-initializing-the-chart-document">2.3.  Initializing the Chart Document</h3>
+<h3 id="23-initializing-the-chart-document">2.3.  Initializing the Chart Document<a class="headerlink" href="#23-initializing-the-chart-document" title="Permanent link">&para;</a></h3>
 <p>The chart document is initialized by linking three components: the chart template, the 
 chart's diagram, and a data source, as illustrated by Figure 8. </p>
 <p><img alt="" src="images/28-Chart2_API_Overview-8.png" /></p>
@@ -2056,7 +2068,7 @@ chart. I'll describe how these methods work in the next section. </p>
 <p>The call to Chart2.printChartTypes() at the end of Chart2.insertChart() could be 
 commented out since it's a diagnostic check. It prints the names of the chart types 
 used by the template.   </p>
-<h2 id="3-accessing-and-modifying-chart-elements">3.  Accessing and Modifying Chart Elements</h2>
+<h2 id="3-accessing-and-modifying-chart-elements">3.  Accessing and Modifying Chart Elements<a class="headerlink" href="#3-accessing-and-modifying-chart-elements" title="Permanent link">&para;</a></h2>
 <p>Almost every aspect of a chart can be adjusted, including such things as its color 
 scheme, the fonts, the scaling of the axes, the positioning of the legend, axis labels, 
 and titles. It's also possible to augment charts with regression line details, error bars, 
@@ -2075,7 +2087,7 @@ systems, that a single coordinate system may display multiple chart types, and a
 chart type can employ many data series. Fortunately, this generality isn't often needed 
 for the charts created by Chart2.insertChart(). In particular, the chart diagram only 
 uses a single coordinate system and a single chart type (most of the time).  </p>
-<h3 id="31-accessing-the-diagram">3.1.  Accessing the Diagram</h3>
+<h3 id="31-accessing-the-diagram">3.1.  Accessing the Diagram<a class="headerlink" href="#31-accessing-the-diagram" title="Permanent link">&para;</a></h3>
 <p>A chart's Diagram service is easily reached by calling 
 ChartDocument.getFirstDiagram(), which returns a reference to the diagram's 
 XDiagram interface: 
@@ -2125,7 +2137,7 @@ above. </p>
  com.sun.star.drawing.FillProperties 
 Since getWall() and getPageBackground() both deal with areas in the chart, their 
 properties come from the FillProperties class. </p>
-<h3 id="32-accessing-the-coordinate-system">3.2.  Accessing the Coordinate System</h3>
+<h3 id="32-accessing-the-coordinate-system">3.2.  Accessing the Coordinate System<a class="headerlink" href="#32-accessing-the-coordinate-system" title="Permanent link">&para;</a></h3>
 <p>Figure 10 shows that the diagram's coordinate systems are reached through 
 XCoordinateSystemContainer.getCoordinateSystems(). Chart2.getCoordSystem() 
 assumes that the programmer only wants the first coordinate system: </p>
@@ -2151,7 +2163,7 @@ contains a lot of properties, which are documented online. The easiest way to ac
 the page is with loDoc chart2 axis service. The extra lodoc arguments help to 
 narrow the search since the word "axis" is used in multiple places in the chart2 and 
 chart modules. </p>
-<h3 id="33-accessing-the-chart-type">3.3.  Accessing the Chart Type</h3>
+<h3 id="33-accessing-the-chart-type">3.3.  Accessing the Chart Type<a class="headerlink" href="#33-accessing-the-chart-type" title="Permanent link">&para;</a></h3>
 <p>Figure 11 shows that the chart types in a coordinate system are reached through 
 XChartTypeContainer.getChartTypes(). Chart2.getChartType() assumes the 
 programmer only wants the first chart type in the array: </p>
@@ -2178,7 +2190,7 @@ returns the type as a string.  </p>
 <p>The CandleStickChartType service inherits ChartType, and contains properties related 
 to stock charts. </p>
 <p>Use  loDoc chart2 charttype to view the online documentation for ChartType. </p>
-<h3 id="34-accessing-the-data-series">3.4.  Accessing the Data Series</h3>
+<h3 id="34-accessing-the-data-series">3.4.  Accessing the Data Series<a class="headerlink" href="#34-accessing-the-data-series" title="Permanent link">&para;</a></h3>
 <p>Figure 12 shows that the data series for  a chart type is accessed via 
 XDataSeriesContainer.getDataSeries(). This is implemented by 
 Chart2.getDataSeries(): </p>
@@ -2234,7 +2246,7 @@ public static final int DP_NONE = 4; </p>
     dpLabel.ShowNumber = false;        // reset show types 
     dpLabel.ShowCategoryName = false; 
     dpLabel.ShowLegendSymbol = false; </p>
-<pre><code>if (labelType == DP_NUMBER) 
+<div class="highlight"><pre><span></span><code>if (labelType == DP_NUMBER) 
   dpLabel.ShowNumber = true; 
 else if (labelType == DP_PERCENT) { 
   dpLabel.ShowNumber = true; 
@@ -2246,9 +2258,9 @@ else if (labelType == DP_SYMBOL)
   dpLabel.ShowLegendSymbol = true; 
 else if (labelType == DP_NONE) {}  // do nothing 
 else 
-  System.out.println("Unrecognized label type"); 
-Props.setProperty(dataSeries, "Label", dataPointLabel);
-</code></pre>
+  System.out.println(&quot;Unrecognized label type&quot;); 
+Props.setProperty(dataSeries, &quot;Label&quot;, dataPointLabel);
+</code></pre></div>
 <p>} 
 }  // end of setDataPointLabels() </p>
 <p>The "Label" DataSeries property is inherited from DataPointProperties (see lodoc 
@@ -2266,6 +2278,7 @@ one or more of these booleans are set and the "Label" property updated. </p>
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -2273,7 +2286,8 @@ one or more of these booleans are set and the "Label" property updated. </p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="28%20Part%205%20Chart.html" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="28%20Part%205%20Chart.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Part 5 Chart" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -2288,7 +2302,8 @@ one or more of these booleans are set and the "Label" property updated. </p>
         </a>
       
       
-        <a href="29-Column_Charts.html" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="29-Column_Charts.html" class="md-footer__link md-footer__link--next" aria-label="Next: Chapter 29. Column Charts" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -2308,10 +2323,12 @@ one or more of these booleans are set and the "Label" property updated. </p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
         
       </div>
       
@@ -2323,10 +2340,10 @@ one or more of these booleans are set and the "Label" property updated. </p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="assets/javascripts/bundle.a1c7c35e.min.js"></script>
+      <script src="assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>
