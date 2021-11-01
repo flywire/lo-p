@@ -36,6 +36,7 @@ so that its modified() method will be triggered whenever a cell is changed.
 
 ModifyListener.java illustrates this approach: 
  
+```java
 // in ModifyListener.java 
 public class ModifyListener implements XModifyListener 
 { 
@@ -96,6 +97,7 @@ public class ModifyListener implements XModifyListener
   {  new ModifyListener();  } 
  
 }  // end of ModifyListener class 
+```
  
  
 ### 1.1.  Listening to the Close Box 
@@ -106,6 +108,7 @@ object must deal with the closing of the spreadsheet and the termination of Offi
 This is done by employing another listener: an adapter for XTopWindowListener, 
 called XTopWindowAdapter, attached to the Calc application's close box: 
  
+```java
 // in ModifyListener.java 
    : 
 XExtendedToolkit tk = Lo.createInstanceMCF(XExtendedToolkit.class,  
@@ -115,6 +118,7 @@ if (tk != null)
     public void windowClosing(EventObject eo) 
     { /*  called whenever the appl. is closed  */  } 
   } 
+```
  
 XTopWindowListener was described in Chapter 4, section 1, but 
 XTopWindowAdapter is one of my support classes. 
@@ -124,6 +128,7 @@ in different states: opened, activated, deactivated, minimized, normalized, clos
 closed, and disposed. XTopWindowAdapter supplies empty implementations for 
 those methods: 
  
+```java
 // in Utils/XTopWindowAdapter.java 
 public class XTopWindowAdapter implements XTopWindowListener 
 { 
@@ -142,12 +147,14 @@ public class XTopWindowAdapter implements XTopWindowListener
  
   public void disposing(EventObject event){} 
 }  // end of XTopWindowAdapter class 
+```
  
 ModifyListener.java overides XTopWindowAdapter's windowClosing(), but leaves 
 the other methods unchanged. windowClosing() is triggered when the application's 
 close box is clicked, and it responds by saving the document, then closes it and 
 Office: 
  
+```java
 // in ModifyListener.java 
    : 
 tk.addTopWindowListener( new XTopWindowAdapter() { 
@@ -158,23 +165,27 @@ tk.addTopWindowListener( new XTopWindowAdapter() {
     Lo.closeOffice(); 
   } 
 } 
+```
  
 ### 1.2.  Listening for Modifications 
 
 ModifyListener is notified of document changes by attaching itself to the document's 
 XModifyBroadcaster: 
  
+```java
 // in ModifyListener.java 
      : 
 // listen for cell modifications 
 XModifyBroadcaster mb = Lo.qi(XModifyBroadcaster.class, doc); 
 mb.addModifyListener(this); 
+```
  
 A look at the documentation for XModifyListener (use lodoc XModifyListener) 
 shows that it defines a modified() method, and inherits disposing() from 
 XEventListener. ModifyListener implements both of these, although disposing() only 
 prints a message. ModifyListener.modified() does something useful: 
  
+```java
 // in ModifyListener.java 
      : 
 // global variables 
@@ -195,9 +206,9 @@ public void modified(EventObject event)
   System.out.println("  " + Calc.getCellStr(addr) + " = " +  
                             Calc.getVal(sheet, addr)); 
 }  // end of modified() 
+```
  
 An event object arriving at modified() contains a Source field of type XInterface. 
-
 Every Office interface inherits XInterface so it's difficult to know what the source 
 really is. The simplest solution is to print the names of the source's supported services, 
 by calling Info.showServices(), as in the commented-out code above.  
@@ -213,14 +224,16 @@ because I can utilize the document via the global variable, doc.
 While modified() is being executed, the modified cell in the document is still selected 
 (or active), and so can be retrieved: 
  
+```java
 // in modified() ... 
-
 CellAddress addr = Calc.getSelectedCellAddr(doc); 
+```
  
 Calc.getSelectedCellAddr() needs the XModel interface for the document so that 
 XModel.getCurrentSelection() can be called. It also has to handle the possibility that a 
 cell range is currently selected rather than a single cell: 
  
+```java
 // in the Calc class 
 public static CellAddress getSelectedCellAddr( 
                                  XSpreadsheetDocument doc) 
@@ -268,24 +281,29 @@ public static CellRangeAddress getSelectedAddr(XModel model)
     return null; 
   } 
 }  // end of getSelectedAddr() 
+```
  
 Calc.getSelectedCellAddr() utilizes Calc.getSelectedAddr(), which returns the address 
 of the selected cell range. Calc.getSelectedCellAddr() examines this cell range to see 
 if it's really just a single cell by calling Calc.isSingleCellRange(): 
  
+```java
 // in the Calc class 
 public static boolean isSingleCellRange(CellRangeAddress addr) 
 { return ((addr.StartColumn == addr.EndColumn) && 
           (addr.StartRow == addr.EndRow));   }  
+```
  
 If the cell range is referencing a cell then the cell range address position is used to 
 directly access the cell in the sheet: 
  
+```java
 // in Calc.getSelectedCellAddr() 
    : 
 XSpreadsheet sheet = getActiveSheet(doc); 
 XCell cell = Calc.getCell(sheet, crAddr.StartColumn,  
                                  crAddr.StartRow); 
+```
  
 This requires the current active sheet, which is obtained through 
 Calc.getActiveSheet(). 
@@ -304,7 +322,6 @@ A more important concern is that modified() only has access to the new value in 
 cell, but doesn't know what was overwritten, which would be very useful for 
 implementing data validation. This led me to investigate another form of listening, 
 based on cell selection, which is described next. 
-
  
  
 ## 2.  Listening for Cell Selections 
@@ -316,6 +333,7 @@ modifications.
 The SelectListener.java example is similar to ModifyListener.java except that it 
 implements XSelectionChangeListener rather than XModifyListener: 
  
+```java
 // in  SelectListener.java 
 public class SelectListener implements XSelectionChangeListener 
 { 
@@ -363,6 +381,7 @@ public class SelectListener implements XSelectionChangeListener
         } 
       }); 
   }  // end of SelectListener() 
+```
  
 SelectListener.java employs four globals instead of the two in ModifyListener: the 
 document and sheet variables are joined by variables holding the address of the 
@@ -372,6 +391,7 @@ after the document is first created, and are updated whenever the user changes a
 
 attachListener() is called to attach the listener to the document: 
  
+```java
 // in  SelectListener.java 
 private void attachListener(XSpreadsheetDocument doc) 
 { 
@@ -384,21 +404,22 @@ private void attachListener(XSpreadsheetDocument doc)
   else  // make "this" object a selection listener 
     supp.addSelectionChangeListener(this);  
 }  // end of attachListener() 
+```
  
 The document's controller is changed to an XSelectionSupplier interface so its 
 addSelectionChangeListener() method can be called. 
 
 The XSelectionChangeListener interface defines disposing() and selectionChanged() 
-(see lodoc XSelectionChangeListener for details). selectionChanged() listens for 
+(see `lodoc XSelectionChangeListener` for details). selectionChanged() listens for 
 three kinds of changes in the sheet: 
- it reports when the selected cell changes by printing the name of the previous cell 
+
+* it reports when the selected cell changes by printing the name of the previous cell 
 and the newly selected one; 
- it reports whether the cell that has just lost focus now has a value different from 
+* it reports whether the cell that has just lost focus now has a value different from 
 when it was selected; 
- it reports if the newly selected cell contains a numerical value. 
+* it reports if the newly selected cell contains a numerical value. 
 
 For example, Figure 1 shows the initial sheet of data created by SelectListener: 
- 
  
 
 ![](images/25-Monitoring_Sheets-1.png)
@@ -408,13 +429,13 @@ Figure 1. The Sheet of Data in SelectListener.java
 Note that the selected cell when the sheet is first created is "A1". 
 
 If the user carries out the following operations: 
- click in cell "B2" 
- click in cell "A4" 
- click in "A5" 
- change "A5 to 4 and press tab 
-then the sheet will end up looking like Figure 2, with "B5" being the selected cell. 
 
- 
+* click in cell "B2" 
+* click in cell "A4" 
+* click in "A5" 
+* change "A5 to 4 and press tab 
+
+then the sheet will end up looking like Figure 2, with "B5" being the selected cell. 
  
 
 ![](images/25-Monitoring_Sheets-2.png)
@@ -423,6 +444,7 @@ Figure 2. The Modified Sheet in SelectListener.java
  
 During these changes, selectionChanged() will report: 
  
+```java
 A1 --> B2 
 B2 --> A4 
 A4 value: -66.5 
@@ -430,6 +452,7 @@ A4 --> A5
 A5 value: 43.4 
 A5 --> B5 
 A5 has changed from 43.4 to 4.0 
+```
  
 The "-->" lines note cell selection changes. The "value" lines state the value of a cell 
 when it's first selected, and the "changed" lines report whether the cell was left 
@@ -440,6 +463,7 @@ the spreadsheet, and changed the "A5" cell's contents from 43.4 to 4.
 
 selectionChanged() is defined as: 
  
+```java
 // in SelectListener.java 
 // globals  
 private CellAddress currAddr; 
@@ -496,6 +520,7 @@ private Double getCellDouble(XSpreadsheet sheet, CellAddress addr)
   else   // if not a double, return null 
     return null; 
 } // end of getCellDouble() 
+```
  
 selectionChanged() is called whenever the user selects a new cell. The address of this 
 new cell is obtained by Calc.getSelectedCellAddr(), which returns null if the user has 
@@ -504,12 +529,9 @@ selected a cell range.
 If the new selection is a cell then a series of comparisons are carried out between the 
 previously selected cell address and value (stored in the globals currAddr and 
 currVal) and the new address and its possible numerical value (stored in addr and d). 
-
 At the end of the method the current address and value are updated with the new ones. 
 
 XSelectionChangeListener shares a similar problem to XModifyListener in that a 
 single user selection triggers multiple calls to selectionChanged(). Clicking once 
 inside a cell causes four calls, and an arrow key press may trigger two calls depending 
 on how it's entered from the keyboard. 
-
- 
