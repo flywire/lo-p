@@ -1585,7 +1585,7 @@ to the imported data.</p>
 "Open"s popdown list. A quicker approach is to call Office from the command line,
 supplying the filename and filter name as arguments.</p>
 <p>Most of Office's command line arguments are listed at
-<a href="https://help.libreoffice.org/Common/Starting_the_Software_With_Parameters/">https://help.libreoffice.org/Common/Starting_the_Software_With_Parameters/</a>, and a
+<a href="https://help.libreoffice.org/Common/Starting_the_Software_With_Parameters">https://help.libreoffice.org/Common/Starting_the_Software_With_Parameters</a>, and a
 few others when office.exe is invoked with the -h option. The filter commands are --
 infilter and --convert-to, which I've wrapped up in two batch scripts called infilter.bat
 and convert.bat.</p>
@@ -1617,7 +1617,7 @@ chapter.</p>
 <p>"Pay" or "Clubs"). I knew these because I installed them, but what about the names of
 other filters in Office?</p>
 <p>A list of filters present in OpenOffice in 2007 can be found at
-<a href="https://wiki.openoffice.org/wiki/Framework/Article/Filter/FilterList_OOo_3_0/">https://wiki.openoffice.org/wiki/Framework/Article/Filter/FilterList_OOo_3_0/</a>.
+<a href="https://wiki.openoffice.org/wiki/Framework/Article/Filter/FilterList_OOo_3_0">https://wiki.openoffice.org/wiki/Framework/Article/Filter/FilterList_OOo_3_0</a>.
 However, a better approach is to call my FiltersInfo.java example which prints all the
 filters currently installed in Office, and some extra details about the "AbiWord",
 "Pay", and "Clubs" filters:</p>
@@ -1740,7 +1740,7 @@ and export filter for Writer's Flat XML, and also a template.</p>
 service (use <code>lodoc FilterFactory</code> to access it), and also in the "Properties of a
 Filter" subsection of the "Integrating Import and Export Filters" section of chapter 6
 of the Developer's Guide (online at:
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Properties_of_a_Filter/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Properties_of_a_Filter/</a>,
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Properties_of_a_Filter">https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Properties_of_a_Filter</a>,
 or use <code>loGuide "Properties of a Filter"</code>).</p>
 <p>The most cryptic of the properties is the filter flags integer (524355 in the example
 above). It's actually a collection of bitwise OR'ed hexadecimals, and FiltersInfo.java
@@ -1761,7 +1761,7 @@ shows how they can be accessed:</p>
 </code></pre></div>
 <p>The hexadecimals that might appear in the flag are listed in the online "Properties of a
 Filter" subsection
-(<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Properties_of_a_Filter/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Properties_of_a_Filter/</a>).
+(<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Properties_of_a_Filter">https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Properties_of_a_Filter</a>).
 I've included a few isXXX() methods in the Info utilities class for testing for
 their presence. The above example reports that the "Clubs" filter contains both an
 import and export filter.</p>
@@ -1993,7 +1993,7 @@ of parsing XML.</p>
 <p>If you're interested in using ImportFilter and ExportFilter, the Developer's guide gives
 some details in the "Integrating Import and Export Filters" section of chapter 6 on
 "Office Development". The information is also online, starting at
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Integrating_Import_and_Export_Filters/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Integrating_Import_and_Export_Filters/</a>,
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Integrating_Import_and_Export_Filters">https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Integrating_Import_and_Export_Filters</a>,
 or use <code>loGuide "Import and Export Filters"</code>.</p>
 <p>But I'm not going to use these services due to their complexity, and I'm about to stop
 using XSLT as well. Instead I'm going to look at three easier ways to import XML

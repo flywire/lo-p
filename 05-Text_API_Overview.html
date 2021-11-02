@@ -1414,7 +1414,7 @@ treating it as a sequence of paragraphs.</p>
 <p>The chapter finishes with a look at how two (or more) text
 documents can be appended.</p>
 <p>The online Developer's Guide begins text document programming at
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Documents/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Documents/</a>
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Documents">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Documents</a>
 (the easiest way of accessing that page is to type loguide writer). It corresponds to
 Chapter 7 in the printed guide (available at
 <a href="https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf">https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf</a>), but the
@@ -1425,8 +1425,8 @@ from <a href="https://api.libreoffice.org/examples/DevelopersGuide/examples.html
 are available at <a href="https://api.libreoffice.org/examples/examples.html#Java_examples">https://api.libreoffice.org/examples/examples.html#Java_examples</a>.</p>
 <p>This chapter (and later ones) assume that you're familiar with Writer, including text
 concepts such as paragraph styles. If you're not, then I recommend the "Writer
-Guide", a user manual, available at <a href="https://libreoffice.org/get-help/documentation/">https://libreoffice.org/get-help/documentation/</a>
-or <a href="https://wiki.documentfoundation.org/Documentation/Publications/">https://wiki.documentfoundation.org/Documentation/Publications/</a>.</p>
+Guide", a user manual, available at <a href="https://libreoffice.org/get-help/documentation">https://libreoffice.org/get-help/documentation</a>
+or <a href="https://wiki.documentfoundation.org/Documentation/Publications">https://wiki.documentfoundation.org/Documentation/Publications</a>.</p>
 <h2 id="1-an-overview-of-the-text-document-api">1.  An Overview of the Text Document API<a class="headerlink" href="#1-an-overview-of-the-text-document-api" title="Permanent link">&para;</a></h2>
 <p>The API is centered around four text document services which subclass
 OfficeDocument, as shown in Figure 1.</p>
@@ -2198,14 +2198,14 @@ txtRange text portion (txtRange comes from the previous code fragment):</p>
 </code></pre></div>
 <p>These code fragments are combined together in my ShowBookText.java example.</p>
 <p>More details on enumerators and text portions are given in the Developers Guide at
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Iterating_over_Text/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Iterating_over_Text/</a>
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Iterating_over_Text">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Iterating_over_Text</a>
 (or use <code>loGuide "Iterating over Text"</code>).</p>
 <h2 id="9-appending-documents-together">9.  Appending Documents Together<a class="headerlink" href="#9-appending-documents-together" title="Permanent link">&para;</a></h2>
 <p>If you need to write a large multi-part document (e.g. a thesis with chapters,
 appendices, contents page, and an index) then you should utilize a master document,
 which acts as a repository of links to documents representing the component parts.
 You can find out about master documents in Chapter 13 of the Writers Guide, at
-<a href="https://wiki.documentfoundation.org/Documentation/Publications/">https://wiki.documentfoundation.org/Documentation/Publications/</a>.</p>
+<a href="https://wiki.documentfoundation.org/Documentation/Publications">https://wiki.documentfoundation.org/Documentation/Publications</a>.</p>
 <p>However, the complexity of master documents isn't always needed. Often the aim is
 simply to append one document to the end of another. In that case, the
 XDocumentInsertable interface, and its insertDocumentFromURL() method is more

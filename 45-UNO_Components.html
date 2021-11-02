@@ -1477,24 +1477,24 @@ Developer's Guide, in chapters 3 ("Writing UNO Components") and 4 ("Extensions")
 The guide is available from
 <a href="https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf">https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf</a>, or the
 chapters are online starting at
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Writing_UNO_Components/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Writing_UNO_Components/</a> and
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Extensions/Extensions/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Extensions/Extensions/</a> (or
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Writing_UNO_Components">https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Writing_UNO_Components</a> and
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Extensions/Extensions">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Extensions/Extensions</a> (or
 use <code>loGuide "Writing UNO Components"</code> and <code>loGuide Extensions</code>).</p>
 <p>The drawback with the guide (both PDF and online) is that the tools available in the
 current version of Office have changed slightly from when the guide was written in
 2009.</p>
 <p>Two other documents worth studying are "How to Install Extensions" (available at
-<a href="https://libreoffice.org/get-help/documentation/">https://libreoffice.org/get-help/documentation/</a>), and "Publishing Extensions for
+<a href="https://libreoffice.org/get-help/documentation">https://libreoffice.org/get-help/documentation</a>), and "Publishing Extensions for
 LibreOffice"
 (<a href="https://wiki.documentfoundation.org/images/1/14/Publishing_extensions.pdf">https://wiki.documentfoundation.org/images/1/14/Publishing_extensions.pdf</a>) which
 explains how to add an extension to LibreOffice's 'shop window' at
-<a href="https://extensions.libreoffice.org/">https://extensions.libreoffice.org/</a>.</p>
+<a href="https://extensions.libreoffice.org">https://extensions.libreoffice.org</a>.</p>
 <p>The LibreOffice site concerned with how to code extensions is
-<a href="https://wiki.documentfoundation.org/Development/Extension_Development/">https://wiki.documentfoundation.org/Development/Extension_Development/</a>, which
-points to a large OpenOffice site (<a href="https://wiki.openoffice.org/wiki/Extensions/">https://wiki.openoffice.org/wiki/Extensions/</a>), called
+<a href="https://wiki.documentfoundation.org/Development/Extension_Development">https://wiki.documentfoundation.org/Development/Extension_Development</a>, which
+points to a large OpenOffice site (<a href="https://wiki.openoffice.org/wiki/Extensions">https://wiki.openoffice.org/wiki/Extensions</a>), called
 the OOo Extension Project. It includes a useful list of pointers to tutorials and articles
 about building extensions, at
-<a href="https://wiki.openoffice.org/wiki/Extensions_development/">https://wiki.openoffice.org/wiki/Extensions_development/</a>.</p>
+<a href="https://wiki.openoffice.org/wiki/Extensions_development">https://wiki.openoffice.org/wiki/Extensions_development</a>.</p>
 <p>These websites can be a little overwhelming since an extension can be so many
 different things: UNO components, add-ons, Calc add-ins, file filters, etc., and be
 implemented in so many different languages (C++, Java, Python). Since this chapter
@@ -1640,11 +1640,11 @@ which I've done.</li>
 <p>Much of chapter 3 in the Developer's Guide is concerned with explaining IDL
 features. An important subsection is "Using UNOIDL to Specify New Components",
 which explains how to define a service and interface; it's online at
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Using_UNOIDL_to_Specify_New_Components/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Using_UNOIDL_to_Specify_New_Components/</a>,
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Using_UNOIDL_to_Specify_New_Components">https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Using_UNOIDL_to_Specify_New_Components</a>,
 or use <code>loGuide "Using UNOIDL"</code>.</p>
 <p>Details on how IDL types are mapped to Java can be found in chapter 2 of the guide,
 starting at the "Type Mapping" subsection; online at
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/ProUNO/Java/Type_Mappings/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/ProUNO/Java/Type_Mappings/</a>,
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/ProUNO/Java/Type_Mappings">https://wiki.openoffice.org/wiki/Documentation/DevGuide/ProUNO/Java/Type_Mappings</a>,
 or use <code>loGuide "Type Mappings"</code>.</p>
 <h2 id="3-using-idlcbat">3.  Using idlc.bat<a class="headerlink" href="#3-using-idlcbat" title="Permanent link">&para;</a></h2>
 <p>My idlc.bat batch file utilizes idlc.exe, one of Office's SDK tools in
@@ -1794,7 +1794,7 @@ component's service name:</p>
 <p>javamaker.bat passes javamaker.exe the package name (org.openoffice.randomsents),
 RandomSents.rdb, and Office's types.rdb. The script's construction of this package
 name employs tr.exe, a Windows version of UNIX's tr, which I obtained from the
-Gow UNIX tools site (<a href="https://github.com/bmatzelle/gow/wiki/">https://github.com/bmatzelle/gow/wiki/</a>).</p>
+Gow UNIX tools site (<a href="https://github.com/bmatzelle/gow/wiki">https://github.com/bmatzelle/gow/wiki</a>).</p>
 <h2 id="6-creating-a-skeleton-component">6.  Creating a Skeleton Component<a class="headerlink" href="#6-creating-a-skeleton-component" title="Permanent link">&para;</a></h2>
 <p>The implementation of the XRandomSents interface, is greatly simplified by calling
 uno-skeletonmaker.exe. It generates the boilerplate code relating to how a service and
@@ -1836,7 +1836,7 @@ structure is shown in Figure 5.</p>
 <p>RandomSentsImpl extends WeakBase, the base class for UNO components. It's part
 of the com.sun.star.lib.uno package which is documented separately from Office
 modules such as Writer, Calc, and Impress. Both documentation trees can be accessed
-from the LibreOffice API documentation page at <a href="https://api.libreoffice.org/">https://api.libreoffice.org/</a>.</p>
+from the LibreOffice API documentation page at <a href="https://api.libreoffice.org">https://api.libreoffice.org</a>.</p>
 <p>The XServiceInfo interface contains three methods for retrieving the component's
 implementation name (i.e. "RandomSentsImpl") and supported services (i.e.</p>
 <p>"org.openoffice.randomsents.RandomSents"). These methods were generated by uno-
@@ -2087,7 +2087,7 @@ out (which means the same thing). A more specific example is</li>
 <p>As far as I know there's no label for Windows 64 bit.</p>
 <p>The best place for more information on these fields is chapter 4 of the Developer's
 Guide  at
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Extensions/Extensions/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Extensions/Extensions/</a>, or
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Extensions/Extensions">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Extensions/Extensions</a>, or
 use <code>loGuide Extensions</code>. Chapter 4 talks about several configuration topics I won't
 be covering, including update support, the options dialog, and help content.</p>
 <p>The makeOXT.bat script is called using the component's service name:</p>
@@ -2112,7 +2112,7 @@ Zipping RandomSents\ as RandomSents.oxt
 <p>The previously created RDB and JAR files are copied into the RandomSents folder in
 Figure 6, and the folder is zipped up as RandomSents.oxt. The zipping is carried out
 by a Windows version of the UNIX zip tool downloaded from the Gow site
-(<a href="https://github.com/bmatzelle/gow/wiki/">https://github.com/bmatzelle/gow/wiki/</a>).</p>
+(<a href="https://github.com/bmatzelle/gow/wiki">https://github.com/bmatzelle/gow/wiki</a>).</p>
 <h2 id="9-installing-the-extension">9.  Installing the Extension<a class="headerlink" href="#9-installing-the-extension" title="Permanent link">&para;</a></h2>
 <p>The Extension Manager can be started independently of Office by calling the unopkg
 tool in <OFFICE>\program with a "gui" argument; my extManager.bat script does
