@@ -115,8 +115,7 @@ XPath (XPath is used for locating parts of the input document for processing).
 
 Eisenberg's website has a free draft of the text, and all the examples and support code.
 The site often seems to be offline, but the book can be found elsewhere, including at
-Lulu: http://www.lulu.com/shop/j-david-eisenberg/oasis-opendocument-
-essentials/paperback/product-392512.html
+Lulu: http://www.lulu.com/shop/j-david-eisenberg/oasis-opendocument-essentials/paperback/product-392512.html
 
 If you feel the need for more information on XSLT, a good text by the developer of
 Saxon is:
@@ -429,8 +428,8 @@ Filter properties are explained in the online documentation for the FilterFactor
 service (use `lodoc FilterFactory` to access it), and also in the "Properties of a
 Filter" subsection of the "Integrating Import and Export Filters" section of chapter 6
 of the Developer's Guide (online at:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Properties_of_
-a_Filter, or use `loGuide "Properties of a Filter"`).
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Properties_of_a_Filter,
+or use `loGuide "Properties of a Filter"`).
 
 The most cryptic of the properties is the filter flags integer (524355 in the example
 above). It's actually a collection of bitwise OR'ed hexadecimals, and FiltersInfo.java
@@ -457,8 +456,8 @@ Filter flags: 80043
 
 The hexadecimals that might appear in the flag are listed in the online "Properties of a
 Filter" subsection
-(https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Properties_of_
-a_Filter). I've included a few isXXX() methods in the Info utilities class for testing for
+(https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Properties_of_a_Filter).
+I've included a few isXXX() methods in the Info utilities class for testing for
 their presence. The above example reports that the "Clubs" filter contains both an
 import and export filter.
 
@@ -743,8 +742,8 @@ of parsing XML.
 If you're interested in using ImportFilter and ExportFilter, the Developer's guide gives
 some details in the "Integrating Import and Export Filters" section of chapter 6 on
 "Office Development". The information is also online, starting at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Integrating_Im
-port_and_Export_Filters, or use loGuide "Import and Export Filters".
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Integrating_Import_and_Export_Filters,
+or use loGuide "Import and Export Filters".
 
 But I'm not going to use these services due to their complexity, and I'm about to stop
 using XSLT as well. Instead I'm going to look at three easier ways to import XML
@@ -780,8 +779,8 @@ Node.ATTRIBUTE.
 There are many online tutorials on Java and DOM, such as Oracle's at
 https://docs.oracle.com/javase/tutorial/jaxp/dom. Two other good ones are mkyong's
 starting at http://www.mkyong.com/tutorials/java-xml-tutorials/ and "Easy DOM
-Parsing in Java" by Eric Bruno at http://www.drdobbs.com/jvm/easy-dom-parsing-in-
-java/231002580. I've 'borrowed' some of Bruno's DOM functions for my XML.java
+Parsing in Java" by Eric Bruno at http://www.drdobbs.com/jvm/easy-dom-parsing-in-java/231002580.
+I've 'borrowed' some of Bruno's DOM functions for my XML.java
 support class, and his company.xml example.
 
 A textbook on Java and XML:
@@ -1574,8 +1573,8 @@ xjc processes an XML schema (an XSD file)  rather than XML since the schema
 contains information about the XML's underlying structure.
 
 The good news is that there are websites, such as freeformatter.com, which can
-generate XSD from supplied XML (http://www.freeformatter.com/xsd-
-generator.html). I employed its "Salami slice" translator so that the Java code
+generate XSD from supplied XML (http://www.freeformatter.com/xsd-generator.html).
+I employed its "Salami slice" translator so that the Java code
 generated later by xjc is a bit simpler to read. freeformatter.com converted pay.xml
 into the following XSD:
 

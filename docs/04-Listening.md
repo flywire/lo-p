@@ -29,7 +29,7 @@ I haven't previously mentioned Office's listener interfaces (there are about 140
 them), because they work in the same way as listeners in Java.
 
 Probably the easiest way of obtaining a list of them all is to visit the LibreOffice
-documentation for XEventListener (use lodoc XEventListener). The tree diagram
+documentation for XEventListener (use `lodoc XEventListener`). The tree diagram
 at the top of the page shows that every listener interface is a subclass of
 XEventListener, and you can click on a subclass box to jump to its documentation.
 
@@ -465,8 +465,8 @@ isn't the one for Impress? Do these combination of keys do something deadly in o
 of Office's other applications?
 
 One nice feature is that there's lots of documentation on keyboard shortcuts for Office
-in its User guides (downloadable from https://th.libreoffice.org/get-
-help/documentation/), and these can be easily translated into key presses and releases
+in its User guides (downloadable from https://th.libreoffice.org/get-help/documentation/),
+and these can be easily translated into key presses and releases
 in Robot.
 
 

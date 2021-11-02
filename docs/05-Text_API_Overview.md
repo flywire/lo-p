@@ -45,9 +45,8 @@ are available at http://api.libreoffice.org/examples/examples.html#Java_examples
 
 This chapter (and later ones) assume that you're familiar with Writer, including text
 concepts such as paragraph styles. If you're not, then I recommend the "Writer
-Guide", a user manual, available at http://www.libreoffice.org/get-
-help/documentation/ or
-https://wiki.documentfoundation.org/Documentation/Publications.
+Guide", a user manual, available at http://www.libreoffice.org/get-help/documentation/
+or https://wiki.documentfoundation.org/Documentation/Publications.
 
 
 ## 1.  An Overview of the Text Document API
@@ -62,8 +61,8 @@ Figure 1. The Text Document Services.
 
 
 I'll be concentrating on the TextDocument service, which is documented at
-http://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1text_1_1TextD
-ocument.html. Or you can type `lodoc TextDocument service`, which unfortunately
+http://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1text_1_1TextDocument.html.
+Or you can type `lodoc TextDocument service`, which unfortunately
 takes you to the IDL page for TextDocument; to reach the documentation, click on
 "TextDocument" under the "Classes" heading.
 
@@ -337,8 +336,8 @@ bookmark in a document, extract its text range/position, and move the cursor to 
 location with gotoRange(). I'll show code for doing this in Chapter 7.
 
 The XTextCursor methods are documented at
-http://api.libreoffice.org/docs/idl/ref/interfacecom_1_1sun_1_1star_1_1text_1_1XTex
-tCursor.html (or type `lodoc XTextCursor`).
+http://api.libreoffice.org/docs/idl/ref/interfacecom_1_1sun_1_1star_1_1text_1_1XTextCursor.html
+(or type `lodoc XTextCursor`).
 
 
 #### A Problem with Write.getAllText()
@@ -1071,8 +1070,7 @@ These code fragments are combined together in my ShowBookText.java example.
 
 More details on enumerators and text portions are given in the Developers Guide at
 https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Iterating_over_Text
-(or use loGuide "Iterating over Text").
-
+(or use `loGuide "Iterating over Text"`).
 
 
 ## 9.  Appending Documents Together
@@ -1080,7 +1078,6 @@ https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Iterating_over_Text
 If you need to write a large multi-part document (e.g. a thesis with chapters,
 appendices, contents page, and an index) then you should utilize a master document,
 which acts as a repository of links to documents representing the component parts.
-
 You can find out about master documents in Chapter 13 of the Writers Guide, at
 https://wiki.documentfoundation.org/Documentation/Publications.
 

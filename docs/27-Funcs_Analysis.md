@@ -1258,7 +1258,7 @@ XSolver solver = Lo.createInstanceMCF(XSolver.class,
 ```
 
 The various "set" methods are described in the XSolver documentation as public
-variables (call lodoc xsolver to see the page). They load the profit equation,
+variables (call `lodoc xsolver` to see the page). They load the profit equation,
 constraints, and variables into the solver. It's also necessary to specify that the profit
 equation be maximized, and link the solver to the Calc document.
 

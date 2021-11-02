@@ -74,8 +74,8 @@ quick summary of the OpenDocument Format (ODF) at
 https://help.libreoffice.org/Common/XML_File_Formats.
 
 The ODF standard was developed by the Organization for the Advancement of
-Structured Information Standards (OASIS) consortium  (https://www.oasis-
-open.org/), whose website hosts a lot of information. A related community site is
+Structured Information Standards (OASIS) consortium  (https://www.oasis-open.org/),
+whose website hosts a lot of information. A related community site is
 http://opendocument.xml.org/
 
 The most complete textbook on ODF is:
@@ -86,8 +86,8 @@ http:// books.evc-cit.info/
 The associated website has a free draft of the book, and all the examples and support
 code. The site often seems to be offline, but the book can be found at other locations.
 
-A recent version can be purchased at Lulu: http://www.lulu.com/shop/j-david-
-eisenberg/oasis-opendocument-essentials/paperback/product-392512.html
+A recent version can be purchased at Lulu:
+http://www.lulu.com/shop/j-david-eisenberg/oasis-opendocument-essentials/paperback/product-392512.html
 
 
 ## 2.  Document Information

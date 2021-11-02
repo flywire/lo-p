@@ -174,7 +174,9 @@ your search. For instance, if you're looking for the Text service, type:
 
 Module names are also quite common words, so add "module" to the search. If you
 want to reach the "text" module (which implements most of Writer), search for:
-lodoc text module
+
+`lodoc text module`
+
 You can call lodoc with Office application names, which are mapped to API module
 names. For instance:
 

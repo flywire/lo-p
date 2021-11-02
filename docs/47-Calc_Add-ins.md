@@ -72,13 +72,13 @@ the add-ins which come with Calc. The functions-by-category data is also online 
 https://help.libreoffice.org/Calc/Functions_by_Category
 An interesting wiki page comparing the features of the current version of LibreOffice
 and MS Office can be found at
-https://wiki.documentfoundation.org/Feature_Comparison:_LibreOffice_-
-_Microsoft_Office. The spreadsheet section states that LibreOffice Calc has 500
+https://wiki.documentfoundation.org/Feature_Comparison:_LibreOffice_-_Microsoft_Office. 
+The spreadsheet section states that LibreOffice Calc has 500
 functions versus 468 in MS Excel, with a large overlap between them but with 25
 functions unique to Calc 5.2 and 14 unique to Excel 2016. Another interesting
 comparison is offered by Zeki Bildirici as a spreadsheet at
-https://wiki.documentfoundation.org/images/c/c6/Excel2013_Calc_Functions_Compa
-rison.ods, which matches functions in Excel 2013 to their equivalents in Calc 3.x.
+https://wiki.documentfoundation.org/images/c/c6/Excel2013_Calc_Functions_Comparison.ods,
+which matches functions in Excel 2013 to their equivalents in Calc 3.x.
 
 
 ## 1.  Implementing a Calc Add-in
@@ -93,8 +93,8 @@ XServiceInfo.
 I mention this 'ancient' history because the Developer's Guide (no spring chicken
 itself, having been released in 2009) only explains the pre-2005 approach. There's a
 lengthy example in chapter 8, which can also be found online at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Spreadsheets/Spreadsheet
-_Add-Ins (or use `loGuide "Spreadsheet Add-Ins"`). The code (called
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Spreadsheets/Spreadsheet_Add-Ins
+(or use `loGuide "Spreadsheet Add-Ins"`). The code (called
 ExampleAddIn) can be downloaded from
 http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Spreadsheet
 
@@ -131,8 +131,8 @@ informative. Unlike  my example, the add-in can be localized to show documentati
 in English or German.
 
 The specification document for the NetBeans add-in wizard is at
-https://www.openoffice.org/specs/sdk/tools/spec_openoffice-netbeans-integration-
-calc-addin-wizard.odt. In amongst details about dialog structuring, there's some good
+https://www.openoffice.org/specs/sdk/tools/spec_openoffice-netbeans-integration-calc-addin-wizard.odt.
+In amongst details about dialog structuring, there's some good
 material on the format of CalcAddin.xcu. I'll explain the XCU format in section 2.5.
 
 
@@ -176,8 +176,8 @@ As mentioned in Chapter 45, the main source for information about IDL types is
 chapter 3 of the Developer's Guide. The subsection "Using UNOIDL to Specify New
 Components" explains how to define an interface, and the same information is online
 at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Using_UNO
-IDL_to_Specify_New_Components (or use `loGuide "Using UNOIDL"`). However,
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Using_UNOIDL_to_Specify_New_Components
+(or use `loGuide "Using UNOIDL"`). However,
 add-in functions only support a subset of the IDL input and return types.
 
 Input arguments must use "[in]", and are restricted to the types long, double, string,
@@ -194,8 +194,8 @@ over time; its value is automatically updated in the cell containing the functio
 
 Details on how IDL types are mapped to Java can be found in chapter 2 of the guide,
 starting at the "Type Mapping" subsection (online at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/ProUNO/Java/Type_Mapp
-ings, or via `loGuide "Type Mappings"`). The Java versions of the add-in function
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/ProUNO/Java/Type_Mappings,
+or via `loGuide "Type Mappings"`). The Java versions of the add-in function
 types are also detailed in the online documentation for the AddIn service (use
 `lodoc Addin` to find the page).
 

@@ -108,8 +108,7 @@ Developer's Guide, in chapters 3 ("Writing UNO Components") and 4 ("Extensions")
 The guide is available from
 https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf, or the
 chapters are online starting at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Writing_UN
-O_Components and
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Writing_UNO_Components and
 https://wiki.openoffice.org/wiki/Documentation/DevGuide/Extensions/Extensions (or
 use `loGuide "Writing UNO Components"` and `loGuide Extensions`).
 
@@ -1070,46 +1069,39 @@ The ID, version, and installation location are printed for each extension:
 
 ```
 Extensions:
-## 1.  ID: org.openoffice.en.hunspell.dictionaries
-
+1.  ID: org.openoffice.en.hunspell.dictionaries
    Version: 2011.12.05.1
    Loc: file:///C:/Program%20Files/LibreOffice%205/program/../
                            share/extensions/dict-en
 
-## 2.  ID: French.linguistic.resources.from.Dicollecte.by.OlivierR
-
+2.  ID: French.linguistic.resources.from.Dicollecte.by.OlivierR
    Version: 5.4.1
    Loc: file:///C:/Program%20Files/LibreOffice%205/program/../
                            share/extensions/dict-fr
 
-## 3.  ID: org.openoffice.languagetool.oxt
-
+3.  ID: org.openoffice.languagetool.oxt
    Version: 3.4
    Loc: file:///C:/Program%20Files/LibreOffice%205/program/../
                            share/uno_packages/cache/uno_packages/
                            lu4156ef34f.tmp_/LanguageTool-3.4.oxt
 
-## 4.  ID: org.openoffice.randomsents
-
+4.  ID: org.openoffice.randomsents
    Version: 0.1
    Loc: file:///C:/Users/Ad/AppData/Roaming/LibreOffice/4/user/
                      uno_packages/cache/uno_packages/
                      lu29529rfgd.tmp_/RandomSents.oxt
 
-## 5.  ID: com.sun.star.comp.Calc.NLPSolver
-
+5.  ID: com.sun.star.comp.Calc.NLPSolver
    Version: 0.9
    Loc: file:///C:/Program%20Files/LibreOffice%205/program/../
                            share/extensions/nlpsolver
 
-## 6.  ID: spanish.es_ANY.dicts.from.rla-es
-
+6.  ID: spanish.es_ANY.dicts.from.rla-es
    Version: 0.8
    Loc: file:///C:/Program%20Files/LibreOffice%205/program/../
                            share/extensions/dict-es
 
-## 7.  ID: com.sun.wiki-publisher
-
+7.  ID: com.sun.wiki-publisher
    Version: 1.2.0
    Loc: file:///C:/Program%20Files/LibreOffice%205/program/../
                            share/extensions/wiki-publisher

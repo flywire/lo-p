@@ -358,7 +358,8 @@ xAxis.setScaleData(sd);
 ```
 
 Before the interval can be changed, the axis type must be changed to be of type
-DATE. Information on the ScaleData class can be accessed by calling `lodoc chart2 scaledata`.
+DATE. Information on the ScaleData class can be accessed by calling
+`lodoc chart2 scaledata`.
 
 Another technique for making the dates easier to read is to rotate their labels. The
 following code rotates each label counter-clockwise by 45 degrees:
@@ -431,7 +432,7 @@ Figure 13. The ChartType Service.
 
 
 CandleStickChartType contains some useful properties, including "WhiteDay" and
-"BlackDay" (for details call lodoc chart2 CandleStickChartType). These
+"BlackDay" (for details call `lodoc chart2 CandleStickChartType`). These
 properties store sets containing multiple values from the FillProperties and
 LineProperties services. They can be accessed like so:
 

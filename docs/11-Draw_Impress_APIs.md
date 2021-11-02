@@ -25,8 +25,8 @@ the Draw and Impress user guides, downloadable from
 https://www.libreoffice.org/get-help/documentation/.
 
 Details about the APIs can be found in Chapter 9 of the Developer's Guide, starting at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Drawings/Drawing_Docu
-ments_and_Presentation_Documents (or type loGuide draw). The guide can also be
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Drawings/Drawing_Documents_and_Presentation_Documents
+(or type `loGuide draw`). The guide can also be
 retrieved as a PDF file from
 https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf.
 
@@ -50,13 +50,13 @@ Figure 1. The Drawing and Presentation Document Services.
 
 The DrawingDocument service, and most of its related services and interfaces are in
 Office's com.sun.star.drawing package (or module), which is documented at
-http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1drawing.ht
-ml. Or you can reach it using lodoc drawing module reference.
+http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1drawing.html.
+Or you can reach it using `lodoc drawing module reference`.
 
 The presentation API is mostly located in Office's com.sun.star.presentation package
 (or module), which is documented at
-http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1presentation
-.html. You can also find it with lodoc presentation module reference.
+http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1presentation.html.
+You can also find it with `lodoc presentation module reference`.
 
 Figure 2 shows a more detailed version of Figure 1 which includes some of the
 interfaces defined by the services.
@@ -109,7 +109,6 @@ Since XDrawPages inherit XIndexAccess, its elements (pages) can be accessed usin
 index-based lookup (i.e. to return page 0, page 1, etc.).
 
 
-
 ## 2.  Draw Page Details
 
 A draw page is a collection of shapes: often text shapes, such as a title box or a box
@@ -125,7 +124,7 @@ Figure 4. The API Hierarchy for a Draw Page.
 
 
 XPresentationPage is the interface for a slide's page, but most of its functionality
-comes from XDrawPage (see loDoc XPresentationPage). The XDrawPage
+comes from XDrawPage (see `lodoc XPresentationPage`). The XDrawPage
 interface doesn't do much either, except for inheriting XShapes (note the "s").
 XShapes inherits XIndexAccess, which means that an XShapes object can be
 manipulated as an indexed sequence of XShape objects.
@@ -198,8 +197,8 @@ int pageNumber = (Short)Props.getProperty(page, "Number");
 
 The "Width" and "Number" properties are documented in the GenericDrawPage
 service page at
-http://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1drawing_1_1Ge
-nericDrawPage.html (or use `lodoc GenericDrawPage service`).
+http://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1drawing_1_1GenericDrawPage.html
+(or use `lodoc GenericDrawPage service`).
 
 Once a single page has been retrieved, it's possible to access its shapes (as shown in
 Figure 4). The following code converts the XDrawPage object to XShapes, and

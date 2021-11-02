@@ -184,7 +184,7 @@ methods, but the four in Figure 2 seem most useful. They set the "Layout" proper
 the DrawPage service in the com.sun.star.presentation module (not the one in the
 drawing module).
 
-The documentation for DrawPage (use lodoc DrawPage presentation service)
+The documentation for DrawPage (use `lodoc DrawPage presentation service`)
 only says that "Layout" stores a short; it doesn't list the possible values or how they
 correspond to layouts. However, there is a list at the excellent Japanese Office
 website,  http://openoffice3.web.fc2.com/OOoBasic_Impress.html#OOoIPLy01a,
@@ -427,7 +427,7 @@ Figure 5. The TextRange Service.
 
 
 A look through the ParagraphProperties documentation reveals a "NumberingLevel"
-property which affects the displayed bullet level (use lodoc ParagraphProperties).
+property which affects the displayed bullet level (use `lodoc ParagraphProperties`).
 
 Another way of finding out about the properties associated with XTextRange is to use
 my Props.showObjProps() to list all of them:
@@ -820,8 +820,7 @@ Although there's no mention of these custom and 3D shapes in the Developer's Gui
 their dispatch commands do appear in the UICommands.ods spreadsheet (available
 from https://arielch.fedorapeople.org/devel/ooo/UICommands.ods). They're also
 mentioned, in less detail, in the online documentation for Impress dispatches at
-https://wiki.documentfoundation.org/Development/DispatchCommands#Impress_slot
-s_.28sdslots.29.
+https://wiki.documentfoundation.org/Development/DispatchCommands#Impress_slots_.28sdslots.29.
 
 It's quite easy to match up the tooltip names in the GUI with the dispatch names. For
 example, the smiley face in the Symbol shapes menu is called "Smiley Face" in the

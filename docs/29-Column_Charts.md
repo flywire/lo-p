@@ -584,7 +584,7 @@ public static void showAxisLabel(XChartDocument chartDoc,
 ```
 
 The Axis service contains a large assortment of properties (online documentation can
-be read by calling lodoc chart2 axis service), and inherits character and line
+be read by calling `lodoc chart2 axis service`), and inherits character and line
 properties depicted in Figure 12.
 
 

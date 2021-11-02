@@ -140,11 +140,12 @@ String fnm = (String) props.getPropertyValue("GraphicURL");
 
 I know the graphic object's URL is stored in the "GraphicURL" property from looking
 at the documentation for the TextGraphicObject service. It can be (almost) directly
-accessed by typing `lodoc TextGraphicObject service;` unfortunately
+accessed by typing `lodoc TextGraphicObject service`; unfortunately
 DuckDuckGo chooses the TextGraphicObjects service, and you need to click on the
 "TextGraphicObject" link below the title to get to the required page.
 
 It's possible to call setPropertyValue() to change a property:
+
 `props.setPropertyValue("Transparency", (short)50);`
 
 **What About the Text Content I Don't Cover?**
@@ -153,8 +154,8 @@ Table 1 has many rows without bold entries, which means I won't be looking at th
 
 except for the very brief descriptions here; for more please consult the Developer's
 Guide at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Working_with_Text_
-Documents (or type `loGuide "Working with Text Documents"`). All the examples
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Working_with_Text_Documents
+(or type `loGuide "Working with Text Documents"`). All the examples
 in that section are in TextDocuments.java at
 http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Text.
 
@@ -167,8 +168,8 @@ type `loGuide "Text Sections"`).
 **Footnotes and Endnotes.** Footnotes and endnotes are blocks of text that appear in the
 page footers and at the end of a document. They can be treated as XText objects, so
 manipulated using the same techniques as the main document text. See:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Footnotes_and_Endn
-otes (or type `loGuide Footnotes`).
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Footnotes_and_Endnotes
+(or type `loGuide Footnotes`).
 
 **Reference Marks.** Reference marks can be inserted throughout a document, and then
 jumped to via GetReference text fields:
@@ -180,8 +181,8 @@ anywhere in a document, but are used to generate indices (collections of informa
 inside the document. There are several types of index marks used for generating lists
 of chapter headings (i.e. a book's index), lists of key words, illustrations, tables, and a
 bibliography. For details see:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Indexes_and_Index_
-Marks (or type `loGuide Indexes`).
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Indexes_and_Index_Marks
+(or type `loGuide Indexes`).
 
 **Link Targets.** A link target (sometimes called a jump mark) labels a location inside a
 document. These labels can be included as part of a filename so that the document can

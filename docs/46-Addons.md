@@ -115,10 +115,9 @@ The main source of information for job and ProtocolHandler add-ons is chapter 3 
 the Developer's Guide (available at
 https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf), or
 online at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Integrating_
-Components_into_OpenOffice.org and
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/AddOns/Ad
-d-Ons (or use `loGuide "Integrating Components"` and `loGuide add-ons`).
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Integrating_Components_into_OpenOffice.org and
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/AddOns/Add-Ons
+(or use `loGuide "Integrating Components"` and `loGuide add-ons`).
 
 The Developer's Guide add-on example can be found at
 http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Components
@@ -392,7 +391,7 @@ The Developer's Guide has some information on the dialog editor in chapter 11,
 "OpenOffice.org Basic". The relevant sub-sections are online at
 https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Dialog_Editor and
 https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Creating_Dialogs
-(or use loGuide "Dialog Editor" and loGuide "Creating Dialogs").
+(or use `loGuide "Dialog Editor"` and `loGuide "Creating Dialogs"`).
 
 The editor utilizes drag-and-drop to place GUI elements in a dialog drawing area,
 with property windows for specializing each element. The editor is reached via

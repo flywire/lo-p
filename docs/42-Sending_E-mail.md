@@ -344,7 +344,7 @@ XMailMessage msg = com.sun.star.mail.MailMessage.create(
                  subject, new TextTransferable(body));
 ```
 
-The online documentation for MailMessage.create() (use "lodoc MailMessage" to
+The online documentation for MailMessage.create() (use `lodoc MailMessage` to
 access it) is misleading in that it doesn’t mention the need for the component context,
 which is obtained with the Lo.getContext() call.
 
@@ -858,7 +858,7 @@ The XMailMergeBroadcaster interface is employed to attach a listener to the merg
 process, and XCancellable can kill the merge.
 
 If you look at the documentation for the MailMerge and DataAccessDescriptor
-services (e.g. use "lodoc MailMerge"), you'll discover many properties in both, and
+services (e.g. use `lodoc MailMerge`), you'll discover many properties in both, and
 that most (but not all) of the DataAccessDescriptor properties are redefined in
 MailMerge.
 
@@ -1135,7 +1135,7 @@ These specify the use of a spreadsheet table, the data source name, and the temp
 filename (as a URI).
 
 The other properties are divided up based on the MailMergeType constants FILE,
-PRINT, and MAIL (see "lodoc MailMergeType").
+PRINT, and MAIL (see `lodoc MailMergeType`).
 
 I've hardwired certain properties to reduce the number of arguments that need to be
 passed to Mail.mergeLetter(), Mail.mergePrint(), and Mail.mergeEmail().

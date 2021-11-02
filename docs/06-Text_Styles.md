@@ -979,10 +979,8 @@ XStyleFamiliesSupplier, they employ XChapterNumberingSupplier and
 XNumberFormatsSupplier.
 
 For more details, see the development guide:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Line_Numbering_an
-d_Outline_Numbering
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Line_Numbering_and_Outline_Numbering
 or type `loGuide "Line Numbering"`.
-
 
 
 ## 10.  Other Style Changes

@@ -796,7 +796,7 @@ public static void usePrinter(XPrintable xp, String printer)
 ```
 
 Table 1 lists the PrintDescriptor properties, or use my lodoc.bat script to access the
-class' documentation online (type "lodoc PrinterDescriptor").
+class' documentation online (type `lodoc PrinterDescriptor`).
 
 
 |Property              |Description                            |
@@ -1067,7 +1067,7 @@ Print.getDocSettings()'s result.
 
 The printing-related properties defined in the Settings superclass are listed in Table 4,
 but it contains  many more properties for different aspects of a document. For a full
-list, use "lodoc Settings document" to look at the online documentation. The Settings
+list, use `lodoc Settings document` to look at the online documentation. The Settings
 webpage is also a good starting point for examining its DocumentSettings subclasses.
 
 
@@ -1093,10 +1093,10 @@ Table 4. Printing-related Properties in com.sun.star.document.Settings.
 
 
 Writer documents utilize the DocumentSettings service in the text module which
-doesn't contain any printing properties, but is far from empty. Again, use "lodoc
-DocumentSettings text" to visit its documentation in the text module. Instead, the
+doesn't contain any printing properties, but is far from empty. Again, use
+`lodoc DocumentSettings text` to visit its documentation in the text module. Instead, the
 print properties are inherited from the PrintSettings service in the text module, which
-are listed in Table 5. Use "lodoc PrintSettings text" to visit its documentation.
+are listed in Table 5. Use `lodoc PrintSettings text` to visit its documentation.
 
 
 |Property           |Description                                |
@@ -1164,8 +1164,8 @@ Rsid == 537223
   :
 ```
 
-A Calc file uses the DocumentSettings service in the sheet module (use "lodoc
-DocumentSettings sheet" to examine its documentation). However, printing-related
+A Calc file uses the DocumentSettings service in the sheet module (use
+`lodoc DocumentSettings sheet` to examine its documentation). However, printing-related
 properties are stored elsewhere, in the GlobalSheetSettings and PageStyle services,
 which need additional code to access them as I'll explain later.
 
@@ -1291,7 +1291,7 @@ sheet module, and PageStyle in the style module.
 
 In a break with usual Office conventions, the GlobalSheetService service (see
 `lodoc GlobalSheetSettings`) doesn’t store the properties; instead they're maintained by its
-XGlobalSheetSettings interface (see "lodoc XGlobalSheetSettings). The printing-
+XGlobalSheetSettings interface (see `lodoc XGlobalSheetSettings`). The printing-
 related properties are listed in Table 10.
 
 
@@ -1644,8 +1644,8 @@ private static void showTotalsHeader(XPropertySet props)
 ```
 
 A sheet may have two headers (one for the left hand page, one for the right) and two
-footers, which are accessed as XHeaderFooterContent objects (see "lodoc
-XHeaderFooterContent"). XHeaderFooterContent  is a collection of three XText
+footers, which are accessed as XHeaderFooterContent objects (see
+`lodoc XHeaderFooterContent`). XHeaderFooterContent  is a collection of three XText
 instances representing the left, center, and right of the content area.
 
 The headers and footers are accessed via the sheet's page style properties, stored as

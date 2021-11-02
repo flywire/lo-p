@@ -688,7 +688,7 @@ XLabeledDataSequence lds =
 ```
 
 Role strings are defined in DataSequenceRole, which is documented on the page that
-describes chart2's data submodule (call lodoc chart2 data module, and scroll to
+describes chart2's data submodule (call `lodoc chart2 data module`, and scroll to
 the bottom).
 
 XDataSink.setData() can accept multiple XLabeledDataSequence objects in an array,
@@ -751,7 +751,7 @@ Props.setProperty(props, "ErrorBarStyle", ErrorBarStyle.FROM_DATA);
 XDataSink dataSink = Lo.qi(XDataSink.class, props);
 ```
 
-For details on the ErrorBar service, execute lodoc chart2 ErrorBar.
+For details on the ErrorBar service, execute `lodoc chart2 ErrorBar`.
 
 
 ### 5.3.  Linking the Data Sink to the Chart

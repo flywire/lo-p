@@ -37,8 +37,8 @@ finding this information, using configuration properties and path settings.
 
 Configuration management is a complex area, which is explained reasonably well in
 chapter 15 of the developer's guide and online at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Config/Configuration_Ma
-nagement; I'll only explain the basics here. The easiest way of accessing the relevant
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Config/Configuration_Management;
+I'll only explain the basics here. The easiest way of accessing the relevant
 online section is by typing:
 `loguide "Configuration Management"`
 
@@ -96,8 +96,8 @@ whereabouts of the gallery and spellchecker files. A partial list of predefined 
 accessible from within LibreOffice, via the Tools menu: Tools, Options,
 LibreOffice, Paths. But the best source of information is the developer's guide, in the
 "Path Organization" section of chapter 6, or at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Path_Organizat
-ion, which can be accessed using:
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Path_Organization,
+which can be accessed using:
 `loguide "Path Organization"`
 
 One issue is that path settings comes in two forms: a string holding a single directory
@@ -353,8 +353,8 @@ XTextDocument 's inheritance hierarchy shown in Figure 5.
 Figure 5. Inheritance Hierarchy for XTextDocument.
 
 
-A similar diagram appears on the XTextDocument documentation webpage (`lodoc
-XTextDocument`), but is complicated by also including the inheritance hierarchy for
+A similar diagram appears on the XTextDocument documentation webpage (`lodoc XTextDocument`),
+but is complicated by also including the inheritance hierarchy for
 the TextDocument service. Note, the interface hierarchy is also textually represented
 in the "Public Member Functions" section of the documentation.
 
@@ -513,8 +513,7 @@ documentation. MRI has its own wiki, at https://github.com/hanya/MRI/wiki, and
 there are several forum posts about using it for code generation (e.g.
 https://forum.openoffice.org/en/forum/viewtopic.php?f=74&t=49294) and for
 navigating MRI's object hierarchy
-(https://forum.openoffice.org/en/forum/download/file.php?id=17368&sid=373c5d782
-40f4093fb3721fe4264dd20).
+(https://forum.openoffice.org/en/forum/download/file.php?id=17368&sid=373c5d78240f4093fb3721fe4264dd20).
 
 
 #### Some Quirks of Using MRI

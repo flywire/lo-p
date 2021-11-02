@@ -205,7 +205,7 @@ Figure 5. The Spreadsheet Service.
 
 A great deal of spreadsheet-related functionality is implemented as interfaces
 belonging to the Spreadsheet service. The most important is probably XSpreadsheet
-(see lodoc xspreadsheet reference), which gives the programmer access to a
+(see 	lodoc xspreadsheet reference	), which gives the programmer access to a
 sheet's cells and cell ranges via getCellByPosition(), getCellRangeByPosition(), and
 getCellRangeByName().  For example:
 
@@ -248,7 +248,7 @@ shown in the class diagram in Figure 7.
 Figure 7. The CellRange Class Diagram.
 
 
-You can access the documentation using lodoc XCellRange.
+You can access the documentation using 	lodoc XCellRange	.
 
 What's missing from XCellRange is a way to set the values in a cell range. This is
 supported by the XCellRangeData interface (see Figure 6) which offers a
