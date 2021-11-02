@@ -11,6 +11,8 @@
       
       
       
+        <link rel="canonical" href="https://flywire.github.io/lo-p/42-Sending_E-mail.html">
+      
       <link rel="icon" href="assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
@@ -1353,7 +1355,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/flywire/lo-p/edit/master/docs/42-Sending_E-mail.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/flywire/lo-p/edit/main/docs/42-Sending_E-mail.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1374,9 +1376,9 @@ Merge</p>
 Tests" and "Utils"</p>
 </div>
 <p>The Jargon file is a humorous collection of computer
-slang (online at <a href="http://www.catb.org/jargon/html/">http://www.catb.org/jargon/html/</a>), and its
+slang (online at <a href="https://catb.org/jargon/html/">https://catb.org/jargon/html/</a>), and its
 entry for Zawinski's "Law of Software Envelopment"
-(<a href="http://www.catb.org/jargon/html/Z/Zawinskis-Law.html">http://www.catb.org/jargon/html/Z/Zawinskis-Law.html</a>)
+(<a href="https://catb.org/jargon/html/Z/Zawinskis-Law.html">https://catb.org/jargon/html/Z/Zawinskis-Law.html</a>)
 came to mind while I was preparing this chapter. It states:</p>
 <blockquote>
 <p>"Every program attempts to expand until it can
@@ -1539,7 +1541,7 @@ out is part of other Office-related tasks, such as the run-time generation of a
 document, then its best to use Office's MailServiceProvider service since it nicely
 integrates with the rest of the API. However, if you plan to write a standalone e-mail
 application which loads and sends ODF attachments, then JavaMail has more features
-(<a href="https://java.net/projects/javamail/pages/Home">https://java.net/projects/javamail/pages/Home</a>).</p>
+(<a href="https://java.net/projects/javamail/pages/Home/">https://java.net/projects/javamail/pages/Home/</a>).</p>
 <p>I'll start this chapter by explaining the Office services for sending e-mail:
 SimpleSystemMail/SimpleCommandMail, and the newer MailServiceProvider. Then
 I'll switch to non-Office approaches, looking first at JavaMail, followed by two
@@ -1628,7 +1630,7 @@ protocol, as depicted in Figure 3.</p>
 <p><img alt="" src="images/42-Sending_E-mail-3.png" /></p>
 <p>Figure 3. The Default E-mail Client of Windows 7.</p>
 <p>A good description of how to set up this association can be found at
-<a href="http://www.ubergizmo.com/how-to/set-default-email-client-windows/">http://www.ubergizmo.com/how-to/set-default-email-client-windows/</a></p>
+<a href="https://ubergizmo.com/how-to/set-default-email-client-windows/">https://ubergizmo.com/how-to/set-default-email-client-windows/</a></p>
 <h2 id="2-using-the-mailserviceprovider-service">2.  Using the MailServiceProvider Service<a class="headerlink" href="#2-using-the-mailserviceprovider-service" title="Permanent link">&para;</a></h2>
 <p>The MailServiceProvider service utilizes a Python script called mailmerge.py which
 creates a socket-based link to the specified mail server. If that link utilizes SSL (or its
@@ -1865,11 +1867,11 @@ XSmtpService.sendMailMessage():</p>
 </code></pre></div>
 <h2 id="3-using-javamail">3.  Using JavaMail<a class="headerlink" href="#3-using-javamail" title="Permanent link">&para;</a></h2>
 <p>JavaMail can send and receive e-mail via SMTP, POP3 and IMAP (its website is
-<a href="https://java.net/projects/javamail/pages/Home">https://java.net/projects/javamail/pages/Home</a>). Although JavaMail is mainly intended
+<a href="https://java.net/projects/javamail/pages/Home/">https://java.net/projects/javamail/pages/Home/</a>). Although JavaMail is mainly intended
 to be a component of Java EE, it can be downloaded as a single JAR file
 (javax.mail.jar) as an add-on to the JDK. It's being actively developed (the current
 version is 1.5.6, released in mid 2016), and the website has lots of examples (see
-<a href="http://java.net/projects/javamail/downloads/download/javamail-samples.zip">http://java.net/projects/javamail/downloads/download/javamail-samples.zip</a>), a FAQ,
+<a href="https://java.net/projects/javamail/downloads/download/javamail-samples.zip">https://java.net/projects/javamail/downloads/download/javamail-samples.zip</a>), a FAQ,
 and API documentation (at <a href="https://javamail.java.net/nonav/docs/api/">https://javamail.java.net/nonav/docs/api/</a>).</p>
 <p>The main textbook about JavaMail is:</p>
 <ul>
@@ -1998,7 +2000,7 @@ message, which means that there's no need to download the javax.mail JAR. The
 delivery doesn't need to explicitly include the mail server address, port, login, and
 password since they're obtained from the client's settings.</p>
 <p>Desktop.mail() utilizes the mailto protocol to communicate with the client, but its
-specification (in RFC 2368, at <a href="http://www.ietf.org/rfc/rfc2368.txt">http://www.ietf.org/rfc/rfc2368.txt</a>) doesn't cover
+specification (in RFC 2368, at <a href="https://ietf.org/rfc/rfc2368.txt">https://ietf.org/rfc/rfc2368.txt</a>) doesn't cover
 attachments. There are unofficial extensions supported by some clients, but they're not
 part of Thunderbird (but see the next section).</p>
 <p>The mailto syntax is:</p>
@@ -2070,7 +2072,7 @@ Thunderbird, the call to Desktop.mail() fails.</p>
 <p>The reason for my uncertainty about Thunderbird supporting attachments is that
 although it doesn't allow them in "mailto" strings, it can process attachments via its
 GUI, and the command line (see
-<a href="http://kb.mozillazine.org/Command_line_arguments_-_Thunderbird">http://kb.mozillazine.org/Command_line_arguments_-_Thunderbird</a>). Its command
+<a href="https://kb.mozillazine.org/Command_line_arguments_-_Thunderbird/">https://kb.mozillazine.org/Command_line_arguments_-_Thunderbird/</a>). Its command
 line features open up another way of sending e-mail: by having Java execute
 Thunderbird through an external script.</p>
 <p>My Windows batch file, called TBExec.bat, applies various checks to its command

@@ -11,6 +11,8 @@
       
       
       
+        <link rel="canonical" href="https://flywire.github.io/lo-p/43-Using_the_Clipboard.html">
+      
       <link rel="icon" href="assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
@@ -1513,7 +1515,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/flywire/lo-p/edit/master/docs/43-Using_the_Clipboard.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/flywire/lo-p/edit/main/docs/43-Using_the_Clipboard.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1584,7 +1586,7 @@ can be utilized with a Writer document, a spreadsheet, slides, and a database.</
 <p>One thing you might want to install before starting any clipboard programming is a
 decent clipboard viewer. It's helpful for observing the data being copied and pasted by
 the Office/Java code; I employ ClCl (
-<a href="http://www.nakka.com/soft/clcl/index_eng.html">http://www.nakka.com/soft/clcl/index_eng.html</a>).</p>
+<a href="https://nakka.com/soft/clcl/index_eng.html">https://nakka.com/soft/clcl/index_eng.html</a>).</p>
 <h2 id="1-the-office-clipboard-api">1.  The Office Clipboard API<a class="headerlink" href="#1-the-office-clipboard-api" title="Permanent link">&para;</a></h2>
 <p>Office's clipboard API is located in the clipboard sub-module inside
 com.sun.star.datatransfer, and utilizes several services and interfaces from its
@@ -1602,8 +1604,8 @@ the Development Guide in the section "Common Application Features". The guide
 can be downloaded from
 <a href="https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf">https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf</a>, or the
 relevant section begins online at
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Common_Appl">https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Common_Appl</a>
-ication_Features (or use loGuide "Common Application Features").</p>
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Common_Application_Features/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Common_Application_Features/</a>
+(or use <code>loGuide "Common Application Features"</code>).</p>
 <p>My Clip.getClip() support method illustrates how to get a reference to the system
 clipboard:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// in the Clip class</span>
@@ -2329,14 +2331,14 @@ good sources are:</p>
 Terrill Brett Spell
 Apress, 2015, 3<sup>rd</sup> ed.</li>
 </ul>
-<p><a href="http://www.apress.com/9781484206423">http://www.apress.com/9781484206423</a>
+<p><a href="https://apress.com/9781484206423/">https://apress.com/9781484206423/</a>
 Chapter 9 is about the clipboard.</p>
 <ul>
 <li>Core Java, Volume II -- Advanced Features
 Cay S. Horstmann; Gary Cornell
 Prentice Hall, 2016, 10<sup>th</sup> ed.</li>
 </ul>
-<p><a href="http://horstmann.com/corejava.html">http://horstmann.com/corejava.html</a>
+<p><a href="https://horstmann.com/corejava.html">https://horstmann.com/corejava.html</a>
 Chapter 7 includes a clipboard section.</p>
 <h2 id="3-copy-and-pasting-in-an-office-document">3.  Copy and Pasting in an Office Document<a class="headerlink" href="#3-copy-and-pasting-in-an-office-document" title="Permanent link">&para;</a></h2>
 <p>The next four sections look at copying from and pasting to Office documents using
@@ -2604,7 +2606,7 @@ data:</p>
   <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
 <span class="p">}</span>  <span class="c1">// end of listFlavors()</span>
 </code></pre></div>
-<p>The ClCl clipboard viewer (<a href="http://www.nakka.com/soft/clcl/index_eng.html">http://www.nakka.com/soft/clcl/index_eng.html</a>) is a
+<p>The ClCl clipboard viewer (<a href="https://nakka.com/soft/clcl/index_eng.html">https://nakka.com/soft/clcl/index_eng.html</a>) is a
 more graphical way of viewing this information. For example, the copied text is
 displayed as in Figure 5.</p>
 <p><img alt="" src="images/43-Using_the_Clipboard-5.png" /></p>
@@ -2930,7 +2932,7 @@ Base, then using ClCl to look at the clipboard. The result is shown in Figure 10
 "SBA-DATAFORMAT' entry refers to the mime type "application/x-openoffice-sba-
 dataexchange;windows_formatname=\"SBA-DATAFORMAT\"", but I've no idea
 what SBA stands for. An online acronym finder site
-(<a href="http://www.acronymfinder.com/">http://www.acronymfinder.com/</a>) suggests "Susan B. Anthony", but I doubt it.</p>
+(<a href="https://acronymfinder.com/">https://acronymfinder.com/</a>) suggests "Susan B. Anthony", but I doubt it.</p>
 <h4 id="the-invisible-cut-and-paste-of-data">The Invisible Cut-and-Paste of Data<a class="headerlink" href="#the-invisible-cut-and-paste-of-data" title="Permanent link">&para;</a></h4>
 <p>I've described the  'invisible' approach for databases previously, in Chapter 36, section
 3 ("Copying Data From Base To Calc"), which converts a Base table into a

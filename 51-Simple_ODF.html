@@ -11,6 +11,8 @@
       
       
       
+        <link rel="canonical" href="https://flywire.github.io/lo-p/51-Simple_ODF.html">
+      
       <link rel="icon" href="assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
@@ -1445,7 +1447,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/flywire/lo-p/edit/master/docs/51-Simple_ODF.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/flywire/lo-p/edit/main/docs/51-Simple_ODF.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1474,10 +1476,10 @@ zip/unzip and XML features, but that isn't a good idea due
 to the complexity of the formats. This chapter looks at a
 few of these lower-level techniques, but is mainly about the
 Simple API for ODF, a sub-project of the Apache ODF
-Toolkit (<a href="http://incubator.apache.org/odftoolkit/simple/">http://incubator.apache.org/odftoolkit/simple/</a>). It's
+Toolkit (<a href="https://incubator.apache.org/odftoolkit/simple/">https://incubator.apache.org/odftoolkit/simple/</a>). It's
 a small Java API for creating, modifying and extracting
 data from ODF documents, built on top of the ODFDOM
-library (<a href="http://incubator.apache.org/odftoolkit/odfdom/">http://incubator.apache.org/odftoolkit/odfdom/</a>). Rather surprisingly, its
+library (<a href="https://incubator.apache.org/odftoolkit/odfdom/">https://incubator.apache.org/odftoolkit/odfdom/</a>). Rather surprisingly, its
 support for the concatenation of documents is better than that in the Office API.</p>
 <h2 id="1-the-opendocument-format">1.  The OpenDocument Format<a class="headerlink" href="#1-the-opendocument-format" title="Permanent link">&para;</a></h2>
 <p>The contents of an ODF document (i.e. the zipped folder) depend on its type (e.g.</p>
@@ -1507,23 +1509,23 @@ utility such as 7-Zip, as in Figure 1.</p>
 Pictures/ stores the images used in the document; Thumbnails/ holds a small 128x128
 picture of the document in thumbnail.png.</p>
 <p>The wikipedia page about ODF is quite informative
-(<a href="https://en.wikipedia.org/wiki/OpenDocument">https://en.wikipedia.org/wiki/OpenDocument</a>), as is its entry for the OpenDocument
+(<a href="https://en.wikipedia.org/wiki/OpenDocument/">https://en.wikipedia.org/wiki/OpenDocument/</a>), as is its entry for the OpenDocument
 technical specification
-(<a href="https://en.wikipedia.org/wiki/OpenDocument_technical_specification">https://en.wikipedia.org/wiki/OpenDocument_technical_specification</a>). There's a
+(<a href="https://en.wikipedia.org/wiki/OpenDocument_technical_specification/">https://en.wikipedia.org/wiki/OpenDocument_technical_specification/</a>). There's a
 quick summary of the OpenDocument Format (ODF) at
-<a href="https://help.libreoffice.org/Common/XML_File_Formats">https://help.libreoffice.org/Common/XML_File_Formats</a>.</p>
+<a href="https://help.libreoffice.org/Common/XML_File_Formats/">https://help.libreoffice.org/Common/XML_File_Formats/</a>.</p>
 <p>The ODF standard was developed by the Organization for the Advancement of
-Structured Information Standards (OASIS) consortium  (<a href="https://www.oasis-open.org/">https://www.oasis-open.org/</a>),
+Structured Information Standards (OASIS) consortium  (<a href="https://oasis-open.org/">https://oasis-open.org/</a>),
 whose website hosts a lot of information. A related community site is
-<a href="http://opendocument.xml.org/">http://opendocument.xml.org/</a></p>
+<a href="https://opendocument.xml.org/">https://opendocument.xml.org/</a></p>
 <p>The most complete textbook on ODF is:</p>
 <p>OASIS OpenDocument Essentials
 J. David Eisenberg, 2005
-http:// books.evc-cit.info/
+<a href="https://books.evc-cit.info/">https://books.evc-cit.info/</a>
 The associated website has a free draft of the book, and all the examples and support
 code. The site often seems to be offline, but the book can be found at other locations.</p>
 <p>A recent version can be purchased at Lulu:
-<a href="http://www.lulu.com/shop/j-david-eisenberg/oasis-opendocument-essentials/paperback/product-392512.html">http://www.lulu.com/shop/j-david-eisenberg/oasis-opendocument-essentials/paperback/product-392512.html</a></p>
+<a href="https://lulu.com/shop/j-david-eisenberg/oasis-opendocument-essentials/paperback/product-392512.html">https://lulu.com/shop/j-david-eisenberg/oasis-opendocument-essentials/paperback/product-392512.html</a></p>
 <h2 id="2-document-information">2.  Document Information<a class="headerlink" href="#2-document-information" title="Permanent link">&para;</a></h2>
 <p>There's little need to directly manipulate a document's XML files since the Office API
 offers high-level techniques for accessing most of their information.</p>
@@ -1780,7 +1782,7 @@ implement a more fancy "zipList":</p>
 </code></pre></div>
 <p>Another advantage of switching to Java are the large number of online examples of
 zip manipulation; my zipList() function is closely based on one at
-<a href="http://www.drdobbs.com/jvm/java-and-the-zip-file-format/184410339">http://www.drdobbs.com/jvm/java-and-the-zip-file-format/184410339</a>.</p>
+<a href="https://drdobbs.com/jvm/java-and-the-zip-file-format/184410339/">https://drdobbs.com/jvm/java-and-the-zip-file-format/184410339/</a>.</p>
 <h3 id="32-extracting-a-mime-type">3.2.  Extracting a MIME-type<a class="headerlink" href="#32-extracting-a-mime-type" title="Permanent link">&para;</a></h3>
 <p>FileIO.getMimeType() employs XZipFileAccess.getStreamByPattern() to access the
 zipped mimetype file as an input stream.</p>
@@ -1914,22 +1916,22 @@ then everything looks like a nail". In other words, it's useful to know about OD
 other than Office's since they might offer better, easier ways of doing some tasks.</p>
 <p>As a consequence, I'm going to spend the rest of the chapter looking at the Simple
 Java API for ODF, a sub-project of Apache ODF Toolkit
-(<a href="http://incubator.apache.org/odftoolkit/simple/">http://incubator.apache.org/odftoolkit/simple/</a>). It's a relatively small Java API for
+(<a href="https://incubator.apache.org/odftoolkit/simple/">https://incubator.apache.org/odftoolkit/simple/</a>). It's a relatively small Java API for
 creating, modifying and extracting data from ODF documents, built on top of the
-ODFDOM  library (<a href="http://incubator.apache.org/odftoolkit/odfdom/">http://incubator.apache.org/odftoolkit/odfdom/</a>).</p>
+ODFDOM  library (<a href="https://incubator.apache.org/odftoolkit/odfdom/">https://incubator.apache.org/odftoolkit/odfdom/</a>).</p>
 <p>Its best features are the cookbook pages at
-<a href="http://incubator.apache.org/odftoolkit/simple/document/cookbook/">http://incubator.apache.org/odftoolkit/simple/document/cookbook/</a>, the Getting
-Started Guide (<a href="http://incubator.apache.org/odftoolkit/simple/gettingstartguide.html">http://incubator.apache.org/odftoolkit/simple/gettingstartguide.html</a>),
-and its demo pages (<a href="http://incubator.apache.org/odftoolkit/simple/demo/">http://incubator.apache.org/odftoolkit/simple/demo/</a>).</p>
+<a href="https://incubator.apache.org/odftoolkit/simple/document/cookbook/">https://incubator.apache.org/odftoolkit/simple/document/cookbook/</a>, the Getting
+Started Guide (<a href="https://incubator.apache.org/odftoolkit/simple/gettingstartguide.html">https://incubator.apache.org/odftoolkit/simple/gettingstartguide.html</a>),
+and its demo pages (<a href="https://incubator.apache.org/odftoolkit/simple/demo/">https://incubator.apache.org/odftoolkit/simple/demo/</a>).</p>
 <p>The cookbook contains examples for manipulating text documents, presentations,
 tables in text documents and spreadsheets, charts, style handling, text navigation, text
 extraction, text fields, text forms, and document metadata. The API documentation is
-at <a href="http://incubator.apache.org/odftoolkit/mvn-site/0.8-incubating/simple-odf/apidocs/">http://incubator.apache.org/odftoolkit/mvn-site/0.8-incubating/simple-odf/apidocs/</a>,
-and a mail archive at <a href="http://mail-archives.apache.org/mod_mbox/incubator-odf-users/">http://mail-archives.apache.org/mod_mbox/incubator-odf-users/</a></p>
+at <a href="https://incubator.apache.org/odftoolkit/mvn-site/0.8-incubating/simple-odf/apidocs/">https://incubator.apache.org/odftoolkit/mvn-site/0.8-incubating/simple-odf/apidocs/</a>,
+and a mail archive at <a href="https://mail-archives.apache.org/mod_mbox/incubator-odf-users/">https://mail-archives.apache.org/mod_mbox/incubator-odf-users/</a></p>
 <p>By far the worst feature of the API is the large number of libraries that must be
 installed before even a lowly "Hello World" example will work. Fortunately, I've
 included copies of those libraries at this chapter's website at
-<a href="http://fivedots.coe.psu.ac.th/~ad/jlop/">http://fivedots.coe.psu.ac.th/~ad/jlop/</a>.</p>
+<a href="https://fivedots.coe.psu.ac.th/~ad/jlop/">https://fivedots.coe.psu.ac.th/~ad/jlop/</a>.</p>
 <p>The Simple API doesn't have the depth of features of Office, so it's best suited for the
 creation of simple text documents, spreadsheets, and presentations. However, it has
 better support for combining documents (e.g. concatenating two slide decks into a
@@ -1981,7 +1983,7 @@ image rather than to one side.</p>
 paragraph's position. It's probably do-able using the lower-level ODFDOM  library,
 but the programming information for that part of ODF Toolkit is mostly limited to its
 API documentation. However, there's a good introductory tutorial at
-<a href="http://www.langintro.com/odfdom_tutorials/">http://www.langintro.com/odfdom_tutorials/</a>.</p>
+<a href="https://langintro.com/odfdom_tutorials/">https://langintro.com/odfdom_tutorials/</a>.</p>
 <h4 id="make-a-spreadsheet">Make a Spreadsheet<a class="headerlink" href="#make-a-spreadsheet" title="Permanent link">&para;</a></h4>
 <p>The MakeSheet.java example creates a spreadsheet with a single sheet, and a few
 cells of data, as in Figure 5.</p>

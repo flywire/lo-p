@@ -11,6 +11,8 @@
       
       
       
+        <link rel="canonical" href="https://flywire.github.io/lo-p/49-Ext_Doc_Event_Macros.html">
+      
       <link rel="icon" href="assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
@@ -1351,7 +1353,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/flywire/lo-p/edit/master/docs/49-Ext_Doc_Event_Macros.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/flywire/lo-p/edit/main/docs/49-Ext_Doc_Event_Macros.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1429,7 +1431,7 @@ descriptor.xml.</p>
 are in the Utils subdirectory. This is encoded as:</p>
 <div class="highlight"><pre><span></span><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;manifest:manifest
-     xmlns:manifest=&quot;http://openoffice.org/2001/manifest&quot;&gt;
+     xmlns:manifest=&quot;https://openoffice.org/2001/manifest&quot;&gt;
 
   &lt;manifest:file-entry manifest:media-type=
           &quot;application/vnd.sun.star.framework-script&quot;
@@ -1662,8 +1664,8 @@ which is shown in Figure 6.</p>
 <span class="o">&lt;!</span><span class="n">DOCTYPE</span> <span class="n">dlg</span><span class="p">:</span><span class="n">window</span> <span class="n">PUBLIC</span> <span class="s">&quot;-//OpenOffice.org//DTD OfficeDocument</span>
 <span class="s">1.0//EN&quot;</span> <span class="s">&quot;dialog.dtd&quot;</span><span class="o">&gt;</span>
 
-<span class="o">&lt;</span><span class="n">dlg</span><span class="p">:</span><span class="n">window</span> <span class="n">xmlns</span><span class="p">:</span><span class="n">dlg</span><span class="o">=</span><span class="s">&quot;http://openoffice.org/2000/dialog&quot;</span>
-            <span class="n">xmlns</span><span class="p">:</span><span class="n">script</span><span class="o">=</span><span class="s">&quot;http://openoffice.org/2000/script&quot;</span>
+<span class="o">&lt;</span><span class="n">dlg</span><span class="p">:</span><span class="n">window</span> <span class="n">xmlns</span><span class="p">:</span><span class="n">dlg</span><span class="o">=</span><span class="s">&quot;https://openoffice.org/2000/dialog&quot;</span>
+            <span class="n">xmlns</span><span class="p">:</span><span class="n">script</span><span class="o">=</span><span class="s">&quot;https://openoffice.org/2000/script&quot;</span>
             <span class="n">dlg</span><span class="p">:</span><span class="n">id</span><span class="o">=</span><span class="s">&quot;NumExtractor&quot;</span>
             <span class="n">dlg</span><span class="p">:</span><span class="n">left</span><span class="o">=</span><span class="s">&quot;109&quot;</span> <span class="n">dlg</span><span class="p">:</span><span class="n">top</span><span class="o">=</span><span class="s">&quot;73&quot;</span>
             <span class="n">dlg</span><span class="p">:</span><span class="n">width</span><span class="o">=</span><span class="s">&quot;94&quot;</span> <span class="n">dlg</span><span class="p">:</span><span class="n">height</span><span class="o">=</span><span class="s">&quot;44&quot;</span>
@@ -2010,7 +2012,7 @@ popular way of utilizing macros is to embed them inside documents.</p>
 fields, but GetText.show and GetNumber.get (and its dialog and listener) will be
 stored inside the document.</p>
 <p>Office documents, such as FormMacrosTest.odt, can be manipulated as zip files; I
-chose 7-Zip (<a href="http://www.7-zip.org/">http://www.7-zip.org/</a>) for the purpose, because it's powerful, open
+chose 7-Zip (<a href="https://7-zip.org/">https://7-zip.org/</a>) for the purpose, because it's powerful, open
 source, and can be executed from the command line and from DOS batch scripts.</p>
 <p>I'm reusing the same form from the previous section, but stored in
 FormDocMacros.odt. It's unzipped using my unzipDoc.bat script to create a folder
@@ -2072,7 +2074,7 @@ the document, as in Figure 13.</p>
 <p>This chapter and the last have concentrated on adding macros to form controls, but
 other parts of Office, and other documents, can utilize event macros as well.</p>
 <p>A summary of the different ways that event macros can be employed is given on the
-wiki page "Scripting LibreOffice" at <a href="https://help.libreoffice.org/Common/Scripting">https://help.libreoffice.org/Common/Scripting</a>. It
+wiki page "Scripting LibreOffice" at <a href="https://help.libreoffice.org/Common/Scripting/">https://help.libreoffice.org/Common/Scripting/</a>. It
 lists uses for event macros such as:</p>
 <ul>
 <li>attached to form controls (already described);</li>

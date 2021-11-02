@@ -11,6 +11,8 @@
       
       
       
+        <link rel="canonical" href="https://flywire.github.io/lo-p/11-Draw_Impress_APIs.html">
+      
       <link rel="icon" href="assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
@@ -1271,7 +1273,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/flywire/lo-p/edit/master/docs/11-Draw_Impress_APIs.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/flywire/lo-p/edit/main/docs/11-Draw_Impress_APIs.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1297,16 +1299,16 @@ shapes (e.g. for the title, subtitle, header, and footer), more
 data views (e.g. an handout mode), and slide shows.</p>
 <p>You'll get a good feel for the APIs' capabilities by reading
 the Draw and Impress user guides, downloadable from
-<a href="https://www.libreoffice.org/get-help/documentation/">https://www.libreoffice.org/get-help/documentation/</a>.</p>
+<a href="https://libreoffice.org/get-help/documentation/">https://libreoffice.org/get-help/documentation/</a>.</p>
 <p>Details about the APIs can be found in Chapter 9 of the Developer's Guide, starting at
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Drawings/Drawing_Documents_and_Presentation_Documents">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Drawings/Drawing_Documents_and_Presentation_Documents</a>
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Drawings/Drawing_Documents_and_Presentation_Documents/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Drawings/Drawing_Documents_and_Presentation_Documents/</a>
 (or type <code>loGuide draw</code>). The guide can also be
 retrieved as a PDF file from
 <a href="https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf">https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf</a>.</p>
 <p>The guide's drawing and presentation examples are online at
-<a href="http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Drawing">http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Drawing</a>, and
+<a href="https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Drawing">https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Drawing</a>, and
 there's a short Draw example in
-<a href="http://api.libreoffice.org/examples/examples.html#Java_examples">http://api.libreoffice.org/examples/examples.html#Java_examples</a>.</p>
+<a href="https://api.libreoffice.org/examples/examples.html#Java_examples">https://api.libreoffice.org/examples/examples.html#Java_examples</a>.</p>
 <p>This chapter gives a broad overview of the drawing and presentation APIs, with some
 small code snippets to illustrate the ideas. Subsequent chapters will return to these
 features in much more detail.</p>
@@ -1316,11 +1318,11 @@ depicted in Figure 1.</p>
 <p>Figure 1. The Drawing and Presentation Document Services.</p>
 <p>The DrawingDocument service, and most of its related services and interfaces are in
 Office's com.sun.star.drawing package (or module), which is documented at
-<a href="http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1drawing.html">http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1drawing.html</a>.
+<a href="https://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1drawing.html">https://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1drawing.html</a>.
 Or you can reach it using <code>lodoc drawing module reference</code>.</p>
 <p>The presentation API is mostly located in Office's com.sun.star.presentation package
 (or module), which is documented at
-<a href="http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1presentation.html">http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1presentation.html</a>.
+<a href="https://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1presentation.html">https://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1presentation.html</a>.
 You can also find it with <code>lodoc presentation module reference</code>.</p>
 <p>Figure 2 shows a more detailed version of Figure 1 which includes some of the
 interfaces defined by the services.</p>
@@ -1410,7 +1412,7 @@ page and its page number:</p>
 </code></pre></div>
 <p>The "Width" and "Number" properties are documented in the GenericDrawPage
 service page at
-<a href="http://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1drawing_1_1GenericDrawPage.html">http://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1drawing_1_1GenericDrawPage.html</a>
+<a href="https://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1drawing_1_1GenericDrawPage.html">https://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1drawing_1_1GenericDrawPage.html</a>
 (or use <code>lodoc GenericDrawPage service</code>).</p>
 <p>Once a single page has been retrieved, it's possible to access its shapes (as shown in
 Figure 4). The following code converts the XDrawPage object to XShapes, and
@@ -1452,7 +1454,7 @@ code for doing this is not complex:</p>
 </code></pre></div>
 <p>The complication comes in knowing that a property called "FillColor" exists. Visit the
 shape's service documentation (e.g. the RectangleShape page at
-<a href="http://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1drawing_1_1RectangleShape.html">http://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1drawing_1_1RectangleShape.html</a>,
+<a href="https://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1drawing_1_1RectangleShape.html">https://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1drawing_1_1RectangleShape.html</a>,
 or use <code>lodoc RectangleShape service</code>), and look inside each
 inherited Property service until you find the relevant property.</p>
 <p>If the shape contains some text (e.g. the rectangle has a label inside it), and you want

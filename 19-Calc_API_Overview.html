@@ -11,6 +11,8 @@
       
       
       
+        <link rel="canonical" href="https://flywire.github.io/lo-p/19-Calc_API_Overview.html">
+      
       <link rel="icon" href="assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
@@ -1311,7 +1313,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/flywire/lo-p/edit/master/docs/19-Calc_API_Overview.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/flywire/lo-p/edit/main/docs/19-Calc_API_Overview.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1337,16 +1339,16 @@ topics in greater details (and with larger examples) in
 subsequent chapters.</p>
 <p>If you're unfamiliar with Calc, then a good starting point is
 its user guide, available from
-<a href="https://www.libreoffice.org/get-help/documentation/">https://www.libreoffice.org/get-help/documentation/</a>.
+<a href="https://libreoffice.org/get-help/documentation/">https://libreoffice.org/get-help/documentation/</a>.
 Chapter 8 of the Developer's Guide looks at spreadsheet programming, and is
 available from
 <a href="https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf">https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf</a>.
 Alternatively, you can access the chapter online, starting at
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Spreadsheets/Spreadsheet_Documents">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Spreadsheets/Spreadsheet_Documents</a>
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Spreadsheets/Spreadsheet_Documents/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Spreadsheets/Spreadsheet_Documents/</a>
 (or use <code>loguide calc</code>). The guide's examples can be found at
-<a href="http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Spreadsheet">http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Spreadsheet</a>.
+<a href="https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Spreadsheet">https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Spreadsheet</a>.
 There's also a few examples in the "Spreadsheet Document Examples" section of
-<a href="http://api.libreoffice.org/examples/examples.html#Java_examples">http://api.libreoffice.org/examples/examples.html#Java_examples</a>.</p>
+<a href="https://api.libreoffice.org/examples/examples.html#Java_examples">https://api.libreoffice.org/examples/examples.html#Java_examples</a>.</p>
 <h2 id="1-the-spreadsheet-document">1.  The Spreadsheet Document<a class="headerlink" href="#1-the-spreadsheet-document" title="Permanent link">&para;</a></h2>
 <p>The Calc API is organized around the SpreadsheetDocument service which subclasses
 OfficeDocument. Figure 1 shows these services, including some of their interfaces.</p>
@@ -1354,9 +1356,9 @@ OfficeDocument. Figure 1 shows these services, including some of their interface
 <p>Figure 1. Some Spreadsheet Services and Interfaces.</p>
 <p>Calc's functionality is mostly divided between two Java packages (modules), sheet
 and table, which are documented at
-<a href="http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1sheet.html">http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1sheet.html</a>
+<a href="https://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1sheet.html">https://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1sheet.html</a>
 and
-<a href="http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1table.html">http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1table.html</a>.
+<a href="https://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1table.html">https://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1table.html</a>.
 Alternatively, you can try  <code>lodoc star sheet module</code> and <code>lodoc star table module</code>,
 but these only get you 'close' to the right pages.</p>
 <p>The reason for this module division is Office's support for three types of 'table': text

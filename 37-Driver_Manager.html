@@ -11,6 +11,8 @@
       
       
       
+        <link rel="canonical" href="https://flywire.github.io/lo-p/37-Driver_Manager.html">
+      
       <link rel="icon" href="assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
@@ -1257,7 +1259,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/flywire/lo-p/edit/master/docs/37-Driver_Manager.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/flywire/lo-p/edit/main/docs/37-Driver_Manager.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1291,7 +1293,7 @@ address books. This chapter includes examples of how to query these kinds of fil
 programmer has to supply, including the driver name, the file's URL, and the
 connection properties. A good source for this information is the Developer's Guide, in
 the "Driver Specifics" section of chapter 12. It's also accessible online at
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics</a>
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics/</a>
 (or use <code>loGuide "Database Driver Specifics"</code>). Unfortunately, the guide was last
 updated in 2008 for OpenOffice 3.1, and some details have changed since then. A
 better approach is to query Base's DriverManager at run time which will supply data
@@ -1679,13 +1681,13 @@ time, Base.getTablesNamesMD() returns a correct list of the sheet names.</p>
 <h2 id="5-querying-a-thunderbird-address-book">5.  Querying a Thunderbird Address Book<a class="headerlink" href="#5-querying-a-thunderbird-address-book" title="Permanent link">&para;</a></h2>
 <p>One reason for Office being able to access the address books of e-mail software is for
 implementing mail merge applications. ThunderbirdQuery.java examines the personal
-addresses in Thunderbird (<a href="https://www.mozilla.org/en-US/thunderbird/">https://www.mozilla.org/en-US/thunderbird/</a>).</p>
+addresses in Thunderbird (<a href="https://mozilla.org/en-US/thunderbird/">https://mozilla.org/en-US/thunderbird/</a>).</p>
 <p>The Office documentation at
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics</a>
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics/</a>
 mentions support for Mozilla, Outlook, Outlook Express and LDAP, but several
 forum posts describe updates and changes.</p>
 <p>"sdbc:address:mozilla" supports SeaMonkey Mail, the 2006 replacement for the
-Mozilla e-mail reader (<a href="http://www.seamonkey-project.org/">http://www.seamonkey-project.org/</a>), and
+Mozilla e-mail reader (<a href="https://seamonkey-project.org/">https://seamonkey-project.org/</a>), and
 "sdbc:address:thunderbird" connects to Thunderbird. Base uses the Mork driver
 (com.sun.star.comp.sdbc.MorkDriver) to access both SeaMonkey and Thunderbird.</p>
 <p>The Thunderbird e-mail reader on my test machine has two address books, called

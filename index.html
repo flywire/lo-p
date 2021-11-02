@@ -11,6 +11,8 @@
       
       
       
+        <link rel="canonical" href="https://flywire.github.io/lo-p/index.html">
+      
       <link rel="icon" href="assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
@@ -1156,7 +1158,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/flywire/lo-p/edit/master/docs/index.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/flywire/lo-p/edit/main/docs/index.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1164,7 +1166,7 @@
                 <h1 id="preface">Preface<a class="headerlink" href="#preface" title="Permanent link">&para;</a></h1>
 <p><img alt="[idea]" src="images/bulb_on.png" /></p>
 <p>Star Basic is the native language of Star Office which has been incorporated by Open Office and Libre Office. This means that all other supported languages must negotiate a basic bridge.</p>
-<p>This <a href="https://stackoverflow.com/a/64517979">comment</a> from Dan Dascalescu offers a challenge to the community:</p>
+<p>This <a href="https://stackoverflow.com/a/64517979/">comment</a> from Dan Dascalescu offers a challenge to the community:</p>
 <blockquote>
 <p><em>after 20 years of software development, the LibreOffice API is the crappiest one I've had the "pleasure" of working with. The documentation is <a href="https://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1util_1_1SearchDescriptor.html">horrible</a>, spread all over the place, <a href="https://bug-attachments.documentfoundation.org/attachment.cgi?id=166685">littered with Uyghur</a>, or <a href="https://ask.libreoffice.org/en/question/98257/javascript-macro-reference/">completely missing</a>. The LibreOffice macro IDE is also extremely unhelpful.</em></p>
 </blockquote>
@@ -1174,11 +1176,11 @@
 <p><a href="https://creativecommons.org/licenses/by-sa/4.0/">https://creativecommons.org/licenses/by-sa/4.0/</a></p>
 <h1 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h1>
 <p><img alt="[Java LibreOffice Programming]" src="images/jLo.png" /></p>
-<p><em>Java LibreOffice Programming</em> (JLOP) is intended for programmers who want to learn how to use the Java version of the <a href="http://www.libreoffice.org/">LibreOffice</a> API. This allows Java to control and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and database applications, and a lot more (e.g. its spell checker, forms designer, and charting tools).</p>
+<p><em>Java LibreOffice Programming</em> (JLOP) is intended for programmers who want to learn how to use the Java version of the <a href="https://libreoffice.org/">LibreOffice</a> API. This allows Java to control and manipulate LibreOffice's text, drawing, presentation, spreadsheet, and database applications, and a lot more (e.g. its spell checker, forms designer, and charting tools).</p>
 <p>This book is <strong>not</strong> about how to use LibreOffice's GUI. I won't explain where to find a particular menu item to change text colour or run the spell checker. But I <strong>will</strong> explain how to do these kinds of things via API calls from Java programs. For instance, I describe a program that constructs a Word file full of randomly generated algebra questions, and show how a ASCII text file can be transformed into a slide presentation.</p>
 <p>Although most of the examples are Java programs that call the LibreOffice API, I briefly look at other kinds of programming, such as Java macros and new LibreOffice functionality, accessible via menu items or as spreadsheet functions, and the dispatching of commands to the GUI.</p>
 <p>One of my aims was to develop utility code to help flatten the steep learning curve for the API. For example, my Lo class simplifies the steps needed to initialize the API (by creating a connection to a LibreOffice process), to open/create a document, save it, and close down LibreOffice.</p>
-<p>Another aim was to have my code work on LibreOffice <strong>and</strong> <a href="https://www.openoffice.org/">OpenOffice</a>, which isn't difficult since their APIs are nearly identical. However, I must admit that at this stage I've restricted myself to testing the programs only on LibreOffice, and only on MS Windows.</p>
+<p>Another aim was to have my code work on LibreOffice <strong>and</strong> <a href="https://openoffice.org/">OpenOffice</a>, which isn't difficult since their APIs are nearly identical. However, I must admit that at this stage I've restricted myself to testing the programs only on LibreOffice, and only on MS Windows.</p>
 <h2 id="part-1-basics">Part 1: Basics<a class="headerlink" href="#part-1-basics" title="Permanent link">&para;</a></h2>
 <h3 id="chapter-1-libreoffice-api-concepts">Chapter 1. LibreOffice API Concepts<a class="headerlink" href="#chapter-1-libreoffice-api-concepts" title="Permanent link">&para;</a></h3>
 <p><img alt="[Office program]" src="images/offProg.png" /></p>

@@ -11,6 +11,8 @@
       
       
       
+        <link rel="canonical" href="https://flywire.github.io/lo-p/05-Text_API_Overview.html">
+      
       <link rel="icon" href="assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
@@ -1379,7 +1381,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/flywire/lo-p/edit/master/docs/05-Text_API_Overview.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/flywire/lo-p/edit/main/docs/05-Text_API_Overview.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1412,26 +1414,26 @@ treating it as a sequence of paragraphs.</p>
 <p>The chapter finishes with a look at how two (or more) text
 documents can be appended.</p>
 <p>The online Developer's Guide begins text document programming at
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Documents">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Documents</a>
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Documents/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Documents/</a>
 (the easiest way of accessing that page is to type loguide writer). It corresponds to
 Chapter 7 in the printed guide (available at
 <a href="https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf">https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf</a>), but the
 Web material is better structured and formatted.</p>
 <p>The guide's text programming examples are in TextDocuments.java, downloadable
-from <a href="http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Text">http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Text</a>.</p>
+from <a href="https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Text">https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Text</a>.</p>
 <p>Although the code is long, it's well-organized. Some smaller text processing examples
-are available at <a href="http://api.libreoffice.org/examples/examples.html#Java_examples">http://api.libreoffice.org/examples/examples.html#Java_examples</a>.</p>
+are available at <a href="https://api.libreoffice.org/examples/examples.html#Java_examples">https://api.libreoffice.org/examples/examples.html#Java_examples</a>.</p>
 <p>This chapter (and later ones) assume that you're familiar with Writer, including text
 concepts such as paragraph styles. If you're not, then I recommend the "Writer
-Guide", a user manual, available at <a href="http://www.libreoffice.org/get-help/documentation/">http://www.libreoffice.org/get-help/documentation/</a>
-or <a href="https://wiki.documentfoundation.org/Documentation/Publications">https://wiki.documentfoundation.org/Documentation/Publications</a>.</p>
+Guide", a user manual, available at <a href="https://libreoffice.org/get-help/documentation/">https://libreoffice.org/get-help/documentation/</a>
+or <a href="https://wiki.documentfoundation.org/Documentation/Publications/">https://wiki.documentfoundation.org/Documentation/Publications/</a>.</p>
 <h2 id="1-an-overview-of-the-text-document-api">1.  An Overview of the Text Document API<a class="headerlink" href="#1-an-overview-of-the-text-document-api" title="Permanent link">&para;</a></h2>
 <p>The API is centered around four text document services which subclass
 OfficeDocument, as shown in Figure 1.</p>
 <p><img alt="" src="images/05-Text_API_Overview-1.png" /></p>
 <p>Figure 1. The Text Document Services.</p>
 <p>I'll be concentrating on the TextDocument service, which is documented at
-<a href="http://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1text_1_1TextDocument.html">http://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1text_1_1TextDocument.html</a>.
+<a href="https://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1text_1_1TextDocument.html">https://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1text_1_1TextDocument.html</a>.
 Or you can type <code>lodoc TextDocument service</code>, which unfortunately
 takes you to the IDL page for TextDocument; to reach the documentation, click on
 "TextDocument" under the "Classes" heading.</p>
@@ -1632,7 +1634,7 @@ position where the cursor should be moved to. For example, it's possible to find
 bookmark in a document, extract its text range/position, and move the cursor to that
 location with gotoRange(). I'll show code for doing this in Chapter 7.</p>
 <p>The XTextCursor methods are documented at
-<a href="http://api.libreoffice.org/docs/idl/ref/interfacecom_1_1sun_1_1star_1_1text_1_1XTextCursor.html">http://api.libreoffice.org/docs/idl/ref/interfacecom_1_1sun_1_1star_1_1text_1_1XTextCursor.html</a>
+<a href="https://api.libreoffice.org/docs/idl/ref/interfacecom_1_1sun_1_1star_1_1text_1_1XTextCursor.html">https://api.libreoffice.org/docs/idl/ref/interfacecom_1_1sun_1_1star_1_1text_1_1XTextCursor.html</a>
 (or type <code>lodoc XTextCursor</code>).</p>
 <h4 id="a-problem-with-writegetalltext">A Problem with Write.getAllText()<a class="headerlink" href="#a-problem-with-writegetalltext" title="Permanent link">&para;</a></h4>
 <p>Write.getAllText() may fail if supplied with a very large document because
@@ -1941,7 +1943,7 @@ and compare XTextRanges rather than integer positions, an approach I'll demonstr
 in the next section.</p>
 <h2 id="6-using-and-comparing-text-cursors">6.  Using and Comparing Text Cursors<a class="headerlink" href="#6-using-and-comparing-text-cursors" title="Permanent link">&para;</a></h2>
 <p>My TalkingBook.java example utilizes the third-party library FreeTTS
-(<a href="http://freetts.sourceforge.net/">http://freetts.sourceforge.net/</a>) to convert text into speech. The inner workings of
+(<a href="https://freetts.sourceforge.net/">https://freetts.sourceforge.net/</a>) to convert text into speech. The inner workings of
 FreeTTS aren't relevant here, so are hidden inside a support class called Speaker. It
 has three public methods:</p>
 <ul>
@@ -2196,14 +2198,14 @@ txtRange text portion (txtRange comes from the previous code fragment):</p>
 </code></pre></div>
 <p>These code fragments are combined together in my ShowBookText.java example.</p>
 <p>More details on enumerators and text portions are given in the Developers Guide at
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Iterating_over_Text">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Iterating_over_Text</a>
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Iterating_over_Text/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Iterating_over_Text/</a>
 (or use <code>loGuide "Iterating over Text"</code>).</p>
 <h2 id="9-appending-documents-together">9.  Appending Documents Together<a class="headerlink" href="#9-appending-documents-together" title="Permanent link">&para;</a></h2>
 <p>If you need to write a large multi-part document (e.g. a thesis with chapters,
 appendices, contents page, and an index) then you should utilize a master document,
 which acts as a repository of links to documents representing the component parts.
 You can find out about master documents in Chapter 13 of the Writers Guide, at
-<a href="https://wiki.documentfoundation.org/Documentation/Publications">https://wiki.documentfoundation.org/Documentation/Publications</a>.</p>
+<a href="https://wiki.documentfoundation.org/Documentation/Publications/">https://wiki.documentfoundation.org/Documentation/Publications/</a>.</p>
 <p>However, the complexity of master documents isn't always needed. Often the aim is
 simply to append one document to the end of another. In that case, the
 XDocumentInsertable interface, and its insertDocumentFromURL() method is more

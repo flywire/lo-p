@@ -11,6 +11,8 @@
       
       
       
+        <link rel="canonical" href="https://flywire.github.io/lo-p/04-Listening.html">
+      
       <link rel="icon" href="assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
@@ -1271,7 +1273,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/flywire/lo-p/edit/master/docs/04-Listening.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/flywire/lo-p/edit/main/docs/04-Listening.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1295,7 +1297,7 @@ dispatching messages to the Office GUI, and the Java
 Robot package.</p>
 <p>Once again the examples come from the "Office Tests" directory in the code
 download associated with this book, and make liberal use of the classes in the "Utils"
-directory. For details please visit <a href="http://fivedots.coe.psu.ac.th/~ad/jlop/">http://fivedots.coe.psu.ac.th/~ad/jlop/</a>.</p>
+directory. For details please visit <a href="https://fivedots.coe.psu.ac.th/~ad/jlop/">https://fivedots.coe.psu.ac.th/~ad/jlop/</a>.</p>
 <h2 id="1-listening-to-a-window">1.  Listening to a Window<a class="headerlink" href="#1-listening-to-a-window" title="Permanent link">&para;</a></h2>
 <p>I haven't previously mentioned Office's listener interfaces (there are about 140 of
 them), because they work in the same way as listeners in Java.</p>
@@ -1306,7 +1308,7 @@ XEventListener, and you can click on a subclass box to jump to its documentation
 <p>One nice syntactic feature of listeners is that almost all their names end with
 “Listener”. This makes them easy to find when searching through indices of class
 names, such as the “Class Index” page at
-<a href="http://api.libreoffice.org/docs/idl/ref/classes.html">http://api.libreoffice.org/docs/idl/ref/classes.html</a>.</p>
+<a href="https://api.libreoffice.org/docs/idl/ref/classes.html">https://api.libreoffice.org/docs/idl/ref/classes.html</a>.</p>
 <p>The top-level document window can be monitored for changes using
 XTopWindowListener, which responds to modifications of the window’s state, such
 as when it is opened, closed, minimized, and made active.</p>
@@ -1402,7 +1404,7 @@ disposing() to fire.</p>
 document window, there's no way to trigger these changes from the Office API.</p>
 <p>Fixing this requires a trip outside Office because I need a library that can manipulate a
 window controlled by the OS. One very nice API that fits my needs is Java Native
-Access (JNA, <a href="https://github.com/twall/jna">https://github.com/twall/jna</a>), which supports OS programming without
+Access (JNA, <a href="https://github.com/twall/jna/">https://github.com/twall/jna/</a>), which supports OS programming without
 writing anything but Java. JNA comes with numerous classes, representing OS data
 structures, such as window handles and process IDs.</p>
 <p>The JNA-powered methods in my JNAUtils.java utilities class fall roughly into three
@@ -1583,7 +1585,7 @@ Office API.</p>
 source is the UICommands.ods spreadsheet, put together by Ariel Constenla-Haile in
 2010, at <a href="https://arielch.fedorapeople.org/devel/ooo/UICommands.ods">https://arielch.fedorapeople.org/devel/ooo/UICommands.ods</a>.</p>
 <p>Another resource is chapter 10 of "OpenOffice.org Macros Explained" by Andrew
-Pitonyak (free online at <a href="http://www.pitonyak.org/book/">http://www.pitonyak.org/book/</a>)</p>
+Pitonyak (free online at <a href="https://pitonyak.org/book/">https://pitonyak.org/book/</a>)</p>
 <p>Creating a dispatcher in Java is a little complicated since XDispatchProvider and
 XDispatchHelper instances are needed. XDispatchProvider is obtained from the frame
 (i.e. window) where the message will be delivered, which is almost always the

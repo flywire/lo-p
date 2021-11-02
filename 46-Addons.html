@@ -11,6 +11,8 @@
       
       
       
+        <link rel="canonical" href="https://flywire.github.io/lo-p/46-Addons.html">
+      
       <link rel="icon" href="assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
@@ -1447,7 +1449,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/flywire/lo-p/edit/master/docs/46-Addons.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/flywire/lo-p/edit/main/docs/46-Addons.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1528,10 +1530,10 @@ the Developer's Guide (available at
 <a href="https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf">https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf</a>), or
 online at
 <a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Integrating_Components_into_OpenOffice.org">https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Integrating_Components_into_OpenOffice.org</a> and
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/AddOns/Add-Ons">https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/AddOns/Add-Ons</a>
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/AddOns/Add-Ons/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/AddOns/Add-Ons/</a>
 (or use <code>loGuide "Integrating Components"</code> and <code>loGuide add-ons</code>).</p>
 <p>The Developer's Guide add-on example can be found at
-<a href="http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Components">http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Components</a></p>
+<a href="https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Components">https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Components</a></p>
 <h2 id="2-creating-the-ezhighlight-add-on">2.  Creating the EzHighlight Add-on<a class="headerlink" href="#2-creating-the-ezhighlight-add-on" title="Permanent link">&para;</a></h2>
 <p>There's an overlap between the steps required to create an UNO component and an
 add-on. The main similarity is the need for an OXT file containing a JAR and a
@@ -1546,7 +1548,7 @@ skeletonmaker which can also be employed to generate add-ons and Calc addins.
 Unfortunately, I was unable to get its add-on features to work.</p>
 <p>This was not a great loss since I'd already been thinking about replacing uno-
 skeletonmaker with FreeMarker, a powerful template processing library
-(<a href="http://freemarker.org/">http://freemarker.org/</a>). FreeMarker can easily duplicate all the features of  uno-
+(<a href="https://freemarker.org/">https://freemarker.org/</a>). FreeMarker can easily duplicate all the features of  uno-
 skeletonmaker, creating a Java class with the boilerplate code for creating a service
 and handling command URLs. Also, by switching to FreeMarker, I was able to add
 more automatic code generation, including code for a user input dialog and a
@@ -1748,8 +1750,8 @@ create the dialog's components. I'll use the editor in this chapter, and employ 
 methods in my macros in Chapter 48.</p>
 <p>The Developer's Guide has some information on the dialog editor in chapter 11,
 "OpenOffice.org Basic". The relevant sub-sections are online at
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Dialog_Editor">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Dialog_Editor</a> and
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Creating_Dialogs">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Creating_Dialogs</a>
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Dialog_Editor/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Dialog_Editor/</a> and
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Creating_Dialogs/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Creating_Dialogs/</a>
 (or use <code>loGuide "Dialog Editor"</code> and <code>loGuide "Creating Dialogs"</code>).</p>
 <p>The editor utilizes drag-and-drop to place GUI elements in a dialog drawing area,
 with property windows for specializing each element. The editor is reached via
@@ -1771,8 +1773,8 @@ area (the icon includes a floppy disk which will leave young programmers mystifi
 &lt;!DOCTYPE dlg:window
        PUBLIC &quot;-//OpenOffice.org//DTD OfficeDocument 1.0//EN&quot;
        &quot;dialog.dtd&quot;&gt;
-&lt;dlg:window xmlns:dlg=&quot;http://openoffice.org/2000/dialog&quot;
-            xmlns:script=&quot;http://openoffice.org/2000/script&quot;
+&lt;dlg:window xmlns:dlg=&quot;https://openoffice.org/2000/dialog&quot;
+            xmlns:script=&quot;https://openoffice.org/2000/script&quot;
          dlg:id=&quot;Basic&quot;
          dlg:left=&quot;52&quot; dlg:top=&quot;44&quot; dlg:width=&quot;173&quot; dlg:height=&quot;34&quot;
          dlg:closeable=&quot;true&quot; dlg:moveable=&quot;true&quot;
@@ -1818,8 +1820,8 @@ few changes and additions later, it looked as shown in Figure 12.</p>
 &lt;!DOCTYPE dlg:window
                PUBLIC &quot;-//OpenOffice.org//DTD OfficeDocument 1.0//EN&quot;
                &quot;dialog.dtd&quot;&gt;
-&lt;dlg:window xmlns:dlg=&quot;http://openoffice.org/2000/dialog&quot;
-            xmlns:script=&quot;http://openoffice.org/2000/script&quot;
+&lt;dlg:window xmlns:dlg=&quot;https://openoffice.org/2000/dialog&quot;
+            xmlns:script=&quot;https://openoffice.org/2000/script&quot;
       dlg:id=&quot;EzHighlight&quot;
       dlg:left=&quot;109&quot; dlg:top=&quot;73&quot; dlg:width=&quot;184&quot; dlg:height=&quot;44&quot;
       dlg:closeable=&quot;true&quot; dlg:moveable=&quot;true&quot;
@@ -2111,9 +2113,9 @@ component. The contents of the file for EzHighlight are:</p>
 
 &lt;oor:component-data oor:name=&quot;ProtocolHandler&quot;
                     oor:package=&quot;org.openoffice.Office&quot;
-      xmlns:oor=&quot;http://openoffice.org/2001/registry&quot;
-      xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot;
-      xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+      xmlns:oor=&quot;https://openoffice.org/2001/registry&quot;
+      xmlns:xs=&quot;https://w3.org/2001/XMLSchema&quot;
+      xmlns:xsi=&quot;https://w3.org/2001/XMLSchema-instance&quot;&gt;
   &lt;node oor:name=&quot;HandlerSet&quot;&gt;
 
     &lt;node oor:name=&quot;EzHighlightAddonImpl&quot; oor:op=&quot;replace&quot;&gt;
@@ -2151,7 +2153,7 @@ with five sub-attributes: URL, Title, ImageIdentifier, Context, and Target; I'll
 using sub-menu attributes.</p>
 <p>The best explanation of Addon.xcs' structure is "How to distribute your macros with
 an Addon" by Bernard Marcelly at
-<a href="http://www.openoffice.org/documentation/HOW_TO/various_topics/Addons1_1en.pdf">http://www.openoffice.org/documentation/HOW_TO/various_topics/Addons1_1en.pdf</a>,
+<a href="https://openoffice.org/documentation/HOW_TO/various_topics/Addons1_1en.pdf">https://openoffice.org/documentation/HOW_TO/various_topics/Addons1_1en.pdf</a>,
 which dates from 2003.</p>
 <h4 id="addonmenu-attribute">"AddonMenu" Attribute<a class="headerlink" href="#addonmenu-attribute" title="Permanent link">&para;</a></h4>
 <p>The "AddonMenu" attribute used by the EzHighlight add-on is:</p>
@@ -2420,9 +2422,9 @@ and description.xml. description.xml plays the same role as the same-named file 
 UNO components. Its contents use the same XML attributes:</p>
 <div class="highlight"><pre><span></span><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;description
-xmlns=&quot;http://openoffice.org/extensions/description/2006&quot;
-xmlns:d=&quot;http://openoffice.org/extensions/description/2006&quot;
-xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;&gt;
+xmlns=&quot;https://openoffice.org/extensions/description/2006&quot;
+xmlns:d=&quot;https://openoffice.org/extensions/description/2006&quot;
+xmlns:xlink=&quot;https://w3.org/1999/xlink&quot;&gt;
 
   &lt;identifier value=&quot;org.openoffice.ezhighlightAddon&quot;/&gt;
   &lt;version value=&quot;0.1&quot;/&gt;
@@ -2432,7 +2434,7 @@ xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;&gt;
   &lt;/display-name&gt;
 
   &lt;publisher&gt;
-    &lt;name xlink:href=&quot;http://fivedots.coe.psu.ac.th/~ad/jlop/&quot;
+    &lt;name xlink:href=&quot;https://fivedots.coe.psu.ac.th/~ad/jlop/&quot;
           lang=&quot;en&quot;&gt;Andrew Davison&lt;/name&gt;
   &lt;/publisher&gt;
 
@@ -2451,7 +2453,7 @@ xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;&gt;
   &lt;/icon&gt;
 
   &lt;update-information&gt;
-    &lt;src xlink:href=&quot;http://fivedots.coe.psu.ac.th/~ad/jlop/&quot;/&gt;
+    &lt;src xlink:href=&quot;https://fivedots.coe.psu.ac.th/~ad/jlop/&quot;/&gt;
   &lt;/update-information&gt;
 
   &lt;dependencies&gt;

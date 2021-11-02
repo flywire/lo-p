@@ -11,6 +11,8 @@
       
       
       
+        <link rel="canonical" href="https://flywire.github.io/lo-p/38-ODB_as_Zip.html">
+      
       <link rel="icon" href="assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
@@ -1281,7 +1283,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/flywire/lo-p/edit/master/docs/38-ODB_as_Zip.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/flywire/lo-p/edit/main/docs/38-ODB_as_Zip.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1300,7 +1302,7 @@ Database</p>
 Tests" and "Utils"</p>
 </div>
 <p>An ODB document can be manipulated as a zipped folder,
-using tools such as 7-zip (<a href="http://www.7-zip.org/">http://www.7-zip.org/</a>). This
+using tools such as 7-zip (<a href="https://7-zip.org/">https://7-zip.org/</a>). This
 means that it's possible to use Java zip classes (in the
 java.util.zip package) to extract a database from the ODB
 file. The advantage of this technique is that the resulting
@@ -1508,12 +1510,12 @@ to decide which connect methods are used for HSQLDB and Firebird.</p>
 </code></pre></div>
 <p>I'll explain the details of connectToHSQL() here, and connectToFB() in the next
 section.</p>
-<p>The HSQLDB website (<a href="http://hsqldb.org/">http://hsqldb.org/</a>) contains a lot of documentation on how to
+<p>The HSQLDB website (<a href="https://hsqldb.org/">https://hsqldb.org/</a>) contains a lot of documentation on how to
 utilize JDBC, but one thing to remember is that Office's hsqldb.jar is version 1.8 of
 the engine. The most prominent documentation at the HSQLDB website is for the
 current version (v.2.3 as I write this). Fortunately, the older 1.8. documentation is still
-around, beginning at <a href="http://www.hsqldb.org/doc/1.8/guide/">http://www.hsqldb.org/doc/1.8/guide/</a>, and a short JDBC
-example is in Appendix B at <a href="http://www.hsqldb.org/doc/1.8/guide/apb.html">http://www.hsqldb.org/doc/1.8/guide/apb.html</a>.
+around, beginning at <a href="https://hsqldb.org/doc/1.8/guide/">https://hsqldb.org/doc/1.8/guide/</a>, and a short JDBC
+example is in Appendix B at <a href="https://hsqldb.org/doc/1.8/guide/apb.html">https://hsqldb.org/doc/1.8/guide/apb.html</a>.
 Jdbc.connectToHSQL() is based on that example:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// in the Jdbc class</span>
 <span class="kd">public</span> <span class="kd">static</span> <span class="n">Connection</span> <span class="nf">connectToHSQL</span><span class="p">(</span><span class="n">String</span> <span class="n">filePath</span><span class="p">)</span>
@@ -1540,7 +1542,7 @@ Jdbc.connectToHSQL() is based on that example:</p>
 <p>It's useful to be able to examine a database without having to write Java code first;
 HSQLDB includes SqlTool for that purpose.</p>
 <p>SqlTool is explained at length in chapter 8 of the user guide for HSQLDB 1.8 at
-<a href="http://www.hsqldb.org/doc/1.8/guide/ch08.html">http://www.hsqldb.org/doc/1.8/guide/ch08.html</a>. It's also possible to get help at
+<a href="https://hsqldb.org/doc/1.8/guide/ch08.html">https://hsqldb.org/doc/1.8/guide/ch08.html</a>. It's also possible to get help at
 runtime by calling hsqldb.jar with the "--help" argument:</p>
 <div class="highlight"><pre><span></span><code><span class="n">java</span> <span class="o">-</span><span class="n">jar</span> <span class="o">&lt;</span><span class="n">OFFICE</span><span class="o">&gt;</span><span class="err">\</span><span class="n">program</span><span class="err">\</span><span class="n">classes</span><span class="err">\</span><span class="n">hsqldb</span><span class="p">.</span><span class="na">jar</span> <span class="o">--</span><span class="n">help</span>
 </code></pre></div>
@@ -1553,7 +1555,7 @@ runtime by calling hsqldb.jar with the "--help" argument:</p>
 work than for HSQLDB since there's no JAR file inside Office containing the
 necessary JDBC driver.</p>
 <p>The easiest thing is to download the embedded version of Firebird from
-<a href="http://www.firebirdsql.org/en/downloads/">http://www.firebirdsql.org/en/downloads/</a>, making sure to grab either the 32-bit or 64-
+<a href="https://firebirdsql.org/en/downloads/">https://firebirdsql.org/en/downloads/</a>, making sure to grab either the 32-bit or 64-
 bit version for your OS. This should be unzipped to a convenient location (e.g.
 d:\firebird), and the path added to Window's PATH environment variable.</p>
 <div class="admonition bug">
@@ -1568,7 +1570,7 @@ msvcr80.dll (i.e. three files) from the firebird/ directory to some other locati
 (e.g. into an UNUSED/ directory in firebird/).</p>
 </div>
 <p>The JDBC driver, called Jaybird, is a separate download from
-<a href="http://www.firebirdsql.org/en/jdbc-driver/">http://www.firebirdsql.org/en/jdbc-driver/</a>. This should be unzipped to a convenient
+<a href="https://firebirdsql.org/en/jdbc-driver/">https://firebirdsql.org/en/jdbc-driver/</a>. This should be unzipped to a convenient
 location (e.g. d:\jaybird).</p>
 <p>There's no need to add Jaybird to the classpath of the javac.exe compiler, but calls to
 java.exe must include the location of its JAR and associated DLL. For example,
@@ -1610,7 +1612,7 @@ system (called "Classic, Superclassic &amp; Superserver"), and unzip only isql.e
 is in the bin/ directory. Copy isql.exe to the embedded firebird directory on your
 machine (e.g. into d:\firebird), and make a copy of the fbembed.dll file in that folder,
 renaming it to fbclient.dll.</p>
-<p>The isql manual is online at <a href="http://www.firebirdsql.org/manual/isql.html">http://www.firebirdsql.org/manual/isql.html</a>. isql also has
+<p>The isql manual is online at <a href="https://firebirdsql.org/manual/isql.html">https://firebirdsql.org/manual/isql.html</a>. isql also has
 built-in help, as shown in Figure 5.</p>
 <p><img alt="" src="images/38-ODB_as_Zip-5.png" /></p>
 <p>Figure 5. Using help inside isql.exe.</p>

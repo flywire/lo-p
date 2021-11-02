@@ -1,307 +1,307 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/index.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/01%20Part%201%20Basics.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/01-Concepts.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/02-Starting_and_Stopping.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/03-Examining.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/04-Listening.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/05%20Part%202%20Writer.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/05-Text_API_Overview.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/06-Text_Styles.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/07-Non-text_Content.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/08-Graphic_Content.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/09-Text_Search.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/10-Linguistics.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/11%20Part%203%20Draw%20%26%20Impress.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/11-Draw_Impress_APIs.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/12-Examining_DrawImpress.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/13-Basic_Shapes.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/14-Animation.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/15-Complex_Shapes.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/16-Making_Slides.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/17-Slide_Deck_Manipulation.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/18-Slide_Shows.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/19%20Part%204%20Calc.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/19-Calc_API_Overview.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/20-Spreadsheet_Manipulation.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/21-Extracting_Data.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/22-Styles.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/23-Garlic_Secrets.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/24-Complex_Data_Manipulation.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/25-Monitoring_Sheets.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/26-Search_Replace.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/27-Funcs_Analysis.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/28%20Part%205%20Chart.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/28-Chart2_API_Overview.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/29-Column_Charts.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/30-Bar_Pie_Area_Line_Charts.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/31-XY_Scatter_Charts.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/32-Bubble_Net_Stock_Charts.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/33-Charts_in_Others_Docs.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/34%20Part%206%20Base.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/34-JDBC_to_Base_API.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/35-Examining_Base_Docs.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/36-RowSets_DB_Context.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/37-Driver_Manager.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/38-ODB_as_Zip.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/39%20Part%207%20Cross-application.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/39-Forms_API_Overview.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/40-Building_a_Form.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/41-Printing.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/42-Sending_E-mail.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/43-Using_the_Clipboard.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/44-Office_as_GUI_Comp.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/45%20Part%208%20Extending%20LibreOffice.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/45-UNO_Components.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/46-Addons.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/47-Calc_Add-ins.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/48-Event_Macros.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/49-Ext_Doc_Event_Macros.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/50%20Part%209%20The%20ODF%20Format.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/50-Importing_XML.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>None</loc>
+         <loc>https://flywire.github.io/lo-p/51-Simple_ODF.html</loc>
          <lastmod>2021-11-02</lastmod>
          <changefreq>daily</changefreq>
     </url>

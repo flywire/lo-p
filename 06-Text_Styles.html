@@ -11,6 +11,8 @@
       
       
       
+        <link rel="canonical" href="https://flywire.github.io/lo-p/06-Text_Styles.html">
+      
       <link rel="icon" href="assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
@@ -1327,7 +1329,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/flywire/lo-p/edit/master/docs/06-Text_Styles.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/flywire/lo-p/edit/main/docs/06-Text_Styles.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1484,11 +1486,11 @@ ParagraphCharacter, and CharacterStyle, as indicated in Figure 6.</p>
 <p><img alt="" src="images/06-Text_Styles-6.png" /></p>
 <p>Figure 6. The Paragraph Service and its Superclasses.</p>
 <p>For more information of the styles API, start in the development guide in the "Overall
-Document Features" section, online at: <a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Overall_Document_Features">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Overall_Document_Features</a>
+Document Features" section, online at: <a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Overall_Document_Features/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Overall_Document_Features/</a>
 or type <code>loGuide "Overall Document Features"</code></p>
 <p>The character and paragraph style properties are explained in the "Formatting"
 section:
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Formatting">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Formatting</a>
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Formatting/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Formatting/</a>
 or type  <code>loGuide writer Formatting</code></p>
 <h2 id="2-listing-styles-information">2.  Listing Styles Information<a class="headerlink" href="#2-listing-styles-information" title="Permanent link">&para;</a></h2>
 <p>My StylesInfo.java example illustrates some of the Writer and Info utility functions
@@ -2043,7 +2045,7 @@ generate too large a string, and this would cause styleLeft() to die.</p>
 "HyperLinkName", and "HyperLinkTarget". BuildDoc.java shows how the
 "HyperLinkURL" property is set:</p>
 <div class="highlight"><pre><span></span><code><span class="n">Write</span><span class="p">.</span><span class="na">appendPara</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="s">&quot;A link to my JLOP website:&quot;</span><span class="p">);</span>
-<span class="n">String</span> <span class="n">urlStr</span> <span class="o">=</span> <span class="s">&quot;http://fivedots.coe.psu.ac.th/~ad/jlop/&quot;</span><span class="p">;</span>
+<span class="n">String</span> <span class="n">urlStr</span> <span class="o">=</span> <span class="s">&quot;https://fivedots.coe.psu.ac.th/~ad/jlop/&quot;</span><span class="p">;</span>
 
 <span class="n">pos</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">getPosition</span><span class="p">(</span><span class="n">cursor</span><span class="p">);</span>
 <span class="n">Write</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">cursor</span><span class="p">,</span> <span class="n">urlStr</span><span class="p">);</span>
@@ -2092,7 +2094,7 @@ differently from most document styles. Instead of being accessed via
 XStyleFamiliesSupplier, they employ XChapterNumberingSupplier and
 XNumberFormatsSupplier.</p>
 <p>For more details, see the development guide:
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Line_Numbering_and_Outline_Numbering">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Line_Numbering_and_Outline_Numbering</a>
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Line_Numbering_and_Outline_Numbering/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Line_Numbering_and_Outline_Numbering/</a>
 or type <code>loGuide "Line Numbering"</code>.</p>
 <h2 id="10-other-style-changes">10.  Other Style Changes<a class="headerlink" href="#10-other-style-changes" title="Permanent link">&para;</a></h2>
 <p>StoryCreator.java illustrates three other styling effects: the creation of a header,

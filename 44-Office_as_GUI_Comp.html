@@ -11,6 +11,8 @@
       
       
       
+        <link rel="canonical" href="https://flywire.github.io/lo-p/44-Office_as_GUI_Comp.html">
+      
       <link rel="icon" href="assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
@@ -1417,7 +1419,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/flywire/lo-p/edit/master/docs/44-Office_as_GUI_Comp.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/flywire/lo-p/edit/main/docs/44-Office_as_GUI_Comp.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1456,11 +1458,11 @@ controlled and monitored by the program.</p>
 LibreOffice, but there's an entire chapter about them in the Developer's Guide
 (chapter 16, "JavaBean for Office Components"), at
 <a href="https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf">https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf</a>, and
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/JavaBean/JavaBean_for_Office_Components">https://wiki.openoffice.org/wiki/Documentation/DevGuide/JavaBean/JavaBean_for_Office_Components</a>
-(or use loGuide JavaBean). The chapter's example,
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/JavaBean/JavaBean_for_Office_Components/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/JavaBean/JavaBean_for_Office_Components/</a>
+(or use <code>loGuide JavaBean</code>). The chapter's example,
 OOoBeanViewer, wraps OOoBean in an old-style Applet (not a JApplet), and can be
 downloaded from
-<a href="http://api.libreoffice.org/examples/DevelopersGuide/examples.html#OfficeBean">http://api.libreoffice.org/examples/DevelopersGuide/examples.html#OfficeBean</a>.</p>
+<a href="https://api.libreoffice.org/examples/DevelopersGuide/examples.html#OfficeBean">https://api.libreoffice.org/examples/DevelopersGuide/examples.html#OfficeBean</a>.</p>
 <p>Another source of information is the OOoBean code at
 <a href="https://github.com/LibreOffice/core/blob/master/bean/com/sun/star/comp/beans/OOoBean.java">https://github.com/LibreOffice/core/blob/master/bean/com/sun/star/comp/beans/OOoBean.java</a>.
 It's also possible to decompile OOoBean 's JAR file, which you'll find in
@@ -1496,8 +1498,8 @@ light orange and blue.</p>
 better by the LayoutManager service explained later.</p>
 <p>There's a table of one-line descriptions of OOoBean's methods in chapter 16 of the
 Developer's Guide, and online at
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/JavaBean/API_Overview">https://wiki.openoffice.org/wiki/Documentation/DevGuide/JavaBean/API_Overview</a>
-(or use loGuide JavaBean "API Overview"). I'll only explain the methods used in
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/JavaBean/API_Overview/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/JavaBean/API_Overview/</a>
+(or use <code>loGuide JavaBean "API Overview"</code>). I'll only explain the methods used in
 my OBeanPanel class.</p>
 <h2 id="2-wrapping-ooobean-in-a-jpanel">2.  Wrapping OOoBean in a JPanel<a class="headerlink" href="#2-wrapping-ooobean-in-a-jpanel" title="Permanent link">&para;</a></h2>
 <p>OBeanPanel wraps an OOoBean instance inside a JPanel so its heavyweight canvas
@@ -2075,7 +2077,7 @@ property with the value true or false. For example:</p>
 <p>This call sends a ".uno:LeftPanelImpress" dispatch to Office to make the slides pane
 visible.</p>
 <p>The easiest way to find dispatch names is to browse through the long list at
-<a href="https://wiki.documentfoundation.org/Development/DispatchCommands">https://wiki.documentfoundation.org/Development/DispatchCommands</a>. It's divided
+<a href="https://wiki.documentfoundation.org/Development/DispatchCommands/">https://wiki.documentfoundation.org/Development/DispatchCommands/</a>. It's divided
 into application and tool subcategories, which narrows the search a little. Also, each
 entry includes a "Label value" field which for UI elements (i.e. toolbars, panes, and
 menus) corresponds to its name in Office's GUI.</p>
@@ -2333,8 +2335,8 @@ which is implemented by ItemInterceptor:</p>
 <p>Control is passed to the listener's clicked() method, which is in TBViewer.</p>
 <p>For more information on dispatch interception, see chapter 6 of the Developer's
 Guide, which is also online at
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Dispatch_Inter">https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Dispatch_Inter</a>
-ception (or use loGuide "Dispatch Interception").</p>
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Dispatch_Interception">https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Dispatch_Interception</a>
+(or use <code>loGuide "Dispatch Interception"</code>).</p>
 <h3 id="52-displaying-a-message-box">5.2.  Displaying a Message Box<a class="headerlink" href="#52-displaying-a-message-box" title="Permanent link">&para;</a></h3>
 <p>TBViewer's clicked() creates an Office message dialog (see Figure 10) by calling
 GUI.showMessageBox(). This dialog requires some complicated coding, and you may
@@ -2486,10 +2488,10 @@ commented out code for adding the menu to Office's menubar (as in Figure 11a):</
 <p>This MenuViewer example is based on one in the "Creating Menus" section at the end
 of chapter 19, "Graphical user Interfaces", in the Developer's Guide; it can be found
 online at
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/GUI/Creating_Menus">https://wiki.openoffice.org/wiki/Documentation/DevGuide/GUI/Creating_Menus</a> (or
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/GUI/Creating_Menus/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/GUI/Creating_Menus/</a> (or
 use <code>loGuide "Creating Menus"</code>). The corresponding code is at
-<a href="http://api.libreoffice.org/examples/DevelopersGuide/examples.html#GraphicalUserInt">http://api.libreoffice.org/examples/DevelopersGuide/examples.html#GraphicalUserInt</a>
-erfaces, and includes the use of a context menu, which I don't consider here.</p>
+<a href="https://api.libreoffice.org/examples/DevelopersGuide/examples.html#GraphicalUserInterfaces/">https://api.libreoffice.org/examples/DevelopersGuide/examples.html#GraphicalUserInterfaces/</a>,
+and includes the use of a context menu, which I don't consider here.</p>
 <h3 id="61-creating-a-new-menubar">6.1.  Creating a New Menubar<a class="headerlink" href="#61-creating-a-new-menubar" title="Permanent link">&para;</a></h3>
 <p>makeMenubar() attaches an XMenubar instance to the Office window using
 XTopWindow.setMenuBar():</p>

@@ -11,6 +11,8 @@
       
       
       
+        <link rel="canonical" href="https://flywire.github.io/lo-p/39-Forms_API_Overview.html">
+      
       <link rel="icon" href="assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
@@ -1419,7 +1421,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/flywire/lo-p/edit/master/docs/39-Forms_API_Overview.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/flywire/lo-p/edit/main/docs/39-Forms_API_Overview.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -1454,7 +1456,7 @@ by right clicking to access a properties dialog window.</p>
 involve anything more than remembering to save the form-filled document as a PDF
 file when it's finished. There are several online tutorials that explain the details, such
 as "Create PDF Forms with OpenOffice" at
-<a href="http://foersom.com/org/HowTo/OoCreatePdfForm.html">http://foersom.com/org/HowTo/OoCreatePdfForm.html</a>; although it's written for
+<a href="https://foersom.com/org/HowTo/OoCreatePdfForm.html">https://foersom.com/org/HowTo/OoCreatePdfForm.html</a>; although it's written for
 OpenOffice, it can be applied to LibreOffice without change.</p>
 <p>Chapter 4 of the "Base Handbook" explains how to create a data input form for a
 library loans database, and much of the GUI interface of control toolbars, form
@@ -1462,7 +1464,7 @@ canvas, and property dialogs is identical to that found in Writer. Even if you'r
 creating a text-based form, it's well worth reading the Base chapter because it goes
 into detail about the General, Data, and Events tab in the properties dialog.</p>
 <p>A somewhat simpler example, which is purely text-based without data sources, can be
-found at <a href="http://openoffice.blogs.com/forms_fromscratch.pdf">http://openoffice.blogs.com/forms_fromscratch.pdf</a>. I used this article (which
+found at <a href="https://openoffice.blogs.com/forms_fromscratch.pdf">https://openoffice.blogs.com/forms_fromscratch.pdf</a>. I used this article (which
 is titled "Creating Forms from Scratch") to create the scratchExample.odt file used
 here.</p>
 <h2 id="1-why-bother-programming-forms">1.  Why Bother Programming Forms?<a class="headerlink" href="#1-why-bother-programming-forms" title="Permanent link">&para;</a></h2>
@@ -1483,7 +1485,7 @@ addition, a variety of listeners are attached to the controls.</p>
 <h2 id="2-an-overview-of-the-forms-api">2.  An Overview of the Forms API<a class="headerlink" href="#2-an-overview-of-the-forms-api" title="Permanent link">&para;</a></h2>
 <p>A key principle behind the forms API is the Model-View-Controller (MVC) pattern
 (e.g. see
-<a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller</a>) which
+<a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller/">https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller/</a>) which
 divides each form control in two: a model (or component) representing the control's
 data, and a view for its GUI. Figure 1 shows the forms MVC model in detail.</p>
 <p><img alt="" src="images/39-Forms_API_Overview-1.png" /></p>
@@ -1589,9 +1591,9 @@ surrounding form.</p>
 available as
 <a href="https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf">https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf</a>.
 Alternatively, you can read the chapter online, starting at
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Forms/Forms">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Forms/Forms</a> (or use
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Forms/Forms/">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Forms/Forms/</a> (or use
 <code>loGuide Forms</code>). The guide's form examples are at
-<a href="http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Forms">http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Forms</a>.</p>
+<a href="https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Forms">https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Forms</a>.</p>
 <h2 id="3-examining-a-text-based-form">3.  Examining a Text-based Form<a class="headerlink" href="#3-examining-a-text-based-form" title="Permanent link">&para;</a></h2>
 <p>ExamineForm.java opens a text document containing a form, and attaches button and
 text field listeners to every button and text field control.</p>
