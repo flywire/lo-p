@@ -85,7 +85,7 @@ applications, Writer, Calc, Draw, and Impress.
 pay.xml can be opened as a spreadsheet with the help of an input filter. There are a
 few ways of writing these, as explained by Fridrich Strba in his blog post "Extending
 the Swiss Army knife - an overview about writing of filters for LibreOffice"
-(http://fridrich.blogspot.com/2013/08/extending-swiss-army-knife-overview.html).
+(https://fridrich.blogspot.com/2013/08/extending-swiss-army-knife-overview.html).
 
 The easiest way of implementing an XML input filter is with XSLT (eXtensible
 Stylesheet Language: Transformations). The filter is utilized by the XSLT processor
@@ -100,8 +100,8 @@ Figure 2. Using an XSLT filter.
 XSLT is designed for transforming XML into other textual formats; in this case, it
 will convert the simple XML used by pay.xml into the Flat XML used by Calc.
 
-Office's  XSLT processor used to be Saxon (http://saxon.sourceforge.net/), a Java
-API, but was replaced in 2012 by the libxslt C library (http://xmlsoft.org/libxslt/).
+Office's  XSLT processor used to be Saxon (https://saxon.sourceforge.net/), a Java
+API, but was replaced in 2012 by the libxslt C library (https://xmlsoft.org/libxslt/).
 This implements XSLT 1.0 with some extensions, so it's best to avoid using features
 from the newer XSLT 2.0.
 
@@ -109,13 +109,13 @@ One source for learning XLST in the context of ODF is:
 
 OASIS OpenDocument Essentials
 J. David Eisenberg, 2005
-http:// books.evc-cit.info/
+https://books.evc-cit.info/
 The book includes a chapter on filters, and an appendix that overviews XSLT and
 XPath (XPath is used for locating parts of the input document for processing).
 
 Eisenberg's website has a free draft of the text, and all the examples and support code.
 The site often seems to be offline, but the book can be found elsewhere, including at
-Lulu: http://www.lulu.com/shop/j-david-eisenberg/oasis-opendocument-essentials/paperback/product-392512.html
+Lulu: https://lulu.com/shop/j-david-eisenberg/oasis-opendocument-essentials/paperback/product-392512.html
 
 If you feel the need for more information on XSLT, a good text by the developer of
 Saxon is:
@@ -125,7 +125,7 @@ Michael Kay
 Wrox Pub., May 2008, 4th Ed.
 
 There's a somewhat shorter XSLT tutorial at W3Schools:
-http://www.w3schools.com/xml/xsl_intro.asp
+https://w3schools.com/xml/xsl_intro.asp
 
 A useful forum post, "Create XSLT filters for import and export"
 (https://forum.openoffice.org/en/forum/viewtopic.php?t=3490), by user hol.sten
@@ -193,7 +193,7 @@ sequence of clubs. A typical club entry looks like:
 ```
 
 A helpful way of visualizing this information is with the XML editor at
-http://xmlgrid.net/, which renders it as in Figure 7.
+https://xmlgrid.net/, which renders it as in Figure 7.
 
 
 ![](images/50-Importing_XML-7.png)
@@ -239,7 +239,7 @@ Import filter selection can be time-consuming because of the large number listed
 supplying the filename and filter name as arguments.
 
 Most of Office's command line arguments are listed at
-https://help.libreoffice.org/Common/Starting_the_Software_With_Parameters, and a
+https://help.libreoffice.org/Common/Starting_the_Software_With_Parameters/, and a
 few others when office.exe is invoked with the -h option. The filter commands are --
 infilter and --convert-to, which I've wrapped up in two batch scripts called infilter.bat
 and convert.bat.
@@ -288,7 +288,7 @@ The calls to infilter.bat and convert.bat rely on the user knowing a filter's na
 other filters in Office?
 
 A list of filters present in OpenOffice in 2007 can be found at
-https://wiki.openoffice.org/wiki/Framework/Article/Filter/FilterList_OOo_3_0.
+https://wiki.openoffice.org/wiki/Framework/Article/Filter/FilterList_OOo_3_0/.
 However, a better approach is to call my FiltersInfo.java example which prints all the
 filters currently installed in Office, and some extra details about the "AbiWord",
 "Pay", and "Clubs" filters:
@@ -428,7 +428,7 @@ Filter properties are explained in the online documentation for the FilterFactor
 service (use `lodoc FilterFactory` to access it), and also in the "Properties of a
 Filter" subsection of the "Integrating Import and Export Filters" section of chapter 6
 of the Developer's Guide (online at:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Properties_of_a_Filter,
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Properties_of_a_Filter/,
 or use `loGuide "Properties of a Filter"`).
 
 The most cryptic of the properties is the filter flags integer (524355 in the example
@@ -456,7 +456,7 @@ Filter flags: 80043
 
 The hexadecimals that might appear in the flag are listed in the online "Properties of a
 Filter" subsection
-(https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Properties_of_a_Filter).
+(https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Properties_of_a_Filter/).
 I've included a few isXXX() methods in the Info utilities class for testing for
 their presence. The above example reports that the "Clubs" filter contains both an
 import and export filter.
@@ -742,8 +742,8 @@ of parsing XML.
 If you're interested in using ImportFilter and ExportFilter, the Developer's guide gives
 some details in the "Integrating Import and Export Filters" section of chapter 6 on
 "Office Development". The information is also online, starting at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Integrating_Import_and_Export_Filters,
-or use loGuide "Import and Export Filters".
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Integrating_Import_and_Export_Filters/,
+or use `loGuide "Import and Export Filters"`.
 
 But I'm not going to use these services due to their complexity, and I'm about to stop
 using XSLT as well. Instead I'm going to look at three easier ways to import XML
@@ -777,9 +777,9 @@ instance, node data has the type Node.TEXT_NODE, while an attribute has the type
 Node.ATTRIBUTE.
 
 There are many online tutorials on Java and DOM, such as Oracle's at
-https://docs.oracle.com/javase/tutorial/jaxp/dom. Two other good ones are mkyong's
-starting at http://www.mkyong.com/tutorials/java-xml-tutorials/ and "Easy DOM
-Parsing in Java" by Eric Bruno at http://www.drdobbs.com/jvm/easy-dom-parsing-in-java/231002580.
+https://docs.oracle.com/javase/tutorial/jaxp/dom/. Two other good ones are mkyong's
+starting at https://mkyong.com/tutorials/java-xml-tutorials/ and "Easy DOM
+Parsing in Java" by Eric Bruno at https://drdobbs.com/jvm/easy-dom-parsing-in-java/231002580/.
 I've 'borrowed' some of Bruno's DOM functions for my XML.java
 support class, and his company.xml example.
 
@@ -833,7 +833,7 @@ The company.xml file contains details about three companies:
 ```
 
 When writing DOM code, it helps to visualize its structure. One way is to load the file
-into the editor at http://xmlgrid.net/, which displays the tree-like structure in Figure
+into the editor at https://xmlgrid.net/, which displays the tree-like structure in Figure
 12.
 
 
@@ -1264,7 +1264,7 @@ as weather.xml:
 ```
 
 This data was downloaded from OpenWeatherMap using the API at
-http://api.openweathermap.org. Unlike pay.xml or clubs.xml there's no sequence of
+https://api.openweathermap.org/. Unlike pay.xml or clubs.xml there's no sequence of
 objects that would naturally become rows of a spreadsheet. In addition, the data is
 mostly represented by attributes rather than text nodes.
 
@@ -1573,7 +1573,7 @@ xjc processes an XML schema (an XSD file)  rather than XML since the schema
 contains information about the XML's underlying structure.
 
 The good news is that there are websites, such as freeformatter.com, which can
-generate XSD from supplied XML (http://www.freeformatter.com/xsd-generator.html).
+generate XSD from supplied XML (https://freeformatter.com/xsd-generator.html).
 I employed its "Salami slice" translator so that the Java code
 generated later by xjc is a bit simpler to read. freeformatter.com converted pay.xml
 into the following XSD:
@@ -1581,7 +1581,7 @@ into the following XSD:
 ```
 <xs:schema attributeFormDefault="unqualified"
 elementFormDefault="qualified"
-xmlns:xs="http://www.w3.org/2001/XMLSchema">
+xmlns:xs="https://w3.org/2001/XMLSchema">
   <xs:element name="purpose" type="xs:string"/>
   <xs:element name="amount" type="xs:float"/>
   <xs:element name="tax" type="xs:float"/>
@@ -1611,7 +1611,7 @@ The schema gives the names and types for each field in a payment object, and mak
 payments a sequence of payment objects.
 
 A good tutorial on XSD can be found at w3schools.com:
-http://www.w3schools.com/Xml/schema_intro.asp
+https://w3schools.com/Xml/schema_intro.asp
 
 If the resulting schema is stored in pay.xsd, then xjc generates Java classes like so:
 
@@ -1621,7 +1621,7 @@ xjc -p Pay pay.xsd
 
 The –p option supplies a package name which causes the potentially numerous classes
 to be stored in a folder of that name. Details about xjc can be found at
-http://docs.oracle.com/javase/6/docs/technotes/tools/share/xjc.html, or by calling xjc -
+https://docs.oracle.com/javase/6/docs/technotes/tools/share/xjc.html, or by calling xjc -
 help.
 
 Three classes are written to the Pay\ folder: Payments.java, Payment.java, and
@@ -1856,7 +1856,7 @@ XSD file:
 
 ```
 <!-- in the xs:schema element -->
-xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+xmlns:jaxb="https://java.sun.com/xml/ns/jaxb"
 jaxb:version="2.1"
 ```
 

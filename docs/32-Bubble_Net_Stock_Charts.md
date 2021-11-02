@@ -167,7 +167,7 @@ The net chart (also called a radar chart) is useful for comparing multiple colum
 data (often between three and eight columns) in a 2D arrangement that resembles a
 spider's web. Although net charts have an interesting look, a lot of people dislike them
 (e.g. see "A Critique of Radar Charts" by Graham Odds at
-http://blog.scottlogic.com/2011/09/23/a-critique-of-radar-charts.html).
+https://blog.scottlogic.com/2011/09/23/a-critique-of-radar-charts.html).
 
 netChart() in Chart2Views.java utilizes the "No of Calls per Day" table in
 "chartsData.ods" (see Figure 5).

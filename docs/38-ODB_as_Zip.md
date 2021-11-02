@@ -14,7 +14,7 @@
 
 
 An ODB document can be manipulated as a zipped folder,
-using tools such as 7-zip (http://www.7-zip.org/). This
+using tools such as 7-zip (https://7-zip.org/). This
 means that it's possible to use Java zip classes (in the
 java.util.zip package) to extract a database from the ODB
 file. The advantage of this technique is that the resulting
@@ -272,12 +272,12 @@ public static Connection connectToDB(ArrayList<String> fnms)
 I'll explain the details of connectToHSQL() here, and connectToFB() in the next
 section.
 
-The HSQLDB website (http://hsqldb.org/) contains a lot of documentation on how to
+The HSQLDB website (https://hsqldb.org/) contains a lot of documentation on how to
 utilize JDBC, but one thing to remember is that Office's hsqldb.jar is version 1.8 of
 the engine. The most prominent documentation at the HSQLDB website is for the
 current version (v.2.3 as I write this). Fortunately, the older 1.8. documentation is still
-around, beginning at http://www.hsqldb.org/doc/1.8/guide/, and a short JDBC
-example is in Appendix B at http://www.hsqldb.org/doc/1.8/guide/apb.html.
+around, beginning at https://hsqldb.org/doc/1.8/guide/, and a short JDBC
+example is in Appendix B at https://hsqldb.org/doc/1.8/guide/apb.html.
 Jdbc.connectToHSQL() is based on that example:
 
 ```java
@@ -309,7 +309,7 @@ It's useful to be able to examine a database without having to write Java code f
 HSQLDB includes SqlTool for that purpose.
 
 SqlTool is explained at length in chapter 8 of the user guide for HSQLDB 1.8 at
-http://www.hsqldb.org/doc/1.8/guide/ch08.html. It's also possible to get help at
+https://hsqldb.org/doc/1.8/guide/ch08.html. It's also possible to get help at
 runtime by calling hsqldb.jar with the "--help" argument:
 
 ```java
@@ -332,7 +332,7 @@ work than for HSQLDB since there's no JAR file inside Office containing the
 necessary JDBC driver.
 
 The easiest thing is to download the embedded version of Firebird from
-http://www.firebirdsql.org/en/downloads/, making sure to grab either the 32-bit or 64-
+https://firebirdsql.org/en/downloads/, making sure to grab either the 32-bit or 64-
 bit version for your OS. This should be unzipped to a convenient location (e.g.
 d:\firebird), and the path added to Window's PATH environment variable.
 
@@ -351,7 +351,7 @@ d:\firebird), and the path added to Window's PATH environment variable.
 
 
 The JDBC driver, called Jaybird, is a separate download from
-http://www.firebirdsql.org/en/jdbc-driver/. This should be unzipped to a convenient
+https://firebirdsql.org/en/jdbc-driver/. This should be unzipped to a convenient
 location (e.g. d:\jaybird).
 
 There's no need to add Jaybird to the classpath of the javac.exe compiler, but calls to
@@ -404,7 +404,7 @@ is in the bin/ directory. Copy isql.exe to the embedded firebird directory on yo
 machine (e.g. into d:\firebird), and make a copy of the fbembed.dll file in that folder,
 renaming it to fbclient.dll.
 
-The isql manual is online at http://www.firebirdsql.org/manual/isql.html. isql also has
+The isql manual is online at https://firebirdsql.org/manual/isql.html. isql also has
 built-in help, as shown in Figure 5.
 
 

@@ -146,7 +146,7 @@ Office has a small set of functions (called GeneralFunctions) which can be appli
 cell ranges without the need for formula strings (i.e. a string starting with "=").
 
 They're listed in the enum section at the end of the sheet module at
-http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1sheet.html,
+https://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1sheet.html,
 or use `lodoc GeneralFunctions`. The more important functions  are shown in Table
 1.
 

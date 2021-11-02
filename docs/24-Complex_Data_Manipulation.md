@@ -460,7 +460,7 @@ is requesting the top-left cell in headerRange. Since the headerRange covers A2:
 
 Figure 9 shows that the "B4" cell contains two paragraphs. The second ends with a
 hyperlink, which means that if the user control-clicks on the "hypertext" text, then the
-URL "http://fivedots.coe.psu.ac.th/~ad/jlop/" is opened in the OSes default web
+URL "https://fivedots.coe.psu.ac.th/~ad/jlop/" is opened in the OSes default web
 browser.
 
 The SheetCell service inherits the Cell service which allows a cell to be manipulated
@@ -485,7 +485,7 @@ XTextCursor cursor = xText.createTextCursor();
 Write.appendPara(cursor, "Text in first line.");
 Write.append(cursor, "And a ");
 Write.addHyperlink(cursor, "hyperlink",
-         "http://fivedots.coe.psu.ac.th/~ad/jlop/");
+         "https://fivedots.coe.psu.ac.th/~ad/jlop/");
 ```
 
 A text cursor is created for the cell, and used to add the two paragraphs and the

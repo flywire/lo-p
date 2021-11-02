@@ -91,7 +91,7 @@ are in the Utils\ subdirectory. This is encoded as:
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest:manifest
-     xmlns:manifest="http://openoffice.org/2001/manifest">
+     xmlns:manifest="https://openoffice.org/2001/manifest">
 
   <manifest:file-entry manifest:media-type=
           "application/vnd.sun.star.framework-script"
@@ -394,8 +394,8 @@ The XML contents of NumExtractor.xdl are:
 <!DOCTYPE dlg:window PUBLIC "-//OpenOffice.org//DTD OfficeDocument
 1.0//EN" "dialog.dtd">
 
-<dlg:window xmlns:dlg="http://openoffice.org/2000/dialog"
-            xmlns:script="http://openoffice.org/2000/script"
+<dlg:window xmlns:dlg="https://openoffice.org/2000/dialog"
+            xmlns:script="https://openoffice.org/2000/script"
             dlg:id="NumExtractor"
             dlg:left="109" dlg:top="73"
             dlg:width="94" dlg:height="44"
@@ -807,7 +807,7 @@ fields, but GetText.show and GetNumber.get (and its dialog and listener) will be
 stored inside the document.
 
 Office documents, such as FormMacrosTest.odt, can be manipulated as zip files; I
-chose 7-Zip (http://www.7-zip.org/) for the purpose, because it's powerful, open
+chose 7-Zip (https://7-zip.org/) for the purpose, because it's powerful, open
 source, and can be executed from the command line and from DOS batch scripts.
 
 I'm reusing the same form from the previous section, but stored in
@@ -897,7 +897,7 @@ This chapter and the last have concentrated on adding macros to form controls, b
 other parts of Office, and other documents, can utilize event macros as well.
 
 A summary of the different ways that event macros can be employed is given on the
-wiki page "Scripting LibreOffice" at https://help.libreoffice.org/Common/Scripting. It
+wiki page "Scripting LibreOffice" at https://help.libreoffice.org/Common/Scripting/. It
 lists uses for event macros such as:
 
 * attached to form controls (already described);

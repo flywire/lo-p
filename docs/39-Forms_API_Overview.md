@@ -33,7 +33,7 @@ An important use of Writer forms is to create editable PDF forms. This doesn't
 involve anything more than remembering to save the form-filled document as a PDF
 file when it's finished. There are several online tutorials that explain the details, such
 as "Create PDF Forms with OpenOffice" at
-http://foersom.com/org/HowTo/OoCreatePdfForm.html; although it's written for
+https://foersom.com/org/HowTo/OoCreatePdfForm.html; although it's written for
 OpenOffice, it can be applied to LibreOffice without change.
 
 Chapter 4 of the "Base Handbook" explains how to create a data input form for a
@@ -43,7 +43,7 @@ creating a text-based form, it's well worth reading the Base chapter because it 
 into detail about the General, Data, and Events tab in the properties dialog.
 
 A somewhat simpler example, which is purely text-based without data sources, can be
-found at http://openoffice.blogs.com/forms_fromscratch.pdf. I used this article (which
+found at https://openoffice.blogs.com/forms_fromscratch.pdf. I used this article (which
 is titled "Creating Forms from Scratch") to create the scratchExample.odt file used
 here.
 
@@ -72,7 +72,7 @@ addition, a variety of listeners are attached to the controls.
 
 A key principle behind the forms API is the Model-View-Controller (MVC) pattern
 (e.g. see
-https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) which
+https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller/) which
 divides each form control in two: a model (or component) representing the control's
 data, and a view for its GUI. Figure 1 shows the forms MVC model in detail.
 
@@ -167,9 +167,9 @@ The principal documentation on the forms API is chapter 13 of the Developer's Gu
 available as
 https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf.
 Alternatively, you can read the chapter online, starting at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Forms/Forms (or use
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Forms/Forms/ (or use
 `loGuide Forms`). The guide's form examples are at
-http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Forms.
+https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Forms.
 
 
 ## 3.  Examining a Text-based Form

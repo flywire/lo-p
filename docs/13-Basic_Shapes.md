@@ -852,7 +852,7 @@ Draw.drawFormula(currSlide, "func e^{i %pi} + 1 = 0",
 
 The second argument is a formula string, written using Office's Math notation. For an
 overview, see the "Commands Reference" appendix of the "Math Guide", available
-from https://www.libreoffice.org/get-help/documentation/.
+from https://libreoffice.org/get-help/documentation/.
 
 Draw.drawFormula() is coded as:
 

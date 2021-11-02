@@ -100,7 +100,7 @@ RandomSents component.
 Most of my batch files call Office SDK tools. For instance, idlc.bat, regmerge.bat,
 regview.bat, javamaker.bat, and skelComp.bat utilize Office's idlc.exe, regmerge.exe,
 regview.exe, javamaker.exe, and uno-skeletonmaker.exe. The best source of
-information on these SDK tools is at http://api.libreoffice.org/docs/tools.html, which
+information on these SDK tools is at https://api.libreoffice.org/docs/tools.html, which
 gives a short but useful description of each one.
 
 The creation and installation of components is explained at length early in the
@@ -108,8 +108,8 @@ Developer's Guide, in chapters 3 ("Writing UNO Components") and 4 ("Extensions")
 The guide is available from
 https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf, or the
 chapters are online starting at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Writing_UNO_Components and
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Extensions/Extensions (or
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Writing_UNO_Components/ and
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Extensions/Extensions/ (or
 use `loGuide "Writing UNO Components"` and `loGuide Extensions`).
 
 The drawback with the guide (both PDF and online) is that the tools available in the
@@ -117,18 +117,18 @@ current version of Office have changed slightly from when the guide was written 
 2009.
 
 Two other documents worth studying are "How to Install Extensions" (available at
-https://www.libreoffice.org/get-help/documentation/), and "Publishing Extensions for
+https://libreoffice.org/get-help/documentation/), and "Publishing Extensions for
 LibreOffice"
 (https://wiki.documentfoundation.org/images/1/14/Publishing_extensions.pdf) which
 explains how to add an extension to LibreOffice's 'shop window' at
-http://extensions.libreoffice.org/.
+https://extensions.libreoffice.org/.
 
 The LibreOffice site concerned with how to code extensions is
-https://wiki.documentfoundation.org/Development/Extension_Development, which
-points to a large OpenOffice site (https://wiki.openoffice.org/wiki/Extensions), called
+https://wiki.documentfoundation.org/Development/Extension_Development/, which
+points to a large OpenOffice site (https://wiki.openoffice.org/wiki/Extensions/), called
 the OOo Extension Project. It includes a useful list of pointers to tutorials and articles
 about building extensions, at
-https://wiki.openoffice.org/wiki/Extensions_development.
+https://wiki.openoffice.org/wiki/Extensions_development/.
 
 These websites can be a little overwhelming since an extension can be so many
 different things: UNO components, add-ons, Calc add-ins, file filters, etc., and be
@@ -136,17 +136,17 @@ implemented in so many different languages (C++, Java, Python). Since this chapt
 is only about components, here's a list of component examples I've found useful:
 
 * The examples from chapter 3 of the Developer's Guide
-(http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Component
+(https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Component
 s), including an image reducer component called Thumbs;
 * The "MinimalComponent" Java example in the "UNO Components Examples"
-section of http://api.libreoffice.org/examples/examples.html#Java_examples;
+section of https://api.libreoffice.org/examples/examples.html#Java_examples;
 * The Python love letter writer (https://github.com/kunaldeo/Py-LibreOffice-Love-
 Letter-Writer).
 
 For those of you less fond of command line tools, there's an Eclipse plugin called
 LOEclipse for creating Office extensions
-(https://marketplace.eclipse.org/content/loeclipse), and an add-on example at
-https://github.com/smehrbrodt/libreoffice-starter-extension
+(https://marketplace.eclipse.org/content/loeclipse/), and an add-on example at
+https://github.com/smehrbrodt/libreoffice-starter-extension/
 
 
 ## 1.  Using the RandomSents Component
@@ -308,12 +308,12 @@ which I've done.
 Much of chapter 3 in the Developer's Guide is concerned with explaining IDL
 features. An important subsection is "Using UNOIDL to Specify New Components",
 which explains how to define a service and interface; it's online at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Using_UNOIDL_to_Specify_New_Components,
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Using_UNOIDL_to_Specify_New_Components/,
 or use `loGuide "Using UNOIDL"`.
 
 Details on how IDL types are mapped to Java can be found in chapter 2 of the guide,
 starting at the "Type Mapping" subsection; online at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/ProUNO/Java/Type_Mappings,
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/ProUNO/Java/Type_Mappings/,
 or use `loGuide "Type Mappings"`.
 
 
@@ -322,7 +322,7 @@ or use `loGuide "Type Mappings"`.
 My idlc.bat batch file utilizes idlc.exe, one of Office's SDK tools in
 <OFFICE>\sdk\bin\. Its main purpose is to generate type data, storing it in an URD
 file. A little more information can be found at
-http://api.libreoffice.org/docs/tools.html#idlc.
+https://api.libreoffice.org/docs/tools.html#idlc.
 
 Unfortunately,  idlc.exe can only process an IDL file if it's located in
 <OFFICE>\sdk\bin\, probably because its "-I" option can't find necessary support files
@@ -361,7 +361,7 @@ The end result is the creation of a RandomSents.urd file.
 
 idlc.bat may fail because of its need to copy files into a folder beneath C:\Program
 Files\, which requires administrative privileges. The easiest workaround is to
-download the elevate.exe utility from http://code.kliu.org/misc/elevate/, which starts
+download the elevate.exe utility from https://code.kliu.org/misc/elevate/, which starts
 an administrative console so the necessary privileges are granted. The call to idlc.bat
 becomes:
 
@@ -475,7 +475,7 @@ com.sun.star.uno.XInterface {
 ```
 
 I decided to improve on this by using the CFR decompiler library
-(http://www.benf.org/other/cfr/) to generate the class' full source code. javamaker.bat
+(https://benf.org/other/cfr/) to generate the class' full source code. javamaker.bat
 calls CFR to generate XRandomSents.java, which is written into the randomsents
 folder:
 
@@ -516,7 +516,7 @@ component's service name:
 javamaker.bat passes javamaker.exe the package name (org.openoffice.randomsents),
 RandomSents.rdb, and Office's types.rdb. The script's construction of this package
 name employs tr.exe, a Windows version of UNIX's tr, which I obtained from the
-Gow UNIX tools site (https://github.com/bmatzelle/gow/wiki).
+Gow UNIX tools site (https://github.com/bmatzelle/gow/wiki/).
 
 
 ## 6.  Creating a Skeleton Component
@@ -572,7 +572,7 @@ Figure 5. Class Diagram for RandomSentsImpl.java
 RandomSentsImpl extends WeakBase, the base class for UNO components. It's part
 of the com.sun.star.lib.uno package which is documented separately from Office
 modules such as Writer, Calc, and Impress. Both documentation trees can be accessed
-from the LibreOffice API documentation page at http://api.libreoffice.org/.
+from the LibreOffice API documentation page at https://api.libreoffice.org/.
 
 The XServiceInfo interface contains three methods for retrieving the component's
 implementation name (i.e. "RandomSentsImpl") and supported services (i.e.
@@ -621,7 +621,7 @@ getSentences().
 ## 7.  Compiling the Completed Implementation
 
 The completed RandomSentsImpl class is based on a Processing example at
-http://funprogramming.org/57-A-random-sentence-generator-writes-nonsense.html. I
+https://funprogramming.org/57-A-random-sentence-generator-writes-nonsense.html. I
 used that program's grammar and arrays of articles, adjectives, nouns, prepositions,
 and verbs.
 
@@ -802,9 +802,9 @@ description.xml can be fairly minimal or relatively fancy, as in my example:
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <description
-xmlns="http://openoffice.org/extensions/description/2006"
-xmlns:d="http://openoffice.org/extensions/description/2006"
-xmlns:xlink="http://www.w3.org/1999/xlink">
+xmlns="https://openoffice.org/extensions/description/2006"
+xmlns:d="https://openoffice.org/extensions/description/2006"
+xmlns:xlink="https://w3.org/1999/xlink">
 
   <identifier value="org.openoffice.randomsents"/>
   <version value="0.1"/>
@@ -814,7 +814,7 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
   </display-name>
 
   <publisher>
-    <name xlink:href="http://fivedots.coe.psu.ac.th/~ad/jlop/"
+    <name xlink:href="https://fivedots.coe.psu.ac.th/~ad/jlop/"
           lang="en">Andrew Davison</name>
   </publisher>
 
@@ -833,7 +833,7 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
   </icon>
 
   <update-information>
-    <src xlink:href="http://fivedots.coe.psu.ac.th/~ad/jlop/"/>
+    <src xlink:href="https://fivedots.coe.psu.ac.th/~ad/jlop/"/>
   </update-information>
 
   <dependencies>
@@ -856,7 +856,7 @@ Extension manager (see Figure 8 below);
 * registration: license text which is displayed when the component is first installed,
 and the user must accept or reject. Figure 6 shows the "license.txt" file (an MIT
 license) in the OXT folder. If software licenses are a mystery to you (as they were
-to me), a good site for helping you choose one is http://choosealicense.com/;
+to me), a good site for helping you choose one is https://choosealicense.com/;
 * extension-description: a one or two line description of the component, which may
 be stored in a separate file, as I've done. Figure 6 shows the "package-
 description.txt" file in the OXT folder;
@@ -881,7 +881,7 @@ As far as I know there's no label for Windows 64 bit.
 
 The best place for more information on these fields is chapter 4 of the Developer's
 Guide  at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Extensions/Extensions, or
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Extensions/Extensions/, or
 use `loGuide Extensions`. Chapter 4 talks about several configuration topics I won't
 be covering, including update support, the options dialog, and help content.
 
@@ -910,7 +910,7 @@ Zipping RandomSents\ as RandomSents.oxt
 The previously created RDB and JAR files are copied into the RandomSents folder in
 Figure 6, and the folder is zipped up as RandomSents.oxt. The zipping is carried out
 by a Windows version of the UNIX zip tool downloaded from the Gow site
-(https://github.com/bmatzelle/gow/wiki).
+(https://github.com/bmatzelle/gow/wiki/).
 
 
 ## 9.  Installing the Extension

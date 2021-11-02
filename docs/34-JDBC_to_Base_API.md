@@ -14,17 +14,17 @@ Base offers a graphical interface for the building and
 manipulation of relational databases, including tools for
 the creation of forms and reports based on the tabular data.
 These features are explained at length in the Base
-Handbook, available at https://www.libreoffice.org/get-help/documentation/.
+Handbook, available at https://libreoffice.org/get-help/documentation/.
 
 Base can access many types of SQL databases, including Microsoft Access, MySQL,
 Oracle, and PostgreSQL, and is able to create its own HSQLDB databases embedded
 inside Office ODB documents.
 
-HSQLDB (also known as HyperSQL) is coded in Java (http://hsqldb.org/), a
+HSQLDB (also known as HyperSQL) is coded in Java (https://hsqldb.org/), a
 dependency that caused the LibreOffice development team to look for a replacement
-database engine in 2013. They decided on Firebird (http://www.firebirdsql.org/)
+database engine in 2013. They decided on Firebird (https://firebirdsql.org/)
 which was coded in C until version 2.5, then moved to C++. A detailed rationale for
-the change is available as a series of links at http://en.libreofficeforum.org/node/6062.
+the change is available as a series of links at https://en.libreofficeforum.org/node/6062/.
 
 Currently (in LibreOffice 5.3), the default embedded database for ODB documents is
 still HSQLDB, with Firebird available as an 'experimental feature', turned on via
@@ -37,10 +37,9 @@ contains examples using both HSQLDB and Firebird.
 Base's API is explained in chapter 12 of the Developer's Guide  available at
 https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf.
 Alternatively, you can read the chapter online, starting at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Database_Acces
-s (use `loGuide "Database Access"`). The guide's database examples are at
-http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Database.
-
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Database_Access/
+(use `loGuide "Database Access"`). The guide's database examples are at
+https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Database.
 
 
 ## 1.  Three Database Modules
@@ -76,9 +75,8 @@ One drawback of this hierarchy is the appearance of same-named services across
 modules. For instance, there are three ResultSet services, one each in the sdbc, sdbcx,
 and sdb modules. Fortunately, the interactive inheritance diagrams used in the
 LibreOffice documentation (e.g. at
-http://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1sdbc_1_1Result
-Set.html) makes it quite easy to jump between the services (e.g. see
-`lodoc ResultSet`).
+https://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1sdbc_1_1ResultSet.html)
+makes it quite easy to jump between the services (e.g. see `lodoc ResultSet`).
 
 
 ## 2.  A Little JDBC
@@ -92,17 +90,17 @@ Three that I like are:
 
 * Introduction to Java Programming, Comprehensive Version
 Y. Daniel Liang, Pearson, 2014, 10th Edition
-http://www.cs.armstrong.edu/liang/
+https://cs.armstrong.edu/liang/
 (Chapters 32 and 35 relate to JDBC; chapter 35 is online, behind a
 login/password. However the material was printed in earlier versions, up to the 6th
 edition in 2007.)
 * Java How To Program (Early Objects)
 Paul Deitel, Harvey Deitel, Pearson, 2014, 10th Edition
-http://www.deitel.com/Books/Java/JavaHowtoProgram10eEarlyObjects/tabid/3656/Default.aspx
+https://deitel.com/Books/Java/JavaHowtoProgram10eEarlyObjects/tabid/3656/Default.aspx
 (Chapter 24 is about JDBC)
 * Core Java, Volume II – Advanced Features
 Cay S. Horstmann, Gary Cornell, Prentice Hall, 2016, 10th Edition
-http://www.informit.com/store/core-java-volume-ii-advanced-features-9780137081608
+https://informit.com/store/core-java-volume-ii-advanced-features-9780137081608/
 (Chapter 4 is about JDBC. It covers more topics than the Liang and Deitel
 chapters.)
 
@@ -112,7 +110,7 @@ and tuples. One book I've used recently is:
 
 * Sams Teach Yourself SQL in 10 Minutes
 Ben Forta,  Sams, 2012, 4th edition
-http://forta.com/books/0672336073/
+https://forta.com/books/0672336073/
 
 I'll be using a small subset of SQL: CREATE TABLE and INSERT to build tables,
 and simple SELECT statements to query them.
@@ -275,7 +273,7 @@ java -cp "D:\jaybird\jaybird-full-2.2.5.jar;."
 ```
 
 Jaybird is the JDBC driver for Firebird (available from
-http://www.firebirdsql.org/en/jdbc-driver/).
+https://firebirdsql.org/en/jdbc-driver/).
 
 The java.library.path argument in the call to java.exe locates the directory holding
 Jaybird's DLL.

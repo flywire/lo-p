@@ -152,7 +152,7 @@ sd.setSearchString("[a-z]+");
 ```
 
 The regular expression syntax is standard, and documented online at
-https://help.libreoffice.org/Common/List_of_Regular_Expressions.
+https://help.libreoffice.org/Common/List_of_Regular_Expressions/.
 
 
 ## 1.  Searching Iteratively

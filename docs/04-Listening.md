@@ -20,7 +20,7 @@ Robot package.
 
 Once again the examples come from the "Office Tests" directory in the code
 download associated with this book, and make liberal use of the classes in the "Utils"
-directory. For details please visit http://fivedots.coe.psu.ac.th/~ad/jlop/.
+directory. For details please visit https://fivedots.coe.psu.ac.th/~ad/jlop/.
 
 
 ## 1.  Listening to a Window
@@ -36,7 +36,7 @@ XEventListener, and you can click on a subclass box to jump to its documentation
 One nice syntactic feature of listeners is that almost all their names end with
 “Listener”. This makes them easy to find when searching through indices of class
 names, such as the “Class Index” page at
-http://api.libreoffice.org/docs/idl/ref/classes.html.
+https://api.libreoffice.org/docs/idl/ref/classes.html.
 
 The top-level document window can be monitored for changes using
 XTopWindowListener, which responds to modifications of the window’s state, such
@@ -148,7 +148,7 @@ document window, there's no way to trigger these changes from the Office API.
 
 Fixing this requires a trip outside Office because I need a library that can manipulate a
 window controlled by the OS. One very nice API that fits my needs is Java Native
-Access (JNA, https://github.com/twall/jna), which supports OS programming without
+Access (JNA, https://github.com/twall/jna/), which supports OS programming without
 writing anything but Java. JNA comes with numerous classes, representing OS data
 structures, such as window handles and process IDs.
 
@@ -368,7 +368,7 @@ source is the UICommands.ods spreadsheet, put together by Ariel Constenla-Haile 
 2010, at https://arielch.fedorapeople.org/devel/ooo/UICommands.ods.
 
 Another resource is chapter 10 of "OpenOffice.org Macros Explained" by Andrew
-Pitonyak (free online at http://www.pitonyak.org/book/)
+Pitonyak (free online at https://pitonyak.org/book/)
 
 Creating a dispatcher in Java is a little complicated since XDispatchProvider and
 XDispatchHelper instances are needed. XDispatchProvider is obtained from the frame
@@ -468,6 +468,3 @@ One nice feature is that there's lots of documentation on keyboard shortcuts for
 in its User guides (downloadable from https://th.libreoffice.org/get-help/documentation/),
 and these can be easily translated into key presses and releases
 in Robot.
-
-
-

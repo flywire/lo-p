@@ -22,9 +22,9 @@ DEPS.
 ## 1.  Calling Calc Functions from Code
 
 Calc comes with an extensive set of functions, which are described in Appendix B of
-the Calc User Guide, available from https://www.libreoffice.org/get-
-help/documentation/. The information is also online at
-https://help.libreoffice.org/Calc/Functions_by_Category, organized into 11 categories:
+the Calc User Guide, available from https://libreoffice.org/get-help/documentation/.
+The information is also online at
+https://help.libreoffice.org/Calc/Functions_by_Category/, organized into 11 categories:
 
 1.  Database: for extracting information from Calc tables, where the data is
 organized into rows. The "Database" name is a little misleading, but the
@@ -48,13 +48,13 @@ SLOPE below;
 time operations, conversion functions between number bases, more statistics,
 and complex numbers. See IMSUM and ROMAN below for examples. The
 "Add-ins" documentation starts at
-https://help.libreoffice.org/Calc/Add-in_Functions, and continues in
-https://help.libreoffice.org/Calc/Add-in_Functions,_List_of_Analysis_Functions_Part_One and
-https://help.libreoffice.org/Calc/Add-in_Functions,_List_of_Analysis_Functions_Part_Two.
+https://help.libreoffice.org/Calc/Add-in_Functions/, and continues in
+https://help.libreoffice.org/Calc/Add-in_Functions,_List_of_Analysis_Functions_Part_One/ and
+https://help.libreoffice.org/Calc/Add-in_Functions,_List_of_Analysis_Functions_Part_Two/.
 
 A different organization for the functions documentation is used at the OpenOffice
 site
-(https://wiki.openoffice.org/wiki/Documentation/How_Tos/Calc:_Functions_listed_by_category),
+(https://wiki.openoffice.org/wiki/Documentation/How_Tos/Calc:_Functions_listed_by_category/),
 and is probably easy to use when browsing/searching for a suitable function.
 
 If you know the name of the function, then a reasonably effective way of finding its
@@ -941,8 +941,8 @@ linear case where some of the equations are non-linear (e.g. perhaps they involv
 polynomials, logarithmic, or trigonometric functions).
 
 A gentle introduction to linear optimization and its graphing can be found at
-http://www.purplemath.com/modules/linprog.htm, or you can start at the Wikipedia
-page, https://en.wikipedia.org/wiki/Linear_programming.
+https://purplemath.com/modules/linprog.htm, or you can start at the Wikipedia
+page, https://en.wikipedia.org/wiki/Linear_programming/.
 
 The Calc documentation on linear and nonlinear solving is rather minimal. There's no
 mention of it in the Calc Developer's Guide, and just a brief section on its GUI at the
@@ -973,33 +973,33 @@ code) accessible via the "Files" tab. The file names are LpsolveSolver.cxx and
 CoinMPSolver.cxx.
 
 The lpsolve55.dll filename strongly suggests that Office's basic linear solver is
-lp_solve 5.5, which originates online at http://lpsolve.sourceforge.net/. That site has
+lp_solve 5.5, which originates online at https://lpsolve.sourceforge.net/. That site has
 extensive documentation, including a great introduction to linear optimization. The
 first programming example below comes from one of the examples in its
 documentation. One interesting possibility for the lpsolve library is that it can be
 called directly from Java without the need for Calc. The necessary steps are described
 on the "Using lp_solve 5.5 in Java programs" page for lp_solve 5.5 at
-http://lpsolve.sourceforge.net/. The relevant download is lp_solve_5.5.2.0_java.zip
-from http://sourceforge.net/projects/lpsolve/files/lpsolve/5.5.2.0/.
+https://lpsolve.sourceforge.net/. The relevant download is lp_solve_5.5.2.0_java.zip
+from https://sourceforge.net/projects/lpsolve/files/lpsolve/5.5.2.0/.
 
 Office's other linear optimizer, the CoinMP solver, comes from the COIN-OR
 (Computational Infrastructure for Operations Research) open-source project which
-started at IBM research (http://www.coin-or.org/). According to
-http://www.coin-or.org/projects/CoinMP.xml, CoinMP implements most of the functionality of three
+started at IBM research (https://coin-or.org/). According to
+https://coin-or.org/projects/CoinMP.xml, CoinMP implements most of the functionality of three
 other COIN-OR projects, called CLP (Coin LP), CBC (Coin Branch-and-Cut), and
 CGL (Cut Generation Library). The CLP and CBC solvers are documented at
-http://www.coin-or.org/projects/Clp.xml and
-http://www.coin-or.org/projects/Cbc.xml, and come with large user guides,
-at http://www.coin-or.org/Clp/userguide/ and http://www.coin-or.org/Cbc/. The collection of cut
+https://coin-or.org/projects/Clp.xml and
+https://coin-or.org/projects/Cbc.xml, and come with large user guides,
+at https://coin-or.org/Clp/userguide/ and https://www.coin-or.org/Cbc/. The collection of cut
 generators in the CGL library is used to speed up the execution of CLP and CBC (see
-http://www.coin-or.org/projects/Cgl.xml).
+https://coin-or.org/projects/Cgl.xml).
 
 A good overview of COIN-OR can be found in a series of slides by Matthew
-Saltzman at http://dimacs.rutgers.edu/Workshops/COIN/slides/saltzman.pdf. There's
+Saltzman at https://dimacs.rutgers.edu/Workshops/COIN/slides/saltzman.pdf. There's
 also a Wikipedia page about COIN-OR.
 
 The two nonlinear solvers are known as DEPS and SCO for short, and are explained
-in the OpenOffice wiki at https://wiki.openoffice.org/wiki/NLPSolver, along with
+in the OpenOffice wiki at https://wiki.openoffice.org/wiki/NLPSolver/, along with
 descriptions of their extensive (and complicated) parameters. They're implemented as
 JAR files, located in <OFFICE>\share\extensions\nlpsolver as nlpsolver.jar and
 EvolutionarySolver.jar. Two of the examples below use these solvers.
@@ -1009,7 +1009,7 @@ EvolutionarySolver.jar. Two of the examples below use these solvers.
 
 The LinearSolverTest.java example shows how to use the basic linear solver, and also
 CoinMP. It implements the following linear optimization problem, which comes from
-http://lpsolve.sourceforge.net/5.1/formulate.htm. There are three constraint
+https://lpsolve.sourceforge.net/5.1/formulate.htm. There are three constraint
 inequalities:
 
 ```
@@ -1025,7 +1025,7 @@ P = 143x + 60y
 
 The maximum P value is 6315.625, when x == 21.875 and y == 53.125. Perhaps the
 easiest way of calculating this outside of Office is via the  linear optimization tool at
-http://www.zweigmedia.com/utilities/lpg/index.html?lang=en. Its solution is shown in
+https://zweigmedia.com/utilities/lpg/index.html?lang=en. Its solution is shown in
 Figure 9.
 
 
@@ -1290,7 +1290,7 @@ Figure 10. The Options Dialog for the Basic Linear Solver.
 
 
 As to what these parameters actually mean, you'll have to look through the "lp_solve
-API reference" section of the documentation at http://lpsolve.sourceforge.net/. For
+API reference" section of the documentation at https://lpsolve.sourceforge.net/. For
 example, the "epsilon level" is partly explained under the sub-heading "set_epslevel".
 
 The only property I've changed in the LinearSolverTest.java example is
@@ -1366,13 +1366,13 @@ A solver may fail, and so solverReport() first calls XSolver.getSuccess().
 
 I've coded two examples using the nonlinear optimizers – SolverTest.java utilizes the
 SCO solver, and SolverTest2.java employs DEPS. As I mentioned earlier, these two
-solvers are explained at https://wiki.openoffice.org/wiki/NLPSolver.
+solvers are explained at https://wiki.openoffice.org/wiki/NLPSolver/.
 
 The SolverTest.java example solves a linear problem, but one involving three
 unknowns. This means that graphically the equations define planes in a 3D space, and
 solving the profit equation involves examining the corners of the volume defined by
 how the planes intersect. Unfortunately, the
-http://www.zweigmedia.com/utilities/lpg/index.html?lang=en website cannot handle
+https://zweigmedia.com/utilities/lpg/index.html?lang=en website cannot handle
 linear optimizations involving more than two variables, but no such restriction applies
 to Calc's solvers.
 
@@ -1494,7 +1494,7 @@ SolverTest2.java defines a nonlinear optimization problem, so can only be solved
 the DEPS or SCO solver; I'll start with DEPS.
 
 The problem comes from the Wikipedia page on nonlinear programming
-(https://en.wikipedia.org/wiki/Nonlinear_programming). There are four constraint
+(https://en.wikipedia.org/wiki/Nonlinear_programming/). There are four constraint
 inequalities:
 
 ```

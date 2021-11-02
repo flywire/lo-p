@@ -16,9 +16,9 @@
 
 
 The Jargon file is a humorous collection of computer
-slang (online at http://www.catb.org/jargon/html/), and its
+slang (online at https://catb.org/jargon/html/), and its
 entry for Zawinski's "Law of Software Envelopment"
-(http://www.catb.org/jargon/html/Z/Zawinskis-Law.html)
+(https://catb.org/jargon/html/Z/Zawinskis-Law.html)
 came to mind while I was preparing this chapter. It states:
 
 > "Every program attempts to expand until it can
@@ -79,7 +79,7 @@ out is part of other Office-related tasks, such as the run-time generation of a
 document, then its best to use Office's MailServiceProvider service since it nicely
 integrates with the rest of the API. However, if you plan to write a standalone e-mail
 application which loads and sends ODF attachments, then JavaMail has more features
-(https://java.net/projects/javamail/pages/Home).
+(https://java.net/projects/javamail/pages/Home/).
 
 I'll start this chapter by explaining the Office services for sending e-mail:
 SimpleSystemMail/SimpleCommandMail, and the newer MailServiceProvider. Then
@@ -195,7 +195,7 @@ Figure 3. The Default E-mail Client of Windows 7.
 
 
 A good description of how to set up this association can be found at
-http://www.ubergizmo.com/how-to/set-default-email-client-windows/
+https://ubergizmo.com/how-to/set-default-email-client-windows/
 
 
 ## 2.  Using the MailServiceProvider Service
@@ -481,11 +481,11 @@ service.disconnect();
 ## 3.  Using JavaMail
 
 JavaMail can send and receive e-mail via SMTP, POP3 and IMAP (its website is
-https://java.net/projects/javamail/pages/Home). Although JavaMail is mainly intended
+https://java.net/projects/javamail/pages/Home/). Although JavaMail is mainly intended
 to be a component of Java EE, it can be downloaded as a single JAR file
 (javax.mail.jar) as an add-on to the JDK. It's being actively developed (the current
 version is 1.5.6, released in mid 2016), and the website has lots of examples (see
-http://java.net/projects/javamail/downloads/download/javamail-samples.zip), a FAQ,
+https://java.net/projects/javamail/downloads/download/javamail-samples.zip), a FAQ,
 and API documentation (at https://javamail.java.net/nonav/docs/api/).
 
 The main textbook about JavaMail is:
@@ -643,7 +643,7 @@ delivery doesn't need to explicitly include the mail server address, port, login
 password since they're obtained from the client's settings.
 
 Desktop.mail() utilizes the mailto protocol to communicate with the client, but its
-specification (in RFC 2368, at http://www.ietf.org/rfc/rfc2368.txt) doesn't cover
+specification (in RFC 2368, at https://ietf.org/rfc/rfc2368.txt) doesn't cover
 attachments. There are unofficial extensions supported by some clients, but they're not
 part of Thunderbird (but see the next section).
 
@@ -733,7 +733,7 @@ Thunderbird, the call to Desktop.mail() fails.
 The reason for my uncertainty about Thunderbird supporting attachments is that
 although it doesn't allow them in "mailto" strings, it can process attachments via its
 GUI, and the command line (see
-http://kb.mozillazine.org/Command_line_arguments_-_Thunderbird). Its command
+https://kb.mozillazine.org/Command_line_arguments_-_Thunderbird/). Its command
 line features open up another way of sending e-mail: by having Java execute
 Thunderbird through an external script.
 

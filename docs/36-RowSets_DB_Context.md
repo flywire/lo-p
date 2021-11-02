@@ -51,7 +51,7 @@ printing.
 Aside from the documentation webpages for the two RowSet services, a good
 summary of row set properties can be found in "The RowSet Service" section of the
 Developer's Guide in chapter 12. The same information is online at:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Usage (or use
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Usage/ (or use
 `loguide "Database usage"`).
 
 My personal view is that the RowSet service is overly complex, trying to combine too

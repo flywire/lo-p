@@ -31,22 +31,22 @@ The chapter finishes with a look at how two (or more) text
 documents can be appended.
 
 The online Developer's Guide begins text document programming at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Documents
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Documents/
 (the easiest way of accessing that page is to type loguide writer). It corresponds to
 Chapter 7 in the printed guide (available at
 https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf), but the
 Web material is better structured and formatted.
 
 The guide's text programming examples are in TextDocuments.java, downloadable
-from http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Text.
+from https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Text.
 
 Although the code is long, it's well-organized. Some smaller text processing examples
-are available at http://api.libreoffice.org/examples/examples.html#Java_examples.
+are available at https://api.libreoffice.org/examples/examples.html#Java_examples.
 
 This chapter (and later ones) assume that you're familiar with Writer, including text
 concepts such as paragraph styles. If you're not, then I recommend the "Writer
-Guide", a user manual, available at http://www.libreoffice.org/get-help/documentation/
-or https://wiki.documentfoundation.org/Documentation/Publications.
+Guide", a user manual, available at https://libreoffice.org/get-help/documentation/
+or https://wiki.documentfoundation.org/Documentation/Publications/.
 
 
 ## 1.  An Overview of the Text Document API
@@ -61,7 +61,7 @@ Figure 1. The Text Document Services.
 
 
 I'll be concentrating on the TextDocument service, which is documented at
-http://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1text_1_1TextDocument.html.
+https://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1text_1_1TextDocument.html.
 Or you can type `lodoc TextDocument service`, which unfortunately
 takes you to the IDL page for TextDocument; to reach the documentation, click on
 "TextDocument" under the "Classes" heading.
@@ -336,7 +336,7 @@ bookmark in a document, extract its text range/position, and move the cursor to 
 location with gotoRange(). I'll show code for doing this in Chapter 7.
 
 The XTextCursor methods are documented at
-http://api.libreoffice.org/docs/idl/ref/interfacecom_1_1sun_1_1star_1_1text_1_1XTextCursor.html
+https://api.libreoffice.org/docs/idl/ref/interfacecom_1_1sun_1_1star_1_1text_1_1XTextCursor.html
 (or type `lodoc XTextCursor`).
 
 
@@ -735,7 +735,7 @@ in the next section.
 ## 6.  Using and Comparing Text Cursors
 
 My TalkingBook.java example utilizes the third-party library FreeTTS
-(http://freetts.sourceforge.net/) to convert text into speech. The inner workings of
+(https://freetts.sourceforge.net/) to convert text into speech. The inner workings of
 FreeTTS aren't relevant here, so are hidden inside a support class called Speaker. It
 has three public methods:
 
@@ -1069,7 +1069,7 @@ System.out.println("  " +
 These code fragments are combined together in my ShowBookText.java example.
 
 More details on enumerators and text portions are given in the Developers Guide at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Iterating_over_Text
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Iterating_over_Text/
 (or use `loGuide "Iterating over Text"`).
 
 
@@ -1079,7 +1079,7 @@ If you need to write a large multi-part document (e.g. a thesis with chapters,
 appendices, contents page, and an index) then you should utilize a master document,
 which acts as a repository of links to documents representing the component parts.
 You can find out about master documents in Chapter 13 of the Writers Guide, at
-https://wiki.documentfoundation.org/Documentation/Publications.
+https://wiki.documentfoundation.org/Documentation/Publications/.
 
 However, the complexity of master documents isn't always needed. Often the aim is
 simply to append one document to the end of another. In that case, the

@@ -36,7 +36,7 @@ The drawback of using a driver manager is the low-level information that the
 programmer has to supply, including the driver name, the file's URL, and the
 connection properties. A good source for this information is the Developer's Guide, in
 the "Driver Specifics" section of chapter 12. It's also accessible online at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics/
 (or use `loGuide "Database Driver Specifics"`). Unfortunately, the guide was last
 updated in 2008 for OpenOffice 3.1, and some details have changed since then. A
 better approach is to query Base's DriverManager at run time which will supply data
@@ -505,15 +505,15 @@ public static void main(String[] args)
 
 One reason for Office being able to access the address books of e-mail software is for
 implementing mail merge applications. ThunderbirdQuery.java examines the personal
-addresses in Thunderbird (https://www.mozilla.org/en-US/thunderbird/).
+addresses in Thunderbird (https://mozilla.org/en-US/thunderbird/).
 
 The Office documentation at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics/
 mentions support for Mozilla, Outlook, Outlook Express and LDAP, but several
 forum posts describe updates and changes.
 
 "sdbc:address:mozilla" supports SeaMonkey Mail, the 2006 replacement for the
-Mozilla e-mail reader (http://www.seamonkey-project.org/), and
+Mozilla e-mail reader (https://seamonkey-project.org/), and
 "sdbc:address:thunderbird" connects to Thunderbird. Base uses the Mork driver
 (com.sun.star.comp.sdbc.MorkDriver) to access both SeaMonkey and Thunderbird.
 

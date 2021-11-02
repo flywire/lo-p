@@ -22,16 +22,16 @@ subsequent chapters.
 
 If you're unfamiliar with Calc, then a good starting point is
 its user guide, available from
-https://www.libreoffice.org/get-help/documentation/.
+https://libreoffice.org/get-help/documentation/.
 Chapter 8 of the Developer's Guide looks at spreadsheet programming, and is
 available from
 https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf.
 Alternatively, you can access the chapter online, starting at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Spreadsheets/Spreadsheet_Documents
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Spreadsheets/Spreadsheet_Documents/
 (or use `loguide calc`). The guide's examples can be found at
-http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Spreadsheet.
+https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Spreadsheet.
 There's also a few examples in the "Spreadsheet Document Examples" section of
-http://api.libreoffice.org/examples/examples.html#Java_examples.
+https://api.libreoffice.org/examples/examples.html#Java_examples.
 
 
 ## 1.  The Spreadsheet Document
@@ -47,9 +47,9 @@ Figure 1. Some Spreadsheet Services and Interfaces.
 
 Calc's functionality is mostly divided between two Java packages (modules), sheet
 and table, which are documented at
-http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1sheet.html
+https://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1sheet.html
 and
-http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1table.html.
+https://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1table.html.
 Alternatively, you can try  `lodoc star sheet module` and `lodoc star table module`,
 but these only get you 'close' to the right pages.
 

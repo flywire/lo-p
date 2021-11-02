@@ -22,18 +22,18 @@ data views (e.g. an handout mode), and slide shows.
 
 You'll get a good feel for the APIs' capabilities by reading
 the Draw and Impress user guides, downloadable from
-https://www.libreoffice.org/get-help/documentation/.
+https://libreoffice.org/get-help/documentation/.
 
 Details about the APIs can be found in Chapter 9 of the Developer's Guide, starting at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Drawings/Drawing_Documents_and_Presentation_Documents
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Drawings/Drawing_Documents_and_Presentation_Documents/
 (or type `loGuide draw`). The guide can also be
 retrieved as a PDF file from
 https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf.
 
 The guide's drawing and presentation examples are online at
-http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Drawing, and
+https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Drawing, and
 there's a short Draw example in
-http://api.libreoffice.org/examples/examples.html#Java_examples.
+https://api.libreoffice.org/examples/examples.html#Java_examples.
 
 This chapter gives a broad overview of the drawing and presentation APIs, with some
 small code snippets to illustrate the ideas. Subsequent chapters will return to these
@@ -50,12 +50,12 @@ Figure 1. The Drawing and Presentation Document Services.
 
 The DrawingDocument service, and most of its related services and interfaces are in
 Office's com.sun.star.drawing package (or module), which is documented at
-http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1drawing.html.
+https://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1drawing.html.
 Or you can reach it using `lodoc drawing module reference`.
 
 The presentation API is mostly located in Office's com.sun.star.presentation package
 (or module), which is documented at
-http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1presentation.html.
+https://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1presentation.html.
 You can also find it with `lodoc presentation module reference`.
 
 Figure 2 shows a more detailed version of Figure 1 which includes some of the
@@ -197,7 +197,7 @@ int pageNumber = (Short)Props.getProperty(page, "Number");
 
 The "Width" and "Number" properties are documented in the GenericDrawPage
 service page at
-http://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1drawing_1_1GenericDrawPage.html
+https://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1drawing_1_1GenericDrawPage.html
 (or use `lodoc GenericDrawPage service`).
 
 Once a single page has been retrieved, it's possible to access its shapes (as shown in
@@ -262,7 +262,7 @@ Props.setProperty(shape, "FillColor", 0xFF0000);
 
 The complication comes in knowing that a property called "FillColor" exists. Visit the
 shape's service documentation (e.g. the RectangleShape page at
-http://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1drawing_1_1RectangleShape.html,
+https://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1drawing_1_1RectangleShape.html,
 or use `lodoc RectangleShape service`), and look inside each
 inherited Property service until you find the relevant property.
 

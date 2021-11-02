@@ -24,10 +24,10 @@ zip/unzip and XML features, but that isn't a good idea due
 to the complexity of the formats. This chapter looks at a
 few of these lower-level techniques, but is mainly about the
 Simple API for ODF, a sub-project of the Apache ODF
-Toolkit (http://incubator.apache.org/odftoolkit/simple/). It's
+Toolkit (https://incubator.apache.org/odftoolkit/simple/). It's
 a small Java API for creating, modifying and extracting
 data from ODF documents, built on top of the ODFDOM
-library (http://incubator.apache.org/odftoolkit/odfdom/). Rather surprisingly, its
+library (https://incubator.apache.org/odftoolkit/odfdom/). Rather surprisingly, its
 support for the concatenation of documents is better than that in the Office API.
 
 
@@ -67,27 +67,27 @@ Pictures/ stores the images used in the document; Thumbnails/ holds a small 128x
 picture of the document in thumbnail.png.
 
 The wikipedia page about ODF is quite informative
-(https://en.wikipedia.org/wiki/OpenDocument), as is its entry for the OpenDocument
+(https://en.wikipedia.org/wiki/OpenDocument/), as is its entry for the OpenDocument
 technical specification
-(https://en.wikipedia.org/wiki/OpenDocument_technical_specification). There's a
+(https://en.wikipedia.org/wiki/OpenDocument_technical_specification/). There's a
 quick summary of the OpenDocument Format (ODF) at
-https://help.libreoffice.org/Common/XML_File_Formats.
+https://help.libreoffice.org/Common/XML_File_Formats/.
 
 The ODF standard was developed by the Organization for the Advancement of
-Structured Information Standards (OASIS) consortium  (https://www.oasis-open.org/),
+Structured Information Standards (OASIS) consortium  (https://oasis-open.org/),
 whose website hosts a lot of information. A related community site is
-http://opendocument.xml.org/
+https://opendocument.xml.org/
 
 The most complete textbook on ODF is:
 
 OASIS OpenDocument Essentials
 J. David Eisenberg, 2005
-http:// books.evc-cit.info/
+https://books.evc-cit.info/
 The associated website has a free draft of the book, and all the examples and support
 code. The site often seems to be offline, but the book can be found at other locations.
 
 A recent version can be purchased at Lulu:
-http://www.lulu.com/shop/j-david-eisenberg/oasis-opendocument-essentials/paperback/product-392512.html
+https://lulu.com/shop/j-david-eisenberg/oasis-opendocument-essentials/paperback/product-392512.html
 
 
 ## 2.  Document Information
@@ -393,7 +393,7 @@ public static void zipList(String fnm)
 
 Another advantage of switching to Java are the large number of online examples of
 zip manipulation; my zipList() function is closely based on one at
-http://www.drdobbs.com/jvm/java-and-the-zip-file-format/184410339.
+https://drdobbs.com/jvm/java-and-the-zip-file-format/184410339/.
 
 
 ### 3.2.  Extracting a MIME-type
@@ -549,25 +549,25 @@ other than Office's since they might offer better, easier ways of doing some tas
 
 As a consequence, I'm going to spend the rest of the chapter looking at the Simple
 Java API for ODF, a sub-project of Apache ODF Toolkit
-(http://incubator.apache.org/odftoolkit/simple/). It's a relatively small Java API for
+(https://incubator.apache.org/odftoolkit/simple/). It's a relatively small Java API for
 creating, modifying and extracting data from ODF documents, built on top of the
-ODFDOM  library (http://incubator.apache.org/odftoolkit/odfdom/).
+ODFDOM  library (https://incubator.apache.org/odftoolkit/odfdom/).
 
 Its best features are the cookbook pages at
-http://incubator.apache.org/odftoolkit/simple/document/cookbook/, the Getting
-Started Guide (http://incubator.apache.org/odftoolkit/simple/gettingstartguide.html),
-and its demo pages (http://incubator.apache.org/odftoolkit/simple/demo/).
+https://incubator.apache.org/odftoolkit/simple/document/cookbook/, the Getting
+Started Guide (https://incubator.apache.org/odftoolkit/simple/gettingstartguide.html),
+and its demo pages (https://incubator.apache.org/odftoolkit/simple/demo/).
 
 The cookbook contains examples for manipulating text documents, presentations,
 tables in text documents and spreadsheets, charts, style handling, text navigation, text
 extraction, text fields, text forms, and document metadata. The API documentation is
-at http://incubator.apache.org/odftoolkit/mvn-site/0.8-incubating/simple-odf/apidocs/,
-and a mail archive at http://mail-archives.apache.org/mod_mbox/incubator-odf-users/
+at https://incubator.apache.org/odftoolkit/mvn-site/0.8-incubating/simple-odf/apidocs/,
+and a mail archive at https://mail-archives.apache.org/mod_mbox/incubator-odf-users/
 
 By far the worst feature of the API is the large number of libraries that must be
 installed before even a lowly "Hello World" example will work. Fortunately, I've
 included copies of those libraries at this chapter's website at
-http://fivedots.coe.psu.ac.th/~ad/jlop/.
+https://fivedots.coe.psu.ac.th/~ad/jlop/.
 
 The Simple API doesn't have the depth of features of Office, so it's best suited for the
 creation of simple text documents, spreadsheets, and presentations. However, it has
@@ -634,7 +634,7 @@ I was unable to find a way of changing the image's text wrap property to affect 
 paragraph's position. It's probably do-able using the lower-level ODFDOM  library,
 but the programming information for that part of ODF Toolkit is mostly limited to its
 API documentation. However, there's a good introductory tutorial at
-http://www.langintro.com/odfdom_tutorials/.
+https://langintro.com/odfdom_tutorials/.
 
 
 #### Make a Spreadsheet

@@ -634,14 +634,14 @@ Two books I've found useful:
 Cay S. Horstmann; Gary Cornell
 Prentice Hall, 2016, 10th ed.
 
-http://horstmann.com/corejava.html
+https://horstmann.com/corejava.html
 Chapter 7 includes a section on printing, including a table of attributes.
 
 * Pro Java 8 Programming
 Terrill Brett Spell
 Apress, 2015, 3rd ed.
 
-http://www.apress.com/9781484206423
+https://apress.com/9781484206423/
 Chapter 11 is about printing.
 
 
@@ -1895,10 +1895,10 @@ Another approach to printing documents, which avoids the use of Java, is to util
 command line utilities.
 
 There's no shortage of command line printing tools in Linux and the Mac OS, based
-around the CUPS printing system ( http://www.cups.org/), and plenty of sites
+around the CUPS printing system ( https://cups.org/), and plenty of sites
 explaining how to use lp, lpq, lpstat and others (e.g.
-http://www.computerhope.com/unix/ulp.htm,
-http://www.eecs.utk.edu/resources/it/kb/printing/linux-command-line).
+https://computerhope.com/unix/ulp.htm,
+https://eecs.utk.edu/resources/it/kb/printing/linux-command-line/).
 
 Perhaps less well known are the printing utilities in Windows, listed in Table 13.
 
@@ -1936,7 +1936,7 @@ then following the links to the commands reference section. This will eventually
 you to Microsoft's TechNet website. A slightly easier alternative is the TechRepublic
 article "How to take advantage of the hidden VBScript print utilities in Windows 10"
 by Greg Shultz at
-http://www.techrepublic.com/article/how-to-take-advantage-of-the-hidden-vbscript-print-utilities-in-windows-10/.
+https://techrepublic.com/article/how-to-take-advantage-of-the-hidden-vbscript-print-utilities-in-windows-10/.
 
 In my "Printing Tests" examples folder, there are four Batch files (printersList.bat,
 printerStatus.bat, printerJobs.bat, and printerClean.bat) which use these VBScripts in
@@ -2025,7 +2025,7 @@ Figure 9. Some of Office Command Line Arguments.
 
 Another information source is the "Starting the LibreOffice Software With
 Parameters" webpage at
-https://help.libreoffice.org/Common/Starting_the_Software_With_Parameters.
+https://help.libreoffice.org/Common/Starting_the_Software_With_Parameters/.
 
 The relevant parameters for printing are "-p" and "--pt", which can be seen near the
 bottom of Figure 9. "-p" prints a file to the default printer, while "--pt" (note the two '-

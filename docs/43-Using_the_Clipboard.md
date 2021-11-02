@@ -75,7 +75,7 @@ can be utilized with a Writer document, a spreadsheet, slides, and a database.
 One thing you might want to install before starting any clipboard programming is a
 decent clipboard viewer. It's helpful for observing the data being copied and pasted by
 the Office/Java code; I employ ClCl (
-http://www.nakka.com/soft/clcl/index_eng.html).
+https://nakka.com/soft/clcl/index_eng.html).
 
 
 ## 1.  The Office Clipboard API
@@ -102,8 +102,8 @@ the Development Guide in the section "Common Application Features". The guide
 can be downloaded from
 https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf, or the
 relevant section begins online at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Common_Appl
-ication_Features (or use loGuide "Common Application Features").
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Common_Application_Features/
+(or use `loGuide "Common Application Features"`).
 
 My Clip.getClip() support method illustrates how to get a reference to the system
 clipboard:
@@ -907,14 +907,14 @@ good sources are:
 Terrill Brett Spell
 Apress, 2015, 3rd ed.
 
-http://www.apress.com/9781484206423
+https://apress.com/9781484206423/
 Chapter 9 is about the clipboard.
 
 * Core Java, Volume II -- Advanced Features
 Cay S. Horstmann; Gary Cornell
 Prentice Hall, 2016, 10th ed.
 
-http://horstmann.com/corejava.html
+https://horstmann.com/corejava.html
 Chapter 7 includes a clipboard section.
 
 
@@ -1194,7 +1194,7 @@ public static void listFlavors(XTransferable trf)
 }  // end of listFlavors()
 ```
 
-The ClCl clipboard viewer (http://www.nakka.com/soft/clcl/index_eng.html) is a
+The ClCl clipboard viewer (https://nakka.com/soft/clcl/index_eng.html) is a
 more graphical way of viewing this information. For example, the copied text is
 displayed as in Figure 5.
 
@@ -1604,7 +1604,7 @@ It appears that the copied table could be saved in RTF and HTML formats. The
 "SBA-DATAFORMAT' entry refers to the mime type "application/x-openoffice-sba-
 dataexchange;windows_formatname=\"SBA-DATAFORMAT\"", but I've no idea
 what SBA stands for. An online acronym finder site
-(http://www.acronymfinder.com/) suggests "Susan B. Anthony", but I doubt it.
+(https://acronymfinder.com/) suggests "Susan B. Anthony", but I doubt it.
 
 
 #### The Invisible Cut-and-Paste of Data

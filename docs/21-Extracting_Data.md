@@ -379,7 +379,7 @@ that utilize a formula's result.
 
 The CellFlags constants used in XCellRangesQuery.queryContentCells() are
 documented at
-http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1sheet_1_1CellFlags.html#a0f9444c5a241b2cd5f34553b05a18ca8,
+https://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1sheet_1_1CellFlags.html#a0f9444c5a241b2cd5f34553b05a18ca8,
 or use `lodoc cellflags`.
 
 The constants can be combined with bit operations, such as "|". For instance, the

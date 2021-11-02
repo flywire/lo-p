@@ -116,11 +116,11 @@ the Developer's Guide (available at
 https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf), or
 online at
 https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Integrating_Components_into_OpenOffice.org and
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/AddOns/Add-Ons
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/AddOns/Add-Ons/
 (or use `loGuide "Integrating Components"` and `loGuide add-ons`).
 
 The Developer's Guide add-on example can be found at
-http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Components
+https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Components
 
 
 ## 2.  Creating the EzHighlight Add-on
@@ -145,7 +145,7 @@ Unfortunately, I was unable to get its add-on features to work.
 
 This was not a great loss since I'd already been thinking about replacing uno-
 skeletonmaker with FreeMarker, a powerful template processing library
-(http://freemarker.org/). FreeMarker can easily duplicate all the features of  uno-
+(https://freemarker.org/). FreeMarker can easily duplicate all the features of  uno-
 skeletonmaker, creating a Java class with the boilerplate code for creating a service
 and handling command URLs. Also, by switching to FreeMarker, I was able to add
 more automatic code generation, including code for a user input dialog and a
@@ -389,8 +389,8 @@ methods in my macros in Chapter 48.
 
 The Developer's Guide has some information on the dialog editor in chapter 11,
 "OpenOffice.org Basic". The relevant sub-sections are online at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Dialog_Editor and
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Creating_Dialogs
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Dialog_Editor/ and
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Creating_Dialogs/
 (or use `loGuide "Dialog Editor"` and `loGuide "Creating Dialogs"`).
 
 The editor utilizes drag-and-drop to place GUI elements in a dialog drawing area,
@@ -431,8 +431,8 @@ The resulting XDL file contains text something like:
 <!DOCTYPE dlg:window
        PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN"
        "dialog.dtd">
-<dlg:window xmlns:dlg="http://openoffice.org/2000/dialog"
-            xmlns:script="http://openoffice.org/2000/script"
+<dlg:window xmlns:dlg="https://openoffice.org/2000/dialog"
+            xmlns:script="https://openoffice.org/2000/script"
          dlg:id="Basic"
          dlg:left="52" dlg:top="44" dlg:width="173" dlg:height="34"
          dlg:closeable="true" dlg:moveable="true"
@@ -490,8 +490,8 @@ The exported XML is:
 <!DOCTYPE dlg:window
                PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN"
                "dialog.dtd">
-<dlg:window xmlns:dlg="http://openoffice.org/2000/dialog"
-            xmlns:script="http://openoffice.org/2000/script"
+<dlg:window xmlns:dlg="https://openoffice.org/2000/dialog"
+            xmlns:script="https://openoffice.org/2000/script"
       dlg:id="EzHighlight"
       dlg:left="109" dlg:top="73" dlg:width="184" dlg:height="44"
       dlg:closeable="true" dlg:moveable="true"
@@ -843,9 +843,9 @@ component. The contents of the file for EzHighlight are:
 
 <oor:component-data oor:name="ProtocolHandler"
                     oor:package="org.openoffice.Office"
-      xmlns:oor="http://openoffice.org/2001/registry"
-      xmlns:xs="http://www.w3.org/2001/XMLSchema"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      xmlns:oor="https://openoffice.org/2001/registry"
+      xmlns:xs="https://w3.org/2001/XMLSchema"
+      xmlns:xsi="https://w3.org/2001/XMLSchema-instance">
   <node oor:name="HandlerSet">
 
     <node oor:name="EzHighlightAddonImpl" oor:op="replace">
@@ -898,7 +898,7 @@ using sub-menu attributes.
 
 The best explanation of Addon.xcs' structure is "How to distribute your macros with
 an Addon" by Bernard Marcelly at
-http://www.openoffice.org/documentation/HOW_TO/various_topics/Addons1_1en.pdf,
+https://openoffice.org/documentation/HOW_TO/various_topics/Addons1_1en.pdf,
 which dates from 2003.
 
 
@@ -1161,9 +1161,9 @@ UNO components. Its contents use the same XML attributes:
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <description
-xmlns="http://openoffice.org/extensions/description/2006"
-xmlns:d="http://openoffice.org/extensions/description/2006"
-xmlns:xlink="http://www.w3.org/1999/xlink">
+xmlns="https://openoffice.org/extensions/description/2006"
+xmlns:d="https://openoffice.org/extensions/description/2006"
+xmlns:xlink="https://w3.org/1999/xlink">
 
   <identifier value="org.openoffice.ezhighlightAddon"/>
   <version value="0.1"/>
@@ -1173,7 +1173,7 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
   </display-name>
 
   <publisher>
-    <name xlink:href="http://fivedots.coe.psu.ac.th/~ad/jlop/"
+    <name xlink:href="https://fivedots.coe.psu.ac.th/~ad/jlop/"
           lang="en">Andrew Davison</name>
   </publisher>
 
@@ -1192,7 +1192,7 @@ xmlns:xlink="http://www.w3.org/1999/xlink">
   </icon>
 
   <update-information>
-    <src xlink:href="http://fivedots.coe.psu.ac.th/~ad/jlop/"/>
+    <src xlink:href="https://fivedots.coe.psu.ac.th/~ad/jlop/"/>
   </update-information>
 
   <dependencies>

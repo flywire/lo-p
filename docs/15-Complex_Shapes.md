@@ -400,7 +400,7 @@ the added shapes.
 An alternative approach for grouping is the deprecated XShapeGrouper, but it
 requires a few more lines of coding. An example can be found in the Developer's
 Guide, at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Drawings/Grouping,_Combining_and_Binding
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Drawings/Grouping,_Combining_and_Binding/
 (use `loguide "Grouping, Combining and Binding"`).
 
 The on-screen result of groupEllipses() is that the two ellipses become a single shape,
@@ -786,16 +786,16 @@ As the quotes around 'easiest' suggest, this isn't actually that easy since a cu
 much more complex than my example. A real example may be composed from
 multiple curves, straight lines, quadratic Bezier sub-curves (i.e. ones which use only a
 single control point between anchors), arcs, and smoothing. The official specification
-can be found at http://www.w3.org/TR/SVG/paths.html, and there are many tutorials
-on the topic, such as http://www.svgbasics.com/curves.html and
-http://www.w3schools.com/svg/svg_path.asp.
+can be found at https://w3.org/TR/SVG/paths.html, and there are many tutorials
+on the topic, such as https://svgbasics.com/curves.html and
+https://w3schools.com/svg/svg_path.asp.
 
 Even if you're careful and only draw curves like mine, the generated SVG is not quite
 the same as the coordinates used by Office's PolyPolygonBezierCoords. However, the
 translation is fairly straightforward, once you've done one or two.
 
 One good online site for drawing simple curves is
-http://blogs.sitepointstatic.com/examples/tech/svg-curves/cubic-curve.html,
+https://blogs.sitepointstatic.com/examples/tech/svg-curves/cubic-curve.html,
 developed by Craig Buckler. It restricts you to manipulating a curve made up of two
 anchors and two controls, like mine, and displays the corresponding SVG path data,
 as in Figure 12.

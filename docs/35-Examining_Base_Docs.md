@@ -535,7 +535,7 @@ public static void printResultSet(XResultSet rs)
 
 Fortunately, the hard work of writing a good ASCII-based table printer has already
 been done by Hami Galip Torun with his DBTablePrinter class, available from
-https://github.com/htorun/dbtableprinter. It offers printTable() and printResultSet() for
+https://github.com/htorun/dbtableprinter/. It offers printTable() and printResultSet() for
 printing a JDBC table and result set in beautiful ASCII.
 
 I made a few small changes to his class to allow it to handle sdbc tables and result
@@ -1477,9 +1477,8 @@ month, as shown below:
 
 The century is set to 01, and each month is decremented by one.
 
-This bug is discussed at http://libreoffice-
-bugs.freedesktop.narkive.com/fPfsZXpa/bug-91324-new-embedded-firebird-current-
-date-gives-wrong-date-back.
+This bug is discussed at
+https://libreoffice-bugs.freedesktop.narkive.com/fPfsZXpa/bug-91324-new-embedded-firebird-current-date-gives-wrong-date-back.
 
 
 ### 8.2.  Using a Scrollable Result Set
@@ -1617,7 +1616,7 @@ SELECT * INTO TEXT FOO FROM SALES
 This will store the SALES table as comma-separated rows in the FOO.csv file.
 
 Unfortunately, although "INTO TEXT" is in HSQLDB (e.g. see
-http://hsqldb.org/doc/guide/ch06.html), it isn't currently part of the embedded Firebird
+https://hsqldb.org/doc/guide/ch06.html), it isn't currently part of the embedded Firebird
 engine.
 
 A more general approach is to obtain the result set for SELECT * FROM SALES,
@@ -1719,6 +1718,6 @@ Base.saveDatabase(conn);
 ```
 
 There are third-party libraries for reading and writing CSV files. For example,
-OpenCSV (http://opencsv.sourceforge.net/) includes a CSVWriter.writeAll() method
+OpenCSV (https://opencsv.sourceforge.net/) includes a CSVWriter.writeAll() method
 for storing a JDBC result set. I can't utilize it (without changes) since the sdbc result
 set is a different type.

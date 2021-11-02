@@ -22,7 +22,7 @@ major parts of the Office API. That's mostly true, except
 for one omission – there's no mention of the `chart2`
 charting module. It's absent from the guide, the online
 examples, and only makes a brief appearance in the Wiki,
-at https://wiki.openoffice.org/wiki/Chart.
+at https://wiki.openoffice.org/wiki/Chart/.
 
 That's not to say that chart creation isn't explained in the
 guide; chapter 10 is all about that topic, but using the older
@@ -48,11 +48,11 @@ received much notice. I'll be rectifying that by concentrating solely on chart2
 programming; I won't be using the old chart API.
 
 The primary source of online information about chart2 is its API documentation at
-http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1chart2.html,
+https://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1chart2.html,
 or you can access it with `lodoc chart2`.
 
 The only extensive programming resource I've found on chart2 is a Japanese site
-(http://hermione.s41.xrea.com/pukiwiki/index.php?OOoBasic%2FCalc%2Fchart2)
+(https://hermione.s41.xrea.com/pukiwiki/index.php?OOoBasic%2FCalc%2Fchart2)
 which uses the OOoBasic version of the API. It's a great site, but often offline; one
 partly remedy is to use Google's cached copies of some of its pages.
 
@@ -68,7 +68,7 @@ names either end with the word "ChartType" (e.g. BarChartType, PieChartType,
 LineChartType), or with no special word (e.g. Bar, Donut, Line).
 
 A good way to get a feel for chart2's functionality is to look at chapter 3 of Calc's user
-guide, available from https://www.libreoffice.org/get-help/documentation/. It
+guide, available from https://libreoffice.org/get-help/documentation/. It
 describes the charting wizard, which acts as a very nice GUI for most of the chart2
 API. The chapter also introduces a lot of charting terminology (e.g. chart types, data
 ranges, data series) used in the API.

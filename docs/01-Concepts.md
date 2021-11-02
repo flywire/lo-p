@@ -38,7 +38,7 @@ export a vast number of text, graphic, and other formats, including Microsoft Of
 documents, PDF, HTML, SWF (Flash), and SQL databases.
 
 LibreOffice is managed and developed by The Document Foundation
-(https://www.libreoffice.org/), and was first released in 2010. However, earlier Office
+(https://libreoffice.org/), and was first released in 2010. However, earlier Office
 versions date back to the 1980's, and traces of this heritage are visible in many parts
 of its API. Figure 1 shows a simplified timeline of how StarOffice begat OpenOffice,
 and so on to LibreOffice.
@@ -51,13 +51,13 @@ Figure 1. Office's Timeline.
 This book is not about how to use LibreOffice's GUI (e.g. where to find the menu
 item for italicizing text). I'm also not going to discuss how to compile the LibreOffice
 source, which is a focus of LibreOffice's development webpage
-(https://wiki.documentfoundation.org/Development). My intention is to explain the
+(https://wiki.documentfoundation.org/Development/). My intention is to explain the
 Java API that comes as part of the LibreOffice SDK, which you can obtain from
-https://www.libreoffice.org/download/libreoffice-still/.
+https://libreoffice.org/download/libreoffice-still/.
 
 If you're unsure how to install the SDK then please refer to the website accompanying
-this book (http://fivedots.coe.psu.ac.th/~ad/jlop/). The "Installing the code for Java
-LibreOffice Programming" page at http://fivedots.coe.psu.ac.th/~ad/jlop/install.html
+this book (https://fivedots.coe.psu.ac.th/~ad/jlop/). The "Installing the code for Java
+LibreOffice Programming" page at https://fivedots.coe.psu.ac.th/~ad/jlop/install.html
 gives step-by-step instructions, and also explains how to download the book's utility
 classes and examples.
 
@@ -73,10 +73,10 @@ documentation or the older OpenOffice material since, apart from formatting
 differences, they're virtually the same. However, my preference is for the LibreOffice
 pages because of the clickable inheritance diagrams, as I'll explain later.
 
-Indeed, the examples at the LibreOffice API website (http://api.libreoffice.org/) link
+Indeed, the examples at the LibreOffice API website (https://api.libreoffice.org/) link
 to the OpenOffice Developer's Guide at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/OpenOffice.org_Develope
-rs_Guide. Sadly, that rather old manual (for OpenOffice v3.1 released in 2009) is the
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/OpenOffice.org_Developers_Guide/.
+Sadly, that rather old manual (for OpenOffice v3.1 released in 2009) is the
 only long description of the Java Office API, and is overly technical in places. It can
 be downloaded as a single PDF file from
 https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf. The PDF
@@ -102,21 +102,21 @@ choices.
 
 There's a lot of Java Office API examples and code snippets online (as you might
 expect after 15+ years of existence). Your first stop should be the two groups of
-examples at http://api.libreoffice.org/examples/examples.html (in the Java and
+examples at https://api.libreoffice.org/examples/examples.html (in the Java and
 Developer's Guide subdirectories). They can also be found in the Office download in
 <OFFICE>/sdk/examples; Basic, C++ and Python code is there as well. By the way,
 <OFFICE> is my way of writing the path to the LibreOffice directory, which for
 example is "C:\Program Files\LibreOffice 5" on my 32-bit test machine.
 
 You should also browse the LibreOffice development forums
-(http://www.imaccanici.org/en.libreofficeforum.org/) and the corresponding ones for
+(https://imaccanici.org/en.libreofficeforum.org/) and the corresponding ones for
 OpenOffice (https://forum.openoffice.org/en/forum/). Look for the sub-forums that
 talk about the UNO API and/or macros. Sadly, imaccanici.org is an archive of the
-defunct http://en.libreofficeforum.org/ site, but the OpenOffice forum is still going
+defunct https://en.libreofficeforum.org/ site, but the OpenOffice forum is still going
 strong, and very relevant. LibreOffice has a question-posing page, at
 https://ask.libreoffice.org/en/questions/, which is a good source of information.
 
-http://www.oooforum.org/ is an older forum site, which has the unfortunate habit of
+https://oooforum.org/ is an older forum site, which has the unfortunate habit of
 periodically disappearing from the Web. Often the only way to access one of its posts
 or threads is via cached pages maintained by Google.
 
@@ -129,11 +129,11 @@ which simplifies its version of the API. Basic macros utilize a similar set of O
 API functions as Java, so can be a useful source of ideas.
 
 Perhaps the best place for learning about Office macro programming is Andrew
-Pitonyak's website (http://www.pitonyak.org/), which includes an excellent free-to-
+Pitonyak's website (https://pitonyak.org/), which includes an excellent free-to-
 download book: "OpenOffice.org Macros Explained", a macros cookbook, and a
 document focusing on database macros.
 
-Another great site is http://openoffice3.web.fc2.com/, which is mostly written in
+Another great site is https://openoffice3.web.fc2.com/, which is mostly written in
 Japanese. This shouldn't put off non-Japanese readers since Google is quite happy to
 translate the pages for you, and the code examples are mostly ASCII.
 
@@ -143,14 +143,14 @@ translate the pages for you, and the code examples are mostly ASCII.
 The online API documentation can be time-consuming to search due to its great size.
 
 If you want to have a browse, start at
-http://api.libreoffice.org/docs/idl/ref/namespaces.html, which takes a while to load.
+https://api.libreoffice.org/docs/idl/ref/namespaces.html, which takes a while to load.
 
 Each Office application (e.g. Writer, Draw, Impress, Calc, Base, Math) is supported
 by multiple modules (similar to Java packages). For example, most of Writer's API is
 in Office's "text" module, while Impress' functionality comes from the "presentation"
 and "drawing" modules. These modules are located in com.sun.star package, which is
 documented at
-http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star.html.
+https://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star.html.
 
 Rather than searching manually through a module for a given class, it's a lot quicker
 to get a search engine to do it for you. This is the purpose of my lodoc.bat batch file,
@@ -518,9 +518,9 @@ coding crowd.
 This is understandable since Office (both LibreOffice and OpenOffice) includes an
 IDE for editing and debugging Basic macros. Also, there's a lot of good resources on
 how to utilize these tools (e.g. start browsing the LibreOffice wiki page "LibreOffice
-Basic Help", https://help.libreoffice.org/Basic/Basic_Help). The few books that have
+Basic Help", https://help.libreoffice.org/Basic/Basic_Help/). The few books that have
 been written about programming the Office API have all used Basic (e.g. Pitonyak's
-"OpenOffice.org Macros Explained" at http://www.pitonyak.org/book/).
+"OpenOffice.org Macros Explained" at https://pitonyak.org/book/).
 
 There are two styles of Basic macro programming – scripts can be attached to specific
 documents, or to the Office application. In a document, a macro can respond to Office

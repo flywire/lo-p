@@ -154,26 +154,26 @@ Table 1 has many rows without bold entries, which means I won't be looking at th
 
 except for the very brief descriptions here; for more please consult the Developer's
 Guide at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Working_with_Text_Documents
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Working_with_Text_Documents/
 (or type `loGuide "Working with Text Documents"`). All the examples
 in that section are in TextDocuments.java at
-http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Text.
+https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Text.
 
 **Text Sections.** A text section is a grouping of paragraphs which can be assigned their
 own style settings. More usefully, a section may be located in another file, which is
 the mechanism underlying master documents. See:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Sections (or
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Sections/ (or
 type `loGuide "Text Sections"`).
 
 **Footnotes and Endnotes.** Footnotes and endnotes are blocks of text that appear in the
 page footers and at the end of a document. They can be treated as XText objects, so
 manipulated using the same techniques as the main document text. See:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Footnotes_and_Endnotes
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Footnotes_and_Endnotes/
 (or type `loGuide Footnotes`).
 
 **Reference Marks.** Reference marks can be inserted throughout a document, and then
 jumped to via GetReference text fields:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Reference_Marks (or
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Reference_Marks/ (or
 type `loGuide "Reference Marks"`).
 
 **Indexes and Index Marks.** Index marks, like reference marks, can be inserted
@@ -181,19 +181,19 @@ anywhere in a document, but are used to generate indices (collections of informa
 inside the document. There are several types of index marks used for generating lists
 of chapter headings (i.e. a book's index), lists of key words, illustrations, tables, and a
 bibliography. For details see:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Indexes_and_Index_Marks
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Indexes_and_Index_Marks/
 (or type `loGuide Indexes`).
 
 **Link Targets.** A link target (sometimes called a jump mark) labels a location inside a
 document. These labels can be included as part of a filename so that the document can
 be opened at that position. For information, see:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Link_Targets (or
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Link_Targets/ (or
 type `loGuide "Link Targets"`).
 
 **Redlines.** Redlines are the changes recorded when a user edits a document with track
 changes turned on. Each of the changes is saved as a text fragment (also called a text
 portion) inside a redline object. See:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Redline (or type
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Redline/ (or type
 `loGuide Redline`).
 
 
@@ -517,7 +517,7 @@ formulaProps.setPropertyValue("Formula", formula);
 Although I've explained the working of Write.addFormula(), I haven't explained the
 format of the formula string that's passed to it. There's a good overview of the
 notation in the "Commands Reference" appendix of Office's "Math Guide", available
-at https://www.libreoffice.org/get-help/documentation/
+at https://libreoffice.org/get-help/documentation/
 For example, the formula string:
 "1 {5}over{9} + 3 {5}over{9} = 5 {1}over{9}"
 is rendered as:
@@ -601,12 +601,12 @@ master field representing the external source, and the dependent field for the d
 in the document; only the dependent field is visible. I won't be giving any
 dependent/master field examples, but there's one in the Development Guide section
 on text fields, at:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Fields (or type
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Fields/ (or type
 `loGuide "Text Fields"`).
 
 It utilizes the User master field, which allows the external source to be user-defined
 data. The code appears in the TextDocuments.java example at
-http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Text.
+https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Text/.
 
 Different  kinds of text field are implemented as subclasses of the TextField service.
 You can see the complete hierarchy in the online documentation for TextField
@@ -816,7 +816,7 @@ assume that the first row in the list contains the table's header text.
 The first few lines of "bondMovies.txt" are:
 
 ```
-// http://en.wikipedia.org/wiki/James_Bond#Ian_Fleming_novels
+// https://en.wikipedia.org/wiki/James_Bond#Ian_Fleming_novels
 
 Title  Year  Actor  Director
 

@@ -187,7 +187,7 @@ drawing module).
 The documentation for DrawPage (use `lodoc DrawPage presentation service`)
 only says that "Layout" stores a short; it doesn't list the possible values or how they
 correspond to layouts. However, there is a list at the excellent Japanese Office
-website,  http://openoffice3.web.fc2.com/OOoBasic_Impress.html#OOoIPLy01a,
+website,  https://openoffice3.web.fc2.com/OOoBasic_Impress.html#OOoIPLy01a,
 which I used as the basis of the layout constants in my Draw class:
 
 ```java
@@ -721,7 +721,7 @@ reach the presentation Shape service, then browse for its "Effect" property.
 Alternatively, you can find details in the com.sun.star.presentation module (use
 `lodoc presentation module`). Another nice summary, in the form of a large table, is in the
 Developer's Guide at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Drawings/Animations_and_Interactions
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Drawings/Animations_and_Interactions/
 (use `loGuide "Animations and Interactions"`). Figure 8 shows part of that table.
 
 

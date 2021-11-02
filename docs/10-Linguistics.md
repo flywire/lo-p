@@ -25,7 +25,7 @@ is easier to use interactively through Office's  GUI.
 However, if you have an urge to hyphenate, then
 LingusticExamples.java in the Developer's Guide
 examples contains some code; it can be downloaded from
-http://api.libreoffice.org/examples/DevelopersGuide/OfficeDev/Linguistic/LinguisticExamples.java.
+https://api.libreoffice.org/examples/DevelopersGuide/OfficeDev/Linguistic/LinguisticExamples.java.
 
 I'll describe two examples, Lingo.java and LingoFile.java. The first lists information
 about the linguistic services, then uses the spell checker, thesaurus, and grammar
@@ -35,7 +35,7 @@ without altering the document.
 
 One topic I'll be ignoring is how to create and edit the data files used by the linguistic
 services. For that task, you should have a look at PTG (Proofing Tool GUI) developed
-by Marco Pinto at http://marcoagpinto.cidadevirtual.pt/proofingtoolgui.html. It's an
+by Marco Pinto at https://marcoagpinto.cidadevirtual.pt/proofingtoolgui.html. It's an
 open source tool for editing Office's  dictionary, thesaurus, hyphenation, and
 autocorrect files.
 
@@ -45,14 +45,14 @@ Another area I'll be skipping is the use of events and listeners. Please refer t
 above.
 
 The linguistic features accessible through Office's GUI are explained in chapter 3 of
-the "Writer Guide", available at http://www.libreoffice.org/get-help/documentation/,
+the "Writer Guide", available at https://libreoffice.org/get-help/documentation/,
 starting from the section called "Checking spelling and grammar".
 
 An older information source is the "Lingucomponent Project" page at the OpenOffice
-website, http://www.openoffice.org/lingucomponent/, which links to some useful
+website, https://openoffice.org/lingucomponent/, which links to some useful
 tools, such as alternative grammar checkers. An interesting set of slides by Daniel
 Naber explaining the state of the project in 2005 can be found at
-http://www.danielnaber.de/publications/, along with more recent material.
+https://danielnaber.de/publications/, along with more recent material.
 
 
 ## 1.  The Linguistic Tools
@@ -255,14 +255,14 @@ Figure 5. The Dictionary Extensions at the LibreOffice Website.
 
 
 The URL of the page in Figure 5 is:
-http://extensions.libreoffice.org/extension-center?getCategories=Dictionary
+https://extensions.libreoffice.org/extension-center?getCategories=Dictionary/
 The dictionary category currently has 94 entries, but if you can't find what you're
 looking for, don't forget the extensions for OpenOffice, at:
-http://extensions.openoffice.org/
+https://extensions.openoffice.org/
 If you're unclear about how to install extensions, the process is explained online at
-https://wiki.documentfoundation.org/Documentation/HowTo/install_extension, or in
+https://wiki.documentfoundation.org/Documentation/HowTo/install_extension/, or in
 the "Installing Extensions" guide available at
-http://www.libreoffice.org/get-help/documentation/.
+https://libreoffice.org/get-help/documentation/.
 
 
 ### 1.2.  Linguistic Properties
@@ -666,7 +666,7 @@ the linguistic properties that is acted upon is through the "Options" pane in th
 Figure 9. Changing the Capitalization Property.
 
 
-Office's default spell checker is Hunspell (from http://hunspell.github.io/), and has
+Office's default spell checker is Hunspell (from https://hunspell.github.io/), and has
 been part of OpenOffice since v.2, when it replaced MySpell, adding several features
 such as support for Unicode. The "MySpell" name lives on in a few places, such as in
 the spelling service (org.openoffice.lingu.MySpellSpellChecker).
@@ -830,21 +830,21 @@ and no properties.
 
 If you need a non-English thesaurus which isn't part of Office, then look through the
 dictionary extensions at
-http://extensions.libreoffice.org/extension-center?getCategories=Dictionary;
+https://extensions.libreoffice.org/extension-center?getCategories=Dictionary/;
 many include a thesaurus with the dictionary.
 
 Thesaurus data is stored as ".idx" and ".dat" files in the same directory as the spell
 checker (i.e. in <OFFICE>\share\extensions\dict-en\), as can be seen in Figure 13.
 
-The files are built from WordNet data (http://wordnet.princeton.edu/), but use a text-
+The files are built from WordNet data (https://wordnet.princeton.edu/), but use a text-
 based format explained very briefly in Daniel Naber's slides about the
-Lingucomponent Project (at http://www.danielnaber.de/publications/ooocon2005-lingucomponent.pdf).
+Lingucomponent Project (at https://danielnaber.de/publications/ooocon2005-lingucomponent.pdf).
 Also, the Lingucomponent website has some C++ code for
-reading ".idx" and '.dat" files (in http://www.openoffice.org/lingucomponent/MyThes-1.zip).
+reading ".idx" and '.dat" files (in https://openoffice.org/lingucomponent/MyThes-1.zip).
 
 However, if you want to write code using a thesaurus independently of Office, then
 I'd suggest programming with one of the many APIs for WordNet; there are currently
-nine for Java, listed at http://wordnet.princeton.edu/wordnet/related-projects/#Java.
+nine for Java, listed at https://wordnet.princeton.edu/wordnet/related-projects/#Java.
 
 
 
@@ -856,18 +856,18 @@ same folder as the spell checker and thesaurus; on my machine that's
 <OFFICE>\share\extensions\dict-en\.
 
 Older versions of Lightproof are available from OpenOffice's extensions website at
-http://extensions.services.openoffice.org/project/lightproof. One reason for
+https://extensions.services.openoffice.org/project/lightproof/. One reason for
 downloading the old version is that it contains documentation on adding new
 grammar rules missing from the version installed in Office.
 
 Another way to modify Lightproof's grammar rules is with its editor, which can be
-obtained from http://extensions.libreoffice.org/extension-center/lightproof-editor.
+obtained from https://extensions.libreoffice.org/extension-center/lightproof-editor/.
 
 There are a number of alternative grammar checkers for Office, including "After the
-Deadline" (http://www.afterthedeadline.com/) and "LanguageTool"
-(https://www.languagetool.org/), which are easily added to Office as extensions via
+Deadline" (https://afterthedeadline.com/) and "LanguageTool"
+(https://languagetool.org/), which are easily added to Office as extensions via
 the "Language Tools" subsection of the website, at
-http://extensions.libreoffice.org/extension-center?getCategories=Language%20Tools.
+https://extensions.libreoffice.org/extension-center?getCategories=Language%20Tools.
 
 When I first coded my examples, I used the default Lightproof for grammar checking,
 but it doesn't have a very extensive set of built-in grammar rules (it seems best at

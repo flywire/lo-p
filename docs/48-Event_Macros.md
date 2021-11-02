@@ -37,16 +37,16 @@ The Developer's Guide discusses macros in chapter 18, "Scripting Framework", but
 macro programming has changed since the guide was produced (e.g. macros can now
 be written in Python), so it's better to read the more current OpenOffice wiki, starting
 at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Scripting/Scripting_Framework
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Scripting/Scripting_Framework/
 (or use `loGuide "Scripting Framework"`).
 
 Most macro programming resources employ Office Basic, and Java rarely gets
 mentioned, as in chapter 13, "Getting Started with Macros", of the "Getting Started
-Guide" (available at http://www.libreoffice.org/get-help/documentation/). That
+Guide" (available at https://libreoffice.org/get-help/documentation/). That
 chapter ends with a useful list of online resources, and printed and eBook materials.
 
 Probably the best source for Office Basic macro coding is Andrew Pitonyak's website
-at http://www.pitonyak.org/oo.php; I recommend starting with his book,
+at https://pitonyak.org/oo.php; I recommend starting with his book,
 "OpenOffice.org Macros Explained" (OOME), which is free to download. There's
 also a separate book of collected macros, called AndrewMacros.pdf.
 
@@ -55,7 +55,7 @@ Another excellent introduction to Office Basic Macros (written in French) is:
 * Programmation OpenOffice.org et LibreOffice: Macros OOoBasic et API
 Bernard Marcelly and Laurent Godard
 Eyrolles, 2011
-http://www.editions-eyrolles.com/Livre/9782212132472/programmation-openoffice-org-et-libreoffice
+https://editions-eyrolles.com/Livre/9782212132472/programmation-openoffice-org-et-libreoffice/
 
 Two textbooks that focus on Office Basic macros in a particular Office application:
 
@@ -63,11 +63,11 @@ Two textbooks that focus on Office Basic macros in a particular Office applicati
 Automation
 Mark Alexander Bain
 Packt Publishing, 2006
-https://www.packtpub.com/hardware-and-creative/learn-openofficeorg-spreadsheet-macro-programming-ooobasic-and-calc-automation
+https://packtpub.com/hardware-and-creative/learn-openofficeorg-spreadsheet-macro-programming-ooobasic-and-calc-automation/
 * Database Programming with OpenOffice.org Base and Basic
 Roberto Benitez
 Lulu.com, 2011
-http://www.lulu.com/shop/roberto-benitez/database-programming-with-openofficeorg-base-basic/paperback/product-3568728.html
+https://lulu.com/shop/roberto-benitez/database-programming-with-openofficeorg-base-basic/paperback/product-3568728.html
 
 
 ## 1.  Fantastic Macros and Where to Find Them
@@ -206,7 +206,7 @@ the static function get() in the GetNumber class.
 
 Information about the URI formats for other languages is given on the "Scripting
 Framework URI Specification" page at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Scripting/Scripting_Framework_URI_Specification
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Scripting/Scripting_Framework_URI_Specification/
 (or use `loGuide "Scripting Framework URI Specification"`).
 
 #### Listing and Finding Macro Names
@@ -776,17 +776,17 @@ The params[] array is treated as two arguments by XScript.invoke() and passed to
 commandline().
 
 The quick-start and resources pages at librelogo.org are the places to start learning
-LibreLogo (http://librelogo.org/quick-start/ and http://librelogo.org/resources/).
+LibreLogo (https://librelogo.org/quick-start/ and https://librelogo.org/resources/).
 There's also a help page of commands at
-https://help.libreoffice.org/Writer/LibreLogo_Toolbar.
+https://help.libreoffice.org/Writer/LibreLogo_Toolbar/.
 
-A good source of examples, slides, and code is http://www.numbertext.org/logo/. The
+A good source of examples, slides, and code is https://numbertext.org/logo/. The
 best introductory talk at that site is "LibreLogo – Turtle vector graphics for
-everybody" from 2012 (http://www.numbertext.org/logo/librelogo.pdf), and there are
+everybody" from 2012 (https://numbertext.org/logo/librelogo.pdf), and there are
 more recent presentations which update the project. One of its aims was to create a
 textbook for Hungarian primary and secondary schools (the project lead, László
 Németh, is Hungarian), which is free to download from
-http://szabadszoftver.kormany.hu/wp-content/uploads/librelogo_oktatasi_segedanyag_v4.pdf.
+https://szabadszoftver.kormany.hu/wp-content/uploads/librelogo_oktatasi_segedanyag_v4.pdf.
 
 
 ## 6.  Writing a Simple Event Macro
