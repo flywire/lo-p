@@ -465,6 +465,6 @@ isn't the one for Impress? Do these combination of keys do something deadly in o
 of Office's other applications?
 
 One nice feature is that there's lots of documentation on keyboard shortcuts for Office
-in its User guides (downloadable from https://th.libreoffice.org/get-help/documentation/),
+in its User guides (downloadable from https://th.libreoffice.org/get-help/documentation),
 and these can be easily translated into key presses and releases
 in Robot.

@@ -22,9 +22,9 @@ DEPS.
 ## 1.  Calling Calc Functions from Code
 
 Calc comes with an extensive set of functions, which are described in Appendix B of
-the Calc User Guide, available from https://libreoffice.org/get-help/documentation/.
+the Calc User Guide, available from https://libreoffice.org/get-help/documentation.
 The information is also online at
-https://help.libreoffice.org/Calc/Functions_by_Category/, organized into 11 categories:
+https://help.libreoffice.org/Calc/Functions_by_Category, organized into 11 categories:
 
 1.  Database: for extracting information from Calc tables, where the data is
 organized into rows. The "Database" name is a little misleading, but the
@@ -48,13 +48,13 @@ SLOPE below;
 time operations, conversion functions between number bases, more statistics,
 and complex numbers. See IMSUM and ROMAN below for examples. The
 "Add-ins" documentation starts at
-https://help.libreoffice.org/Calc/Add-in_Functions/, and continues in
-https://help.libreoffice.org/Calc/Add-in_Functions,_List_of_Analysis_Functions_Part_One/ and
-https://help.libreoffice.org/Calc/Add-in_Functions,_List_of_Analysis_Functions_Part_Two/.
+https://help.libreoffice.org/Calc/Add-in_Functions, and continues in
+https://help.libreoffice.org/Calc/Add-in_Functions,_List_of_Analysis_Functions_Part_One and
+https://help.libreoffice.org/Calc/Add-in_Functions,_List_of_Analysis_Functions_Part_Two.
 
 A different organization for the functions documentation is used at the OpenOffice
 site
-(https://wiki.openoffice.org/wiki/Documentation/How_Tos/Calc:_Functions_listed_by_category/),
+(https://wiki.openoffice.org/wiki/Documentation/How_Tos/Calc:_Functions_listed_by_category),
 and is probably easy to use when browsing/searching for a suitable function.
 
 If you know the name of the function, then a reasonably effective way of finding its
@@ -942,7 +942,7 @@ polynomials, logarithmic, or trigonometric functions).
 
 A gentle introduction to linear optimization and its graphing can be found at
 https://purplemath.com/modules/linprog.htm, or you can start at the Wikipedia
-page, https://en.wikipedia.org/wiki/Linear_programming/.
+page, https://en.wikipedia.org/wiki/Linear_programming.
 
 The Calc documentation on linear and nonlinear solving is rather minimal. There's no
 mention of it in the Calc Developer's Guide, and just a brief section on its GUI at the
@@ -999,7 +999,7 @@ Saltzman at https://dimacs.rutgers.edu/Workshops/COIN/slides/saltzman.pdf. There
 also a Wikipedia page about COIN-OR.
 
 The two nonlinear solvers are known as DEPS and SCO for short, and are explained
-in the OpenOffice wiki at https://wiki.openoffice.org/wiki/NLPSolver/, along with
+in the OpenOffice wiki at https://wiki.openoffice.org/wiki/NLPSolver, along with
 descriptions of their extensive (and complicated) parameters. They're implemented as
 JAR files, located in <OFFICE>\share\extensions\nlpsolver as nlpsolver.jar and
 EvolutionarySolver.jar. Two of the examples below use these solvers.
@@ -1366,7 +1366,7 @@ A solver may fail, and so solverReport() first calls XSolver.getSuccess().
 
 I've coded two examples using the nonlinear optimizers – SolverTest.java utilizes the
 SCO solver, and SolverTest2.java employs DEPS. As I mentioned earlier, these two
-solvers are explained at https://wiki.openoffice.org/wiki/NLPSolver/.
+solvers are explained at https://wiki.openoffice.org/wiki/NLPSolver.
 
 The SolverTest.java example solves a linear problem, but one involving three
 unknowns. This means that graphically the equations define planes in a 3D space, and
@@ -1494,7 +1494,7 @@ SolverTest2.java defines a nonlinear optimization problem, so can only be solved
 the DEPS or SCO solver; I'll start with DEPS.
 
 The problem comes from the Wikipedia page on nonlinear programming
-(https://en.wikipedia.org/wiki/Nonlinear_programming/). There are four constraint
+(https://en.wikipedia.org/wiki/Nonlinear_programming). There are four constraint
 inequalities:
 
 ```

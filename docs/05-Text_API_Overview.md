@@ -31,7 +31,7 @@ The chapter finishes with a look at how two (or more) text
 documents can be appended.
 
 The online Developer's Guide begins text document programming at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Documents/
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Text_Documents
 (the easiest way of accessing that page is to type loguide writer). It corresponds to
 Chapter 7 in the printed guide (available at
 https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf), but the
@@ -45,8 +45,8 @@ are available at https://api.libreoffice.org/examples/examples.html#Java_example
 
 This chapter (and later ones) assume that you're familiar with Writer, including text
 concepts such as paragraph styles. If you're not, then I recommend the "Writer
-Guide", a user manual, available at https://libreoffice.org/get-help/documentation/
-or https://wiki.documentfoundation.org/Documentation/Publications/.
+Guide", a user manual, available at https://libreoffice.org/get-help/documentation
+or https://wiki.documentfoundation.org/Documentation/Publications.
 
 
 ## 1.  An Overview of the Text Document API
@@ -1069,7 +1069,7 @@ System.out.println("  " +
 These code fragments are combined together in my ShowBookText.java example.
 
 More details on enumerators and text portions are given in the Developers Guide at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Iterating_over_Text/
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Iterating_over_Text
 (or use `loGuide "Iterating over Text"`).
 
 
@@ -1079,7 +1079,7 @@ If you need to write a large multi-part document (e.g. a thesis with chapters,
 appendices, contents page, and an index) then you should utilize a master document,
 which acts as a repository of links to documents representing the component parts.
 You can find out about master documents in Chapter 13 of the Writers Guide, at
-https://wiki.documentfoundation.org/Documentation/Publications/.
+https://wiki.documentfoundation.org/Documentation/Publications.
 
 However, the complexity of master documents isn't always needed. Often the aim is
 simply to append one document to the end of another. In that case, the

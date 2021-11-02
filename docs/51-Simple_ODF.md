@@ -67,11 +67,11 @@ Pictures/ stores the images used in the document; Thumbnails/ holds a small 128x
 picture of the document in thumbnail.png.
 
 The wikipedia page about ODF is quite informative
-(https://en.wikipedia.org/wiki/OpenDocument/), as is its entry for the OpenDocument
+(https://en.wikipedia.org/wiki/OpenDocument), as is its entry for the OpenDocument
 technical specification
-(https://en.wikipedia.org/wiki/OpenDocument_technical_specification/). There's a
+(https://en.wikipedia.org/wiki/OpenDocument_technical_specification). There's a
 quick summary of the OpenDocument Format (ODF) at
-https://help.libreoffice.org/Common/XML_File_Formats/.
+https://help.libreoffice.org/Common/XML_File_Formats.
 
 The ODF standard was developed by the Organization for the Advancement of
 Structured Information Standards (OASIS) consortium  (https://oasis-open.org/),

@@ -721,7 +721,7 @@ reach the presentation Shape service, then browse for its "Effect" property.
 Alternatively, you can find details in the com.sun.star.presentation module (use
 `lodoc presentation module`). Another nice summary, in the form of a large table, is in the
 Developer's Guide at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Drawings/Animations_and_Interactions/
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Drawings/Animations_and_Interactions
 (use `loGuide "Animations and Interactions"`). Figure 8 shows part of that table.
 
 

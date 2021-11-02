@@ -116,7 +116,7 @@ the Developer's Guide (available at
 https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf), or
 online at
 https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Integrating_Components_into_OpenOffice.org and
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/AddOns/Add-Ons/
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/AddOns/Add-Ons
 (or use `loGuide "Integrating Components"` and `loGuide add-ons`).
 
 The Developer's Guide add-on example can be found at
@@ -389,8 +389,8 @@ methods in my macros in Chapter 48.
 
 The Developer's Guide has some information on the dialog editor in chapter 11,
 "OpenOffice.org Basic". The relevant sub-sections are online at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Dialog_Editor/ and
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Creating_Dialogs/
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Dialog_Editor and
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Basic/Creating_Dialogs
 (or use `loGuide "Dialog Editor"` and `loGuide "Creating Dialogs"`).
 
 The editor utilizes drag-and-drop to place GUI elements in a dialog drawing area,
@@ -1221,5 +1221,3 @@ The images/ subdirectory contains the extension manager icon (ezhighlight.png) a
 two sizes of GUI icons (ezhighlight16.png and ezhighlight26.png). The GUI icons
 must be inside images/ to match the locations specified in the "Images" attribute in
 Addon.xcs.
-
-

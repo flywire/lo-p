@@ -116,7 +116,7 @@ public static void zoomValue(XComponent doc, int value)
 I found the four dispatch commands ("ZoomOptimal", "ZoomPageWidth",
 "ZoomPage", and "Zoom") by browsing the "Development/DispatchCommands"
 documentation page at
-https://wiki.documentfoundation.org/Development/DispatchCommands/. A great
+https://wiki.documentfoundation.org/Development/DispatchCommands. A great
 offline source is the UICommands.ods spreadsheet, put together by Ariel Constenla-
 Haile, which can be obtained from
 https://arielch.fedorapeople.org/devel/ooo/UICommands.ods.

@@ -2025,7 +2025,7 @@ Figure 9. Some of Office Command Line Arguments.
 
 Another information source is the "Starting the LibreOffice Software With
 Parameters" webpage at
-https://help.libreoffice.org/Common/Starting_the_Software_With_Parameters/.
+https://help.libreoffice.org/Common/Starting_the_Software_With_Parameters.
 
 The relevant parameters for printing are "-p" and "--pt", which can be seen near the
 bottom of Figure 9. "-p" prints a file to the default printer, while "--pt" (note the two '-

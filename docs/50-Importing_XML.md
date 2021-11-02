@@ -239,7 +239,7 @@ Import filter selection can be time-consuming because of the large number listed
 supplying the filename and filter name as arguments.
 
 Most of Office's command line arguments are listed at
-https://help.libreoffice.org/Common/Starting_the_Software_With_Parameters/, and a
+https://help.libreoffice.org/Common/Starting_the_Software_With_Parameters, and a
 few others when office.exe is invoked with the -h option. The filter commands are --
 infilter and --convert-to, which I've wrapped up in two batch scripts called infilter.bat
 and convert.bat.
@@ -288,7 +288,7 @@ The calls to infilter.bat and convert.bat rely on the user knowing a filter's na
 other filters in Office?
 
 A list of filters present in OpenOffice in 2007 can be found at
-https://wiki.openoffice.org/wiki/Framework/Article/Filter/FilterList_OOo_3_0/.
+https://wiki.openoffice.org/wiki/Framework/Article/Filter/FilterList_OOo_3_0.
 However, a better approach is to call my FiltersInfo.java example which prints all the
 filters currently installed in Office, and some extra details about the "AbiWord",
 "Pay", and "Clubs" filters:
@@ -428,7 +428,7 @@ Filter properties are explained in the online documentation for the FilterFactor
 service (use `lodoc FilterFactory` to access it), and also in the "Properties of a
 Filter" subsection of the "Integrating Import and Export Filters" section of chapter 6
 of the Developer's Guide (online at:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Properties_of_a_Filter/,
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Properties_of_a_Filter,
 or use `loGuide "Properties of a Filter"`).
 
 The most cryptic of the properties is the filter flags integer (524355 in the example
@@ -456,7 +456,7 @@ Filter flags: 80043
 
 The hexadecimals that might appear in the flag are listed in the online "Properties of a
 Filter" subsection
-(https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Properties_of_a_Filter/).
+(https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Properties_of_a_Filter).
 I've included a few isXXX() methods in the Info utilities class for testing for
 their presence. The above example reports that the "Clubs" filter contains both an
 import and export filter.
@@ -742,7 +742,7 @@ of parsing XML.
 If you're interested in using ImportFilter and ExportFilter, the Developer's guide gives
 some details in the "Integrating Import and Export Filters" section of chapter 6 on
 "Office Development". The information is also online, starting at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Integrating_Import_and_Export_Filters/,
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Integrating_Import_and_Export_Filters,
 or use `loGuide "Import and Export Filters"`.
 
 But I'm not going to use these services due to their complexity, and I'm about to stop

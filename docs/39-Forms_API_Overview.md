@@ -18,7 +18,7 @@ forms are typically employed as front-ends to databases,
 the same capability is available in Writer and the other
 Office applications.
 
-The LibreOffice "Getting Started Guide" (available at https://th.libreoffice.org/get-help/documentation/)
+The LibreOffice "Getting Started Guide" (available at https://th.libreoffice.org/get-help/documentation)
 describes the form features of Writer and Base in chapters 4 and
 8.  Longer examples can be found in the "Writer Guide" and "Base Handbook"
 documents.
@@ -72,7 +72,7 @@ addition, a variety of listeners are attached to the controls.
 
 A key principle behind the forms API is the Model-View-Controller (MVC) pattern
 (e.g. see
-https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller/) which
+https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) which
 divides each form control in two: a model (or component) representing the control's
 data, and a view for its GUI. Figure 1 shows the forms MVC model in detail.
 
@@ -167,7 +167,7 @@ The principal documentation on the forms API is chapter 13 of the Developer's Gu
 available as
 https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf.
 Alternatively, you can read the chapter online, starting at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Forms/Forms/ (or use
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Forms/Forms (or use
 `loGuide Forms`). The guide's form examples are at
 https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Forms.
 

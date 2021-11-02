@@ -184,12 +184,12 @@ Figure 6. The Paragraph Service and its Superclasses.
 
 
 For more information of the styles API, start in the development guide in the "Overall
-Document Features" section, online at: https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Overall_Document_Features/
+Document Features" section, online at: https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Overall_Document_Features
 or type `loGuide "Overall Document Features"`
 
 The character and paragraph style properties are explained in the "Formatting"
 section:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Formatting/
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Formatting
 or type  `loGuide writer Formatting`
 
 
@@ -979,7 +979,7 @@ XStyleFamiliesSupplier, they employ XChapterNumberingSupplier and
 XNumberFormatsSupplier.
 
 For more details, see the development guide:
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Line_Numbering_and_Outline_Numbering/
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Line_Numbering_and_Outline_Numbering
 or type `loGuide "Line Numbering"`.
 
 

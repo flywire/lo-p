@@ -102,7 +102,7 @@ the Development Guide in the section "Common Application Features". The guide
 can be downloaded from
 https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf, or the
 relevant section begins online at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Common_Application_Features/
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Common_Application_Features
 (or use `loGuide "Common Application Features"`).
 
 My Clip.getClip() support method illustrates how to get a reference to the system

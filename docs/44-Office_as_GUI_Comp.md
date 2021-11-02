@@ -39,7 +39,7 @@ The OOoBean class and its com.sun.star.comp.beans package aren't documented in
 LibreOffice, but there's an entire chapter about them in the Developer's Guide
 (chapter 16, "JavaBean for Office Components"), at
 https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf, and
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/JavaBean/JavaBean_for_Office_Components/
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/JavaBean/JavaBean_for_Office_Components
 (or use `loGuide JavaBean`). The chapter's example,
 OOoBeanViewer, wraps OOoBean in an old-style Applet (not a JApplet), and can be
 downloaded from
@@ -96,7 +96,7 @@ better by the LayoutManager service explained later.
 
 There's a table of one-line descriptions of OOoBean's methods in chapter 16 of the
 Developer's Guide, and online at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/JavaBean/API_Overview/
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/JavaBean/API_Overview
 (or use `loGuide JavaBean "API Overview"`). I'll only explain the methods used in
 my OBeanPanel class.
 
@@ -789,7 +789,7 @@ This call sends a ".uno:LeftPanelImpress" dispatch to Office to make the slides 
 visible.
 
 The easiest way to find dispatch names is to browse through the long list at
-https://wiki.documentfoundation.org/Development/DispatchCommands/. It's divided
+https://wiki.documentfoundation.org/Development/DispatchCommands. It's divided
 into application and tool subcategories, which narrows the search a little. Also, each
 entry includes a "Label value" field which for UI elements (i.e. toolbars, panes, and
 menus) corresponds to its name in Office's GUI.
@@ -1303,9 +1303,9 @@ public MenuViewer(String fnm)
 This MenuViewer example is based on one in the "Creating Menus" section at the end
 of chapter 19, "Graphical user Interfaces", in the Developer's Guide; it can be found
 online at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/GUI/Creating_Menus/ (or
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/GUI/Creating_Menus (or
 use `loGuide "Creating Menus"`). The corresponding code is at
-https://api.libreoffice.org/examples/DevelopersGuide/examples.html#GraphicalUserInterfaces/,
+https://api.libreoffice.org/examples/DevelopersGuide/examples.html#GraphicalUserInterfaces,
 and includes the use of a context menu, which I don't consider here.
 
 

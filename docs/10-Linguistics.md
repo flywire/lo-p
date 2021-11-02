@@ -45,11 +45,11 @@ Another area I'll be skipping is the use of events and listeners. Please refer t
 above.
 
 The linguistic features accessible through Office's GUI are explained in chapter 3 of
-the "Writer Guide", available at https://libreoffice.org/get-help/documentation/,
+the "Writer Guide", available at https://libreoffice.org/get-help/documentation,
 starting from the section called "Checking spelling and grammar".
 
 An older information source is the "Lingucomponent Project" page at the OpenOffice
-website, https://openoffice.org/lingucomponent/, which links to some useful
+website, https://openoffice.org/lingucomponent, which links to some useful
 tools, such as alternative grammar checkers. An interesting set of slides by Daniel
 Naber explaining the state of the project in 2005 can be found at
 https://danielnaber.de/publications/, along with more recent material.
@@ -255,14 +255,14 @@ Figure 5. The Dictionary Extensions at the LibreOffice Website.
 
 
 The URL of the page in Figure 5 is:
-https://extensions.libreoffice.org/extension-center?getCategories=Dictionary/
+https://extensions.libreoffice.org/extension-center?getCategories=Dictionary
 The dictionary category currently has 94 entries, but if you can't find what you're
 looking for, don't forget the extensions for OpenOffice, at:
-https://extensions.openoffice.org/
+https://extensions.openoffice.org
 If you're unclear about how to install extensions, the process is explained online at
-https://wiki.documentfoundation.org/Documentation/HowTo/install_extension/, or in
+https://wiki.documentfoundation.org/Documentation/HowTo/install_extension, or in
 the "Installing Extensions" guide available at
-https://libreoffice.org/get-help/documentation/.
+https://libreoffice.org/get-help/documentation.
 
 
 ### 1.2.  Linguistic Properties
@@ -320,38 +320,32 @@ The output on one of my test machine is:
 ```
 Extensions:
 1.  ID: org.openoffice.en.hunspell.dictionaries
-
    Version: 2011.12.05.1
    Loc: file:///C:/Program%20Files/LibreOffice%205/program/
             ../share/extensions/dict-en
 
 2.  ID: French.linguistic.resources.from.Dicollecte.by.OlivierR
-
    Version: 5.4.1
    Loc: file:///C:/Program%20Files/LibreOffice%205/program/
             ../share/extensions/dict-fr
 
 3.  ID: org.openoffice.languagetool.oxt
-
    Version: 3.4
    Loc: file:///C:/Program%20Files/LibreOffice%205/program/
             ../share/uno_packages/cache/uno_packages/
             lu4156ef34f.tmp_/LanguageTool-3.4.oxt
 
 4.  ID: com.sun.star.comp.Calc.NLPSolver
-
    Version: 0.9
    Loc: file:///C:/Program%20Files/LibreOffice%205/program/
             ../share/extensions/nlpsolver
 
 5.  ID: spanish.es_ANY.dicts.from.rla-es
-
    Version: 0.8
    Loc: file:///C:/Program%20Files/LibreOffice%205/program/
             ../share/extensions/dict-es
 
 6.  ID: com.sun.wiki-publisher
-
    Version: 1.2.0
    Loc: file:///C:/Program%20Files/LibreOffice%205/program/
             ../share/extensions/wiki-publisher
@@ -830,7 +824,7 @@ and no properties.
 
 If you need a non-English thesaurus which isn't part of Office, then look through the
 dictionary extensions at
-https://extensions.libreoffice.org/extension-center?getCategories=Dictionary/;
+https://extensions.libreoffice.org/extension-center?getCategories=Dictionary;
 many include a thesaurus with the dictionary.
 
 Thesaurus data is stored as ".idx" and ".dat" files in the same directory as the spell
@@ -856,12 +850,12 @@ same folder as the spell checker and thesaurus; on my machine that's
 <OFFICE>\share\extensions\dict-en\.
 
 Older versions of Lightproof are available from OpenOffice's extensions website at
-https://extensions.services.openoffice.org/project/lightproof/. One reason for
+https://extensions.services.openoffice.org/project/lightproof. One reason for
 downloading the old version is that it contains documentation on adding new
 grammar rules missing from the version installed in Office.
 
 Another way to modify Lightproof's grammar rules is with its editor, which can be
-obtained from https://extensions.libreoffice.org/extension-center/lightproof-editor/.
+obtained from https://extensions.libreoffice.org/extension-center/lightproof-editor.
 
 There are a number of alternative grammar checkers for Office, including "After the
 Deadline" (https://afterthedeadline.com/) and "LanguageTool"

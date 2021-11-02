@@ -66,13 +66,13 @@ Figure 4. The Function Wizard's Add-in Category.
 
 
 If you're unfamiliar with the Function Wizard, then you should download the Calc
-Guide from https://th.libreoffice.org/get-help/documentation/. Chapter 7 is about
+Guide from https://th.libreoffice.org/get-help/documentation. Chapter 7 is about
 formulas and functions, and Appendix B lists the functions by categories, including
 the add-ins which come with Calc. The functions-by-category data is also online at
-https://help.libreoffice.org/Calc/Functions_by_Category/
+https://help.libreoffice.org/Calc/Functions_by_Category
 An interesting wiki page comparing the features of the current version of LibreOffice
 and MS Office can be found at
-https://wiki.documentfoundation.org/Feature_Comparison:_LibreOffice_-_Microsoft_Office/.
+https://wiki.documentfoundation.org/Feature_Comparison:_LibreOffice_-_Microsoft_Office.
 The spreadsheet section states that LibreOffice Calc has 500
 functions versus 468 in MS Excel, with a large overlap between them but with 25
 functions unique to Calc 5.2 and 14 unique to Excel 2016. Another interesting
@@ -93,7 +93,7 @@ XServiceInfo.
 I mention this 'ancient' history because the Developer's Guide (no spring chicken
 itself, having been released in 2009) only explains the pre-2005 approach. There's a
 lengthy example in chapter 8, which can also be found online at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Spreadsheets/Spreadsheet_Add-Ins/
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Spreadsheets/Spreadsheet_Add-Ins
 (or use `loGuide "Spreadsheet Add-Ins"`). The code (called
 ExampleAddIn) can be downloaded from
 https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Spreadsheet
@@ -122,10 +122,10 @@ used by the Function Wizard in Figure 3.
 A great write-up of this way of coding Calc add-ins by Jan Holst Jensen can be found
 at https://biochemfusion.com/doc/Calc_addin_howto.html. He explains how to create a
 DoobieDoo add-in consisting of four Python functions, with the code available at
-https://wiki.openoffice.org/wiki/Calc/Add-In/Python_How-To/.
+https://wiki.openoffice.org/wiki/Calc/Add-In/Python_How-To.
 
 There's another good example in the OpenOffice NetBeans integration documentation
-at https://wiki.openoffice.org/wiki/Calc/Add-In/Project_Type/. If you skip past the
+at https://wiki.openoffice.org/wiki/Calc/Add-In/Project_Type. If you skip past the
 description of NetBeans' project wizard, the generated add-in code section is quite
 informative. Unlike  my example, the add-in can be localized to show documentation
 in English or German.
@@ -176,7 +176,7 @@ As mentioned in Chapter 45, the main source for information about IDL types is
 chapter 3 of the Developer's Guide. The subsection "Using UNOIDL to Specify New
 Components" explains how to define an interface, and the same information is online
 at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Using_UNOIDL_to_Specify_New_Components/
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Using_UNOIDL_to_Specify_New_Components
 (or use `loGuide "Using UNOIDL"`). However,
 add-in functions only support a subset of the IDL input and return types.
 
@@ -194,7 +194,7 @@ over time; its value is automatically updated in the cell containing the functio
 
 Details on how IDL types are mapped to Java can be found in chapter 2 of the guide,
 starting at the "Type Mapping" subsection (online at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/ProUNO/Java/Type_Mappings/,
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/ProUNO/Java/Type_Mappings,
 or via `loGuide "Type Mappings"`). The Java versions of the add-in function
 types are also detailed in the online documentation for the AddIn service (use
 `lodoc Addin` to find the page).

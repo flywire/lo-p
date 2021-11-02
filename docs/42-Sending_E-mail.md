@@ -798,7 +798,7 @@ Figure 5. Mail Merging using a Spreadsheet and a Writer Template.
 
 Mail merge configuration is most easily done using Office's GUI and wizards, and is
 excellently explained in chapter 11 of the Writer Guide (available from
-https://th.libreoffice.org/get-help/documentation/).
+https://th.libreoffice.org/get-help/documentation).
 
 A screenshot of a typical spreadsheet is shown in Figure 6.
 

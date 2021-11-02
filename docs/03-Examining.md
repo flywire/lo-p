@@ -37,7 +37,7 @@ finding this information, using configuration properties and path settings.
 
 Configuration management is a complex area, which is explained reasonably well in
 chapter 15 of the developer's guide and online at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Config/Configuration_Management/;
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Config/Configuration_Management;
 I'll only explain the basics here. The easiest way of accessing the relevant
 online section is by typing:
 `loguide "Configuration Management"`
@@ -96,7 +96,7 @@ whereabouts of the gallery and spellchecker files. A partial list of predefined 
 accessible from within LibreOffice, via the Tools menu: Tools, Options,
 LibreOffice, Paths. But the best source of information is the developer's guide, in the
 "Path Organization" section of chapter 6, or at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Path_Organization/,
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Path_Organization,
 which can be accessed using:
 `loguide "Path Organization"`
 
@@ -430,11 +430,11 @@ It's hardly surprising that Office developers have wanted to make the investigat
 services, interfaces, and properties associated with documents and other objects
 easier. There are several extension which do this, and I tried three of them: MRI,
 XRayTool (https://bernard.marcelly.perso.sfr.fr/Files_en/XrayTool60_en.odt), and
-Object Inspector (https://wiki.openoffice.org/wiki/Object_Inspector/). Probably the
+Object Inspector (https://wiki.openoffice.org/wiki/Object_Inspector). Probably the
 best in terms of functionality and documentation is MRI, which I'll describe here.
 
 MRI can be downloaded from
-https://extensions.services.openoffice.org/en/project/mri-uno-object-inspection-tool/,
+https://extensions.services.openoffice.org/en/project/mri-uno-object-inspection-tool,
 depositing an OXT file (probably called "MRI-1.3.3.oxt") on your machine.
 
 Installing an extension is done through the Tools, Extension Manager menu item.
@@ -444,9 +444,9 @@ double click on the file to start the installation.
 
 One (perhaps temporary) problem is that I was unable to install the versions of MRI
 available at the LibreOffice extensions site (v.1.1.2 or the pre-release v.1.1.4 at
-https://extensions.libreoffice.org/extension-center/). However, the newer edition,
+https://extensions.libreoffice.org/extension-center). However, the newer edition,
 v.1.2.4, at OpenOffice's extension's website
-(https://extensions.services.openoffice.org/en/project/mri-uno-object-inspection-tool/)
+(https://extensions.services.openoffice.org/en/project/mri-uno-object-inspection-tool)
 did install successfully.
 
 Once installed, MRI can be accessed through Office's GUI via the Tools, Add-ons

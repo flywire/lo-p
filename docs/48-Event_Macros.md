@@ -37,12 +37,12 @@ The Developer's Guide discusses macros in chapter 18, "Scripting Framework", but
 macro programming has changed since the guide was produced (e.g. macros can now
 be written in Python), so it's better to read the more current OpenOffice wiki, starting
 at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Scripting/Scripting_Framework/
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Scripting/Scripting_Framework
 (or use `loGuide "Scripting Framework"`).
 
 Most macro programming resources employ Office Basic, and Java rarely gets
 mentioned, as in chapter 13, "Getting Started with Macros", of the "Getting Started
-Guide" (available at https://libreoffice.org/get-help/documentation/). That
+Guide" (available at https://libreoffice.org/get-help/documentation). That
 chapter ends with a useful list of online resources, and printed and eBook materials.
 
 Probably the best source for Office Basic macro coding is Andrew Pitonyak's website
@@ -63,7 +63,7 @@ Two textbooks that focus on Office Basic macros in a particular Office applicati
 Automation
 Mark Alexander Bain
 Packt Publishing, 2006
-https://packtpub.com/hardware-and-creative/learn-openofficeorg-spreadsheet-macro-programming-ooobasic-and-calc-automation/
+https://packtpub.com/hardware-and-creative/learn-openofficeorg-spreadsheet-macro-programming-ooobasic-and-calc-automation
 * Database Programming with OpenOffice.org Base and Basic
 Roberto Benitez
 Lulu.com, 2011
@@ -206,7 +206,7 @@ the static function get() in the GetNumber class.
 
 Information about the URI formats for other languages is given on the "Scripting
 Framework URI Specification" page at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Scripting/Scripting_Framework_URI_Specification/
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Scripting/Scripting_Framework_URI_Specification
 (or use `loGuide "Scripting Framework URI Specification"`).
 
 #### Listing and Finding Macro Names
@@ -778,7 +778,7 @@ commandline().
 The quick-start and resources pages at librelogo.org are the places to start learning
 LibreLogo (https://librelogo.org/quick-start/ and https://librelogo.org/resources/).
 There's also a help page of commands at
-https://help.libreoffice.org/Writer/LibreLogo_Toolbar/.
+https://help.libreoffice.org/Writer/LibreLogo_Toolbar.
 
 A good source of examples, slides, and code is https://numbertext.org/logo/. The
 best introductory talk at that site is "LibreLogo – Turtle vector graphics for

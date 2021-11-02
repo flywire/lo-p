@@ -108,8 +108,8 @@ Developer's Guide, in chapters 3 ("Writing UNO Components") and 4 ("Extensions")
 The guide is available from
 https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf, or the
 chapters are online starting at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Writing_UNO_Components/ and
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Extensions/Extensions/ (or
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Writing_UNO_Components and
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Extensions/Extensions (or
 use `loGuide "Writing UNO Components"` and `loGuide Extensions`).
 
 The drawback with the guide (both PDF and online) is that the tools available in the
@@ -117,18 +117,18 @@ current version of Office have changed slightly from when the guide was written 
 2009.
 
 Two other documents worth studying are "How to Install Extensions" (available at
-https://libreoffice.org/get-help/documentation/), and "Publishing Extensions for
+https://libreoffice.org/get-help/documentation), and "Publishing Extensions for
 LibreOffice"
 (https://wiki.documentfoundation.org/images/1/14/Publishing_extensions.pdf) which
 explains how to add an extension to LibreOffice's 'shop window' at
-https://extensions.libreoffice.org/.
+https://extensions.libreoffice.org.
 
 The LibreOffice site concerned with how to code extensions is
-https://wiki.documentfoundation.org/Development/Extension_Development/, which
-points to a large OpenOffice site (https://wiki.openoffice.org/wiki/Extensions/), called
+https://wiki.documentfoundation.org/Development/Extension_Development, which
+points to a large OpenOffice site (https://wiki.openoffice.org/wiki/Extensions), called
 the OOo Extension Project. It includes a useful list of pointers to tutorials and articles
 about building extensions, at
-https://wiki.openoffice.org/wiki/Extensions_development/.
+https://wiki.openoffice.org/wiki/Extensions_development.
 
 These websites can be a little overwhelming since an extension can be so many
 different things: UNO components, add-ons, Calc add-ins, file filters, etc., and be
@@ -308,12 +308,12 @@ which I've done.
 Much of chapter 3 in the Developer's Guide is concerned with explaining IDL
 features. An important subsection is "Using UNOIDL to Specify New Components",
 which explains how to define a service and interface; it's online at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Using_UNOIDL_to_Specify_New_Components/,
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Using_UNOIDL_to_Specify_New_Components,
 or use `loGuide "Using UNOIDL"`.
 
 Details on how IDL types are mapped to Java can be found in chapter 2 of the guide,
 starting at the "Type Mapping" subsection; online at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/ProUNO/Java/Type_Mappings/,
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/ProUNO/Java/Type_Mappings,
 or use `loGuide "Type Mappings"`.
 
 
@@ -516,7 +516,7 @@ component's service name:
 javamaker.bat passes javamaker.exe the package name (org.openoffice.randomsents),
 RandomSents.rdb, and Office's types.rdb. The script's construction of this package
 name employs tr.exe, a Windows version of UNIX's tr, which I obtained from the
-Gow UNIX tools site (https://github.com/bmatzelle/gow/wiki/).
+Gow UNIX tools site (https://github.com/bmatzelle/gow/wiki).
 
 
 ## 6.  Creating a Skeleton Component
@@ -572,7 +572,7 @@ Figure 5. Class Diagram for RandomSentsImpl.java
 RandomSentsImpl extends WeakBase, the base class for UNO components. It's part
 of the com.sun.star.lib.uno package which is documented separately from Office
 modules such as Writer, Calc, and Impress. Both documentation trees can be accessed
-from the LibreOffice API documentation page at https://api.libreoffice.org/.
+from the LibreOffice API documentation page at https://api.libreoffice.org.
 
 The XServiceInfo interface contains three methods for retrieving the component's
 implementation name (i.e. "RandomSentsImpl") and supported services (i.e.
@@ -881,7 +881,7 @@ As far as I know there's no label for Windows 64 bit.
 
 The best place for more information on these fields is chapter 4 of the Developer's
 Guide  at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Extensions/Extensions/, or
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Extensions/Extensions, or
 use `loGuide Extensions`. Chapter 4 talks about several configuration topics I won't
 be covering, including update support, the options dialog, and help content.
 
@@ -910,7 +910,7 @@ Zipping RandomSents\ as RandomSents.oxt
 The previously created RDB and JAR files are copied into the RandomSents folder in
 Figure 6, and the folder is zipped up as RandomSents.oxt. The zipping is carried out
 by a Windows version of the UNIX zip tool downloaded from the Gow site
-(https://github.com/bmatzelle/gow/wiki/).
+(https://github.com/bmatzelle/gow/wiki).
 
 
 ## 9.  Installing the Extension

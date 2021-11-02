@@ -897,7 +897,7 @@ This chapter and the last have concentrated on adding macros to form controls, b
 other parts of Office, and other documents, can utilize event macros as well.
 
 A summary of the different ways that event macros can be employed is given on the
-wiki page "Scripting LibreOffice" at https://help.libreoffice.org/Common/Scripting/. It
+wiki page "Scripting LibreOffice" at https://help.libreoffice.org/Common/Scripting. It
 lists uses for event macros such as:
 
 * attached to form controls (already described);

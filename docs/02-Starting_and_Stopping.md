@@ -591,12 +591,12 @@ Figure 1. The LibreOffice Crash Reported by Windows 7.
 
 
 If you're going to make an official report, you should first read the article "How to
-Report Bugs in LibreOffice" (https://wiki.documentfoundation.org/QA/BugReport/).
+Report Bugs in LibreOffice" (https://wiki.documentfoundation.org/QA/BugReport).
 
 Expert forum members and Bugzilla maintainers sometimes point people towards
 WinDbg for Windows as a tool for producing good debugging details. The wiki has a
 detailed explanation of how to install and use it
-(https://wiki.documentfoundation.org/How_to_get_a_backtrace_with_WinDbg/),
+(https://wiki.documentfoundation.org/How_to_get_a_backtrace_with_WinDbg),
 which is a bit scary in its complexity.
 
 A much easier alternative is the `WinCrashReport` application from NirSoft
@@ -653,7 +653,7 @@ confirms to be in cppu3.dll.
 Looking at the Source Code
 You might want to narrow the problem down further by looking at
 uno_getCurrentEnvironment()'s source. This is easy with  the "OpenGrok for
-LibreOffice" website (https://opengrok.libreoffice.org/) for searching the gigantic code
+LibreOffice" website (https://opengrok.libreoffice.org) for searching the gigantic code
 base. Figure 5 shows the results for an "uno_getCurrentEnvironment" search.
 
 

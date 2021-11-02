@@ -14,7 +14,7 @@ Base offers a graphical interface for the building and
 manipulation of relational databases, including tools for
 the creation of forms and reports based on the tabular data.
 These features are explained at length in the Base
-Handbook, available at https://libreoffice.org/get-help/documentation/.
+Handbook, available at https://libreoffice.org/get-help/documentation.
 
 Base can access many types of SQL databases, including Microsoft Access, MySQL,
 Oracle, and PostgreSQL, and is able to create its own HSQLDB databases embedded
@@ -24,7 +24,7 @@ HSQLDB (also known as HyperSQL) is coded in Java (https://hsqldb.org/), a
 dependency that caused the LibreOffice development team to look for a replacement
 database engine in 2013. They decided on Firebird (https://firebirdsql.org/)
 which was coded in C until version 2.5, then moved to C++. A detailed rationale for
-the change is available as a series of links at https://en.libreofficeforum.org/node/6062/.
+the change is available as a series of links at https://en.libreofficeforum.org/node/6062.
 
 Currently (in LibreOffice 5.3), the default embedded database for ODB documents is
 still HSQLDB, with Firebird available as an 'experimental feature', turned on via
@@ -37,7 +37,7 @@ contains examples using both HSQLDB and Firebird.
 Base's API is explained in chapter 12 of the Developer's Guide  available at
 https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf.
 Alternatively, you can read the chapter online, starting at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Database_Access/
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Database_Access
 (use `loGuide "Database Access"`). The guide's database examples are at
 https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Database.
 

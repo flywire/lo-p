@@ -22,12 +22,12 @@ subsequent chapters.
 
 If you're unfamiliar with Calc, then a good starting point is
 its user guide, available from
-https://libreoffice.org/get-help/documentation/.
+https://libreoffice.org/get-help/documentation.
 Chapter 8 of the Developer's Guide looks at spreadsheet programming, and is
 available from
 https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf.
 Alternatively, you can access the chapter online, starting at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Spreadsheets/Spreadsheet_Documents/
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Spreadsheets/Spreadsheet_Documents
 (or use `loguide calc`). The guide's examples can be found at
 https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Spreadsheet.
 There's also a few examples in the "Spreadsheet Document Examples" section of

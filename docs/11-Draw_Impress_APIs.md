@@ -22,10 +22,10 @@ data views (e.g. an handout mode), and slide shows.
 
 You'll get a good feel for the APIs' capabilities by reading
 the Draw and Impress user guides, downloadable from
-https://libreoffice.org/get-help/documentation/.
+https://libreoffice.org/get-help/documentation.
 
 Details about the APIs can be found in Chapter 9 of the Developer's Guide, starting at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Drawings/Drawing_Documents_and_Presentation_Documents/
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Drawings/Drawing_Documents_and_Presentation_Documents
 (or type `loGuide draw`). The guide can also be
 retrieved as a PDF file from
 https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf.

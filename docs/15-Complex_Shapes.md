@@ -400,7 +400,7 @@ the added shapes.
 An alternative approach for grouping is the deprecated XShapeGrouper, but it
 requires a few more lines of coding. An example can be found in the Developer's
 Guide, at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Drawings/Grouping,_Combining_and_Binding/
+https://wiki.openoffice.org/wiki/Documentation/DevGuide/Drawings/Grouping,_Combining_and_Binding
 (use `loguide "Grouping, Combining and Binding"`).
 
 The on-screen result of groupEllipses() is that the two ellipses become a single shape,
