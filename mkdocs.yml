@@ -1,5 +1,5 @@
 site_name: LibreOffice Programming
-# site_url: https://flywire.github.io/lo-p/
+site_url: https://flywire.github.io/lo-p/
 site_description: >-
   LibreOffice Programming (LO-P) is intended for programmers who want 
   to learn how to use the the LibreOffice API. This allows programs to control 
@@ -9,6 +9,7 @@ site_description: >-
 
 repo_name: lo-p
 repo_url: https://github.com/flywire/lo-p
+edit_uri: edit/main/docs/
 
 use_directory_urls: false
 
