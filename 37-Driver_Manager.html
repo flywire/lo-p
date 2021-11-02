@@ -1265,520 +1265,576 @@
                 <h1 id="chapter-37-using-the-driver-manager">Chapter 37. Using the Driver Manager<a class="headerlink" href="#chapter-37-using-the-driver-manager" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
-<p>Querying a CSV 
-File; Querying an 
-Access File; Querying a 
-Calc Spreadsheet; 
-Querying a Thunderbird 
-Address Book </p>
-<p>Example folders: "Base 
-Tests" and "Utils" </p>
+<p>Querying a CSV
+File; Querying an
+Access File; Querying a
+Calc Spreadsheet;
+Querying a Thunderbird
+Address Book</p>
+<p>Example folders: "Base
+Tests" and "Utils"</p>
 </div>
-<p>This chapter looks at programming with the 
-XDriveManager interface, which were labelled (4) in 
-Figure 5 of the Chapter 34. Figure 1 repeats that figure but 
-without the alternative query approaches (labels (1), (2) 
-and (3)). </p>
+<p>This chapter looks at programming with the
+XDriveManager interface, which were labelled (4) in
+Figure 5 of the Chapter 34. Figure 1 repeats that figure but
+without the alternative query approaches (labels (1), (2)
+and (3)).</p>
 <p><img alt="" src="images/37-Driver_Manager-1.png" /></p>
-<p>Figure 1. Querying a Document. </p>
-<p>XDriverManager offers a low-level driver approach for accessing databases, which is 
-similar to JDBC's DriverManager. It's rarely used to access Office databases, which 
-are more conveniently manipulated using XOfficeDatabaseDocument (see Chapter 
-35). More commonly XDriverManager is employed for non-Office databases, such as 
-MS Access files, and tabular data inside CSV files, Calc spreadsheets, and e-mail 
-address books. This chapter includes examples of how to query these kinds of files. </p>
-<p>The drawback of using a driver manager is the low-level information that the 
-programmer has to supply, including the driver name, the file's URL, and the 
-connection properties. A good source for this information is the Developer's Guide, in 
-the "Driver Specifics" section of chapter 12. It's also accessible online at 
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics</a> 
-(or use loGuide "Database Driver Specifics"). Unfortunately, the guide was last 
-updated in 2008 for OpenOffice 3.1, and some details have changed since then. A 
-better approach is to query Base's DriverManager at run time which will supply data 
-for the version of Office that you're using. Figure 2 shows the relevant parts of the 
-DriverManager service and its interfaces. </p>
+<p>Figure 1. Querying a Document.</p>
+<p>XDriverManager offers a low-level driver approach for accessing databases, which is
+similar to JDBC's DriverManager. It's rarely used to access Office databases, which
+are more conveniently manipulated using XOfficeDatabaseDocument (see Chapter
+35). More commonly XDriverManager is employed for non-Office databases, such as
+MS Access files, and tabular data inside CSV files, Calc spreadsheets, and e-mail
+address books. This chapter includes examples of how to query these kinds of files.</p>
+<p>The drawback of using a driver manager is the low-level information that the
+programmer has to supply, including the driver name, the file's URL, and the
+connection properties. A good source for this information is the Developer's Guide, in
+the "Driver Specifics" section of chapter 12. It's also accessible online at
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics</a>
+(or use <code>loGuide "Database Driver Specifics"</code>). Unfortunately, the guide was last
+updated in 2008 for OpenOffice 3.1, and some details have changed since then. A
+better approach is to query Base's DriverManager at run time which will supply data
+for the version of Office that you're using. Figure 2 shows the relevant parts of the
+DriverManager service and its interfaces.</p>
 <p><img alt="" src="images/37-Driver_Manager-2.png" /></p>
-<p>Figure 2. The DriveManager Service and Some of its Interfaces. </p>
-<p>The XEnumerationAccess interface offers a convenient way to list all the drivers 
-currently known to Base. When the programmer calls 
-XDriveAcccess.getDriverByURL(), one of these is selected based on the URL's 
-database protocol. XDriver.getPropertyInfo() gives access to the properties that can be 
-set in the driver's connection. </p>
-<p>These interfaces and methods are utilized by my Base.getSupportedDrivers() and 
-Base.printDriverProperties() functions, as seen in CSVQuery.java explained next. </p>
+<p>Figure 2. The DriveManager Service and Some of its Interfaces.</p>
+<p>The XEnumerationAccess interface offers a convenient way to list all the drivers
+currently known to Base. When the programmer calls
+XDriveAcccess.getDriverByURL(), one of these is selected based on the URL's
+database protocol. XDriver.getPropertyInfo() gives access to the properties that can be
+set in the driver's connection.</p>
+<p>These interfaces and methods are utilized by my Base.getSupportedDrivers() and
+Base.printDriverProperties() functions, as seen in CSVQuery.java explained next.</p>
 <h2 id="1-querying-a-csv-file">1.  Querying a CSV File<a class="headerlink" href="#1-querying-a-csv-file" title="Permanent link">&para;</a></h2>
-<p>CSVQuery.java opens a CSV file, examines its us-500 table, and prints the first 
-names of the people resident in New York City: </p>
-<p>// part of CSVQuery.java... </p>
-<p>XResultSet rs = Base.executeQuery("SELECT \"first_name\" FROM<br />
-                    \"us-500\" WHERE \"City\" = 'New York'", conn); 
-BaseTablePrinter.printResultSet(rs);   </p>
-<p>The novel parts of CSVQuery.java are how it sets up the database connection and 
-how it determines the table's format. The main() function: </p>
-<p>// global 
-private static final String FNM = "us-500.csv";  </p>
-<p>// in CSVQuery.java 
-public static void main(String[] args) 
-{ 
-  XComponentLoader loader = Lo.loadOffice(); </p>
-<p>XDriverManager dm = Base.getDriverManager(); 
-  if (dm == null) { 
-    System.out.println("Could not access Driver manager"); 
-    Lo.closeOffice(); 
-    return; 
-  } </p>
-<p>ArrayList<String> driveNms = Base.getSupportedDrivers(); 
-  System.out.println("Drivers (" + driveNms.size() + "):"); 
-  for(String driveNm : driveNms) 
-    System.out.println("  " + driveNm); 
-  System.out.println(); </p>
-<p>String url = "sdbc:flat:" + FileIO.fnmToURL(FNM); 
-  System.out.println("Using URL: " + url); </p>
-<p>XDriver driver = Base.getDriverByURL(url); 
-  Base.printDriverProperties(driver, url); </p>
-<p>// set up properties for a CSV file with no password 
-  PropertyValue[] props = Props.makeProps( 
-        new String[] { "user", "password",<br />
-                       "JavaDriverClass", "Extension", 
-                       "HeaderLine", "FieldDelimiter",<br />
-                       "StringDelimiter" }, 
-        new Object[] { "", "",<br />
-               "com.sun.star.comp.sdbc.flat.ODriver", "csv", 
-                true, ",", "\"\"" } 
-          );  </p>
-<p>XConnection conn = null; 
-  try { 
-    conn = dm.getConnectionWithInfo(url, props); </p>
-<div class="highlight"><pre><span></span><code>// ArrayList&lt;String&gt; tableNames = Base.getTablesNames(conn); 
-ArrayList&lt;String&gt; tableNames = Base.getTablesNamesMD(conn); 
-System.out.println(&quot;No. of tables: &quot; + tableNames.size()); 
-System.out.println( Arrays.toString(tableNames.toArray())); 
-            // reports all CSV tables ??
+<p>CSVQuery.java opens a CSV file, examines its us-500 table, and prints the first
+names of the people resident in New York City:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of CSVQuery.java...</span>
+<span class="n">XResultSet</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">Base</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="s">&quot;SELECT \&quot;first_name\&quot; FROM</span>
+<span class="s">                    \&quot;us-500\&quot; WHERE \&quot;City\&quot; = &#39;New York&#39;&quot;</span><span class="p">,</span> <span class="n">conn</span><span class="p">);</span>
+<span class="n">BaseTablePrinter</span><span class="p">.</span><span class="na">printResultSet</span><span class="p">(</span><span class="n">rs</span><span class="p">);</span>
+</code></pre></div>
+<p>The novel parts of CSVQuery.java are how it sets up the database connection and
+how it determines the table's format. The main() function:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// global</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">FNM</span> <span class="o">=</span> <span class="s">&quot;us-500.csv&quot;</span><span class="p">;</span>
 
-XResultSet rs = Base.executeQuery(&quot;SELECT \&quot;first_name\&quot; FROM  
-        \&quot;us-500\&quot; WHERE \&quot;City\&quot; = &#39;New York&#39;&quot;, conn); 
-BaseTablePrinter.printResultSet(rs);
+
+<span class="c1">// in CSVQuery.java</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+
+  <span class="n">XDriverManager</span> <span class="n">dm</span> <span class="o">=</span> <span class="n">Base</span><span class="p">.</span><span class="na">getDriverManager</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">dm</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not access Driver manager&quot;</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">driveNms</span> <span class="o">=</span> <span class="n">Base</span><span class="p">.</span><span class="na">getSupportedDrivers</span><span class="p">();</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Drivers (&quot;</span> <span class="o">+</span> <span class="n">driveNms</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot;):&quot;</span><span class="p">);</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">String</span> <span class="n">driveNm</span> <span class="p">:</span> <span class="n">driveNms</span><span class="p">)</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  &quot;</span> <span class="o">+</span> <span class="n">driveNm</span><span class="p">);</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+
+  <span class="n">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">&quot;sdbc:flat:&quot;</span> <span class="o">+</span> <span class="n">FileIO</span><span class="p">.</span><span class="na">fnmToURL</span><span class="p">(</span><span class="n">FNM</span><span class="p">);</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Using URL: &quot;</span> <span class="o">+</span> <span class="n">url</span><span class="p">);</span>
+
+  <span class="n">XDriver</span> <span class="n">driver</span> <span class="o">=</span> <span class="n">Base</span><span class="p">.</span><span class="na">getDriverByURL</span><span class="p">(</span><span class="n">url</span><span class="p">);</span>
+  <span class="n">Base</span><span class="p">.</span><span class="na">printDriverProperties</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">url</span><span class="p">);</span>
+
+  <span class="c1">// set up properties for a CSV file with no password</span>
+  <span class="n">PropertyValue</span><span class="o">[]</span> <span class="n">props</span> <span class="o">=</span> <span class="n">Props</span><span class="p">.</span><span class="na">makeProps</span><span class="p">(</span>
+        <span class="k">new</span> <span class="n">String</span><span class="o">[]</span> <span class="p">{</span> <span class="s">&quot;user&quot;</span><span class="p">,</span> <span class="s">&quot;password&quot;</span><span class="p">,</span>
+                       <span class="s">&quot;JavaDriverClass&quot;</span><span class="p">,</span> <span class="s">&quot;Extension&quot;</span><span class="p">,</span>
+                       <span class="s">&quot;HeaderLine&quot;</span><span class="p">,</span> <span class="s">&quot;FieldDelimiter&quot;</span><span class="p">,</span>
+                       <span class="s">&quot;StringDelimiter&quot;</span> <span class="p">},</span>
+        <span class="k">new</span> <span class="n">Object</span><span class="o">[]</span> <span class="p">{</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
+               <span class="s">&quot;com.sun.star.comp.sdbc.flat.ODriver&quot;</span><span class="p">,</span> <span class="s">&quot;csv&quot;</span><span class="p">,</span>
+                <span class="kc">true</span><span class="p">,</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="s">&quot;\&quot;\&quot;&quot;</span> <span class="p">}</span>
+          <span class="p">);</span>
+
+  <span class="n">XConnection</span> <span class="n">conn</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">dm</span><span class="p">.</span><span class="na">getConnectionWithInfo</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">props</span><span class="p">);</span>
+
+    <span class="c1">// ArrayList&lt;String&gt; tableNames = Base.getTablesNames(conn);</span>
+    <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">tableNames</span> <span class="o">=</span> <span class="n">Base</span><span class="p">.</span><span class="na">getTablesNamesMD</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No. of tables: &quot;</span> <span class="o">+</span> <span class="n">tableNames</span><span class="p">.</span><span class="na">size</span><span class="p">());</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">tableNames</span><span class="p">.</span><span class="na">toArray</span><span class="p">()));</span>
+                <span class="c1">// reports all CSV tables ??</span>
+
+    <span class="n">XResultSet</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">Base</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="s">&quot;SELECT \&quot;first_name\&quot; FROM</span>
+<span class="s">            \&quot;us-500\&quot; WHERE \&quot;City\&quot; = &#39;New York&#39;&quot;</span><span class="p">,</span> <span class="n">conn</span><span class="p">);</span>
+    <span class="n">BaseTablePrinter</span><span class="p">.</span><span class="na">printResultSet</span><span class="p">(</span><span class="n">rs</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">Base</span><span class="p">.</span><span class="na">closeConnection</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of main()</span>
 </code></pre></div>
-<p>} 
-  catch(Exception e) { 
-    System.out.println(e); 
-  } </p>
-<p>Base.closeConnection(conn); 
-  Lo.closeOffice(); 
-}  // end of main() </p>
-<p>The XDriverManager interface is obtained by Base.getDriverManager(): </p>
-<p>// in the Base class 
-public static XDriverManager getDriverManager() 
-{ return Lo.createInstanceMCF(XDriverManager.class,<br />
-                              "com.sun.star.sdbc.DriverManager"); 
-} </p>
-<p>Base.getSupportedDrivers() returns a list of all the Base drivers: </p>
-<p>// in the Base class 
-public static ArrayList<String> getSupportedDrivers() 
-{ 
-  XDriverManager dm = getDriverManager(); 
-  XEnumerationAccess enumAccess =<br />
-                   Lo.qi(XEnumerationAccess.class, dm); 
-  XEnumeration driversEnum = enumAccess.createEnumeration(); 
-  if (driversEnum == null) { 
-    System.out.println("No drivers found"); 
-    return null; 
-  } </p>
-<p>ArrayList<String> drivers = new ArrayList<String>(); 
-  while(driversEnum.hasMoreElements()) { 
-    try { 
-      drivers.add( Info.getImplementationName( 
-                          driversEnum.nextElement()) ); 
-    } 
-    catch(com.sun.star.uno.Exception e) {} 
-  } 
-  return drivers; 
-}  // end of getSupportedDrivers() </p>
-<p>The XDriverManager interface is cast to XEnumerationAccess, which can loop 
-through the drivers and access their names. The list on one of my test machines is: </p>
-<p>Drivers (11): 
-  com.sun.star.comp.sdbc.ODBCDriver 
-  com.sun.star.comp.sdbc.JDBCDriver 
-  com.sun.star.comp.sdbc.MorkDriver 
-  com.sun.star.comp.sdbc.ado.ODriver 
-  com.sun.star.comp.sdbc.calc.ODriver 
-  com.sun.star.comp.sdbc.dbase.ODriver 
-  com.sun.star.comp.sdbc.firebird.Driver 
-  com.sun.star.comp.sdbc.flat.ODriver 
-  com.sun.star.sdbcx.comp.hsqldb.Driver 
-  org.openoffice.comp.connectivity.pq.Driver.noext 
-  org.openoffice.comp.drivers.MySQL.Driver </p>
-<p>CSVQuery.java uses the "flat" driver to access the CSV file. Later examples in this 
-chapter employ the ADO, Calc, and Mork drivers for an Access database, a Calc 
-spreadsheet, and a Thunderbird address book.  </p>
-<p>There's no need for the programmer to explicitly load a driver, since Base does it 
-automatically based on the database protocol in the file's URL. The URL is 
-constructed with the following code: </p>
-<p>// part of CSVQuery.java... </p>
-<p>String url = "sdbc:flat:" + FileIO.fnmToURL(FNM); 
-System.out.println("Using URL: " + url); </p>
-<p>XDriver driver = Base.getDriverByURL(url); </p>
-<p>The database protocol is set to be "sdbc:flat", and the local file is converted to "file://" 
-URL form; the resulting URL is: 
-sdbc:flat:file:///C:/Users/Ad/Desktop/LibreOffice Tests/ 
-                                        Base Tests/us-500.csv 
-Base.getDriverByURL() is: </p>
-<p>// in the Base class 
-public static XDriver getDriverByURL(String url) 
-{ XDriverAccess driverAccess =<br />
-        Lo.createInstanceMCF(XDriverAccess.class,<br />
-                             "com.sun.star.sdbc.DriverManager"); 
-  return driverAccess.getDriverByURL(url); 
-}  // end of getDriverByURL() </p>
-<p>Base.printDriverProperties() prints the driver's name, and its properties: </p>
-<p>// in the Base class 
-public static void printDriverProperties(XDriver driver, String url) 
-{ 
-  if (driver == null) { 
-    System.out.println("Driver is null"); 
-    return; 
-  } 
-  try { 
-    System.out.println("Driver Name: " +<br />
-                    Info.getImplementationName(driver)); </p>
-<div class="highlight"><pre><span></span><code>DriverPropertyInfo[] dpInfo = driver.getPropertyInfo(url, null); 
-if (dpInfo == null) { 
-  System.out.println(&quot;Properties info for the driver is null&quot;); 
-  return; 
-} 
-System.out.println(&quot;No. of Driver properties: &quot; + dpInfo.length); 
-for(int i=0; i &lt; dpInfo.length; i++) 
-   System.out.println(&quot;  &quot; + dpInfo[i].Name + &quot; = &quot; +  
-                             dpInfo[i].Value); 
-System.out.println();
+<p>The XDriverManager interface is obtained by Base.getDriverManager():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Base class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XDriverManager</span> <span class="nf">getDriverManager</span><span class="p">()</span>
+<span class="p">{</span> <span class="k">return</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XDriverManager</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                              <span class="s">&quot;com.sun.star.sdbc.DriverManager&quot;</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div>
-<p>} 
-  catch(SQLException e) { 
-    System.out.println("No properties info for the driver"); 
-  } 
-}  // end of printDriverProperties() </p>
-<p>The method utilizes XDriver.getPropertyInfo() (see Figure 2) to access an array of 
-DriverProperty objects. </p>
-<p>The information printed for the CSV file's "flat" driver is: </p>
-<p>Driver Name: com.sun.star.comp.sdbc.flat.ODriver 
-No. of Driver properties: 11 
-  CharSet = 
-  Extension = .* 
-  ShowDeleted = 0 
-  EnableSQL92Check = 0 
-  UseRelativePath = 0 
-  URL = 
-  FieldDelimiter = 
-  HeaderLine = 0 
-  StringDelimiter = 0 
-  DecimalDelimiter = 0 
-  ThousandDelimiter = 0 </p>
-<p>Knowing the property names is a good start, but what do they do? Connection 
-properties are defined across several classes which inherit the ConnectionProperties 
-class, as shown in Figure 3. </p>
+<p>Base.getSupportedDrivers() returns a list of all the Base drivers:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Base class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">getSupportedDrivers</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">XDriverManager</span> <span class="n">dm</span> <span class="o">=</span> <span class="n">getDriverManager</span><span class="p">();</span>
+  <span class="n">XEnumerationAccess</span> <span class="n">enumAccess</span> <span class="o">=</span>
+                   <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XEnumerationAccess</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">dm</span><span class="p">);</span>
+  <span class="n">XEnumeration</span> <span class="n">driversEnum</span> <span class="o">=</span> <span class="n">enumAccess</span><span class="p">.</span><span class="na">createEnumeration</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">driversEnum</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No drivers found&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">drivers</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">();</span>
+  <span class="k">while</span><span class="p">(</span><span class="n">driversEnum</span><span class="p">.</span><span class="na">hasMoreElements</span><span class="p">())</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="n">drivers</span><span class="p">.</span><span class="na">add</span><span class="p">(</span> <span class="n">Info</span><span class="p">.</span><span class="na">getImplementationName</span><span class="p">(</span>
+                          <span class="n">driversEnum</span><span class="p">.</span><span class="na">nextElement</span><span class="p">())</span> <span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">catch</span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">uno</span><span class="p">.</span><span class="na">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">drivers</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of getSupportedDrivers()</span>
+</code></pre></div>
+<p>The XDriverManager interface is cast to XEnumerationAccess, which can loop
+through the drivers and access their names. The list on one of my test machines is:</p>
+<div class="highlight"><pre><span></span><code>Drivers (11):
+  com.sun.star.comp.sdbc.ODBCDriver
+  com.sun.star.comp.sdbc.JDBCDriver
+  com.sun.star.comp.sdbc.MorkDriver
+  com.sun.star.comp.sdbc.ado.ODriver
+  com.sun.star.comp.sdbc.calc.ODriver
+  com.sun.star.comp.sdbc.dbase.ODriver
+  com.sun.star.comp.sdbc.firebird.Driver
+  com.sun.star.comp.sdbc.flat.ODriver
+  com.sun.star.sdbcx.comp.hsqldb.Driver
+  org.openoffice.comp.connectivity.pq.Driver.noext
+  org.openoffice.comp.drivers.MySQL.Driver
+</code></pre></div>
+<p>CSVQuery.java uses the "flat" driver to access the CSV file. Later examples in this
+chapter employ the ADO, Calc, and Mork drivers for an Access database, a Calc
+spreadsheet, and a Thunderbird address book.</p>
+<p>There's no need for the programmer to explicitly load a driver, since Base does it
+automatically based on the database protocol in the file's URL. The URL is
+constructed with the following code:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of CSVQuery.java...</span>
+<span class="n">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">&quot;sdbc:flat:&quot;</span> <span class="o">+</span> <span class="n">FileIO</span><span class="p">.</span><span class="na">fnmToURL</span><span class="p">(</span><span class="n">FNM</span><span class="p">);</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Using URL: &quot;</span> <span class="o">+</span> <span class="n">url</span><span class="p">);</span>
+
+<span class="n">XDriver</span> <span class="n">driver</span> <span class="o">=</span> <span class="n">Base</span><span class="p">.</span><span class="na">getDriverByURL</span><span class="p">(</span><span class="n">url</span><span class="p">);</span>
+</code></pre></div>
+<p>The database protocol is set to be "sdbc:flat", and the local file is converted to "file://"
+URL form; the resulting URL is:</p>
+<div class="highlight"><pre><span></span><code><span class="nl">sdbc</span><span class="p">:</span><span class="n">flat</span><span class="p">:</span><span class="n">file</span><span class="p">:</span><span class="c1">///C:/Users/Ad/Desktop/LibreOffice Tests/</span>
+                                        <span class="n">Base</span> <span class="n">Tests</span><span class="o">/</span><span class="n">us</span><span class="o">-</span><span class="mf">500.</span><span class="n">csv</span>
+</code></pre></div>
+<p>Base.getDriverByURL() is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Base class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XDriver</span> <span class="nf">getDriverByURL</span><span class="p">(</span><span class="n">String</span> <span class="n">url</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">XDriverAccess</span> <span class="n">driverAccess</span> <span class="o">=</span>
+        <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XDriverAccess</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                             <span class="s">&quot;com.sun.star.sdbc.DriverManager&quot;</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">driverAccess</span><span class="p">.</span><span class="na">getDriverByURL</span><span class="p">(</span><span class="n">url</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of getDriverByURL()</span>
+
+<span class="n">Base</span><span class="p">.</span><span class="na">printDriverProperties</span><span class="p">()</span> <span class="n">prints</span> <span class="n">the</span> <span class="n">driver</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">name</span><span class="p">,</span> <span class="n">and</span> <span class="n">its</span> <span class="n">properties</span><span class="p">:</span>
+
+<span class="c1">// in the Base class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printDriverProperties</span><span class="p">(</span><span class="n">XDriver</span> <span class="n">driver</span><span class="p">,</span> <span class="n">String</span> <span class="n">url</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">driver</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Driver is null&quot;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Driver Name: &quot;</span> <span class="o">+</span>
+                    <span class="n">Info</span><span class="p">.</span><span class="na">getImplementationName</span><span class="p">(</span><span class="n">driver</span><span class="p">));</span>
+
+    <span class="n">DriverPropertyInfo</span><span class="o">[]</span> <span class="n">dpInfo</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="na">getPropertyInfo</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">dpInfo</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Properties info for the driver is null&quot;</span><span class="p">);</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No. of Driver properties: &quot;</span> <span class="o">+</span> <span class="n">dpInfo</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">dpInfo</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+       <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  &quot;</span> <span class="o">+</span> <span class="n">dpInfo</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">Name</span> <span class="o">+</span> <span class="s">&quot; = &quot;</span> <span class="o">+</span>
+                                 <span class="n">dpInfo</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">Value</span><span class="p">);</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">SQLException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No properties info for the driver&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of printDriverProperties()</span>
+</code></pre></div>
+<p>The method utilizes XDriver.getPropertyInfo() (see Figure 2) to access an array of
+DriverProperty objects.</p>
+<p>The information printed for the CSV file's "flat" driver is:</p>
+<div class="highlight"><pre><span></span><code>Driver Name: com.sun.star.comp.sdbc.flat.ODriver
+No. of Driver properties: 11
+  CharSet =
+  Extension = .*
+  ShowDeleted = 0
+  EnableSQL92Check = 0
+  UseRelativePath = 0
+  URL =
+  FieldDelimiter =
+  HeaderLine = 0
+  StringDelimiter = 0
+  DecimalDelimiter = 0
+  ThousandDelimiter = 0
+</code></pre></div>
+<p>Knowing the property names is a good start, but what do they do? Connection
+properties are defined across several classes which inherit the ConnectionProperties
+class, as shown in Figure 3.</p>
 <p><img alt="" src="images/37-Driver_Manager-3.png" /></p>
-<p>Figure 3. Connection Properties and Subclasses. </p>
-<p>The most relevant class for the CSV flat file is FlatConnectionProperties, although 
-some properties are also inherited from FileConnectionProperties and 
-ConnectionProperties. </p>
-<p>Some experimentation is required to decide which properties to set, but a good source 
-of answers are the OpenOffice and LibreOffice forums where people have dealt with 
-similar questions before. The properties are passed to the connection by calling 
-XDriverManager.getConnectionWithInfo(): </p>
-<p>// part of CSVQuery.java... </p>
-<p>// set up properties for a CSV file with no password 
-PropertyValue[] props = Props.makeProps( 
-        new String[] { "user", "password",<br />
-                       "JavaDriverClass", "Extension", 
-                       "HeaderLine", "FieldDelimiter",<br />
-                       "StringDelimiter" }, 
-        new Object[] { "", "",<br />
-               "com.sun.star.comp.sdbc.flat.ODriver", "csv", 
-                true, ",", "\"\"" } 
-      );<br />
-XConnection conn = dm.getConnectionWithInfo(url, props); </p>
+<p>Figure 3. Connection Properties and Subclasses.</p>
+<p>The most relevant class for the CSV flat file is FlatConnectionProperties, although
+some properties are also inherited from FileConnectionProperties and
+ConnectionProperties.</p>
+<p>Some experimentation is required to decide which properties to set, but a good source
+of answers are the OpenOffice and LibreOffice forums where people have dealt with
+similar questions before. The properties are passed to the connection by calling
+XDriverManager.getConnectionWithInfo():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of CSVQuery.java...</span>
+<span class="c1">// set up properties for a CSV file with no password</span>
+<span class="n">PropertyValue</span><span class="o">[]</span> <span class="n">props</span> <span class="o">=</span> <span class="n">Props</span><span class="p">.</span><span class="na">makeProps</span><span class="p">(</span>
+        <span class="k">new</span> <span class="n">String</span><span class="o">[]</span> <span class="p">{</span> <span class="s">&quot;user&quot;</span><span class="p">,</span> <span class="s">&quot;password&quot;</span><span class="p">,</span>
+                       <span class="s">&quot;JavaDriverClass&quot;</span><span class="p">,</span> <span class="s">&quot;Extension&quot;</span><span class="p">,</span>
+                       <span class="s">&quot;HeaderLine&quot;</span><span class="p">,</span> <span class="s">&quot;FieldDelimiter&quot;</span><span class="p">,</span>
+                       <span class="s">&quot;StringDelimiter&quot;</span> <span class="p">},</span>
+        <span class="k">new</span> <span class="n">Object</span><span class="o">[]</span> <span class="p">{</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
+               <span class="s">&quot;com.sun.star.comp.sdbc.flat.ODriver&quot;</span><span class="p">,</span> <span class="s">&quot;csv&quot;</span><span class="p">,</span>
+                <span class="kc">true</span><span class="p">,</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="s">&quot;\&quot;\&quot;&quot;</span> <span class="p">}</span>
+      <span class="p">);</span>
+<span class="n">XConnection</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">dm</span><span class="p">.</span><span class="na">getConnectionWithInfo</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">props</span><span class="p">);</span>
+</code></pre></div>
 <h2 id="2-finding-out-about-tables">2.  Finding out about Tables<a class="headerlink" href="#2-finding-out-about-tables" title="Permanent link">&para;</a></h2>
-<p>A common need when querying databases is knowing their table schemas.  </p>
-<p>In my earlier ODB document examples, I used classes from the sdbcx module to get 
-schema information (see Figure 10). For example, Base.getTablesNames() accesses 
-information about all the tables in the database: </p>
-<p>// in the Base class 
-public static ArrayList<String> getTablesNames(XConnection conn) 
-{ 
-  XTablesSupplier tblsSupplier =<br />
-                    Lo.qi(XTablesSupplier.class, conn); 
-  XNameAccess tables = tblsSupplier.getTables(); 
-  String[] tableNms = tables.getElementNames(); 
-  return new ArrayList<String>(Arrays.asList(tableNms)); 
-}  // end of getTablesNames() </p>
-<p>This technique doesn't work with non-Office databases, such as CSV files, Access 
-databases, and spreadsheets. If Base.getTablesNames() is passed a connection to these 
-then the XTablesSupplier instance is set to null. </p>
-<p>Fortunately, there's an alternative, lower-level approach based on using the 
-DatabaseMetaData service (see Figure 1), as implemented in getTablesNamesMD(): </p>
-<p>// in the Base class 
-public static ArrayList<String> getTablesNamesMD(XConnection conn) 
-// get table names using DatabaseMetaData 
-{ 
-  ArrayList<String> names = new ArrayList<String>(); 
-  try { 
-     XDatabaseMetaData dm = conn.getMetaData(); 
-     XResultSet rs = dm.getTables(null, null, "%",<br />
-                                         new String[]{"TABLE"}); 
-     XRow xRow = Lo.qi(XRow.class, rs); 
-     while (rs.next()) 
-       names.add(xRow.getString(3));    // 3 == table name 
-   } 
-   catch(SQLException e) { 
-     System.out.println(e); 
-   } 
-   return names; 
- }  // end of getTablesNamesMD() </p>
-<p>Table schema details are retrieved by querying XDatabaseMetaData, which lets<br />
-Base.getTablesNamesMD() return a list of table names. The bad news is that the 
-generated list is incorrect, including every CSV file name in the current directory. </p>
-<p>This meant that I had to hardwire the "us-500" table name into the query in 
-CSVQuery.java. rather than use the Base.getTablesNamesMD() data. </p>
+<p>A common need when querying databases is knowing their table schemas.</p>
+<p>In my earlier ODB document examples, I used classes from the sdbcx module to get
+schema information (see Figure 10). For example, Base.getTablesNames() accesses
+information about all the tables in the database:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Base class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">getTablesNames</span><span class="p">(</span><span class="n">XConnection</span> <span class="n">conn</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XTablesSupplier</span> <span class="n">tblsSupplier</span> <span class="o">=</span>
+                    <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XTablesSupplier</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">conn</span><span class="p">);</span>
+  <span class="n">XNameAccess</span> <span class="n">tables</span> <span class="o">=</span> <span class="n">tblsSupplier</span><span class="p">.</span><span class="na">getTables</span><span class="p">();</span>
+  <span class="n">String</span><span class="o">[]</span> <span class="n">tableNms</span> <span class="o">=</span> <span class="n">tables</span><span class="p">.</span><span class="na">getElementNames</span><span class="p">();</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="n">tableNms</span><span class="p">));</span>
+<span class="p">}</span>  <span class="c1">// end of getTablesNames()</span>
+</code></pre></div>
+<p>This technique doesn't work with non-Office databases, such as CSV files, Access
+databases, and spreadsheets. If Base.getTablesNames() is passed a connection to these
+then the XTablesSupplier instance is set to null.</p>
+<p>Fortunately, there's an alternative, lower-level approach based on using the
+DatabaseMetaData service (see Figure 1), as implemented in getTablesNamesMD():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Base class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">getTablesNamesMD</span><span class="p">(</span><span class="n">XConnection</span> <span class="n">conn</span><span class="p">)</span>
+<span class="c1">// get table names using DatabaseMetaData</span>
+<span class="p">{</span>
+  <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">names</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">();</span>
+  <span class="k">try</span> <span class="p">{</span>
+     <span class="n">XDatabaseMetaData</span> <span class="n">dm</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="na">getMetaData</span><span class="p">();</span>
+     <span class="n">XResultSet</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">dm</span><span class="p">.</span><span class="na">getTables</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="s">&quot;%&quot;</span><span class="p">,</span>
+                                         <span class="k">new</span> <span class="n">String</span><span class="o">[]</span><span class="p">{</span><span class="s">&quot;TABLE&quot;</span><span class="p">});</span>
+     <span class="n">XRow</span> <span class="n">xRow</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XRow</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">rs</span><span class="p">);</span>
+     <span class="k">while</span> <span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">next</span><span class="p">())</span>
+       <span class="n">names</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">xRow</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>    <span class="c1">// 3 == table name</span>
+   <span class="p">}</span>
+   <span class="k">catch</span><span class="p">(</span><span class="n">SQLException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+     <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+   <span class="p">}</span>
+   <span class="k">return</span> <span class="n">names</span><span class="p">;</span>
+ <span class="p">}</span>  <span class="c1">// end of getTablesNamesMD()</span>
+</code></pre></div>
+<p>Table schema details are retrieved by querying XDatabaseMetaData, which lets
+Base.getTablesNamesMD() return a list of table names. The bad news is that the
+generated list is incorrect, including every CSV file name in the current directory.</p>
+<p>This meant that I had to hardwire the "us-500" table name into the query in
+CSVQuery.java. rather than use the Base.getTablesNamesMD() data.</p>
 <h2 id="3-querying-an-access-file">3.  Querying an Access File<a class="headerlink" href="#3-querying-an-access-file" title="Permanent link">&para;</a></h2>
-<p>AccessQuery.java is almost the same as CSVQuery.java, except for the change in 
-driver and the connection properties. </p>
-<p>The list of drivers printed by Base.getSupportedDrivers() suggests that I should use 
-the ADO driver to connect to Microsoft Access files since ActiveX Data Objects 
-(ADO) is one of Microsoft's technologies for database access.  </p>
-<p>The documentation on how to use this driver is quite sparse and out of date. The URL 
-protocol is given as "sdbc:ado:<ADO specific connection string>", with two 
-examples: 
- sdbc:ado:PROVIDER=Microsoft.Jet.OLEDB.4.0; 
-DATA SOURCE= c:\northwind.mdb 
- sdbc:ado:Provider=msdaora;data source=testdb 
-The first is the most relevant, but only supports the old Access file format (MDB). For 
-ACCDB files (Access 2007 and later), it must be revised to: 
-"sdbc:ado:PROVIDER=Microsoft.ACE.OLEDB.12.0;DATA SOURCE=".  </p>
-<p>Base.getTablesNamesMD() returns slightly incorrect results when it examines Access 
-files. For example, a database with four tables is reported to have five, one of them 
-the empty string: </p>
-<p>No. of tables: 5 
-[AuthorISBN, Authors, Publishers, Titles, ] </p>
-<p>The main() function for AccessQuery.java: </p>
-<p>//private static final String FNM = "Books.mdb";<br />
-private static final String FNM = "Books.accdb";  </p>
-<p>// in AccessQuery.java 
-public static void main(String[] args) 
-{ 
-  XComponentLoader loader = Lo.loadOffice(); </p>
-<p>XDriverManager dm = Base.getDriverManager(); 
-  if (dm == null) { 
-    System.out.println("Could not access Driver manager"); 
-    Lo.closeOffice(); 
-    return; 
-  } </p>
-<p>String url = "sdbc:ado:PROVIDER=Microsoft.ACE.OLEDB.12.0; 
-                DATA SOURCE=" +<br />
-                FileIO.getAbsolutePath(FNM); 
-                         // for accdb <em>and</em> mdb files 
-  System.out.println("Using URL: " + url); </p>
-<p>XConnection conn = null; 
-  try { 
-    conn = dm.getConnectionWithInfo(url, null); 
-                  // no connection properties needed </p>
-<div class="highlight"><pre><span></span><code>ArrayList&lt;String&gt; tableNames = Base.getTablesNamesMD(conn); 
-System.out.println(&quot;No. of tables: &quot; + tableNames.size()); 
-System.out.println( Arrays.toString(tableNames.toArray())); 
-         // table list includes an empty string
-
-XResultSet rs = Base.executeQuery( 
-                  &quot;SELECT * FROM \&quot;Authors\&quot;&quot;, conn); 
-BaseTablePrinter.printResultSet(rs);
+<p>AccessQuery.java is almost the same as CSVQuery.java, except for the change in
+driver and the connection properties.</p>
+<p>The list of drivers printed by Base.getSupportedDrivers() suggests that I should use
+the ADO driver to connect to Microsoft Access files since ActiveX Data Objects
+(ADO) is one of Microsoft's technologies for database access.</p>
+<p>The documentation on how to use this driver is quite sparse and out of date. The URL
+protocol is given as "sdbc:ado:<ADO specific connection string>", with two
+examples:</p>
+<ul>
+<li>sdbc:ado:PROVIDER=Microsoft.Jet.OLEDB.4.0;
+DATA SOURCE= c:\northwind.mdb</li>
+<li>sdbc:ado:Provider=msdaora;data source=testdb
+The first is the most relevant, but only supports the old Access file format (MDB). For
+ACCDB files (Access 2007 and later), it must be revised to:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>&quot;sdbc:ado:PROVIDER=Microsoft.ACE.OLEDB.12.0;DATA SOURCE=&quot;.
 </code></pre></div>
-<p>} 
-  catch(Exception e) { 
-    System.out.println(e); 
-  } </p>
-<p>Base.closeConnection(conn); 
-  Lo.closeOffice(); 
-}  // end of main() </p>
+<p>Base.getTablesNamesMD() returns slightly incorrect results when it examines Access
+files. For example, a database with four tables is reported to have five, one of them
+the empty string:</p>
+<div class="highlight"><pre><span></span><code>No. of tables: 5
+[AuthorISBN, Authors, Publishers, Titles, ]
+</code></pre></div>
+<p>The main() function for AccessQuery.java:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">//private static final String FNM = &quot;Books.mdb&quot;;</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">FNM</span> <span class="o">=</span> <span class="s">&quot;Books.accdb&quot;</span><span class="p">;</span>
+
+
+<span class="c1">// in AccessQuery.java</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+
+  <span class="n">XDriverManager</span> <span class="n">dm</span> <span class="o">=</span> <span class="n">Base</span><span class="p">.</span><span class="na">getDriverManager</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">dm</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not access Driver manager&quot;</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">&quot;sdbc:ado:PROVIDER=Microsoft.ACE.OLEDB.12.0;</span>
+<span class="s">                DATA SOURCE=&quot;</span> <span class="o">+</span>
+                <span class="n">FileIO</span><span class="p">.</span><span class="na">getAbsolutePath</span><span class="p">(</span><span class="n">FNM</span><span class="p">);</span>
+                         <span class="c1">// for accdb *and* mdb files</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Using URL: &quot;</span> <span class="o">+</span> <span class="n">url</span><span class="p">);</span>
+
+  <span class="n">XConnection</span> <span class="n">conn</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">dm</span><span class="p">.</span><span class="na">getConnectionWithInfo</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+                  <span class="c1">// no connection properties needed</span>
+
+    <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">tableNames</span> <span class="o">=</span> <span class="n">Base</span><span class="p">.</span><span class="na">getTablesNamesMD</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No. of tables: &quot;</span> <span class="o">+</span> <span class="n">tableNames</span><span class="p">.</span><span class="na">size</span><span class="p">());</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">tableNames</span><span class="p">.</span><span class="na">toArray</span><span class="p">()));</span>
+             <span class="c1">// table list includes an empty string</span>
+
+    <span class="n">XResultSet</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">Base</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span>
+                      <span class="s">&quot;SELECT * FROM \&quot;Authors\&quot;&quot;</span><span class="p">,</span> <span class="n">conn</span><span class="p">);</span>
+    <span class="n">BaseTablePrinter</span><span class="p">.</span><span class="na">printResultSet</span><span class="p">(</span><span class="n">rs</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">Base</span><span class="p">.</span><span class="na">closeConnection</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of main()</span>
+</code></pre></div>
 <h2 id="4-querying-a-calc-spreadsheet">4.  Querying a Calc Spreadsheet<a class="headerlink" href="#4-querying-a-calc-spreadsheet" title="Permanent link">&para;</a></h2>
-<p>CalcQuery.java examines the "Marks" spreadsheet in totals.ods. </p>
-<p>The Calc driver treats each named sheet in the spreadsheet as a separate table. This 
-time, Base.getTablesNamesMD() returns a correct list of the sheet names. </p>
-<p>private static final String FNM = "totals.ods";  </p>
-<p>// in CalcQuery.java 
-public static void main(String[] args) 
-{ 
-  XComponentLoader loader = Lo.loadOffice(); 
-  XDriverManager dm = Base.getDriverManager(); 
-  if (dm == null) { 
-    System.out.println("Could not access Driver manager"); 
-    Lo.closeOffice(); 
-    return; 
-  } </p>
-<p>String url = "sdbc:calc:" + FileIO.fnmToURL(FNM); 
-  System.out.println("Using URL: " + url); </p>
-<p>XConnection conn = null; 
-  try { 
-    conn = dm.getConnectionWithInfo(url, null); 
-                  // no connection properties needed </p>
-<div class="highlight"><pre><span></span><code>ArrayList&lt;String&gt; tableNames = Base.getTablesNamesMD(conn); 
-System.out.println(&quot;No. of tables: &quot; + tableNames.size()); 
-System.out.println( Arrays.toString(tableNames.toArray()));
+<p>CalcQuery.java examines the "Marks" spreadsheet in totals.ods.</p>
+<p>The Calc driver treats each named sheet in the spreadsheet as a separate table. This
+time, Base.getTablesNamesMD() returns a correct list of the sheet names.</p>
+<div class="highlight"><pre><span></span><code><span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">FNM</span> <span class="o">=</span> <span class="s">&quot;totals.ods&quot;</span><span class="p">;</span>
 
-XResultSet rs = Base.executeQuery( 
-       &quot;SELECT \&quot;Stud. No.\&quot;, \&quot;Fin/45\&quot; FROM \&quot;Marks\&quot;  
-        WHERE \&quot;Fin/45\&quot; &lt; 20&quot;, conn); 
-BaseTablePrinter.printResultSet(rs);
+
+<span class="c1">// in CalcQuery.java</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+  <span class="n">XDriverManager</span> <span class="n">dm</span> <span class="o">=</span> <span class="n">Base</span><span class="p">.</span><span class="na">getDriverManager</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">dm</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not access Driver manager&quot;</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">String</span> <span class="n">url</span> <span class="o">=</span> <span class="s">&quot;sdbc:calc:&quot;</span> <span class="o">+</span> <span class="n">FileIO</span><span class="p">.</span><span class="na">fnmToURL</span><span class="p">(</span><span class="n">FNM</span><span class="p">);</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Using URL: &quot;</span> <span class="o">+</span> <span class="n">url</span><span class="p">);</span>
+
+  <span class="n">XConnection</span> <span class="n">conn</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">dm</span><span class="p">.</span><span class="na">getConnectionWithInfo</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+                  <span class="c1">// no connection properties needed</span>
+
+    <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">tableNames</span> <span class="o">=</span> <span class="n">Base</span><span class="p">.</span><span class="na">getTablesNamesMD</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No. of tables: &quot;</span> <span class="o">+</span> <span class="n">tableNames</span><span class="p">.</span><span class="na">size</span><span class="p">());</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">tableNames</span><span class="p">.</span><span class="na">toArray</span><span class="p">()));</span>
+
+    <span class="n">XResultSet</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">Base</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span>
+           <span class="s">&quot;SELECT \&quot;Stud. No.\&quot;, \&quot;Fin/45\&quot; FROM \&quot;Marks\&quot;</span>
+<span class="s">            WHERE \&quot;Fin/45\&quot; &lt; 20&quot;</span><span class="p">,</span> <span class="n">conn</span><span class="p">);</span>
+    <span class="n">BaseTablePrinter</span><span class="p">.</span><span class="na">printResultSet</span><span class="p">(</span><span class="n">rs</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">Base</span><span class="p">.</span><span class="na">closeConnection</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of main()</span>
 </code></pre></div>
-<p>} 
-  catch(Exception e) { 
-    System.out.println(e); 
-  } </p>
-<p>Base.closeConnection(conn); 
-  Lo.closeOffice(); 
-}  // end of main() </p>
 <h2 id="5-querying-a-thunderbird-address-book">5.  Querying a Thunderbird Address Book<a class="headerlink" href="#5-querying-a-thunderbird-address-book" title="Permanent link">&para;</a></h2>
-<p>One reason for Office being able to access the address books of e-mail software is for 
-implementing mail merge applications. ThunderbirdQuery.java examines the personal 
-addresses in Thunderbird (<a href="https://www.mozilla.org/en-US/thunderbird/">https://www.mozilla.org/en-US/thunderbird/</a>). </p>
-<p>The Office documentation at 
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics</a> 
-mentions support for Mozilla, Outlook, Outlook Express and LDAP, but several 
-forum posts describe updates and changes.  </p>
-<p>"sdbc:address:mozilla" supports SeaMonkey Mail, the 2006 replacement for the 
-Mozilla e-mail reader (<a href="http://www.seamonkey-project.org/">http://www.seamonkey-project.org/</a>), and 
-"sdbc:address:thunderbird" connects to Thunderbird. Base uses the Mork driver 
-(com.sun.star.comp.sdbc.MorkDriver) to access both SeaMonkey and Thunderbird. </p>
-<p>The Thunderbird e-mail reader on my test machine has two address books, called 
-"Personal Address Book" and "Collected Addresses", as shown in Figure 4. </p>
+<p>One reason for Office being able to access the address books of e-mail software is for
+implementing mail merge applications. ThunderbirdQuery.java examines the personal
+addresses in Thunderbird (<a href="https://www.mozilla.org/en-US/thunderbird/">https://www.mozilla.org/en-US/thunderbird/</a>).</p>
+<p>The Office documentation at
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Driver_Specifics</a>
+mentions support for Mozilla, Outlook, Outlook Express and LDAP, but several
+forum posts describe updates and changes.</p>
+<p>"sdbc:address:mozilla" supports SeaMonkey Mail, the 2006 replacement for the
+Mozilla e-mail reader (<a href="http://www.seamonkey-project.org/">http://www.seamonkey-project.org/</a>), and
+"sdbc:address:thunderbird" connects to Thunderbird. Base uses the Mork driver
+(com.sun.star.comp.sdbc.MorkDriver) to access both SeaMonkey and Thunderbird.</p>
+<p>The Thunderbird e-mail reader on my test machine has two address books, called
+"Personal Address Book" and "Collected Addresses", as shown in Figure 4.</p>
 <p><img alt="" src="images/37-Driver_Manager-4.png" /></p>
-<p>Figure 4. My Thunderbird Address Books. </p>
-<p>When I use Base.getTablesNamesMD() to list the 'tables' inside Thunderbird, it 
-reports slightly different names : 
-[AddressBook, CollectedAddressBook] 
-These changes made me suspicious about the rest of the table's schema, including the 
-names of the table's columns. Inside Thunderbird, the e-mail column is labeled 
-"Email" (as shown in Figure 4), but is that what Base sees? 
-Base.displayTablesSchema() lists the table and column information for the connected 
-database, using sdbcx to get the table names. However, there's a meta data variant 
-which utilizes Base.getTablesNamesMD(), as shown below: </p>
-<p displayTablesSchema_conn_="displayTablesSchema(conn," true_="true);">// in the Base class 
-public static void displayTablesSchema(XConnection conn) </p>
-<p>public static void displayTablesSchema(XConnection conn,<br />
-                                       boolean useSDBCX) 
-{ 
-  ArrayList<String> tableNames = (useSDBCX) ? getTablesNames(conn) : 
-                                            getTablesNamesMD(conn); 
-    // choose to use SDBCX or DatabaseMetaData 
-  if (tableNames == null)<br />
-    System.out.println("No tables found in database"); 
-  else { 
-    System.out.println("No. of tables: " + tableNames.size()); 
-    ArrayList<String> columnNames; 
-    for(String tableName : tableNames) { 
-      System.out.print("  " + tableName + ":"); 
-      columnNames = getColumnNames(conn, tableName); 
-      if (columnNames == null) 
-        System.out.println(" -- no column names --"); 
-      else { 
-        for(String colName : columnNames) 
-          System.out.print(" \"" + colName + "\""); 
-        System.out.println("\n"); 
-      } 
-    } 
-  } 
-}  // end of displayTablesSchema() </p>
-<p>public static ArrayList<String> getColumnNames( 
-                     XConnection conn, String tableName) 
-{ 
-  ArrayList<String> names = new ArrayList<String>(); 
-  try { 
-    XDatabaseMetaData dm = conn.getMetaData(); 
-    XResultSet rs = dm.getColumns(null, null, tableName, "%"); 
-    XRow xRow = Lo.qi(XRow.class, rs); 
-    while (rs.next()) 
-      names.add(xRow.getString(4));    // 4 == column name 
-  } 
-  catch(SQLException e) { 
-    System.out.println(e); 
-  } 
-  return names; 
-}  // end of getColumnNames() </p>
-<p>A Base.displayTablesSchema(conn,false) call produces the following 
-information when the connection is linked to Thunderbird: </p>
-<p>No. of tables: 2 
-  AddressBook: "Department" "Last Name" "Comments" "Mobile" "Phone 
-(Work)" "City (Work)" "City" "Job Title" "Custom 3" "Work Address 2" 
-"Custom 2" "Birth Month" "Company" "ZIP/Postal (Home)" "Custom 1" 
-"Custom 4" "Birth Day" "Web Page (Work)" "Nickname" "Web Page (Home)" 
-"Birth Year" "Fax" "First Name" "Address 1" "Phone (Home)" "State" 
-"State (Work)" "Display Name" "Country" "Pager" "E-mail (2)" "Work 
-Address" "Country (Work)" "Zip/Postal (Work)" "Address 2" "E-mail" 
-"Mail Format" </p>
-<p>CollectedAddressBook: "Department" "Last Name" "Comments" "Mobile" 
-"Phone (Work)" "City (Work)" "City" "Job Title" "Custom 3" "Work 
-Address 2" "Custom 2" "Birth Month" "Company" "ZIP/Postal (Home)" 
-"Custom 1" "Custom 4" "Birth Day" "Web Page (Work)" "Nickname" "Web 
-Page (Home)" "Birth Year" "Fax" "First Name" "Address 1" "Phone 
-(Home)" "State" "State (Work)" "Display Name" "Country" "Pager" "E-
-mail (2)" "Work Address" "Country (Work)" "Zip/Postal (Work)" 
-"Address 2" "E-mail" "Mail Format" </p>
-<p>The "AddressBook" table contains two e-mail related column names: "E-mail" and 
-"E-mail (2)". As a consequence, I wrote the query to retrieve all the e-mail addresses 
-from the Personal Address Book as: </p>
-<p>XResultSet rs = Base.executeQuery( 
-        "SELECT \"E-mail\" FROM \"AddressBook\"", conn); 
-BaseTablePrinter.printResultSet(rs);   </p>
-<p>This produces textual output which matches that in Figure 4: </p>
-<p>Printing 8 rows from table AddressBook 
-+------------------------------+ 
-|            E-mail            | 
-+------------------------------+ 
-| <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#116;&#105;&#109;&#103;&#97;&#114;&#110;&#101;&#114;&#64;&#99;&#111;&#109;&#112;&#117;&#115;&#101;&#114;&#118;&#101;&#46;&#99;&#111;&#109;">&#116;&#105;&#109;&#103;&#97;&#114;&#110;&#101;&#114;&#64;&#99;&#111;&#109;&#112;&#117;&#115;&#101;&#114;&#118;&#101;&#46;&#99;&#111;&#109;</a>     | 
-+------------------------------+ 
-| <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#82;&#111;&#104;&#105;&#110;&#105;&#46;&#68;&#101;&#98;&#64;&#99;&#101;&#110;&#118;&#101;&#111;&#46;&#99;&#111;&#109;">&#82;&#111;&#104;&#105;&#110;&#105;&#46;&#68;&#101;&#98;&#64;&#99;&#101;&#110;&#118;&#101;&#111;&#46;&#99;&#111;&#109;</a>        | 
-+------------------------------+ 
-| <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#80;&#97;&#116;&#116;&#121;&#95;&#77;&#111;&#110;&#64;&#109;&#99;&#103;&#114;&#97;&#119;&#45;&#104;&#105;&#108;&#108;&#46;&#99;&#111;&#109;">&#80;&#97;&#116;&#116;&#121;&#95;&#77;&#111;&#110;&#64;&#109;&#99;&#103;&#114;&#97;&#119;&#45;&#104;&#105;&#108;&#108;&#46;&#99;&#111;&#109;</a>    | 
-+------------------------------+ 
-| <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#110;&#117;&#116;&#116;&#101;&#101;&#110;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#110;&#117;&#116;&#116;&#101;&#101;&#110;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>            | 
-+------------------------------+ 
-| <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#111;&#114;&#115;&#46;&#100;&#97;&#118;&#105;&#115;&#111;&#110;&#64;&#103;&#111;&#111;&#103;&#108;&#101;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#108;&#111;&#114;&#115;&#46;&#100;&#97;&#118;&#105;&#115;&#111;&#110;&#64;&#103;&#111;&#111;&#103;&#108;&#101;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>  | 
-+------------------------------+ 
-| <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#111;&#114;&#100;&#107;&#105;&#108;&#108;&#101;&#114;&#46;&#100;&#97;&#118;&#105;&#115;&#111;&#110;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#108;&#111;&#114;&#100;&#107;&#105;&#108;&#108;&#101;&#114;&#46;&#100;&#97;&#118;&#105;&#115;&#111;&#110;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a> | 
-+------------------------------+ 
-| <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#108;&#101;&#99;&#116;&#117;&#114;&#101;&#114;&#64;&#99;&#111;&#101;&#46;&#112;&#115;&#117;&#46;&#97;&#99;&#46;&#116;&#104;">&#108;&#101;&#99;&#116;&#117;&#114;&#101;&#114;&#64;&#99;&#111;&#101;&#46;&#112;&#115;&#117;&#46;&#97;&#99;&#46;&#116;&#104;</a>       | 
-+------------------------------+ 
-| <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#101;&#110;&#103;&#116;&#101;&#97;&#99;&#104;&#101;&#114;&#64;&#101;&#110;&#103;&#46;&#112;&#115;&#117;&#46;&#97;&#99;&#46;&#116;&#104;">&#101;&#110;&#103;&#116;&#101;&#97;&#99;&#104;&#101;&#114;&#64;&#101;&#110;&#103;&#46;&#112;&#115;&#117;&#46;&#97;&#99;&#46;&#116;&#104;</a>     | 
-+------------------------------+ </p>
-<p>The main() function of ThunderbirdQuery.java: </p>
-<p>// in ThunderbirdQuery.java 
-public static void main(String[] args) 
-{ 
-  XComponentLoader loader = Lo.loadOffice(); </p>
-<p>XDriverManager dm = Base.getDriverManager(); 
-  if (dm == null) { 
-    System.out.println("Could not access Driver manager"); 
-    Lo.closeOffice(); 
-    return; 
-  } </p>
-<p>XConnection conn = null; 
-  try { 
-    conn = dm.getConnectionWithInfo( 
-                    "sdbc:address:thunderbird", null); </p>
-<div class="highlight"><pre><span></span><code>ArrayList&lt;String&gt; tableNames = Base.getTablesNamesMD(conn); 
-System.out.println(&quot;No. of tables: &quot; + tableNames.size()); 
-System.out.println( Arrays.toString(tableNames.toArray()));
-
-Base.displayTablesSchema(conn, false); // use getTablesNamesMD()
-
-XResultSet rs = Base.executeQuery( 
-        &quot;SELECT \&quot;E-mail\&quot; FROM \&quot;AddressBook\&quot;&quot;, conn); 
-BaseTablePrinter.printResultSet(rs);
+<p>Figure 4. My Thunderbird Address Books.</p>
+<p>When I use Base.getTablesNamesMD() to list the 'tables' inside Thunderbird, it
+reports slightly different names :</p>
+<div class="highlight"><pre><span></span><code>[AddressBook, CollectedAddressBook]
 </code></pre></div>
-<p>} 
-  catch(Exception e) { 
-    System.out.println(e); 
-  } </p>
-<p>Base.closeConnection(conn); 
-  Lo.closeOffice(); 
-}  // end of main() </p>
+<p>These changes made me suspicious about the rest of the table's schema, including the
+names of the table's columns. Inside Thunderbird, the e-mail column is labeled
+"Email" (as shown in Figure 4), but is that what Base sees?
+Base.displayTablesSchema() lists the table and column information for the connected
+database, using sdbcx to get the table names. However, there's a meta data variant
+which utilizes Base.getTablesNamesMD(), as shown below:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Base class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">displayTablesSchema</span><span class="p">(</span><span class="n">XConnection</span> <span class="n">conn</span><span class="p">)</span>
+<span class="p">{</span>  <span class="n">displayTablesSchema</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>  <span class="p">}</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">displayTablesSchema</span><span class="p">(</span><span class="n">XConnection</span> <span class="n">conn</span><span class="p">,</span>
+                                       <span class="kt">boolean</span> <span class="n">useSDBCX</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">tableNames</span> <span class="o">=</span> <span class="p">(</span><span class="n">useSDBCX</span><span class="p">)</span> <span class="o">?</span> <span class="n">getTablesNames</span><span class="p">(</span><span class="n">conn</span><span class="p">)</span> <span class="p">:</span>
+                                            <span class="n">getTablesNamesMD</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span>
+    <span class="c1">// choose to use SDBCX or DatabaseMetaData</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">tableNames</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No tables found in database&quot;</span><span class="p">);</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No. of tables: &quot;</span> <span class="o">+</span> <span class="n">tableNames</span><span class="p">.</span><span class="na">size</span><span class="p">());</span>
+    <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">columnNames</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">String</span> <span class="n">tableName</span> <span class="p">:</span> <span class="n">tableNames</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;  &quot;</span> <span class="o">+</span> <span class="n">tableName</span> <span class="o">+</span> <span class="s">&quot;:&quot;</span><span class="p">);</span>
+      <span class="n">columnNames</span> <span class="o">=</span> <span class="n">getColumnNames</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">tableName</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">columnNames</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot; -- no column names --&quot;</span><span class="p">);</span>
+      <span class="k">else</span> <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">String</span> <span class="n">colName</span> <span class="p">:</span> <span class="n">columnNames</span><span class="p">)</span>
+          <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot; \&quot;&quot;</span> <span class="o">+</span> <span class="n">colName</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;\n&quot;</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of displayTablesSchema()</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">getColumnNames</span><span class="p">(</span>
+                     <span class="n">XConnection</span> <span class="n">conn</span><span class="p">,</span> <span class="n">String</span> <span class="n">tableName</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">names</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">();</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">XDatabaseMetaData</span> <span class="n">dm</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="na">getMetaData</span><span class="p">();</span>
+    <span class="n">XResultSet</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">dm</span><span class="p">.</span><span class="na">getColumns</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="n">tableName</span><span class="p">,</span> <span class="s">&quot;%&quot;</span><span class="p">);</span>
+    <span class="n">XRow</span> <span class="n">xRow</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XRow</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">rs</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">rs</span><span class="p">.</span><span class="na">next</span><span class="p">())</span>
+      <span class="n">names</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">xRow</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="mi">4</span><span class="p">));</span>    <span class="c1">// 4 == column name</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">SQLException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">names</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of getColumnNames()</span>
+</code></pre></div>
+<p>A <code>Base.displayTablesSchema(conn,false)</code> call produces the following
+information when the connection is linked to Thunderbird:</p>
+<div class="highlight"><pre><span></span><code>No. of tables: 2
+  AddressBook: &quot;Department&quot; &quot;Last Name&quot; &quot;Comments&quot; &quot;Mobile&quot; &quot;Phone
+(Work)&quot; &quot;City (Work)&quot; &quot;City&quot; &quot;Job Title&quot; &quot;Custom 3&quot; &quot;Work Address 2&quot;
+&quot;Custom 2&quot; &quot;Birth Month&quot; &quot;Company&quot; &quot;ZIP/Postal (Home)&quot; &quot;Custom 1&quot;
+&quot;Custom 4&quot; &quot;Birth Day&quot; &quot;Web Page (Work)&quot; &quot;Nickname&quot; &quot;Web Page (Home)&quot;
+&quot;Birth Year&quot; &quot;Fax&quot; &quot;First Name&quot; &quot;Address 1&quot; &quot;Phone (Home)&quot; &quot;State&quot;
+&quot;State (Work)&quot; &quot;Display Name&quot; &quot;Country&quot; &quot;Pager&quot; &quot;E-mail (2)&quot; &quot;Work
+Address&quot; &quot;Country (Work)&quot; &quot;Zip/Postal (Work)&quot; &quot;Address 2&quot; &quot;E-mail&quot;
+&quot;Mail Format&quot;
+
+  CollectedAddressBook: &quot;Department&quot; &quot;Last Name&quot; &quot;Comments&quot; &quot;Mobile&quot;
+&quot;Phone (Work)&quot; &quot;City (Work)&quot; &quot;City&quot; &quot;Job Title&quot; &quot;Custom 3&quot; &quot;Work
+Address 2&quot; &quot;Custom 2&quot; &quot;Birth Month&quot; &quot;Company&quot; &quot;ZIP/Postal (Home)&quot;
+&quot;Custom 1&quot; &quot;Custom 4&quot; &quot;Birth Day&quot; &quot;Web Page (Work)&quot; &quot;Nickname&quot; &quot;Web
+Page (Home)&quot; &quot;Birth Year&quot; &quot;Fax&quot; &quot;First Name&quot; &quot;Address 1&quot; &quot;Phone
+(Home)&quot; &quot;State&quot; &quot;State (Work)&quot; &quot;Display Name&quot; &quot;Country&quot; &quot;Pager&quot; &quot;E-
+mail (2)&quot; &quot;Work Address&quot; &quot;Country (Work)&quot; &quot;Zip/Postal (Work)&quot;
+&quot;Address 2&quot; &quot;E-mail&quot; &quot;Mail Format&quot;
+</code></pre></div>
+<p>The "AddressBook" table contains two e-mail related column names: "E-mail" and
+"E-mail (2)". As a consequence, I wrote the query to retrieve all the e-mail addresses
+from the Personal Address Book as:</p>
+<p>XResultSet rs = Base.executeQuery(
+        "SELECT \"E-mail\" FROM \"AddressBook\"", conn);
+BaseTablePrinter.printResultSet(rs);</p>
+<p>This produces textual output which matches that in Figure 4:</p>
+<div class="highlight"><pre><span></span><code>Printing 8 rows from table AddressBook
++------------------------------+
+|            E-mail            |
++------------------------------+
+| timgarner@compuserve.com     |
++------------------------------+
+| Rohini.Deb@cenveo.com        |
++------------------------------+
+| Patty_Mon@mcgraw-hill.com    |
++------------------------------+
+| nutteen@gmail.com            |
++------------------------------+
+| lors.davison@googlemail.com  |
++------------------------------+
+| lordkiller.davison@gmail.com |
++------------------------------+
+| lecturer@coe.psu.ac.th       |
++------------------------------+
+| engteacher@eng.psu.ac.th     |
++------------------------------+
+</code></pre></div>
+<p>The main() function of ThunderbirdQuery.java:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in ThunderbirdQuery.java</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+
+  <span class="n">XDriverManager</span> <span class="n">dm</span> <span class="o">=</span> <span class="n">Base</span><span class="p">.</span><span class="na">getDriverManager</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">dm</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not access Driver manager&quot;</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">XConnection</span> <span class="n">conn</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">dm</span><span class="p">.</span><span class="na">getConnectionWithInfo</span><span class="p">(</span>
+                    <span class="s">&quot;sdbc:address:thunderbird&quot;</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+
+    <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">tableNames</span> <span class="o">=</span> <span class="n">Base</span><span class="p">.</span><span class="na">getTablesNamesMD</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No. of tables: &quot;</span> <span class="o">+</span> <span class="n">tableNames</span><span class="p">.</span><span class="na">size</span><span class="p">());</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">tableNames</span><span class="p">.</span><span class="na">toArray</span><span class="p">()));</span>
+
+    <span class="n">Base</span><span class="p">.</span><span class="na">displayTablesSchema</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span> <span class="c1">// use getTablesNamesMD()</span>
+
+    <span class="n">XResultSet</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">Base</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span>
+            <span class="s">&quot;SELECT \&quot;E-mail\&quot; FROM \&quot;AddressBook\&quot;&quot;</span><span class="p">,</span> <span class="n">conn</span><span class="p">);</span>
+    <span class="n">BaseTablePrinter</span><span class="p">.</span><span class="na">printResultSet</span><span class="p">(</span><span class="n">rs</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">Base</span><span class="p">.</span><span class="na">closeConnection</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of main()</span>
+</code></pre></div>
                 
               
               

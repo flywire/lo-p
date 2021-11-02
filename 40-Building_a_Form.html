@@ -1307,552 +1307,683 @@
                 <h1 id="chapter-40-building-a-form-programmatically">Chapter 40. Building a Form Programmatically<a class="headerlink" href="#chapter-40-building-a-form-programmatically" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
-<p>Creating 
-Controls; Assigning a 
-Data Source to a Form; 
-Creating Data-aware 
-Controls; Attaching 
-Listeners </p>
-<p>Example folders: "Forms 
-Tests" and "Utils" </p>
+<p>Creating
+Controls; Assigning a
+Data Source to a Form;
+Creating Data-aware
+Controls; Attaching
+Listeners</p>
+<p>Example folders: "Forms
+Tests" and "Utils"</p>
 </div>
-<p>BuildForm.java creates a text-based form at run-time, and 
-attaches listeners to the controls. Three of the controls 
-(two list boxes and a grid control) are "data aware" which 
-means that they obtain their data externally from a 
-database. Figure 1 shows a screenshot of the generated document, with the controls 
-and data sources labeled. </p>
+<p>BuildForm.java creates a text-based form at run-time, and
+attaches listeners to the controls. Three of the controls
+(two list boxes and a grid control) are "data aware" which
+means that they obtain their data externally from a
+database. Figure 1 shows a screenshot of the generated document, with the controls
+and data sources labeled.</p>
 <p><img alt="" src="images/40-Building_a_Form-1.png" /></p>
-<p>Figure 1. The BuildForm.java Generated Document. </p>
-<p>The document contains two forms: the default "Form", and "GridForm" holding a 
-single GridControl. "GridForm" employs the same database as "Form", but interacts 
-with it in a different way. </p>
-<p>Table 1 summarizes which listeners are used with which controls. These are Office 
-listeners (i.e. subclasses of XEventListener) not Java classes. </p>
-<p>Form Control Listeners 
-CommandButton XActionListener, XMouseListener 
-Textfield XTextListener, XFocusListener 
-RadioButton, CheckBox XPropertyChangeListener 
-ListBox XItemListener 
-GridControl XSelectionChangeListener, 
-XGridColumnListener 
-Table 1. Controls and Associated Listeners Used by BuildForm.java. </p>
-<p>The finished form is saved in "build.odt", which retains the data links (since they're 
-stored as properties of the form controls), but the listeners are discarded. </p>
-<p>The main() function of BuildForm.java creates a text document, and adds form 
-controls by calling createForm(): </p>
-<p>// globals 
-private static final String DB_FNM = "liang.odb";    // database  </p>
-<p>private XTextDocument doc;  // for use by the listeners </p>
-<p>// in BuildForm.java 
-public BuildForm() 
-{ 
-  XComponentLoader loader = Lo.loadOffice(); 
-  doc = Write.createDoc(loader); </p>
-<p>if (doc == null) { 
-    System.out.println("Writer doc creation failed"); 
-    Lo.closeOffice(); 
-    System.exit(1); 
-  } </p>
-<p>doc.addEventListener(this); <br />
-      // for showing disposing of document (and controls) 
-  GUI.setVisible(doc, true); </p>
-<p>XTextViewCursor tvc = Write.getViewCursor(doc); 
-  Write.append(tvc, "Building a Form\n"); 
-  Write.endParagraph(tvc); </p>
-<p>createForm(doc); 
-  Lo.dispatchCmd("SwitchControlDesignMode"); 
-    // switch from form design/editing mode to live mode </p>
-<p>Lo.waitEnter(); </p>
-<p>Lo.saveDoc(doc, "build.odt"); 
-  Lo.closeDoc(doc); 
-  Lo.closeOffice(); 
-}  // end of BuildForm() </p>
+<p>Figure 1. The BuildForm.java Generated Document.</p>
+<p>The document contains two forms: the default "Form", and "GridForm" holding a
+single GridControl. "GridForm" employs the same database as "Form", but interacts
+with it in a different way.</p>
+<p>Table 1 summarizes which listeners are used with which controls. These are Office
+listeners (i.e. subclasses of XEventListener) not Java classes.</p>
+<table>
+<thead>
+<tr>
+<th>Form Control</th>
+<th>Listeners</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CommandButton</td>
+<td>XActionListener, XMouseListener</td>
+</tr>
+<tr>
+<td>Textfield</td>
+<td>XTextListener, XFocusListener</td>
+</tr>
+<tr>
+<td>RadioButton, CheckBox</td>
+<td>XPropertyChangeListener</td>
+</tr>
+<tr>
+<td>ListBox</td>
+<td>XItemListener</td>
+</tr>
+<tr>
+<td>GridControl</td>
+<td>XSelectionChangeListener,</td>
+</tr>
+<tr>
+<td></td>
+<td>XGridColumnListener</td>
+</tr>
+</tbody>
+</table>
+<p>Table 1. Controls and Associated Listeners Used by BuildForm.java.</p>
+<p>The finished form is saved in "build.odt", which retains the data links (since they're
+stored as properties of the form controls), but the listeners are discarded.</p>
+<p>The main() function of BuildForm.java creates a text document, and adds form
+controls by calling createForm():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// globals</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">DB_FNM</span> <span class="o">=</span> <span class="s">&quot;liang.odb&quot;</span><span class="p">;</span>    <span class="c1">// database</span>
+
+<span class="kd">private</span> <span class="n">XTextDocument</span> <span class="n">doc</span><span class="p">;</span>  <span class="c1">// for use by the listeners</span>
+
+<span class="c1">// in BuildForm.java</span>
+<span class="kd">public</span> <span class="nf">BuildForm</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+  <span class="n">doc</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">createDoc</span><span class="p">(</span><span class="n">loader</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">doc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Writer doc creation failed&quot;</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">doc</span><span class="p">.</span><span class="na">addEventListener</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+      <span class="c1">// for showing disposing of document (and controls)</span>
+  <span class="n">GUI</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+  <span class="n">XTextViewCursor</span> <span class="n">tvc</span> <span class="o">=</span> <span class="n">Write</span><span class="p">.</span><span class="na">getViewCursor</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">Write</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">tvc</span><span class="p">,</span> <span class="s">&quot;Building a Form\n&quot;</span><span class="p">);</span>
+  <span class="n">Write</span><span class="p">.</span><span class="na">endParagraph</span><span class="p">(</span><span class="n">tvc</span><span class="p">);</span>
+
+  <span class="n">createForm</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">dispatchCmd</span><span class="p">(</span><span class="s">&quot;SwitchControlDesignMode&quot;</span><span class="p">);</span>
+    <span class="c1">// switch from form design/editing mode to live mode</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">waitEnter</span><span class="p">();</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">saveDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;build.odt&quot;</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of BuildForm()</span>
+</code></pre></div>
 <h2 id="1-creating-controls">1.  Creating Controls<a class="headerlink" href="#1-creating-controls" title="Permanent link">&para;</a></h2>
-<p>createForm() makes many calls to Forms.addControl(), and other Forms.addXXX() 
-methods which indirectly use Forms.addControl(). For example, the call that creates 
-the "No automatic generation" radio button at the top of the form is: </p>
-<p>// part of createForm() in BuildForm.java... </p>
-<p>XPropertySet props =<br />
-     Forms.addControl(doc, "Option",  "No automatic generation",<br />
-                      "RadioButton", 106, 11, 50, 6); </p>
-<p>It returns the model's properties since additional values often need to be set after the 
-control has been created. </p>
-<p>Forms.addControl() starts by creating the control's view, utilizing a subclass of the 
-Shape service, called ControlShape. The relevant part of the service hierarchy is 
-shown in Figure 2. </p>
+<p>createForm() makes many calls to Forms.addControl(), and other Forms.addXXX()
+methods which indirectly use Forms.addControl(). For example, the call that creates
+the "No automatic generation" radio button at the top of the form is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of createForm() in BuildForm.java...</span>
+<span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span>
+     <span class="n">Forms</span><span class="p">.</span><span class="na">addControl</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;Option&quot;</span><span class="p">,</span>  <span class="s">&quot;No automatic generation&quot;</span><span class="p">,</span>
+                      <span class="s">&quot;RadioButton&quot;</span><span class="p">,</span> <span class="mi">106</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+</code></pre></div>
+<p>It returns the model's properties since additional values often need to be set after the
+control has been created.</p>
+<p>Forms.addControl() starts by creating the control's view, utilizing a subclass of the
+Shape service, called ControlShape. The relevant part of the service hierarchy is
+shown in Figure 2.</p>
 <p><img alt="" src="images/40-Building_a_Form-2.png" /></p>
-<p>Figure 2. The Shape and ControlShape Services. </p>
-<p>Properties in the Shape service define the position, width, and height of the control 
-inside the form. In the call to Forms.addControl() above, the first pair of numbers, 
-(106,11), is the intended position, while its width and height are 50 x 6.  </p>
-<p>After the view has been initialized, the control's model is created by using the string 
-passed in the method call (e.g. "RadioButton" in this example). </p>
-<p>The model and shape are linked together using XControlShape.setControl().  </p>
-<p>Forms.addControl() is: </p>
-<p>// in the Forms class 
-public static XPropertySet addControl(XComponent doc,<br />
-     String name, String label, String compKind, int x, int y, 
-                                        int width, int height) 
-// use the default form, "Form", for the control 
-{  return addControl(doc, name, label, compKind,<br />
-                              x, y, width, height, null);  } </p>
-<p>public static XPropertySet addControl(XComponent doc, <br />
-      String name, String label, String compKind, int x, int y, 
-      int width, int height, XNameContainer parentForm) 
-{ 
-  XPropertySet modelProps = null; 
-  try { 
-    // create a shape to represent the control's view 
-    XControlShape cShape = 
-        Lo.createInstanceMSF(XControlShape.class,<br />
-                        "com.sun.star.drawing.ControlShape"); </p>
-<div class="highlight"><pre><span></span><code>// position and size of the shape 
-cShape.setSize(new Size(width*100, height * 100)); 
-cShape.setPosition(new Point(x * 100, y * 100));
+<p>Figure 2. The Shape and ControlShape Services.</p>
+<p>Properties in the Shape service define the position, width, and height of the control
+inside the form. In the call to Forms.addControl() above, the first pair of numbers,
+(106,11), is the intended position, while its width and height are 50 x 6.</p>
+<p>After the view has been initialized, the control's model is created by using the string
+passed in the method call (e.g. "RadioButton" in this example).</p>
+<p>The model and shape are linked together using XControlShape.setControl().</p>
+<p>Forms.addControl() is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Forms class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XPropertySet</span> <span class="nf">addControl</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">,</span>
+     <span class="n">String</span> <span class="n">name</span><span class="p">,</span> <span class="n">String</span> <span class="n">label</span><span class="p">,</span> <span class="n">String</span> <span class="n">compKind</span><span class="p">,</span> <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span>
+                                        <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">)</span>
+<span class="c1">// use the default form, &quot;Form&quot;, for the control</span>
+<span class="p">{</span>  <span class="k">return</span> <span class="n">addControl</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">compKind</span><span class="p">,</span>
+                              <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>  <span class="p">}</span>
 
-// adjust the anchor so that the control is tied to the page 
-XPropertySet shapeProps = Lo.qi(XPropertySet.class, cShape); 
-TextContentAnchorType eAnchorType =  
-                   TextContentAnchorType.AT_PARAGRAPH; 
-shapeProps.setPropertyValue(&quot;AnchorType&quot;, eAnchorType);
 
-// create the control&#39;s model 
-XControlModel cModel =  
-           Lo.createInstanceMSF(XControlModel.class,  
-               &quot;com.sun.star.form.component.&quot; + compKind);
 
-// insert the model into the form (or default to &quot;Form&quot;) 
-if (parentForm != null) 
-  parentForm.insertByName(name, cModel);
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XPropertySet</span> <span class="nf">addControl</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">,</span>
+      <span class="n">String</span> <span class="n">name</span><span class="p">,</span> <span class="n">String</span> <span class="n">label</span><span class="p">,</span> <span class="n">String</span> <span class="n">compKind</span><span class="p">,</span> <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span>
+      <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">,</span> <span class="n">XNameContainer</span> <span class="n">parentForm</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XPropertySet</span> <span class="n">modelProps</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="c1">// create a shape to represent the control&#39;s view</span>
+    <span class="n">XControlShape</span> <span class="n">cShape</span> <span class="o">=</span>
+        <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMSF</span><span class="p">(</span><span class="n">XControlShape</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                        <span class="s">&quot;com.sun.star.drawing.ControlShape&quot;</span><span class="p">);</span>
 
-// link model to the shape 
-cShape.setControl(cModel);
+    <span class="c1">// position and size of the shape</span>
+    <span class="n">cShape</span><span class="p">.</span><span class="na">setSize</span><span class="p">(</span><span class="k">new</span> <span class="n">Size</span><span class="p">(</span><span class="n">width</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span> <span class="n">height</span> <span class="o">*</span> <span class="mi">100</span><span class="p">));</span>
+    <span class="n">cShape</span><span class="p">.</span><span class="na">setPosition</span><span class="p">(</span><span class="k">new</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="n">y</span> <span class="o">*</span> <span class="mi">100</span><span class="p">));</span>
 
-// add shape to shapes collection of the doc&#39;s draw page 
-XDrawPage drawPage = getDrawPage(doc); 
-XShapes formShape s= Lo.qi(XShapes.class, drawPage ); 
-formShapes.add(cShape);
+    <span class="c1">// adjust the anchor so that the control is tied to the page</span>
+    <span class="n">XPropertySet</span> <span class="n">shapeProps</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">cShape</span><span class="p">);</span>
+    <span class="n">TextContentAnchorType</span> <span class="n">eAnchorType</span> <span class="o">=</span>
+                       <span class="n">TextContentAnchorType</span><span class="p">.</span><span class="na">AT_PARAGRAPH</span><span class="p">;</span>
+    <span class="n">shapeProps</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;AnchorType&quot;</span><span class="p">,</span> <span class="n">eAnchorType</span><span class="p">);</span>
 
-// set Name and Label properties for the model 
-modelProps = Lo.qi(XPropertySet.class, cModel); 
-modelProps.setPropertyValue(&quot;Name&quot;, name); 
-if (label != null) 
-  modelProps.setPropertyValue(&quot;Label&quot;, label);
+    <span class="c1">// create the control&#39;s model</span>
+    <span class="n">XControlModel</span> <span class="n">cModel</span> <span class="o">=</span>
+               <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMSF</span><span class="p">(</span><span class="n">XControlModel</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                   <span class="s">&quot;com.sun.star.form.component.&quot;</span> <span class="o">+</span> <span class="n">compKind</span><span class="p">);</span>
+
+    <span class="c1">// insert the model into the form (or default to &quot;Form&quot;)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">parentForm</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+      <span class="n">parentForm</span><span class="p">.</span><span class="na">insertByName</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">cModel</span><span class="p">);</span>
+
+    <span class="c1">// link model to the shape</span>
+    <span class="n">cShape</span><span class="p">.</span><span class="na">setControl</span><span class="p">(</span><span class="n">cModel</span><span class="p">);</span>
+
+    <span class="c1">// add shape to shapes collection of the doc&#39;s draw page</span>
+    <span class="n">XDrawPage</span> <span class="n">drawPage</span> <span class="o">=</span> <span class="n">getDrawPage</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+    <span class="n">XShapes</span> <span class="n">formShape</span> <span class="n">s</span><span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XShapes</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">drawPage</span> <span class="p">);</span>
+    <span class="n">formShapes</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">cShape</span><span class="p">);</span>
+
+    <span class="c1">// set Name and Label properties for the model</span>
+    <span class="n">modelProps</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">cModel</span><span class="p">);</span>
+    <span class="n">modelProps</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;Name&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">label</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+      <span class="n">modelProps</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;Label&quot;</span><span class="p">,</span> <span class="n">label</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">modelProps</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of addControl()</span>
 </code></pre></div>
-<p>} 
-  catch (Exception e) { 
-    System.out.println(e); 
-  } 
-  return modelProps; 
-}  // end of addControl() </p>
-<p>The control is added to the form in two ways: firstly the control model is placed in the 
-parent form with: 
-parentForm.insertByName(name, cModel); 
-then the control shape is inserted into the form's draw page: </p>
-<p>XDrawPage drawPage = getDrawPage(doc); 
-XShapes formShape s= Lo.qi(XShapes.class, drawPage ); 
-formShapes.add(cShape); </p>
-<p>The Forms class contains several methods that call addControl() with fixed 
-arguments, and set various model properties. For example, Forms.addButton() makes 
-a CommandButton: </p>
-<p>// in the Forms class 
-public static XPropertySet addButton(XComponent doc,<br />
-   String name, String label, int x, int y, int width, int height) 
-{ 
-  XPropertySet buttonProps = null; 
-  try { 
-    buttonProps = addControl(doc, name, label, "CommandButton",<br />
-                             x, y, width, height); 
-    buttonProps.setPropertyValue("HelpText", name); </p>
-<div class="highlight"><pre><span></span><code>// don&#39;t want button to be accessible by the &quot;tab&quot; key 
-buttonProps.setPropertyValue(&quot;Tabstop&quot;, false);
-
-// the button should not steal focus when clicked 
-buttonProps.setPropertyValue(&quot;FocusOnClick&quot;, false);
+<p>The control is added to the form in two ways: firstly the control model is placed in the
+parent form with:</p>
+<div class="highlight"><pre><span></span><code><span class="n">parentForm</span><span class="p">.</span><span class="na">insertByName</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">cModel</span><span class="p">);</span>
 </code></pre></div>
-<p>} 
-  catch (Exception e) { 
-    System.out.println(e); 
-  } </p>
-<p>return buttonProps; 
-}  // end of addButton() </p>
-<p>The "CommandButton" string passed to addControl() means that the model will be an 
-instance of "com.sun.star.form.component.CommandButton". </p>
-<p>Another variant of addControl() is Forms.addLabelledControl() which calls 
-addControl() twice to attach a text label to the control. For instance, the 
-"FIRSTNAME" text field is created with: </p>
-<p>// part of createForm() in BuildForm.java... </p>
-<p>XPropertySet props = 
-    Forms.addLabelledControl(doc, "FIRSTNAME", "TextField", 11); </p>
-<p>The Forms.addLabelledControl() code: </p>
-<p 2_="2," 6_="6);" addLabelledControl_doc_="addLabelledControl(doc," compKind_="compKind," label_="label," return="return" y_="y,">// in the Forms class 
-public static XPropertySet addLabelledControl(XComponent doc,<br />
-          String label, String compKind, int y) </p>
-<p>public static XPropertySet addLabelledControl(XComponent doc,<br />
-        String label, String compKind, int x, int y, int height) 
-{ 
-  XPropertySet ctrlProps = null; 
-  try { 
-    // create label (fixed text) control 
-    String name = label + "_Label"; 
-    XPropertySet labelProps =<br />
-       addControl(doc, name, label, "FixedText", x, y, 25, 6); </p>
-<div class="highlight"><pre><span></span><code>// create data field control 
-ctrlProps = addControl(doc, label, null, compKind,  
-           x + 26, y, 40, height);  // to the right 
-ctrlProps.setPropertyValue(&quot;DataField&quot;, label);
-
-// add label props to the control 
-ctrlProps.setPropertyValue(&quot;LabelControl&quot;, labelProps);
+<p>then the control shape is inserted into the form's draw page:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XDrawPage</span> <span class="n">drawPage</span> <span class="o">=</span> <span class="n">getDrawPage</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+<span class="n">XShapes</span> <span class="n">formShape</span> <span class="n">s</span><span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XShapes</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">drawPage</span> <span class="p">);</span>
+<span class="n">formShapes</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">cShape</span><span class="p">);</span>
 </code></pre></div>
-<p>} 
-  catch (Exception e) { 
-    System.out.println(e); 
-  } </p>
-<p>return ctrlProps; 
-}  // end of addLabelledControl() </p>
-<p>The label is of type com.sun.star.form.component.FixedText, and linked to the text 
-field by setting its "DataField" and "LabelControl" properties. </p>
+<p>The Forms class contains several methods that call addControl() with fixed
+arguments, and set various model properties. For example, Forms.addButton() makes
+a CommandButton:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Forms class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XPropertySet</span> <span class="nf">addButton</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">,</span>
+   <span class="n">String</span> <span class="n">name</span><span class="p">,</span> <span class="n">String</span> <span class="n">label</span><span class="p">,</span> <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XPropertySet</span> <span class="n">buttonProps</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">buttonProps</span> <span class="o">=</span> <span class="n">addControl</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="s">&quot;CommandButton&quot;</span><span class="p">,</span>
+                             <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+    <span class="n">buttonProps</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;HelpText&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+
+    <span class="c1">// don&#39;t want button to be accessible by the &quot;tab&quot; key</span>
+    <span class="n">buttonProps</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;Tabstop&quot;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+
+    <span class="c1">// the button should not steal focus when clicked</span>
+    <span class="n">buttonProps</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;FocusOnClick&quot;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">buttonProps</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of addButton()</span>
+</code></pre></div>
+<p>The "CommandButton" string passed to addControl() means that the model will be an
+instance of "com.sun.star.form.component.CommandButton".</p>
+<p>Another variant of addControl() is Forms.addLabelledControl() which calls
+addControl() twice to attach a text label to the control. For instance, the
+"FIRSTNAME" text field is created with:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of createForm() in BuildForm.java...</span>
+
+<span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span>
+    <span class="n">Forms</span><span class="p">.</span><span class="na">addLabelledControl</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;FIRSTNAME&quot;</span><span class="p">,</span> <span class="s">&quot;TextField&quot;</span><span class="p">,</span> <span class="mi">11</span><span class="p">);</span>
+
+<span class="n">The</span> <span class="n">Forms</span><span class="p">.</span><span class="na">addLabelledControl</span><span class="p">()</span> <span class="n">code</span><span class="p">:</span>
+
+<span class="c1">// in the Forms class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XPropertySet</span> <span class="nf">addLabelledControl</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">,</span>
+          <span class="n">String</span> <span class="n">label</span><span class="p">,</span> <span class="n">String</span> <span class="n">compKind</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+<span class="p">{</span>  <span class="k">return</span> <span class="n">addLabelledControl</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">compKind</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>  <span class="p">}</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XPropertySet</span> <span class="nf">addLabelledControl</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">,</span>
+        <span class="n">String</span> <span class="n">label</span><span class="p">,</span> <span class="n">String</span> <span class="n">compKind</span><span class="p">,</span> <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XPropertySet</span> <span class="n">ctrlProps</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="c1">// create label (fixed text) control</span>
+    <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">label</span> <span class="o">+</span> <span class="s">&quot;_Label&quot;</span><span class="p">;</span>
+    <span class="n">XPropertySet</span> <span class="n">labelProps</span> <span class="o">=</span>
+       <span class="n">addControl</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="s">&quot;FixedText&quot;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+
+    <span class="c1">// create data field control</span>
+    <span class="n">ctrlProps</span> <span class="o">=</span> <span class="n">addControl</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="n">compKind</span><span class="p">,</span>
+               <span class="n">x</span> <span class="o">+</span> <span class="mi">26</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>  <span class="c1">// to the right</span>
+    <span class="n">ctrlProps</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;DataField&quot;</span><span class="p">,</span> <span class="n">label</span><span class="p">);</span>
+
+    <span class="c1">// add label props to the control</span>
+    <span class="n">ctrlProps</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;LabelControl&quot;</span><span class="p">,</span> <span class="n">labelProps</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">ctrlProps</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of addLabelledControl()</span>
+</code></pre></div>
+<p>The label is of type com.sun.star.form.component.FixedText, and linked to the text
+field by setting its "DataField" and "LabelControl" properties.</p>
 <h2 id="2-assigning-a-data-source-to-a-form">2.  Assigning a Data Source to a Form<a class="headerlink" href="#2-assigning-a-data-source-to-a-form" title="Permanent link">&para;</a></h2>
-<p>The "Form" and "GridForm" forms are both 'data aware', which means they're 
-connected to external databases. Data awareness is supported by the DataForm 
-subclass of the Form service, which is also connected to the RowSet and ResultSet 
-services of Base, as in Figure 3. </p>
+<p>The "Form" and "GridForm" forms are both 'data aware', which means they're
+connected to external databases. Data awareness is supported by the DataForm
+subclass of the Form service, which is also connected to the RowSet and ResultSet
+services of Base, as in Figure 3.</p>
 <p><img alt="" src="images/40-Building_a_Form-3.png" /></p>
-<p>Figure 3. Part of the DataForm Service Hierarchy. </p>
-<p>RowSet in the sdbc module supports the "DataSourceName", "Command", and 
-"CommandType" properties (amongst others). "DataSourceName" is set to the 
-database's URL, and "Command", and "CommandType" specify how the database 
-will be queried by the form's controls. </p>
-<p>The "Form" form is attached to the "liang.odb" database by: </p>
-<p>// part of createForm() in BuildForm.java... </p>
-<p>XForm defForm = Forms.getForm(doc, "Form"); 
-Forms.bindFormToTable(defForm,<br />
-                         FileIO.fnmToURL("liang.odb"), "Course"); </p>
-<p>The code for Forms.bindFormToTable(): </p>
-<p>// in the Forms class 
-public static void bindFormToTable(XForm xForm, 
-                          String sourceName, String tableName) 
-{ Props.setProperty(xForm, "DataSourceName", sourceName); 
-  Props.setProperty(xForm, "Command", tableName); // any table name 
-  Props.setProperty(xForm, "CommandType", CommandType.TABLE); 
-}  // end of bindFormToTable() </p>
-<p>CommandType.TABLE permits SQL SELECT queries to be sent to the data source 
-by the controls. The "Command" setting can be the name of any table in the database 
-since the form's two list boxes (see Figure 1) send their own SELECT queries (see 
-below). </p>
-<p>"GridForm" is set up by a call to Forms.bindFormToSQL() which sends a SQL query 
-to the database to obtain a result set for filling the GridControl table. The code 
-fragment in BuildForm.java is: </p>
-<p>// part of createForm() in BuildForm.java... </p>
-<p>XNameContainer gridCon = Forms.insertForm("GridForm", doc); 
-XForm gridForm = Lo.qi(XForm.class, gridCon); </p>
-<p>Forms.bindFormToSQL(gridForm, FileIO.fnmToURL(DB_FNM),<br />
-         "SELECT \"firstName\", \"lastName\" FROM \"Student\""); </p>
-<p>The code for Forms.bindFormToSQL(): </p>
-<p>// in the Forms class 
-public static void bindFormToSQL(XForm xForm, 
-                                 String sourceName, String cmd) 
-{ Props.setProperty(xForm, "DataSourceName", sourceName); 
-  Props.setProperty(xForm, "Command", cmd);   // SQL statement 
-  Props.setProperty(xForm, "CommandType", CommandType.COMMAND);   <br />
-}  // end of bindFormToSQL() </p>
-<p>It's not clear to me why the command type must be CommandType.COMMAND in 
-Forms.bindFormToSQL() since the SELECT query should be processable by 
-CommandType.TABLE, but using that type cause a run-time error. </p>
-<h2 id="3-creating-data-aware-controls">3.  Creating Data-aware Controls<a class="headerlink" href="#3-creating-data-aware-controls" title="Permanent link">&para;</a></h2>
-<p>Some control models have subclasses that support data-awareness, which means they 
-can access the form's data source using SELECT queries. The different types are 
-shown in Table 2. </p>
-<p>Control Models Type of Access 
-GridControl Fill a table (grid) with data 
-DatabaseListBox, 
-DatabaseComboBox 
-Fill a list with data 
-DatabaseTextField, 
-DatabaseDateField, 
-DatabaseTimeField, 
-DatabaseNumericField, 
-DatabasePatternField, 
-DatabaseFormattedField, 
-DatabaseCurrencyField 
-Fill a text field 
-DatabaseRadioButton, 
-DatabaseCheckBox 
-Specify whether a box is selected 
-or not. </p>
-<p>DatabaseImageControl Read an image 
-Table 2. Data-aware Control Models. </p>
-<p>The service hierarchy for these control models is similar to the hierarchy for 
-DatabaseListBox shown in Figure 4 (except for GridControl which I'll get to shortly). </p>
-<p><img alt="" src="images/40-Building_a_Form-4.png" /></p>
-<p>Figure 4. Part of the Service Hierarchy for DatabaseListBox. </p>
-<p>Figure 4 should be compared with the service hierarchy for an non-data-aware model, 
-such as CommandButton in Figure 8 of Chapter 39.  </p>
-<p>The model is initialized by setting properties using the database associated with the 
-parent form. Exactly which properties should be set depends on the model, but 
-DatabaseListBox and DatabaseComboBox are fairly straightforward. </p>
-<p>"ListSourceType" is set to ListSourceType.SQL, and "ListSource" assigned a string 
-array containing a SQL command. The command should be a SELECT query which 
-returns a single column result set. </p>
-<p>The two DatabaseListBoxs in BuildForm.java (see Figure 1) are initialized by calling 
-Forms.addDatabaseList() like so: </p>
-<p>// part of createForm() in BuildForm.java... </p>
-<p>Forms.addDatabaseList(doc, "CourseNames",<br />
-          "SELECT \"title\" FROM \"Course\"", 90, 90, 20, 6); </p>
-<p>Forms.addDatabaseList(doc, "StudNames",<br />
-          "SELECT \"lastName\" FROM \"Student\"",  140, 90, 20, 6); </p>
-<p>Forms.addDatabaseList() is: </p>
-<p>// in the Forms class 
-public static XPropertySet addDatabaseList(XComponent doc,<br />
-                         String name, String sqlCmd, 
-                         int x, int y, int width, int height) 
-{ 
-  XPropertySet listProps = null; 
-  try { 
-    listProps = addControl(doc, name, null, "DatabaseListBox",<br />
-                           x, y, width, height); 
-    // listProps.setPropertyValue("DefaultSelection",<br />
-    //                        new short[]{0});  // hangs 
-    listProps.setPropertyValue("Dropdown", true); 
-    listProps.setPropertyValue("MultiSelection", false); 
-    listProps.setPropertyValue("BoundColumn", (short) 0); </p>
-<div class="highlight"><pre><span></span><code>// data-aware properties 
-listProps.setPropertyValue(&quot;ListSourceType&quot;,  
-                                    ListSourceType.SQL); 
-listProps.setPropertyValue(&quot;ListSource&quot;,  
-                                 new String[] { sqlCmd });
+<p>Figure 3. Part of the DataForm Service Hierarchy.</p>
+<p>RowSet in the sdbc module supports the "DataSourceName", "Command", and
+"CommandType" properties (amongst others). "DataSourceName" is set to the
+database's URL, and "Command", and "CommandType" specify how the database
+will be queried by the form's controls.</p>
+<p>The "Form" form is attached to the "liang.odb" database by:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of createForm() in BuildForm.java...</span>
+<span class="n">XForm</span> <span class="n">defForm</span> <span class="o">=</span> <span class="n">Forms</span><span class="p">.</span><span class="na">getForm</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;Form&quot;</span><span class="p">);</span>
+<span class="n">Forms</span><span class="p">.</span><span class="na">bindFormToTable</span><span class="p">(</span><span class="n">defForm</span><span class="p">,</span>
+                         <span class="n">FileIO</span><span class="p">.</span><span class="na">fnmToURL</span><span class="p">(</span><span class="s">&quot;liang.odb&quot;</span><span class="p">),</span> <span class="s">&quot;Course&quot;</span><span class="p">);</span>
 </code></pre></div>
-<p>} 
-  catch (Exception e) { 
-    System.out.println(e); 
-  } 
-  return listProps; 
-}  // end of addDatabaseList() </p>
-<p>The DatabaseListBox control is created by calling Forms.addControl(), and then the 
-model's properties are configured.  </p>
-<p>Setting the list's default selection to be its first value causes Office to hang, so I've 
-commented out that line in addDatabaseList() above. This means that the list boxes 
-appear to be empty until the user clicks on them. </p>
-<h2 id="4-initializing-the-gridcontrol">4.  Initializing the GridControl<a class="headerlink" href="#4-initializing-the-gridcontrol" title="Permanent link">&para;</a></h2>
-<p>The GridControl is created by calling Forms.addControl() with "GridControl" as the 
-model string. Also, since this is the only control not inside the "Form" default form, 
-it's necessary to include a reference to the nameContainer for "GridForm": </p>
-<p>// part of createForm() in BuildForm.java... </p>
-<p>// add "GridForm" to document 
-XNameContainer gridCon = Forms.insertForm("GridForm", doc); 
-XForm gridForm = Lo.qi(XForm.class, gridCon); </p>
-<p>// "GridForm" uses an SQL query as its data source 
-Forms.bindFormToSQL(gridForm, FileIO.fnmToURL(DB_FNM),<br />
-          "SELECT \"firstName\", \"lastName\" FROM \"Student\""); </p>
-<p>// create grid control inside "GridForm" 
-props = Forms.addControl(doc, "SalesTable", null,<br />
-                      "GridControl", 2, 100, 100, 40, gridCon); </p>
-<p>"GridForm"s query generates a result set with two columns consisting of first and last 
-names from the Student table. For this information to be displayed by the grid, two of 
-the grid's columns must be attached to the two result set columns. This is done by 
-calling Forms.createGridColumn() twice: </p>
-<p>// part of createForm() in BuildForm.java... </p>
-<p>// get grid control's model 
-XControlModel gridModel = Lo.qi(XControlModel.class, props); </p>
-<p>// connect grid control's columns to result set 
-Forms.createGridColumn(gridModel, "firstName", "TextField", 25); 
-Forms.createGridColumn(gridModel, "lastName", "TextField", 25); </p>
-<p>The main service for a grid control model is GridControl in the form.components 
-module. Part of its hierarchy is shown in Figure 5. </p>
-<p><img alt="" src="images/40-Building_a_Form-5.png" /></p>
-<p>Figure 5. Part of the GridControl Service Hierarchy. </p>
-<p>If Figure 5's hierarchy is compared to those for other models, such as 
-CommandButton in Figure 8 of Chapter 39, there are some differences. GridControl 
-inherits the UnoControlModel service, but not through UnoControlGridModel in the 
-awt module. A search for such a service returns an entire awt.grid sub-module for grid 
-services, interfaces, and classes, but these aren't utilized by the form's grid control. </p>
-<p>The consequence is that GridControl is initialized in a different way from other 
-models, and listener code becomes a little harder to implement (as we'll see in section 
-6). </p>
-<p>Forms.createGridColumn() employs the XGridColumnFactory interface to link a grid 
-column to a result set column: </p>
-<p>// in the Forms class 
-public static void createGridColumn(XControlModel gridModel,<br />
-        String dataField, String colKind, int width) 
-{<br />
-  try { 
-    // column container and factory 
-    XIndexContainer colContainer =<br />
-                    Lo.qi(XIndexContainer.class, gridModel); 
-    XGridColumnFactory colFactory =<br />
-                    Lo.qi(XGridColumnFactory.class, gridModel); </p>
-<div class="highlight"><pre><span></span><code>// create the column 
-XPropertySet colProps = colFactory.createColumn(colKind); 
-colProps.setPropertyValue(&quot;DataField&quot;, dataField);   
-            // connect column to this result set column 
-colProps.setPropertyValue(&quot;Label&quot;, dataField); 
-colProps.setPropertyValue(&quot;Name&quot;, dataField); 
-if (width &gt; 0) 
-  colProps.setPropertyValue(&quot;Width&quot;, new Integer(width * 10));
+<p>The code for Forms.bindFormToTable():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Forms class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">bindFormToTable</span><span class="p">(</span><span class="n">XForm</span> <span class="n">xForm</span><span class="p">,</span>
+                          <span class="n">String</span> <span class="n">sourceName</span><span class="p">,</span> <span class="n">String</span> <span class="n">tableName</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">xForm</span><span class="p">,</span> <span class="s">&quot;DataSourceName&quot;</span><span class="p">,</span> <span class="n">sourceName</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">xForm</span><span class="p">,</span> <span class="s">&quot;Command&quot;</span><span class="p">,</span> <span class="n">tableName</span><span class="p">);</span> <span class="c1">// any table name</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">xForm</span><span class="p">,</span> <span class="s">&quot;CommandType&quot;</span><span class="p">,</span> <span class="n">CommandType</span><span class="p">.</span><span class="na">TABLE</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of bindFormToTable()</span>
+</code></pre></div>
+<p>CommandType.TABLE permits SQL SELECT queries to be sent to the data source
+by the controls. The "Command" setting can be the name of any table in the database
+since the form's two list boxes (see Figure 1) send their own SELECT queries (see
+below).</p>
+<p>"GridForm" is set up by a call to Forms.bindFormToSQL() which sends a SQL query
+to the database to obtain a result set for filling the GridControl table. The code
+fragment in BuildForm.java is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of createForm() in BuildForm.java...</span>
+<span class="n">XNameContainer</span> <span class="n">gridCon</span> <span class="o">=</span> <span class="n">Forms</span><span class="p">.</span><span class="na">insertForm</span><span class="p">(</span><span class="s">&quot;GridForm&quot;</span><span class="p">,</span> <span class="n">doc</span><span class="p">);</span>
+<span class="n">XForm</span> <span class="n">gridForm</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XForm</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">gridCon</span><span class="p">);</span>
 
-// add properties column to container 
-colContainer.insertByIndex(colContainer.getCount(), colProps);
+<span class="n">Forms</span><span class="p">.</span><span class="na">bindFormToSQL</span><span class="p">(</span><span class="n">gridForm</span><span class="p">,</span> <span class="n">FileIO</span><span class="p">.</span><span class="na">fnmToURL</span><span class="p">(</span><span class="n">DB_FNM</span><span class="p">),</span>
+         <span class="s">&quot;SELECT \&quot;firstName\&quot;, \&quot;lastName\&quot; FROM \&quot;Student\&quot;&quot;</span><span class="p">);</span>
 </code></pre></div>
-<p>} 
-  catch (Exception e) { 
-    System.out.println(e); 
-  } 
-}  // end of createGridColumn() </p>
+<p>The code for Forms.bindFormToSQL():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Forms class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">bindFormToSQL</span><span class="p">(</span><span class="n">XForm</span> <span class="n">xForm</span><span class="p">,</span>
+                                 <span class="n">String</span> <span class="n">sourceName</span><span class="p">,</span> <span class="n">String</span> <span class="n">cmd</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">xForm</span><span class="p">,</span> <span class="s">&quot;DataSourceName&quot;</span><span class="p">,</span> <span class="n">sourceName</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">xForm</span><span class="p">,</span> <span class="s">&quot;Command&quot;</span><span class="p">,</span> <span class="n">cmd</span><span class="p">);</span>   <span class="c1">// SQL statement</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">xForm</span><span class="p">,</span> <span class="s">&quot;CommandType&quot;</span><span class="p">,</span> <span class="n">CommandType</span><span class="p">.</span><span class="na">COMMAND</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of bindFormToSQL()</span>
+</code></pre></div>
+<p>It's not clear to me why the command type must be CommandType.COMMAND in
+Forms.bindFormToSQL() since the SELECT query should be processable by
+CommandType.TABLE, but using that type cause a run-time error.</p>
+<h2 id="3-creating-data-aware-controls">3.  Creating Data-aware Controls<a class="headerlink" href="#3-creating-data-aware-controls" title="Permanent link">&para;</a></h2>
+<p>Some control models have subclasses that support data-awareness, which means they
+can access the form's data source using SELECT queries. The different types are
+shown in Table 2.</p>
+<table>
+<thead>
+<tr>
+<th>Control Models</th>
+<th>Type of Access</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GridControl</td>
+<td>Fill a table (grid) with data</td>
+</tr>
+<tr>
+<td>DatabaseListBox,</td>
+<td>Fill a list with data</td>
+</tr>
+<tr>
+<td>DatabaseComboBox</td>
+<td></td>
+</tr>
+<tr>
+<td>DatabaseTextField,</td>
+<td>Fill a text field</td>
+</tr>
+<tr>
+<td>DatabaseDateField,</td>
+<td></td>
+</tr>
+<tr>
+<td>DatabaseTimeField,</td>
+<td></td>
+</tr>
+<tr>
+<td>DatabaseNumericField,</td>
+<td></td>
+</tr>
+<tr>
+<td>DatabasePatternField,</td>
+<td></td>
+</tr>
+<tr>
+<td>DatabaseFormattedField,</td>
+<td></td>
+</tr>
+<tr>
+<td>DatabaseCurrencyField</td>
+<td></td>
+</tr>
+<tr>
+<td>DatabaseRadioButton,</td>
+<td>Specify whether a box is selected</td>
+</tr>
+<tr>
+<td>DatabaseCheckBox</td>
+<td>or not.</td>
+</tr>
+<tr>
+<td>DatabaseImageControl</td>
+<td>Read an image</td>
+</tr>
+</tbody>
+</table>
+<p>Table 2. Data-aware Control Models.</p>
+<p>The service hierarchy for these control models is similar to the hierarchy for
+DatabaseListBox shown in Figure 4 (except for GridControl which I'll get to shortly).</p>
+<p><img alt="" src="images/40-Building_a_Form-4.png" /></p>
+<p>Figure 4. Part of the Service Hierarchy for DatabaseListBox.</p>
+<p>Figure 4 should be compared with the service hierarchy for an non-data-aware model,
+such as CommandButton in Figure 8 of Chapter 39.</p>
+<p>The model is initialized by setting properties using the database associated with the
+parent form. Exactly which properties should be set depends on the model, but
+DatabaseListBox and DatabaseComboBox are fairly straightforward.
+"ListSourceType" is set to ListSourceType.SQL, and "ListSource" assigned a string
+array containing a SQL command. The command should be a SELECT query which
+returns a single column result set.</p>
+<p>The two DatabaseListBoxs in BuildForm.java (see Figure 1) are initialized by calling
+Forms.addDatabaseList() like so:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of createForm() in BuildForm.java...</span>
+
+<span class="n">Forms</span><span class="p">.</span><span class="na">addDatabaseList</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;CourseNames&quot;</span><span class="p">,</span>
+          <span class="s">&quot;SELECT \&quot;title\&quot; FROM \&quot;Course\&quot;&quot;</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+
+<span class="n">Forms</span><span class="p">.</span><span class="na">addDatabaseList</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;StudNames&quot;</span><span class="p">,</span>
+          <span class="s">&quot;SELECT \&quot;lastName\&quot; FROM \&quot;Student\&quot;&quot;</span><span class="p">,</span>  <span class="mi">140</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>
+</code></pre></div>
+<p>Forms.addDatabaseList() is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Forms class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XPropertySet</span> <span class="nf">addDatabaseList</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">,</span>
+                         <span class="n">String</span> <span class="n">name</span><span class="p">,</span> <span class="n">String</span> <span class="n">sqlCmd</span><span class="p">,</span>
+                         <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">,</span> <span class="kt">int</span> <span class="n">height</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XPropertySet</span> <span class="n">listProps</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">listProps</span> <span class="o">=</span> <span class="n">addControl</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="s">&quot;DatabaseListBox&quot;</span><span class="p">,</span>
+                           <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
+    <span class="c1">// listProps.setPropertyValue(&quot;DefaultSelection&quot;,</span>
+    <span class="c1">//                        new short[]{0});  // hangs</span>
+    <span class="n">listProps</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;Dropdown&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="n">listProps</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;MultiSelection&quot;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+    <span class="n">listProps</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;BoundColumn&quot;</span><span class="p">,</span> <span class="p">(</span><span class="kt">short</span><span class="p">)</span> <span class="mi">0</span><span class="p">);</span>
+
+    <span class="c1">// data-aware properties</span>
+    <span class="n">listProps</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;ListSourceType&quot;</span><span class="p">,</span>
+                                        <span class="n">ListSourceType</span><span class="p">.</span><span class="na">SQL</span><span class="p">);</span>
+    <span class="n">listProps</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;ListSource&quot;</span><span class="p">,</span>
+                                     <span class="k">new</span> <span class="n">String</span><span class="o">[]</span> <span class="p">{</span> <span class="n">sqlCmd</span> <span class="p">});</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">listProps</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of addDatabaseList()</span>
+</code></pre></div>
+<p>The DatabaseListBox control is created by calling Forms.addControl(), and then the
+model's properties are configured.</p>
+<p>Setting the list's default selection to be its first value causes Office to hang, so I've
+commented out that line in addDatabaseList() above. This means that the list boxes
+appear to be empty until the user clicks on them.</p>
+<h2 id="4-initializing-the-gridcontrol">4.  Initializing the GridControl<a class="headerlink" href="#4-initializing-the-gridcontrol" title="Permanent link">&para;</a></h2>
+<p>The GridControl is created by calling Forms.addControl() with "GridControl" as the
+model string. Also, since this is the only control not inside the "Form" default form,
+it's necessary to include a reference to the nameContainer for "GridForm":</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of createForm() in BuildForm.java...</span>
+<span class="c1">// add &quot;GridForm&quot; to document</span>
+<span class="n">XNameContainer</span> <span class="n">gridCon</span> <span class="o">=</span> <span class="n">Forms</span><span class="p">.</span><span class="na">insertForm</span><span class="p">(</span><span class="s">&quot;GridForm&quot;</span><span class="p">,</span> <span class="n">doc</span><span class="p">);</span>
+<span class="n">XForm</span> <span class="n">gridForm</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XForm</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">gridCon</span><span class="p">);</span>
+
+<span class="c1">// &quot;GridForm&quot; uses an SQL query as its data source</span>
+<span class="n">Forms</span><span class="p">.</span><span class="na">bindFormToSQL</span><span class="p">(</span><span class="n">gridForm</span><span class="p">,</span> <span class="n">FileIO</span><span class="p">.</span><span class="na">fnmToURL</span><span class="p">(</span><span class="n">DB_FNM</span><span class="p">),</span>
+          <span class="s">&quot;SELECT \&quot;firstName\&quot;, \&quot;lastName\&quot; FROM \&quot;Student\&quot;&quot;</span><span class="p">);</span>
+
+<span class="c1">// create grid control inside &quot;GridForm&quot;</span>
+<span class="n">props</span> <span class="o">=</span> <span class="n">Forms</span><span class="p">.</span><span class="na">addControl</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;SalesTable&quot;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span>
+                      <span class="s">&quot;GridControl&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">gridCon</span><span class="p">);</span>
+</code></pre></div>
+<p>"GridForm"s query generates a result set with two columns consisting of first and last
+names from the Student table. For this information to be displayed by the grid, two of
+the grid's columns must be attached to the two result set columns. This is done by
+calling Forms.createGridColumn() twice:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of createForm() in BuildForm.java...</span>
+<span class="c1">// get grid control&#39;s model</span>
+<span class="n">XControlModel</span> <span class="n">gridModel</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XControlModel</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">props</span><span class="p">);</span>
+
+<span class="c1">// connect grid control&#39;s columns to result set</span>
+<span class="n">Forms</span><span class="p">.</span><span class="na">createGridColumn</span><span class="p">(</span><span class="n">gridModel</span><span class="p">,</span> <span class="s">&quot;firstName&quot;</span><span class="p">,</span> <span class="s">&quot;TextField&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
+<span class="n">Forms</span><span class="p">.</span><span class="na">createGridColumn</span><span class="p">(</span><span class="n">gridModel</span><span class="p">,</span> <span class="s">&quot;lastName&quot;</span><span class="p">,</span> <span class="s">&quot;TextField&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
+</code></pre></div>
+<p>The main service for a grid control model is GridControl in the form.components
+module. Part of its hierarchy is shown in Figure 5.</p>
+<p><img alt="" src="images/40-Building_a_Form-5.png" /></p>
+<p>Figure 5. Part of the GridControl Service Hierarchy.</p>
+<p>If Figure 5's hierarchy is compared to those for other models, such as
+CommandButton in Figure 8 of Chapter 39, there are some differences. GridControl
+inherits the UnoControlModel service, but not through UnoControlGridModel in the
+awt module. A search for such a service returns an entire awt.grid sub-module for grid
+services, interfaces, and classes, but these aren't utilized by the form's grid control.</p>
+<p>The consequence is that GridControl is initialized in a different way from other
+models, and listener code becomes a little harder to implement (as we'll see in section
+6).</p>
+<p>Forms.createGridColumn() employs the XGridColumnFactory interface to link a grid
+column to a result set column:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Forms class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">createGridColumn</span><span class="p">(</span><span class="n">XControlModel</span> <span class="n">gridModel</span><span class="p">,</span>
+        <span class="n">String</span> <span class="n">dataField</span><span class="p">,</span> <span class="n">String</span> <span class="n">colKind</span><span class="p">,</span> <span class="kt">int</span> <span class="n">width</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="c1">// column container and factory</span>
+    <span class="n">XIndexContainer</span> <span class="n">colContainer</span> <span class="o">=</span>
+                    <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XIndexContainer</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">gridModel</span><span class="p">);</span>
+    <span class="n">XGridColumnFactory</span> <span class="n">colFactory</span> <span class="o">=</span>
+                    <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XGridColumnFactory</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">gridModel</span><span class="p">);</span>
+
+    <span class="c1">// create the column</span>
+    <span class="n">XPropertySet</span> <span class="n">colProps</span> <span class="o">=</span> <span class="n">colFactory</span><span class="p">.</span><span class="na">createColumn</span><span class="p">(</span><span class="n">colKind</span><span class="p">);</span>
+    <span class="n">colProps</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;DataField&quot;</span><span class="p">,</span> <span class="n">dataField</span><span class="p">);</span>
+                <span class="c1">// connect column to this result set column</span>
+    <span class="n">colProps</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;Label&quot;</span><span class="p">,</span> <span class="n">dataField</span><span class="p">);</span>
+    <span class="n">colProps</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;Name&quot;</span><span class="p">,</span> <span class="n">dataField</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">width</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+      <span class="n">colProps</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;Width&quot;</span><span class="p">,</span> <span class="k">new</span> <span class="n">Integer</span><span class="p">(</span><span class="n">width</span> <span class="o">*</span> <span class="mi">10</span><span class="p">));</span>
+
+    <span class="c1">// add properties column to container</span>
+    <span class="n">colContainer</span><span class="p">.</span><span class="na">insertByIndex</span><span class="p">(</span><span class="n">colContainer</span><span class="p">.</span><span class="na">getCount</span><span class="p">(),</span> <span class="n">colProps</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of createGridColumn()</span>
+</code></pre></div>
 <h2 id="5-attaching-listeners">5.  Attaching Listeners<a class="headerlink" href="#5-attaching-listeners" title="Permanent link">&para;</a></h2>
-<p>Table 1 shows that nine Office  listeners are used with the controls. To reduce coding, 
-BuildForm implements their methods: </p>
-<dl>
-<dt>// in BuildForm.java</dt>
-<dt>public class BuildForm implements XEventListener,</dt>
-<dt>XActionListener, XPropertyChangeListener,</dt>
-<dt>XTextListener, XFocusListener, XItemListener,</dt>
-<dt>XMouseListener, XSelectionChangeListener,</dt>
-<dt>XGridColumnListener</dt>
-<dt>{</dt>
-<dd>// methods for creating the controls ... </dd>
-<dd>// methods for attaching listeners to the controls ... </dd>
-</dl>
-<p>// listener methods for ... </p>
-<p>// XEventListener 
-  public void disposing(EventObject ev) 
-  { String implName = Info.getImplementationName(ev.Source); 
-    System.out.println("Disposing: " + implName); 
-  } </p>
-<dl>
-<dt>// XActionListener  </dt>
-<dt>  public void actionPerformed(ActionEvent ev) </dt>
-<dt>  // called when a button has been pressed </dt>
-<dt System.out.println_Pressed="System.out.println(&quot;Pressed" _="&quot;\&quot;&quot;);" ev.ActionCommand="ev.ActionCommand"></dt>
-<dd>
-<p>// many more listener methods </p>
-</dd>
-</dl>
-<p>}  // end of BuildForm class </p>
-<p>The listener methods are fairly simple, except for the XSelectionChangeListener 
-attached to the grid control. A button control is attached to a listener like so: </p>
-<p>// part of createForm() in BuildForm.java... </p>
-<p>XPropertySet props = Forms.addButton(doc, "first", "&lt;&lt;", 2, 63, 8); 
-listenToButton(props); </p>
-<p>The code in listenToButton() is depicted by Figure 6. All the other "listener attacher"<br />
-functions in BuildForm.java work in a similar way. </p>
+<p>Table 1 shows that nine Office  listeners are used with the controls. To reduce coding,
+BuildForm implements their methods:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in BuildForm.java</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">BuildForm</span> <span class="kd">implements</span> <span class="n">XEventListener</span><span class="p">,</span>
+                   <span class="n">XActionListener</span><span class="p">,</span> <span class="n">XPropertyChangeListener</span><span class="p">,</span>
+                   <span class="n">XTextListener</span><span class="p">,</span> <span class="n">XFocusListener</span><span class="p">,</span> <span class="n">XItemListener</span><span class="p">,</span>
+                   <span class="n">XMouseListener</span><span class="p">,</span> <span class="n">XSelectionChangeListener</span><span class="p">,</span>
+                   <span class="n">XGridColumnListener</span>
+<span class="p">{</span>
+  <span class="p">:</span>  <span class="c1">// methods for creating the controls ...</span>
+
+
+  <span class="p">:</span>  <span class="c1">// methods for attaching listeners to the controls ...</span>
+
+
+  <span class="c1">// listener methods for ...</span>
+
+
+  <span class="c1">// XEventListener</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">disposing</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">ev</span><span class="p">)</span>
+  <span class="p">{</span> <span class="n">String</span> <span class="n">implName</span> <span class="o">=</span> <span class="n">Info</span><span class="p">.</span><span class="na">getImplementationName</span><span class="p">(</span><span class="n">ev</span><span class="p">.</span><span class="na">Source</span><span class="p">);</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Disposing: &quot;</span> <span class="o">+</span> <span class="n">implName</span><span class="p">);</span>
+  <span class="p">}</span>
+
+
+  <span class="c1">// XActionListener</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="p">(</span><span class="n">ActionEvent</span> <span class="n">ev</span><span class="p">)</span>
+  <span class="c1">// called when a button has been pressed</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Pressed \&quot;&quot;</span> <span class="o">+</span> <span class="n">ev</span><span class="p">.</span><span class="na">ActionCommand</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>  <span class="p">}</span>
+
+
+  <span class="p">:</span> <span class="c1">// many more listener methods</span>
+
+<span class="p">}</span>  <span class="c1">// end of BuildForm class</span>
+</code></pre></div>
+<p>The listener methods are fairly simple, except for the XSelectionChangeListener
+attached to the grid control. A button control is attached to a listener like so:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of createForm() in BuildForm.java...</span>
+<span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span> <span class="n">Forms</span><span class="p">.</span><span class="na">addButton</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;first&quot;</span><span class="p">,</span> <span class="s">&quot;&lt;&lt;&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">63</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span>
+<span class="n">listenToButton</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+</code></pre></div>
+<p>The code in listenToButton() is depicted by Figure 6. All the other "listener attacher"
+functions in BuildForm.java work in a similar way.</p>
 <p><img alt="" src="images/40-Building_a_Form-6.png" /></p>
-<p>Figure 6. Attaching a Listener to a Button Control. </p>
-<p>The property set passed to listenToButton() is cast to XControlModel, and then 
-converted into a view using Forms.getControl(). The control is cast to an interface 
-(such as XButton or XTextComponent) which offers an addXXXListener() method. </p>
-<p>The listenToButton() method is: </p>
-<p>// in BuildForm.java 
-public void listenToButton(XPropertySet props) 
-{ 
-  XControlModel cModel = Lo.qi(XControlModel.class, props); 
-  XControl control = Forms.getControl(doc, cModel); 
-  XButton xButton = Lo.qi(XButton.class, control); </p>
-<p>xButton.setActionCommand(Forms.getName(cModel)); 
-  xButton.addActionListener(this);  // use BuildForms as the listener 
-}  // end of listenToButton() </p>
+<p>Figure 6. Attaching a Listener to a Button Control.</p>
+<p>The property set passed to listenToButton() is cast to XControlModel, and then
+converted into a view using Forms.getControl(). The control is cast to an interface
+(such as XButton or XTextComponent) which offers an addXXXListener() method.</p>
+<p>The listenToButton() method is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in BuildForm.java</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">listenToButton</span><span class="p">(</span><span class="n">XPropertySet</span> <span class="n">props</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XControlModel</span> <span class="n">cModel</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XControlModel</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">props</span><span class="p">);</span>
+  <span class="n">XControl</span> <span class="n">control</span> <span class="o">=</span> <span class="n">Forms</span><span class="p">.</span><span class="na">getControl</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">cModel</span><span class="p">);</span>
+  <span class="n">XButton</span> <span class="n">xButton</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XButton</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">control</span><span class="p">);</span>
+
+  <span class="n">xButton</span><span class="p">.</span><span class="na">setActionCommand</span><span class="p">(</span><span class="n">Forms</span><span class="p">.</span><span class="na">getName</span><span class="p">(</span><span class="n">cModel</span><span class="p">));</span>
+  <span class="n">xButton</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>  <span class="c1">// use BuildForms as the listener</span>
+<span class="p">}</span>  <span class="c1">// end of listenToButton()</span>
+</code></pre></div>
 <h2 id="6-listening-for-grid-control-selection-changes">6.  Listening for Grid Control Selection Changes<a class="headerlink" href="#6-listening-for-grid-control-selection-changes" title="Permanent link">&para;</a></h2>
-<p>Grid selection changes occur when the user clicks on a cell in the table, as in Figure 7. </p>
+<p>Grid selection changes occur when the user clicks on a cell in the table, as in Figure 7.</p>
 <p><img alt="" src="images/40-Building_a_Form-7.png" /></p>
-<p>Figure 7. Grid Control Selection Change. </p>
-<p>Figure 8 shows the grid model and control hierarchy.  </p>
+<p>Figure 7. Grid Control Selection Change.</p>
+<p>Figure 8 shows the grid model and control hierarchy.</p>
 <p><img alt="" src="images/40-Building_a_Form-8.png" /></p>
-<p>Figure 8. Attaching a Listener to a Grid Control. </p>
-<p>The grid model inherits UnoControlModel via FormControlModel. On the control 
-side, GridControl in the form.control module inherits UnoControl directly. </p>
-<p>GridControl supports two listener interfaces – XSelectionSupplier and XGridControl. </p>
-<p>Their attachment is handled by listenToGrid(), which is called after the control has 
-been initialized by createForm(): </p>
-<p>// in createForm() in BuildForm.java... </p>
-<p>props = Forms.addControl(doc, "SalesTable", null, 
-                   "GridControl", 2, 100, 100, 40, gridCon); 
-XControlModel gridModel = Lo.qi(XControlModel.class, props); </p>
-<p>Forms.createGridColumn(gridModel, "firstName", "TextField", 25); 
-Forms.createGridColumn(gridModel, "lastName", "TextField", 25); 
-listenToGrid(gridModel); </p>
-<p>listenToGrid() is defined as: </p>
-<p>// in BuildForm.java 
-public void listenToGrid(XControlModel gridModel) 
-{ 
-  XControl control = Forms.getControl(doc, gridModel); 
-  XGridControl gc = Lo.qi(XGridControl.class, control); 
-  gc.addGridControlListener(this); </p>
-<p>XSelectionSupplier gridSelection =<br />
-                      Lo.qi(XSelectionSupplier.class, gc); 
-  gridSelection.addSelectionChangeListener(this); 
-}  // end of listenToGrid() </p>
-<p>There's no point using XGridControlListener in this example because its 
-columnChanged() method is only triggered when the data in a column changes, which 
-never occurs. However, XSelectionChangeListener.selectionChanged() is sent an 
-event whenever the user's selection changes, which is what we're interested in 
-reporting. </p>
+<p>Figure 8. Attaching a Listener to a Grid Control.</p>
+<p>The grid model inherits UnoControlModel via FormControlModel. On the control
+side, GridControl in the form.control module inherits UnoControl directly.</p>
+<p>GridControl supports two listener interfaces – XSelectionSupplier and XGridControl.</p>
+<p>Their attachment is handled by listenToGrid(), which is called after the control has
+been initialized by createForm():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in createForm() in BuildForm.java...</span>
+<span class="n">props</span> <span class="o">=</span> <span class="n">Forms</span><span class="p">.</span><span class="na">addControl</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;SalesTable&quot;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span>
+                   <span class="s">&quot;GridControl&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">gridCon</span><span class="p">);</span>
+<span class="n">XControlModel</span> <span class="n">gridModel</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XControlModel</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">props</span><span class="p">);</span>
+
+<span class="n">Forms</span><span class="p">.</span><span class="na">createGridColumn</span><span class="p">(</span><span class="n">gridModel</span><span class="p">,</span> <span class="s">&quot;firstName&quot;</span><span class="p">,</span> <span class="s">&quot;TextField&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
+<span class="n">Forms</span><span class="p">.</span><span class="na">createGridColumn</span><span class="p">(</span><span class="n">gridModel</span><span class="p">,</span> <span class="s">&quot;lastName&quot;</span><span class="p">,</span> <span class="s">&quot;TextField&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">);</span>
+<span class="n">listenToGrid</span><span class="p">(</span><span class="n">gridModel</span><span class="p">);</span>
+</code></pre></div>
+<p>listenToGrid() is defined as:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in BuildForm.java</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">listenToGrid</span><span class="p">(</span><span class="n">XControlModel</span> <span class="n">gridModel</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XControl</span> <span class="n">control</span> <span class="o">=</span> <span class="n">Forms</span><span class="p">.</span><span class="na">getControl</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">gridModel</span><span class="p">);</span>
+  <span class="n">XGridControl</span> <span class="n">gc</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XGridControl</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">control</span><span class="p">);</span>
+  <span class="n">gc</span><span class="p">.</span><span class="na">addGridControlListener</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+  <span class="n">XSelectionSupplier</span> <span class="n">gridSelection</span> <span class="o">=</span>
+                      <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XSelectionSupplier</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">gc</span><span class="p">);</span>
+  <span class="n">gridSelection</span><span class="p">.</span><span class="na">addSelectionChangeListener</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of listenToGrid()</span>
+</code></pre></div>
+<p>There's no point using XGridControlListener in this example because its
+columnChanged() method is only triggered when the data in a column changes, which
+never occurs. However, XSelectionChangeListener.selectionChanged() is sent an
+event whenever the user's selection changes, which is what we're interested in
+reporting.</p>
 <h2 id="7-using-the-result-set">7.  Using the Result Set<a class="headerlink" href="#7-using-the-result-set" title="Permanent link">&para;</a></h2>
-<p>The XGridControl interface for GridControl doesn't offer all the methods I need for 
-announcing selection changes.  </p>
-<p>XGridControl inherits XGrid and XGridFieldDataSupplier. XGrid can retrieve the 
-currently selected column, while XGridFieldDataSupplier provides access to the data, 
-but neither of them offer a way to find the currently selected row. That requires the 
-result set for the table, which can only be examined by starting from the form level.  </p>
-<p>Getting to the result set requires a number of casts, the first being from the event 
-object arriving at the listener to the model that sent it. Forms.getEventControlModel() 
-does that job: </p>
-<p>// in the Forms class 
-public static XControlModel getEventControlModel(EventObject ev) 
-{ XControl xControl = Lo.qi(XControl.class, ev.Source); 
-  return xControl.getModel(); 
-} </p>
-<p>Another conversion step is from control model to the parent form, which is carried out 
-by Forms.getFormName(): </p>
-<p>// in the Forms class 
-public static String getFormName(XControlModel cModel) 
-{ XChild xChild = Lo.qi(XChild.class, cModel); 
-  XNamed xNamed = Lo.qi(XNamed.class, xChild.getParent()); 
-  return xNamed.getName(); 
-} </p>
-<p>selectionChanged() utilizes getEventControlModel() and getFormName() to convert 
-an event object to a form. Finally, XForm is cast to a result set using the hierarchy in </p>
+<p>The XGridControl interface for GridControl doesn't offer all the methods I need for
+announcing selection changes.</p>
+<p>XGridControl inherits XGrid and XGridFieldDataSupplier. XGrid can retrieve the
+currently selected column, while XGridFieldDataSupplier provides access to the data,
+but neither of them offer a way to find the currently selected row. That requires the
+result set for the table, which can only be examined by starting from the form level.</p>
+<p>Getting to the result set requires a number of casts, the first being from the event
+object arriving at the listener to the model that sent it. Forms.getEventControlModel()
+does that job:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Forms class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XControlModel</span> <span class="nf">getEventControlModel</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">ev</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">XControl</span> <span class="n">xControl</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XControl</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">ev</span><span class="p">.</span><span class="na">Source</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">xControl</span><span class="p">.</span><span class="na">getModel</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Another conversion step is from control model to the parent form, which is carried out
+by Forms.getFormName():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Forms class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">getFormName</span><span class="p">(</span><span class="n">XControlModel</span> <span class="n">cModel</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">XChild</span> <span class="n">xChild</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XChild</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">cModel</span><span class="p">);</span>
+  <span class="n">XNamed</span> <span class="n">xNamed</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XNamed</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">xChild</span><span class="p">.</span><span class="na">getParent</span><span class="p">());</span>
+  <span class="k">return</span> <span class="n">xNamed</span><span class="p">.</span><span class="na">getName</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>selectionChanged() utilizes getEventControlModel() and getFormName() to convert
+an event object to a form. Finally, XForm is cast to a result set using the hierarchy in</p>
 <p><img alt="" src="images/40-Building_a_Form-3.png" /></p>
-<p>Figure 3. </p>
-<p>// in BuildForm.java 
-public void selectionChanged(EventObject ev) 
-{ 
-  XControlModel cModel = Forms.getEventControlModel(ev); 
-  XGridControl gc =  Lo.qi(XGridControl.class, ev.Source); <br />
-  System.out.println("Grid " + Forms.getName(cModel) +<br />
-                     " column: " + gc.getCurrentColumnPosition()); </p>
-<p>String formName = Forms.getFormName(cModel); 
-  XForm gForm = Forms.getForm(doc, formName); 
-  XResultSet rs = Lo.qi(XResultSet.class, gForm); 
-  try { 
-    System.out.println("    row: " + rs.getRow()); 
-  } 
-  catch (com.sun.star.uno.Exception e) { 
-    System.out.println(e); 
-  } 
-}  // end of selectionChanged() </p>
-<p>selectionChanged() jumps through these hoops in order to print the currently selected 
-column and row in the table. The selected column is obtained by calling 
-XGridControl.getCurrentColumnPosition(), and the current row comes from 
-XResultSet.getRow(). </p>
+<p>Figure 3.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in BuildForm.java</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">selectionChanged</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">ev</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XControlModel</span> <span class="n">cModel</span> <span class="o">=</span> <span class="n">Forms</span><span class="p">.</span><span class="na">getEventControlModel</span><span class="p">(</span><span class="n">ev</span><span class="p">);</span>
+  <span class="n">XGridControl</span> <span class="n">gc</span> <span class="o">=</span>  <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XGridControl</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">ev</span><span class="p">.</span><span class="na">Source</span><span class="p">);</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Grid &quot;</span> <span class="o">+</span> <span class="n">Forms</span><span class="p">.</span><span class="na">getName</span><span class="p">(</span><span class="n">cModel</span><span class="p">)</span> <span class="o">+</span>
+                     <span class="s">&quot; column: &quot;</span> <span class="o">+</span> <span class="n">gc</span><span class="p">.</span><span class="na">getCurrentColumnPosition</span><span class="p">());</span>
+
+  <span class="n">String</span> <span class="n">formName</span> <span class="o">=</span> <span class="n">Forms</span><span class="p">.</span><span class="na">getFormName</span><span class="p">(</span><span class="n">cModel</span><span class="p">);</span>
+  <span class="n">XForm</span> <span class="n">gForm</span> <span class="o">=</span> <span class="n">Forms</span><span class="p">.</span><span class="na">getForm</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">formName</span><span class="p">);</span>
+  <span class="n">XResultSet</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XResultSet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">gForm</span><span class="p">);</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;    row: &quot;</span> <span class="o">+</span> <span class="n">rs</span><span class="p">.</span><span class="na">getRow</span><span class="p">());</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">uno</span><span class="p">.</span><span class="na">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of selectionChanged()</span>
+</code></pre></div>
+<p>selectionChanged() jumps through these hoops in order to print the currently selected
+column and row in the table. The selected column is obtained by calling
+XGridControl.getCurrentColumnPosition(), and the current row comes from
+XResultSet.getRow().</p>
 <h2 id="8-some-bugs">8.  Some Bugs<a class="headerlink" href="#8-some-bugs" title="Permanent link">&para;</a></h2>
-<p>My first version of BuildForm.java had a few problems which caused it to hang.  </p>
-<p>The most serious occurred when I tried to include an image button in the form. The 
-relevant lines in createForm() in BuildForm.java were: </p>
-<p>// in createForm() in BuildForm.java... </p>
-<p>props = Forms.addControl(doc, "Smiley", null, 
-                                 "ImageButton", 90, 80, 10, 10); 
-props.setPropertyValue("ImageURL", FileIO.fnmToURL("smiley.png")); </p>
-<p>The button would sometimes appear at the correct position, but cause Office to hang 
-when pressed, and sometimes the button wouldn't appear at all. After failing to find an 
-answer online, I commented out the above lines. If anyone knows of a solution please 
-contact me. </p>
-<p>A more minor issue is the initial lack of text in the DatabaseListBoxs. In the original 
-Forms.addDatabaseList(), the list text was set with: 
-listProps.setPropertyValue("DefaultSelection", new short[]{0}); 
-This line caused Office to hang, and once again I 'solved' the problem by commenting 
-out the code. The unfortunate side-effect is that now the list box's text is blank until 
-the user clicks on the list. </p>
+<p>My first version of BuildForm.java had a few problems which caused it to hang.</p>
+<p>The most serious occurred when I tried to include an image button in the form. The
+relevant lines in createForm() in BuildForm.java were:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in createForm() in BuildForm.java...</span>
+<span class="n">props</span> <span class="o">=</span> <span class="n">Forms</span><span class="p">.</span><span class="na">addControl</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;Smiley&quot;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span>
+                                 <span class="s">&quot;ImageButton&quot;</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+<span class="n">props</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;ImageURL&quot;</span><span class="p">,</span> <span class="n">FileIO</span><span class="p">.</span><span class="na">fnmToURL</span><span class="p">(</span><span class="s">&quot;smiley.png&quot;</span><span class="p">));</span>
+</code></pre></div>
+<p>The button would sometimes appear at the correct position, but cause Office to hang
+when pressed, and sometimes the button wouldn't appear at all. After failing to find an
+answer online, I commented out the above lines. If anyone knows of a solution please
+contact me.</p>
+<p>A more minor issue is the initial lack of text in the DatabaseListBoxs. In the original
+Forms.addDatabaseList(), the list text was set with:</p>
+<div class="highlight"><pre><span></span><code><span class="n">listProps</span><span class="p">.</span><span class="na">setPropertyValue</span><span class="p">(</span><span class="s">&quot;DefaultSelection&quot;</span><span class="p">,</span> <span class="k">new</span> <span class="kt">short</span><span class="o">[]</span><span class="p">{</span><span class="mi">0</span><span class="p">});</span>
+</code></pre></div>
+<p>This line caused Office to hang, and once again I 'solved' the problem by commenting
+out the code. The unfortunate side-effect is that now the list box's text is blank until
+the user clicks on the list.</p>
                 
               
               

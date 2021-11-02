@@ -1628,8 +1628,8 @@ search flags, and an array of document properties. For example:</p>
 </code></pre></div>
 <p>The frame type is almost always "_blank" which indicates that a new window will be
 created for the newly loaded document. (Other possibilities are listed in the
-XComponentLoader documentation which you can access with <code>lodoc
-XComponentLoader</code>.) The search flags are usually set to 0, and document properties
+XComponentLoader documentation which you can access with <code>lodoc XComponentLoader</code>.)
+The search flags are usually set to 0, and document properties
 are stored in the PropertyValue array, props.</p>
 <p>loadComponentFromURL()'s return type is XComponent, which refers to the
 document.</p>
@@ -1639,7 +1639,7 @@ path prefixed with file:///).</p>
 array; there are several variants which accept different numbers of property name-
 value pairs.</p>
 <p>A complete list of document properties can be found in the MediaDescriptor
-documentation (accessed with lodoc MediaDescriptor service), but some of the
+documentation (accessed with <code>lodoc MediaDescriptor service</code>), but some of the
 important ones are listed in Table 1.</p>
 <table>
 <thead>
@@ -1784,8 +1784,7 @@ in the Office documentation).</p>
 <p>XStorable.storeToURL() takes the name of the output file (in URL format), and an
 array of properties, one of which should be "FilterName". Two other useful output
 properties are "Overwrite" and "Password". Input and output document properties are
-listed in the MediaDescriptor service documentation (lodoc MediaDescriptor
-service).</p>
+listed in the MediaDescriptor service documentation (<code>lodoc MediaDescriptor service</code>).</p>
 <p>If "Overwrite" is set to true then the file will be saved without prompting the user if
 the file already exists. The "Password" property contains a string which must be
 entered into an Office dialog by the user before the file can be opened again.</p>

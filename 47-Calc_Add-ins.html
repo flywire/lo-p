@@ -1352,13 +1352,13 @@ the add-ins which come with Calc. The functions-by-category data is also online 
 <a href="https://help.libreoffice.org/Calc/Functions_by_Category">https://help.libreoffice.org/Calc/Functions_by_Category</a>
 An interesting wiki page comparing the features of the current version of LibreOffice
 and MS Office can be found at
-<a href="https://wiki.documentfoundation.org/Feature_Comparison:_LibreOffice_-">https://wiki.documentfoundation.org/Feature_Comparison:_LibreOffice_-</a>
-_Microsoft_Office. The spreadsheet section states that LibreOffice Calc has 500
+<a href="https://wiki.documentfoundation.org/Feature_Comparison:_LibreOffice_-_Microsoft_Office">https://wiki.documentfoundation.org/Feature_Comparison:_LibreOffice_-_Microsoft_Office</a>. 
+The spreadsheet section states that LibreOffice Calc has 500
 functions versus 468 in MS Excel, with a large overlap between them but with 25
 functions unique to Calc 5.2 and 14 unique to Excel 2016. Another interesting
 comparison is offered by Zeki Bildirici as a spreadsheet at
-<a href="https://wiki.documentfoundation.org/images/c/c6/Excel2013_Calc_Functions_Compa">https://wiki.documentfoundation.org/images/c/c6/Excel2013_Calc_Functions_Compa</a>
-rison.ods, which matches functions in Excel 2013 to their equivalents in Calc 3.x.</p>
+<a href="https://wiki.documentfoundation.org/images/c/c6/Excel2013_Calc_Functions_Comparison.ods">https://wiki.documentfoundation.org/images/c/c6/Excel2013_Calc_Functions_Comparison.ods</a>,
+which matches functions in Excel 2013 to their equivalents in Calc 3.x.</p>
 <h2 id="1-implementing-a-calc-add-in">1.  Implementing a Calc Add-in<a class="headerlink" href="#1-implementing-a-calc-add-in" title="Permanent link">&para;</a></h2>
 <p>The writing of a Calc add-in became much easier after OpenOffice 2.0.4 was released
 in 2005, when it became possible to define an add-in as an IDL type, and use the
@@ -1369,8 +1369,8 @@ XServiceInfo.</p>
 <p>I mention this 'ancient' history because the Developer's Guide (no spring chicken
 itself, having been released in 2009) only explains the pre-2005 approach. There's a
 lengthy example in chapter 8, which can also be found online at
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Spreadsheets/Spreadsheet">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Spreadsheets/Spreadsheet</a>
-_Add-Ins (or use <code>loGuide "Spreadsheet Add-Ins"</code>). The code (called
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Spreadsheets/Spreadsheet_Add-Ins">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Spreadsheets/Spreadsheet_Add-Ins</a>
+(or use <code>loGuide "Spreadsheet Add-Ins"</code>). The code (called
 ExampleAddIn) can be downloaded from
 <a href="http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Spreadsheet">http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Spreadsheet</a></p>
 <p>According to forum posts, the old approach still works, but I haven’t checked; I'm
@@ -1397,8 +1397,8 @@ description of NetBeans' project wizard, the generated add-in code section is qu
 informative. Unlike  my example, the add-in can be localized to show documentation
 in English or German.</p>
 <p>The specification document for the NetBeans add-in wizard is at
-<a href="https://www.openoffice.org/specs/sdk/tools/spec_openoffice-netbeans-integration-">https://www.openoffice.org/specs/sdk/tools/spec_openoffice-netbeans-integration-</a>
-calc-addin-wizard.odt. In amongst details about dialog structuring, there's some good
+<a href="https://www.openoffice.org/specs/sdk/tools/spec_openoffice-netbeans-integration-calc-addin-wizard.odt">https://www.openoffice.org/specs/sdk/tools/spec_openoffice-netbeans-integration-calc-addin-wizard.odt</a>.
+In amongst details about dialog structuring, there's some good
 material on the format of CalcAddin.xcu. I'll explain the XCU format in section 2.5.</p>
 <h2 id="2-the-idl-definitions-of-the-functions">2.  The IDL definitions of the Functions<a class="headerlink" href="#2-the-idl-definitions-of-the-functions" title="Permanent link">&para;</a></h2>
 <p>My Doubler functions (doubler(), doublerSum(), and sortByFirstCol()) are defined in
@@ -1435,8 +1435,8 @@ org.openoffice.doubler module; XDoubler supports three functions.</p>
 chapter 3 of the Developer's Guide. The subsection "Using UNOIDL to Specify New
 Components" explains how to define an interface, and the same information is online
 at
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Using_UNO">https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Using_UNO</a>
-IDL_to_Specify_New_Components (or use <code>loGuide "Using UNOIDL"</code>). However,
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Using_UNOIDL_to_Specify_New_Components">https://wiki.openoffice.org/wiki/Documentation/DevGuide/WritingUNO/Using_UNOIDL_to_Specify_New_Components</a>
+(or use <code>loGuide "Using UNOIDL"</code>). However,
 add-in functions only support a subset of the IDL input and return types.</p>
 <p>Input arguments must use "[in]", and are restricted to the types long, double, string,
 and any. Sequences must be two-dimensional (e.g. sequence&lt; sequence<double>&gt;),
@@ -1449,8 +1449,8 @@ sequence<double>&gt;) which can be assigned to a cell range in the spreadsheet.<
 over time; its value is automatically updated in the cell containing the function.</p>
 <p>Details on how IDL types are mapped to Java can be found in chapter 2 of the guide,
 starting at the "Type Mapping" subsection (online at
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/ProUNO/Java/Type_Mapp">https://wiki.openoffice.org/wiki/Documentation/DevGuide/ProUNO/Java/Type_Mapp</a>
-ings, or via <code>loGuide "Type Mappings"</code>). The Java versions of the add-in function
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/ProUNO/Java/Type_Mappings">https://wiki.openoffice.org/wiki/Documentation/DevGuide/ProUNO/Java/Type_Mappings</a>,
+or via <code>loGuide "Type Mappings"</code>). The Java versions of the add-in function
 types are also detailed in the online documentation for the AddIn service (use
 <code>lodoc Addin</code> to find the page).</p>
 <h3 id="21-converting-idl-into-java-code">2.1.  Converting IDL into Java Code<a class="headerlink" href="#21-converting-idl-into-java-code" title="Permanent link">&para;</a></h3>

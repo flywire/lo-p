@@ -1580,17 +1580,17 @@ graphic object’s filename or URL can be retrieved using:</p>
 </code></pre></div>
 <p>I know the graphic object's URL is stored in the "GraphicURL" property from looking
 at the documentation for the TextGraphicObject service. It can be (almost) directly
-accessed by typing <code>lodoc TextGraphicObject service;</code> unfortunately
+accessed by typing <code>lodoc TextGraphicObject service</code>; unfortunately
 DuckDuckGo chooses the TextGraphicObjects service, and you need to click on the
 "TextGraphicObject" link below the title to get to the required page.</p>
-<p>It's possible to call setPropertyValue() to change a property:
-<code>props.setPropertyValue("Transparency", (short)50);</code></p>
+<p>It's possible to call setPropertyValue() to change a property:</p>
+<p><code>props.setPropertyValue("Transparency", (short)50);</code></p>
 <p><strong>What About the Text Content I Don't Cover?</strong></p>
 <p>Table 1 has many rows without bold entries, which means I won't be looking at them.</p>
 <p>except for the very brief descriptions here; for more please consult the Developer's
 Guide at
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Working_with_Text">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Working_with_Text</a>_
-Documents (or type <code>loGuide "Working with Text Documents"</code>). All the examples
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Working_with_Text_Documents">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Working_with_Text_Documents</a>
+(or type <code>loGuide "Working with Text Documents"</code>). All the examples
 in that section are in TextDocuments.java at
 <a href="http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Text">http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Text</a>.</p>
 <p><strong>Text Sections.</strong> A text section is a grouping of paragraphs which can be assigned their
@@ -1601,8 +1601,8 @@ type <code>loGuide "Text Sections"</code>).</p>
 <p><strong>Footnotes and Endnotes.</strong> Footnotes and endnotes are blocks of text that appear in the
 page footers and at the end of a document. They can be treated as XText objects, so
 manipulated using the same techniques as the main document text. See:
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Footnotes_and_Endn">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Footnotes_and_Endn</a>
-otes (or type <code>loGuide Footnotes</code>).</p>
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Footnotes_and_Endnotes">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Footnotes_and_Endnotes</a>
+(or type <code>loGuide Footnotes</code>).</p>
 <p><strong>Reference Marks.</strong> Reference marks can be inserted throughout a document, and then
 jumped to via GetReference text fields:
 <a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Reference_Marks">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Reference_Marks</a> (or
@@ -1612,8 +1612,8 @@ anywhere in a document, but are used to generate indices (collections of informa
 inside the document. There are several types of index marks used for generating lists
 of chapter headings (i.e. a book's index), lists of key words, illustrations, tables, and a
 bibliography. For details see:
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Indexes_and_Index">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Indexes_and_Index</a>_
-Marks (or type <code>loGuide Indexes</code>).</p>
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Indexes_and_Index_Marks">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Text/Indexes_and_Index_Marks</a>
+(or type <code>loGuide Indexes</code>).</p>
 <p><strong>Link Targets.</strong> A link target (sometimes called a jump mark) labels a location inside a
 document. These labels can be included as part of a filename so that the document can
 be opened at that position. For information, see:

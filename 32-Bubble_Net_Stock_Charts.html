@@ -1291,481 +1291,531 @@
                 <h1 id="chapter-32-bubble-net-stock-charts">Chapter 32. Bubble, Net, Stock Charts<a class="headerlink" href="#chapter-32-bubble-net-stock-charts" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
-<p>The Bubble 
-Chart; The Net Chart; 
-The Stock Chart: basic 
-and modified candle 
-sticks; Stock Chart and 
-Line Graph </p>
-<p>Example folders: 
-"Chart2 Tests" and 
-"Utils" </p>
+<p>The Bubble
+Chart; The Net Chart;
+The Stock Chart: basic
+and modified candle
+sticks; Stock Chart and
+Line Graph</p>
+<p>Example folders:
+"Chart2 Tests" and
+"Utils"</p>
 </div>
-<p>This chapter concludes my use of the Chart2Views.java 
-example by looking at how bubble, net and stock charts 
-can be generated from spreadsheet data.  </p>
-<p>The relevant lines of Chart2Views.java are: </p>
-<p>// part of Chart2Views.java 
-public static void main(String args[]) 
-{ 
-  XComponentLoader loader = Lo.loadOffice(); 
-  XSpreadsheetDocument doc = Calc.openDoc(CHARTS_DATA, loader); </p>
-<p>GUI.setVisible(doc, true); 
-  XSpreadsheet sheet = Calc.getSheet(doc, 0); </p>
-<p>// ---- use different chart templates ---- </p>
-<p>labeledBubbleChart(doc, sheet);  // see section 1 </p>
-<p>// netChart(doc, sheet);         // section 2 </p>
-<p>// happyStockChart(doc, sheet);  // section 3 
-  // stockPricesChart(doc, sheet); // section 4 </p>
-<p>Lo.waitEnter(); 
-  Lo.closeDoc(doc); 
-  Lo.closeOffice(); 
-}  // end of main() </p>
+<p>This chapter concludes my use of the Chart2Views.java
+example by looking at how bubble, net and stock charts
+can be generated from spreadsheet data.</p>
+<p>The relevant lines of Chart2Views.java are:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of Chart2Views.java</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+  <span class="n">XSpreadsheetDocument</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">openDoc</span><span class="p">(</span><span class="n">CHARTS_DATA</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>
+
+  <span class="n">GUI</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="n">XSpreadsheet</span> <span class="n">sheet</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getSheet</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+  <span class="c1">// ---- use different chart templates ----</span>
+
+  <span class="n">labeledBubbleChart</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">sheet</span><span class="p">);</span>  <span class="c1">// see section 1</span>
+
+  <span class="c1">// netChart(doc, sheet);         // section 2</span>
+
+  <span class="c1">// happyStockChart(doc, sheet);  // section 3</span>
+  <span class="c1">// stockPricesChart(doc, sheet); // section 4</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">waitEnter</span><span class="p">();</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of main()</span>
+</code></pre></div>
 <h2 id="1-the-bubble-chart">1.  The Bubble Chart<a class="headerlink" href="#1-the-bubble-chart" title="Permanent link">&para;</a></h2>
-<p>A bubble chart is a variation of a scatter chart where each data point shows the 
-relationship between three variables. Two variables are used for a bubble's (x, y) 
-coordinate, and the third affects the bubble's size.  </p>
-<p>labeledBubbleChart() in Chart2Views.java utilizes the "World data" table in 
-"chartsData.ods" (see Figure 1).  </p>
+<p>A bubble chart is a variation of a scatter chart where each data point shows the
+relationship between three variables. Two variables are used for a bubble's (x, y)
+coordinate, and the third affects the bubble's size.</p>
+<p>labeledBubbleChart() in Chart2Views.java utilizes the "World data" table in
+"chartsData.ods" (see Figure 1).</p>
 <p><img alt="" src="images/32-Bubble_Net_Stock_Charts-1.png" /></p>
-<p>Figure 1. The "World data" Table. </p>
-<p>The data range passed to the Chart.insertChart() uses the first three columns of the 
-table; the "Country" column is added separately. The generated scatter chart is shown 
-in Figure 2. </p>
+<p>Figure 1. The "World data" Table.</p>
+<p>The data range passed to the Chart.insertChart() uses the first three columns of the
+table; the "Country" column is added separately. The generated scatter chart is shown
+in Figure 2.</p>
 <p><img alt="" src="images/32-Bubble_Net_Stock_Charts-2.png" /></p>
-<p>Figure 2. Bubble Chart for the Table in Figure 1. </p>
-<p>labeledBubbleChart() is: </p>
-<p>// in Chart2Views.java 
-private static void labeledBubbleChart(XSpreadsheetDocument doc, 
-                                XSpreadsheet sheet) 
-{ 
-  CellRangeAddress rangeAddr = Calc.getAddress(sheet, "H63:J93"); 
-  XChartDocument chartDoc = 
-      Chart2.insertChart(sheet, rangeAddr, "A62",18,11, "Bubble"); 
-  Calc.gotoCell(doc, "A62"); </p>
-<p>Chart2.setTitle(chartDoc, Calc.getString(sheet, "H62")); 
-  Chart2.setXAxisTitle(chartDoc, Calc.getString(sheet, "H63")); 
-  Chart2.setYAxisTitle(chartDoc, Calc.getString(sheet, "I63")); 
-  Chart2.rotateYAxisTitle(chartDoc, 90); 
-  Chart2.viewLegend(chartDoc, true); </p>
-<p>// change the data points 
-  XDataSeries[] ds = Chart2.getDataSeries(chartDoc); 
-  Props.setProperty(ds[0], "Transparency", 50); <br />
-                           // 100 == fully transparent 
-  Props.setProperty(ds[0], "BorderStyle", LineStyle.SOLID); 
-  Props.setProperty(ds[0], "BorderColor", Calc.RED); </p>
-<p>Props.setProperty(ds[0], "LabelPlacement", Chart2.DP_CENTER); 
-  // Chart2.setDataPointLabels(chartDoc, Chart2.DP_NUMBER); </p>
-<p>/* 
-  String sheetName = Calc.getSheetName(sheet); 
-  String label = sheetName + "." + "K63"; 
-  String names = sheetName + "." + "K64:K93"; 
-  Chart2.addCatLabels(chartDoc, label, names); 
-*/ 
-  }  // end of labeledBubbleChart() </p>
-<p>The transparency and border properties of all the data points are set via the 
-DataPointProperties class for the data series. Without transparency, large bubbles 
-could obscure or completely hide smaller bubbles. </p>
-<p>If the call to Chart2.setDataPointLabels() is uncommented, the result is messy, as 
-shown in Figure 3. </p>
+<p>Figure 2. Bubble Chart for the Table in Figure 1.</p>
+<p>labeledBubbleChart() is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Chart2Views.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">labeledBubbleChart</span><span class="p">(</span><span class="n">XSpreadsheetDocument</span> <span class="n">doc</span><span class="p">,</span>
+                                <span class="n">XSpreadsheet</span> <span class="n">sheet</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">CellRangeAddress</span> <span class="n">rangeAddr</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getAddress</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;H63:J93&quot;</span><span class="p">);</span>
+  <span class="n">XChartDocument</span> <span class="n">chartDoc</span> <span class="o">=</span>
+      <span class="n">Chart2</span><span class="p">.</span><span class="na">insertChart</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">rangeAddr</span><span class="p">,</span> <span class="s">&quot;A62&quot;</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span> <span class="s">&quot;Bubble&quot;</span><span class="p">);</span>
+  <span class="n">Calc</span><span class="p">.</span><span class="na">gotoCell</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;A62&quot;</span><span class="p">);</span>
+
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;H62&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setXAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;H63&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setYAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;I63&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">rotateYAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="mi">90</span><span class="p">);</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">viewLegend</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+  <span class="c1">// change the data points</span>
+  <span class="n">XDataSeries</span><span class="o">[]</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">getDataSeries</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">ds</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="s">&quot;Transparency&quot;</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+                           <span class="c1">// 100 == fully transparent</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">ds</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="s">&quot;BorderStyle&quot;</span><span class="p">,</span> <span class="n">LineStyle</span><span class="p">.</span><span class="na">SOLID</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">ds</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="s">&quot;BorderColor&quot;</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">RED</span><span class="p">);</span>
+
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">ds</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="s">&quot;LabelPlacement&quot;</span><span class="p">,</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">DP_CENTER</span><span class="p">);</span>
+  <span class="c1">// Chart2.setDataPointLabels(chartDoc, Chart2.DP_NUMBER);</span>
+
+<span class="cm">/*</span>
+<span class="cm">  String sheetName = Calc.getSheetName(sheet);</span>
+<span class="cm">  String label = sheetName + &quot;.&quot; + &quot;K63&quot;;</span>
+<span class="cm">  String names = sheetName + &quot;.&quot; + &quot;K64:K93&quot;;</span>
+<span class="cm">  Chart2.addCatLabels(chartDoc, label, names);</span>
+<span class="cm">*/</span>
+  <span class="p">}</span>  <span class="c1">// end of labeledBubbleChart()</span>
+</code></pre></div>
+<p>The transparency and border properties of all the data points are set via the
+DataPointProperties class for the data series. Without transparency, large bubbles
+could obscure or completely hide smaller bubbles.</p>
+<p>If the call to Chart2.setDataPointLabels() is uncommented, the result is messy, as
+shown in Figure 3.</p>
 <p><img alt="" src="images/32-Bubble_Net_Stock_Charts-3.png" /></p>
-<p>Figure 3. Numerically Labeled Bubble Chart for the Table in Figure 1. </p>
-<p>Instead of labeling the bubbles with population sizes, it would be better to use the 
-"Country" values (see Figure 1). Chart2.addCatLabels() implements this feature, 
-producing Figure 4. </p>
+<p>Figure 3. Numerically Labeled Bubble Chart for the Table in Figure 1.</p>
+<p>Instead of labeling the bubbles with population sizes, it would be better to use the
+"Country" values (see Figure 1). Chart2.addCatLabels() implements this feature,
+producing Figure 4.</p>
 <p><img alt="" src="images/32-Bubble_Net_Stock_Charts-4.png" /></p>
-<p>Figure 4. Category Labeled Bubble Chart for the Table in Figure 1. </p>
-<p>Chart2.addCatLabels() employs the "Country" data to create an 
-XLabeledDataSequence object which is assigned the role "categories". It is then 
-assigned to the x-axis as category-based scale data: </p>
-<p>// in the Chart2 class 
-public static void addCatLabels(XChartDocument chartDoc,<br />
-                           String dataLabel, String dataRange) 
-{ 
-  // create 'categories' labeled data sequence 
-  XDataProvider dp = chartDoc.getDataProvider(); 
-  XLabeledDataSequence dLSeq =<br />
-             createLDSeq(dp, "categories", dataLabel, dataRange); </p>
-<p>// assign sequence to x-axis as category scale data 
-  XAxis axis = getAxis(chartDoc, X_AXIS, 0); 
-  if (axis == null) 
-    return; 
-  ScaleData sd = axis.getScaleData(); 
-  sd.Categories = dLSeq; 
-  axis.setScaleData(sd); </p>
-<p>setDataPointLabels(chartDoc, Chart2.DP_CATEGORY); 
-     // label the data points with categories 
-}  // end of addCatLabels() </p>
-<p>When setDataPointLabels() displays category data for the points, the new x-axis 
-categories are utilized. </p>
+<p>Figure 4. Category Labeled Bubble Chart for the Table in Figure 1.</p>
+<p>Chart2.addCatLabels() employs the "Country" data to create an
+XLabeledDataSequence object which is assigned the role "categories". It is then
+assigned to the x-axis as category-based scale data:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">addCatLabels</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span>
+                           <span class="n">String</span> <span class="n">dataLabel</span><span class="p">,</span> <span class="n">String</span> <span class="n">dataRange</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// create &#39;categories&#39; labeled data sequence</span>
+  <span class="n">XDataProvider</span> <span class="n">dp</span> <span class="o">=</span> <span class="n">chartDoc</span><span class="p">.</span><span class="na">getDataProvider</span><span class="p">();</span>
+  <span class="n">XLabeledDataSequence</span> <span class="n">dLSeq</span> <span class="o">=</span>
+             <span class="n">createLDSeq</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="s">&quot;categories&quot;</span><span class="p">,</span> <span class="n">dataLabel</span><span class="p">,</span> <span class="n">dataRange</span><span class="p">);</span>
+
+  <span class="c1">// assign sequence to x-axis as category scale data</span>
+  <span class="n">XAxis</span> <span class="n">axis</span> <span class="o">=</span> <span class="n">getAxis</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">X_AXIS</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">axis</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="n">ScaleData</span> <span class="n">sd</span> <span class="o">=</span> <span class="n">axis</span><span class="p">.</span><span class="na">getScaleData</span><span class="p">();</span>
+  <span class="n">sd</span><span class="p">.</span><span class="na">Categories</span> <span class="o">=</span> <span class="n">dLSeq</span><span class="p">;</span>
+  <span class="n">axis</span><span class="p">.</span><span class="na">setScaleData</span><span class="p">(</span><span class="n">sd</span><span class="p">);</span>
+
+  <span class="n">setDataPointLabels</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">DP_CATEGORY</span><span class="p">);</span>
+     <span class="c1">// label the data points with categories</span>
+<span class="p">}</span>  <span class="c1">// end of addCatLabels()</span>
+</code></pre></div>
+<p>When setDataPointLabels() displays category data for the points, the new x-axis
+categories are utilized.</p>
 <h2 id="2-the-net-chart">2.  The Net Chart<a class="headerlink" href="#2-the-net-chart" title="Permanent link">&para;</a></h2>
-<p>The net chart (also called a radar chart) is useful for comparing multiple columns of 
-data (often between three and eight columns) in a 2D arrangement that resembles a 
-spider's web. Although net charts have an interesting look, a lot of people dislike them 
-(e.g. see "A Critique of Radar Charts" by Graham Odds at 
-<a href="http://blog.scottlogic.com/2011/09/23/a-critique-of-radar-charts.html">http://blog.scottlogic.com/2011/09/23/a-critique-of-radar-charts.html</a>). </p>
-<p>netChart() in Chart2Views.java utilizes the "No of Calls per Day" table in 
-"chartsData.ods" (see Figure 5).  </p>
+<p>The net chart (also called a radar chart) is useful for comparing multiple columns of
+data (often between three and eight columns) in a 2D arrangement that resembles a
+spider's web. Although net charts have an interesting look, a lot of people dislike them
+(e.g. see "A Critique of Radar Charts" by Graham Odds at
+<a href="http://blog.scottlogic.com/2011/09/23/a-critique-of-radar-charts.html">http://blog.scottlogic.com/2011/09/23/a-critique-of-radar-charts.html</a>).</p>
+<p>netChart() in Chart2Views.java utilizes the "No of Calls per Day" table in
+"chartsData.ods" (see Figure 5).</p>
 <p><img alt="" src="images/32-Bubble_Net_Stock_Charts-5.png" /></p>
-<p>Figure 5. The "No of Calls per Day" Table. </p>
-<p>The generated net chart is shown in Figure 6. </p>
+<p>Figure 5. The "No of Calls per Day" Table.</p>
+<p>The generated net chart is shown in Figure 6.</p>
 <p><img alt="" src="images/32-Bubble_Net_Stock_Charts-6.png" /></p>
-<p>Figure 6. Net Chart for the Table in Figure 5. </p>
-<p>netChart() is: </p>
-<p>// in Chart2Views.java 
-private static void netChart(XSpreadsheetDocument doc, 
-                             XSpreadsheet sheet) 
-{ CellRangeAddress rangeAddr = Calc.getAddress(sheet, "A56:D63"); 
-  XChartDocument chartDoc = 
-      Chart2.insertChart(sheet, rangeAddr, "E55",16,11, "NetLine"); 
-                           // Net, NetLine, NetSymbol 
-                           // StackedNet, PercentStackedNet 
-  Calc.gotoCell(doc, "E55"); </p>
-<p>Chart2.setTitle(chartDoc, Calc.getString(sheet, "A55")); 
-  Chart2.viewLegend(chartDoc, true); 
-  Chart2.setDataPointLabels(chartDoc, Chart2.DP_NONE); </p>
-<p>// reverse x-axis so days increase clockwise around net 
-  XAxis xAxis = Chart2.getXAxis(chartDoc); 
-  ScaleData sd = xAxis.getScaleData(); 
-  sd.Orientation = AxisOrientation.REVERSE; 
-  xAxis.setScaleData(sd); 
-}  // end of netChart() </p>
-<p>Different net chart templates allow points to be shown, the areas filled with color, and 
-the lines to be stacked or displayed as percentages. </p>
-<p>netChart() changes the x-axis which wraps around the circumference of the chart. By 
-default, the axis is drawn in a counter-clockwise direction starting from the top of the 
-net. This order doesn't seem right for the days of the week in this example, so I made 
-the order clockwise, as in Figure 6. </p>
+<p>Figure 6. Net Chart for the Table in Figure 5.</p>
+<p>netChart() is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Chart2Views.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">netChart</span><span class="p">(</span><span class="n">XSpreadsheetDocument</span> <span class="n">doc</span><span class="p">,</span>
+                             <span class="n">XSpreadsheet</span> <span class="n">sheet</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">CellRangeAddress</span> <span class="n">rangeAddr</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getAddress</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;A56:D63&quot;</span><span class="p">);</span>
+  <span class="n">XChartDocument</span> <span class="n">chartDoc</span> <span class="o">=</span>
+      <span class="n">Chart2</span><span class="p">.</span><span class="na">insertChart</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">rangeAddr</span><span class="p">,</span> <span class="s">&quot;E55&quot;</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span> <span class="s">&quot;NetLine&quot;</span><span class="p">);</span>
+                           <span class="c1">// Net, NetLine, NetSymbol</span>
+                           <span class="c1">// StackedNet, PercentStackedNet</span>
+  <span class="n">Calc</span><span class="p">.</span><span class="na">gotoCell</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;E55&quot;</span><span class="p">);</span>
+
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;A55&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">viewLegend</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setDataPointLabels</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">DP_NONE</span><span class="p">);</span>
+
+  <span class="c1">// reverse x-axis so days increase clockwise around net</span>
+  <span class="n">XAxis</span> <span class="n">xAxis</span> <span class="o">=</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">getXAxis</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">);</span>
+  <span class="n">ScaleData</span> <span class="n">sd</span> <span class="o">=</span> <span class="n">xAxis</span><span class="p">.</span><span class="na">getScaleData</span><span class="p">();</span>
+  <span class="n">sd</span><span class="p">.</span><span class="na">Orientation</span> <span class="o">=</span> <span class="n">AxisOrientation</span><span class="p">.</span><span class="na">REVERSE</span><span class="p">;</span>
+  <span class="n">xAxis</span><span class="p">.</span><span class="na">setScaleData</span><span class="p">(</span><span class="n">sd</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of netChart()</span>
+</code></pre></div>
+<p>Different net chart templates allow points to be shown, the areas filled with color, and
+the lines to be stacked or displayed as percentages.</p>
+<p>netChart() changes the x-axis which wraps around the circumference of the chart. By
+default, the axis is drawn in a counter-clockwise direction starting from the top of the
+net. This order doesn't seem right for the days of the week in this example, so I made
+the order clockwise, as in Figure 6.</p>
 <h2 id="3-the-stock-chart">3.  The Stock Chart<a class="headerlink" href="#3-the-stock-chart" title="Permanent link">&para;</a></h2>
-<p>A stock chart is a specialized column graph for displaying stocks and shares 
-information. All stock chart templates require at least three columns of data 
-concerning the lowest price, highest price, and closing price of a stock (or share). It's 
-also possible to include two other columns that detail the stock's opening price and 
-transaction volume. </p>
-<p>The stock template names reflect the data columns they utilize: 
- StockLowHighClose 
- StockOpenLowHighClose 
- StockVolumeLowHighClose 
- StockVolumeOpenLowHighClose 
-The names also indicate the ordering of the columns in the data range supplied to the 
-template. For example, "StockVolumeOpenLowHighClose" requires five columns of 
-data in the order: transaction volume, opening price, lowest price, highest price, and 
-closing price. </p>
-<p>happyStockChart() in Chart2Views.java utilizes the "Happy Systems (HASY)" table 
-in "chartsData.ods" (see Figure 7).  </p>
+<p>A stock chart is a specialized column graph for displaying stocks and shares
+information. All stock chart templates require at least three columns of data
+concerning the lowest price, highest price, and closing price of a stock (or share). It's
+also possible to include two other columns that detail the stock's opening price and
+transaction volume.</p>
+<p>The stock template names reflect the data columns they utilize:</p>
+<ul>
+<li>StockLowHighClose</li>
+<li>StockOpenLowHighClose</li>
+<li>StockVolumeLowHighClose</li>
+<li>StockVolumeOpenLowHighClose</li>
+</ul>
+<p>The names also indicate the ordering of the columns in the data range supplied to the
+template. For example, "StockVolumeOpenLowHighClose" requires five columns of
+data in the order: transaction volume, opening price, lowest price, highest price, and
+closing price.</p>
+<p>happyStockChart() in Chart2Views.java utilizes the "Happy Systems (HASY)" table
+in "chartsData.ods" (see Figure 7).</p>
 <p><img alt="" src="images/32-Bubble_Net_Stock_Charts-7.png" /></p>
-<p>Figure 7. The "Happy Systems (HASY)" Table. </p>
-<p>The table has six columns, the first being the x-axis categories, which are usually 
-dates. The other columns follow the order required by the 
-"StockVolumeOpenLowHighClose" template. </p>
-<p>The generated stock chart is shown in Figure 8. </p>
+<p>Figure 7. The "Happy Systems (HASY)" Table.</p>
+<p>The table has six columns, the first being the x-axis categories, which are usually
+dates. The other columns follow the order required by the
+"StockVolumeOpenLowHighClose" template.</p>
+<p>The generated stock chart is shown in Figure 8.</p>
 <p><img alt="" src="images/32-Bubble_Net_Stock_Charts-8.png" /></p>
-<p>Figure 8. Stock Chart for the Table in Figure 7. </p>
-<p>The chart is made up of two graphs with a common x-axis: a column graph for the 
-stock volume on each day, and a candle-stick graph showing the lowest, opening, 
-closing, and highest stock values. Figure 9 gives details of how these elements are 
-drawn. </p>
+<p>Figure 8. Stock Chart for the Table in Figure 7.</p>
+<p>The chart is made up of two graphs with a common x-axis: a column graph for the
+stock volume on each day, and a candle-stick graph showing the lowest, opening,
+closing, and highest stock values. Figure 9 gives details of how these elements are
+drawn.</p>
 <p><img alt="" src="images/32-Bubble_Net_Stock_Charts-9.png" /></p>
-<p>Figure 9. The Elements of a Stock Chart. </p>
-<p>The thin red lines drawn on the columns in Figure 9 denote the range between the 
-lowest and highest stock value on that day. The white and black blocks represent the 
-stock's change between its opening and closing price. A white block (often called a 
-"white day") means the price has increased, while black (a "black day") means that it 
-has decreased. </p>
-<p>happyStockChart() is: </p>
-<p>// in Chart2Views.java 
-private static void happyStockChart(XSpreadsheetDocument doc, 
-                                    XSpreadsheet sheet) 
-{ CellRangeAddress rangeAddr = Calc.getAddress(sheet, "A86:F104"); 
-  XChartDocument chartDoc = 
-      Chart2.insertChart(sheet, rangeAddr, "A105", 25, 14, 
-                               "StockVolumeOpenLowHighClose"); 
-  Calc.gotoCell(doc, "A105"); </p>
-<p>Chart2.setTitle(chartDoc, Calc.getString(sheet, "A85")); 
-  Chart2.setXAxisTitle(chartDoc, Calc.getString(sheet, "A86")); 
-  Chart2.setYAxisTitle(chartDoc, Calc.getString(sheet, "B86")); 
-  Chart2.rotateYAxisTitle(chartDoc, 90); </p>
-<p>Chart2.setYAxis2Title(chartDoc, "Stock Value"); 
-  Chart2.rotateYAxis2Title(chartDoc, 90); </p>
-<p>Chart2.setDataPointLabels(chartDoc, Chart2.DP_NONE);<br />
-                     // too cluttered if numerical data is shown </p>
-<p>// change 2<sup>nd</sup> y-axis min and max; default is poor ($0 - $20) 
-  XAxis yAxis2 = Chart2.getYAxis2(chartDoc); 
-  ScaleData sd = yAxis2.getScaleData(); 
-  sd.Minimum = 83; 
-  sd.Maximum = 103; 
-  yAxis2.setScaleData(sd); </p>
-<p>// more stock chart code; explained in a moment... </p>
-<p>}  // end of happyStockChart() </p>
-<p>happyStockChart() sets and rotates the secondary y-axis title, which appears on the 
-right of the chart. Chart2.setYAxis2Title() and Chart2.rotateYAxis2Title() are 
-implemented in the same way as Chart2.setYAxisTitle() and 
-Chart2.rotateYAxisTitle() described in Chapter 29, section 3. </p>
-<p>happyStockChart() also changes the second y-axis' range; the default shows prices 
-between $0 and $20, which is too low. New minimum and maximum values are 
-assigned to the axis' scale data. </p>
+<p>Figure 9. The Elements of a Stock Chart.</p>
+<p>The thin red lines drawn on the columns in Figure 9 denote the range between the
+lowest and highest stock value on that day. The white and black blocks represent the
+stock's change between its opening and closing price. A white block (often called a
+"white day") means the price has increased, while black (a "black day") means that it
+has decreased.</p>
+<p>happyStockChart() is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Chart2Views.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">happyStockChart</span><span class="p">(</span><span class="n">XSpreadsheetDocument</span> <span class="n">doc</span><span class="p">,</span>
+                                    <span class="n">XSpreadsheet</span> <span class="n">sheet</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">CellRangeAddress</span> <span class="n">rangeAddr</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getAddress</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;A86:F104&quot;</span><span class="p">);</span>
+  <span class="n">XChartDocument</span> <span class="n">chartDoc</span> <span class="o">=</span>
+      <span class="n">Chart2</span><span class="p">.</span><span class="na">insertChart</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">rangeAddr</span><span class="p">,</span> <span class="s">&quot;A105&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span>
+                               <span class="s">&quot;StockVolumeOpenLowHighClose&quot;</span><span class="p">);</span>
+  <span class="n">Calc</span><span class="p">.</span><span class="na">gotoCell</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;A105&quot;</span><span class="p">);</span>
+
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;A85&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setXAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;A86&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setYAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;B86&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">rotateYAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="mi">90</span><span class="p">);</span>
+
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setYAxis2Title</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="s">&quot;Stock Value&quot;</span><span class="p">);</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">rotateYAxis2Title</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="mi">90</span><span class="p">);</span>
+
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setDataPointLabels</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">DP_NONE</span><span class="p">);</span>
+                     <span class="c1">// too cluttered if numerical data is shown</span>
+
+  <span class="c1">// change 2nd y-axis min and max; default is poor ($0 - $20)</span>
+  <span class="n">XAxis</span> <span class="n">yAxis2</span> <span class="o">=</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">getYAxis2</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">);</span>
+  <span class="n">ScaleData</span> <span class="n">sd</span> <span class="o">=</span> <span class="n">yAxis2</span><span class="p">.</span><span class="na">getScaleData</span><span class="p">();</span>
+  <span class="n">sd</span><span class="p">.</span><span class="na">Minimum</span> <span class="o">=</span> <span class="mi">83</span><span class="p">;</span>
+  <span class="n">sd</span><span class="p">.</span><span class="na">Maximum</span> <span class="o">=</span> <span class="mi">103</span><span class="p">;</span>
+  <span class="n">yAxis2</span><span class="p">.</span><span class="na">setScaleData</span><span class="p">(</span><span class="n">sd</span><span class="p">);</span>
+
+  <span class="c1">// more stock chart code; explained in a moment...</span>
+
+<span class="p">}</span>  <span class="c1">// end of happyStockChart()</span>
+</code></pre></div>
+<p>happyStockChart() sets and rotates the secondary y-axis title, which appears on the
+right of the chart. Chart2.setYAxis2Title() and Chart2.rotateYAxis2Title() are
+implemented in the same way as Chart2.setYAxisTitle() and
+Chart2.rotateYAxisTitle() described in Chapter 29, section 3.</p>
+<p>happyStockChart() also changes the second y-axis' range; the default shows prices
+between $0 and $20, which is too low. New minimum and maximum values are
+assigned to the axis' scale data.</p>
 <h3 id="31-modifying-the-chart-dates">3.1.  Modifying the Chart Dates<a class="headerlink" href="#31-modifying-the-chart-dates" title="Permanent link">&para;</a></h3>
-<p>A common problem is that date information clutters the stock chart, making it harder 
-to read. Figure 8 shows that the stock template is clever enough to only draw every 
-second date, but this is still too much information for the limited space. </p>
-<p>One solution is to increase the x-axis interval so a tick mark (and date string) is only 
-drawn for every third day, as in Figure 10. </p>
+<p>A common problem is that date information clutters the stock chart, making it harder
+to read. Figure 8 shows that the stock template is clever enough to only draw every
+second date, but this is still too much information for the limited space.</p>
+<p>One solution is to increase the x-axis interval so a tick mark (and date string) is only
+drawn for every third day, as in Figure 10.</p>
 <p><img alt="" src="images/32-Bubble_Net_Stock_Charts-10.png" /></p>
-<p>Figure 10. Stock Chart with Three-day Intervals for the X-Axis. </p>
-<p>Changing the interval is implemented by adjusting the time increment for the x-axis in 
-its ScaleData object: </p>
-<p>// part of happyStockChart() in Chart2Views.java... </p>
-<div class="highlight"><pre><span></span><code>:
+<p>Figure 10. Stock Chart with Three-day Intervals for the X-Axis.</p>
+<p>Changing the interval is implemented by adjusting the time increment for the x-axis in
+its ScaleData object:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of happyStockChart() in Chart2Views.java...</span>
+    <span class="p">:</span>
+<span class="c1">// change x-axis type from number to date</span>
+<span class="n">XAxis</span> <span class="n">xAxis</span> <span class="o">=</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">getXAxis</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">);</span>
+<span class="n">sd</span> <span class="o">=</span> <span class="n">xAxis</span><span class="p">.</span><span class="na">getScaleData</span><span class="p">();</span>
+<span class="n">sd</span><span class="p">.</span><span class="na">AxisType</span> <span class="o">=</span> <span class="n">AxisType</span><span class="p">.</span><span class="na">DATE</span><span class="p">;</span>
+
+<span class="c1">// set major increment to 3 days</span>
+<span class="n">TimeInterval</span> <span class="n">ti</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TimeInterval</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">TimeUnit</span><span class="p">.</span><span class="na">DAY</span><span class="p">);</span>
+<span class="n">TimeIncrement</span> <span class="n">tc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TimeIncrement</span><span class="p">();</span>
+<span class="n">tc</span><span class="p">.</span><span class="na">MajorTimeInterval</span> <span class="o">=</span> <span class="n">ti</span><span class="p">;</span>
+<span class="n">sd</span><span class="p">.</span><span class="na">TimeIncrement</span> <span class="o">=</span> <span class="n">tc</span><span class="p">;</span>
+<span class="n">xAxis</span><span class="p">.</span><span class="na">setScaleData</span><span class="p">(</span><span class="n">sd</span><span class="p">);</span>
 </code></pre></div>
-<p>// change x-axis type from number to date 
-XAxis xAxis = Chart2.getXAxis(chartDoc); 
-sd = xAxis.getScaleData(); 
-sd.AxisType = AxisType.DATE; </p>
-<p>// set major increment to 3 days 
-TimeInterval ti = new TimeInterval(3, TimeUnit.DAY); 
-TimeIncrement tc = new TimeIncrement(); 
-tc.MajorTimeInterval = ti; 
-sd.TimeIncrement = tc; 
-xAxis.setScaleData(sd); </p>
-<p>Before the interval can be changed, the axis type must be changed to be of type 
-DATE. Information on the ScaleData class can be accessed by calling lodoc chart2 
-scaledata. </p>
-<p>Another technique for making the dates easier to read is to rotate their labels. The 
-following code rotates each label counter-clockwise by 45 degrees: </p>
-<p>// part of happyStockChart() in Chart2Views.java... </p>
-<div class="highlight"><pre><span></span><code>:
+<p>Before the interval can be changed, the axis type must be changed to be of type
+DATE. Information on the ScaleData class can be accessed by calling
+<code>lodoc chart2 scaledata</code>.</p>
+<p>Another technique for making the dates easier to read is to rotate their labels. The
+following code rotates each label counter-clockwise by 45 degrees:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of happyStockChart() in Chart2Views.java...</span>
+    <span class="p">:</span>
+<span class="n">XAxis</span> <span class="n">xAxis</span> <span class="o">=</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">getXAxis</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">);</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">xAxis</span><span class="p">,</span> <span class="s">&quot;TextRotation&quot;</span><span class="p">,</span> <span class="mi">45</span><span class="p">);</span>
 </code></pre></div>
-<p>XAxis xAxis = Chart2.getXAxis(chartDoc); 
-Props.setProperty(xAxis, "TextRotation", 45); </p>
-<p>The resulting chart is shown in Figure 11. </p>
+<p>The resulting chart is shown in Figure 11.</p>
 <p><img alt="" src="images/32-Bubble_Net_Stock_Charts-11.png" /></p>
-<p>Figure 11. Stock Chart with Rotated X-Axis Labels. </p>
-<p>Note that the template has automatically switched back to showing every date instead 
-of every second one in Figure 8. </p>
+<p>Figure 11. Stock Chart with Rotated X-Axis Labels.</p>
+<p>Note that the template has automatically switched back to showing every date instead
+of every second one in Figure 8.</p>
 <h3 id="32-changing-the-stock-values-appearance">3.2.  Changing the Stock Values Appearance<a class="headerlink" href="#32-changing-the-stock-values-appearance" title="Permanent link">&para;</a></h3>
-<p>This section describes two changes to the candle stick part of the chart: adjusting the 
-colors used in the "white days" and "black days" blocks, and making the high-low 
-stock line easier to read. The results appear in Figure 12. </p>
+<p>This section describes two changes to the candle stick part of the chart: adjusting the
+colors used in the "white days" and "black days" blocks, and making the high-low
+stock line easier to read. The results appear in Figure 12.</p>
 <p><img alt="" src="images/32-Bubble_Net_Stock_Charts-12.png" /></p>
-<p>Figure 12. Stock Chart with Modified Candle Sticks. </p>
-<p>A stock chart is made up of two chart types: a column chart type for the volume 
-information, and a candle stick chart type for the stock prices. This information can be 
-listed by calling Chart2.printChartTypes(): </p>
-<p>// in happyStockChart() 
-Chart2Views.javaChart2.printChartTypes(chartDoc); </p>
-<p>It produces: </p>
-<p>No. of chart types: 2 
-  com.sun.star.chart2.ColumnChartType 
-  com.sun.star.chart2.CandleStickChartType </p>
-<p>In order to affect the candle stick chart type's data it is necessary to access its 
-XChartType instance. This can be done with the two-argument version of 
-Chart2.findChartType(): </p>
-<p>// in happyStockChart()<br />
-XChartType candleCT = Chart2.findChartType(chartDoc,<br />
-                                   "CandleStickChartType"); </p>
-<p>Figure 13 shows that the XChartType interface is supported by the ChartType service, 
-and the CandleStickChartType subclass.  </p>
+<p>Figure 12. Stock Chart with Modified Candle Sticks.</p>
+<p>A stock chart is made up of two chart types: a column chart type for the volume
+information, and a candle stick chart type for the stock prices. This information can be
+listed by calling Chart2.printChartTypes():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in happyStockChart()</span>
+<span class="n">Chart2Views</span><span class="p">.</span><span class="na">javaChart2</span><span class="p">.</span><span class="na">printChartTypes</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">);</span>
+</code></pre></div>
+<p>It produces:</p>
+<div class="highlight"><pre><span></span><code>No. of chart types: 2
+  com.sun.star.chart2.ColumnChartType
+  com.sun.star.chart2.CandleStickChartType
+</code></pre></div>
+<p>In order to affect the candle stick chart type's data it is necessary to access its
+XChartType instance. This can be done with the two-argument version of
+Chart2.findChartType():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in happyStockChart()</span>
+<span class="n">XChartType</span> <span class="n">candleCT</span> <span class="o">=</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">findChartType</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span>
+                                   <span class="s">&quot;CandleStickChartType&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>Figure 13 shows that the XChartType interface is supported by the ChartType service,
+and the CandleStickChartType subclass.</p>
 <p><img alt="" src="images/32-Bubble_Net_Stock_Charts-13.png" /></p>
-<p>Figure 13. The ChartType Service. </p>
-<p>CandleStickChartType contains some useful properties, including "WhiteDay" and 
-"BlackDay" (for details call lodoc chart2 CandleStickChartType). These 
-properties store sets containing multiple values from the FillProperties and 
-LineProperties services. They can be accessed like so: </p>
-<p>// part of happyStockChart() in Chart2Views.java... </p>
-<div class="highlight"><pre><span></span><code>:
+<p>Figure 13. The ChartType Service.</p>
+<p>CandleStickChartType contains some useful properties, including "WhiteDay" and
+"BlackDay" (for details call <code>lodoc chart2 CandleStickChartType</code>). These
+properties store sets containing multiple values from the FillProperties and
+LineProperties services. They can be accessed like so:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of happyStockChart() in Chart2Views.java...</span>
+    <span class="p">:</span>
+<span class="n">XChartType</span> <span class="n">candleCT</span> <span class="o">=</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">findChartType</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span>
+                                   <span class="s">&quot;CandleStickChartType&quot;</span><span class="p">);</span>
+<span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                         <span class="n">Props</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="n">candleCT</span><span class="p">,</span> <span class="s">&quot;WhiteDay&quot;</span><span class="p">));</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">showObjProps</span><span class="p">(</span><span class="s">&quot;WhiteDay&quot;</span><span class="p">,</span> <span class="n">props</span><span class="p">);</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;FillColor&quot;</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">GREEN</span><span class="p">);</span>
 </code></pre></div>
-<p>XChartType candleCT = Chart2.findChartType(chartDoc,<br />
-                                   "CandleStickChartType"); 
-XPropertySet props = Lo.qi(XPropertySet.class,<br />
-                         Props.getProperty(candleCT, "WhiteDay")); 
-Props.showObjProps("WhiteDay", props); 
-Props.setProperty(props, "FillColor", Calc.GREEN); </p>
-<p>The same sort of change can be done to the "FillColor" property inside the 
-"BlackDay" property  set. Both changes are implemented inside 
-Chart2.colorStockBars(): </p>
-<p>// in the Chart2 class 
-public static void colorStockBars(XChartType ct, 
-                            int wDayColor, int bDayColor) 
-{ if (!ct.getChartType().equals( 
-                  "com.sun.star.chart2.CandleStickChartType")) 
-    System.out.println("Chart type not a candle stick: " +<br />
-                                            ct.getChartType()); 
-  else { 
-    XPropertySet props = Lo.qi(XPropertySet.class,<br />
-                          Props.getProperty(ct, "WhiteDay")); 
-    Props.setProperty(props, "FillColor", wDayColor); </p>
-<div class="highlight"><pre><span></span><code>props = Lo.qi(XPropertySet.class,  
-                      Props.getProperty(ct, &quot;BlackDay&quot;)); 
-Props.setProperty(props, &quot;FillColor&quot;, bDayColor);
+<p>The same sort of change can be done to the "FillColor" property inside the
+"BlackDay" property  set. Both changes are implemented inside
+Chart2.colorStockBars():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">colorStockBars</span><span class="p">(</span><span class="n">XChartType</span> <span class="n">ct</span><span class="p">,</span>
+                            <span class="kt">int</span> <span class="n">wDayColor</span><span class="p">,</span> <span class="kt">int</span> <span class="n">bDayColor</span><span class="p">)</span>
+<span class="p">{</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">ct</span><span class="p">.</span><span class="na">getChartType</span><span class="p">().</span><span class="na">equals</span><span class="p">(</span>
+                  <span class="s">&quot;com.sun.star.chart2.CandleStickChartType&quot;</span><span class="p">))</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Chart type not a candle stick: &quot;</span> <span class="o">+</span>
+                                            <span class="n">ct</span><span class="p">.</span><span class="na">getChartType</span><span class="p">());</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                          <span class="n">Props</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="s">&quot;WhiteDay&quot;</span><span class="p">));</span>
+    <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;FillColor&quot;</span><span class="p">,</span> <span class="n">wDayColor</span><span class="p">);</span>
+
+    <span class="n">props</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                          <span class="n">Props</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="s">&quot;BlackDay&quot;</span><span class="p">));</span>
+    <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;FillColor&quot;</span><span class="p">,</span> <span class="n">bDayColor</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of colorStockBars()</span>
 </code></pre></div>
-<p>} 
-}  // end of colorStockBars() </p>
-<p>Chart2.findChartType() and Chart2.colorStockBars() are called at the end of 
-happyStockChart() to change the "white day" blocks to green and the "black day" 
-blocks to red: </p>
-<p>// part of happyStockChart() in Chart2Views.java... </p>
-<div class="highlight"><pre><span></span><code>:
+<p>Chart2.findChartType() and Chart2.colorStockBars() are called at the end of
+happyStockChart() to change the "white day" blocks to green and the "black day"
+blocks to red:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of happyStockChart() in Chart2Views.java...</span>
+    <span class="p">:</span>
+<span class="n">XChartType</span> <span class="n">candleCT</span> <span class="o">=</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">findChartType</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span>
+                                   <span class="s">&quot;CandleStickChartType&quot;</span><span class="p">);</span>
+<span class="n">Chart2</span><span class="p">.</span><span class="na">colorStockBars</span><span class="p">(</span><span class="n">candleCT</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">GREEN</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">RED</span><span class="p">);</span>
 </code></pre></div>
-<p>XChartType candleCT = Chart2.findChartType(chartDoc,<br />
-                                   "CandleStickChartType"); 
-Chart2.colorStockBars(candleCT, Calc.GREEN, Calc.RED); </p>
-<p>Making the high-low lines thicker and yellow requires access to the data series in the 
+<p>Making the high-low lines thicker and yellow requires access to the data series in the
 candle stick chart type (as shown in Figure 13). This is implemented by using the two-
-argument version of Chart2.getDataSeries(): 
-XDataSeries[] ds = Chart2.getDataSeries(chartDoc,<br />
-                                  "CandleStickChartType"); 
-The high-low lines are adjusted via the "LineWidth" and "Color" properties in the 
-series. The code at the end of  happyStockChart() is: </p>
-<p>// part of happyStockChart() in Chart2Views.java... </p>
-<div class="highlight"><pre><span></span><code>:
+argument version of Chart2.getDataSeries():</p>
+<div class="highlight"><pre><span></span><code><span class="n">XDataSeries</span><span class="o">[]</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">getDataSeries</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span>
+                                  <span class="s">&quot;CandleStickChartType&quot;</span><span class="p">);</span>
 </code></pre></div>
-<p>XDataSeries[] ds = Chart2.getDataSeries(chartDoc,<br />
-                                  "CandleStickChartType"); 
-Props.setProperty(ds[0], "LineWidth", 120);   // in 1/100 mm<br />
-Props.setProperty(ds[0], "Color", Calc.YELLOW); </p>
+<p>The high-low lines are adjusted via the "LineWidth" and "Color" properties in the
+series. The code at the end of  happyStockChart() is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of happyStockChart() in Chart2Views.java...</span>
+
+    <span class="p">:</span>
+<span class="n">XDataSeries</span><span class="o">[]</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">getDataSeries</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span>
+                                  <span class="s">&quot;CandleStickChartType&quot;</span><span class="p">);</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">ds</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="s">&quot;LineWidth&quot;</span><span class="p">,</span> <span class="mi">120</span><span class="p">);</span>   <span class="c1">// in 1/100 mm</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">ds</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="s">&quot;Color&quot;</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">YELLOW</span><span class="p">);</span>
+</code></pre></div>
 <h2 id="4-adding-a-line-graph-to-a-stock-chart">4.  Adding a Line Graph to a Stock Chart<a class="headerlink" href="#4-adding-a-line-graph-to-a-stock-chart" title="Permanent link">&para;</a></h2>
-<p>stockPricesChart() in Chart2Views.java utilizes the "Calc Guide Stock Prices" table in 
-"chartsData.ods" (see Figure 14).  </p>
+<p>stockPricesChart() in Chart2Views.java utilizes the "Calc Guide Stock Prices" table in
+"chartsData.ods" (see Figure 14).</p>
 <p><img alt="" src="images/32-Bubble_Net_Stock_Charts-14.png" /></p>
-<p>Figure 14. The "Calc Guide Stock Prices" Table. </p>
-<p>The stock chart is created using the first five columns, excluding the "Pork Bellies" 
-data. There's no "Volume" column for the stocks, so the "StockOpenLowHighClose" 
-template is employed. </p>
-<p>The stock chart is shown in Figure 15. </p>
+<p>Figure 14. The "Calc Guide Stock Prices" Table.</p>
+<p>The stock chart is created using the first five columns, excluding the "Pork Bellies"
+data. There's no "Volume" column for the stocks, so the "StockOpenLowHighClose"
+template is employed.</p>
+<p>The stock chart is shown in Figure 15.</p>
 <p><img alt="" src="images/32-Bubble_Net_Stock_Charts-15.png" /></p>
-<p>Figure 15. Stock Chart for the Table in Figure 14. </p>
-<p>stockPricesChart() is: </p>
-<p>// in Chart2Views.java 
-private static void stockPricesChart(XSpreadsheetDocument doc, 
-                                      XSpreadsheet sheet) 
-{ 
-  CellRangeAddress rangeAddr = Calc.getAddress(sheet, "E141:I146"); 
-  XChartDocument chartDoc = 
-      Chart2.insertChart(sheet, rangeAddr, "E148", 12, 11, 
-                                     "StockOpenLowHighClose"); 
-  Calc.gotoCell(doc, "A139"); </p>
-<p>Chart2.setTitle(chartDoc, Calc.getString(sheet, "E140")); 
-  Chart2.setDataPointLabels(chartDoc, Chart2.DP_NONE); 
-  Chart2.setXAxisTitle(chartDoc, Calc.getString(sheet, "E141")); 
-  Chart2.setYAxisTitle(chartDoc, "Dollars"); 
-  Chart2.rotateYAxisTitle(chartDoc, 90); </p>
-<p>// more code for adding the "Pork Bellies" line... </p>
-<p>}  // end of stockPricesChart() </p>
-<p>A line graph showing the movement of "Pork Bellies" is added to the chart by 
-Chart2.addStockLine(). The additional code at the end of stockPricesChart() is: </p>
-<p>// part of stockPricesChart() in Chart2Views.java... </p>
-<div class="highlight"><pre><span></span><code>:
+<p>Figure 15. Stock Chart for the Table in Figure 14.</p>
+<p>stockPricesChart() is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Chart2Views.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">stockPricesChart</span><span class="p">(</span><span class="n">XSpreadsheetDocument</span> <span class="n">doc</span><span class="p">,</span>
+                                      <span class="n">XSpreadsheet</span> <span class="n">sheet</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">CellRangeAddress</span> <span class="n">rangeAddr</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getAddress</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;E141:I146&quot;</span><span class="p">);</span>
+  <span class="n">XChartDocument</span> <span class="n">chartDoc</span> <span class="o">=</span>
+      <span class="n">Chart2</span><span class="p">.</span><span class="na">insertChart</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">rangeAddr</span><span class="p">,</span> <span class="s">&quot;E148&quot;</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span>
+                                     <span class="s">&quot;StockOpenLowHighClose&quot;</span><span class="p">);</span>
+  <span class="n">Calc</span><span class="p">.</span><span class="na">gotoCell</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;A139&quot;</span><span class="p">);</span>
+
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;E140&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setDataPointLabels</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">DP_NONE</span><span class="p">);</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setXAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;E141&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setYAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="s">&quot;Dollars&quot;</span><span class="p">);</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">rotateYAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="mi">90</span><span class="p">);</span>
+
+  <span class="c1">// more code for adding the &quot;Pork Bellies&quot; line...</span>
+
+<span class="p">}</span>  <span class="c1">// end of stockPricesChart()</span>
 </code></pre></div>
-<p>String sheetName = Calc.getSheetName(sheet); 
-String porkLabel = sheetName + "." + "J141"; 
-String porkPoints = sheetName + "." + "J142:J146"; 
-Chart2.addStockLine(chartDoc, porkLabel, porkPoints); </p>
-<p>Chart2.viewLegend(chartDoc, true); </p>
-<p>The resulting change to the stock chart is shown in Figure 16. </p>
+<p>A line graph showing the movement of "Pork Bellies" is added to the chart by
+Chart2.addStockLine(). The additional code at the end of stockPricesChart() is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of stockPricesChart() in Chart2Views.java...</span>
+    <span class="p">:</span>
+<span class="n">String</span> <span class="n">sheetName</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getSheetName</span><span class="p">(</span><span class="n">sheet</span><span class="p">);</span>
+<span class="n">String</span> <span class="n">porkLabel</span> <span class="o">=</span> <span class="n">sheetName</span> <span class="o">+</span> <span class="s">&quot;.&quot;</span> <span class="o">+</span> <span class="s">&quot;J141&quot;</span><span class="p">;</span>
+<span class="n">String</span> <span class="n">porkPoints</span> <span class="o">=</span> <span class="n">sheetName</span> <span class="o">+</span> <span class="s">&quot;.&quot;</span> <span class="o">+</span> <span class="s">&quot;J142:J146&quot;</span><span class="p">;</span>
+<span class="n">Chart2</span><span class="p">.</span><span class="na">addStockLine</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">porkLabel</span><span class="p">,</span> <span class="n">porkPoints</span><span class="p">);</span>
+
+<span class="n">Chart2</span><span class="p">.</span><span class="na">viewLegend</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+</code></pre></div>
+<p>The resulting change to the stock chart is shown in Figure 16.</p>
 <p><img alt="" src="images/32-Bubble_Net_Stock_Charts-16.png" /></p>
-<p>Figure 16. Stock Chart with Line Graph for the Table in Figure 15. </p>
-<p>A data series belongs to a chart type, which is part of the coordinates system. </p>
-<p>Therefore the first task is to obtain the chart's coordinate system. A new line chart 
-type is added to it, and an empty data series is inserted into the chart type. </p>
-<p>The addition of a new chart type to the chart's coordinate system is preformed by 
-Chart2.addChartType(). The following adds a line chart type: </p>
-<p>// part of Chart2.addStockLine(); see below... </p>
-<p>XChartType ct = Chart2.addChartType(chartDoc, "LineChartType"); </p>
-<p>Chart2.addChartType() uses Chart2.getCoordSystem() to get the chart's coordinate 
-system, and then converts it into an XChartTypeContainer so the new chart type can 
-be added: </p>
-<p>// in the Chart2 class 
-public static XChartType addChartType(XChartDocument chartDoc,<br />
-                                      String chartType) 
-{ // create new chart type 
-  XChartType ct = Lo.createInstanceMCF(XChartType.class,<br />
-                         "com.sun.star.chart2." + chartType); 
-  if (ct == null) { 
-    System.out.println("Unable to create XChartType: "+chartType); 
-    return ct; 
-  } </p>
-<p>// add chart type to coord system 
-  XCoordinateSystem coordSys = getCoordSystem(chartDoc); 
-  XChartTypeContainer ctCon =<br />
-           Lo.qi(XChartTypeContainer.class, coordSys); 
-  ctCon.addChartType(ct); 
-  return ct; 
-}  // end of addChartType() </p>
-<p>Chart2.addChartType() returns a reference to the new chart type, and an empty data 
-series is added to it by converting the chart type into an XDataSeriesContainer: </p>
-<p>// part of Chart2.addStockLine(); see below... </p>
-<div class="highlight"><pre><span></span><code>:
+<p>Figure 16. Stock Chart with Line Graph for the Table in Figure 15.</p>
+<p>A data series belongs to a chart type, which is part of the coordinates system.
+Therefore the first task is to obtain the chart's coordinate system. A new line chart
+type is added to it, and an empty data series is inserted into the chart type.</p>
+<p>The addition of a new chart type to the chart's coordinate system is preformed by
+Chart2.addChartType(). The following adds a line chart type:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of Chart2.addStockLine(); see below...</span>
+<span class="n">XChartType</span> <span class="n">ct</span> <span class="o">=</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">addChartType</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="s">&quot;LineChartType&quot;</span><span class="p">);</span>
 </code></pre></div>
-<p>XChartType ct = addChartType(chartDoc, "LineChartType"); 
-XDataSeriesContainer dataSeriesCnt =<br />
-                        Lo.qi(XDataSeriesContainer.class, ct); </p>
-<p>// create (empty) data series in the line chart 
-XDataSeries ds = Lo.createInstanceMCF(XDataSeries.class,<br />
-                             "com.sun.star.chart2.DataSeries"); 
-if (ds == null) { 
-  System.out.println("Unable to create XDataSeries: " + ds); 
-  return; 
-} 
-dataSeriesCnt.addDataSeries(ds); </p>
-<p>This empty data series is filled with data points via its XDataSink interface, using the 
-steps shown in Chapter 31, section 5.1, Figure 13. A DataProvider service is required 
-so that two XDataSequence objects can be instantiated, one for the label of an 
-XLabeledDataSequence object, the other for its data. The XDataSequence object 
-representing the data must have its "Role" property set to "values-y" since it will 
-become the y-coordinates of the line graph. </p>
-<p>The task of building the XLabeledDataSequence object is handled by 
-Chart2.createLDSeq(), which I used in Chapter 31, section 5.1 to add error bars to a 
-scatter chart, and in section 1 to place category labels in a bubble chart.  </p>
-<p>The code is: </p>
-<p>// part of Chart2.addStockLine(); see below... </p>
-<div class="highlight"><pre><span></span><code>:
+<p>Chart2.addChartType() uses Chart2.getCoordSystem() to get the chart's coordinate
+system, and then converts it into an XChartTypeContainer so the new chart type can
+be added:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XChartType</span> <span class="nf">addChartType</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span>
+                                      <span class="n">String</span> <span class="n">chartType</span><span class="p">)</span>
+<span class="p">{</span> <span class="c1">// create new chart type</span>
+  <span class="n">XChartType</span> <span class="n">ct</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XChartType</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                         <span class="s">&quot;com.sun.star.chart2.&quot;</span> <span class="o">+</span> <span class="n">chartType</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">ct</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Unable to create XChartType: &quot;</span><span class="o">+</span><span class="n">chartType</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">ct</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// add chart type to coord system</span>
+  <span class="n">XCoordinateSystem</span> <span class="n">coordSys</span> <span class="o">=</span> <span class="n">getCoordSystem</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">);</span>
+  <span class="n">XChartTypeContainer</span> <span class="n">ctCon</span> <span class="o">=</span>
+           <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XChartTypeContainer</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">coordSys</span><span class="p">);</span>
+  <span class="n">ctCon</span><span class="p">.</span><span class="na">addChartType</span><span class="p">(</span><span class="n">ct</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">ct</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of addChartType()</span>
 </code></pre></div>
-<p>// treat series as a data sink 
-XDataSink dataSink = Lo.qi(XDataSink.class, ds); </p>
-<p>// build a sequence representing the y-axis data 
-XDataProvider dp = chartDoc.getDataProvider(); 
-XLabeledDataSequence dLSeq =<br />
-              createLDSeq(dp, "values-y", dataLabel, dataRange); </p>
-<p>// add sequence to the sink 
-XLabeledDataSequence[] ldSeqArr = { dLSeq }; 
-dataSink.setData(ldSeqArr); </p>
-<p>All the preceding code fragments of this section are wrapped up inside 
-Chart2.addStockLine(): </p>
-<p>// in the Chart2 class 
-public static void addStockLine(XChartDocument chartDoc,<br />
-                             String dataLabel, String dataRange) 
-{ // add (empty) line chart to the doc 
-  XChartType ct = addChartType(chartDoc, "LineChartType"); 
-  XDataSeriesContainer dataSeriesCnt =<br />
-                            Lo.qi(XDataSeriesContainer.class, ct); </p>
-<p>// create (empty) data series in the line chart 
-  XDataSeries ds = Lo.createInstanceMCF(XDataSeries.class,<br />
-                                "com.sun.star.chart2.DataSeries"); 
-  if (ds == null) { 
-    System.out.println("Unable to create XDataSeries: " + ds); 
-    return; 
-  } 
-  Props.setProperty(ds, "Color", 0xFF0000); 
-  dataSeriesCnt.addDataSeries(ds); </p>
-<p>// treat series as a data sink 
-  XDataSink dataSink = Lo.qi(XDataSink.class, ds); </p>
-<p>// build a sequence representing the y-axis data 
-  XDataProvider dp = chartDoc.getDataProvider(); 
-  XLabeledDataSequence dLSeq =<br />
-             createLDSeq(dp, "values-y", dataLabel, dataRange); </p>
-<p>// add sequence to the sink 
-  XLabeledDataSequence[] ldSeqArr = { dLSeq }; 
-  dataSink.setData(ldSeqArr); 
-}  // end of addStockLine() </p>
-<p>Chart2.addStockLine() is passed a reference to the chart document, and references to 
-the label and data for the line graph: </p>
-<p>// part of stockPricesChart() in Chart2Views.java... </p>
-<div class="highlight"><pre><span></span><code>:
+<p>Chart2.addChartType() returns a reference to the new chart type, and an empty data
+series is added to it by converting the chart type into an XDataSeriesContainer:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of Chart2.addStockLine(); see below...</span>
+    <span class="p">:</span>
+<span class="n">XChartType</span> <span class="n">ct</span> <span class="o">=</span> <span class="n">addChartType</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="s">&quot;LineChartType&quot;</span><span class="p">);</span>
+<span class="n">XDataSeriesContainer</span> <span class="n">dataSeriesCnt</span> <span class="o">=</span>
+                        <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XDataSeriesContainer</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">ct</span><span class="p">);</span>
+
+<span class="c1">// create (empty) data series in the line chart</span>
+<span class="n">XDataSeries</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XDataSeries</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                             <span class="s">&quot;com.sun.star.chart2.DataSeries&quot;</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">ds</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Unable to create XDataSeries: &quot;</span> <span class="o">+</span> <span class="n">ds</span><span class="p">);</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">dataSeriesCnt</span><span class="p">.</span><span class="na">addDataSeries</span><span class="p">(</span><span class="n">ds</span><span class="p">);</span>
 </code></pre></div>
-<p>String sheetName = Calc.getSheetName(sheet); 
-String porkLabel = sheetName + "." + "J141"; 
-String porkPoints = sheetName + "." + "J142:J146"; 
-Chart2.addStockLine(chartDoc, porkLabel, porkPoints); </p>
+<p>This empty data series is filled with data points via its XDataSink interface, using the
+steps shown in Chapter 31, section 5.1, Figure 13. A DataProvider service is required
+so that two XDataSequence objects can be instantiated, one for the label of an
+XLabeledDataSequence object, the other for its data. The XDataSequence object
+representing the data must have its "Role" property set to "values-y" since it will
+become the y-coordinates of the line graph.</p>
+<p>The task of building the XLabeledDataSequence object is handled by
+Chart2.createLDSeq(), which I used in Chapter 31, section 5.1 to add error bars to a
+scatter chart, and in section 1 to place category labels in a bubble chart.</p>
+<p>The code is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of Chart2.addStockLine(); see below...</span>
+    <span class="p">:</span>
+<span class="c1">// treat series as a data sink</span>
+<span class="n">XDataSink</span> <span class="n">dataSink</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XDataSink</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">ds</span><span class="p">);</span>
+
+<span class="c1">// build a sequence representing the y-axis data</span>
+<span class="n">XDataProvider</span> <span class="n">dp</span> <span class="o">=</span> <span class="n">chartDoc</span><span class="p">.</span><span class="na">getDataProvider</span><span class="p">();</span>
+<span class="n">XLabeledDataSequence</span> <span class="n">dLSeq</span> <span class="o">=</span>
+              <span class="n">createLDSeq</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="s">&quot;values-y&quot;</span><span class="p">,</span> <span class="n">dataLabel</span><span class="p">,</span> <span class="n">dataRange</span><span class="p">);</span>
+
+<span class="c1">// add sequence to the sink</span>
+<span class="n">XLabeledDataSequence</span><span class="o">[]</span> <span class="n">ldSeqArr</span> <span class="o">=</span> <span class="p">{</span> <span class="n">dLSeq</span> <span class="p">};</span>
+<span class="n">dataSink</span><span class="p">.</span><span class="na">setData</span><span class="p">(</span><span class="n">ldSeqArr</span><span class="p">);</span>
+</code></pre></div>
+<p>All the preceding code fragments of this section are wrapped up inside
+Chart2.addStockLine():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">addStockLine</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span>
+                             <span class="n">String</span> <span class="n">dataLabel</span><span class="p">,</span> <span class="n">String</span> <span class="n">dataRange</span><span class="p">)</span>
+<span class="p">{</span> <span class="c1">// add (empty) line chart to the doc</span>
+  <span class="n">XChartType</span> <span class="n">ct</span> <span class="o">=</span> <span class="n">addChartType</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="s">&quot;LineChartType&quot;</span><span class="p">);</span>
+  <span class="n">XDataSeriesContainer</span> <span class="n">dataSeriesCnt</span> <span class="o">=</span>
+                            <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XDataSeriesContainer</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">ct</span><span class="p">);</span>
+
+  <span class="c1">// create (empty) data series in the line chart</span>
+  <span class="n">XDataSeries</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XDataSeries</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                                <span class="s">&quot;com.sun.star.chart2.DataSeries&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">ds</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Unable to create XDataSeries: &quot;</span> <span class="o">+</span> <span class="n">ds</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="s">&quot;Color&quot;</span><span class="p">,</span> <span class="mh">0xFF0000</span><span class="p">);</span>
+  <span class="n">dataSeriesCnt</span><span class="p">.</span><span class="na">addDataSeries</span><span class="p">(</span><span class="n">ds</span><span class="p">);</span>
+
+  <span class="c1">// treat series as a data sink</span>
+  <span class="n">XDataSink</span> <span class="n">dataSink</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XDataSink</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">ds</span><span class="p">);</span>
+
+  <span class="c1">// build a sequence representing the y-axis data</span>
+  <span class="n">XDataProvider</span> <span class="n">dp</span> <span class="o">=</span> <span class="n">chartDoc</span><span class="p">.</span><span class="na">getDataProvider</span><span class="p">();</span>
+  <span class="n">XLabeledDataSequence</span> <span class="n">dLSeq</span> <span class="o">=</span>
+             <span class="n">createLDSeq</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="s">&quot;values-y&quot;</span><span class="p">,</span> <span class="n">dataLabel</span><span class="p">,</span> <span class="n">dataRange</span><span class="p">);</span>
+
+  <span class="c1">// add sequence to the sink</span>
+  <span class="n">XLabeledDataSequence</span><span class="o">[]</span> <span class="n">ldSeqArr</span> <span class="o">=</span> <span class="p">{</span> <span class="n">dLSeq</span> <span class="p">};</span>
+  <span class="n">dataSink</span><span class="p">.</span><span class="na">setData</span><span class="p">(</span><span class="n">ldSeqArr</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of addStockLine()</span>
+</code></pre></div>
+<p>Chart2.addStockLine() is passed a reference to the chart document, and references to
+the label and data for the line graph:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of stockPricesChart() in Chart2Views.java...</span>
+    <span class="p">:</span>
+<span class="n">String</span> <span class="n">sheetName</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getSheetName</span><span class="p">(</span><span class="n">sheet</span><span class="p">);</span>
+<span class="n">String</span> <span class="n">porkLabel</span> <span class="o">=</span> <span class="n">sheetName</span> <span class="o">+</span> <span class="s">&quot;.&quot;</span> <span class="o">+</span> <span class="s">&quot;J141&quot;</span><span class="p">;</span>
+<span class="n">String</span> <span class="n">porkPoints</span> <span class="o">=</span> <span class="n">sheetName</span> <span class="o">+</span> <span class="s">&quot;.&quot;</span> <span class="o">+</span> <span class="s">&quot;J142:J146&quot;</span><span class="p">;</span>
+<span class="n">Chart2</span><span class="p">.</span><span class="na">addStockLine</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">porkLabel</span><span class="p">,</span> <span class="n">porkPoints</span><span class="p">);</span>
+</code></pre></div>
                 
               
               

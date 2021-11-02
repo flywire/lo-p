@@ -1408,8 +1408,7 @@ is easier to use interactively through Office's  GUI.</p>
 <p>However, if you have an urge to hyphenate, then
 LingusticExamples.java in the Developer's Guide
 examples contains some code; it can be downloaded from
-<a href="http://api.libreoffice.org/examples/DevelopersGuide/OfficeDev/Linguistic/Linguistic">http://api.libreoffice.org/examples/DevelopersGuide/OfficeDev/Linguistic/Linguistic</a>
-Examples.java.</p>
+<a href="http://api.libreoffice.org/examples/DevelopersGuide/OfficeDev/Linguistic/LinguisticExamples.java">http://api.libreoffice.org/examples/DevelopersGuide/OfficeDev/Linguistic/LinguisticExamples.java</a>.</p>
 <p>I'll describe two examples, Lingo.java and LingoFile.java. The first lists information
 about the linguistic services, then uses the spell checker, thesaurus, and grammar
 checker 'standalone' without having to load an Office document first. LingoFile.java
@@ -1510,9 +1509,9 @@ en-GB.dic won't be consulted when text is spell checked.</p>
 <p>It retrieves a conventional dictionary list first (called dictList), and iterates through its
 dictionaries using printDictsInfo(). Then it obtains the conversion dictionary list
 (called csList), and iterates over that with printConDictsInfo().</p>
-<p>Figure 3 shows the main services and interfaces used by ordinary dictionaries.</p>
-<p><img alt="" src="images/10-Linguistics-3.png" /></p>
-<p>Figure 3. The DictionaryList and Dictionary Services.</p>
+<p>Figure 2 shows the main services and interfaces used by ordinary dictionaries.</p>
+<p><img alt="" src="images/10-Linguistics-2.png" /></p>
+<p>Figure 2. The DictionaryList and Dictionary Services.</p>
 <p>Each dictionary in the list has an XDictionary interface which contains methods for
 accessing and changing its entries. printDictsInfo() retrieves an XDictionary array
 from the list, and prints out a summary of each dictionary:</p>
@@ -1550,11 +1549,11 @@ from the list, and prints out a summary of each dictionary:</p>
 <span class="p">}</span>  <span class="c1">// end of getDictType()</span>
 </code></pre></div>
 <p>Conversion dictionaries map words in one language/dialect to corresponding words in
-another language/dialect. Figure 4 shows that conversion dictionaries are organized in
+another language/dialect. 3 shows that conversion dictionaries are organized in
 a similar way to ordinary ones. The interfaces for manipulating a conversion
 dictionary are XConversionDictionary and XConversionPropertyType.</p>
-<p><img alt="" src="images/10-Linguistics-4.png" /></p>
-<p>Figure 4. The ConversionDictionaryList and ConversionDictionary Services.</p>
+<p><img alt="" src="images/10-Linguistics-3.png" /></p>
+<p>Figure 3. The ConversionDictionaryList and ConversionDictionary Services.</p>
 <p>Write.dictsInfo() calls printConDictsInfo() to print the names of the conversion
 dictionaries – by extracting an XNameContainer from the dictionary list, and then
 pulling a list of the names from the container:</p>
@@ -1575,24 +1574,23 @@ pulling a list of the names from the container:</p>
 <span class="p">}</span>  <span class="c1">// end of printConDictsInfo()</span>
 </code></pre></div>
 <p>Output similar to Write.dictsInfo() can be viewed via Office's Tools, Options,
-Language Settings, "Writing Aids" dialog, shown in Figure 5.</p>
-<p><img alt="" src="images/10-Linguistics-5.png" /></p>
-<p>Figure 5. The Writing Aids Dialog.</p>
+Language Settings, "Writing Aids" dialog, shown in Figure 4.</p>
+<p><img alt="" src="images/10-Linguistics-4.png" /></p>
+<p>Figure 4. The Writing Aids Dialog.</p>
 <p>The dictionaries are listed in the second pane of the dialog. Also, at the bottom of the
 window is a "Get more dictionaries online" hyperlink which takes the user to Office's
-extension website, and displays the "Dictionary" category (see Figure 6).</p>
-<p><img alt="" src="images/10-Linguistics-6.png" /></p>
-<p>Figure 6. The Dictionary Extensions at the LibreOffice Website.</p>
-<p>The URL of the page in Figure 6 is:
-<a href="http://extensions.libreoffice.org/">http://extensions.libreoffice.org/</a>
-                 extension-center?getCategories=Dictionary
+extension website, and displays the "Dictionary" category (see Figure 5).</p>
+<p><img alt="" src="images/10-Linguistics-5.png" /></p>
+<p>Figure 5. The Dictionary Extensions at the LibreOffice Website.</p>
+<p>The URL of the page in Figure 5 is:
+<a href="http://extensions.libreoffice.org/extension-center?getCategories=Dictionary">http://extensions.libreoffice.org/extension-center?getCategories=Dictionary</a>
 The dictionary category currently has 94 entries, but if you can't find what you're
 looking for, don't forget the extensions for OpenOffice, at:
 <a href="http://extensions.openoffice.org/">http://extensions.openoffice.org/</a>
 If you're unclear about how to install extensions, the process is explained online at
 <a href="https://wiki.documentfoundation.org/Documentation/HowTo/install_extension">https://wiki.documentfoundation.org/Documentation/HowTo/install_extension</a>, or in
-the "Installing Extensions" guide available at <a href="http://www.libreoffice.org/get-">http://www.libreoffice.org/get-</a>
-help/documentation/.</p>
+the "Installing Extensions" guide available at
+<a href="http://www.libreoffice.org/get-help/documentation/">http://www.libreoffice.org/get-help/documentation/</a>.</p>
 <h3 id="12-linguistic-properties">1.2.  Linguistic Properties<a class="headerlink" href="#12-linguistic-properties" title="Permanent link">&para;</a></h3>
 <p>Back in the Lingo.java example, Write.getLinguProperties() returns an instance of
 XLinguProperties, and its properties are printed by calling Props.showProps():</p>
@@ -1624,10 +1622,10 @@ XLinguProperties, and its properties are printed by calling Props.showProps():</
   IsWrapReverse == false
 </code></pre></div>
 <p>These properties are explained in the online documentation for the XLinguProperties
-interface (lodoc XLinguProperties), and also in the Developer's Guide.</p>
+interface (<code>lodoc XLinguProperties</code>), and also in the Developer's Guide.</p>
 <p>The properties are spread across several dialogs in Office's GUI, starting from the
 Tools, Options, "Language Settings" menu item. However,  most of them are in the
-"Options" pane of the "Writing Aids" Dialog in Figure 5.</p>
+"Options" pane of the "Writing Aids" Dialog in Figure 4.</p>
 <h3 id="13-installed-extensions">1.3.  Installed Extensions<a class="headerlink" href="#13-installed-extensions" title="Permanent link">&para;</a></h3>
 <p>Additional dictionaries, and other language tools such as grammar checkers, are
 loaded into Office as extensions, so calling Info.listExtensions() can be informative.</p>
@@ -1673,9 +1671,9 @@ loaded into Office as extensions, so calling Info.listExtensions() can be inform
 <p>The "Loc" entries are the directories or OXT files containing the extensions. Most
 extensions are placed in the <OFFICE>\share\extensions folder on Windows.</p>
 <p>Office can display similar information via its Tools, "Extension Manager" dialog, as
-in Figure 7.</p>
-<p><img alt="" src="images/10-Linguistics-7.png" /></p>
-<p>Figure 7. The Extension Manager Dialog.</p>
+in Figure 6.</p>
+<p><img alt="" src="images/10-Linguistics-6.png" /></p>
+<p>Figure 6. The Extension Manager Dialog.</p>
 <p>The code for Info.listExtensions():</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// in the Info class</span>
 <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">listExtensions</span><span class="p">()</span>
@@ -1707,9 +1705,9 @@ in Figure 7.</p>
 services: the spell checker, the hyphenator, and thesaurus.The proof reader (i.e. the
 grammar checker) is managed by a separate Proofreader service, which I'll explain
 later.</p>
-<p>Figure 8 shows the interfaces accessible from the LinguServiceManager service.</p>
-<p><img alt="" src="images/10-Linguistics-8.png" /></p>
-<p>Figure 8. The LinguServiceManager Service and Interfaces.</p>
+<p>Figure 7 shows the interfaces accessible from the LinguServiceManager service.</p>
+<p><img alt="" src="images/10-Linguistics-7.png" /></p>
+<p>Figure 7. The LinguServiceManager Service and Interfaces.</p>
 <p>In Lingo.java, the LinguServiceManager is instantiated and then
 Write.printServicesInfo() reports details about its services:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// in Lingo.java</span>
@@ -1784,7 +1782,7 @@ Locales for Proofreader (94):
 <p>The print-out contains three lists: a list of available services, a list of configured
 services (i.e. ones that are activated inside Office), and a list of the locales available to
 each service.</p>
-<p>Figure 8 shows that LinguServiceManager only manages the spell checker,
+<p>Figure 7 shows that LinguServiceManager only manages the spell checker,
 hyphenator, and thesaurus, and yet Write.printServicesInfo() includes information
 about the proof reader. Somewhat confusingly, although LinguServiceManager
 cannot instantiate a proof reader it can print information about it.</p>
@@ -1867,9 +1865,9 @@ No. of names: 7
 </code></pre></div>
 <p>Nothing is reported for "horseback" because that's correctly spelt, and spellWord()
 returns the boolean true.</p>
-<p>The SpellChecker service and its important interfaces are shown in Figure 9.</p>
-<p><img alt="" src="images/10-Linguistics-9.png" /></p>
-<p>Figure 9. The SpellChecker Service and Interfaces.</p>
+<p>The SpellChecker service and its important interfaces are shown in Figure 8.</p>
+<p><img alt="" src="images/10-Linguistics-8.png" /></p>
+<p>Figure 8. The SpellChecker Service and Interfaces.</p>
 <p>Write.spellWord() utilizes XSpellChecker.spell() to find a spelling mistake, then
 prints the alternative spellings:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// in the Write class</span>
@@ -1911,26 +1909,26 @@ reports "CEURSE" as incorrectly spelt.</p>
 </code></pre></div>
 <p>fails to change XSpellChecker.spell()'s behavior. The only way to make a change to
 the linguistic properties that is acted upon is through the "Options" pane in the
-"Writing Aids" dialog, as in Figure 10.</p>
-<p><img alt="" src="images/10-Linguistics-10.png" /></p>
-<p>Figure 10. Changing the Capitalization Property.</p>
+"Writing Aids" dialog, as in Figure 9.</p>
+<p><img alt="" src="images/10-Linguistics-9.png" /></p>
+<p>Figure 9. Changing the Capitalization Property.</p>
 <p>Office's default spell checker is Hunspell (from <a href="http://hunspell.github.io/">http://hunspell.github.io/</a>), and has
 been part of OpenOffice since v.2, when it replaced MySpell, adding several features
 such as support for Unicode. The "MySpell" name lives on in a few places, such as in
 the spelling service (org.openoffice.lingu.MySpellSpellChecker).</p>
 <p>Hunspell offers extra properties in addition to those in the "Options" pane of the
 "Writing Aids" dialog. They can be accessed through the Tools, Options, Language
-Settings, "English sentence checking" dialog shown in Figure 11.</p>
-<p><img alt="" src="images/10-Linguistics-11.png" /></p>
-<p>Figure 11. The English Sentence Checking Dialog.</p>
+Settings, "English sentence checking" dialog shown in Figure 10.</p>
+<p><img alt="" src="images/10-Linguistics-10.png" /></p>
+<p>Figure 10. The English Sentence Checking Dialog.</p>
 <p>The same dialog can also be reached through the Extension Manager window shown
-back in Figure 7. Click on the "English Spelling dictionaries" extension, and then
-press the "Options" button which appears as in Figure 12.</p>
-<p><img alt="" src="images/10-Linguistics-12.png" /></p>
-<p>Figure 12. The English Spelling Options Button.</p>
+back in Figure 6. Click on the "English Spelling dictionaries" extension, and then
+press the "Options" button which appears as in Figure 11.</p>
+<p><img alt="" src="images/10-Linguistics-11.png" /></p>
+<p>Figure 11. The English Spelling Options Button.</p>
 <p>Unfortunately, there appears to be no API for accessing these Hunspell options. The
 best that can be done is to use a dispatch message to open the "English Sentence
-Checking" dialog in Figure 11. This done by calling Write.openSentCheckOptions():</p>
+Checking" dialog in Figure 10. This done by calling Write.openSentCheckOptions():</p>
 <div class="highlight"><pre><span></span><code><span class="n">GUI</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>   <span class="c1">// Office must be visible...</span>
 <span class="n">Lo</span><span class="p">.</span><span class="na">wait</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span>
 <span class="n">Write</span><span class="p">.</span><span class="na">openSentCheckOptions</span><span class="p">();</span>  <span class="c1">// for the dialog to appear</span>
@@ -1955,9 +1953,9 @@ with an URL argument for the dialog's XML definition file:</p>
 <p>The XML file's location is obtained in two steps. First the ID of the Hunspell service
 ("org.openoffice.en.hunspell.dictionaries") is passed to
 XPackageInformationProvider.getPackageLocation() to obtain the spell checker's
-installation folder. Figure 13 shows the directory on my machine.</p>
-<p><img alt="" src="images/10-Linguistics-13.png" /></p>
-<p>Figure 13. The Hunspell Installation Folder.</p>
+installation folder. Figure 12 shows the directory on my machine.</p>
+<p><img alt="" src="images/10-Linguistics-12.png" /></p>
+<p>Figure 12. The Hunspell Installation Folder.</p>
 <p>The directory contains a dialog subdirectory, which holds an XXX.xdl file that
 defines the dialog's XML structure and data. The "XXX" name will be Office's locale
 language, which in my case is "en".</p>
@@ -1998,9 +1996,9 @@ language, which in my case is "en".</p>
     occultist (generic term)
 </code></pre></div>
 <p>XLinguServiceManager2.getThesaurus() returns an instance of XThesaurus whose
-service and main interfaces are shown in Figure 14.</p>
-<p><img alt="" src="images/10-Linguistics-14.png" /></p>
-<p>Figure 14. The Thesaurus Service and Interfaces.</p>
+service and main interfaces are shown in Figure 13.</p>
+<p><img alt="" src="images/10-Linguistics-13.png" /></p>
+<p>Figure 13. The Thesaurus Service and Interfaces.</p>
 <p>Write.printMeaning() calls XThesaurus.queryMeanings(), and prints the array of
 results:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">printMeaning</span><span class="p">(</span><span class="n">String</span> <span class="n">word</span><span class="p">,</span> <span class="n">XThesaurus</span> <span class="n">thesaurus</span><span class="p">)</span>
@@ -2036,16 +2034,16 @@ results:</p>
 locale and an optional array of properties. printMeaning() utilizes American English,
 and no properties.</p>
 <p>If you need a non-English thesaurus which isn't part of Office, then look through the
-dictionary extensions at <a href="http://extensions.libreoffice.org/extension-">http://extensions.libreoffice.org/extension-</a>
-center?getCategories=Dictionary; many include a thesaurus with the dictionary.</p>
+dictionary extensions at
+<a href="http://extensions.libreoffice.org/extension-center?getCategories=Dictionary">http://extensions.libreoffice.org/extension-center?getCategories=Dictionary</a>;
+many include a thesaurus with the dictionary.</p>
 <p>Thesaurus data is stored as ".idx" and ".dat" files in the same directory as the spell
 checker (i.e. in <OFFICE>\share\extensions\dict-en), as can be seen in Figure 13.</p>
 <p>The files are built from WordNet data (<a href="http://wordnet.princeton.edu/">http://wordnet.princeton.edu/</a>), but use a text-
 based format explained very briefly in Daniel Naber's slides about the
-Lingucomponent Project (at <a href="http://www.danielnaber.de/publications/ooocon2005-">http://www.danielnaber.de/publications/ooocon2005-</a>
-lingucomponent.pdf). Also, the Lingucomponent website has some C++ code for
-reading ".idx" and '.dat" files (in <a href="http://www.openoffice.org/lingucomponent/MyThes-">http://www.openoffice.org/lingucomponent/MyThes-</a>
-1.zip).</p>
+Lingucomponent Project (at <a href="http://www.danielnaber.de/publications/ooocon2005-lingucomponent.pdf">http://www.danielnaber.de/publications/ooocon2005-lingucomponent.pdf</a>).
+Also, the Lingucomponent website has some C++ code for
+reading ".idx" and '.dat" files (in <a href="http://www.openoffice.org/lingucomponent/MyThes-1.zip">http://www.openoffice.org/lingucomponent/MyThes-1.zip</a>).</p>
 <p>However, if you want to write code using a thesaurus independently of Office, then
 I'd suggest programming with one of the many APIs for WordNet; there are currently
 nine for Java, listed at <a href="http://wordnet.princeton.edu/wordnet/related-projects/#Java">http://wordnet.princeton.edu/wordnet/related-projects/#Java</a>.</p>
@@ -2074,9 +2072,9 @@ documentation. Perhaps its biggest drawback is that it requires Java 8 or later.
 <p>Another issue is that LanguageTool and Lightproof cannot happily coexist inside
 Office. Lightproof must be disabled and LanguageTool enabled via the Options,
 Language Settings, Writing aids, "Available language modules" pane at the top of
-Figure 15.</p>
-<p><img alt="" src="images/10-Linguistics-15.png" /></p>
-<p>Figure 15. Goodbye Lightproof, hello LanguageTool.</p>
+Figure 14.</p>
+<p><img alt="" src="images/10-Linguistics-14.png" /></p>
+<p>Figure 14. Goodbye Lightproof, hello LanguageTool.</p>
 <p>I used Write.printServicesInfo() earlier to list the available and configured services.</p>
 <p>The output included:</p>
 <div class="highlight"><pre><span></span><code>Available Services:
@@ -2120,17 +2118,17 @@ particular implementation service (e.g. LanguageTool) to a specified linguistic 
 <h3 id="41-error-reporting-options">4.1.  Error Reporting Options<a class="headerlink" href="#41-error-reporting-options" title="Permanent link">&para;</a></h3>
 <p>The kinds of errors reported by the proof reader can be adjusted through Office's GUI.</p>
 <p>One configuration pane, used by both Lightproof and LanguageTool, is in the
-"English Sentence Checking" dialog shown back in Figure 11. If you look closely, the
+"English Sentence Checking" dialog shown back in Figure 10. If you look closely, the
 first group of check boxes are titled "Grammar checking".</p>
 <p>If you install LanguageTool, Office's Tools menu will be modified to contain a new
-"LanguageTool" submenu shown in Figure 16.</p>
-<p><img alt="" src="images/10-Linguistics-16.png" /></p>
-<p>Figure 16. The LanguageTool Submenu.</p>
+"LanguageTool" submenu shown in Figure 15.</p>
+<p><img alt="" src="images/10-Linguistics-15.png" /></p>
+<p>Figure 15. The LanguageTool Submenu.</p>
 <p>The "Options" menu item in the "LanguageTool" submenu brings up an extensive set
 of options, reflecting the greater number of grammar rules in the checker (see Figure
-17).</p>
-<p><img alt="" src="images/10-Linguistics-17.png" /></p>
-<p>Figure 17. The LanguageTool Options Dialog.</p>
+16).</p>
+<p><img alt="" src="images/10-Linguistics-16.png" /></p>
+<p>Figure 16. The LanguageTool Options Dialog.</p>
 <p>Unfortunately, there seems to be no way to modify these options through Office's
 Proofreader API.</p>
 <h3 id="42-using-the-proof-reader">4.2.  Using the Proof Reader<a class="headerlink" href="#42-using-the-proof-reader" title="Permanent link">&para;</a></h3>
@@ -2158,9 +2156,9 @@ No. of proofing errors: 3
 </code></pre></div>
 <p>The proof reader isn't accessed through the linguistics manager; instead a Proofreader
 service is created, and its interfaces employed. A simplified view of the services and
-interfaces are shown in Figure 18.</p>
-<p><img alt="" src="images/10-Linguistics-18.png" /></p>
-<p>Figure 18. The Proofreader Service and Interfaces.</p>
+interfaces are shown in Figure 17.</p>
+<p><img alt="" src="images/10-Linguistics-17.png" /></p>
+<p>Figure 17. The Proofreader Service and Interfaces.</p>
 <p>Write.loadProofreader() creates the service:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">public</span> <span class="kd">static</span> <span class="n">XProofreader</span> <span class="nf">loadProofreader</span><span class="p">()</span>
 <span class="p">{</span>  <span class="k">return</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XProofreader</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
@@ -2207,7 +2205,7 @@ start and end of the sentence being checked, and a document ID which is used in 
 error results.</p>
 <p>The results are returned as an array of SingleProofreadingError objects, one for each
 detected error. It's worth having a look at the documentation for the
-SingleProofreadingError class (use "lodoc SingleProofreadingError"), since the
+SingleProofreadingError class (use <code>lodoc SingleProofreadingError</code>), since the
 object contains more information than I've used in Write.printProofError(); for
 example, the ID of the grammar rule that was 'broken', a full comment string, and
 multiple suggestions in a String array.</p>
@@ -2390,9 +2388,9 @@ words, and calls Write.spellWord() on each one:</p>
   <span class="k">return</span> <span class="n">count</span><span class="p">;</span>
 <span class="p">}</span>  <span class="c1">// end of spellSentence()</span>
 </code></pre></div>
-<p>The poorly written "badGrammar.odt" is shown in Figure 19.</p>
-<p><img alt="" src="images/10-Linguistics-19.png" /></p>
-<p>Figure 19. Not a Good Example of my Writing Skills.</p>
+<p>The poorly written "badGrammar.odt" is shown in Figure 18.</p>
+<p><img alt="" src="images/10-Linguistics-18.png" /></p>
+<p>Figure 18. Not a Good Example of my Writing Skills.</p>
 <p>The output from LingoFile.java when given "badGrammar.odt":</p>
 <div class="highlight"><pre><span></span><code>&gt;&gt; I have a dogs. I have one dogs.
 
@@ -2446,10 +2444,10 @@ good idea to redirect the voluminous output to a temporary file so it can be exa
 easily.</p>
 <p>More than half the errors for "bigStory.doc" are spurious reports of unpaired quotes.</p>
 <p>The output can be considerably reduced if LanguageTool's unpaired rule is disabled,
-via the Options dialog in Figure 17. Figure 20 shows the dialog with the "Unpaired"
+via the Options dialog in Figure 16. Figure 19 shows the dialog with the "Unpaired"
 checkbox deselected in the Punctuation section.</p>
-<p><img alt="" src="images/10-Linguistics-20.png" /></p>
-<p>Figure 20. The LanguageTool Options Dialog
+<p><img alt="" src="images/10-Linguistics-19.png" /></p>
+<p>Figure 19. The LanguageTool Options Dialog
 with the Unpaired Rule Deselected.</p>
 <p>The majority of the remaining errors are words unknown to the spell checker, such as
 names and places, and British English spellings.</p>

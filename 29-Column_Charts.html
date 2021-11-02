@@ -1293,531 +1293,602 @@
                 <h1 id="chapter-29-column-charts">Chapter 29. Column Charts<a class="headerlink" href="#chapter-29-column-charts" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
-<p>Creating a Chart 
-Title; Creating Axis 
-Titles; Rotating Axis 
-Titles; What Chart 
-Templates are 
-Available?; Multiple 
-Columns; 3D Pizazz; 
-The Column and Line 
-Chart </p>
-<p>Example folders: 
-"Chart2 Tests" and 
-"Utils" </p>
+<p>Creating a Chart
+Title; Creating Axis
+Titles; Rotating Axis
+Titles; What Chart
+Templates are
+Available?; Multiple
+Columns; 3D Pizazz;
+The Column and Line
+Chart</p>
+<p>Example folders:
+"Chart2 Tests" and
+"Utils"</p>
 </div>
-<p>All the chart examples in the next four chapters come from 
-the same program, Chart2Views.java, which loads a 
-spreadsheet from "chartsData.ods". Depending on the 
-function, a different table in the sheet is used to create a 
-chart from a template. The main() function is: </p>
-<p>// in Chart2Views.java 
-private static final String CHARTS_DATA = 
-"chartsData.ods"; </p>
-<p>public static void main(String args[]) 
-{ 
-  XComponentLoader loader = Lo.loadOffice(); 
-  XSpreadsheetDocument doc = Calc.openDoc(CHARTS_DATA, loader); 
-  if (doc == null) { 
-    System.out.println("Could not open " + CHARTS_DATA); 
-    Lo.closeOffice(); 
-    return; 
-  } 
-  GUI.setVisible(doc, true); 
-  XSpreadsheet sheet = Calc.getSheet(doc, 0); </p>
-<p>// ---- use different chart templates ---- </p>
-<p>XChartDocument chartDoc = colChart(doc, sheet); 
-                                // see sections 1-3 </p>
-<p>// String[] templateNames = Chart2.getChartTemplates(chartDoc); 
-                                // section 4 
-  // Lo.printNames(templateNames, 1); </p>
-<p>// multColChart(doc, sheet);  // sections 5 &amp; 6 
-  // colLineChart(doc, sheet);  // section 7 </p>
-<p>// barChart(doc, sheet); </p>
-<p>// pieChart(doc, sheet); 
-  // pie3DChart(doc, sheet); 
-  // donutChart(doc, sheet); </p>
-<p>// areaChart(doc, sheet); </p>
-<p>// lineChart(doc, sheet); 
-  // linesChart(doc, sheet); </p>
-<p>// scatterChart(doc, sheet); 
-  // scatterLineLogChart(doc, sheet); 
-  // scatterLineErrorChart(doc, sheet); </p>
-<p>// labeledBubbleChart(doc, sheet); </p>
-<p>// netChart(doc, sheet); </p>
-<p>// happyStockChart(doc, sheet); 
-  // stockPricesChart(doc, sheet); </p>
-<p>Lo.waitEnter(); 
-  Lo.closeDoc(doc); 
-  Lo.closeOffice(); 
-}  // end of main() </p>
-<p>colChart() utilizes the "Sneakers Sold this Month" table in "chartsData.ods" (see 
-Figure 1) to generate the column chart in Figure 2. </p>
+<p>All the chart examples in the next four chapters come from
+the same program, Chart2Views.java, which loads a
+spreadsheet from "chartsData.ods". Depending on the
+function, a different table in the sheet is used to create a
+chart from a template. The main() function is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Chart2Views.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">CHARTS_DATA</span> <span class="o">=</span>
+<span class="s">&quot;chartsData.ods&quot;</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+  <span class="n">XSpreadsheetDocument</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">openDoc</span><span class="p">(</span><span class="n">CHARTS_DATA</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">doc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not open &quot;</span> <span class="o">+</span> <span class="n">CHARTS_DATA</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">GUI</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="n">XSpreadsheet</span> <span class="n">sheet</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getSheet</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+  <span class="c1">// ---- use different chart templates ----</span>
+
+  <span class="n">XChartDocument</span> <span class="n">chartDoc</span> <span class="o">=</span> <span class="n">colChart</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">sheet</span><span class="p">);</span>
+                                <span class="c1">// see sections 1-3</span>
+
+  <span class="c1">// String[] templateNames = Chart2.getChartTemplates(chartDoc);</span>
+                                <span class="c1">// section 4</span>
+  <span class="c1">// Lo.printNames(templateNames, 1);</span>
+
+  <span class="c1">// multColChart(doc, sheet);  // sections 5 &amp; 6</span>
+  <span class="c1">// colLineChart(doc, sheet);  // section 7</span>
+
+  <span class="c1">// barChart(doc, sheet);</span>
+
+  <span class="c1">// pieChart(doc, sheet);</span>
+  <span class="c1">// pie3DChart(doc, sheet);</span>
+  <span class="c1">// donutChart(doc, sheet);</span>
+
+  <span class="c1">// areaChart(doc, sheet);</span>
+
+  <span class="c1">// lineChart(doc, sheet);</span>
+  <span class="c1">// linesChart(doc, sheet);</span>
+
+  <span class="c1">// scatterChart(doc, sheet);</span>
+  <span class="c1">// scatterLineLogChart(doc, sheet);</span>
+  <span class="c1">// scatterLineErrorChart(doc, sheet);</span>
+
+  <span class="c1">// labeledBubbleChart(doc, sheet);</span>
+
+  <span class="c1">// netChart(doc, sheet);</span>
+
+  <span class="c1">// happyStockChart(doc, sheet);</span>
+  <span class="c1">// stockPricesChart(doc, sheet);</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">waitEnter</span><span class="p">();</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of main()</span>
+</code></pre></div>
+<p>colChart() utilizes the "Sneakers Sold this Month" table in "chartsData.ods" (see
+Figure 1) to generate the column chart in Figure 2.</p>
 <p><img alt="" src="images/29-Column_Charts-1.png" /></p>
-<p>Figure 1. The "Sneakers Sold this Month" Table. </p>
+<p>Figure 1. The "Sneakers Sold this Month" Table.</p>
 <p><img alt="" src="images/29-Column_Charts-2.png" /></p>
-<p>Figure 2. The Column Chart for the Table in Figure 1. </p>
-<p>colChart() is: </p>
-<p>// in Chart2Views.java 
-private static XChartDocument colChart(XSpreadsheetDocument doc, 
-                                       XSpreadsheet sheet) 
-{ 
-  CellRangeAddress rangeAddr = Calc.getAddress(sheet, "A2:B8"); 
-  XChartDocument chartDoc = 
-      Chart2.insertChart(sheet, rangeAddr, "C3", 15, 11, "Column"); 
-  Calc.gotoCell(doc, "A1"); </p>
-<p>Chart2.setTitle(chartDoc, Calc.getString(sheet, "A1")); 
-  Chart2.setXAxisTitle(chartDoc, Calc.getString(sheet, "A2")); 
-  Chart2.setYAxisTitle(chartDoc, Calc.getString(sheet, "B2")); 
-  Chart2.rotateYAxisTitle(chartDoc, 90); 
-  return chartDoc; 
-}  // end of colChart() </p>
-<p>The column chart created by Chart2.insertChart() utilizes the cell range A2:B8, which 
-spans the two columns of the table, but not the title in cell A1. The "C3" argument 
-specifies where the top-left corner of the chart will be positioned in the sheet, and 
-15x11 are the dimensions of the image in millimeters.  </p>
-<p>Calc.gotoCell() causes the application window's view of the spreadsheet to move so 
-that cell "A1" is visible, which lets the user see the sneakers table and the chart 
-together.  </p>
-<p>If the three set methods and rotateYAxisTitle() are left out of colChart(), then the 
-generated chart will have no titles as in Figure 3. </p>
+<p>Figure 2. The Column Chart for the Table in Figure 1.</p>
+<p>colChart() is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Chart2Views.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="n">XChartDocument</span> <span class="nf">colChart</span><span class="p">(</span><span class="n">XSpreadsheetDocument</span> <span class="n">doc</span><span class="p">,</span>
+                                       <span class="n">XSpreadsheet</span> <span class="n">sheet</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">CellRangeAddress</span> <span class="n">rangeAddr</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getAddress</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;A2:B8&quot;</span><span class="p">);</span>
+  <span class="n">XChartDocument</span> <span class="n">chartDoc</span> <span class="o">=</span>
+      <span class="n">Chart2</span><span class="p">.</span><span class="na">insertChart</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">rangeAddr</span><span class="p">,</span> <span class="s">&quot;C3&quot;</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="s">&quot;Column&quot;</span><span class="p">);</span>
+  <span class="n">Calc</span><span class="p">.</span><span class="na">gotoCell</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;A1&quot;</span><span class="p">);</span>
+
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;A1&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setXAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;A2&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setYAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;B2&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">rotateYAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="mi">90</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">chartDoc</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of colChart()</span>
+</code></pre></div>
+<p>The column chart created by Chart2.insertChart() utilizes the cell range A2:B8, which
+spans the two columns of the table, but not the title in cell A1. The "C3" argument
+specifies where the top-left corner of the chart will be positioned in the sheet, and
+15x11 are the dimensions of the image in millimeters.</p>
+<p>Calc.gotoCell() causes the application window's view of the spreadsheet to move so
+that cell "A1" is visible, which lets the user see the sneakers table and the chart
+together.</p>
+<p>If the three set methods and rotateYAxisTitle() are left out of colChart(), then the
+generated chart will have no titles as in Figure 3.</p>
 <p><img alt="" src="images/29-Column_Charts-3.png" /></p>
-<p>Figure 3. The Column Chart for the Table in Figure 1, with no Titles. </p>
+<p>Figure 3. The Column Chart for the Table in Figure 1, with no Titles.</p>
 <h2 id="1-creating-a-chart-title">1.  Creating a Chart Title<a class="headerlink" href="#1-creating-a-chart-title" title="Permanent link">&para;</a></h2>
-<p>Chart2.setTitle() is passed a string which becomes the chart's title. For example: </p>
-<p>// part of colChart() in Chart2Views.java... </p>
-<p>Chart2.setTitle(chartDoc, Calc.getString(sheet, "A1")); </p>
-<p>utilizes the string from cell "A1" of the spreadsheet (see Figure 1). </p>
-<p>Setting a title requires three interfaces: XTitled, XTitle, and XFormattedString. </p>
-<p>XTitled is utilized by several chart services, as shown in Figure 4. </p>
+<p>Chart2.setTitle() is passed a string which becomes the chart's title. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of colChart() in Chart2Views.java...</span>
+<span class="n">Chart2</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;A1&quot;</span><span class="p">));</span>
+</code></pre></div>
+<p>utilizes the string from cell "A1" of the spreadsheet (see Figure 1).</p>
+<p>Setting a title requires three interfaces: XTitled, XTitle, and XFormattedString.
+XTitled is utilized by several chart services, as shown in Figure 4.</p>
 <p><img alt="" src="images/29-Column_Charts-4.png" /></p>
-<p>Figure 4. Services Using the XTitled Interface. </p>
-<p>The XChartDocument interface is converted into XTitled by Chart2.setTitle(), so an 
-XTitle object can be assigned to the chart: </p>
-<p>// in the Chart2 class 
-public static void setTitle(XChartDocument chartDoc, String title) 
-/* set the title, and use Arial, 14 pt style */ 
-{ <br />
-  System.out.println("Chart title: \"" + title + "\""); 
-  XTitled xTitled = Lo.qi(XTitled.class, chartDoc); 
-  XTitle xtitle = createTitle(title); 
-  if (xtitle != null) { 
-    xTitled.setTitleObject(xtitle); 
-    setXTitleFont(xtitle, "Arial", 14); 
-  } 
-}  // end of setTitle() </p>
-<p>The XTitle object is an instance of the Title service which inherits a wide assortment 
-of properties related to the text's paragraph, fill, and line styling, as shown in Figure 5. </p>
+<p>Figure 4. Services Using the XTitled Interface.</p>
+<p>The XChartDocument interface is converted into XTitled by Chart2.setTitle(), so an
+XTitle object can be assigned to the chart:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setTitle</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span> <span class="n">String</span> <span class="n">title</span><span class="p">)</span>
+<span class="cm">/* set the title, and use Arial, 14 pt style */</span>
+<span class="p">{</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Chart title: \&quot;&quot;</span> <span class="o">+</span> <span class="n">title</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>
+  <span class="n">XTitled</span> <span class="n">xTitled</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XTitled</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">chartDoc</span><span class="p">);</span>
+  <span class="n">XTitle</span> <span class="n">xtitle</span> <span class="o">=</span> <span class="n">createTitle</span><span class="p">(</span><span class="n">title</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">xtitle</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">xTitled</span><span class="p">.</span><span class="na">setTitleObject</span><span class="p">(</span><span class="n">xtitle</span><span class="p">);</span>
+    <span class="n">setXTitleFont</span><span class="p">(</span><span class="n">xtitle</span><span class="p">,</span> <span class="s">&quot;Arial&quot;</span><span class="p">,</span> <span class="mi">14</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of setTitle()</span>
+</code></pre></div>
+<p>The XTitle object is an instance of the Title service which inherits a wide assortment
+of properties related to the text's paragraph, fill, and line styling, as shown in Figure 5.</p>
 <p><img alt="" src="images/29-Column_Charts-5.png" /></p>
-<p>Figure 5. The Title Service. </p>
-<p>Text is added to the XTitle object by Chart2.createTitle(), as an XFormattedString 
-array: </p>
-<p>// in the Chart2 class 
-public static XTitle createTitle(String titleString) 
-{ 
-  XTitle xtitle = Lo.createInstanceMCF(XTitle.class,<br />
-                            "com.sun.star.chart2.Title"); 
-  if (xtitle == null) { 
-    System.out.println("Unable to create xtitle interface"); 
-    return null; 
-  }  </p>
-<p>XFormattedString xtitleStr =<br />
-       Lo.createInstanceMCF(XFormattedString.class,<br />
-           "com.sun.star.chart2.FormattedString"); 
-  if (xtitleStr == null) { 
-    System.out.println("Unable to create formatted string"); 
-    return null; 
-  }  </p>
-<p>xtitleStr.setString(titleString); 
-  XFormattedString[] titleArray =<br />
-             new XFormattedString[] {xtitleStr}; 
-  xtitle.setText(titleArray); 
-  return xtitle; 
-}  // end of createTitle() </p>
-<p>The use of an XFormatttedString[] array may seem to be overkill when the title is a 
-single string, but it also allows character properties to be associated with the string 
-through XFormattedString2, as shown in Figure 6. </p>
+<p>Figure 5. The Title Service.</p>
+<p>Text is added to the XTitle object by Chart2.createTitle(), as an XFormattedString
+array:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XTitle</span> <span class="nf">createTitle</span><span class="p">(</span><span class="n">String</span> <span class="n">titleString</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XTitle</span> <span class="n">xtitle</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XTitle</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                            <span class="s">&quot;com.sun.star.chart2.Title&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">xtitle</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Unable to create xtitle interface&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">XFormattedString</span> <span class="n">xtitleStr</span> <span class="o">=</span>
+       <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XFormattedString</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+           <span class="s">&quot;com.sun.star.chart2.FormattedString&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">xtitleStr</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Unable to create formatted string&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">xtitleStr</span><span class="p">.</span><span class="na">setString</span><span class="p">(</span><span class="n">titleString</span><span class="p">);</span>
+  <span class="n">XFormattedString</span><span class="o">[]</span> <span class="n">titleArray</span> <span class="o">=</span>
+             <span class="k">new</span> <span class="n">XFormattedString</span><span class="o">[]</span> <span class="p">{</span><span class="n">xtitleStr</span><span class="p">};</span>
+  <span class="n">xtitle</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">titleArray</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">xtitle</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of createTitle()</span>
+</code></pre></div>
+<p>The use of an XFormatttedString[] array may seem to be overkill when the title is a
+single string, but it also allows character properties to be associated with the string
+through XFormattedString2, as shown in Figure 6.</p>
 <p><img alt="" src="images/29-Column_Charts-6.png" /></p>
-<p>Figure 6. The FormattedString Service. </p>
-<p>Character properties allow the font and point size of the title to be changed to Arial 
-14pt by Chart2.setXTitleFont(): </p>
-<p>// in the Chart2 class 
-public static void setXTitleFont(XTitle xtitle,<br />
-                                 String fontName, int ptSize) 
-{ 
-  XFormattedString[] foStrs = xtitle.getText(); 
-  if (foStrs != null) { 
-    Props.setProperty(foStrs[0], "CharFontName", fontName); 
-    Props.setProperty(foStrs[0], "CharHeight", ptSize); 
-  } 
-}  // end of setXTitleFont() </p>
-<p>The "CharFontName" and "CharHeight" properties come from the 
-CharacterProperties class. </p>
+<p>Figure 6. The FormattedString Service.</p>
+<p>Character properties allow the font and point size of the title to be changed to Arial
+14pt by Chart2.setXTitleFont():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setXTitleFont</span><span class="p">(</span><span class="n">XTitle</span> <span class="n">xtitle</span><span class="p">,</span>
+                                 <span class="n">String</span> <span class="n">fontName</span><span class="p">,</span> <span class="kt">int</span> <span class="n">ptSize</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XFormattedString</span><span class="o">[]</span> <span class="n">foStrs</span> <span class="o">=</span> <span class="n">xtitle</span><span class="p">.</span><span class="na">getText</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">foStrs</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">foStrs</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="s">&quot;CharFontName&quot;</span><span class="p">,</span> <span class="n">fontName</span><span class="p">);</span>
+    <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">foStrs</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="s">&quot;CharHeight&quot;</span><span class="p">,</span> <span class="n">ptSize</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of setXTitleFont()</span>
+</code></pre></div>
+<p>The "CharFontName" and "CharHeight" properties come from the
+CharacterProperties class.</p>
 <h2 id="2-creating-axis-titles">2.  Creating Axis Titles<a class="headerlink" href="#2-creating-axis-titles" title="Permanent link">&para;</a></h2>
-<p>Setting the axes titles needs a reference to the XAxis interface. Incidentally, this 
-interface name is a little misleading since "X" is the naming convention for interfaces, 
-not a reference to the x-axis.  </p>
-<p>Figure 9 in Chapter 28 shows that the XAxis interface is available via the 
-XCoordinateSystem interface, which can be obtained by calling 
-Chart2.getCoordSystem(). XCoordinateSystem.getAxisByDimension() can then be 
-employed to get an axis reference. This is implemented by Chart2.getAxis(): </p>
-<p>// in the Chart2 class 
-// globals: axis values 
-public static final int X_AXIS = 0; 
-public static final int Y_AXIS = 1; 
-public static final int Z_AXIS = 2; </p>
-<p>public static XAxis getAxis(XChartDocument chartDoc,<br />
-                                  int axisVal, int idx) 
-{<br />
-  XCoordinateSystem coordSys = getCoordSystem(chartDoc); 
-  try { 
-    return coordSys.getAxisByDimension(axisVal, idx); 
-  } 
-  catch(Exception ex) { 
-    System.out.println("Could not get the axis"); 
-    return null; 
-  } 
-}  // end of getAxis() </p>
-<p>XCoordinateSystem.getAxisByDimension() takes two integer arguments: the first 
-represents the axis (x-, y-, or  z-), while the second is a primary or secondary index (0 
-or 1) for the chosen axis. Chart2.java includes wrapper functions for Chart2.getAxis() 
-for the most common cases: </p>
-<p 0_="0);" Chart2.X_AXIS_="Chart2.X_AXIS," getAxis_chartDoc_="getAxis(chartDoc," return="return">// in the Chart2 class 
-public static XAxis getXAxis(XChartDocument chartDoc) </p>
-<p 0_="0);" Chart2.Y_AXIS_="Chart2.Y_AXIS," getAxis_chartDoc_="getAxis(chartDoc," return="return">public static XAxis getYAxis(XChartDocument chartDoc) </p>
-<p 1_="1);" Chart2.X_AXIS_="Chart2.X_AXIS," getAxis_chartDoc_="getAxis(chartDoc," return="return">public static XAxis getXAxis2(XChartDocument chartDoc) </p>
-<p 1_="1);" Chart2.Y_AXIS_="Chart2.Y_AXIS," getAxis_chartDoc_="getAxis(chartDoc," return="return">public static XAxis getYAxis2(XChartDocument chartDoc) </p>
-<p>Chart2.setAxisTitle() calls Chart2.getAxis() to get a reference to the correct axis, and 
-then reuses many of the methods described earlier for setting the chart title: </p>
-<p>// in the Chart2 class 
-public static void setAxisTitle(XChartDocument chartDoc,<br />
-                     String title, int axisVal, int idx) 
-{<br />
-  XAxis axis = getAxis(chartDoc, axisVal, idx); 
-  if (axis == null) 
-    return; 
-  XTitled titledAxis = Lo.qi(XTitled.class, axis); 
-  XTitle xtitle = createTitle(title); 
-  if (xtitle != null) { 
-    titledAxis.setTitleObject(xtitle); 
-    setXTitleFont(xtitle, "Arial", 12);  // Arial 12pt 
-  } 
-}  // end of setAxisTitle() </p>
-<p>As with Chart2.getAxis(), Chart2.java includes wrapper methods for 
-Chart2.setAxisTitle() to simplify common axis cases: </p>
-<p 0_="0);" Chart2.X_AXIS_="Chart2.X_AXIS," setAxisTitle_chartDoc_="setAxisTitle(chartDoc," title_="title,">// in the Chart2 class 
-public static void setXAxisTitle(XChartDocument chartDoc,<br />
-                                 String title) </p>
-<p 0_="0);" Chart2.Y_AXIS_="Chart2.Y_AXIS," setAxisTitle_chartDoc_="setAxisTitle(chartDoc," title_="title,">public static void setYAxisTitle(XChartDocument chartDoc,<br />
-                                 String title) </p>
-<p 1_="1);" Chart2.X_AXIS_="Chart2.X_AXIS," setAxisTitle_chartDoc_="setAxisTitle(chartDoc," title_="title,">public static void setXAxis2Title(XChartDocument chartDoc,<br />
-                                  String title) </p>
-<p 1_="1);" Chart2.Y_AXIS_="Chart2.Y_AXIS," setAxisTitle_chartDoc_="setAxisTitle(chartDoc," title_="title,">public static void setYAxis2Title(XChartDocument chartDoc,<br />
-                                  String title) </p>
+<p>Setting the axes titles needs a reference to the XAxis interface. Incidentally, this
+interface name is a little misleading since "X" is the naming convention for interfaces,
+not a reference to the x-axis.</p>
+<p>Figure 9 in Chapter 28 shows that the XAxis interface is available via the
+XCoordinateSystem interface, which can be obtained by calling
+Chart2.getCoordSystem(). XCoordinateSystem.getAxisByDimension() can then be
+employed to get an axis reference. This is implemented by Chart2.getAxis():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="c1">// globals: axis values</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">X_AXIS</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">Y_AXIS</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">Z_AXIS</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XAxis</span> <span class="nf">getAxis</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span>
+                                  <span class="kt">int</span> <span class="n">axisVal</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XCoordinateSystem</span> <span class="n">coordSys</span> <span class="o">=</span> <span class="n">getCoordSystem</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">);</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">coordSys</span><span class="p">.</span><span class="na">getAxisByDimension</span><span class="p">(</span><span class="n">axisVal</span><span class="p">,</span> <span class="n">idx</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">ex</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not get the axis&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of getAxis()</span>
+</code></pre></div>
+<p>XCoordinateSystem.getAxisByDimension() takes two integer arguments: the first
+represents the axis (x-, y-, or  z-), while the second is a primary or secondary index (0
+or 1) for the chosen axis. Chart2.java includes wrapper functions for Chart2.getAxis()
+for the most common cases:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XAxis</span> <span class="nf">getXAxis</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">)</span>
+<span class="p">{</span>  <span class="k">return</span> <span class="n">getAxis</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">X_AXIS</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>  <span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XAxis</span> <span class="nf">getYAxis</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">)</span>
+<span class="p">{</span>  <span class="k">return</span> <span class="n">getAxis</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">Y_AXIS</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>  <span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XAxis</span> <span class="nf">getXAxis2</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">)</span>
+<span class="p">{</span>  <span class="k">return</span> <span class="n">getAxis</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">X_AXIS</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>  <span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XAxis</span> <span class="nf">getYAxis2</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">)</span>
+<span class="p">{</span>  <span class="k">return</span> <span class="n">getAxis</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">Y_AXIS</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>  <span class="p">}</span>
+</code></pre></div>
+<p>Chart2.setAxisTitle() calls Chart2.getAxis() to get a reference to the correct axis, and
+then reuses many of the methods described earlier for setting the chart title:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setAxisTitle</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span>
+                     <span class="n">String</span> <span class="n">title</span><span class="p">,</span> <span class="kt">int</span> <span class="n">axisVal</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XAxis</span> <span class="n">axis</span> <span class="o">=</span> <span class="n">getAxis</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">axisVal</span><span class="p">,</span> <span class="n">idx</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">axis</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="n">XTitled</span> <span class="n">titledAxis</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XTitled</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">axis</span><span class="p">);</span>
+  <span class="n">XTitle</span> <span class="n">xtitle</span> <span class="o">=</span> <span class="n">createTitle</span><span class="p">(</span><span class="n">title</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">xtitle</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">titledAxis</span><span class="p">.</span><span class="na">setTitleObject</span><span class="p">(</span><span class="n">xtitle</span><span class="p">);</span>
+    <span class="n">setXTitleFont</span><span class="p">(</span><span class="n">xtitle</span><span class="p">,</span> <span class="s">&quot;Arial&quot;</span><span class="p">,</span> <span class="mi">12</span><span class="p">);</span>  <span class="c1">// Arial 12pt</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of setAxisTitle()</span>
+</code></pre></div>
+<p>As with Chart2.getAxis(), Chart2.java includes wrapper methods for
+Chart2.setAxisTitle() to simplify common axis cases:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setXAxisTitle</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span>
+                                 <span class="n">String</span> <span class="n">title</span><span class="p">)</span>
+<span class="p">{</span>  <span class="n">setAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">X_AXIS</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>  <span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setYAxisTitle</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span>
+                                 <span class="n">String</span> <span class="n">title</span><span class="p">)</span>
+<span class="p">{</span>  <span class="n">setAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">Y_AXIS</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>  <span class="p">}</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setXAxis2Title</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span>
+                                  <span class="n">String</span> <span class="n">title</span><span class="p">)</span>
+<span class="p">{</span>  <span class="n">setAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">X_AXIS</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>  <span class="p">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setYAxis2Title</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span>
+                                  <span class="n">String</span> <span class="n">title</span><span class="p">)</span>
+<span class="p">{</span>  <span class="n">setAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">Y_AXIS</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>  <span class="p">}</span>
+</code></pre></div>
 <h2 id="3-rotating-axis-titles">3.  Rotating Axis Titles<a class="headerlink" href="#3-rotating-axis-titles" title="Permanent link">&para;</a></h2>
-<p>The default orientation for titles is horizontal, which is fine for the chart and x-axis 
-titles, but can cause the y-axis title to occupy too much horizontal space. The solution 
-is to call Chart2.rotateYAxisTitle() with an angle (usually 90 degrees) to turn the text 
-counter-clockwise so it's vertically orientated (see Figure 2). </p>
-<p>The implementation accesses the XTitle interface for the axis title, and then modifies 
-its "TextRotation" property from the Title service (see Figure 5). </p>
-<p 0_="0," Chart2.Y_AXIS_="Chart2.Y_AXIS," angle_="angle);" rotateAxisTitle_chartDoc_="rotateAxisTitle(chartDoc,">// in the Chart2 class 
-public static void rotateYAxisTitle(XChartDocument chartDoc,<br />
-                                    int angle) </p>
-<p>public static void rotateAxisTitle(XChartDocument chartDoc,<br />
-                                   int axisVal, int idx, int angle) 
-// + angle is rotation counter-clockwise from horizontal 
-{ 
-  XTitle xtitle = getAxisTitle(chartDoc, axisVal, idx); 
-  if (xtitle != null) 
-    Props.setProperty(xtitle, "TextRotation", angle); 
-}  // end of rotateAxisTitle() </p>
-<p>public static XTitle getAxisTitle(XChartDocument chartDoc,<br />
-                                  int axisVal, int idx) 
-{ XAxis axis = getAxis(chartDoc, axisVal, idx); 
-  if (axis == null) 
-    return null; 
-  XTitled titledAxis = Lo.qi(XTitled.class, axis); 
-  return titledAxis.getTitleObject(); 
-}  // end of getAxisTitle() </p>
+<p>The default orientation for titles is horizontal, which is fine for the chart and x-axis
+titles, but can cause the y-axis title to occupy too much horizontal space. The solution
+is to call Chart2.rotateYAxisTitle() with an angle (usually 90 degrees) to turn the text
+counter-clockwise so it's vertically orientated (see Figure 2).</p>
+<p>The implementation accesses the XTitle interface for the axis title, and then modifies
+its "TextRotation" property from the Title service (see Figure 5).</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">rotateYAxisTitle</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span>
+                                    <span class="kt">int</span> <span class="n">angle</span><span class="p">)</span>
+<span class="p">{</span>  <span class="n">rotateAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">Y_AXIS</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">angle</span><span class="p">);</span>  <span class="p">}</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">rotateAxisTitle</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span>
+                                   <span class="kt">int</span> <span class="n">axisVal</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">,</span> <span class="kt">int</span> <span class="n">angle</span><span class="p">)</span>
+<span class="c1">// + angle is rotation counter-clockwise from horizontal</span>
+<span class="p">{</span>
+  <span class="n">XTitle</span> <span class="n">xtitle</span> <span class="o">=</span> <span class="n">getAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">axisVal</span><span class="p">,</span> <span class="n">idx</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">xtitle</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">xtitle</span><span class="p">,</span> <span class="s">&quot;TextRotation&quot;</span><span class="p">,</span> <span class="n">angle</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of rotateAxisTitle()</span>
+
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XTitle</span> <span class="nf">getAxisTitle</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span>
+                                  <span class="kt">int</span> <span class="n">axisVal</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">XAxis</span> <span class="n">axis</span> <span class="o">=</span> <span class="n">getAxis</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">axisVal</span><span class="p">,</span> <span class="n">idx</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">axis</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="n">XTitled</span> <span class="n">titledAxis</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XTitled</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">axis</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">titledAxis</span><span class="p">.</span><span class="na">getTitleObject</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of getAxisTitle()</span>
+</code></pre></div>
 <h2 id="4-what-chart-templates-are-available">4.  What Chart Templates are Available?<a class="headerlink" href="#4-what-chart-templates-are-available" title="Permanent link">&para;</a></h2>
-<p>colChart() in Chart2Views.java returns its XChartDocument reference. This isn't 
-necessary for rendering the chart, but allows the reference to be passed to 
-Chart2.getChartTemplates(): </p>
-<p>// in main() in Chart2Views.java... </p>
-<p>XChartDocument chartDoc = colChart(doc, sheet); 
-String[] templateNames = Chart2.getChartTemplates(chartDoc); 
-Lo.printNames(templateNames, 1); </p>
-<p>The only way to list the chart templates supported by the chart2 module (i.e. those 
-shown in Table 1 of Chapter 28) is by querying an existing chart document. That's the 
-purpose of Chart2.getChartTemplates(): </p>
-<p>// in the Chart2 class 
-public static String[] getChartTemplates(XChartDocument chartDoc) 
-{ 
-  XChartTypeManager ctMan = chartDoc.getChartTypeManager(); 
-  return Info.getAvailableServices(ctMan); 
-} </p>
-<p>Normally XChartTypeManager is used to create a template instance, but 
-Info.getAvailableServices() accesses its 
-XMultiServiceFactory.getAvailableServiceNames() method to list the names of all its 
-supported services, which are templates: </p>
-<p>// in the Info class 
-public static String[] getAvailableServices(Object obj) 
-{ 
-  XMultiServiceFactory msf =<br />
-                  Lo.qi(XMultiServiceFactory.class, obj); 
-  String[] serviceNames = msf.getAvailableServiceNames(); 
-  Arrays.sort(serviceNames); 
-  return serviceNames; 
-}  // end of getAvailableServices() </p>
-<p>The output lists has 66 names, starting and ending like so: </p>
-<p>"com.sun.star.chart2.template.Area" 
-"com.sun.star.chart2.template.Bar" 
-"com.sun.star.chart2.template.Bubble" 
-"com.sun.star.chart2.template.Column" 
-"com.sun.star.chart2.template.ColumnWithLine" 
-     : 
-"com.sun.star.chart2.template.ThreeDLineDeep" 
-"com.sun.star.chart2.template.ThreeDPie" 
-"com.sun.star.chart2.template.ThreeDPieAllExploded" 
-"com.sun.star.chart2.template.ThreeDScatter" </p>
-<p>Sixty-four of those names appear in Chapter 28's Table 1. The two missing are 
-"GL3DBar" and "GL3DBarRoundedRectangle", which were reported as being "not 
-ready for general use" in an OpenOffice forum posting from May 2014. </p>
+<p>colChart() in Chart2Views.java returns its XChartDocument reference. This isn't
+necessary for rendering the chart, but allows the reference to be passed to
+Chart2.getChartTemplates():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in main() in Chart2Views.java...</span>
+<span class="n">XChartDocument</span> <span class="n">chartDoc</span> <span class="o">=</span> <span class="n">colChart</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">sheet</span><span class="p">);</span>
+<span class="n">String</span><span class="o">[]</span> <span class="n">templateNames</span> <span class="o">=</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">getChartTemplates</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">);</span>
+<span class="n">Lo</span><span class="p">.</span><span class="na">printNames</span><span class="p">(</span><span class="n">templateNames</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</code></pre></div>
+<p>The only way to list the chart templates supported by the chart2 module (i.e. those
+shown in Table 1 of Chapter 28) is by querying an existing chart document. That's the
+purpose of Chart2.getChartTemplates():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">getChartTemplates</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XChartTypeManager</span> <span class="n">ctMan</span> <span class="o">=</span> <span class="n">chartDoc</span><span class="p">.</span><span class="na">getChartTypeManager</span><span class="p">();</span>
+  <span class="k">return</span> <span class="n">Info</span><span class="p">.</span><span class="na">getAvailableServices</span><span class="p">(</span><span class="n">ctMan</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Normally XChartTypeManager is used to create a template instance, but
+Info.getAvailableServices() accesses its
+XMultiServiceFactory.getAvailableServiceNames() method to list the names of all its
+supported services, which are templates:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Info class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">getAvailableServices</span><span class="p">(</span><span class="n">Object</span> <span class="n">obj</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XMultiServiceFactory</span> <span class="n">msf</span> <span class="o">=</span>
+                  <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XMultiServiceFactory</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">obj</span><span class="p">);</span>
+  <span class="n">String</span><span class="o">[]</span> <span class="n">serviceNames</span> <span class="o">=</span> <span class="n">msf</span><span class="p">.</span><span class="na">getAvailableServiceNames</span><span class="p">();</span>
+  <span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">serviceNames</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">serviceNames</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of getAvailableServices()</span>
+</code></pre></div>
+<p>The output lists has 66 names, starting and ending like so:</p>
+<div class="highlight"><pre><span></span><code>&quot;com.sun.star.chart2.template.Area&quot;
+&quot;com.sun.star.chart2.template.Bar&quot;
+&quot;com.sun.star.chart2.template.Bubble&quot;
+&quot;com.sun.star.chart2.template.Column&quot;
+&quot;com.sun.star.chart2.template.ColumnWithLine&quot;
+     :
+&quot;com.sun.star.chart2.template.ThreeDLineDeep&quot;
+&quot;com.sun.star.chart2.template.ThreeDPie&quot;
+&quot;com.sun.star.chart2.template.ThreeDPieAllExploded&quot;
+&quot;com.sun.star.chart2.template.ThreeDScatter&quot;
+</code></pre></div>
+<p>Sixty-four of those names appear in Chapter 28's Table 1. The two missing are
+"GL3DBar" and "GL3DBarRoundedRectangle", which were reported as being "not
+ready for general use" in an OpenOffice forum posting from May 2014.</p>
 <h2 id="5-multiple-columns">5.  Multiple Columns<a class="headerlink" href="#5-multiple-columns" title="Permanent link">&para;</a></h2>
-<p>The multColChart() method in Chart2Views.java uses a table containing three 
-columns of data (see Figure 7) to generate two column graphs in the same chart, as in </p>
-<p><img alt="" src="images/29-Column_Charts-8.png" /></p>
-<p>Figure 8. </p>
+<p>The multColChart() method in Chart2Views.java uses a table containing three
+columns of data (see Figure 7) to generate two column graphs in the same chart, as in
+Figure 8.</p>
 <p><img alt="" src="images/29-Column_Charts-7.png" /></p>
-<p>Figure 7. The "States with the Most Colleges" Table. </p>
+<p>Figure 7. The "States with the Most Colleges" Table.</p>
 <p><img alt="" src="images/29-Column_Charts-8.png" /></p>
-<p>Figure 8. A Multiple Column Chart Generated from the Table in Figure 7. </p>
-<p>multColChart() is: </p>
-<p>// in Chart2Views.java 
-private static void multColChart(XSpreadsheetDocument doc, 
-                                 XSpreadsheet sheet) 
-{ 
-  CellRangeAddress rangeAddr = Calc.getAddress(sheet, "E15:G21"); 
-  XChartDocument chartDoc = 
-     Chart2.insertChart(sheet, rangeAddr, "A22", 20, 11, "Column"); 
-                         // ThreeDColumnDeep, ThreeDColumnFlat 
-  Calc.gotoCell(doc, "A13"); </p>
-<p>Chart2.setTitle(chartDoc, Calc.getString(sheet, "E13")); 
-  Chart2.setXAxisTitle(chartDoc, Calc.getString(sheet, "E15")); 
-  Chart2.setYAxisTitle(chartDoc, Calc.getString(sheet, "F14")); 
-  Chart2.rotateYAxisTitle(chartDoc, 90); 
-  Chart2.viewLegend(chartDoc, true); </p>
-<p>// for a 3D version 
-  // Chart2.showAxisLabel(chartDoc, Chart2.Z_AXIS, 0, false); 
-  // Chart2.setChartShape3D(chartDoc, "cylinder"); <br />
-                               // box, cylinder, cone, pyramid 
-}  // end of multColChart() </p>
-<p>The same "Column" chart template is used as in colChart(), and the additional column 
-of data is treated as an extra column graph. The chart title and axis titles are added in 
-the same way as before, and a legend is included by calling Chart2.viewLegend(): </p>
-<p>// in the Chart2 class 
-public static void viewLegend(XChartDocument chartDoc,<br />
-                              boolean isVisible) 
-{ 
-  XDiagram diagram = chartDoc.getFirstDiagram(); 
-  XLegend legend = diagram.getLegend(); 
-  if (isVisible &amp;&amp; (legend == null)) { 
-    XLegend leg = Lo.createInstanceMCF(XLegend.class,<br />
-                              "com.sun.star.chart2.Legend"); 
-    Props.setProperty(leg, "LineStyle", LineStyle.NONE); 
-                         // no outline around legend 
-    Props.setProperty(leg, "FillStyle", FillStyle.SOLID); 
-    Props.setProperty(leg, "FillTransparence", 100); <br />
-                         // transparent solid background 
-    diagram.setLegend(leg); 
-  } 
-  Props.setProperty(diagram.getLegend(), "Show", isVisible); <br />
-                                   // toggle visibility 
-}  // end of viewLegend() </p>
-<p>The legend is accessible via the chart diagram service. viewLegend() creates an 
-instance, and sets a few properties to make it look nicer. </p>
-<p>Figure 9 shows the Legend service, which defines several properties, and inherits 
-many others from FillProperties and LineProperties. The "LineStyle", "FillStyle", and 
-"FillTransparence" properties utilized in viewLegend() come from the inherited 
-property classes, but "Show" is from the Legend service. </p>
+<p>Figure 8. A Multiple Column Chart Generated from the Table in Figure 7.</p>
+<p>multColChart() is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Chart2Views.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">multColChart</span><span class="p">(</span><span class="n">XSpreadsheetDocument</span> <span class="n">doc</span><span class="p">,</span>
+                                 <span class="n">XSpreadsheet</span> <span class="n">sheet</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">CellRangeAddress</span> <span class="n">rangeAddr</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getAddress</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;E15:G21&quot;</span><span class="p">);</span>
+  <span class="n">XChartDocument</span> <span class="n">chartDoc</span> <span class="o">=</span>
+     <span class="n">Chart2</span><span class="p">.</span><span class="na">insertChart</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">rangeAddr</span><span class="p">,</span> <span class="s">&quot;A22&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="s">&quot;Column&quot;</span><span class="p">);</span>
+                         <span class="c1">// ThreeDColumnDeep, ThreeDColumnFlat</span>
+  <span class="n">Calc</span><span class="p">.</span><span class="na">gotoCell</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;A13&quot;</span><span class="p">);</span>
+
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;E13&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setXAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;E15&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setYAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;F14&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">rotateYAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="mi">90</span><span class="p">);</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">viewLegend</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+  <span class="c1">// for a 3D version</span>
+  <span class="c1">// Chart2.showAxisLabel(chartDoc, Chart2.Z_AXIS, 0, false);</span>
+  <span class="c1">// Chart2.setChartShape3D(chartDoc, &quot;cylinder&quot;);</span>
+                               <span class="c1">// box, cylinder, cone, pyramid</span>
+<span class="p">}</span>  <span class="c1">// end of multColChart()</span>
+</code></pre></div>
+<p>The same "Column" chart template is used as in colChart(), and the additional column
+of data is treated as an extra column graph. The chart title and axis titles are added in
+the same way as before, and a legend is included by calling Chart2.viewLegend():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">viewLegend</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span>
+                              <span class="kt">boolean</span> <span class="n">isVisible</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XDiagram</span> <span class="n">diagram</span> <span class="o">=</span> <span class="n">chartDoc</span><span class="p">.</span><span class="na">getFirstDiagram</span><span class="p">();</span>
+  <span class="n">XLegend</span> <span class="n">legend</span> <span class="o">=</span> <span class="n">diagram</span><span class="p">.</span><span class="na">getLegend</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">isVisible</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">legend</span> <span class="o">==</span> <span class="kc">null</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">XLegend</span> <span class="n">leg</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XLegend</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                              <span class="s">&quot;com.sun.star.chart2.Legend&quot;</span><span class="p">);</span>
+    <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">leg</span><span class="p">,</span> <span class="s">&quot;LineStyle&quot;</span><span class="p">,</span> <span class="n">LineStyle</span><span class="p">.</span><span class="na">NONE</span><span class="p">);</span>
+                         <span class="c1">// no outline around legend</span>
+    <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">leg</span><span class="p">,</span> <span class="s">&quot;FillStyle&quot;</span><span class="p">,</span> <span class="n">FillStyle</span><span class="p">.</span><span class="na">SOLID</span><span class="p">);</span>
+    <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">leg</span><span class="p">,</span> <span class="s">&quot;FillTransparence&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+                         <span class="c1">// transparent solid background</span>
+    <span class="n">diagram</span><span class="p">.</span><span class="na">setLegend</span><span class="p">(</span><span class="n">leg</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">diagram</span><span class="p">.</span><span class="na">getLegend</span><span class="p">(),</span> <span class="s">&quot;Show&quot;</span><span class="p">,</span> <span class="n">isVisible</span><span class="p">);</span>
+                                   <span class="c1">// toggle visibility</span>
+<span class="p">}</span>  <span class="c1">// end of viewLegend()</span>
+</code></pre></div>
+<p>The legend is accessible via the chart diagram service. viewLegend() creates an
+instance, and sets a few properties to make it look nicer.</p>
+<p>Figure 9 shows the Legend service, which defines several properties, and inherits
+many others from FillProperties and LineProperties. The "LineStyle", "FillStyle", and
+"FillTransparence" properties utilized in viewLegend() come from the inherited
+property classes, but "Show" is from the Legend service.</p>
 <p><img alt="" src="images/29-Column_Charts-9.png" /></p>
-<p>Figure 9. The Legend Service. </p>
-<p>The XLegend interface contains no methods, and is used only to access the properties 
-in its defining service. </p>
+<p>Figure 9. The Legend Service.</p>
+<p>The XLegend interface contains no methods, and is used only to access the properties
+in its defining service.</p>
 <h2 id="6-3d-pizazz">6.  3D Pizazz<a class="headerlink" href="#6-3d-pizazz" title="Permanent link">&para;</a></h2>
-<p>I'm not a fan of 3D charts which are often harder to understand than their 2D 
-equivalents, even if they do look more "hi-tech". But if you really want  a 3D version 
-of a chart, it's mostly just a matter of changing the template name in the call to 
-Chart2.insertChart(). </p>
-<p>If the "Column" string is changed to "ThreeDColumnDeep" or "ThreeDColumnFlat" 
-in insertChart() in multColChart(), then the charts in Figure 10 appear. </p>
+<p>I'm not a fan of 3D charts which are often harder to understand than their 2D
+equivalents, even if they do look more "hi-tech". But if you really want  a 3D version
+of a chart, it's mostly just a matter of changing the template name in the call to
+Chart2.insertChart().</p>
+<p>If the "Column" string is changed to "ThreeDColumnDeep" or "ThreeDColumnFlat"
+in insertChart() in multColChart(), then the charts in Figure 10 appear.</p>
 <p><img alt="" src="images/29-Column_Charts-10.jpg" /></p>
-<p>Figure 10. Deep and Flat 3D Column Charts. </p>
-<p>"deep" orders the two 3D graphs along the z-axis, and labels the axis.  </p>
-<p>The x-axis labels are rotated automatically in the top-most chart of Figure 10 because 
-the width of the chart wasn't sufficient to draw them horizontally, and that's caused 
-the graphs to be squashed into less vertical space.  </p>
-<p>multColChart() contains two commented out lines which illustrate how a 3D graph 
-can be changed: </p>
-<p>// part of multColChart() in Chart2Views.java... </p>
-<p>Chart2.showAxisLabel(chartDoc, Chart2.Z_AXIS, 0, false); <br />
-                                           // hide labels 
-Chart2.setChartShape3D(chartDoc, "cylinder"); <br />
-                  // shape can be: box, cylinder, cone, pyramid </p>
+<p>Figure 10. Deep and Flat 3D Column Charts.</p>
+<p>"deep" orders the two 3D graphs along the z-axis, and labels the axis.</p>
+<p>The x-axis labels are rotated automatically in the top-most chart of Figure 10 because
+the width of the chart wasn't sufficient to draw them horizontally, and that's caused
+the graphs to be squashed into less vertical space.</p>
+<p>multColChart() contains two commented out lines which illustrate how a 3D graph
+can be changed:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of multColChart() in Chart2Views.java...</span>
+<span class="n">Chart2</span><span class="p">.</span><span class="na">showAxisLabel</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">Z_AXIS</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+                                           <span class="c1">// hide labels</span>
+<span class="n">Chart2</span><span class="p">.</span><span class="na">setChartShape3D</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="s">&quot;cylinder&quot;</span><span class="p">);</span>
+                  <span class="c1">// shape can be: box, cylinder, cone, pyramid</span>
+</code></pre></div>
 <p>Chart2.showAxisLabel() is passed the boolean false to switch off the display of the z-
-axis labels. Chart2.setChartShape3D() changes the shape of the columns; in this case 
-to cylinders, as in Figure 11. </p>
+axis labels. Chart2.setChartShape3D() changes the shape of the columns; in this case
+to cylinders, as in Figure 11.</p>
 <p><img alt="" src="images/29-Column_Charts-11.jpg" /></p>
-<p>Figure 11. Modified Deep 3D Column Chart. </p>
-<p>Chart2.showAxisLabel() uses Chart2.getAxis() to access the XAxis interface, and 
-then modifies its "Show" property: </p>
-<p>// in the Chart2 class 
-public static void showAxisLabel(XChartDocument chartDoc,<br />
-                 int axisVal, int idx, boolean isVisible) 
-{ XAxis axis = getAxis(chartDoc, axisVal, idx); 
-  if (axis == null) 
-    return; 
-  //Props.showObjProps("Axis", axis); 
-  Props.setProperty(axis, "Show", isVisible); 
-}  // end of showAxisLabel() </p>
-<p>The Axis service contains a large assortment of properties (online documentation can 
-be read by calling lodoc chart2 axis service), and inherits character and line 
-properties depicted in Figure 12. </p>
+<p>Figure 11. Modified Deep 3D Column Chart.</p>
+<p>Chart2.showAxisLabel() uses Chart2.getAxis() to access the XAxis interface, and
+then modifies its "Show" property:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">showAxisLabel</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span>
+                 <span class="kt">int</span> <span class="n">axisVal</span><span class="p">,</span> <span class="kt">int</span> <span class="n">idx</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">isVisible</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">XAxis</span> <span class="n">axis</span> <span class="o">=</span> <span class="n">getAxis</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">axisVal</span><span class="p">,</span> <span class="n">idx</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">axis</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="c1">//Props.showObjProps(&quot;Axis&quot;, axis);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="s">&quot;Show&quot;</span><span class="p">,</span> <span class="n">isVisible</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of showAxisLabel()</span>
+</code></pre></div>
+<p>The Axis service contains a large assortment of properties (online documentation can
+be read by calling <code>lodoc chart2 axis service</code>), and inherits character and line
+properties depicted in Figure 12.</p>
 <p><img alt="" src="images/29-Column_Charts-12.png" /></p>
-<p>Figure 12. The Axis Service. </p>
-<p>Chart2.setChartShape3D() affects the data 'points' (which in a 3D column chart are 
-boxes by default). This requires access to the XDataSeries array of data points by 
-calling Chart2.getDataSeries(), and then the "Geometry3D" property in the DataSeries 
-service is modified. Figure 11 in Chapter 28 shows the service and its interfaces, and 
-most of its properties are inherited from the DataPointProperties class, including 
-"Geometry3D". The code for  Chart2.setChartShape3D(): </p>
-<p>// in the Chart2 class 
-public static void setChartShape3D(XChartDocument chartDoc,<br />
-                                   String shape) 
-{<br />
-  XDataSeries[] dataSeriesArr = getDataSeries(chartDoc); 
-  for (XDataSeries dataSeries : dataSeriesArr) { 
-    if (shape.equals("box")) 
-      Props.setProperty(dataSeries, "Geometry3D",<br />
-                                    DataPointGeometry3D.CUBOID); 
-    else if (shape.equals("cylinder")) 
-      Props.setProperty(dataSeries, "Geometry3D",<br />
-                                    DataPointGeometry3D.CYLINDER); 
-    else if (shape.equals("cone")) 
-      Props.setProperty(dataSeries, "Geometry3D",<br />
-                                    DataPointGeometry3D.CONE); 
-    else if (shape.equals("pyramid")) 
-      Props.setProperty(dataSeries, "Geometry3D",<br />
-                                    DataPointGeometry3D.PYRAMID); 
-    else 
-      System.out.println("Did not recognize 3D shape: " + shape); 
-  } 
-}  // end of setChartShape3D() </p>
+<p>Figure 12. The Axis Service.</p>
+<p>Chart2.setChartShape3D() affects the data 'points' (which in a 3D column chart are
+boxes by default). This requires access to the XDataSeries array of data points by
+calling Chart2.getDataSeries(), and then the "Geometry3D" property in the DataSeries
+service is modified. Figure 11 in Chapter 28 shows the service and its interfaces, and
+most of its properties are inherited from the DataPointProperties class, including
+"Geometry3D". The code for  Chart2.setChartShape3D():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setChartShape3D</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span>
+                                   <span class="n">String</span> <span class="n">shape</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XDataSeries</span><span class="o">[]</span> <span class="n">dataSeriesArr</span> <span class="o">=</span> <span class="n">getDataSeries</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">XDataSeries</span> <span class="n">dataSeries</span> <span class="p">:</span> <span class="n">dataSeriesArr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">shape</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;box&quot;</span><span class="p">))</span>
+      <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">dataSeries</span><span class="p">,</span> <span class="s">&quot;Geometry3D&quot;</span><span class="p">,</span>
+                                    <span class="n">DataPointGeometry3D</span><span class="p">.</span><span class="na">CUBOID</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">shape</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;cylinder&quot;</span><span class="p">))</span>
+      <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">dataSeries</span><span class="p">,</span> <span class="s">&quot;Geometry3D&quot;</span><span class="p">,</span>
+                                    <span class="n">DataPointGeometry3D</span><span class="p">.</span><span class="na">CYLINDER</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">shape</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;cone&quot;</span><span class="p">))</span>
+      <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">dataSeries</span><span class="p">,</span> <span class="s">&quot;Geometry3D&quot;</span><span class="p">,</span>
+                                    <span class="n">DataPointGeometry3D</span><span class="p">.</span><span class="na">CONE</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">shape</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;pyramid&quot;</span><span class="p">))</span>
+      <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">dataSeries</span><span class="p">,</span> <span class="s">&quot;Geometry3D&quot;</span><span class="p">,</span>
+                                    <span class="n">DataPointGeometry3D</span><span class="p">.</span><span class="na">PYRAMID</span><span class="p">);</span>
+    <span class="k">else</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Did not recognize 3D shape: &quot;</span> <span class="o">+</span> <span class="n">shape</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of setChartShape3D()</span>
+</code></pre></div>
 <h2 id="7-the-column-and-line-chart">7.  The Column and Line Chart<a class="headerlink" href="#7-the-column-and-line-chart" title="Permanent link">&para;</a></h2>
-<p>Another way to display the multiple columns of data in the "States with the Most 
-Colleges" table (Figure 7) is to draw a column and line chart. The column is generated 
-from the first data column, and the line graph uses the second column. The result is 
-shown in Figure 13. </p>
+<p>Another way to display the multiple columns of data in the "States with the Most
+Colleges" table (Figure 7) is to draw a column and line chart. The column is generated
+from the first data column, and the line graph uses the second column. The result is
+shown in Figure 13.</p>
 <p><img alt="" src="images/29-Column_Charts-13.png" /></p>
-<p>Figure 13. A Column and Line Chart Generated from the Table in Figure 7. </p>
-<p>colLineChart() in Chart2Views.java generates Figure 13: </p>
-<p>// in Chart2Views.java 
-private static void colLineChart(XSpreadsheetDocument doc, 
-                                 XSpreadsheet sheet) 
-{ 
-  CellRangeAddress rangeAddr = Calc.getAddress(sheet, "E15:G21"); 
-  XChartDocument chartDoc = Chart2.insertChart(sheet,<br />
-                     rangeAddr, "A22", 20, 11, "ColumnWithLine"); 
-  Calc.gotoCell(doc, "A13"); </p>
-<p>Chart2.setTitle(chartDoc, Calc.getString(sheet, "E13")); 
-  Chart2.setXAxisTitle(chartDoc, Calc.getString(sheet, "E15")); 
-  Chart2.setYAxisTitle(chartDoc, Calc.getString(sheet, "F14")); 
-  Chart2.rotateYAxisTitle(chartDoc, 90); 
-  Chart2.viewLegend(chartDoc, true); 
-}  // end of colLineChart() </p>
-<p>It's identical to mulColChart() except for the template string ("ColumnWithLine") 
-passed to Chart2.insertChart(). </p>
-<p>A chart's coordinate system may utilize multiple chart types. Up to now a chart 
-template (e.g. "Column") has been converted to a single chart type (e.g. </p>
-<p>ColumnChartType) by the chart API (specifically by the chart type manager), but the 
-"ColumnWithLine" template is different. The manager implements that template<br />
-using two chart types, "ColumnChartType" and "LineChartType". This is reported by 
-Chart2.insertChart() calling Chart2.printChartTypes(): </p>
-<p>No. of chart types: 2 
-  com.sun.star.chart2.ColumnChartType 
-  com.sun.star.chart2.LineChartType </p>
-<p>Chart2.printChartTypes() uses Chart2.getChartTypes(), which was defined earlier: </p>
-<p>// in the Chart2 class 
-public static void printChartTypes(XChartDocument chartDoc) 
-{ 
-  XChartType[] chartTypes = getChartTypes(chartDoc); 
-  if (chartTypes.length &gt; 1) { 
-    System.out.println("No. of chart types: " + chartTypes.length); 
-    for(XChartType ct : chartTypes) 
-      System.out.println("  " + ct.getChartType()); 
-  } 
-  else 
-    System.out.println("Chart type: " +<br />
-                          chartTypes[0].getChartType()); 
-}  // end of printChartTypes() </p>
-<p>Why is this separation of a single template into two chart types important?<br />
-The short answer is that it complicates the search for a chart template's data. For 
-example, my earlier Chart2.getChartType() returns the first chart type in the 
-XChartType[] array since most templates only use a single chart type:  </p>
-<p>// in the Chart2 class 
-public static XChartType getChartType(XChartDocument chartDoc) 
-{ 
-  XChartType[] chartTypes = getChartTypes(chartDoc); 
-  return chartTypes[0]; 
-} </p>
-<p>This method is insufficient for examining a chart created with the "ColumnWithLine" 
-template since the XChartType[] array holds two chart types. A programmer will have 
-to use findChartType(), which searches the array for the specified chart type: </p>
-<p>// in the Chart2 class 
-public static XChartType findChartType(XChartDocument chartDoc,<br />
-                                       String chartType) 
-{ String srchName = "com.sun.star.chart2." +<br />
-                               chartType.toLowerCase(); 
-  XChartType[] chartTypes = getChartTypes(chartDoc); 
-  for(XChartType ct : chartTypes) { 
-    String ctName = ct.getChartType().toLowerCase(); 
-    if (ctName.equals(srchName)) 
-      return ct; 
-  } 
-  System.out.println("Chart type " + srchName + " not found"); 
-  return null; 
-}  // end of findChartType() </p>
-<p>For example, the following call returns a reference to the line chart type: 
-XChartType lineCT = Chart2.findChartType(chartDoc, "LineChartType"); 
-The simple getChartType()  is used in Chart2.getDataSeries(): </p>
-<p>// in the Chart2 class 
-public static XDataSeries[] getDataSeries(XChartDocument chartDoc) 
-{ 
-  XChartType xChartType = getChartType(chartDoc); 
-  XDataSeriesContainer dsCon =<br />
-                   Lo.qi(XDataSeriesContainer.class, xChartType); 
-  return dsCon.getDataSeries(); 
-}  //end of getDataSeries() </p>
-<p>This means that Chart2.getDataSeries() can only access the data associated with the 
-column (the first chart type) in a "ColumnWithLine" chart document. The fix is to use 
-a more complex version of Chart2.getDataSeries(): </p>
-<p>// in the Chart2 class 
-public static XDataSeries[] getDataSeries(XChartDocument chartDoc,<br />
-                                          String chartType) 
-// get the data series associated with the specified chart type 
-{ 
-  XChartType xChartType = findChartType(chartDoc, chartType); 
-  if (xChartType == null) 
-    return null; 
-  XDataSeriesContainer dsCon =<br />
-                   Lo.qi(XDataSeriesContainer.class, xChartType); 
-  return dsCon.getDataSeries(); 
-}  //end of getDataSeries() </p>
-<p>This version requires a chart type string argument to get the correct chart type. For 
-example, the call: 
-XDataSeries[] ds = Chart2.getDataSeries(chartDoc, "LineChartType"); 
-returns the data series associated with the line chart type. </p>
+<p>Figure 13. A Column and Line Chart Generated from the Table in Figure 7.</p>
+<p>colLineChart() in Chart2Views.java generates Figure 13:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Chart2Views.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">colLineChart</span><span class="p">(</span><span class="n">XSpreadsheetDocument</span> <span class="n">doc</span><span class="p">,</span>
+                                 <span class="n">XSpreadsheet</span> <span class="n">sheet</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">CellRangeAddress</span> <span class="n">rangeAddr</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getAddress</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;E15:G21&quot;</span><span class="p">);</span>
+  <span class="n">XChartDocument</span> <span class="n">chartDoc</span> <span class="o">=</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">insertChart</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span>
+                     <span class="n">rangeAddr</span><span class="p">,</span> <span class="s">&quot;A22&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="s">&quot;ColumnWithLine&quot;</span><span class="p">);</span>
+  <span class="n">Calc</span><span class="p">.</span><span class="na">gotoCell</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;A13&quot;</span><span class="p">);</span>
+
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;E13&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setXAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;E15&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setYAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;F14&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">rotateYAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="mi">90</span><span class="p">);</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">viewLegend</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of colLineChart()</span>
+</code></pre></div>
+<p>It's identical to mulColChart() except for the template string ("ColumnWithLine")
+passed to Chart2.insertChart().</p>
+<p>A chart's coordinate system may utilize multiple chart types. Up to now a chart
+template (e.g. "Column") has been converted to a single chart type (e.g.
+ColumnChartType) by the chart API (specifically by the chart type manager), but the
+"ColumnWithLine" template is different. The manager implements that template
+using two chart types, "ColumnChartType" and "LineChartType". This is reported by
+Chart2.insertChart() calling Chart2.printChartTypes():</p>
+<div class="highlight"><pre><span></span><code>No. of chart types: 2
+  com.sun.star.chart2.ColumnChartType
+  com.sun.star.chart2.LineChartType
+</code></pre></div>
+<p>Chart2.printChartTypes() uses Chart2.getChartTypes(), which was defined earlier:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printChartTypes</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XChartType</span><span class="o">[]</span> <span class="n">chartTypes</span> <span class="o">=</span> <span class="n">getChartTypes</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">chartTypes</span><span class="p">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No. of chart types: &quot;</span> <span class="o">+</span> <span class="n">chartTypes</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">XChartType</span> <span class="n">ct</span> <span class="p">:</span> <span class="n">chartTypes</span><span class="p">)</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  &quot;</span> <span class="o">+</span> <span class="n">ct</span><span class="p">.</span><span class="na">getChartType</span><span class="p">());</span>
+  <span class="p">}</span>
+  <span class="k">else</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Chart type: &quot;</span> <span class="o">+</span>
+                          <span class="n">chartTypes</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">.</span><span class="na">getChartType</span><span class="p">());</span>
+<span class="p">}</span>  <span class="c1">// end of printChartTypes()</span>
+</code></pre></div>
+<p>Why is this separation of a single template into two chart types important?
+The short answer is that it complicates the search for a chart template's data. For
+example, my earlier Chart2.getChartType() returns the first chart type in the
+XChartType[] array since most templates only use a single chart type:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XChartType</span> <span class="nf">getChartType</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XChartType</span><span class="o">[]</span> <span class="n">chartTypes</span> <span class="o">=</span> <span class="n">getChartTypes</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">chartTypes</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This method is insufficient for examining a chart created with the "ColumnWithLine"
+template since the XChartType[] array holds two chart types. A programmer will have
+to use findChartType(), which searches the array for the specified chart type:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XChartType</span> <span class="nf">findChartType</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span>
+                                       <span class="n">String</span> <span class="n">chartType</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">String</span> <span class="n">srchName</span> <span class="o">=</span> <span class="s">&quot;com.sun.star.chart2.&quot;</span> <span class="o">+</span>
+                               <span class="n">chartType</span><span class="p">.</span><span class="na">toLowerCase</span><span class="p">();</span>
+  <span class="n">XChartType</span><span class="o">[]</span> <span class="n">chartTypes</span> <span class="o">=</span> <span class="n">getChartTypes</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">);</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">XChartType</span> <span class="n">ct</span> <span class="p">:</span> <span class="n">chartTypes</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">String</span> <span class="n">ctName</span> <span class="o">=</span> <span class="n">ct</span><span class="p">.</span><span class="na">getChartType</span><span class="p">().</span><span class="na">toLowerCase</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ctName</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">srchName</span><span class="p">))</span>
+      <span class="k">return</span> <span class="n">ct</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Chart type &quot;</span> <span class="o">+</span> <span class="n">srchName</span> <span class="o">+</span> <span class="s">&quot; not found&quot;</span><span class="p">);</span>
+  <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of findChartType()</span>
+</code></pre></div>
+<p>For example, the following call returns a reference to the line chart type:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XChartType</span> <span class="n">lineCT</span> <span class="o">=</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">findChartType</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="s">&quot;LineChartType&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>The simple getChartType()  is used in Chart2.getDataSeries():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XDataSeries</span><span class="o">[]</span> <span class="nf">getDataSeries</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XChartType</span> <span class="n">xChartType</span> <span class="o">=</span> <span class="n">getChartType</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">);</span>
+  <span class="n">XDataSeriesContainer</span> <span class="n">dsCon</span> <span class="o">=</span>
+                   <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XDataSeriesContainer</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">xChartType</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">dsCon</span><span class="p">.</span><span class="na">getDataSeries</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">//end of getDataSeries()</span>
+</code></pre></div>
+<p>This means that Chart2.getDataSeries() can only access the data associated with the
+column (the first chart type) in a "ColumnWithLine" chart document. The fix is to use
+a more complex version of Chart2.getDataSeries():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XDataSeries</span><span class="o">[]</span> <span class="nf">getDataSeries</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span>
+                                          <span class="n">String</span> <span class="n">chartType</span><span class="p">)</span>
+<span class="c1">// get the data series associated with the specified chart type</span>
+<span class="p">{</span>
+  <span class="n">XChartType</span> <span class="n">xChartType</span> <span class="o">=</span> <span class="n">findChartType</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">chartType</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">xChartType</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="n">XDataSeriesContainer</span> <span class="n">dsCon</span> <span class="o">=</span>
+                   <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XDataSeriesContainer</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">xChartType</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">dsCon</span><span class="p">.</span><span class="na">getDataSeries</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">//end of getDataSeries()</span>
+</code></pre></div>
+<p>This version requires a chart type string argument to get the correct chart type. For
+example, the call:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XDataSeries</span><span class="o">[]</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">getDataSeries</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="s">&quot;LineChartType&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>returns the data series associated with the line chart type.</p>
                 
               
               

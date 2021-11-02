@@ -877,6 +877,26 @@
     1.  Using RowSets
   </a>
   
+    <nav class="md-nav" aria-label="1.  Using RowSets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listening-to-the-row-set" class="md-nav__link">
+    Listening to the Row Set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#termination-problem-after-closing-a-row-set" class="md-nav__link">
+    Termination Problem after Closing a Row Set
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1221,6 +1241,26 @@
     1.  Using RowSets
   </a>
   
+    <nav class="md-nav" aria-label="1.  Using RowSets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#listening-to-the-row-set" class="md-nav__link">
+    Listening to the Row Set
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#termination-problem-after-closing-a-row-set" class="md-nav__link">
+    Termination Problem after Closing a Row Set
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1277,327 +1317,356 @@
                 <h1 id="chapter-36-using-rowsets-and-database-context">Chapter 36. Using RowSets and Database Context<a class="headerlink" href="#chapter-36-using-rowsets-and-database-context" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
+<p>Using RowSets;
+Using the Database
+Context; Copying Data
+From Base To Calc</p>
+<p>Example folders: "Base
+Tests" and "Utils"</p>
 </div>
-<p>Using RowSets; 
-    Using the Database 
-    Context; Copying Data 
-    From Base To Calc </p>
-<div class="highlight"><pre><span></span><code>Example folders: &quot;Base 
-Tests&quot; and &quot;Utils&quot;
-</code></pre></div>
-<p>This chapter looks at programming with the XRowSet and 
-XDatabaseContext interfaces, which were labelled (2) and 
-(3) in Figure 5 of the Chapter 34. Figure 1 repeats that 
-figure but without the alternative query approaches (labels (1) and (4)). </p>
+<p>This chapter looks at programming with the XRowSet and
+XDatabaseContext interfaces, which were labelled (2) and
+(3) in Figure 5 of the Chapter 34. Figure 1 repeats that
+figure but without the alternative query approaches (labels (1) and (4)).</p>
 <p><img alt="" src="images/36-RowSets_DB_Context-1.png" /></p>
-<p>Figure 1.  Querying a Base Document. </p>
+<p>Figure 1.  Querying a Base Document.</p>
 <h2 id="1-using-rowsets">1.  Using RowSets<a class="headerlink" href="#1-using-rowsets" title="Permanent link">&para;</a></h2>
-<p>Base's RowSet offers much the same functionality as JDBC's RowSet in that it 
-abstracts away from connecting Java to a database towards queries applied to general 
-tabular data. This means that a row set can access different types of information 
-include flat files, spreadsheets, and ODB files.  </p>
-<p>The JDBC RowSet is implemented in a different way from the sdb row set – JDBC 
-supports several RowSet subclasses, including JdbcRowSet, CachedRowSet and 
-WebRowSet, none of which are present in the Base API. Instead the different ways of 
-manipulating files are specified by setting properties in a RowSet object before it is 
-executed. </p>
-<p>Figure 2 shows that row set properties are distributed between two RowSet services, 
-one in the sdbc module, the other in the higher-level sdb module. </p>
+<p>Base's RowSet offers much the same functionality as JDBC's RowSet in that it
+abstracts away from connecting Java to a database towards queries applied to general
+tabular data. This means that a row set can access different types of information
+include flat files, spreadsheets, and ODB files.</p>
+<p>The JDBC RowSet is implemented in a different way from the sdb row set – JDBC
+supports several RowSet subclasses, including JdbcRowSet, CachedRowSet and
+WebRowSet, none of which are present in the Base API. Instead the different ways of
+manipulating files are specified by setting properties in a RowSet object before it is
+executed.</p>
+<p>Figure 2 shows that row set properties are distributed between two RowSet services,
+one in the sdbc module, the other in the higher-level sdb module.</p>
 <p><img alt="" src="images/36-RowSets_DB_Context-2.png" /></p>
-<p>Figure 2. The RowSet Services and Interfaces. </p>
-<p>Although the XRowSet interface's most important method is execute(), it inherits 
-XResultSet which adds other useful functions. One benefit is that an executed row set, 
-which contains results, can be passed to the BaseTablePrinter class for ASCII 
-printing. </p>
-<p>Aside from the documentation webpages for the two RowSet services, a good 
-summary of row set properties can be found in "The RowSet Service" section of the 
-Developer's Guide in chapter 12. The same information is online at: 
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Usage">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Usage</a> (or use 
-loguide "Database usage"). </p>
-<p>My personal view is that the RowSet service is overly complex, trying to combine too 
-many ways of accessing databases and tabular data. It's easier to use separate services 
-aimed at specific forms of data. For example, XOfficeDatabaseDocument for ODB 
-files, XDatabaseContext for URLs, and XDriverManager for none-ODB data such as 
-CSV files and e-mail address books. I'll discuss XDatabaseContext  in section 2 and 
-XDriverManager in the next chapter. </p>
-<p>Another 'black mark' against RowSet is that the my example below hangs after 
-closing a row set; Lo.killOffice() must be called to end the program.  </p>
-<p>UseRowSets.java executes a row set containing a simple SQL query: </p>
-<p>// in UseRowSets.java 
-public static void main(String[] args) 
-{ 
-  XComponentLoader loader = Lo.loadOffice(); 
-  execQuery(); 
-  Lo.closeOffice(); 
-  Lo.killOffice();    // needed to clean-up after XRowSet 
-}  // end of main() </p>
-<p>private static void execQuery() 
-{ 
-  try { 
-    System.out.println("Initializing rowset..."); 
-    XRowSet xRowSet = Base.rowSetQuery("liangTables.odb", 
-          "SELECT \"firstName\", \"lastName\" FROM \"Student\""); </p>
-<div class="highlight"><pre><span></span><code>// add rowset listener 
-xRowSet.addRowSetListener( new XRowSetListener() { 
-  public void cursorMoved(EventObject e)  
-  {  System.out.println(&quot;Cursor moved&quot;);  }
+<p>Figure 2. The RowSet Services and Interfaces.</p>
+<p>Although the XRowSet interface's most important method is execute(), it inherits
+XResultSet which adds other useful functions. One benefit is that an executed row set,
+which contains results, can be passed to the BaseTablePrinter class for ASCII
+printing.</p>
+<p>Aside from the documentation webpages for the two RowSet services, a good
+summary of row set properties can be found in "The RowSet Service" section of the
+Developer's Guide in chapter 12. The same information is online at:
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Usage">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Database/Usage</a> (or use
+<code>loguide "Database usage"</code>).</p>
+<p>My personal view is that the RowSet service is overly complex, trying to combine too
+many ways of accessing databases and tabular data. It's easier to use separate services
+aimed at specific forms of data. For example, XOfficeDatabaseDocument for ODB
+files, XDatabaseContext for URLs, and XDriverManager for none-ODB data such as
+CSV files and e-mail address books. I'll discuss XDatabaseContext  in section 2 and
+XDriverManager in the next chapter.</p>
+<p>Another 'black mark' against RowSet is that the my example below hangs after
+closing a row set; Lo.killOffice() must be called to end the program.</p>
+<p>UseRowSets.java executes a row set containing a simple SQL query:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in UseRowSets.java</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+  <span class="n">execQuery</span><span class="p">();</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">killOffice</span><span class="p">();</span>    <span class="c1">// needed to clean-up after XRowSet</span>
+<span class="p">}</span>  <span class="c1">// end of main()</span>
 
-  public void rowChanged(EventObject e)  
-  {  System.out.println(&quot;Row changed&quot;);  }
 
-  public void rowSetChanged(EventObject e)  
-  {  System.out.println(&quot;RowSet changed&quot;);  }
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">execQuery</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Initializing rowset...&quot;</span><span class="p">);</span>
+    <span class="n">XRowSet</span> <span class="n">xRowSet</span> <span class="o">=</span> <span class="n">Base</span><span class="p">.</span><span class="na">rowSetQuery</span><span class="p">(</span><span class="s">&quot;liangTables.odb&quot;</span><span class="p">,</span>
+          <span class="s">&quot;SELECT \&quot;firstName\&quot;, \&quot;lastName\&quot; FROM \&quot;Student\&quot;&quot;</span><span class="p">);</span>
 
-  public void disposing(EventObject e) 
-  {  System.out.println(&quot;RowSet being destroyed&quot;); } 
-});
+    <span class="c1">// add rowset listener</span>
+    <span class="n">xRowSet</span><span class="p">.</span><span class="na">addRowSetListener</span><span class="p">(</span> <span class="k">new</span> <span class="n">XRowSetListener</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">cursorMoved</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">e</span><span class="p">)</span>
+      <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Cursor moved&quot;</span><span class="p">);</span>  <span class="p">}</span>
 
-System.out.println(&quot;Executing rowset...&quot;); 
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">rowChanged</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">e</span><span class="p">)</span>
+      <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Row changed&quot;</span><span class="p">);</span>  <span class="p">}</span>
+
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">rowSetChanged</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">e</span><span class="p">)</span>
+      <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;RowSet changed&quot;</span><span class="p">);</span>  <span class="p">}</span>
+
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">disposing</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">e</span><span class="p">)</span>
+      <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;RowSet being destroyed&quot;</span><span class="p">);</span> <span class="p">}</span>
+    <span class="p">});</span>
+
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Executing rowset...&quot;</span><span class="p">);</span>
+    <span class="n">xRowSet</span><span class="p">.</span><span class="na">execute</span><span class="p">();</span>
+
+    <span class="n">BaseTablePrinter</span><span class="p">.</span><span class="na">printResultSet</span><span class="p">(</span><span class="n">xRowSet</span><span class="p">);</span>
+      <span class="c1">// possible since XRowSet is a subclass of XResultSet</span>
+
+    <span class="c1">// dispose of row set</span>
+    <span class="n">XComponent</span> <span class="n">xComp</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XComponent</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">xRowSet</span><span class="p">);</span>
+    <span class="n">xComp</span><span class="p">.</span><span class="na">dispose</span><span class="p">();</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">uno</span><span class="p">.</span><span class="na">Exception</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of execQuery()</span>
+</code></pre></div>
+<p>The tricky initialization of RowSet properties is handled by Base.rowSetQuery():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Base class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XRowSet</span> <span class="nf">rowSetQuery</span><span class="p">(</span><span class="n">String</span> <span class="n">fnm</span><span class="p">,</span> <span class="n">String</span> <span class="n">query</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XRowSet</span> <span class="n">xRowSet</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XRowSet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                                 <span class="s">&quot;com.sun.star.sdb.RowSet&quot;</span><span class="p">);</span>
+
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">xRowSet</span><span class="p">,</span> <span class="s">&quot;DataSourceName&quot;</span><span class="p">,</span> <span class="n">FileIO</span><span class="p">.</span><span class="na">fnmToURL</span><span class="p">(</span><span class="n">fnm</span><span class="p">));</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">xRowSet</span><span class="p">,</span> <span class="s">&quot;CommandType&quot;</span><span class="p">,</span> <span class="n">CommandType</span><span class="p">.</span><span class="na">COMMAND</span><span class="p">);</span>
+                                       <span class="c1">// TABLE, QUERY or COMMAND</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">xRowSet</span><span class="p">,</span> <span class="s">&quot;Command&quot;</span><span class="p">,</span> <span class="n">query</span><span class="p">);</span>
+         <span class="c1">// command could be a table, query name, or SQL,</span>
+         <span class="c1">// depending on the CommandType</span>
+
+  <span class="c1">// set these if your database requires a login</span>
+  <span class="c1">// Props.setProperty(xRowSet, &quot;User&quot;, &quot;&quot;);</span>
+  <span class="c1">// Props.setProperty(xRowSet, &quot;Password&quot;, &quot;&quot;);</span>
+
+  <span class="c1">// more attributes are defined in sdb and sdbc Rowset...</span>
+
+
+  <span class="k">return</span> <span class="n">xRowSet</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of rowSetQuery()</span>
+</code></pre></div>
+<p>Base.rowSetQuery() shows that initializing a row set is less work than directly
+obtaining an ODB data source, connecting to the database, and creating a Statement
+service. The equivalent of executing a statement is the call to XRowset.execute(),
+carried out by execQuery() in UseRowSets.java:
 xRowSet.execute();
-
-BaseTablePrinter.printResultSet(xRowSet);   
-  // possible since XRowSet is a subclass of XResultSet
-
-// dispose of row set 
-XComponent xComp = Lo.qi(XComponent.class, xRowSet); 
-xComp.dispose();
+Once the row set has been populated, it's passed to BaseTablePrinter.printResultSet()
+where it's treated as an XResultSet instance:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in execQuery()...</span>
+<span class="n">BaseTablePrinter</span><span class="p">.</span><span class="na">printResultSet</span><span class="p">(</span><span class="n">xRowSet</span><span class="p">);</span>
 </code></pre></div>
-<p>} 
-  catch(com.sun.star.uno.Exception e) 
-  {  System.out.println(e);  } 
-}  // end of execQuery() </p>
-<p>The tricky initialization of RowSet properties is handled by Base.rowSetQuery(): </p>
-<p>// in the Base class 
-public static XRowSet rowSetQuery(String fnm, String query) 
-{ 
-  XRowSet xRowSet = Lo.createInstanceMCF(XRowSet.class,<br />
-                                 "com.sun.star.sdb.RowSet"); </p>
-<p>Props.setProperty(xRowSet, "DataSourceName", FileIO.fnmToURL(fnm)); 
-  Props.setProperty(xRowSet, "CommandType", CommandType.COMMAND);  <br />
-                                       // TABLE, QUERY or COMMAND 
-  Props.setProperty(xRowSet, "Command", query); 
-         // command could be a table, query name, or SQL,<br />
-         // depending on the CommandType </p>
-<p>// set these if your database requires a login 
-  // Props.setProperty(xRowSet, "User", ""); 
-  // Props.setProperty(xRowSet, "Password", ""); </p>
-<p>// more attributes are defined in sdb and sdbc Rowset...  </p>
-<p>return xRowSet; 
-}  // end of rowSetQuery() </p>
-<p>Base.rowSetQuery() shows that initializing a row set is less work than directly 
-obtaining an ODB data source, connecting to the database, and creating a Statement 
-service. The equivalent of executing a statement is the call to XRowset.execute(), 
-carried out by execQuery() in UseRowSets.java: 
-xRowSet.execute(); 
-Once the row set has been populated, it's passed to BaseTablePrinter.printResultSet() 
-where it's treated as an XResultSet instance: 
-// in execQuery()... </p>
-<p>BaseTablePrinter.printResultSet(xRowSet);   </p>
-<p>Listening to the Row Set 
-execQuery() shows how it's possible to attach a listener to a row set, which is woken 
-up when the result set cursor moves or the set is changed.  </p>
-<p>The anonymous XRowSetListener in execQuery() prints a short message if any of its 
-handlers are triggered; their output can be seen in Figure 3. </p>
+<h4 id="listening-to-the-row-set">Listening to the Row Set<a class="headerlink" href="#listening-to-the-row-set" title="Permanent link">&para;</a></h4>
+<p>execQuery() shows how it's possible to attach a listener to a row set, which is woken
+up when the result set cursor moves or the set is changed.</p>
+<p>The anonymous XRowSetListener in execQuery() prints a short message if any of its
+handlers are triggered; their output can be seen in Figure 3.</p>
 <p><img alt="" src="images/36-RowSets_DB_Context-3.png" /></p>
-<p>Figure 3. The Execution of UseRowSets.java. </p>
-<p>Termination Problem after Closing a Row Set 
-The disposal of the row set is easy: </p>
-<p>// at the end of execQuery()... </p>
-<p>XComponent xComp = Lo.qi(XComponent.class, xRowSet); 
-xComp.dispose(); </p>
-<p>Back in main(), Lo.closeOffice() is executed, returns, but then the program hangs. A 
-call to Lo.killOffice() (which utilizes Window's taskkill) is needed to terminate the 
-program and Office. </p>
+<p>Figure 3. The Execution of UseRowSets.java.</p>
+<h4 id="termination-problem-after-closing-a-row-set">Termination Problem after Closing a Row Set<a class="headerlink" href="#termination-problem-after-closing-a-row-set" title="Permanent link">&para;</a></h4>
+<p>The disposal of the row set is easy:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// at the end of execQuery()...</span>
+<span class="n">XComponent</span> <span class="n">xComp</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XComponent</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">xRowSet</span><span class="p">);</span>
+<span class="n">xComp</span><span class="p">.</span><span class="na">dispose</span><span class="p">();</span>
+</code></pre></div>
+<p>Back in main(), Lo.closeOffice() is executed, returns, but then the program hangs. A
+call to Lo.killOffice() (which utilizes Window's taskkill) is needed to terminate the
+program and Office.</p>
 <h2 id="2-using-the-database-context">2.  Using the Database Context<a class="headerlink" href="#2-using-the-database-context" title="Permanent link">&para;</a></h2>
-<p>Sdbc's XDatabaseContext lets the programmer access Base's database context, which 
-is a container for data sources (see Figure 1). Data sources map names to databases, 
-hiding the low-level details of the driver's protocol, and whether the database is 
-embedded in an ODB file or located at the other end of a URL. Base's database 
-context performs a similar role to JNDI for data sources in JDBC. </p>
-<p>Figure 4 shows the DatabaseContext service and some of its important interfaces. </p>
+<p>Sdbc's XDatabaseContext lets the programmer access Base's database context, which
+is a container for data sources (see Figure 1). Data sources map names to databases,
+hiding the low-level details of the driver's protocol, and whether the database is
+embedded in an ODB file or located at the other end of a URL. Base's database
+context performs a similar role to JNDI for data sources in JDBC.</p>
+<p>Figure 4 shows the DatabaseContext service and some of its important interfaces.</p>
 <p><img alt="" src="images/36-RowSets_DB_Context-4.png" /></p>
-<p>Figure 4. The DatabaseContext Service and Interfaces. </p>
+<p>Figure 4. The DatabaseContext Service and Interfaces.</p>
 <h3 id="21-registered-data-sources">2.1.  Registered Data Sources<a class="headerlink" href="#21-registered-data-sources" title="Permanent link">&para;</a></h3>
-<p>It's possible to add (or register) new data sources to Base's database context, but I 
-won't be using that feature. Currently registered sources are listed by 
-Base.printRegisteredDataSources(): </p>
-<p>// in the Base class 
-public static void printRegisteredDataSources() 
-// print all registered datasources 
-{ 
-  XDatabaseRegistrations dbRegs =<br />
-       Lo.createInstanceMCF(XDatabaseRegistrations.class,<br />
-                           "com.sun.star.sdb.DatabaseContext"); </p>
-<p>XNameAccess nmsAccess = Lo.createInstanceMCF(XNameAccess.class,<br />
-                             "com.sun.star.sdb.DatabaseContext"); </p>
-<p>String dsNames[] = nmsAccess.getElementNames(); 
-  System.out.println("Registered Data Sources (" +<br />
-                                  dsNames.length + ")"); 
-  for (int i = 0; i &lt; dsNames.length; ++i) { 
-    String dbLoc = null; 
-    try { 
-      dbLoc = dbRegs.getDatabaseLocation(dsNames[i]); 
-    } 
-    catch(com.sun.star.uno.Exception e) {} 
-    System.out.println("  " + dsNames[i] + " in " + dbLoc); 
-  } 
-  System.out.println(); 
-}  // end of printRegisteredDataSources() </p>
-<p>The method iterates through the data source names in the database context, printing 
-the locations of their associated databases. The output for my version of Base is: </p>
-<p>Registered Data Sources (1) 
-  Bibliography in file:///C:/Users/Dell/AppData/Roaming/ 
-                       LibreOffice/4/user/database/biblio.odb </p>
-<p>Only a "Bibliography" data source is stored in the database context, which maps to an 
-ODB file called biblio.odb. </p>
-<h3 id="22-accessing-a-file-using-a-data-source">2.2.  Accessing a File Using a Data Source<a class="headerlink" href="#22-accessing-a-file-using-a-data-source" title="Permanent link">&para;</a></h3>
-<p>New data sources can be created in the database context, which offers a way to access 
-ODB files without having to explicitly open them as documents. For example, the 
-DataSourcer.java example shows how "liangTables.odb" can be queried without 
-having to first instantiate XOfficeDatabaseDocument (i.e. without opening the ODB 
-file). </p>
-<p>// in DataSourcer.java 
-public static void main(String[] args) 
-{ 
-  XComponentLoader loader = Lo.loadOffice(); </p>
-<p>Base.printRegisteredDataSources();  // explained above </p>
-<p>XConnection conn = null; 
-  try { 
-    XDataSource dataSource =<br />
-          Base.getFileDataSource("liangTables.odb"); 
-          // no office document opened </p>
-<div class="highlight"><pre><span></span><code>conn = dataSource.getConnection(&quot;&quot;, &quot;&quot;); // no login/password
+<p>It's possible to add (or register) new data sources to Base's database context, but I
+won't be using that feature. Currently registered sources are listed by
+Base.printRegisteredDataSources():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Base class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printRegisteredDataSources</span><span class="p">()</span>
+<span class="c1">// print all registered datasources</span>
+<span class="p">{</span>
+  <span class="n">XDatabaseRegistrations</span> <span class="n">dbRegs</span> <span class="o">=</span>
+       <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XDatabaseRegistrations</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                           <span class="s">&quot;com.sun.star.sdb.DatabaseContext&quot;</span><span class="p">);</span>
 
-XResultSet rs = Base.executeQuery( 
-    &quot;SELECT \&quot;firstName\&quot;, \&quot;lastName\&quot; FROM \&quot;Student\&quot;&quot;, conn); 
-BaseTablePrinter.printResultSet(rs);
+  <span class="n">XNameAccess</span> <span class="n">nmsAccess</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XNameAccess</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                             <span class="s">&quot;com.sun.star.sdb.DatabaseContext&quot;</span><span class="p">);</span>
+
+  <span class="n">String</span> <span class="n">dsNames</span><span class="o">[]</span> <span class="o">=</span> <span class="n">nmsAccess</span><span class="p">.</span><span class="na">getElementNames</span><span class="p">();</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Registered Data Sources (&quot;</span> <span class="o">+</span>
+                                  <span class="n">dsNames</span><span class="p">.</span><span class="na">length</span> <span class="o">+</span> <span class="s">&quot;)&quot;</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">dsNames</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">String</span> <span class="n">dbLoc</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="n">dbLoc</span> <span class="o">=</span> <span class="n">dbRegs</span><span class="p">.</span><span class="na">getDatabaseLocation</span><span class="p">(</span><span class="n">dsNames</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">catch</span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">uno</span><span class="p">.</span><span class="na">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  &quot;</span> <span class="o">+</span> <span class="n">dsNames</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="s">&quot; in &quot;</span> <span class="o">+</span> <span class="n">dbLoc</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of printRegisteredDataSources()</span>
 </code></pre></div>
-<p>} 
-  catch(SQLException e) { 
-    System.out.println(e); 
-  } </p>
-<p>Base.closeConnection(conn); 
-  Lo.closeOffice(); 
-  Lo.killOffice();   // needed when Base.getFileDataSource() used<br />
-}  // end of main()  </p>
-<p>The database context is manipulated by Base.getFileDataSource(): </p>
-<p>// in the Base class 
-public static XDataSource getFileDataSource(String fnm) 
-{ 
-  try { 
-    String fileURL = FileIO.fnmToURL(fnm); 
-    XNameAccess nmsAccess = Lo.createInstanceMCF(XNameAccess.class,<br />
-                            "com.sun.star.sdb.DatabaseContext"); 
-    XDataSource ds = Lo.qi(XDataSource.class,<br />
-                               nmsAccess.getByName(fileURL) ); 
-    if (ds == null) { 
-      System.out.println("No data source for " + fnm); 
-      return null; 
-    } 
-    else { 
-      System.out.println("Found data source for " + fnm); 
-      return ds; 
-    } 
-  } 
-  catch(com.sun.star.uno.Exception e) { 
-    System.out.println("Unable to access data source for " + fnm + 
-                       ": " + e.getMessage()); 
-    return null; 
-  } 
-}  // end of getFileDataSource() </p>
-<p>The database context's XNameAccess interface is used to map the supplied filename 
-to a data source.  </p>
-<p>Back in main() of DataSourcer.java, the Student table in the database is queried using 
-the data source, and then the program closes the connection and Office. There's no 
-need to close an XOfficeDatabaseDocument document, (e.g. by calling 
-Base.closeBaseDoc(dbDoc)) since one was never opened. </p>
-<p>Unfortunately, DataSourcer.java needs to call Lo.killOffice() or the program will 
-hang after the return of Lo.closeOffice(). This is similar to the row set problem in 
-UseRowSets.java in the previus section. </p>
+<p>The method iterates through the data source names in the database context, printing
+the locations of their associated databases. The output for my version of Base is:</p>
+<div class="highlight"><pre><span></span><code>Registered Data Sources (1)
+  Bibliography in file:///C:/Users/Dell/AppData/Roaming/LibreOffice/4/user/database/biblio.odb
+</code></pre></div>
+<p>Only a "Bibliography" data source is stored in the database context, which maps to an
+ODB file called biblio.odb.</p>
+<h3 id="22-accessing-a-file-using-a-data-source">2.2.  Accessing a File Using a Data Source<a class="headerlink" href="#22-accessing-a-file-using-a-data-source" title="Permanent link">&para;</a></h3>
+<p>New data sources can be created in the database context, which offers a way to access
+ODB files without having to explicitly open them as documents. For example, the
+DataSourcer.java example shows how "liangTables.odb" can be queried without
+having to first instantiate XOfficeDatabaseDocument (i.e. without opening the ODB
+file).</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in DataSourcer.java</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+
+  <span class="n">Base</span><span class="p">.</span><span class="na">printRegisteredDataSources</span><span class="p">();</span>  <span class="c1">// explained above</span>
+
+  <span class="n">XConnection</span> <span class="n">conn</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">XDataSource</span> <span class="n">dataSource</span> <span class="o">=</span>
+          <span class="n">Base</span><span class="p">.</span><span class="na">getFileDataSource</span><span class="p">(</span><span class="s">&quot;liangTables.odb&quot;</span><span class="p">);</span>
+          <span class="c1">// no office document opened</span>
+
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">dataSource</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">);</span> <span class="c1">// no login/password</span>
+
+    <span class="n">XResultSet</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">Base</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span>
+        <span class="s">&quot;SELECT \&quot;firstName\&quot;, \&quot;lastName\&quot; FROM \&quot;Student\&quot;&quot;</span><span class="p">,</span> <span class="n">conn</span><span class="p">);</span>
+    <span class="n">BaseTablePrinter</span><span class="p">.</span><span class="na">printResultSet</span><span class="p">(</span><span class="n">rs</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">SQLException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">Base</span><span class="p">.</span><span class="na">closeConnection</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">killOffice</span><span class="p">();</span>   <span class="c1">// needed when Base.getFileDataSource() used</span>
+<span class="p">}</span>  <span class="c1">// end of main()</span>
+</code></pre></div>
+<p>The database context is manipulated by Base.getFileDataSource():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Base class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XDataSource</span> <span class="nf">getFileDataSource</span><span class="p">(</span><span class="n">String</span> <span class="n">fnm</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">String</span> <span class="n">fileURL</span> <span class="o">=</span> <span class="n">FileIO</span><span class="p">.</span><span class="na">fnmToURL</span><span class="p">(</span><span class="n">fnm</span><span class="p">);</span>
+    <span class="n">XNameAccess</span> <span class="n">nmsAccess</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XNameAccess</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                            <span class="s">&quot;com.sun.star.sdb.DatabaseContext&quot;</span><span class="p">);</span>
+    <span class="n">XDataSource</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XDataSource</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                               <span class="n">nmsAccess</span><span class="p">.</span><span class="na">getByName</span><span class="p">(</span><span class="n">fileURL</span><span class="p">)</span> <span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ds</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No data source for &quot;</span> <span class="o">+</span> <span class="n">fnm</span><span class="p">);</span>
+      <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Found data source for &quot;</span> <span class="o">+</span> <span class="n">fnm</span><span class="p">);</span>
+      <span class="k">return</span> <span class="n">ds</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">uno</span><span class="p">.</span><span class="na">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Unable to access data source for &quot;</span> <span class="o">+</span> <span class="n">fnm</span> <span class="o">+</span>
+                       <span class="s">&quot;: &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of getFileDataSource()</span>
+</code></pre></div>
+<p>The database context's XNameAccess interface is used to map the supplied filename
+to a data source.</p>
+<p>Back in main() of DataSourcer.java, the Student table in the database is queried using
+the data source, and then the program closes the connection and Office. There's no
+need to close an XOfficeDatabaseDocument document, (e.g. by calling
+Base.closeBaseDoc(dbDoc)) since one was never opened.</p>
+<p>Unfortunately, DataSourcer.java needs to call Lo.killOffice() or the program will
+hang after the return of Lo.closeOffice(). This is similar to the row set problem in
+UseRowSets.java in the previus section.</p>
 <h2 id="3-copying-data-from-base-to-calc">3.  Copying Data From Base To Calc<a class="headerlink" href="#3-copying-data-from-base-to-calc" title="Permanent link">&para;</a></h2>
-<p>There are a few places in my Office support classes where the code assumes only one 
-document is open at a time. For programs that copy data from one document to 
-another, problems can be avoided by using an intermediate data structure. The usual 
-strategy is to read the data from the first document,  then close the file before the 
-second document is opened, and then the data is added to it. </p>
-<p>This situation arises when copying database records (stored in a Base document) to a 
-spreadsheet (a Calc document). An alternative solution to using an intermediate data 
-structure is to access the database as a data source instead of as a 
-XOfficeDatabaseDocument object. This means that only a single Calc document is 
-manipulated by the program so no problems arise with my support classes. This 
-approach is implemented in StoreInCalc.java: </p>
-<p>// globals 
-private static final String FNM = "liangTables.odb"; 
-private static final String CALC_FNM = "liangCalc.ods"; </p>
-<p>// in StoreInCalc.java 
-public static void main(String[] args) 
-{ 
-  XComponentLoader loader = Lo.loadOffice(); 
-  XSpreadsheetDocument doc = Calc.createDoc(loader); 
-  if (doc == null) { 
-    System.out.println("Document creation failed"); 
-    Lo.closeOffice(); 
-    return; 
-  } 
-  System.out.println("Created a Calc document"); </p>
-<p>XSpreadsheet sheet = Calc.getSheet(doc, 0); 
-  if (sheet == null) { 
-    System.out.println("No spreadsheet found"); 
-    Lo.closeOffice(); 
-    return; 
-  } </p>
-<p>GUI.setVisible(doc, true);  // show the new sheet </p>
-<p>Object[][] rsa = queryDB(FNM, 
-         "SELECT \"firstName\", \"lastName\" FROM \"Student\""); 
-  if (rsa != null) 
-    fillSheet(sheet, rsa); 
-  Lo.delay(3000);  // wait for visible sheet to be changed </p>
-<p>Lo.saveDoc(doc, CALC_FNM); 
-  Lo.closeDoc(doc); 
-  Lo.closeOffice(); </p>
-<p>// Lo.killOffice();   // needed when getFileDataSource() used<br />
-}  // end of main() </p>
-<p>The program creates a XSpreadsheetDocument object, which is left open while 
-queryDB() queries the database. The result set is returned as a 2D array called rsa, 
-which fillSheet() uses to populate the spreadsheet. The document is saved and Office 
-closed. </p>
-<p>queryDB() accesses the database as a data source, not as a document: </p>
-<p>// in StoreInCalc.java 
-private static Object[][] queryDB(String fnm, String query) 
-{ 
-  Object[][] rsa = null; 
-  XConnection conn = null; 
-  try { 
-    XDataSource dataSource = Base.getFileDataSource(fnm); 
-    conn = dataSource.getConnection("", "");  </p>
-<div class="highlight"><pre><span></span><code>XResultSet rs = Base.executeQuery(query, conn); 
-rsa = Base.getResultSetArr(rs);
+<p>There are a few places in my Office support classes where the code assumes only one
+document is open at a time. For programs that copy data from one document to
+another, problems can be avoided by using an intermediate data structure. The usual
+strategy is to read the data from the first document,  then close the file before the
+second document is opened, and then the data is added to it.</p>
+<p>This situation arises when copying database records (stored in a Base document) to a
+spreadsheet (a Calc document). An alternative solution to using an intermediate data
+structure is to access the database as a data source instead of as a
+XOfficeDatabaseDocument object. This means that only a single Calc document is
+manipulated by the program so no problems arise with my support classes. This
+approach is implemented in StoreInCalc.java:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// globals</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">FNM</span> <span class="o">=</span> <span class="s">&quot;liangTables.odb&quot;</span><span class="p">;</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">CALC_FNM</span> <span class="o">=</span> <span class="s">&quot;liangCalc.ods&quot;</span><span class="p">;</span>
+
+
+<span class="c1">// in StoreInCalc.java</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+  <span class="n">XSpreadsheetDocument</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">createDoc</span><span class="p">(</span><span class="n">loader</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">doc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Document creation failed&quot;</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Created a Calc document&quot;</span><span class="p">);</span>
+
+  <span class="n">XSpreadsheet</span> <span class="n">sheet</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getSheet</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">sheet</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No spreadsheet found&quot;</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">GUI</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>  <span class="c1">// show the new sheet</span>
+
+  <span class="n">Object</span><span class="o">[][]</span> <span class="n">rsa</span> <span class="o">=</span> <span class="n">queryDB</span><span class="p">(</span><span class="n">FNM</span><span class="p">,</span>
+         <span class="s">&quot;SELECT \&quot;firstName\&quot;, \&quot;lastName\&quot; FROM \&quot;Student\&quot;&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">rsa</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="n">fillSheet</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">rsa</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">delay</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>  <span class="c1">// wait for visible sheet to be changed</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">saveDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">CALC_FNM</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+
+  <span class="c1">// Lo.killOffice();   // needed when getFileDataSource() used</span>
+<span class="p">}</span>  <span class="c1">// end of main()</span>
 </code></pre></div>
-<p>} 
-  catch(SQLException e) { 
-    System.out.println(e); 
-  } </p>
-<p>Base.closeConnection(conn); 
-  return rsa; 
-}  // end of queryDB() </p>
-<p>Base.getResultSetArr() returns the result set as a 2D array of Objects. It builds the 
-array by traversing the result set a row at a time, creating a one-dimensional array for 
-each row. The data structure could be a defined as a 2D array of strings, except that 
-the Calc API requires an object array fillSheet() uses XCellRangeData.setDataArray() 
-to add the array to the sheet: </p>
-<p>// in StoreInCalc.java 
-private static void fillSheet(XSpreadsheet sheet, Object[][] rsa) 
-{ 
-  try { 
-    XCellRange cellRange = sheet.getCellRangeByPosition(0, 0, 
-                                 rsa[0].length-1, rsa.length-1); 
-    XCellRangeData xData = Lo.qi(XCellRangeData.class, cellRange); 
-    xData.setDataArray(rsa); 
-  } 
-  catch (Exception e) { 
-    System.out.println("Could not writes values to cells"); 
-  } 
-}  // end of fillSheet() </p>
+<p>The program creates a XSpreadsheetDocument object, which is left open while
+queryDB() queries the database. The result set is returned as a 2D array called rsa,
+which fillSheet() uses to populate the spreadsheet. The document is saved and Office
+closed.</p>
+<p>queryDB() accesses the database as a data source, not as a document:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in StoreInCalc.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="n">Object</span><span class="o">[][]</span> <span class="nf">queryDB</span><span class="p">(</span><span class="n">String</span> <span class="n">fnm</span><span class="p">,</span> <span class="n">String</span> <span class="n">query</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">Object</span><span class="o">[][]</span> <span class="n">rsa</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="n">XConnection</span> <span class="n">conn</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">XDataSource</span> <span class="n">dataSource</span> <span class="o">=</span> <span class="n">Base</span><span class="p">.</span><span class="na">getFileDataSource</span><span class="p">(</span><span class="n">fnm</span><span class="p">);</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">dataSource</span><span class="p">.</span><span class="na">getConnection</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">);</span>
+
+    <span class="n">XResultSet</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">Base</span><span class="p">.</span><span class="na">executeQuery</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">);</span>
+    <span class="n">rsa</span> <span class="o">=</span> <span class="n">Base</span><span class="p">.</span><span class="na">getResultSetArr</span><span class="p">(</span><span class="n">rs</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">SQLException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">Base</span><span class="p">.</span><span class="na">closeConnection</span><span class="p">(</span><span class="n">conn</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">rsa</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of queryDB()</span>
+</code></pre></div>
+<p>Base.getResultSetArr() returns the result set as a 2D array of Objects. It builds the
+array by traversing the result set a row at a time, creating a one-dimensional array for
+each row. The data structure could be a defined as a 2D array of strings, except that
+the Calc API requires an object array fillSheet() uses XCellRangeData.setDataArray()
+to add the array to the sheet:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in StoreInCalc.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">fillSheet</span><span class="p">(</span><span class="n">XSpreadsheet</span> <span class="n">sheet</span><span class="p">,</span> <span class="n">Object</span><span class="o">[][]</span> <span class="n">rsa</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">XCellRange</span> <span class="n">cellRange</span> <span class="o">=</span> <span class="n">sheet</span><span class="p">.</span><span class="na">getCellRangeByPosition</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                                 <span class="n">rsa</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">rsa</span><span class="p">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">XCellRangeData</span> <span class="n">xData</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XCellRangeData</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">cellRange</span><span class="p">);</span>
+    <span class="n">xData</span><span class="p">.</span><span class="na">setDataArray</span><span class="p">(</span><span class="n">rsa</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not writes values to cells&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of fillSheet()</span>
+</code></pre></div>
                 
               
               

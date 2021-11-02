@@ -1333,585 +1333,639 @@
                 <h1 id="chapter-31-xy-scatter-charts">Chapter 31. XY (Scatter) Charts<a class="headerlink" href="#chapter-31-xy-scatter-charts" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
+<p>A Scatter Chart
+(with Regressions);
+Calculating Regressions;
+Drawing a Regression
+Curve; Changing Axis
+Scales; Adding Error
+Bars</p>
+<p>Example folders:
+"Chart2 Tests" and
+"Utils"</p>
 </div>
-<p>A Scatter Chart 
-    (with Regressions); 
-    Calculating Regressions; 
-    Drawing a Regression 
-    Curve; Changing Axis 
-    Scales; Adding Error 
-    Bars </p>
-<div class="highlight"><pre><span></span><code>Example folders: 
-&quot;Chart2 Tests&quot; and 
-&quot;Utils&quot;
+<p>This chapter continues using the Chart2Views.java
+example from previous chapters, but looks at how various
+kinds of scatter charts can be generated from spreadsheet
+data.</p>
+<p>A scatter chart is a good way to display (x, y) coordinate
+data since the x-axis values are treated as numbers not
+categories. In addition, regression functions can be calculated and displayed, the axis
+scales can be changed, and error bars added.</p>
+<p>The relevant lines of Chart2Views.java are:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of Chart2Views.java</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+  <span class="n">XSpreadsheetDocument</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">openDoc</span><span class="p">(</span><span class="n">CHARTS_DATA</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>
+
+  <span class="n">GUI</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="n">XSpreadsheet</span> <span class="n">sheet</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getSheet</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+
+  <span class="c1">// ---- use different chart templates ----</span>
+
+  <span class="n">scatterChart</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">sheet</span><span class="p">);</span>               <span class="c1">// see sections 1-3</span>
+  <span class="c1">// scatterLineLogChart(doc, sheet);     // section 4</span>
+  <span class="c1">// scatterLineErrorChart(doc, sheet);   // section 5</span>
+
+         <span class="p">:</span>  <span class="c1">// more chart examples</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">waitEnter</span><span class="p">();</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of main()</span>
 </code></pre></div>
-<p>This chapter continues using the Chart2Views.java 
-example from previous chapters, but looks at how various 
-kinds of scatter charts can be generated from spreadsheet 
-data.  </p>
-<p>A scatter chart is a good way to display (x, y) coordinate 
-data since the x-axis values are treated as numbers not 
-categories. In addition, regression functions can be calculated and displayed, the axis 
-scales can be changed, and error bars added. </p>
-<p>The relevant lines of Chart2Views.java are: </p>
-<p>// part of Chart2Views.java 
-public static void main(String args[]) 
-{ 
-  XComponentLoader loader = Lo.loadOffice(); 
-  XSpreadsheetDocument doc = Calc.openDoc(CHARTS_DATA, loader); </p>
-<p>GUI.setVisible(doc, true); 
-  XSpreadsheet sheet = Calc.getSheet(doc, 0); </p>
-<p>// ---- use different chart templates ---- </p>
-<p>scatterChart(doc, sheet);               // see sections 1-3 
-  // scatterLineLogChart(doc, sheet);     // section 4 
-  // scatterLineErrorChart(doc, sheet);   // section 5 </p>
-<div class="highlight"><pre><span></span><code>     :  // more chart examples
-</code></pre></div>
-<p>Lo.waitEnter(); 
-  Lo.closeDoc(doc); 
-  Lo.closeOffice(); 
-}  // end of main() </p>
 <h2 id="1-a-scatter-chart-with-regressions">1.  A Scatter Chart (with Regressions)<a class="headerlink" href="#1-a-scatter-chart-with-regressions" title="Permanent link">&para;</a></h2>
-<p>scatterChart() in Chart2Views.java utilizes the "Ice Cream Sales vs. Temperature" 
-table in "chartsData.ods" (see Figure 1) to generate the scatter chart in Figure 2. </p>
+<p>scatterChart() in Chart2Views.java utilizes the "Ice Cream Sales vs. Temperature"
+table in "chartsData.ods" (see Figure 1) to generate the scatter chart in Figure 2.</p>
 <p><img alt="" src="images/31-XY_Scatter_Charts-1.png" /></p>
-<p>Figure 1. The  "Ice Cream Sales vs. Temperature" Table. </p>
+<p>Figure 1. The  "Ice Cream Sales vs. Temperature" Table.</p>
 <p><img alt="" src="images/31-XY_Scatter_Charts-2.png" /></p>
-<p>Figure 2. Scatter Chart for the Table in Figure 1. </p>
-<p>Note that the x-axis in Figure 1 is numerical, showing values ranging between 10.0 
-and 26.0. This range is calculated automatically by the template. </p>
-<p>scatterChart() is: </p>
-<p>// in Chart2Views.java 
-private static void scatterChart(XSpreadsheetDocument doc, 
-                                       XSpreadsheet sheet) 
-{ 
-  CellRangeAddress rangeAddr = Calc.getAddress(sheet, "A110:B122"); 
-  XChartDocument chartDoc = Chart2.insertChart(sheet,<br />
-              rangeAddr, "C109", 16, 11, "ScatterSymbol"); 
-                 // ScatterSymbol, ScatterLine, ScatterLineSymbol 
-  Calc.gotoCell(doc, "A104"); </p>
-<p>Chart2.setTitle(chartDoc, Calc.getString(sheet, "A109")); 
-  Chart2.setXAxisTitle(chartDoc, Calc.getString(sheet, "A110")); 
-  Chart2.setYAxisTitle(chartDoc, Calc.getString(sheet, "B110")); 
-  Chart2.rotateYAxisTitle(chartDoc, 90); 
-  Chart2.setDataPointLabels(chartDoc, Chart2.DP_NONE);  <br />
-                                       // reduce clutter </p>
-<p>// Chart2.calcRegressions(chartDoc); 
-  // Chart2.drawRegressionCurve(chartDoc, Chart2.LINEAR); 
-}  // end of scatterChart() </p>
-<p>If the Chart2.calcRegressions() line is uncommented then several different regression 
-functions are calculated using the chart's data. Their equations and R
-2
- values are 
-printed as shown below: </p>
-<p>Linear regression curve: 
-  Curve equation: f(x) = 30.09x - 159.5 
-  R^2 value: 0.917 </p>
-<p>Logarithmic regression curve: 
-  Curve equation: f(x) = 544.1 ln(x) - 1178 
-  R^2 value: 0.921 </p>
-<p>Exponential regression curve: 
-  Curve equation: f(x) = 81.62 exp( 0.0826 x ) 
-  R^2 value: 0.865 </p>
-<p>Power regression curve: 
-  Curve equation: f(x) = 4.545 x^1.525 
-  R^2 value: 0.906 </p>
-<p>Polynomial regression curve: 
-  Curve equation: f(x) =  - 0.5384x^2 + 50.24x - 340.1 
-  R^2 value: 0.921 </p>
-<p>Moving average regression curve: 
-  Curve equation: Moving average trend line with period = %PERIOD 
-  R^2 value: NaN </p>
-<p>A logarithmic or quadratic polynomial are the best matches, but linear is a close third. </p>
-<p>The "moving average" R
-2
- result is NaN (Not-a-Number) since no average of period 2 
-matches the data. </p>
-<p>If the Chart2.drawRegressionCurve() call is uncommented, the chart drawing will 
-include a linear regression line and its equation and R
-2
- value (see Figure 3). </p>
-<p><img alt="" src="images/31-XY_Scatter_Charts-3.png" /></p>
-<p>Figure 3. Scatter Chart with Linear Regression Line for the Table in Figure 1. </p>
-<p>The regression function is f(x) = 30.09x - 159.47, and the R
-2
- value is 0.92 (to 2 dp). If 
-the constant is changed to Chart2.LOGARITHMIC in the call to 
-Chart2.drawRegressionCurve() then the generated function is f(x) = 544.1 ln(x) – 
-1178 with an R
-2
- value of 0.92. Other regression curves are represented by the Chart2 
-constants EXPONENTIAL, POWER, POLYNOMIAL, and MOVING_AVERAGE. </p>
-<h2 id="2-calculating-regressions">2.  Calculating Regressions<a class="headerlink" href="#2-calculating-regressions" title="Permanent link">&para;</a></h2>
-<p>Chart2.calcRegressions() is: </p>
-<p>// in the Chart2 class 
-// globals 
-private static final int[] CURVE_KINDS =<br />
-      { LINEAR, LOGARITHMIC, EXPONENTIAL, POWER,<br />
-        POLYNOMIAL, MOVING_AVERAGE }; </p>
-<p>private static final String[] CURVE_NAMES =<br />
-      { "Linear", "Logarithmic", "Exponential", "Power",<br />
-        "Polynomial", "Moving average" }; </p>
-<p>public static void calcRegressions(XChartDocument chartDoc) 
-{ 
-  for(int i=0; i &lt; CURVE_KINDS.length; i++) { 
-    XRegressionCurve curve = createCurve(CURVE_KINDS[i]); 
-    System.out.println(CURVE_NAMES[i] + " regression curve:"); 
-    evalCurve(chartDoc, curve); 
-    System.out.println(); 
-  } 
-}  // end of calcRegressions() </p>
-<p>createCurve() matches the regression constants defined in CURVE_KINDS[] to 
-regression services offered by the API: </p>
-<p>// in the Chart2 class 
-public static XRegressionCurve createCurve(int curveKind) 
-{ 
-  if (curveKind == LINEAR) 
-    return Lo.createInstanceMCF(XRegressionCurve.class,<br />
-                "com.sun.star.chart2.LinearRegressionCurve"); 
-  else if (curveKind == LOGARITHMIC) 
-    return Lo.createInstanceMCF(XRegressionCurve.class,<br />
-                "com.sun.star.chart2.LogarithmicRegressionCurve"); 
-  else if (curveKind == EXPONENTIAL) 
-    return Lo.createInstanceMCF(XRegressionCurve.class,<br />
-                "com.sun.star.chart2.ExponentialRegressionCurve"); 
-  else if (curveKind == POWER) 
-    return Lo.createInstanceMCF(XRegressionCurve.class,<br />
-                "com.sun.star.chart2.PotentialRegressionCurve"); 
-  else if (curveKind == POLYNOMIAL)        // assume degree == 2 
-    return Lo.createInstanceMCF(XRegressionCurve.class,<br />
-                "com.sun.star.chart2.PolynomialRegressionCurve"); 
-  else if (curveKind == MOVING_AVERAGE)    // assume period == 2 
-    return Lo.createInstanceMCF(XRegressionCurve.class,<br />
-         "com.sun.star.chart2.MovingAverageRegressionCurve"); 
-  else {  <br />
-    System.out.println("Did not recognize regression line kind: " +<br />
-                       curveKind + "; using linear"); 
-    return Lo.createInstanceMCF(XRegressionCurve.class,<br />
-                "com.sun.star.chart2.LinearRegressionCurve"); 
-  } 
-}  // end of createCurve() </p>
-<p>There are seven regression curve services in the chart2 module, all of which support 
-the XRegressionCurve interface, as shown in Figure 4. </p>
-<p><img alt="" src="images/31-XY_Scatter_Charts-4.png" /></p>
-<p>Figure 4. The Regression Curve Services </p>
-<p>The RegressionCurve service shown in Figure 4 is not a superclass for the other 
-services. Also note that the regression curve service for power functions is called 
-"PotentialRegressionCurve". </p>
-<p>Chart2.evalCurve() uses XRegressionCurve.getCalculator() to access the 
-XRegressionCurveCalculator interface. It sets up the data and parameters for a 
-particular curve, and prints the results of curve fitting: </p>
-<p>// in the Chart2 class 
-public static void evalCurve(XChartDocument chartDoc,<br />
-                             XRegressionCurve curve) 
-{ 
-  XRegressionCurveCalculator curveCalc = curve.getCalculator(); </p>
-<p>int degree = 1; 
-  if (getCurveType(curve) != LINEAR) 
-    degree = 2;   // assumes POLYNOMIAL curve has degree == 2 
-  curveCalc.setRegressionProperties(degree, false, 0, 2); 
-          // args: degree, forceIntercept, interceptValue, period </p>
-<p>XDataSource dataSource = getDataSource(chartDoc); 
-  // printLabeledSeqs(dataSource); </p>
-<p>double[] xVals = getChartData(dataSource, 0); 
-  double[] yVals = getChartData(dataSource, 1); 
-  curveCalc.recalculateRegression(xVals, yVals); </p>
-<p>System.out.println("  Curve equation: " +<br />
-                            curveCalc.getRepresentation()); 
-  double cc = curveCalc.getCorrelationCoefficient(); 
-  System.out.printf("  R^2 value: %.3f\n", (cc*cc));   // 3 dp 
-}  // end of evalCurve() </p>
-<p>The calculation is configured by calling 
-XRegressionCurveCalculator.setRegressionProperties(), and carried out by 
-XRegressionCurveCalculator.recalculateRegression().  </p>
-<p>The degree argument of setRegressionProperties() specifies the polynomial curve's 
-degree, which I've hardwired to be quadratic (i.e. a degree of 2). The period argument 
-is used when a moving average curve is being fitted. </p>
-<p>recalculateRegression() requires two arrays of x- and y- axis values for the scatter 
-points. These are obtained from the chart's data source by calling 
-Chart2.getDataSource() which returns the XDataSource interface for the DataSeries 
-service. </p>
-<p>Figure 5 shows the XDataSource, XRegressionCurveContainer, and XDataSink 
-interfaces of the DataSeries service. </p>
-<p><img alt="" src="images/31-XY_Scatter_Charts-5.png" /></p>
-<p>Figure 5. More Detailed DataSeries Service. </p>
-<p>In previous chapters, I've only used the XDataSeries interface, which offers access to 
-the data points in the chart. The XDataSource interface, which is read-only, gives 
-access to the underlying data that was used to create the points. The data is stored as 
-an array of XLabeledDataSequence objects; each object contains a label and a 
-sequence of data.  </p>
-<p>Chart2.getDataSource() is defined as: </p>
-<p>// in the Chart2 class 
-public static XDataSource getDataSource(XChartDocument chartDoc) 
-{ 
-  XDataSeries[] dataSeriesArr = getDataSeries(chartDoc);<br />
-  return Lo.qi(XDataSource.class, dataSeriesArr[0]); // get first 
-}   </p>
-<p>This method assumes that the programmer wants the first data source in the data 
-series. This is adequate for most charts which only use one data source. </p>
-<p>Chart2.printLabeledSeqs() is a diagnostic function for printing all the labeled data 
-sequences stored in an XDataSource: </p>
-<p>// in the Chart2 class 
-public static void printLabeledSeqs(XDataSource dataSource) 
-{<br />
-  XLabeledDataSequence[] dataSeqs = dataSource.getDataSequences(); 
-  System.out.println("No. of sequences in data source: " +<br />
-                                         dataSeqs.length); 
-  for (int i=0; i &lt; dataSeqs.length; i++) { 
-    Object[] labelSeq = dataSeqs[i].getLabel().getData(); 
-    System.out.print(labelSeq[0] + " :"); 
-    Object[] valsSeq = dataSeqs[i].getValues().getData(); 
-    for (Object val : valsSeq) 
-      System.out.print("  " + val); 
-    System.out.println(); 
-    String srRep = dataSeqs[i].getValues(). </p>
-<div class="highlight"><pre><span></span><code>                        getSourceRangeRepresentation(); 
-System.out.println(&quot;  Source range: &quot; + srRep);
+<p>Figure 2. Scatter Chart for the Table in Figure 1.</p>
+<p>Note that the x-axis in Figure 1 is numerical, showing values ranging between 10.0
+and 26.0. This range is calculated automatically by the template.</p>
+<p>scatterChart() is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Chart2Views.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">scatterChart</span><span class="p">(</span><span class="n">XSpreadsheetDocument</span> <span class="n">doc</span><span class="p">,</span>
+                                       <span class="n">XSpreadsheet</span> <span class="n">sheet</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">CellRangeAddress</span> <span class="n">rangeAddr</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getAddress</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;A110:B122&quot;</span><span class="p">);</span>
+  <span class="n">XChartDocument</span> <span class="n">chartDoc</span> <span class="o">=</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">insertChart</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span>
+              <span class="n">rangeAddr</span><span class="p">,</span> <span class="s">&quot;C109&quot;</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="s">&quot;ScatterSymbol&quot;</span><span class="p">);</span>
+                 <span class="c1">// ScatterSymbol, ScatterLine, ScatterLineSymbol</span>
+  <span class="n">Calc</span><span class="p">.</span><span class="na">gotoCell</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;A104&quot;</span><span class="p">);</span>
+
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;A109&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setXAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;A110&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setYAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;B110&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">rotateYAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="mi">90</span><span class="p">);</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setDataPointLabels</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">DP_NONE</span><span class="p">);</span>
+                                       <span class="c1">// reduce clutter</span>
+
+  <span class="c1">// Chart2.calcRegressions(chartDoc);</span>
+  <span class="c1">// Chart2.drawRegressionCurve(chartDoc, Chart2.LINEAR);</span>
+<span class="p">}</span>  <span class="c1">// end of scatterChart()</span>
 </code></pre></div>
-<p>} 
-}  // end of printLabeledSeqs() </p>
-<p>When these function is applied to the data source for the scatter chart, the following is 
-printed: </p>
-<p>No. of sequences in data source: 2 
-Temperature °C :  14.2  16.4  11.9  15.2  18.5  22.1  19.4 <br />
-                  25.1  23.4  18.1  22.6  17.2 
-Source range: <span class="arithmatex">\(examples.\)</span>A<span class="arithmatex">\(111:\)</span>A$122 </p>
-<p>Ice Cream Sales :  215.0  325.0  185.0  332.0  406.0  522.0 <br />
-                   412.0  614.0  544.0  421.0  445.0  408.0 
-Source range: <span class="arithmatex">\(examples.\)</span>B<span class="arithmatex">\(111:\)</span>B$122 </p>
-<p>This output shows that the data source consists of two XLabeledDataSequence 
-objects, representing the x- and y- values in the data source (see Figure 1). These 
-objects' data are extracted as arrays by calls to Chart2.getChartData(): </p>
-<p>// in the Chart2 class 
-// part of evalCurve() 
-     : 
-XDataSource dataSource = getDataSource(chartDoc); 
-printLabeledSeqs(dataSource); </p>
-<p>double[] xVals = getChartData(dataSource, 0); 
-double[] yVals = getChartData(dataSource, 1); 
-curveCalc.recalculateRegression(xVals, yVals); </p>
-<p>When recalculateRegression() has finished, various results about the fitted curve can 
-be extracted from the XRegressionCurveCalculator variable, curveCalc. evalCurve() 
+<p>If the Chart2.calcRegressions() line is uncommented then several different regression
+functions are calculated using the chart's data. Their equations and R<sup>2</sup> values are
+printed as shown below:</p>
+<div class="highlight"><pre><span></span><code>Linear regression curve:
+  Curve equation: f(x) = 30.09x - 159.5
+  R^2 value: 0.917
+
+Logarithmic regression curve:
+  Curve equation: f(x) = 544.1 ln(x) - 1178
+  R^2 value: 0.921
+
+Exponential regression curve:
+  Curve equation: f(x) = 81.62 exp( 0.0826 x )
+  R^2 value: 0.865
+
+Power regression curve:
+  Curve equation: f(x) = 4.545 x^1.525
+  R^2 value: 0.906
+
+Polynomial regression curve:
+  Curve equation: f(x) =  - 0.5384x^2 + 50.24x - 340.1
+  R^2 value: 0.921
+
+Moving average regression curve:
+  Curve equation: Moving average trend line with period = %PERIOD
+  R^2 value: NaN
+</code></pre></div>
+<p>A logarithmic or quadratic polynomial are the best matches, but linear is a close third.
+The "moving average" R<sup>2</sup> result is NaN (Not-a-Number) since no average of period 2
+matches the data.</p>
+<p>If the Chart2.drawRegressionCurve() call is uncommented, the chart drawing will
+include a linear regression line and its equation and R<sup>2</sup> value (see Figure 3).</p>
+<p><img alt="" src="images/31-XY_Scatter_Charts-3.png" /></p>
+<p>Figure 3. Scatter Chart with Linear Regression Line for the Table in Figure 1.</p>
+<p>The regression function is f(x) = 30.09x - 159.47, and the C value is 0.92 (to 2 dp). If
+the constant is changed to Chart2.LOGARITHMIC in the call to
+Chart2.drawRegressionCurve() then the generated function is f(x) = 544.1 ln(x) –
+1178 with an R<sup>2</sup> value of 0.92. Other regression curves are represented by the Chart2
+constants EXPONENTIAL, POWER, POLYNOMIAL, and MOVING_AVERAGE.</p>
+<h2 id="2-calculating-regressions">2.  Calculating Regressions<a class="headerlink" href="#2-calculating-regressions" title="Permanent link">&para;</a></h2>
+<p>Chart2.calcRegressions() is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="c1">// globals</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">CURVE_KINDS</span> <span class="o">=</span>
+      <span class="p">{</span> <span class="n">LINEAR</span><span class="p">,</span> <span class="n">LOGARITHMIC</span><span class="p">,</span> <span class="n">EXPONENTIAL</span><span class="p">,</span> <span class="n">POWER</span><span class="p">,</span>
+        <span class="n">POLYNOMIAL</span><span class="p">,</span> <span class="n">MOVING_AVERAGE</span> <span class="p">};</span>
+
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span><span class="o">[]</span> <span class="n">CURVE_NAMES</span> <span class="o">=</span>
+      <span class="p">{</span> <span class="s">&quot;Linear&quot;</span><span class="p">,</span> <span class="s">&quot;Logarithmic&quot;</span><span class="p">,</span> <span class="s">&quot;Exponential&quot;</span><span class="p">,</span> <span class="s">&quot;Power&quot;</span><span class="p">,</span>
+        <span class="s">&quot;Polynomial&quot;</span><span class="p">,</span> <span class="s">&quot;Moving average&quot;</span> <span class="p">};</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">calcRegressions</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">CURVE_KINDS</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">XRegressionCurve</span> <span class="n">curve</span> <span class="o">=</span> <span class="n">createCurve</span><span class="p">(</span><span class="n">CURVE_KINDS</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">CURVE_NAMES</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="s">&quot; regression curve:&quot;</span><span class="p">);</span>
+    <span class="n">evalCurve</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">curve</span><span class="p">);</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of calcRegressions()</span>
+</code></pre></div>
+<p>createCurve() matches the regression constants defined in CURVE_KINDS[] to
+regression services offered by the API:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XRegressionCurve</span> <span class="nf">createCurve</span><span class="p">(</span><span class="kt">int</span> <span class="n">curveKind</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">curveKind</span> <span class="o">==</span> <span class="n">LINEAR</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XRegressionCurve</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                <span class="s">&quot;com.sun.star.chart2.LinearRegressionCurve&quot;</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">curveKind</span> <span class="o">==</span> <span class="n">LOGARITHMIC</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XRegressionCurve</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                <span class="s">&quot;com.sun.star.chart2.LogarithmicRegressionCurve&quot;</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">curveKind</span> <span class="o">==</span> <span class="n">EXPONENTIAL</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XRegressionCurve</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                <span class="s">&quot;com.sun.star.chart2.ExponentialRegressionCurve&quot;</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">curveKind</span> <span class="o">==</span> <span class="n">POWER</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XRegressionCurve</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                <span class="s">&quot;com.sun.star.chart2.PotentialRegressionCurve&quot;</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">curveKind</span> <span class="o">==</span> <span class="n">POLYNOMIAL</span><span class="p">)</span>        <span class="c1">// assume degree == 2</span>
+    <span class="k">return</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XRegressionCurve</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                <span class="s">&quot;com.sun.star.chart2.PolynomialRegressionCurve&quot;</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">curveKind</span> <span class="o">==</span> <span class="n">MOVING_AVERAGE</span><span class="p">)</span>    <span class="c1">// assume period == 2</span>
+    <span class="k">return</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XRegressionCurve</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+         <span class="s">&quot;com.sun.star.chart2.MovingAverageRegressionCurve&quot;</span><span class="p">);</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Did not recognize regression line kind: &quot;</span> <span class="o">+</span>
+                       <span class="n">curveKind</span> <span class="o">+</span> <span class="s">&quot;; using linear&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XRegressionCurve</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                <span class="s">&quot;com.sun.star.chart2.LinearRegressionCurve&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of createCurve()</span>
+</code></pre></div>
+<p>There are seven regression curve services in the chart2 module, all of which support
+the XRegressionCurve interface, as shown in Figure 4.</p>
+<p><img alt="" src="images/31-XY_Scatter_Charts-4.png" /></p>
+<p>Figure 4. The Regression Curve Services</p>
+<p>The RegressionCurve service shown in Figure 4 is not a superclass for the other
+services. Also note that the regression curve service for power functions is called
+"PotentialRegressionCurve".</p>
+<p>Chart2.evalCurve() uses XRegressionCurve.getCalculator() to access the
+XRegressionCurveCalculator interface. It sets up the data and parameters for a
+particular curve, and prints the results of curve fitting:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">evalCurve</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span>
+                             <span class="n">XRegressionCurve</span> <span class="n">curve</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XRegressionCurveCalculator</span> <span class="n">curveCalc</span> <span class="o">=</span> <span class="n">curve</span><span class="p">.</span><span class="na">getCalculator</span><span class="p">();</span>
+
+  <span class="kt">int</span> <span class="n">degree</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">getCurveType</span><span class="p">(</span><span class="n">curve</span><span class="p">)</span> <span class="o">!=</span> <span class="n">LINEAR</span><span class="p">)</span>
+    <span class="n">degree</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>   <span class="c1">// assumes POLYNOMIAL curve has degree == 2</span>
+  <span class="n">curveCalc</span><span class="p">.</span><span class="na">setRegressionProperties</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+          <span class="c1">// args: degree, forceIntercept, interceptValue, period</span>
+
+  <span class="n">XDataSource</span> <span class="n">dataSource</span> <span class="o">=</span> <span class="n">getDataSource</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">);</span>
+  <span class="c1">// printLabeledSeqs(dataSource);</span>
+
+  <span class="kt">double</span><span class="o">[]</span> <span class="n">xVals</span> <span class="o">=</span> <span class="n">getChartData</span><span class="p">(</span><span class="n">dataSource</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="kt">double</span><span class="o">[]</span> <span class="n">yVals</span> <span class="o">=</span> <span class="n">getChartData</span><span class="p">(</span><span class="n">dataSource</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="n">curveCalc</span><span class="p">.</span><span class="na">recalculateRegression</span><span class="p">(</span><span class="n">xVals</span><span class="p">,</span> <span class="n">yVals</span><span class="p">);</span>
+
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  Curve equation: &quot;</span> <span class="o">+</span>
+                            <span class="n">curveCalc</span><span class="p">.</span><span class="na">getRepresentation</span><span class="p">());</span>
+  <span class="kt">double</span> <span class="n">cc</span> <span class="o">=</span> <span class="n">curveCalc</span><span class="p">.</span><span class="na">getCorrelationCoefficient</span><span class="p">();</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">printf</span><span class="p">(</span><span class="s">&quot;  R^2 value: %.3f\n&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">cc</span><span class="o">*</span><span class="n">cc</span><span class="p">));</span>   <span class="c1">// 3 dp</span>
+<span class="p">}</span>  <span class="c1">// end of evalCurve()</span>
+</code></pre></div>
+<p>The calculation is configured by calling
+XRegressionCurveCalculator.setRegressionProperties(), and carried out by
+XRegressionCurveCalculator.recalculateRegression().</p>
+<p>The degree argument of setRegressionProperties() specifies the polynomial curve's
+degree, which I've hardwired to be quadratic (i.e. a degree of 2). The period argument
+is used when a moving average curve is being fitted.</p>
+<p>recalculateRegression() requires two arrays of x- and y- axis values for the scatter
+points. These are obtained from the chart's data source by calling
+Chart2.getDataSource() which returns the XDataSource interface for the DataSeries
+service.</p>
+<p>Figure 5 shows the XDataSource, XRegressionCurveContainer, and XDataSink
+interfaces of the DataSeries service.</p>
+<p><img alt="" src="images/31-XY_Scatter_Charts-5.png" /></p>
+<p>Figure 5. More Detailed DataSeries Service.</p>
+<p>In previous chapters, I've only used the XDataSeries interface, which offers access to
+the data points in the chart. The XDataSource interface, which is read-only, gives
+access to the underlying data that was used to create the points. The data is stored as
+an array of XLabeledDataSequence objects; each object contains a label and a
+sequence of data.</p>
+<p>Chart2.getDataSource() is defined as:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XDataSource</span> <span class="nf">getDataSource</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XDataSeries</span><span class="o">[]</span> <span class="n">dataSeriesArr</span> <span class="o">=</span> <span class="n">getDataSeries</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XDataSource</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">dataSeriesArr</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span> <span class="c1">// get first</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This method assumes that the programmer wants the first data source in the data
+series. This is adequate for most charts which only use one data source.</p>
+<p>Chart2.printLabeledSeqs() is a diagnostic function for printing all the labeled data
+sequences stored in an XDataSource:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">printLabeledSeqs</span><span class="p">(</span><span class="n">XDataSource</span> <span class="n">dataSource</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XLabeledDataSequence</span><span class="o">[]</span> <span class="n">dataSeqs</span> <span class="o">=</span> <span class="n">dataSource</span><span class="p">.</span><span class="na">getDataSequences</span><span class="p">();</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No. of sequences in data source: &quot;</span> <span class="o">+</span>
+                                         <span class="n">dataSeqs</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">dataSeqs</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Object</span><span class="o">[]</span> <span class="n">labelSeq</span> <span class="o">=</span> <span class="n">dataSeqs</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">getLabel</span><span class="p">().</span><span class="na">getData</span><span class="p">();</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="n">labelSeq</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">+</span> <span class="s">&quot; :&quot;</span><span class="p">);</span>
+    <span class="n">Object</span><span class="o">[]</span> <span class="n">valsSeq</span> <span class="o">=</span> <span class="n">dataSeqs</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">getValues</span><span class="p">().</span><span class="na">getData</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">Object</span> <span class="n">val</span> <span class="p">:</span> <span class="n">valsSeq</span><span class="p">)</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">print</span><span class="p">(</span><span class="s">&quot;  &quot;</span> <span class="o">+</span> <span class="n">val</span><span class="p">);</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+    <span class="n">String</span> <span class="n">srRep</span> <span class="o">=</span> <span class="n">dataSeqs</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">getValues</span><span class="p">().</span>
+
+                            <span class="n">getSourceRangeRepresentation</span><span class="p">();</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  Source range: &quot;</span> <span class="o">+</span> <span class="n">srRep</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of printLabeledSeqs()</span>
+</code></pre></div>
+<p>When these function is applied to the data source for the scatter chart, the following is
+printed:</p>
+<div class="highlight"><pre><span></span><code>No. of sequences in data source: 2
+Temperature °C :  14.2  16.4  11.9  15.2  18.5  22.1  19.4
+                  25.1  23.4  18.1  22.6  17.2
+Source range: $examples.$A$111:$A$122
+
+Ice Cream Sales :  215.0  325.0  185.0  332.0  406.0  522.0
+                   412.0  614.0  544.0  421.0  445.0  408.0
+Source range: $examples.$B$111:$B$122
+</code></pre></div>
+<p>This output shows that the data source consists of two XLabeledDataSequence
+objects, representing the x- and y- values in the data source (see Figure 1). These
+objects' data are extracted as arrays by calls to Chart2.getChartData():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="c1">// part of evalCurve()</span>
+     <span class="p">:</span>
+<span class="n">XDataSource</span> <span class="n">dataSource</span> <span class="o">=</span> <span class="n">getDataSource</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">);</span>
+<span class="n">printLabeledSeqs</span><span class="p">(</span><span class="n">dataSource</span><span class="p">);</span>
+
+<span class="kt">double</span><span class="o">[]</span> <span class="n">xVals</span> <span class="o">=</span> <span class="n">getChartData</span><span class="p">(</span><span class="n">dataSource</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="kt">double</span><span class="o">[]</span> <span class="n">yVals</span> <span class="o">=</span> <span class="n">getChartData</span><span class="p">(</span><span class="n">dataSource</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+<span class="n">curveCalc</span><span class="p">.</span><span class="na">recalculateRegression</span><span class="p">(</span><span class="n">xVals</span><span class="p">,</span> <span class="n">yVals</span><span class="p">);</span>
+</code></pre></div>
+<p>When recalculateRegression() has finished, various results about the fitted curve can
+be extracted from the XRegressionCurveCalculator variable, curveCalc. evalCurve()
 prints the function string (using getRepresentation()) and the R
 2
- value (using 
-getCorrelationCoefficient()). </p>
+ value (using
+getCorrelationCoefficient()).</p>
 <h2 id="3-drawing-a-regression-curve">3.  Drawing a Regression Curve<a class="headerlink" href="#3-drawing-a-regression-curve" title="Permanent link">&para;</a></h2>
-<p>One of the surprising things about drawing a regression curve is that there's no need to 
-explicitly calculate the curve's function with XRegressionCurveCalculator. Instead 
-Chart2.drawRegressionCurve() only has to initialize the curve via the data series' 
-XRegressionCurveContainer interface (see Figure 5). drawRegressionCurve() is: </p>
-<p>// in the Chart2 class 
-public static void drawRegressionCurve(XChartDocument chartDoc,<br />
-                                       int curveKind) 
-{ 
-  XDataSeries[] dataSeriesArr = getDataSeries(chartDoc); 
-  XRegressionCurveContainer rcCon = Lo.qi( 
-             XRegressionCurveContainer.class, dataSeriesArr[0]); </p>
-<p>XRegressionCurve curve = createCurve(curveKind); 
-  rcCon.addRegressionCurve(curve);  // calculates the curve </p>
-<p>// show equation and R^2 value 
-  XPropertySet props = curve.getEquationProperties(); 
-  Props.setProperty(props, "ShowCorrelationCoefficient", true); 
-  Props.setProperty(props, "ShowEquation", true); </p>
-<p>int key = getNumberFormatKey(chartDoc, "0.00");   // 2 dp 
-  if (key != -1) 
-    Props.setProperty(props, "NumberFormat", key); 
-}  // end of drawRegressionCurve() </p>
-<p>The XDataSeries interface for the first data series in the chart is converted to 
-XRegressionCurveContainer, and an XRegressionCurve instance added to it. This 
-triggers the calculation of the curve's function. The rest of drawRegressionCurve() 
-deals with how the function information is displayed on the chart. </p>
-<p>XRegressionCurve.getEquationProperties() returns a property set which is an instance 
-of the RegressionCurveEquation class, shown in Figure 6. </p>
+<p>One of the surprising things about drawing a regression curve is that there's no need to
+explicitly calculate the curve's function with XRegressionCurveCalculator. Instead
+Chart2.drawRegressionCurve() only has to initialize the curve via the data series'
+XRegressionCurveContainer interface (see Figure 5). drawRegressionCurve() is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">drawRegressionCurve</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span>
+                                       <span class="kt">int</span> <span class="n">curveKind</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XDataSeries</span><span class="o">[]</span> <span class="n">dataSeriesArr</span> <span class="o">=</span> <span class="n">getDataSeries</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">);</span>
+  <span class="n">XRegressionCurveContainer</span> <span class="n">rcCon</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span>
+             <span class="n">XRegressionCurveContainer</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">dataSeriesArr</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
+
+  <span class="n">XRegressionCurve</span> <span class="n">curve</span> <span class="o">=</span> <span class="n">createCurve</span><span class="p">(</span><span class="n">curveKind</span><span class="p">);</span>
+  <span class="n">rcCon</span><span class="p">.</span><span class="na">addRegressionCurve</span><span class="p">(</span><span class="n">curve</span><span class="p">);</span>  <span class="c1">// calculates the curve</span>
+
+  <span class="c1">// show equation and R^2 value</span>
+  <span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span> <span class="n">curve</span><span class="p">.</span><span class="na">getEquationProperties</span><span class="p">();</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;ShowCorrelationCoefficient&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;ShowEquation&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+  <span class="kt">int</span> <span class="n">key</span> <span class="o">=</span> <span class="n">getNumberFormatKey</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="s">&quot;0.00&quot;</span><span class="p">);</span>   <span class="c1">// 2 dp</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">key</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;NumberFormat&quot;</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of drawRegressionCurve()</span>
+</code></pre></div>
+<p>The XDataSeries interface for the first data series in the chart is converted to
+XRegressionCurveContainer, and an XRegressionCurve instance added to it. This
+triggers the calculation of the curve's function. The rest of drawRegressionCurve()
+deals with how the function information is displayed on the chart.</p>
+<p>XRegressionCurve.getEquationProperties() returns a property set which is an instance
+of the RegressionCurveEquation class, shown in Figure 6.</p>
 <p><img alt="" src="images/31-XY_Scatter_Charts-6.png" /></p>
-<p>Figure 6. The RegressionCurveEquation Property Class. </p>
-<p>RegressionCurveEquation inherits properties related to character, fill, and line, since 
-it controls how the curve, function string, and R
-2
- value are drawn on the chart. These 
-last two are made visible by setting the "ShowEquation" and 
-"ShowCorrelationCoefficient" properties to true, which are defined in 
-RegressionCurveEquation. Online documentation on this class can be accessed using 
-lodoc RegressionCurveEquation. </p>
-<p>Another useful property is "NumberFormat" which can be used to reduce the number 
-of decimal places used when printing the function and R
-2
- value. </p>
-<p>Chart2.getNumberFormatKey() converts a number format string into a number format 
-key, which is assigned to the "NumberFormat" property: </p>
-<p>// in the Chart2 class 
-public static int getNumberFormatKey(XChartDocument chartDoc,<br />
-                                     String nfStr) 
-{ 
-  XNumberFormatsSupplier xfs = <br />
-                Lo.qi(XNumberFormatsSupplier.class, chartDoc); 
-  XNumberFormats nFormats = xfs.getNumberFormats(); 
-  int key = (int) nFormats.queryKey(nfStr,<br />
-              new com.sun.star.lang.Locale("en", "us", ""), false); 
-  if (key == -1) 
-    System.out.println("Could not access key for format: \"" +<br />
-                                                    nfStr + "\""); 
-  return key; 
-}  // end of getNumberFormatKey() </p>
-<p>The string-to-key conversion is straight forward if you know what number format 
-string to use, but there's little documentation on them. Probably the best approach is to 
-use the Format  Cells menu item in a spreadsheet document, and examine the 
-dialog in Figure 7. </p>
+<p>Figure 6. The RegressionCurveEquation Property Class.</p>
+<p>RegressionCurveEquation inherits properties related to character, fill, and line, since
+it controls how the curve, function string, and R<sup>2</sup> value are drawn on the chart. These
+last two are made visible by setting the "ShowEquation" and
+"ShowCorrelationCoefficient" properties to true, which are defined in
+RegressionCurveEquation. Online documentation on this class can be accessed using
+<code>lodoc RegressionCurveEquation</code>.</p>
+<p>Another useful property is "NumberFormat" which can be used to reduce the number
+of decimal places used when printing the function and R<sup>2</sup> value.</p>
+<p>Chart2.getNumberFormatKey() converts a number format string into a number format
+key, which is assigned to the "NumberFormat" property:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getNumberFormatKey</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span>
+                                     <span class="n">String</span> <span class="n">nfStr</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XNumberFormatsSupplier</span> <span class="n">xfs</span> <span class="o">=</span>
+                <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XNumberFormatsSupplier</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">chartDoc</span><span class="p">);</span>
+  <span class="n">XNumberFormats</span> <span class="n">nFormats</span> <span class="o">=</span> <span class="n">xfs</span><span class="p">.</span><span class="na">getNumberFormats</span><span class="p">();</span>
+  <span class="kt">int</span> <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="n">nFormats</span><span class="p">.</span><span class="na">queryKey</span><span class="p">(</span><span class="n">nfStr</span><span class="p">,</span>
+              <span class="k">new</span> <span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">Locale</span><span class="p">(</span><span class="s">&quot;en&quot;</span><span class="p">,</span> <span class="s">&quot;us&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">),</span> <span class="kc">false</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">key</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not access key for format: \&quot;&quot;</span> <span class="o">+</span>
+                                                    <span class="n">nfStr</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">key</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of getNumberFormatKey()</span>
+</code></pre></div>
+<p>The string-to-key conversion is straight forward if you know what number format
+string to use, but there's little documentation on them. Probably the best approach is to
+use the Format  Cells menu item in a spreadsheet document, and examine the
+dialog in Figure 7.</p>
 <p><img alt="" src="images/31-XY_Scatter_Charts-7.png" /></p>
-<p>Figure 7. The Format Cells Dialog. </p>
-<p>When you select a given category and format, the number format string is shown in 
-the "Format Code" field at the bottom of the dialog. Figure 7 shows that the format 
-string for two decimal place numbers is "0.00". This string should be passed to 
-getNumberFormatKey() in drawRegressionCurve(): 
-int key = getNumberFormatKey(chartDoc, "0.00");  </p>
+<p>Figure 7. The Format Cells Dialog.</p>
+<p>When you select a given category and format, the number format string is shown in
+the "Format Code" field at the bottom of the dialog. Figure 7 shows that the format
+string for two decimal place numbers is "0.00". This string should be passed to
+getNumberFormatKey() in drawRegressionCurve():</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">key</span> <span class="o">=</span> <span class="n">getNumberFormatKey</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="s">&quot;0.00&quot;</span><span class="p">);</span>
+</code></pre></div>
 <h2 id="4-changing-axis-scales">4.  Changing Axis Scales<a class="headerlink" href="#4-changing-axis-scales" title="Permanent link">&para;</a></h2>
-<p>Another way to understand scatter data is by changing the chart's axis scaling. </p>
-<p>Alternatives to linear are logarithmic, exponential, or power, although I've found that 
-the latter two cause the chart to be drawn incorrectly.  </p>
-<p>scatterLineLogChart() in Chart2Views.java utilizes the "Power Function Test" table 
-in "chartsData.ods" (see Figure 8).  </p>
+<p>Another way to understand scatter data is by changing the chart's axis scaling.
+Alternatives to linear are logarithmic, exponential, or power, although I've found that
+the latter two cause the chart to be drawn incorrectly.</p>
+<p>scatterLineLogChart() in Chart2Views.java utilizes the "Power Function Test" table
+in "chartsData.ods" (see Figure 8).</p>
 <p><img alt="" src="images/31-XY_Scatter_Charts-8.png" /></p>
-<p>Figure 8. The "Power Function Test" Table. </p>
-<p>I used the formula "=4.1*POWER(E<number>, 3.2)" (i.e.        ) to generate the 
-"Actual" column from the "Input" column's cells. Then I manually rounded the results 
-and copied them into the "Output" column. </p>
-<p>The data range passed to the Chart.insertChart() uses the "Input" and "Output" 
-columns of the table in Figure 8. The generated scatter chart in Figure 9 uses log 
-scaling for the axes, and fits a power function to the data points. </p>
+<p>Figure 8. The "Power Function Test" Table.</p>
+<p>I used the formula "<code>=4.1*POWER(E&lt;number&gt;, 3.2</code>)" (i.e. [*** Not rendered ***] ) to generate the
+"Actual" column from the "Input" column's cells. Then I manually rounded the results
+and copied them into the "Output" column.</p>
+<p>The data range passed to the Chart.insertChart() uses the "Input" and "Output"
+columns of the table in Figure 8. The generated scatter chart in Figure 9 uses log
+scaling for the axes, and fits a power function to the data points.</p>
 <p><img alt="" src="images/31-XY_Scatter_Charts-9.png" /></p>
-<p>Figure 9. Scatter Chart for the Table in Figure 8. </p>
-<p>The power  function fits the data so well that the black regression line lies over the 
-blue data curve. The regression function is f(x) = 3.89 x^2.32 (i.e.          ) with R
-2</p>
-<p>= 1.00, which is close to the power formula I used to generate the "Actual" column 
-data. </p>
-<p>scatterLineLogChart() is: </p>
-<p>// in Chart2Views.java 
-private static void scatterLineLogChart(XSpreadsheetDocument doc, 
-                                        XSpreadsheet sheet) 
-{ 
-  CellRangeAddress rangeAddr = Calc.getAddress(sheet, "E110:F120"); 
-  XChartDocument chartDoc = 
-         Chart2.insertChart(sheet, rangeAddr,<br />
-                         "A121", 20, 11, "ScatterLineSymbol"); 
-  Calc.gotoCell(doc, "A121"); </p>
-<p>Chart2.setTitle(chartDoc, Calc.getString(sheet, "E109")); 
-  Chart2.setXAxisTitle(chartDoc, Calc.getString(sheet, "E110")); 
-  Chart2.setYAxisTitle(chartDoc, Calc.getString(sheet, "F110")); 
-  Chart2.rotateYAxisTitle(chartDoc, 90); </p>
-<p>// change x- and y- axes to log scaling 
-  Chart2.scaleXAxis(chartDoc, Chart2.LOGARITHMIC); 
-  Chart2.scaleYAxis(chartDoc, Chart2.LOGARITHMIC); 
-              // LINEAR, LOGARITHMIC, (EXPONENTIAL, POWER) </p>
-<p>Chart2.drawRegressionCurve(chartDoc, Chart2.POWER); 
-}  // end of scatterLineLogChart() </p>
-<p>Chart2.scaleXAxis() and Chart2.scaleYAxis() call the more general 
-Chart2.scaleAxis() function: </p>
-<p 0_="0," Chart2.X_AXIS_="Chart2.X_AXIS," return="return" scaleAxis_chartDoc_="scaleAxis(chartDoc," scaleType_="scaleType);">// in the Chart2 class 
-public static XAxis scaleXAxis(XChartDocument chartDoc,<br />
-                                               int scaleType) </p>
-<p 0_="0," Chart2.Y_AXIS_="Chart2.Y_AXIS," return="return" scaleAxis_chartDoc_="scaleAxis(chartDoc," scaleType_="scaleType);">public static XAxis scaleYAxis(XChartDocument chartDoc,<br />
-                                               int scaleType) </p>
-<p>Chart2.scaleAxis() utilizes XAxis.getScaleData() and XAxis.setScaleData() to access 
-and modify the axis scales: </p>
-<p>// in the Chart2 class 
-public static XAxis scaleAxis(XChartDocument chartDoc, int axisVal,<br />
-                                          int idx, int scaleType) 
-/* scaleTypes: LINEAR, LOGARITHMIC, EXPONENTIAL, POWER, but 
-   latter two seem unstable */ 
-{<br />
-  XAxis axis = getAxis(chartDoc, axisVal, idx); 
-  if (axis == null) 
-    return null; </p>
-<p>ScaleData sd = axis.getScaleData(); 
-  if (scaleType == LINEAR) 
-    sd.Scaling = Lo.createInstanceMCF(XScaling.class, 
-                       "com.sun.star.chart2.LinearScaling"); 
-  else if (scaleType == LOGARITHMIC) 
-    sd.Scaling = Lo.createInstanceMCF(XScaling.class, 
-                       "com.sun.star.chart2.LogarithmicScaling"); 
-  else if (scaleType == EXPONENTIAL) 
-    sd.Scaling = Lo.createInstanceMCF(XScaling.class, 
-                       "com.sun.star.chart2.ExponentialScaling"); 
-  else if (scaleType == POWER) 
-    sd.Scaling = Lo.createInstanceMCF(XScaling.class, 
-                       "com.sun.star.chart2.PowerScaling"); 
-  else 
-    System.out.println("Did not recognize scaling: " + scaleType); 
-  axis.setScaleData(sd); 
-  return axis; 
-}  // end of scaleAxis() </p>
-<p>The different scaling services all support the XScaling interface, as illustrated by </p>
+<p>Figure 9. Scatter Chart for the Table in Figure 8.</p>
+<p>The power  function fits the data so well that the black regression line lies over the
+blue data curve. The regression function is f(x) = 3.89 x^2.32 (i.e.          ) with R<sup>2</sup>
+= 1.00, which is close to the power formula I used to generate the "Actual" column
+data.</p>
+<p>scatterLineLogChart() is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Chart2Views.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">scatterLineLogChart</span><span class="p">(</span><span class="n">XSpreadsheetDocument</span> <span class="n">doc</span><span class="p">,</span>
+                                        <span class="n">XSpreadsheet</span> <span class="n">sheet</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">CellRangeAddress</span> <span class="n">rangeAddr</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getAddress</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;E110:F120&quot;</span><span class="p">);</span>
+  <span class="n">XChartDocument</span> <span class="n">chartDoc</span> <span class="o">=</span>
+         <span class="n">Chart2</span><span class="p">.</span><span class="na">insertChart</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="n">rangeAddr</span><span class="p">,</span>
+                         <span class="s">&quot;A121&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="s">&quot;ScatterLineSymbol&quot;</span><span class="p">);</span>
+  <span class="n">Calc</span><span class="p">.</span><span class="na">gotoCell</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;A121&quot;</span><span class="p">);</span>
+
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;E109&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setXAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;E110&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setYAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;F110&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">rotateYAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="mi">90</span><span class="p">);</span>
+
+  <span class="c1">// change x- and y- axes to log scaling</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">scaleXAxis</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">LOGARITHMIC</span><span class="p">);</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">scaleYAxis</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">LOGARITHMIC</span><span class="p">);</span>
+              <span class="c1">// LINEAR, LOGARITHMIC, (EXPONENTIAL, POWER)</span>
+
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">drawRegressionCurve</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">POWER</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of scatterLineLogChart()</span>
+</code></pre></div>
+<p>Chart2.scaleXAxis() and Chart2.scaleYAxis() call the more general
+Chart2.scaleAxis() function:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XAxis</span> <span class="nf">scaleXAxis</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span>
+                                               <span class="kt">int</span> <span class="n">scaleType</span><span class="p">)</span>
+<span class="p">{</span>  <span class="k">return</span> <span class="n">scaleAxis</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">X_AXIS</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">scaleType</span><span class="p">);</span>  <span class="p">}</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XAxis</span> <span class="nf">scaleYAxis</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span>
+                                               <span class="kt">int</span> <span class="n">scaleType</span><span class="p">)</span>
+<span class="p">{</span>  <span class="k">return</span> <span class="n">scaleAxis</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">Y_AXIS</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">scaleType</span><span class="p">);</span>  <span class="p">}</span>
+</code></pre></div>
+<p>Chart2.scaleAxis() utilizes XAxis.getScaleData() and XAxis.setScaleData() to access
+and modify the axis scales:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XAxis</span> <span class="nf">scaleAxis</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span> <span class="kt">int</span> <span class="n">axisVal</span><span class="p">,</span>
+                                          <span class="kt">int</span> <span class="n">idx</span><span class="p">,</span> <span class="kt">int</span> <span class="n">scaleType</span><span class="p">)</span>
+<span class="cm">/* scaleTypes: LINEAR, LOGARITHMIC, EXPONENTIAL, POWER, but</span>
+<span class="cm">   latter two seem unstable */</span>
+<span class="p">{</span>
+  <span class="n">XAxis</span> <span class="n">axis</span> <span class="o">=</span> <span class="n">getAxis</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">axisVal</span><span class="p">,</span> <span class="n">idx</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">axis</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+
+  <span class="n">ScaleData</span> <span class="n">sd</span> <span class="o">=</span> <span class="n">axis</span><span class="p">.</span><span class="na">getScaleData</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">scaleType</span> <span class="o">==</span> <span class="n">LINEAR</span><span class="p">)</span>
+    <span class="n">sd</span><span class="p">.</span><span class="na">Scaling</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XScaling</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                       <span class="s">&quot;com.sun.star.chart2.LinearScaling&quot;</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">scaleType</span> <span class="o">==</span> <span class="n">LOGARITHMIC</span><span class="p">)</span>
+    <span class="n">sd</span><span class="p">.</span><span class="na">Scaling</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XScaling</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                       <span class="s">&quot;com.sun.star.chart2.LogarithmicScaling&quot;</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">scaleType</span> <span class="o">==</span> <span class="n">EXPONENTIAL</span><span class="p">)</span>
+    <span class="n">sd</span><span class="p">.</span><span class="na">Scaling</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XScaling</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                       <span class="s">&quot;com.sun.star.chart2.ExponentialScaling&quot;</span><span class="p">);</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">scaleType</span> <span class="o">==</span> <span class="n">POWER</span><span class="p">)</span>
+    <span class="n">sd</span><span class="p">.</span><span class="na">Scaling</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XScaling</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                       <span class="s">&quot;com.sun.star.chart2.PowerScaling&quot;</span><span class="p">);</span>
+  <span class="k">else</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Did not recognize scaling: &quot;</span> <span class="o">+</span> <span class="n">scaleType</span><span class="p">);</span>
+  <span class="n">axis</span><span class="p">.</span><span class="na">setScaleData</span><span class="p">(</span><span class="n">sd</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">axis</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of scaleAxis()</span>
+</code></pre></div>
+<p>The different scaling services all support the XScaling interface, as illustrated by
+Figure 10.</p>
 <p><img alt="" src="images/31-XY_Scatter_Charts-10.png" /></p>
-<p>Figure 10. </p>
-<p><img alt="" src="images/31-XY_Scatter_Charts-10.png" /></p>
-<p>Figure 10. The Scaling Services. </p>
+<p>Figure 10. The Scaling Services.</p>
 <h2 id="5-adding-error-bars">5.  Adding Error Bars<a class="headerlink" href="#5-adding-error-bars" title="Permanent link">&para;</a></h2>
-<p>scatterLineErrorChart() in Chart2Views.java employs the "Impact Data : 1018 Cold 
-Rolled" table in "chartsData.ods" (see Figure 11).  </p>
+<p>scatterLineErrorChart() in Chart2Views.java employs the "Impact Data : 1018 Cold
+Rolled" table in "chartsData.ods" (see Figure 11).</p>
 <p><img alt="" src="images/31-XY_Scatter_Charts-11.png" /></p>
-<p>Figure 11. The "Impact Data : 1018 Cold Rolled" Table. </p>
-<p>The data range passed to the Chart.insertChart() uses the "Temperature" and "Mean" 
-columns of the table; the "Stderr" column is added separately to generate error bars 
-along the y-axis. The resulting scatter chart is shown in Figure 12. </p>
+<p>Figure 11. The "Impact Data : 1018 Cold Rolled" Table.</p>
+<p>The data range passed to the Chart.insertChart() uses the "Temperature" and "Mean"
+columns of the table; the "Stderr" column is added separately to generate error bars
+along the y-axis. The resulting scatter chart is shown in Figure 12.</p>
 <p><img alt="" src="images/31-XY_Scatter_Charts-12.png" /></p>
-<p>Figure 12. Scatter Chart with Error Bars for the Table in Figure 11. </p>
-<p>scatterLineLogChart() is: </p>
-<p>// in Chart2Views.java 
-private static void scatterLineErrorChart(XSpreadsheetDocument doc, 
-                                          XSpreadsheet sheet) 
-{ 
-  CellRangeAddress rangeAddr = Calc.getAddress(sheet, "A142:B146"); 
-  XChartDocument chartDoc = Chart2.insertChart(sheet,<br />
-              rangeAddr, "F115", 14, 16, "ScatterLineSymbol"); 
-  Calc.gotoCell(doc, "A123"); </p>
-<p>Chart2.setTitle(chartDoc, Calc.getString(sheet, "A141")); 
-  Chart2.setXAxisTitle(chartDoc, Calc.getString(sheet, "A142")); 
-  Chart2.setYAxisTitle(chartDoc, "Impact Energy (Joules)"); 
-  Chart2.rotateYAxisTitle(chartDoc, 90); </p>
-<p>// y-axis error bars 
-  String sheetName = Calc.getSheetName(sheet); 
-  String errorLabel = sheetName + "." + "C142"; 
-  String errorRange = sheetName + "." + "C143:C146"; 
-  Chart2.setYErrorBars(chartDoc, errorLabel, errorRange); 
-}  // end of scatterLineErrorChart() </p>
-<p>The new feature in scatterLineErrorChart() is the call to Chart2.setYErrorBars(), 
-which I'll explain over the next four subsections. </p>
+<p>Figure 12. Scatter Chart with Error Bars for the Table in Figure 11.</p>
+<p>scatterLineLogChart() is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Chart2Views.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">scatterLineErrorChart</span><span class="p">(</span><span class="n">XSpreadsheetDocument</span> <span class="n">doc</span><span class="p">,</span>
+                                          <span class="n">XSpreadsheet</span> <span class="n">sheet</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">CellRangeAddress</span> <span class="n">rangeAddr</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getAddress</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;A142:B146&quot;</span><span class="p">);</span>
+  <span class="n">XChartDocument</span> <span class="n">chartDoc</span> <span class="o">=</span> <span class="n">Chart2</span><span class="p">.</span><span class="na">insertChart</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span>
+              <span class="n">rangeAddr</span><span class="p">,</span> <span class="s">&quot;F115&quot;</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="s">&quot;ScatterLineSymbol&quot;</span><span class="p">);</span>
+  <span class="n">Calc</span><span class="p">.</span><span class="na">gotoCell</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s">&quot;A123&quot;</span><span class="p">);</span>
+
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;A141&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setXAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getString</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="s">&quot;A142&quot;</span><span class="p">));</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setYAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="s">&quot;Impact Energy (Joules)&quot;</span><span class="p">);</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">rotateYAxisTitle</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="mi">90</span><span class="p">);</span>
+
+  <span class="c1">// y-axis error bars</span>
+  <span class="n">String</span> <span class="n">sheetName</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getSheetName</span><span class="p">(</span><span class="n">sheet</span><span class="p">);</span>
+  <span class="n">String</span> <span class="n">errorLabel</span> <span class="o">=</span> <span class="n">sheetName</span> <span class="o">+</span> <span class="s">&quot;.&quot;</span> <span class="o">+</span> <span class="s">&quot;C142&quot;</span><span class="p">;</span>
+  <span class="n">String</span> <span class="n">errorRange</span> <span class="o">=</span> <span class="n">sheetName</span> <span class="o">+</span> <span class="s">&quot;.&quot;</span> <span class="o">+</span> <span class="s">&quot;C143:C146&quot;</span><span class="p">;</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">setYErrorBars</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">,</span> <span class="n">errorLabel</span><span class="p">,</span> <span class="n">errorRange</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of scatterLineErrorChart()</span>
+</code></pre></div>
+<p>The new feature in scatterLineErrorChart() is the call to Chart2.setYErrorBars(),
+which I'll explain over the next four subsections.</p>
 <h3 id="51-creating-new-chart-data">5.1.  Creating New Chart Data<a class="headerlink" href="#51-creating-new-chart-data" title="Permanent link">&para;</a></h3>
-<p>The secret to adding extra data to a chart is XDataSink.setData(). XDataSink is yet 
-another interface for the DataSeries service (see Figure 5). </p>
-<p>There are several stages required, which are depicted in Figure 13. </p>
+<p>The secret to adding extra data to a chart is XDataSink.setData(). XDataSink is yet
+another interface for the DataSeries service (see Figure 5).</p>
+<p>There are several stages required, which are depicted in Figure 13.</p>
 <p><img alt="" src="images/31-XY_Scatter_Charts-13.png" /></p>
-<p>Figure 13.  Using XDataSink to Add Data to a Chart. </p>
-<p>The DataProvider service produces two XDataSequence objects which are combined 
-to become a XLabeledDataSequence object. An array of these objects is passed to 
-XDataSink.setData(). </p>
-<p>The DataProvider service is accessed with one line of code: 
-XDataProvider dp = chartDoc.getDataProvider(); 
-Chart2.createLDSeq() creates a XLabeledDataSequence instance from two 
-XDataSequence objects, one acting as a label the other as data. The XDataSequence<br />
-object representing the data must have its "Role" property set to indicate the type of 
-the data. </p>
-<p>// in the Chart2 class 
-public static XLabeledDataSequence createLDSeq(XDataProvider dp,<br />
-            String role, String dataLabel, String dataRange) 
-// create labeled data sequence using label and data; 
-// the data has the specified role 
-{ 
-  // create data sequence for the label 
-  XDataSequence labelSeq = <br />
-       dp.createDataSequenceByRangeRepresentation(dataLabel); </p>
-<p>// create data sequence for the data 
-  XDataSequence dataSeq = <br />
-       dp.createDataSequenceByRangeRepresentation(dataRange); 
-  XPropertySet dsProps = Lo.qi(XPropertySet.class, dataSeq); 
-  Props.setProperty(dsProps, "Role", role); <br />
-                       //specify data role (type) </p>
-<p>// create labeled data sequence using label and data seqs 
-  XLabeledDataSequence ldSeq = <br />
-         Lo.createInstanceMCF(XLabeledDataSequence.class,<br />
-                 "com.sun.star.chart2.data.LabeledDataSequence"); 
-  ldSeq.setLabel(labelSeq);  // add label 
-  ldSeq.setValues(dataSeq);  // add data 
-  return ldSeq; 
-}  // end of createLDSeq() </p>
-<p>Four arguments are passed to createLDSeq(): a reference to the XDataProvider 
-interface, a role string, a label, and a data range. For example: </p>
-<p>// part of Chart2.setYErrorBars(); see section 5.4 below 
-    : 
-String label = sheetName + "." + "C142"; 
-String dataRange = sheetName + "." + "C143:C146"; 
-XLabeledDataSequence lds =<br />
-  Chart2.createLDSeq(dp, "error-bars-y-positive", label, dataRange); </p>
-<p>Role strings are defined in DataSequenceRole, which is documented on the page that 
-describes chart2's data submodule (call lodoc chart2 data module, and scroll to 
-the bottom). </p>
-<p>XDataSink.setData() can accept multiple XLabeledDataSequence objects in an array, 
-making it possible to add several kinds of data to the chart at once. This is just as well 
-since I need to add two XLabeledDataSequence objects, one for the error bars above 
-the data points (i.e. up the y-axis), and another for the error bars below the points (i.e. </p>
-<p>down the y-axis). The code for doing this: </p>
-<p>// part of Chart2.setYErrorBars(); see section 5.4 below 
-    : 
-XDataSink dataSink = ...    // create the data sink </p>
-<p>XDataProvider dp = chartDoc.getDataProvider(); </p>
-<p>XLabeledDataSequence posErrSeq =    // bars above data points 
-    createLDSeq(dp, "error-bars-y-positive", dataLabel, dataRange); </p>
-<p>XLabeledDataSequence negErrSeq =    // bars below the data points 
-    createLDSeq(dp, "error-bars-y-negative", dataLabel, dataRange); </p>
-<p>XLabeledDataSequence[] ldSeqArr = { posErrSeq, negErrSeq }; 
-     // build array </p>
-<p>// add the two error bars to the data sink 
-dataSink.setData(ldSeqArr); </p>
-<p>// add the data sink to the chart ... </p>
-<p>This code fragment leaves two topics unexplained: how the data sink is initially 
-created, and how the data sink is linked to the chart. </p>
+<p>Figure 13.  Using XDataSink to Add Data to a Chart.</p>
+<p>The DataProvider service produces two XDataSequence objects which are combined
+to become a XLabeledDataSequence object. An array of these objects is passed to
+XDataSink.setData().</p>
+<p>The DataProvider service is accessed with one line of code:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XDataProvider</span> <span class="n">dp</span> <span class="o">=</span> <span class="n">chartDoc</span><span class="p">.</span><span class="na">getDataProvider</span><span class="p">();</span>
+</code></pre></div>
+<p>Chart2.createLDSeq() creates a XLabeledDataSequence instance from two
+XDataSequence objects, one acting as a label the other as data. The XDataSequence
+object representing the data must have its "Role" property set to indicate the type of
+the data.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XLabeledDataSequence</span> <span class="nf">createLDSeq</span><span class="p">(</span><span class="n">XDataProvider</span> <span class="n">dp</span><span class="p">,</span>
+            <span class="n">String</span> <span class="n">role</span><span class="p">,</span> <span class="n">String</span> <span class="n">dataLabel</span><span class="p">,</span> <span class="n">String</span> <span class="n">dataRange</span><span class="p">)</span>
+<span class="c1">// create labeled data sequence using label and data;</span>
+<span class="c1">// the data has the specified role</span>
+<span class="p">{</span>
+  <span class="c1">// create data sequence for the label</span>
+  <span class="n">XDataSequence</span> <span class="n">labelSeq</span> <span class="o">=</span>
+       <span class="n">dp</span><span class="p">.</span><span class="na">createDataSequenceByRangeRepresentation</span><span class="p">(</span><span class="n">dataLabel</span><span class="p">);</span>
+
+  <span class="c1">// create data sequence for the data</span>
+  <span class="n">XDataSequence</span> <span class="n">dataSeq</span> <span class="o">=</span>
+       <span class="n">dp</span><span class="p">.</span><span class="na">createDataSequenceByRangeRepresentation</span><span class="p">(</span><span class="n">dataRange</span><span class="p">);</span>
+  <span class="n">XPropertySet</span> <span class="n">dsProps</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">dataSeq</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">dsProps</span><span class="p">,</span> <span class="s">&quot;Role&quot;</span><span class="p">,</span> <span class="n">role</span><span class="p">);</span>
+                       <span class="c1">//specify data role (type)</span>
+
+  <span class="c1">// create labeled data sequence using label and data seqs</span>
+  <span class="n">XLabeledDataSequence</span> <span class="n">ldSeq</span> <span class="o">=</span>
+         <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XLabeledDataSequence</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                 <span class="s">&quot;com.sun.star.chart2.data.LabeledDataSequence&quot;</span><span class="p">);</span>
+  <span class="n">ldSeq</span><span class="p">.</span><span class="na">setLabel</span><span class="p">(</span><span class="n">labelSeq</span><span class="p">);</span>  <span class="c1">// add label</span>
+  <span class="n">ldSeq</span><span class="p">.</span><span class="na">setValues</span><span class="p">(</span><span class="n">dataSeq</span><span class="p">);</span>  <span class="c1">// add data</span>
+  <span class="k">return</span> <span class="n">ldSeq</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of createLDSeq()</span>
+</code></pre></div>
+<p>Four arguments are passed to createLDSeq(): a reference to the XDataProvider
+interface, a role string, a label, and a data range. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of Chart2.setYErrorBars(); see section 5.4 below</span>
+    <span class="p">:</span>
+<span class="n">String</span> <span class="n">label</span> <span class="o">=</span> <span class="n">sheetName</span> <span class="o">+</span> <span class="s">&quot;.&quot;</span> <span class="o">+</span> <span class="s">&quot;C142&quot;</span><span class="p">;</span>
+<span class="n">String</span> <span class="n">dataRange</span> <span class="o">=</span> <span class="n">sheetName</span> <span class="o">+</span> <span class="s">&quot;.&quot;</span> <span class="o">+</span> <span class="s">&quot;C143:C146&quot;</span><span class="p">;</span>
+<span class="n">XLabeledDataSequence</span> <span class="n">lds</span> <span class="o">=</span>
+  <span class="n">Chart2</span><span class="p">.</span><span class="na">createLDSeq</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="s">&quot;error-bars-y-positive&quot;</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">dataRange</span><span class="p">);</span>
+</code></pre></div>
+<p>Role strings are defined in DataSequenceRole, which is documented on the page that
+describes chart2's data submodule (call <code>lodoc chart2 data module</code>, and scroll to
+the bottom).</p>
+<p>XDataSink.setData() can accept multiple XLabeledDataSequence objects in an array,
+making it possible to add several kinds of data to the chart at once. This is just as well
+since I need to add two XLabeledDataSequence objects, one for the error bars above
+the data points (i.e. up the y-axis), and another for the error bars below the points (i.e.</p>
+<p>down the y-axis). The code for doing this:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of Chart2.setYErrorBars(); see section 5.4 below</span>
+    <span class="p">:</span>
+<span class="n">XDataSink</span> <span class="n">dataSink</span> <span class="o">=</span> <span class="p">...</span>    <span class="c1">// create the data sink</span>
+
+<span class="n">XDataProvider</span> <span class="n">dp</span> <span class="o">=</span> <span class="n">chartDoc</span><span class="p">.</span><span class="na">getDataProvider</span><span class="p">();</span>
+
+<span class="n">XLabeledDataSequence</span> <span class="n">posErrSeq</span> <span class="o">=</span>    <span class="c1">// bars above data points</span>
+    <span class="n">createLDSeq</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="s">&quot;error-bars-y-positive&quot;</span><span class="p">,</span> <span class="n">dataLabel</span><span class="p">,</span> <span class="n">dataRange</span><span class="p">);</span>
+
+<span class="n">XLabeledDataSequence</span> <span class="n">negErrSeq</span> <span class="o">=</span>    <span class="c1">// bars below the data points</span>
+    <span class="n">createLDSeq</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="s">&quot;error-bars-y-negative&quot;</span><span class="p">,</span> <span class="n">dataLabel</span><span class="p">,</span> <span class="n">dataRange</span><span class="p">);</span>
+
+<span class="n">XLabeledDataSequence</span><span class="o">[]</span> <span class="n">ldSeqArr</span> <span class="o">=</span> <span class="p">{</span> <span class="n">posErrSeq</span><span class="p">,</span> <span class="n">negErrSeq</span> <span class="p">};</span>
+     <span class="c1">// build array</span>
+
+<span class="c1">// add the two error bars to the data sink</span>
+<span class="n">dataSink</span><span class="p">.</span><span class="na">setData</span><span class="p">(</span><span class="n">ldSeqArr</span><span class="p">);</span>
+
+<span class="c1">// add the data sink to the chart ...</span>
+</code></pre></div>
+<p>This code fragment leaves two topics unexplained: how the data sink is initially
+created, and how the data sink is linked to the chart.</p>
 <h3 id="52-creating-the-data-sink">5.2.  Creating the Data Sink<a class="headerlink" href="#52-creating-the-data-sink" title="Permanent link">&para;</a></h3>
-<p>The data sink for error bars relies on the ErrorBar service, which is shown in Figure 
-14. </p>
+<p>The data sink for error bars relies on the ErrorBar service, which is shown in Figure
+14.</p>
 <p><img alt="" src="images/31-XY_Scatter_Charts-14.png" /></p>
-<p>Figure 14. The ErrorBar Service </p>
-<p>The ErrorBar service stores error bar properties and implements the XDataSink 
-interface. The following code fragment creates an instance of the ErrorBar service, 
-sets some of its properties, and converts it to an XDataSink: </p>
-<p>// part of Chart2.setYErrorBars(); see section 5.4 below 
-    : 
-XPropertySet props = Lo.createInstanceMCF(XPropertySet.class,<br />
-                              "com.sun.star.chart2.ErrorBar"); 
-Props.setProperty(props, "ShowPositiveError", true); 
-Props.setProperty(props, "ShowNegativeError", true); 
-Props.setProperty(props, "ErrorBarStyle", ErrorBarStyle.FROM_DATA); </p>
-<p>XDataSink dataSink = Lo.qi(XDataSink.class, props); </p>
-<p>For details on the ErrorBar service, execute lodoc chart2 ErrorBar. </p>
+<p>Figure 14. The ErrorBar Service</p>
+<p>The ErrorBar service stores error bar properties and implements the XDataSink
+interface. The following code fragment creates an instance of the ErrorBar service,
+sets some of its properties, and converts it to an XDataSink:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of Chart2.setYErrorBars(); see section 5.4 below</span>
+    <span class="p">:</span>
+<span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                              <span class="s">&quot;com.sun.star.chart2.ErrorBar&quot;</span><span class="p">);</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;ShowPositiveError&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;ShowNegativeError&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;ErrorBarStyle&quot;</span><span class="p">,</span> <span class="n">ErrorBarStyle</span><span class="p">.</span><span class="na">FROM_DATA</span><span class="p">);</span>
+
+<span class="n">XDataSink</span> <span class="n">dataSink</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XDataSink</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">props</span><span class="p">);</span>
+</code></pre></div>
+<p>For details on the ErrorBar service, execute <code>lodoc chart2 ErrorBar</code>.</p>
 <h3 id="53-linking-the-data-sink-to-the-chart">5.3.  Linking the Data Sink to the Chart<a class="headerlink" href="#53-linking-the-data-sink-to-the-chart" title="Permanent link">&para;</a></h3>
-<p>Once the data sink has been filled with XLabeledDataSequence objects, it can be 
-linked to the data series in the chart. For error bars this is done via the properties 
-"ErrorBarX" and "ErrorBarY". For example, the following code assigns a data sink to 
-the data series' "ErrorBarY" property: </p>
-<p>// part of Chart2.setYErrorBars(); see section 5.4 below 
-    : 
-XDataSeries[] dsa = getDataSeries(chartDoc); 
-XDataSeries ds = dsa[0]; 
-Props.setProperty(ds, "ErrorBarY", props); </p>
-<p>Note that the value assigned to "ErrorBarY" is not an XDataSink interface (e.g. not 
-dataSink from the earlier code fragment) but its property set (i.e. props). </p>
+<p>Once the data sink has been filled with XLabeledDataSequence objects, it can be
+linked to the data series in the chart. For error bars this is done via the properties
+"ErrorBarX" and "ErrorBarY". For example, the following code assigns a data sink to
+the data series' "ErrorBarY" property:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of Chart2.setYErrorBars(); see section 5.4 below</span>
+    <span class="p">:</span>
+<span class="n">XDataSeries</span><span class="o">[]</span> <span class="n">dsa</span> <span class="o">=</span> <span class="n">getDataSeries</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">);</span>
+<span class="n">XDataSeries</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">dsa</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="s">&quot;ErrorBarY&quot;</span><span class="p">,</span> <span class="n">props</span><span class="p">);</span>
+</code></pre></div>
+<p>Note that the value assigned to "ErrorBarY" is not an XDataSink interface (e.g. not
+dataSink from the earlier code fragment) but its property set (i.e. props).</p>
 <h3 id="54-bringing-it-all-together">5.4.  Bringing it All Together<a class="headerlink" href="#54-bringing-it-all-together" title="Permanent link">&para;</a></h3>
-<p>Chart2.setYErrorBars() combines the previous code fragments into a single method: 
-the data sink is created (as a property set), XLabeledDataSequence data is added to it, 
-and then the sink is linked to the chart's data series: </p>
-<p>// in the Chart2 class 
-public static void setYErrorBars(XChartDocument chartDoc,<br />
-                                String dataLabel, String dataRange) 
-// see sections 5.1 – 5.3. for details of this code 
-{ 
-  // initialize error bar properties 
-  XPropertySet errorBarProps =<br />
-      Lo.createInstanceMCF(XPropertySet.class,<br />
-                           "com.sun.star.chart2.ErrorBar"); 
-  Props.setProperty(errorBarProps, "ShowPositiveError", true); 
-  Props.setProperty(errorBarProps, "ShowNegativeError", true); 
-  Props.setProperty(errorBarProps, "ErrorBarStyle",<br />
-                                       ErrorBarStyle.FROM_DATA); </p>
-<p>// convert into data sink 
-  XDataSink dataSink = Lo.qi(XDataSink.class, errorBarProps); </p>
-<p>// use data provider to create labeled data sequences 
-  // for the &plusmn; error ranges 
-  XDataProvider dp = chartDoc.getDataProvider(); </p>
-<p>XLabeledDataSequence posErrSeq =<br />
-      createLDSeq(dp, "error-bars-y-positive", dataLabel, dataRange); 
-  XLabeledDataSequence negErrSeq =<br />
-      createLDSeq(dp, "error-bars-y-negative", dataLabel, dataRange); 
-  XLabeledDataSequence[] ldSeqArr = { posErrSeq, negErrSeq }; </p>
-<p>// store the error bar data sequences in the data sink 
-  dataSink.setData(ldSeqArr); </p>
-<p>// store error bar in data series 
-  XDataSeries[] dataSeriesArr = getDataSeries(chartDoc); 
-  XDataSeries dataSeries = dataSeriesArr[0]; 
-  Props.setProperty(dataSeries, "ErrorBarY", errorBarProps); 
-}  // end of setYErrorBars() </p>
-<p>This is not our last visit to DataSink and XDataSink. I'll use their features again in the 
-next chapter. </p>
+<p>Chart2.setYErrorBars() combines the previous code fragments into a single method:
+the data sink is created (as a property set), XLabeledDataSequence data is added to it,
+and then the sink is linked to the chart's data series:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Chart2 class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setYErrorBars</span><span class="p">(</span><span class="n">XChartDocument</span> <span class="n">chartDoc</span><span class="p">,</span>
+                                <span class="n">String</span> <span class="n">dataLabel</span><span class="p">,</span> <span class="n">String</span> <span class="n">dataRange</span><span class="p">)</span>
+<span class="c1">// see sections 5.1 – 5.3. for details of this code</span>
+<span class="p">{</span>
+  <span class="c1">// initialize error bar properties</span>
+  <span class="n">XPropertySet</span> <span class="n">errorBarProps</span> <span class="o">=</span>
+      <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                           <span class="s">&quot;com.sun.star.chart2.ErrorBar&quot;</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">errorBarProps</span><span class="p">,</span> <span class="s">&quot;ShowPositiveError&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">errorBarProps</span><span class="p">,</span> <span class="s">&quot;ShowNegativeError&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">errorBarProps</span><span class="p">,</span> <span class="s">&quot;ErrorBarStyle&quot;</span><span class="p">,</span>
+                                       <span class="n">ErrorBarStyle</span><span class="p">.</span><span class="na">FROM_DATA</span><span class="p">);</span>
+
+  <span class="c1">// convert into data sink</span>
+  <span class="n">XDataSink</span> <span class="n">dataSink</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XDataSink</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">errorBarProps</span><span class="p">);</span>
+
+  <span class="c1">// use data provider to create labeled data sequences</span>
+  <span class="c1">// for the +/- error ranges</span>
+  <span class="n">XDataProvider</span> <span class="n">dp</span> <span class="o">=</span> <span class="n">chartDoc</span><span class="p">.</span><span class="na">getDataProvider</span><span class="p">();</span>
+
+  <span class="n">XLabeledDataSequence</span> <span class="n">posErrSeq</span> <span class="o">=</span>
+      <span class="n">createLDSeq</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="s">&quot;error-bars-y-positive&quot;</span><span class="p">,</span> <span class="n">dataLabel</span><span class="p">,</span> <span class="n">dataRange</span><span class="p">);</span>
+  <span class="n">XLabeledDataSequence</span> <span class="n">negErrSeq</span> <span class="o">=</span>
+      <span class="n">createLDSeq</span><span class="p">(</span><span class="n">dp</span><span class="p">,</span> <span class="s">&quot;error-bars-y-negative&quot;</span><span class="p">,</span> <span class="n">dataLabel</span><span class="p">,</span> <span class="n">dataRange</span><span class="p">);</span>
+  <span class="n">XLabeledDataSequence</span><span class="o">[]</span> <span class="n">ldSeqArr</span> <span class="o">=</span> <span class="p">{</span> <span class="n">posErrSeq</span><span class="p">,</span> <span class="n">negErrSeq</span> <span class="p">};</span>
+
+  <span class="c1">// store the error bar data sequences in the data sink</span>
+  <span class="n">dataSink</span><span class="p">.</span><span class="na">setData</span><span class="p">(</span><span class="n">ldSeqArr</span><span class="p">);</span>
+
+  <span class="c1">// store error bar in data series</span>
+  <span class="n">XDataSeries</span><span class="o">[]</span> <span class="n">dataSeriesArr</span> <span class="o">=</span> <span class="n">getDataSeries</span><span class="p">(</span><span class="n">chartDoc</span><span class="p">);</span>
+  <span class="n">XDataSeries</span> <span class="n">dataSeries</span> <span class="o">=</span> <span class="n">dataSeriesArr</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">dataSeries</span><span class="p">,</span> <span class="s">&quot;ErrorBarY&quot;</span><span class="p">,</span> <span class="n">errorBarProps</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of setYErrorBars()</span>
+</code></pre></div>
+<p>This is not our last visit to DataSink and XDataSink. I'll use their features again in the
+next chapter.</p>
                 
               
               

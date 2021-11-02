@@ -933,13 +933,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#8-longer-examples-can-be-found-in-the-writer-guide-and-base-handbook" class="md-nav__link">
-    8.  Longer examples can be found in the "Writer Guide" and "Base Handbook"
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#1-why-bother-programming-forms" class="md-nav__link">
     1.  Why Bother Programming Forms?
   </a>
@@ -1032,6 +1025,19 @@
   <a href="#4-attaching-listeners-to-a-view" class="md-nav__link">
     4.  Attaching Listeners to a View
   </a>
+  
+    <nav class="md-nav" aria-label="4.  Attaching Listeners to a View">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#obtaining-the-model" class="md-nav__link">
+    Obtaining the Model
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1286,13 +1292,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#8-longer-examples-can-be-found-in-the-writer-guide-and-base-handbook" class="md-nav__link">
-    8.  Longer examples can be found in the "Writer Guide" and "Base Handbook"
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#1-why-bother-programming-forms" class="md-nav__link">
     1.  Why Bother Programming Forms?
   </a>
@@ -1386,6 +1385,19 @@
     4.  Attaching Listeners to a View
   </a>
   
+    <nav class="md-nav" aria-label="4.  Attaching Listeners to a View">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#obtaining-the-model" class="md-nav__link">
+    Obtaining the Model
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1415,85 +1427,85 @@
                 <h1 id="chapter-39-forms-api-overview">Chapter 39. Forms API Overview<a class="headerlink" href="#chapter-39-forms-api-overview" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
-<p>An Overview of 
-the Forms API; 
-Examining a Text-based 
-Form; Attaching 
-Listeners to a View </p>
-<p>Example folders: "Forms 
-Tests" and "Utils" </p>
+<p>An Overview of
+the Forms API;
+Examining a Text-based
+Form; Attaching
+Listeners to a View</p>
+<p>Example folders: "Forms
+Tests" and "Utils"</p>
 </div>
-<p>Forms are usually found in Writer documents, or as data 
-entry interfaces for Base, although they can also be 
-employed in Draw, Impress, and Calc. Although Base 
-forms are typically employed as front-ends to databases, 
-the same capability is available in Writer and the other 
-Office applications.   </p>
-<p>The LibreOffice "Getting Started Guide" (available at <a href="https://th.libreoffice.org/get-">https://th.libreoffice.org/get-</a>
-help/documentation/) describes the form features of Writer and Base in chapters 4 and </p>
-<h2 id="8-longer-examples-can-be-found-in-the-writer-guide-and-base-handbook">8.  Longer examples can be found in the "Writer Guide" and "Base Handbook"<a class="headerlink" href="#8-longer-examples-can-be-found-in-the-writer-guide-and-base-handbook" title="Permanent link">&para;</a></h2>
-<p>documents. </p>
-<p>Chapter 15 of the "Writer Guide" explains how to create a form using the "Form 
-Controls " and "Form Design" toolbars; it's essentially a matter of dragging check 
-boxes, buttons, text fields, pull-down lists, and other controls, onto a form canvas. </p>
-<p>Properties associated with a control, such as its name, text label, and position, are set 
-by right clicking to access a properties dialog window.  </p>
-<p>An important use of Writer forms is to create editable PDF forms. This doesn't 
-involve anything more than remembering to save the form-filled document as a PDF 
-file when it's finished. There are several online tutorials that explain the details, such 
-as "Create PDF Forms with OpenOffice" at 
-<a href="http://foersom.com/org/HowTo/OoCreatePdfForm.html">http://foersom.com/org/HowTo/OoCreatePdfForm.html</a>; although it's written for 
-OpenOffice, it can be applied to LibreOffice without change. </p>
-<p>Chapter 4 of the "Base Handbook" explains how to create a data input form for a 
-library loans database, and much of the GUI interface of control toolbars, form 
-canvas, and property dialogs is identical to that found in Writer. Even if you're only 
-creating a text-based form, it's well worth reading the Base chapter because it goes 
-into detail about the General, Data, and Events tab in the properties dialog. </p>
-<p>A somewhat simpler example, which is purely text-based without data sources, can be 
-found at <a href="http://openoffice.blogs.com/forms_fromscratch.pdf">http://openoffice.blogs.com/forms_fromscratch.pdf</a>. I used this article (which 
-is titled "Creating Forms from Scratch") to create the scratchExample.odt file used 
-here. </p>
+<p>Forms are usually found in Writer documents, or as data
+entry interfaces for Base, although they can also be
+employed in Draw, Impress, and Calc. Although Base
+forms are typically employed as front-ends to databases,
+the same capability is available in Writer and the other
+Office applications.</p>
+<p>The LibreOffice "Getting Started Guide" (available at <a href="https://th.libreoffice.org/get-help/documentation/">https://th.libreoffice.org/get-help/documentation/</a>)
+describes the form features of Writer and Base in chapters 4 and
+8.  Longer examples can be found in the "Writer Guide" and "Base Handbook"
+documents.</p>
+<p>Chapter 15 of the "Writer Guide" explains how to create a form using the "Form
+Controls " and "Form Design" toolbars; it's essentially a matter of dragging check
+boxes, buttons, text fields, pull-down lists, and other controls, onto a form canvas.
+Properties associated with a control, such as its name, text label, and position, are set
+by right clicking to access a properties dialog window.</p>
+<p>An important use of Writer forms is to create editable PDF forms. This doesn't
+involve anything more than remembering to save the form-filled document as a PDF
+file when it's finished. There are several online tutorials that explain the details, such
+as "Create PDF Forms with OpenOffice" at
+<a href="http://foersom.com/org/HowTo/OoCreatePdfForm.html">http://foersom.com/org/HowTo/OoCreatePdfForm.html</a>; although it's written for
+OpenOffice, it can be applied to LibreOffice without change.</p>
+<p>Chapter 4 of the "Base Handbook" explains how to create a data input form for a
+library loans database, and much of the GUI interface of control toolbars, form
+canvas, and property dialogs is identical to that found in Writer. Even if you're only
+creating a text-based form, it's well worth reading the Base chapter because it goes
+into detail about the General, Data, and Events tab in the properties dialog.</p>
+<p>A somewhat simpler example, which is purely text-based without data sources, can be
+found at <a href="http://openoffice.blogs.com/forms_fromscratch.pdf">http://openoffice.blogs.com/forms_fromscratch.pdf</a>. I used this article (which
+is titled "Creating Forms from Scratch") to create the scratchExample.odt file used
+here.</p>
 <h2 id="1-why-bother-programming-forms">1.  Why Bother Programming Forms?<a class="headerlink" href="#1-why-bother-programming-forms" title="Permanent link">&para;</a></h2>
-<p>It's very easy to build a form using Office's "Form Controls " and "Form Design" 
-toolbars. The GUI provides immediate feedback on how things will look by switching 
-design mode on (where you're building the form) and off (to see how the form will 
-look to a user).  </p>
-<p>Nevertheless, manipulating a form from code can be useful. This chapter starts with 
-an overview of the forms API, and then looks at how data input into an existing form 
-can be processed using listeners. This isn't the standard way of adding behavior to 
-forms; that capability is typically handled by macros coded in Office Basic (for 
-example, see chapter 13 of "Getting Started with LibreOffice" and chapter 9 of the 
-"Base Handbook"). I'll be looking at how to code form macros in Chapters 48 and 49. </p>
-<p>The next chapter, Chapter 40, will look at how a form can be constructed at run time 
-by programmatically adding controls to a new text document. The form is linked to a 
-local database, and table and list box controls access its tables in different ways. In 
-addition, a variety of listeners are attached to the controls.  </p>
+<p>It's very easy to build a form using Office's "Form Controls " and "Form Design"
+toolbars. The GUI provides immediate feedback on how things will look by switching
+design mode on (where you're building the form) and off (to see how the form will
+look to a user).</p>
+<p>Nevertheless, manipulating a form from code can be useful. This chapter starts with
+an overview of the forms API, and then looks at how data input into an existing form
+can be processed using listeners. This isn't the standard way of adding behavior to
+forms; that capability is typically handled by macros coded in Office Basic (for
+example, see chapter 13 of "Getting Started with LibreOffice" and chapter 9 of the
+"Base Handbook"). I'll be looking at how to code form macros in Chapters 48 and 49.</p>
+<p>The next chapter, Chapter 40, will look at how a form can be constructed at run time
+by programmatically adding controls to a new text document. The form is linked to a
+local database, and table and list box controls access its tables in different ways. In
+addition, a variety of listeners are attached to the controls.</p>
 <h2 id="2-an-overview-of-the-forms-api">2.  An Overview of the Forms API<a class="headerlink" href="#2-an-overview-of-the-forms-api" title="Permanent link">&para;</a></h2>
-<p>A key principle behind the forms API is the Model-View-Controller (MVC) pattern 
-(e.g. see 
-<a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller</a>) which 
-divides each form control in two: a model (or component) representing the control's 
-data, and a view for its GUI. Figure 1 shows the forms MVC model in detail. </p>
+<p>A key principle behind the forms API is the Model-View-Controller (MVC) pattern
+(e.g. see
+<a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller</a>) which
+divides each form control in two: a model (or component) representing the control's
+data, and a view for its GUI. Figure 1 shows the forms MVC model in detail.</p>
 <p><img alt="" src="images/39-Forms_API_Overview-1.png" /></p>
-<p>Figure 1. The Form API's MVC Model. </p>
-<p>The third part of MVC, the controller, links the model and view inside an application. </p>
-<p>There might be multiple views attached to a model (i.e. different renderings of the 
-same data), and the controller mediates between a view and the model when the user 
-tries to change its state (for instance by typing data into a text field). </p>
-<p>The thick-edged boxes next to the Model, View and Controller rounded rectangles in 
-Figure 1 represent the main Office services and interfaces that implement the model, 
-view and controller.  </p>
+<p>Figure 1. The Form API's MVC Model.</p>
+<p>The third part of MVC, the controller, links the model and view inside an application.
+There might be multiple views attached to a model (i.e. different renderings of the
+same data), and the controller mediates between a view and the model when the user
+tries to change its state (for instance by typing data into a text field).</p>
+<p>The thick-edged boxes next to the Model, View and Controller rounded rectangles in
+Figure 1 represent the main Office services and interfaces that implement the model,
+view and controller.</p>
 <h3 id="21-control-confusion">2.1.  Control Confusion<a class="headerlink" href="#21-control-confusion" title="Permanent link">&para;</a></h3>
-<p>The two uses of the word "control" in the API can be confusing. When the 
-documentation refers to a control by name, such as a "button control" or "text field 
-control", then it typically means the data and rendering parts taken as a whole. For 
-example, "button control" includes the button's on-screen appearance and its state. </p>
-<p>However, when the API only talks about a "control" then this usually means the 
-services and interfaces related to its appearance. If the API refers to a control's 
-"model" then it means its state.  </p>
-<p>Another problem with understanding the forms API is that its functionality is spread 
-across several modules and submodules. The form module contains many services, 
-interfaces, and seven submodules, which are listed in Table 1. </p>
+<p>The two uses of the word "control" in the API can be confusing. When the
+documentation refers to a control by name, such as a "button control" or "text field
+control", then it typically means the data and rendering parts taken as a whole. For
+example, "button control" includes the button's on-screen appearance and its state.
+However, when the API only talks about a "control" then this usually means the
+services and interfaces related to its appearance. If the API refers to a control's
+"model" then it means its state.</p>
+<p>Another problem with understanding the forms API is that its functionality is spread
+across several modules and submodules. The form module contains many services,
+interfaces, and seven submodules, which are listed in Table 1.</p>
 <table>
 <thead>
 <tr>
@@ -1544,563 +1556,606 @@ interfaces, and seven submodules, which are listed in Table 1. </p>
 </tr>
 </tbody>
 </table>
-<p>Table 1. Submodules of the Form Module. </p>
-<p>To simplify matters, I'm only going to describe two of the submodules: 
-form.component which holds the model-related services, and form.control for the 
-view-related services.   </p>
-<p>But there's more modules to browse! Figure 2 shows the main services and interfaces 
-used to define a button.  </p>
+<p>Table 1. Submodules of the Form Module.</p>
+<p>To simplify matters, I'm only going to describe two of the submodules:
+form.component which holds the model-related services, and form.control for the
+view-related services.</p>
+<p>But there's more modules to browse! Figure 2 shows the main services and interfaces
+used to define a button.</p>
 <p><img alt="" src="images/39-Forms_API_Overview-2.png" /></p>
-<p>Figure 2. Form Services and Interfaces for a Button. </p>
-<p>Four modules are mentioned in Figure 2, written in brackets inside the service 
-rectangles. There's a CommandButton service in form.component and a second 
-CommandButton in form.control. An examination of these services (and most other 
-services in form.component and form.control) reveal them to be basically empty. The 
-real 'action' is elsewhere, up in the form module's FormControlModel service, and 
-over in Office's very large awt module, which implements its version of Java's AWT.  </p>
-<p>The names of the services start to become a little unclear at this point since the words 
-"Control" and "Model" often appear together (e.g. in FormControlModel, 
-UnoControlButtonModel, and UnoControlModel). My advice is to remember that 
-"Model beats Control" . If a class name includes the word "Model", then it's 
-probably for the model/data part of the control. If the name contains only "Control" 
-then it's most likely for the rendering/appearance or listener part of the control. </p>
-<p>For example, UnoControlButtonModel is where the button's data is defined, as a 
-lengthy collection of properties. You can quickly view its documentation with lodoc 
-UnoControlButtonModel. UnoControlButton is for the button's GUI (see lodoc 
-UnoControlButton). Most of the functionality for a button is accessed through its 
-XButton interface, which allows a listener to be attached to the button. </p>
-<p>Every model (e.g. CommandButton in form.component) inherits the 
-FormControlModel service in the form module. This links the control into the 
-surrounding form. </p>
+<p>Figure 2. Form Services and Interfaces for a Button.</p>
+<p>Four modules are mentioned in Figure 2, written in brackets inside the service
+rectangles. There's a CommandButton service in form.component and a second
+CommandButton in form.control. An examination of these services (and most other
+services in form.component and form.control) reveal them to be basically empty. The
+real 'action' is elsewhere, up in the form module's FormControlModel service, and
+over in Office's very large awt module, which implements its version of Java's AWT.</p>
+<p>The names of the services start to become a little unclear at this point since the words
+"Control" and "Model" often appear together (e.g. in FormControlModel,
+UnoControlButtonModel, and UnoControlModel). My advice is to remember that
+"Model beats Control" . If a class name includes the word "Model", then it's
+probably for the model/data part of the control. If the name contains only "Control"
+then it's most likely for the rendering/appearance or listener part of the control.</p>
+<p>For example, UnoControlButtonModel is where the button's data is defined, as a
+lengthy collection of properties. You can quickly view its documentation with
+<code>lodoc UnoControlButtonModel</code>. UnoControlButton is for the button's GUI (see
+<code>lodoc UnoControlButton</code>). Most of the functionality for a button is accessed through its
+XButton interface, which allows a listener to be attached to the button.</p>
+<p>Every model (e.g. CommandButton in form.component) inherits the
+FormControlModel service in the form module. This links the control into the
+surrounding form.</p>
 <h3 id="22-more-information-on-the-api">2.2.  More Information on the API<a class="headerlink" href="#22-more-information-on-the-api" title="Permanent link">&para;</a></h3>
-<p>The principal documentation on the forms API is chapter 13 of the Developer's Guide<br />
-available as 
-<a href="https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf">https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf</a>. </p>
-<p>Alternatively, you can read the chapter online, starting at 
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Forms/Forms">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Forms/Forms</a> (or use 
-loGuide Forms). The guide's form examples are at 
-<a href="http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Forms">http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Forms</a>. </p>
+<p>The principal documentation on the forms API is chapter 13 of the Developer's Guide
+available as
+<a href="https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf">https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf</a>.
+Alternatively, you can read the chapter online, starting at
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Forms/Forms">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Forms/Forms</a> (or use
+<code>loGuide Forms</code>). The guide's form examples are at
+<a href="http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Forms">http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Forms</a>.</p>
 <h2 id="3-examining-a-text-based-form">3.  Examining a Text-based Form<a class="headerlink" href="#3-examining-a-text-based-form" title="Permanent link">&para;</a></h2>
-<p>ExamineForm.java opens a text document containing a form, and attaches button and 
-text field listeners to every button and text field control.  </p>
-<p>Figure 3 shows most of the important data structures used by a form. </p>
+<p>ExamineForm.java opens a text document containing a form, and attaches button and
+text field listeners to every button and text field control.</p>
+<p>Figure 3 shows most of the important data structures used by a form.</p>
 <p><img alt="" src="images/39-Forms_API_Overview-3.png" /></p>
-<p>Figure 3. The Form Data Structures. </p>
-<p>A form is stored in a draw page associated with the document. A draw page can 
-manage multiple forms, which can be accessed by index or by name (the default form 
-is called "Form"). In some types of Office documents, it's possible to have multiple 
-draw pages.  </p>
-<p>A form contains controls, such as buttons, text fields, and tables, and also nested 
-forms. Collectively, controls and nested forms are known as form components, and 
-are organized into a tree hierarchy in the draw page. At the lowest level, each basic 
-form control is represented by a control shape, a specialized kind of DrawPage shape. </p>
-<p>A data source, such as a database, may be attached to a form, which its controls can 
-access using SQL queries. </p>
-<p>Figure 4 gives a high-level view of how ExamineForm.java "digs down" into a 
-document to access each control's model and view. </p>
+<p>Figure 3. The Form Data Structures.</p>
+<p>A form is stored in a draw page associated with the document. A draw page can
+manage multiple forms, which can be accessed by index or by name (the default form
+is called "Form"). In some types of Office documents, it's possible to have multiple
+draw pages.</p>
+<p>A form contains controls, such as buttons, text fields, and tables, and also nested
+forms. Collectively, controls and nested forms are known as form components, and
+are organized into a tree hierarchy in the draw page. At the lowest level, each basic
+form control is represented by a control shape, a specialized kind of DrawPage shape.</p>
+<p>A data source, such as a database, may be attached to a form, which its controls can
+access using SQL queries.</p>
+<p>Figure 4 gives a high-level view of how ExamineForm.java "digs down" into a
+document to access each control's model and view.</p>
 <p><img alt="" src="images/39-Forms_API_Overview-4.png" /></p>
-<p>Figure 4. From Document to Control Model and View. </p>
-<p>The words connected by the arrows correspond (in most cases) to services in the 
-forms API; the names in blue are the interfaces associated with those services. The 
-"Fig. X" rounded rectangles refer to figures later in this chapter which give more 
-detail about how the API links from one service to the next.  </p>
-<p>Figure 4 starts with the document, and ends with references to a control's model and 
-view services. For example, the services for a button are the CommandButton classes 
-in the form.component and form.control modules. </p>
-<p>Figure 4 has a branch point at the DrawPage service (it's labeled with the word "or") 
-since there are two ways of using the API to get from a draw page to control models. </p>
-<p>The branch on the left examines the control shapes in the DrawPage, while the branch 
-on the right examines the form components.   </p>
-<p>I've decided not to explain the the left branch, although it's documented in my 
-Forms.java utility class. The left branch corresponds to code in the 
-Forms.getModels2() method. </p>
-<p>Most of  Figure 4 is implemented as static methods in the Forms class, which means 
-that ExamineForm.java is fairly short: </p>
-<p>// in ExamineForm.java 
-public static void main(String args[]) 
-{ 
-  if (args.length != 1) { 
-    System.out.println("Usage: run ExamineForm <ODT file>"); 
-    return; 
-  } 
-  XComponentLoader loader = Lo.loadOffice(); 
-  XComponent doc = Lo.openDoc(args[0], loader); 
-  if (doc == null) { 
-    System.out.println("Could not open " + args[0]); 
-    Lo.closeOffice(); 
-    return; 
-  } </p>
-<p>ArrayList<XControlModel> models = Forms.getModels(doc); 
-  System.out.println("No. of control models in form: " +<br />
-                                             models.size()); 
-  // examine each model 
-  for(XControlModel model : models) { 
-    System.out.println("  " + Forms.getName(model) + ": " + 
-                              Forms.getTypeStr(model)); </p>
-<div class="highlight"><pre><span></span><code>// look at the control for each model 
-XControl ctrl = Forms.getControl(doc, model); 
-if (ctrl == null)  
-  System.out.println(&quot;   No control found&quot;); 
-else {   // attach listener if the control is  
-         // a button or text field 
-  if (Forms.isButton(model)) 
-    attachButtonListener(ctrl, model); 
-  else if (Forms.isTextField(model)) 
-    attachTextFieldListeners(ctrl); 
-}
-</code></pre></div>
-<p>} 
-  System.out.println(); 
-  GUI.setVisible(doc, true); 
-  Lo.waitEnter(); </p>
-<p>Lo.closeDoc(doc); 
-  Lo.closeOffice(); 
-}  // end of main() </p>
-<p>Forms.getModels() and Forms.getControl() will be used in most forms-based 
-programs. Forms.getModels() returns a list of all the control models in the document. </p>
-<p>In terms of Figure 4, it moves from the Document service at the top of the figure to 
-ControlModel near the bottom. Forms.getControl() completes the descent by 
-retrieving the control (view) associated with a given model. </p>
-<p>If a control is a button or text field than attachButtonListener() or 
-attachTextFieldListeners() are called. These methods are implemented in 
-ExamineForm.java, but I'll delay explaining them until I've covered 
-Forms.getModels() and Forms.getControl(). </p>
-<h3 id="31-from-document-to-drawpages">3.1.  From Document to DrawPages<a class="headerlink" href="#31-from-document-to-drawpages" title="Permanent link">&para;</a></h3>
-<p>Every Office document supports the OfficeDocument service, and the XModel and 
-XComponent interfaces. Using XComponent as a starting interface, it's possible to 
-change the type to XDrawPagesSupplier (or XDrawPageSupplier), which gives access 
-to the DrawPages (or single DrawPage) inside the document. The cast works because 
-all Office documents support the GenericDrawingDocument service, as illustrated in </p>
-<p><img alt="" src="images/39-Forms_API_Overview-5.png" /></p>
-<p>Figure 5. </p>
-<p><img alt="" src="images/39-Forms_API_Overview-5.png" /></p>
-<p>Figure 5. Part of the GenericDrawingDocument Service Hierarchy </p>
-<p>The code that implements the cast: </p>
-<p>// in the Forms class 
-public static XNameContainer getForms(XComponent doc) 
-{ 
-  XDrawPage drawPage = getDrawPage(doc); 
-  if (drawPage != null) 
-    return getForms(drawPage); 
-  else 
-    return null; 
-}  // end of getForms() </p>
-<p>public static XDrawPage getDrawPage(XComponent doc) 
-// return the first draw page even if there are many 
-{ 
-  XDrawPageSupplier xSuppPage =<br />
-                Lo.qi(XDrawPageSupplier.class, doc); 
-  if (xSuppPage != null) 
-    // this works if doc supports a single DrawPage 
-    return xSuppPage.getDrawPage(); 
-  else {  <br />
-    // this means that the doc supports multiple DrawPages 
-    XDrawPagesSupplier xSuppPages =<br />
-                Lo.qi(XDrawPagesSupplier.class, doc); </p>
-<div class="highlight"><pre><span></span><code>XDrawPages xPages = xSuppPages.getDrawPages(); 
-try { 
-  System.out.println(&quot;Returning first draw page&quot;); 
-  return Lo.qi(XDrawPage.class, xPages.getByIndex(0)); 
-} 
-catch(Exception e) { 
-  System.out.println(e); 
-  return null; 
-}
-</code></pre></div>
-<p>} 
-}  // end of getDrawPage() </p>
-<p>Forms.getDrawPage() only returns the first draw page in a document, even if many 
-pages are available. </p>
-<h3 id="32-from-drawpage-to-form">3.2.  From DrawPage to Form<a class="headerlink" href="#32-from-drawpage-to-form" title="Permanent link">&para;</a></h3>
-<p>The XDrawPage interface can be cast to XFormsSupplier which makes the page's<br />
-forms accessible. This cast works because of the service hierarchy shown in Figure 6 
-which links the DrawPage service to GenericDrawPage. </p>
-<p><img alt="" src="images/39-Forms_API_Overview-6.png" /></p>
-<p>Figure 6. Part of the DrawPage Service Hierarchy. </p>
-<p>XFormsSupplier can supply forms as an indexed sequence (an XIndexContainer) or 
-as an associative array using the form names as keys, returned by Forms.getForms(): </p>
-<p>// in the Forms class 
-public static XNameContainer getForms(XDrawPage drawPage) 
-// get all the forms in the page as a named container 
-{ 
-  XFormsSupplier formsSupp = Lo.qi(XFormsSupplier.class, drawPage); 
-  return formsSupp.getForms(); 
-} // end of getForms() </p>
-<p>The default form in a draw page is called "Form", and can be extracted by calling 
-Forms.getForm(doc,"Form"): </p>
-<p>// in the Forms class 
-public static XForm getForm(XComponent doc, String formName) 
-// get the form called formName 
-{ 
-   XNameContainer namedForms = getForms(doc);  // see above 
-   XNameContainer con = getFormByName(formName, namedForms); 
-   return Lo.qi(XForm.class, con); 
-} </p>
-<p>public static XNameContainer getFormByName(String formName, 
-                                   XNameContainer namedForms) 
-// get the form called formName 
-{ try { 
-    return Lo.qi(XNameContainer.class,<br />
-                       namedForms.getByName(formName)); 
-  } 
-  catch (Exception e) { 
-    System.out.println("Could not find form " + formName + ": " + e); 
-    return null; 
-  } 
-}  // end of getFormByName() </p>
-<h3 id="33-from-form-to-formcomponents">3.3.  From Form to FormComponents<a class="headerlink" href="#33-from-form-to-formcomponents" title="Permanent link">&para;</a></h3>
-<p>A form is a FormComponents instance, which holds FormComponent instances (i.e. </p>
-<p>basic controls) and nested FormComponents (i.e. nested forms). Figure 7 shows a 
-simplified service hierarchy for Form, FormComponents, and FormComponent. </p>
-<p><img alt="" src="images/39-Forms_API_Overview-7.png" /></p>
-<p>Figure 7. Part of the Form Service Hierarchy. </p>
-<p>Forms.getModels() collects all the FormComponent instances as a list by recursively 
-searching from the top level form (or forms) through all the nested forms : </p>
-<p>// in the Forms class 
-public static ArrayList<XControlModel> getModels(XComponent doc) 
-{ XNameContainer formNamesCon = getForms(doc);  // see above 
-  return getModels(formNamesCon); 
-} </p>
-<p>public static ArrayList<XControlModel> getModels( 
-                                         XNameAccess formNamesCon) 
-{ 
-  ArrayList<XControlModel> models = new ArrayList<XControlModel>(); 
-  String nms[] = formNamesCon.getElementNames(); 
-  for (int i=0; i &lt; nms.length; i++) { 
-    try { 
-      XServiceInfo servInfo = Lo.qi(XServiceInfo.class, 
-                                  formNamesCon.getByName(nms[i])); 
-      if (servInfo.supportsService( 
-                             "com.sun.star.form.FormComponents")) { 
-        // this means that a nested form has been found 
-        XNameAccess childCon = Lo.qi(XNameAccess.class, servInfo); 
-        models.addAll( getModels(childCon) );//recursively search it<br />
-      } 
-      else if (servInfo.supportsService( 
-                             "com.sun.star.form.FormComponent")) { 
-        XControlModel model = Lo.qi(XControlModel.class, servInfo); 
-        models.add(model); 
-      } 
-    } 
-    catch(Exception e) 
-    {  System.out.println("Could not access " + nms[i]);  } 
-  } 
-  return models; 
-}  // end of getModels() </p>
-<p>The first Forms.getModels() method extracts the top-level form (or forms) from the 
-document as a named container, then passes it to the recursive getModels() which 
-iterates through the container. If an element is a FormComponents instance then it's a 
-nested form, and getModels() is called recursively to collect its controls. If the 
-element is of type FormComponent then it's an ordinary control. </p>
-<h3 id="34-from-formcomponent-to-control-model">3.4.  From FormComponent to Control Model<a class="headerlink" href="#34-from-formcomponent-to-control-model" title="Permanent link">&para;</a></h3>
-<p>A FormComponent instance can be cast to XControlModel: 
-XControlModel model = Lo.qi(XControlModel.class, servInfo); 
-XControlModel first appeared at the top of Figure 2 on the left – it’s the interface 
-inherited by all models. </p>
-<p>The casting is possible because every control model service (e.g. CommandButton in 
-the form.component module) inherits both FormComponent and UnoControlModel, 
-as depicted by Figure 8. </p>
-<p><img alt="" src="images/39-Forms_API_Overview-8.png" /></p>
-<p>Figure 8. Part of the Service Hierarchy for the CommandButton Model. </p>
-<p>Every model has a hierarchy similar to CommandButton's in Figure 8. For example, 
-the text field control model hierarchy appears in Figure 9. </p>
-<p><img alt="" src="images/39-Forms_API_Overview-9.png" /></p>
-<p>Figure 9. Part of the Service Hierarchy for the TextField Model. </p>
-<p>Figures 8 and 9 depict two important coding features. One is that it's possible to cast 
-between a form component and a control model, as demonstrated by 
-Forms.getModel() shown above. The other is that a model's data is stored in its 
-properties, and most of those are NOT in the model's service (i.e. not in 
-CommandButton and TextField). Most model properties are in superclasses (i.e. </p>
-<p>UnoControlButtonModel in Figure 8 and UnoControlEditModel in Figure 9), which 
-are located in the awt module. </p>
-<h3 id="35-using-a-control-model">3.5.  Using a Control Model<a class="headerlink" href="#35-using-a-control-model" title="Permanent link">&para;</a></h3>
-<p>Returning to ExamineForm.java, the relevant bit of code is: </p>
-<p>// part of ExamineForm.java... </p>
-<dl>
-<dt>ArrayList<XControlModel> models = Forms.getModels(doc); // see above</dt>
-<dt>System.out.println("No. of control models in form: " +</dt>
-<dt>models.size());</dt>
-<dt>// examine each model</dt>
-<dt>for(XControlModel model : models) {</dt>
-<dt>System.out.println("  " + Forms.getName(model) + ": " +</dt>
-<dt>Forms.getTypeStr(model));</dt>
-<dd>} </dd>
-</dl>
-<p>An XControlModel reference can be utilized in various ways, but two of the main 
-ones are examining its subclass service type and accessing its properties. As Figures 8 
-and 9 indicate, most of a control's properties are in the UnoControlXXXModel 
-service, but may come from other services which can be hard to locate. For example, 
-"Name" is from UnoControlDialogElement, a superclass of UnoControlModel (which 
-I didn't include in Figures 8 and 9). "ClassId" comes from FormControlModel, which 
-is on the "forms branch" of the service hierarchies in the figures. </p>
-<p>The easiest thing is to print all the model's properties, by calling 
-Props.showObjProps(): 
-Props.showObjProps("Model", model); 
-Info.showInterfaces() and Info.showServices() are similarly useful, listing all the 
-interfaces and services for a model: </p>
-<p>Info.showInterfaces("Model", model); 
-Info.showServices("Model", model); </p>
-<p>The Forms.getName() and Forms.getTypeStr() methods called in the code fragment 
-above are defined as: </p>
-<p Props.getProperty_cModel_="Props.getProperty(cModel," _Name_="&quot;Name&quot;);" _String_="(String)" return="return">// in the Forms class 
-public static String getName(XControlModel cModel) 
-// returns the name of the given form component </p>
-<p>public static String getTypeStr(XControlModel cModel) 
-{ 
-  int id = getID(cModel); 
-  if (id == -1) 
-    return null; </p>
-<p>XServiceInfo servInfo = Lo.qi(XServiceInfo.class, cModel); 
-  switch (id) { 
-    case FormComponentType.COMMANDBUTTON: 
-      return "Command button";<br />
-    case FormComponentType.RADIOBUTTON: 
-      return "Radio button";<br />
-    case FormComponentType.IMAGEBUTTON: 
-      return "Image button";<br />
-    case FormComponentType.CHECKBOX: 
-      return "Check Box";<br />
-    case FormComponentType.LISTBOX: 
-      return "List Box";<br />
-    case FormComponentType.COMBOBOX: 
-      return "Combo Box";<br />
-    case FormComponentType.GROUPBOX: 
-      return "Group Box";<br />
-    case FormComponentType.FIXEDTEXT: 
-      return "Fixed Text";<br />
-    case FormComponentType.GRIDCONTROL: 
-      return "Grid Control";<br />
-    case FormComponentType.FILECONTROL: 
-      return "File Control";<br />
-    case FormComponentType.HIDDENCONTROL: 
-      return "Hidden Control";<br />
-    case FormComponentType.IMAGECONTROL: 
-      return "Image Control";<br />
-    case FormComponentType.DATEFIELD: 
-      return "Date Field";<br />
-    case FormComponentType.TIMEFIELD: 
-      return "Time Field";<br />
-    case FormComponentType.NUMERICFIELD: 
-      return "Numeric Field";<br />
-    case FormComponentType.CURRENCYFIELD: 
-      return "Currency Field";<br />
-    case FormComponentType.PATTERNFIELD: 
-      return "Pattern Field";<br />
-    case FormComponentType.TEXTFIELD: 
-      // two services with this class id:<br />
-      // text field and formatted field<br />
-      if ((servInfo != null) &amp;&amp; servInfo.supportsService( 
-                     "com.sun.star.form.component.FormattedField")) 
-        return "Formatted Field"; 
-      else 
-        return "Text Field"; 
-    default:<br />
-      System.out.println("Unknown class ID: " + id); 
-      return null; 
-  } 
-}  // end of getTypeStr() </p>
-<p>public static int getID(XControlModel cModel) 
-{ 
-  // get the ClassId property 
-  Short classId = (Short) Props.getProperty(cModel, "ClassId"); 
-  if (classId == null) { 
-    System.out.println("No class ID found for form component"); 
-    return -1; 
-  }<br />
-  return classId.intValue(); 
-}  // end of getID() </p>
-<p>Forms.getID returns the "ClassId" integer, which is checked by getTypeStr() against 
-values in the FormComponentType enumeration, and mapped to more informative 
-strings. </p>
-<p>Forms.getID() is utilized in a similar manner in a series of boolean isXXX() methods, 
-such as isButton() and isTextField(): </p>
-<p>// in the Forms class 
-public static boolean isButton(XControlModel cModel) 
-{ 
-  int id = getID(cModel); 
-  if (id == -1) 
-    return false; 
-  else<br />
-    return ((id == FormComponentType.COMMANDBUTTON) || 
-            (id == FormComponentType.IMAGEBUTTON)); 
-}  // end of isButton() </p>
-<p>public static boolean isTextField(XControlModel cModel) 
-{ 
-  int id = getID(cModel); 
-  if (id == -1) 
-    return false; 
-    else<br />
-    return ((id == FormComponentType.DATEFIELD) || 
-            (id == FormComponentType.TIMEFIELD) || 
-            (id == FormComponentType.NUMERICFIELD) || 
-            (id == FormComponentType.CURRENCYFIELD) || 
-            (id == FormComponentType.PATTERNFIELD) || 
-            (id == FormComponentType.TEXTFIELD)); 
-}  // end of isTextField() </p>
-<h3 id="36-from-control-model-to-view">3.6.  From Control Model to View<a class="headerlink" href="#36-from-control-model-to-view" title="Permanent link">&para;</a></h3>
-<p>Having obtained a form's model, it's view becomes accessible, but following the 
-MVC pattern, this requires the use of Office's controller (see Figure 1). One way to 
-reach the controller is through a document reference (XComponent) and 
-XModel.getCurrentController(). The resulting XController interface can be cast to 
-XControlAccess, due to the service hierarchy shown in Figure 10. </p>
-<p><img alt="" src="images/39-Forms_API_Overview-10.png" /></p>
-<p>Figure 10. Part of the DrawingDocumentDrawView Service Hierarchy. </p>
-<p>These steps are implemented by GUI.getControlAccess(): </p>
-<p Lo.qi_XControlAccess.class_="Lo.qi(XControlAccess.class," getCurrentController_doc_="getCurrentController(doc));" return="return">// in the GUI class 
-public static XControlAccess getControlAccess(XComponent doc) </p>
-<p>public static XController getCurrentController(XComponent doc) 
-{<br />
-  XModel model = Lo.qi(XModel.class, doc);<br />
-  if (model == null) { 
-    System.out.println("Document has no data model"); 
-    return null; 
-  } 
-  return model.getCurrentController();<br />
-} </p>
-<p>Forms.getControl() employs XControlAccess.getControl() to return the model's view 
-when supplied with a model: </p>
-<p>// in the Forms class 
-public static XControl getControl(XComponent doc,<br />
-                                       XControlModel cModel) 
-{ XControlAccess controlAccess = GUI.getControlAccess(doc); <br />
-                                 // see above 
-  if (controlAccess == null) { 
-    System.out.println("Could not obtain controls access"); 
-    return null; 
-  } 
-  try { 
-    return controlAccess.getControl(cModel); 
-  } 
-  catch (Exception e) { 
-    System.out.println("Could not access control: " + e); 
-    return null; 
-  } 
-}  // end of getControl() </p>
-<h2 id="4-attaching-listeners-to-a-view">4.  Attaching Listeners to a View<a class="headerlink" href="#4-attaching-listeners-to-a-view" title="Permanent link">&para;</a></h2>
-<p>XControl is an interface of the UnoControl service, which represents an abstract 
-control. This class must be cast to a service for a real control, such as 
-UnoControlButton or UnoControlEdit in order to call listener methods in XButton or 
-XTextComponent. This hierarchy is illustrated by Figure 11. </p>
-<p><img alt="" src="images/39-Forms_API_Overview-11.png" /></p>
-<p>Figure 11. Part of the Service Hierarchy Below UnoControl. </p>
-<p>Back in ExamineForm.java, every button or text field has listeners attached to it: </p>
-<p>// part of ExamineForms.java... </p>
-<div class="highlight"><pre><span></span><code>:
-</code></pre></div>
-<p>// look at the control for each model 
-XControl ctrl = Forms.getControl(doc, model); 
-if (ctrl == null)<br />
-  System.out.println("   No control found"); 
-else {   // attach listener if the control is a button or text field 
-    if (Forms.isButton(model)) 
-      attachButtonListener(ctrl, model); 
-    else if (Forms.isTextField(model)) 
-      attachTextFieldListeners(ctrl); 
-} 
-    : </p>
-<p>attachButtonListener() and attachTextFieldListener() implement the casting shown in 
-Figure 11, starting with an XControl interface. For instance, attachButtonListener() 
-connects an anonymous XActionListener object to a button, and sets its action 
-command to be the button's label: </p>
-<p>// in ExamineForms.java 
-private static void attachButtonListener(XControl ctrl,<br />
-                                       XControlModel cModel) 
-{ XButton xButton = Lo.qi(XButton.class, ctrl); 
-  // XControlModel cModel = ctrl.getModel(); 
-  xButton.setActionCommand( Forms.getLabel(cModel)); </p>
-<p>xButton.addActionListener( new XActionListener() { 
-    public void disposing(com.sun.star.lang.EventObject ev) {} </p>
-<div class="highlight"><pre><span></span><code>public void actionPerformed(ActionEvent ev) 
-{  System.out.println(&quot;Pressed \&quot;&quot; + ev.ActionCommand + &quot;\&quot;&quot;); }
-</code></pre></div>
-<p>}); 
-}  // end of attachButtonListener() </p>
-<p>Although XActionListener and Java's ActionListener are similar, they're not the same. </p>
-<p>For one thing, its necessary to define two methods in XActionListener, 
-actionPerformed() and disposing(). </p>
-<p>Office supports over 120 kinds of listeners! The best place to browse through them is 
-on the documentation webpage for their common superclass, XEventListener. lodoc 
-XEventListener should take you to XEventListener in the document module, but 
-you want its superclass, XEventListener in the lang module. The first part of its long 
-webpage is shown in Figure 12. </p>
-<p><img alt="" src="images/39-Forms_API_Overview-12.png" /></p>
-<p>Figure 12. The First Part of the XEventListener Documentation Page<br />
-in the lang Module. </p>
-<p>Although the clickable images on the LibreOffice webpages make moving around the 
-service and interface hierarchies very easy, they're not searchable. When the hierarchy 
-is very large (as for XEventListener), and not sorted in alphabetical order, it can be 
-time-consuming to find a particular subclass.  </p>
-<p>I solved the problem by creating a text file, called XEventListenerSubclasses.txt, 
-which lists the subclasses of XEventListener in order, and is searchable of course. </p>
-<p>You can find it in the Forms Tests/ folder for this chapter. </p>
-<p>Alternatively, almost all the listeners for controls are defined in the awt module, so 
-you can search that module's documentation page (accessible using lodoc awt 
-module). </p>
-<p>attachTextFieldListeners() attaches two listeners to a text field control because 
-XTextListener isn't triggered when the user types <ENTER>. My solution is to 
-connect an XFocusListener which treats <ENTER> as a "lost focus" event when the 
-cursor leaves the text field. The code for attachTextFieldListeners(): </p>
-<p>// in ExamineForms.java 
-private static void attachTextFieldListeners(XControl ctrl) 
-// listen for text changes and focus changes in the control 
-{ 
-  XTextComponent tc = Lo.qi(XTextComponent.class, ctrl); 
-  tc.addTextListener( new XTextListener() { 
-    public void textChanged(TextEvent ev) 
-    { 
-      XControlModel cModel = Forms.getEventControlModel(ev); 
-      System.out.println( Forms.getName(cModel) +<br />
-                 " text: " + Props.getProperty(cModel, "Text")); 
-    }  // end of textChanged() </p>
-<div class="highlight"><pre><span></span><code>public void disposing(EventObject ev) {}
-</code></pre></div>
-<p>}); </p>
-<p>XWindow tfWindow = Lo.qi(XWindow.class, ctrl); 
-  tfWindow.addFocusListener( new XFocusListener() { </p>
-<div class="highlight"><pre><span></span><code>public void focusLost(FocusEvent ev) 
-{ XControlModel model = Forms.getEventControlModel(ev); 
-  System.out.println(&quot;Leaving text: &quot; +  
-                      Props.getProperty(model, &quot;Text&quot;)); 
-}
+<p>Figure 4. From Document to Control Model and View.</p>
+<p>The words connected by the arrows correspond (in most cases) to services in the
+forms API; the names in blue are the interfaces associated with those services. The
+"Fig. X" rounded rectangles refer to figures later in this chapter which give more
+detail about how the API links from one service to the next.</p>
+<p>Figure 4 starts with the document, and ends with references to a control's model and
+view services. For example, the services for a button are the CommandButton classes
+in the form.component and form.control modules.</p>
+<p>Figure 4 has a branch point at the DrawPage service (it's labeled with the word "or")
+since there are two ways of using the API to get from a draw page to control models.
+The branch on the left examines the control shapes in the DrawPage, while the branch
+on the right examines the form components.</p>
+<p>I've decided not to explain the the left branch, although it's documented in my
+Forms.java utility class. The left branch corresponds to code in the
+Forms.getModels2() method.</p>
+<p>Most of  Figure 4 is implemented as static methods in the Forms class, which means
+that ExamineForm.java is fairly short:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in ExamineForm.java</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="na">length</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Usage: run ExamineForm &lt;ODT file&gt;&quot;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+  <span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">openDoc</span><span class="p">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">doc</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not open &quot;</span> <span class="o">+</span> <span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
+    <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
 
-public void disposing(EventObject ev) {}  // unused 
-public void focusGained(FocusEvent ev) {}
+  <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">XControlModel</span><span class="o">&gt;</span> <span class="n">models</span> <span class="o">=</span> <span class="n">Forms</span><span class="p">.</span><span class="na">getModels</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No. of control models in form: &quot;</span> <span class="o">+</span>
+                                             <span class="n">models</span><span class="p">.</span><span class="na">size</span><span class="p">());</span>
+  <span class="c1">// examine each model</span>
+  <span class="k">for</span><span class="p">(</span><span class="n">XControlModel</span> <span class="n">model</span> <span class="p">:</span> <span class="n">models</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  &quot;</span> <span class="o">+</span> <span class="n">Forms</span><span class="p">.</span><span class="na">getName</span><span class="p">(</span><span class="n">model</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;: &quot;</span> <span class="o">+</span>
+                              <span class="n">Forms</span><span class="p">.</span><span class="na">getTypeStr</span><span class="p">(</span><span class="n">model</span><span class="p">));</span>
+
+    <span class="c1">// look at the control for each model</span>
+    <span class="n">XControl</span> <span class="n">ctrl</span> <span class="o">=</span> <span class="n">Forms</span><span class="p">.</span><span class="na">getControl</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">model</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ctrl</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;   No control found&quot;</span><span class="p">);</span>
+    <span class="k">else</span> <span class="p">{</span>   <span class="c1">// attach listener if the control is</span>
+             <span class="c1">// a button or text field</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">Forms</span><span class="p">.</span><span class="na">isButton</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
+        <span class="n">attachButtonListener</span><span class="p">(</span><span class="n">ctrl</span><span class="p">,</span> <span class="n">model</span><span class="p">);</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">Forms</span><span class="p">.</span><span class="na">isTextField</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
+        <span class="n">attachTextFieldListeners</span><span class="p">(</span><span class="n">ctrl</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">();</span>
+  <span class="n">GUI</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">waitEnter</span><span class="p">();</span>
+
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeDoc</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="n">Lo</span><span class="p">.</span><span class="na">closeOffice</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of main()</span>
 </code></pre></div>
-<p>}); </p>
-<p>}  // end of attachTextFieldListeners() </p>
-<p>Obtaining the Model 
-attachButtonListener() and attachTextFieldListeners() demonstrate two ways of 
-obtaining the control's model when an event triggers a view listener.  </p>
-<p>In attachButtonListener(), an XControl reference is available, which means that 
-XControl.getModel() could be called: 
-XControlModel cModel = ctrl.getModel(); 
-In fact that coding isn't used, since the model reference is available already. </p>
-<p>attachTextFieldListeners() shows another approach, which is to examine the event 
-object that arrives at the listener's method (e.g. the FocusEvent object received by 
-focusLost()). Forms.getEventControlModel() is defined as: </p>
-<p>// in the Forms class 
-public static XControlModel getEventControlModel(EventObject ev) 
-{ 
-  XControl xControl = Lo.qi(XControl.class, ev.Source); 
-  return xControl.getModel(); 
-}  // end of getEventControlModel() </p>
+<p>Forms.getModels() and Forms.getControl() will be used in most forms-based
+programs. Forms.getModels() returns a list of all the control models in the document.
+In terms of Figure 4, it moves from the Document service at the top of the figure to
+ControlModel near the bottom. Forms.getControl() completes the descent by
+retrieving the control (view) associated with a given model.</p>
+<p>If a control is a button or text field than attachButtonListener() or
+attachTextFieldListeners() are called. These methods are implemented in
+ExamineForm.java, but I'll delay explaining them until I've covered
+Forms.getModels() and Forms.getControl().</p>
+<h3 id="31-from-document-to-drawpages">3.1.  From Document to DrawPages<a class="headerlink" href="#31-from-document-to-drawpages" title="Permanent link">&para;</a></h3>
+<p>Every Office document supports the OfficeDocument service, and the XModel and
+XComponent interfaces. Using XComponent as a starting interface, it's possible to
+change the type to XDrawPagesSupplier (or XDrawPageSupplier), which gives access
+to the DrawPages (or single DrawPage) inside the document. The cast works because
+all Office documents support the GenericDrawingDocument service, as illustrated in
+Figure 5.</p>
+<p><img alt="" src="images/39-Forms_API_Overview-5.png" /></p>
+<p>Figure 5. Part of the GenericDrawingDocument Service Hierarchy</p>
+<p>The code that implements the cast:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Forms class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XNameContainer</span> <span class="nf">getForms</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XDrawPage</span> <span class="n">drawPage</span> <span class="o">=</span> <span class="n">getDrawPage</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">drawPage</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">getForms</span><span class="p">(</span><span class="n">drawPage</span><span class="p">);</span>
+  <span class="k">else</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of getForms()</span>
+
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XDrawPage</span> <span class="nf">getDrawPage</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">)</span>
+<span class="c1">// return the first draw page even if there are many</span>
+<span class="p">{</span>
+  <span class="n">XDrawPageSupplier</span> <span class="n">xSuppPage</span> <span class="o">=</span>
+                <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XDrawPageSupplier</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">doc</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">xSuppPage</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="c1">// this works if doc supports a single DrawPage</span>
+    <span class="k">return</span> <span class="n">xSuppPage</span><span class="p">.</span><span class="na">getDrawPage</span><span class="p">();</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// this means that the doc supports multiple DrawPages</span>
+    <span class="n">XDrawPagesSupplier</span> <span class="n">xSuppPages</span> <span class="o">=</span>
+                <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XDrawPagesSupplier</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">doc</span><span class="p">);</span>
+
+    <span class="n">XDrawPages</span> <span class="n">xPages</span> <span class="o">=</span> <span class="n">xSuppPages</span><span class="p">.</span><span class="na">getDrawPages</span><span class="p">();</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Returning first draw page&quot;</span><span class="p">);</span>
+      <span class="k">return</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XDrawPage</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">xPages</span><span class="p">.</span><span class="na">getByIndex</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+      <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of getDrawPage()</span>
+</code></pre></div>
+<p>Forms.getDrawPage() only returns the first draw page in a document, even if many
+pages are available.</p>
+<h3 id="32-from-drawpage-to-form">3.2.  From DrawPage to Form<a class="headerlink" href="#32-from-drawpage-to-form" title="Permanent link">&para;</a></h3>
+<p>The XDrawPage interface can be cast to XFormsSupplier which makes the page's
+forms accessible. This cast works because of the service hierarchy shown in Figure 6
+which links the DrawPage service to GenericDrawPage.</p>
+<p><img alt="" src="images/39-Forms_API_Overview-6.png" /></p>
+<p>Figure 6. Part of the DrawPage Service Hierarchy.</p>
+<p>XFormsSupplier can supply forms as an indexed sequence (an XIndexContainer) or
+as an associative array using the form names as keys, returned by Forms.getForms():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Forms class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XNameContainer</span> <span class="nf">getForms</span><span class="p">(</span><span class="n">XDrawPage</span> <span class="n">drawPage</span><span class="p">)</span>
+<span class="c1">// get all the forms in the page as a named container</span>
+<span class="p">{</span>
+  <span class="n">XFormsSupplier</span> <span class="n">formsSupp</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XFormsSupplier</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">drawPage</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">formsSupp</span><span class="p">.</span><span class="na">getForms</span><span class="p">();</span>
+<span class="p">}</span> <span class="c1">// end of getForms()</span>
+
+<span class="n">The</span> <span class="k">default</span> <span class="n">form</span> <span class="n">in</span> <span class="n">a</span> <span class="n">draw</span> <span class="n">page</span> <span class="n">is</span> <span class="n">called</span> <span class="s">&quot;Form&quot;</span><span class="p">,</span> <span class="n">and</span> <span class="n">can</span> <span class="n">be</span> <span class="n">extracted</span> <span class="n">by</span> <span class="n">calling</span>
+<span class="n">Forms</span><span class="p">.</span><span class="na">getForm</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span><span class="s">&quot;Form&quot;</span><span class="p">):</span>
+
+<span class="c1">// in the Forms class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XForm</span> <span class="nf">getForm</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">,</span> <span class="n">String</span> <span class="n">formName</span><span class="p">)</span>
+<span class="c1">// get the form called formName</span>
+<span class="p">{</span>
+   <span class="n">XNameContainer</span> <span class="n">namedForms</span> <span class="o">=</span> <span class="n">getForms</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>  <span class="c1">// see above</span>
+   <span class="n">XNameContainer</span> <span class="n">con</span> <span class="o">=</span> <span class="n">getFormByName</span><span class="p">(</span><span class="n">formName</span><span class="p">,</span> <span class="n">namedForms</span><span class="p">);</span>
+   <span class="k">return</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XForm</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">con</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XNameContainer</span> <span class="nf">getFormByName</span><span class="p">(</span><span class="n">String</span> <span class="n">formName</span><span class="p">,</span>
+                                   <span class="n">XNameContainer</span> <span class="n">namedForms</span><span class="p">)</span>
+<span class="c1">// get the form called formName</span>
+<span class="p">{</span> <span class="k">try</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XNameContainer</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                       <span class="n">namedForms</span><span class="p">.</span><span class="na">getByName</span><span class="p">(</span><span class="n">formName</span><span class="p">));</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not find form &quot;</span> <span class="o">+</span> <span class="n">formName</span> <span class="o">+</span> <span class="s">&quot;: &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of getFormByName()</span>
+</code></pre></div>
+<h3 id="33-from-form-to-formcomponents">3.3.  From Form to FormComponents<a class="headerlink" href="#33-from-form-to-formcomponents" title="Permanent link">&para;</a></h3>
+<p>A form is a FormComponents instance, which holds FormComponent instances (i.e.
+basic controls) and nested FormComponents (i.e. nested forms). Figure 7 shows a
+simplified service hierarchy for Form, FormComponents, and FormComponent.</p>
+<p><img alt="" src="images/39-Forms_API_Overview-7.png" /></p>
+<p>Figure 7. Part of the Form Service Hierarchy.</p>
+<p>Forms.getModels() collects all the FormComponent instances as a list by recursively
+searching from the top level form (or forms) through all the nested forms :</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Forms class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">XControlModel</span><span class="o">&gt;</span> <span class="nf">getModels</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">XNameContainer</span> <span class="n">formNamesCon</span> <span class="o">=</span> <span class="n">getForms</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>  <span class="c1">// see above</span>
+  <span class="k">return</span> <span class="n">getModels</span><span class="p">(</span><span class="n">formNamesCon</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">XControlModel</span><span class="o">&gt;</span> <span class="nf">getModels</span><span class="p">(</span>
+                                         <span class="n">XNameAccess</span> <span class="n">formNamesCon</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">XControlModel</span><span class="o">&gt;</span> <span class="n">models</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">XControlModel</span><span class="o">&gt;</span><span class="p">();</span>
+  <span class="n">String</span> <span class="n">nms</span><span class="o">[]</span> <span class="o">=</span> <span class="n">formNamesCon</span><span class="p">.</span><span class="na">getElementNames</span><span class="p">();</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nms</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="n">XServiceInfo</span> <span class="n">servInfo</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XServiceInfo</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                                  <span class="n">formNamesCon</span><span class="p">.</span><span class="na">getByName</span><span class="p">(</span><span class="n">nms</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">));</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">servInfo</span><span class="p">.</span><span class="na">supportsService</span><span class="p">(</span>
+                             <span class="s">&quot;com.sun.star.form.FormComponents&quot;</span><span class="p">))</span> <span class="p">{</span>
+        <span class="c1">// this means that a nested form has been found</span>
+        <span class="n">XNameAccess</span> <span class="n">childCon</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XNameAccess</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">servInfo</span><span class="p">);</span>
+        <span class="n">models</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span> <span class="n">getModels</span><span class="p">(</span><span class="n">childCon</span><span class="p">)</span> <span class="p">);</span><span class="c1">//recursively search it</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">servInfo</span><span class="p">.</span><span class="na">supportsService</span><span class="p">(</span>
+                             <span class="s">&quot;com.sun.star.form.FormComponent&quot;</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">XControlModel</span> <span class="n">model</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XControlModel</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">servInfo</span><span class="p">);</span>
+        <span class="n">models</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">model</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">catch</span><span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+    <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not access &quot;</span> <span class="o">+</span> <span class="n">nms</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>  <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">models</span><span class="p">;</span>
+<span class="p">}</span>  <span class="c1">// end of getModels()</span>
+</code></pre></div>
+<p>The first Forms.getModels() method extracts the top-level form (or forms) from the
+document as a named container, then passes it to the recursive getModels() which
+iterates through the container. If an element is a FormComponents instance then it's a
+nested form, and getModels() is called recursively to collect its controls. If the
+element is of type FormComponent then it's an ordinary control.</p>
+<h3 id="34-from-formcomponent-to-control-model">3.4.  From FormComponent to Control Model<a class="headerlink" href="#34-from-formcomponent-to-control-model" title="Permanent link">&para;</a></h3>
+<p>A FormComponent instance can be cast to XControlModel:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XControlModel</span> <span class="n">model</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XControlModel</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">servInfo</span><span class="p">);</span>
+</code></pre></div>
+<p>XControlModel first appeared at the top of Figure 2 on the left – it’s the interface
+inherited by all models.</p>
+<p>The casting is possible because every control model service (e.g. CommandButton in
+the form.component module) inherits both FormComponent and UnoControlModel,
+as depicted by Figure 8.</p>
+<p><img alt="" src="images/39-Forms_API_Overview-8.png" /></p>
+<p>Figure 8. Part of the Service Hierarchy for the CommandButton Model.</p>
+<p>Every model has a hierarchy similar to CommandButton's in Figure 8. For example,
+the text field control model hierarchy appears in Figure 9.</p>
+<p><img alt="" src="images/39-Forms_API_Overview-9.png" /></p>
+<p>Figure 9. Part of the Service Hierarchy for the TextField Model.</p>
+<p>Figures 8 and 9 depict two important coding features. One is that it's possible to cast
+between a form component and a control model, as demonstrated by
+Forms.getModel() shown above. The other is that a model's data is stored in its
+properties, and most of those are NOT in the model's service (i.e. not in
+CommandButton and TextField). Most model properties are in superclasses (i.e.</p>
+<p>UnoControlButtonModel in Figure 8 and UnoControlEditModel in Figure 9), which
+are located in the awt module.</p>
+<h3 id="35-using-a-control-model">3.5.  Using a Control Model<a class="headerlink" href="#35-using-a-control-model" title="Permanent link">&para;</a></h3>
+<p>Returning to ExamineForm.java, the relevant bit of code is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of ExamineForm.java...</span>
+
+<span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">XControlModel</span><span class="o">&gt;</span> <span class="n">models</span> <span class="o">=</span> <span class="n">Forms</span><span class="p">.</span><span class="na">getModels</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span> <span class="c1">// see above</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No. of control models in form: &quot;</span> <span class="o">+</span>
+                                           <span class="n">models</span><span class="p">.</span><span class="na">size</span><span class="p">());</span>
+<span class="c1">// examine each model</span>
+<span class="k">for</span><span class="p">(</span><span class="n">XControlModel</span> <span class="n">model</span> <span class="p">:</span> <span class="n">models</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  &quot;</span> <span class="o">+</span> <span class="n">Forms</span><span class="p">.</span><span class="na">getName</span><span class="p">(</span><span class="n">model</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;: &quot;</span> <span class="o">+</span>
+                            <span class="n">Forms</span><span class="p">.</span><span class="na">getTypeStr</span><span class="p">(</span><span class="n">model</span><span class="p">));</span>
+  <span class="p">:</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>An XControlModel reference can be utilized in various ways, but two of the main
+ones are examining its subclass service type and accessing its properties. As Figures 8
+and 9 indicate, most of a control's properties are in the UnoControlXXXModel
+service, but may come from other services which can be hard to locate. For example,
+"Name" is from UnoControlDialogElement, a superclass of UnoControlModel (which
+I didn't include in Figures 8 and 9). "ClassId" comes from FormControlModel, which
+is on the "forms branch" of the service hierarchies in the figures.</p>
+<p>The easiest thing is to print all the model's properties, by calling
+Props.showObjProps():</p>
+<div class="highlight"><pre><span></span><code><span class="n">Props</span><span class="p">.</span><span class="na">showObjProps</span><span class="p">(</span><span class="s">&quot;Model&quot;</span><span class="p">,</span> <span class="n">model</span><span class="p">);</span>
+</code></pre></div>
+<p>Info.showInterfaces() and Info.showServices() are similarly useful, listing all the
+interfaces and services for a model:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Info</span><span class="p">.</span><span class="na">showInterfaces</span><span class="p">(</span><span class="s">&quot;Model&quot;</span><span class="p">,</span> <span class="n">model</span><span class="p">);</span>
+<span class="n">Info</span><span class="p">.</span><span class="na">showServices</span><span class="p">(</span><span class="s">&quot;Model&quot;</span><span class="p">,</span> <span class="n">model</span><span class="p">);</span>
+</code></pre></div>
+<p>The Forms.getName() and Forms.getTypeStr() methods called in the code fragment
+above are defined as:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Forms class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">getName</span><span class="p">(</span><span class="n">XControlModel</span> <span class="n">cModel</span><span class="p">)</span>
+<span class="c1">// returns the name of the given form component</span>
+<span class="p">{</span>  <span class="k">return</span> <span class="p">(</span><span class="n">String</span><span class="p">)</span> <span class="n">Props</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="n">cModel</span><span class="p">,</span> <span class="s">&quot;Name&quot;</span><span class="p">);</span>  <span class="p">}</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">getTypeStr</span><span class="p">(</span><span class="n">XControlModel</span> <span class="n">cModel</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="n">getID</span><span class="p">(</span><span class="n">cModel</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">id</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+
+  <span class="n">XServiceInfo</span> <span class="n">servInfo</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XServiceInfo</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">cModel</span><span class="p">);</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">COMMANDBUTTON</span><span class="p">:</span>
+      <span class="k">return</span> <span class="s">&quot;Command button&quot;</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">RADIOBUTTON</span><span class="p">:</span>
+      <span class="k">return</span> <span class="s">&quot;Radio button&quot;</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">IMAGEBUTTON</span><span class="p">:</span>
+      <span class="k">return</span> <span class="s">&quot;Image button&quot;</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">CHECKBOX</span><span class="p">:</span>
+      <span class="k">return</span> <span class="s">&quot;Check Box&quot;</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">LISTBOX</span><span class="p">:</span>
+      <span class="k">return</span> <span class="s">&quot;List Box&quot;</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">COMBOBOX</span><span class="p">:</span>
+      <span class="k">return</span> <span class="s">&quot;Combo Box&quot;</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">GROUPBOX</span><span class="p">:</span>
+      <span class="k">return</span> <span class="s">&quot;Group Box&quot;</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">FIXEDTEXT</span><span class="p">:</span>
+      <span class="k">return</span> <span class="s">&quot;Fixed Text&quot;</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">GRIDCONTROL</span><span class="p">:</span>
+      <span class="k">return</span> <span class="s">&quot;Grid Control&quot;</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">FILECONTROL</span><span class="p">:</span>
+      <span class="k">return</span> <span class="s">&quot;File Control&quot;</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">HIDDENCONTROL</span><span class="p">:</span>
+      <span class="k">return</span> <span class="s">&quot;Hidden Control&quot;</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">IMAGECONTROL</span><span class="p">:</span>
+      <span class="k">return</span> <span class="s">&quot;Image Control&quot;</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">DATEFIELD</span><span class="p">:</span>
+      <span class="k">return</span> <span class="s">&quot;Date Field&quot;</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">TIMEFIELD</span><span class="p">:</span>
+      <span class="k">return</span> <span class="s">&quot;Time Field&quot;</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">NUMERICFIELD</span><span class="p">:</span>
+      <span class="k">return</span> <span class="s">&quot;Numeric Field&quot;</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">CURRENCYFIELD</span><span class="p">:</span>
+      <span class="k">return</span> <span class="s">&quot;Currency Field&quot;</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">PATTERNFIELD</span><span class="p">:</span>
+      <span class="k">return</span> <span class="s">&quot;Pattern Field&quot;</span><span class="p">;</span>
+    <span class="k">case</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">TEXTFIELD</span><span class="p">:</span>
+      <span class="c1">// two services with this class id:</span>
+      <span class="c1">// text field and formatted field</span>
+      <span class="k">if</span> <span class="p">((</span><span class="n">servInfo</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">servInfo</span><span class="p">.</span><span class="na">supportsService</span><span class="p">(</span>
+                     <span class="s">&quot;com.sun.star.form.component.FormattedField&quot;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="s">&quot;Formatted Field&quot;</span><span class="p">;</span>
+      <span class="k">else</span>
+        <span class="k">return</span> <span class="s">&quot;Text Field&quot;</span><span class="p">;</span>
+    <span class="k">default</span><span class="p">:</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Unknown class ID: &quot;</span> <span class="o">+</span> <span class="n">id</span><span class="p">);</span>
+      <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of getTypeStr()</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getID</span><span class="p">(</span><span class="n">XControlModel</span> <span class="n">cModel</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// get the ClassId property</span>
+  <span class="n">Short</span> <span class="n">classId</span> <span class="o">=</span> <span class="p">(</span><span class="n">Short</span><span class="p">)</span> <span class="n">Props</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="n">cModel</span><span class="p">,</span> <span class="s">&quot;ClassId&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">classId</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;No class ID found for form component&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">classId</span><span class="p">.</span><span class="na">intValue</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of getID()</span>
+</code></pre></div>
+<p>Forms.getID returns the "ClassId" integer, which is checked by getTypeStr() against
+values in the FormComponentType enumeration, and mapped to more informative
+strings.</p>
+<p>Forms.getID() is utilized in a similar manner in a series of boolean isXXX() methods,
+such as isButton() and isTextField():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Forms class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isButton</span><span class="p">(</span><span class="n">XControlModel</span> <span class="n">cModel</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="n">getID</span><span class="p">(</span><span class="n">cModel</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">id</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="k">else</span>
+    <span class="k">return</span> <span class="p">((</span><span class="n">id</span> <span class="o">==</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">COMMANDBUTTON</span><span class="p">)</span> <span class="o">||</span>
+            <span class="p">(</span><span class="n">id</span> <span class="o">==</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">IMAGEBUTTON</span><span class="p">));</span>
+<span class="p">}</span>  <span class="c1">// end of isButton()</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">isTextField</span><span class="p">(</span><span class="n">XControlModel</span> <span class="n">cModel</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="n">getID</span><span class="p">(</span><span class="n">cModel</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">id</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="k">else</span>
+    <span class="k">return</span> <span class="p">((</span><span class="n">id</span> <span class="o">==</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">DATEFIELD</span><span class="p">)</span> <span class="o">||</span>
+            <span class="p">(</span><span class="n">id</span> <span class="o">==</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">TIMEFIELD</span><span class="p">)</span> <span class="o">||</span>
+            <span class="p">(</span><span class="n">id</span> <span class="o">==</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">NUMERICFIELD</span><span class="p">)</span> <span class="o">||</span>
+            <span class="p">(</span><span class="n">id</span> <span class="o">==</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">CURRENCYFIELD</span><span class="p">)</span> <span class="o">||</span>
+            <span class="p">(</span><span class="n">id</span> <span class="o">==</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">PATTERNFIELD</span><span class="p">)</span> <span class="o">||</span>
+            <span class="p">(</span><span class="n">id</span> <span class="o">==</span> <span class="n">FormComponentType</span><span class="p">.</span><span class="na">TEXTFIELD</span><span class="p">));</span>
+<span class="p">}</span>  <span class="c1">// end of isTextField()</span>
+</code></pre></div>
+<h3 id="36-from-control-model-to-view">3.6.  From Control Model to View<a class="headerlink" href="#36-from-control-model-to-view" title="Permanent link">&para;</a></h3>
+<p>Having obtained a form's model, it's view becomes accessible, but following the
+MVC pattern, this requires the use of Office's controller (see Figure 1). One way to
+reach the controller is through a document reference (XComponent) and
+XModel.getCurrentController(). The resulting XController interface can be cast to
+XControlAccess, due to the service hierarchy shown in Figure 10.</p>
+<p><img alt="" src="images/39-Forms_API_Overview-10.png" /></p>
+<p>Figure 10. Part of the DrawingDocumentDrawView Service Hierarchy.</p>
+<p>These steps are implemented by GUI.getControlAccess():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the GUI class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XControlAccess</span> <span class="nf">getControlAccess</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">)</span>
+<span class="p">{</span> <span class="k">return</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XControlAccess</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">getCurrentController</span><span class="p">(</span><span class="n">doc</span><span class="p">));</span> <span class="p">}</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XController</span> <span class="nf">getCurrentController</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XModel</span> <span class="n">model</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XModel</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">doc</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">model</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Document has no data model&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">model</span><span class="p">.</span><span class="na">getCurrentController</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="n">Forms</span><span class="p">.</span><span class="na">getControl</span><span class="p">()</span> <span class="n">employs</span> <span class="n">XControlAccess</span><span class="p">.</span><span class="na">getControl</span><span class="p">()</span> <span class="n">to</span> <span class="k">return</span> <span class="n">the</span> <span class="n">model</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">view</span>
+<span class="n">when</span> <span class="n">supplied</span> <span class="n">with</span> <span class="n">a</span> <span class="n">model</span><span class="p">:</span>
+
+<span class="c1">// in the Forms class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XControl</span> <span class="nf">getControl</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">doc</span><span class="p">,</span>
+                                       <span class="n">XControlModel</span> <span class="n">cModel</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">XControlAccess</span> <span class="n">controlAccess</span> <span class="o">=</span> <span class="n">GUI</span><span class="p">.</span><span class="na">getControlAccess</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+                                 <span class="c1">// see above</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">controlAccess</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not obtain controls access&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">controlAccess</span><span class="p">.</span><span class="na">getControl</span><span class="p">(</span><span class="n">cModel</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not access control: &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">);</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of getControl()</span>
+</code></pre></div>
+<h2 id="4-attaching-listeners-to-a-view">4.  Attaching Listeners to a View<a class="headerlink" href="#4-attaching-listeners-to-a-view" title="Permanent link">&para;</a></h2>
+<p>XControl is an interface of the UnoControl service, which represents an abstract
+control. This class must be cast to a service for a real control, such as
+UnoControlButton or UnoControlEdit in order to call listener methods in XButton or
+XTextComponent. This hierarchy is illustrated by Figure 11.</p>
+<p><img alt="" src="images/39-Forms_API_Overview-11.png" /></p>
+<p>Figure 11. Part of the Service Hierarchy Below UnoControl.</p>
+<p>Back in ExamineForm.java, every button or text field has listeners attached to it:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of ExamineForms.java...</span>
+
+    <span class="p">:</span>
+<span class="c1">// look at the control for each model</span>
+<span class="n">XControl</span> <span class="n">ctrl</span> <span class="o">=</span> <span class="n">Forms</span><span class="p">.</span><span class="na">getControl</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">model</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">ctrl</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;   No control found&quot;</span><span class="p">);</span>
+<span class="k">else</span> <span class="p">{</span>   <span class="c1">// attach listener if the control is a button or text field</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">Forms</span><span class="p">.</span><span class="na">isButton</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
+      <span class="n">attachButtonListener</span><span class="p">(</span><span class="n">ctrl</span><span class="p">,</span> <span class="n">model</span><span class="p">);</span>
+    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">Forms</span><span class="p">.</span><span class="na">isTextField</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
+      <span class="n">attachTextFieldListeners</span><span class="p">(</span><span class="n">ctrl</span><span class="p">);</span>
+<span class="p">}</span>
+    <span class="p">:</span>
+</code></pre></div>
+<p>attachButtonListener() and attachTextFieldListener() implement the casting shown in
+Figure 11, starting with an XControl interface. For instance, attachButtonListener()
+connects an anonymous XActionListener object to a button, and sets its action
+command to be the button's label:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in ExamineForms.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">attachButtonListener</span><span class="p">(</span><span class="n">XControl</span> <span class="n">ctrl</span><span class="p">,</span>
+                                       <span class="n">XControlModel</span> <span class="n">cModel</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">XButton</span> <span class="n">xButton</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XButton</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">);</span>
+  <span class="c1">// XControlModel cModel = ctrl.getModel();</span>
+  <span class="n">xButton</span><span class="p">.</span><span class="na">setActionCommand</span><span class="p">(</span> <span class="n">Forms</span><span class="p">.</span><span class="na">getLabel</span><span class="p">(</span><span class="n">cModel</span><span class="p">));</span>
+
+  <span class="n">xButton</span><span class="p">.</span><span class="na">addActionListener</span><span class="p">(</span> <span class="k">new</span> <span class="n">XActionListener</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">disposing</span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">EventObject</span> <span class="n">ev</span><span class="p">)</span> <span class="p">{}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="p">(</span><span class="n">ActionEvent</span> <span class="n">ev</span><span class="p">)</span>
+    <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Pressed \&quot;&quot;</span> <span class="o">+</span> <span class="n">ev</span><span class="p">.</span><span class="na">ActionCommand</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span> <span class="p">}</span>
+  <span class="p">});</span>
+<span class="p">}</span>  <span class="c1">// end of attachButtonListener()</span>
+</code></pre></div>
+<p>Although XActionListener and Java's ActionListener are similar, they're not the same.
+For one thing, its necessary to define two methods in XActionListener,
+actionPerformed() and disposing().</p>
+<p>Office supports over 120 kinds of listeners! The best place to browse through them is
+on the documentation webpage for their common superclass, XEventListener.
+<code>lodoc XEventListener</code> should take you to XEventListener in the document module, but
+you want its superclass, XEventListener in the lang module. The first part of its long
+webpage is shown in Figure 12.</p>
+<p><img alt="" src="images/39-Forms_API_Overview-12.png" /></p>
+<p>Figure 12. The First Part of the XEventListener Documentation Page
+in the lang Module.</p>
+<p>Although the clickable images on the LibreOffice webpages make moving around the
+service and interface hierarchies very easy, they're not searchable. When the hierarchy
+is very large (as for XEventListener), and not sorted in alphabetical order, it can be
+time-consuming to find a particular subclass.</p>
+<p>I solved the problem by creating a text file, called XEventListenerSubclasses.txt,
+which lists the subclasses of XEventListener in order, and is searchable of course.
+You can find it in the Forms Tests/ folder for this chapter.</p>
+<p>Alternatively, almost all the listeners for controls are defined in the awt module, so
+you can search that module's documentation page (accessible using <code>lodoc awt module</code>).</p>
+<p>attachTextFieldListeners() attaches two listeners to a text field control because
+XTextListener isn't triggered when the user types <ENTER>. My solution is to
+connect an XFocusListener which treats <ENTER> as a "lost focus" event when the
+cursor leaves the text field. The code for attachTextFieldListeners():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in ExamineForms.java</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">attachTextFieldListeners</span><span class="p">(</span><span class="n">XControl</span> <span class="n">ctrl</span><span class="p">)</span>
+<span class="c1">// listen for text changes and focus changes in the control</span>
+<span class="p">{</span>
+  <span class="n">XTextComponent</span> <span class="n">tc</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XTextComponent</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">);</span>
+  <span class="n">tc</span><span class="p">.</span><span class="na">addTextListener</span><span class="p">(</span> <span class="k">new</span> <span class="n">XTextListener</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">textChanged</span><span class="p">(</span><span class="n">TextEvent</span> <span class="n">ev</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">XControlModel</span> <span class="n">cModel</span> <span class="o">=</span> <span class="n">Forms</span><span class="p">.</span><span class="na">getEventControlModel</span><span class="p">(</span><span class="n">ev</span><span class="p">);</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span> <span class="n">Forms</span><span class="p">.</span><span class="na">getName</span><span class="p">(</span><span class="n">cModel</span><span class="p">)</span> <span class="o">+</span>
+                 <span class="s">&quot; text: &quot;</span> <span class="o">+</span> <span class="n">Props</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="n">cModel</span><span class="p">,</span> <span class="s">&quot;Text&quot;</span><span class="p">));</span>
+    <span class="p">}</span>  <span class="c1">// end of textChanged()</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">disposing</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">ev</span><span class="p">)</span> <span class="p">{}</span>
+
+  <span class="p">});</span>
+
+  <span class="n">XWindow</span> <span class="n">tfWindow</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XWindow</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">);</span>
+  <span class="n">tfWindow</span><span class="p">.</span><span class="na">addFocusListener</span><span class="p">(</span> <span class="k">new</span> <span class="n">XFocusListener</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">focusLost</span><span class="p">(</span><span class="n">FocusEvent</span> <span class="n">ev</span><span class="p">)</span>
+    <span class="p">{</span> <span class="n">XControlModel</span> <span class="n">model</span> <span class="o">=</span> <span class="n">Forms</span><span class="p">.</span><span class="na">getEventControlModel</span><span class="p">(</span><span class="n">ev</span><span class="p">);</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Leaving text: &quot;</span> <span class="o">+</span>
+                          <span class="n">Props</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s">&quot;Text&quot;</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">disposing</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">ev</span><span class="p">)</span> <span class="p">{}</span>  <span class="c1">// unused</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">focusGained</span><span class="p">(</span><span class="n">FocusEvent</span> <span class="n">ev</span><span class="p">)</span> <span class="p">{}</span>
+  <span class="p">});</span>
+
+<span class="p">}</span>  <span class="c1">// end of attachTextFieldListeners()</span>
+</code></pre></div>
+<h4 id="obtaining-the-model">Obtaining the Model<a class="headerlink" href="#obtaining-the-model" title="Permanent link">&para;</a></h4>
+<p>attachButtonListener() and attachTextFieldListeners() demonstrate two ways of
+obtaining the control's model when an event triggers a view listener.</p>
+<p>In attachButtonListener(), an XControl reference is available, which means that
+XControl.getModel() could be called:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XControlModel</span> <span class="n">cModel</span> <span class="o">=</span> <span class="n">ctrl</span><span class="p">.</span><span class="na">getModel</span><span class="p">();</span>
+</code></pre></div>
+<p>In fact that coding isn't used, since the model reference is available already.</p>
+<p>attachTextFieldListeners() shows another approach, which is to examine the event
+object that arrives at the listener's method (e.g. the FocusEvent object received by
+focusLost()). Forms.getEventControlModel() is defined as:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Forms class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">XControlModel</span> <span class="nf">getEventControlModel</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">ev</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XControl</span> <span class="n">xControl</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XControl</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">ev</span><span class="p">.</span><span class="na">Source</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">xControl</span><span class="p">.</span><span class="na">getModel</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of getEventControlModel()</span>
+</code></pre></div>
 <h2 id="5-using-examineformjava">5.  Using ExamineForm.java<a class="headerlink" href="#5-using-examineformjava" title="Permanent link">&para;</a></h2>
-<p>ExamineForm.java can be called with any form-based ODT file. The simplest one in 
-the examples is form1.odt, which consists of only a text field and a button, as shown 
-in Figure 13. </p>
+<p>ExamineForm.java can be called with any form-based ODT file. The simplest one in
+the examples is form1.odt, which consists of only a text field and a button, as shown
+in Figure 13.</p>
 <p><img alt="" src="images/39-Forms_API_Overview-13.png" /></p>
-<p>Figure 13. The form1.odt Form. </p>
-<p>When the user types "abc" and <ENTER> into the text field, followed by two clicks 
-of the "Enter" button, the following is printed: </p>
-<p>Text Box 1 text: a 
-Text Box 1 text: ab 
-Text Box 1 text: abc 
-Leaving text: abc 
-Leaving text: abc 
-Pressed "Enter" 
-Pressed "Enter" </p>
-<p>The focus lost event is reported twice because of the <ENTER> key press and the 
-movement of the mouse by the user from the text field to the button. </p>
+<p>Figure 13. The form1.odt Form.</p>
+<p>When the user types "abc" and <ENTER> into the text field, followed by two clicks
+of the "Enter" button, the following is printed:</p>
+<div class="highlight"><pre><span></span><code>Text Box 1 text: a
+Text Box 1 text: ab
+Text Box 1 text: abc
+Leaving text: abc
+Leaving text: abc
+Pressed &quot;Enter&quot;
+Pressed &quot;Enter&quot;
+</code></pre></div>
+<p>The focus lost event is reported twice because of the <ENTER> key press and the
+movement of the mouse by the user from the text field to the button.</p>
                 
               
               

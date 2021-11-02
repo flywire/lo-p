@@ -599,6 +599,19 @@
     2.  Document Spreadsheets
   </a>
   
+    <nav class="md-nav" aria-label="2.  Document Spreadsheets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#some-casting-required" class="md-nav__link">
+    Some Casting Required
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1236,6 +1249,19 @@
     2.  Document Spreadsheets
   </a>
   
+    <nav class="md-nav" aria-label="2.  Document Spreadsheets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#some-casting-required" class="md-nav__link">
+    Some Casting Required
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1293,241 +1319,249 @@
                 <h1 id="chapter-19-calc-api-overview">Chapter 19. Calc API Overview<a class="headerlink" href="#chapter-19-calc-api-overview" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
-<p>The Spreadsheet 
-Document; Document 
-Spreadsheets; 
-Spreadsheet Data; The 
-Spreadsheet Service; 
-Cell Range Services; 
-Cell Services; Sheet Cell 
-Ranges </p>
-<p>Example folders: "Calc 
-Tests" and "Utils" </p>
+<p>The Spreadsheet
+Document; Document
+Spreadsheets;
+Spreadsheet Data; The
+Spreadsheet Service;
+Cell Range Services;
+Cell Services; Sheet Cell
+Ranges</p>
+<p>Example folders: "Calc
+Tests" and "Utils"</p>
 </div>
-<p>This chapter gives an overview of the main services and 
-interfaces used in the Calc parts of the Office API, 
-illustrated with small code fragments. I'll revisit these 
-topics in greater details (and with larger examples) in 
-subsequent chapters. </p>
-<p>If you're unfamiliar with Calc, then a good starting point is 
-its user guide, available from 
-<a href="https://www.libreoffice.org/get-help/documentation/">https://www.libreoffice.org/get-help/documentation/</a>. </p>
-<p>Chapter 8 of the Developer's Guide looks at spreadsheet programming, and is 
-available from 
-<a href="https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf">https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf</a>. </p>
-<p>Alternatively, you can access the chapter online, starting at 
-<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Spreadsheets/Spreadsheet">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Spreadsheets/Spreadsheet</a>
-_Documents (or use loguide calc). The guide's examples can be found at 
-<a href="http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Spreadsheet">http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Spreadsheet</a>. </p>
-<p>There's also a few examples in the "Spreadsheet Document Examples" section of 
-<a href="http://api.libreoffice.org/examples/examples.html#Java_examples">http://api.libreoffice.org/examples/examples.html#Java_examples</a>. </p>
+<p>This chapter gives an overview of the main services and
+interfaces used in the Calc parts of the Office API,
+illustrated with small code fragments. I'll revisit these
+topics in greater details (and with larger examples) in
+subsequent chapters.</p>
+<p>If you're unfamiliar with Calc, then a good starting point is
+its user guide, available from
+<a href="https://www.libreoffice.org/get-help/documentation/">https://www.libreoffice.org/get-help/documentation/</a>.
+Chapter 8 of the Developer's Guide looks at spreadsheet programming, and is
+available from
+<a href="https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf">https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf</a>.
+Alternatively, you can access the chapter online, starting at
+<a href="https://wiki.openoffice.org/wiki/Documentation/DevGuide/Spreadsheets/Spreadsheet_Documents">https://wiki.openoffice.org/wiki/Documentation/DevGuide/Spreadsheets/Spreadsheet_Documents</a>
+(or use <code>loguide calc</code>). The guide's examples can be found at
+<a href="http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Spreadsheet">http://api.libreoffice.org/examples/DevelopersGuide/examples.html#Spreadsheet</a>.
+There's also a few examples in the "Spreadsheet Document Examples" section of
+<a href="http://api.libreoffice.org/examples/examples.html#Java_examples">http://api.libreoffice.org/examples/examples.html#Java_examples</a>.</p>
 <h2 id="1-the-spreadsheet-document">1.  The Spreadsheet Document<a class="headerlink" href="#1-the-spreadsheet-document" title="Permanent link">&para;</a></h2>
-<p>The Calc API is organized around the SpreadsheetDocument service which subclasses 
-OfficeDocument. Figure 1 shows these services, including some of their interfaces. </p>
+<p>The Calc API is organized around the SpreadsheetDocument service which subclasses
+OfficeDocument. Figure 1 shows these services, including some of their interfaces.</p>
 <p><img alt="" src="images/19-Calc_API_Overview-1.png" /></p>
-<p>Figure 1. Some Spreadsheet Services and Interfaces. </p>
-<p>Calc's functionality is mostly divided between two Java packages (modules), sheet 
-and table, which are documented at 
-<a href="http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1sheet.html">http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1sheet.html</a> 
-and 
-<a href="http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1table.html">http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1table.html</a>. </p>
-<p>Alternatively, you can try  lodoc star sheet module and lodoc star table 
-module, but these only get you 'close' to the right pages.  </p>
-<p>The reason for this module division is Office's support for three types of 'table': text 
-tables, database tables, and spreadsheets. A spreadsheet is a table with formulae added 
-into the mix.  </p>
+<p>Figure 1. Some Spreadsheet Services and Interfaces.</p>
+<p>Calc's functionality is mostly divided between two Java packages (modules), sheet
+and table, which are documented at
+<a href="http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1sheet.html">http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1sheet.html</a>
+and
+<a href="http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1table.html">http://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1table.html</a>.
+Alternatively, you can try  <code>lodoc star sheet module</code> and <code>lodoc star table module</code>,
+but these only get you 'close' to the right pages.</p>
+<p>The reason for this module division is Office's support for three types of 'table': text
+tables, database tables, and spreadsheets. A spreadsheet is a table with formulae added
+into the mix.</p>
 <h2 id="2-document-spreadsheets">2.  Document Spreadsheets<a class="headerlink" href="#2-document-spreadsheets" title="Permanent link">&para;</a></h2>
-<p>A spreadsheet document (i.e. a Calc file) can consist of multiple spreadsheets (or 
-sheets). This is implemented using two services – called Spreadsheets (note the 's') 
-and Spreadsheet, as in Figure 2. </p>
+<p>A spreadsheet document (i.e. a Calc file) can consist of multiple spreadsheets (or
+sheets). This is implemented using two services – called Spreadsheets (note the 's')
+and Spreadsheet, as in Figure 2.</p>
 <p><img alt="" src="images/19-Calc_API_Overview-2.png" /></p>
-<p>Figure 2. A Spreadsheet Document Hierarchy. </p>
-<p>The sheets stored in a Spreadsheets object can be accessed by index or by name. A 
-newly created document always contains a blank spreadsheet in index position 0. </p>
-<p>The following code fragment shows how the first sheet in the "test.odt" document is 
-accessed: </p>
-<p>XComponentLoader loader = Lo.loadOffice(); 
-XComponent compdoc = Lo.openDoc("test.odt", loader); 
-XSpreadsheetDocument doc =<br />
-                 Lo.qi(XSpreadsheetDocument.class, compdoc); </p>
-<p>XSpreadsheets sheets = doc.getSheets(); 
-XIndexAccess sheetsIdx = Lo.qi(XIndexAccess.class, sheets); 
-XSpreadsheet sheet = Lo.qi(XSpreadsheet.class,<br />
-                                sheetsIdx.getByIndex(0)); </p>
-<p>These steps are hidden by methods in the Calc utility class, so the programmer can 
-write: </p>
-<p>XComponentLoader loader = Lo.loadOffice(); 
-XSpreadsheetDocument doc = Calc.openDoc("test.odt", loader); 
-XSpreadsheet sheet = Calc.getSheet(doc, 0); </p>
-<p>Some Casting Required 
-Surprisingly, XSpreadsheetDocument doesn't subclass XComponent. This means that 
-it's not possible to pass an XSpreadsheetDocument reference to a method expecting 
-an XComponent argument, such as the original GUI.setVisible(), which had the 
-signature: </p>
-<p>// in the GUI class (old version) 
-public static void setVisible(XComponent objDoc, boolean isVisible); </p>
-<p>Text documents can be passed to GUI.setVisible() because XTextDocument does 
-subclass XComponent. The same is possible for Draw and Impress documents. </p>
-<p>It's possible to manipulate a spreadsheet document as an XComponent, but it must be 
-cast first: </p>
-<p>XComponent xc = Lo.qi(XComponent.class, doc); 
-GUI.setVisible(xc, true); </p>
-<p>I decided to hide this casting issue by weakening the typing of methods using 
-XComponent parameters. For example, the current version of GUI.setVisible()<br />
-assumes that its first argument is of type Object:  </p>
-<p>// in the GUI class 
-public static void setVisible(Object objDoc, boolean isVisible) 
-{ 
-  XComponent doc = Lo.qi(XComponent.class, objDoc); 
-  XWindow xWindow = getFrame(doc).getContainerWindow(); 
-  xWindow.setVisible(isVisible); 
-  xWindow.setFocus(); 
-}  // end of setVisible() </p>
-<p>This GUI.setVisible() can be called with a XSpreadsheet reference: 
-GUI.setVisible(doc, true); 
-The document is cast to XComponent inside GUI.setVisible() and then progresses as 
-before.  </p>
+<p>Figure 2. A Spreadsheet Document Hierarchy.</p>
+<p>The sheets stored in a Spreadsheets object can be accessed by index or by name. A
+newly created document always contains a blank spreadsheet in index position 0.</p>
+<p>The following code fragment shows how the first sheet in the "test.odt" document is
+accessed:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+<span class="n">XComponent</span> <span class="n">compdoc</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">openDoc</span><span class="p">(</span><span class="s">&quot;test.odt&quot;</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>
+<span class="n">XSpreadsheetDocument</span> <span class="n">doc</span> <span class="o">=</span>
+                 <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XSpreadsheetDocument</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">compdoc</span><span class="p">);</span>
+
+<span class="n">XSpreadsheets</span> <span class="n">sheets</span> <span class="o">=</span> <span class="n">doc</span><span class="p">.</span><span class="na">getSheets</span><span class="p">();</span>
+<span class="n">XIndexAccess</span> <span class="n">sheetsIdx</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XIndexAccess</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">sheets</span><span class="p">);</span>
+<span class="n">XSpreadsheet</span> <span class="n">sheet</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XSpreadsheet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                                <span class="n">sheetsIdx</span><span class="p">.</span><span class="na">getByIndex</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+</code></pre></div>
+<p>These steps are hidden by methods in the Calc utility class, so the programmer can
+write:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XComponentLoader</span> <span class="n">loader</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">loadOffice</span><span class="p">();</span>
+<span class="n">XSpreadsheetDocument</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">openDoc</span><span class="p">(</span><span class="s">&quot;test.odt&quot;</span><span class="p">,</span> <span class="n">loader</span><span class="p">);</span>
+<span class="n">XSpreadsheet</span> <span class="n">sheet</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getSheet</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="some-casting-required">Some Casting Required<a class="headerlink" href="#some-casting-required" title="Permanent link">&para;</a></h4>
+<p>Surprisingly, XSpreadsheetDocument doesn't subclass XComponent. This means that
+it's not possible to pass an XSpreadsheetDocument reference to a method expecting
+an XComponent argument, such as the original GUI.setVisible(), which had the
+signature:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the GUI class (old version)</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setVisible</span><span class="p">(</span><span class="n">XComponent</span> <span class="n">objDoc</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">isVisible</span><span class="p">);</span>
+</code></pre></div>
+<p>Text documents can be passed to GUI.setVisible() because XTextDocument does
+subclass XComponent. The same is possible for Draw and Impress documents.</p>
+<p>It's possible to manipulate a spreadsheet document as an XComponent, but it must be
+cast first:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XComponent</span> <span class="n">xc</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XComponent</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">doc</span><span class="p">);</span>
+<span class="n">GUI</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="n">xc</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+</code></pre></div>
+<p>I decided to hide this casting issue by weakening the typing of methods using
+XComponent parameters. For example, the current version of GUI.setVisible()
+assumes that its first argument is of type Object:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the GUI class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">setVisible</span><span class="p">(</span><span class="n">Object</span> <span class="n">objDoc</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">isVisible</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">XComponent</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XComponent</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">objDoc</span><span class="p">);</span>
+  <span class="n">XWindow</span> <span class="n">xWindow</span> <span class="o">=</span> <span class="n">getFrame</span><span class="p">(</span><span class="n">doc</span><span class="p">).</span><span class="na">getContainerWindow</span><span class="p">();</span>
+  <span class="n">xWindow</span><span class="p">.</span><span class="na">setVisible</span><span class="p">(</span><span class="n">isVisible</span><span class="p">);</span>
+  <span class="n">xWindow</span><span class="p">.</span><span class="na">setFocus</span><span class="p">();</span>
+<span class="p">}</span>  <span class="c1">// end of setVisible()</span>
+</code></pre></div>
+<p>This GUI.setVisible() can be called with a XSpreadsheet reference:
+GUI.setVisible(doc, true);
+The document is cast to XComponent inside GUI.setVisible() and then progresses as
+before.</p>
 <h2 id="3-spreadsheet-data">3.  Spreadsheet Data<a class="headerlink" href="#3-spreadsheet-data" title="Permanent link">&para;</a></h2>
-<p>The data in a spreadsheet can be accessed in many ways: for example, as individual 
-cells, cell ranges, collections of cell ranges, rows, and columns. These ways of 
-viewing data are supported by different services which are used as labels in Figure 3. </p>
+<p>The data in a spreadsheet can be accessed in many ways: for example, as individual
+cells, cell ranges, collections of cell ranges, rows, and columns. These ways of
+viewing data are supported by different services which are used as labels in Figure 3.</p>
 <p><img alt="" src="images/19-Calc_API_Overview-3.png" /></p>
-<p>Figure 3. Services used with Spreadsheet Data. </p>
-<p>The simplest spreadsheet unit is a cell, which can be located by its (column, row) 
-coordinate/position or by its name, as in Figure 4. </p>
+<p>Figure 3. Services used with Spreadsheet Data.</p>
+<p>The simplest spreadsheet unit is a cell, which can be located by its (column, row)
+coordinate/position or by its name, as in Figure 4.</p>
 <p><img alt="" src="images/19-Calc_API_Overview-4.png" /></p>
-<p>Figure 4. Addressing Cells. </p>
-<p>For instance, the cell named "C5" in Figure 4 is at coordinate (2,4). Note that row 
-names start at '1' but row positions begin at 0. A cell range is defined by the position 
-of the top-left and bottom-right cells in the range's rectangle, and can use the same 
-dual naming scheme. For example, the cell range B2:D3 is the rectangle between the 
-cells (1,1) and (3,2). </p>
-<p>A spreadsheet document may contain multiple sheets, so a cell address can include a 
-sheet name. The first sheet is called "Sheet1", the second "Sheet2", and so on. For 
-example, "Sheet1.A3:Sheet3.D4" refers to a cube of 24 cells consisting of 3 sheets of 
-8 cells between A3 and D4. Sheets can be assigned more informative names, if you 
-wish.  </p>
-<p>A collection of cell ranges is defined using "~" (the tilde) as the concatenation 
-operator. For example, "A1:C3~B2:D2" is a group of two ranges, A1:C3 and B2:D2. </p>
-<p>The comma, ",", can be used as an alternative concatenation symbol, at least in some 
-Calc functions. </p>
-<p>There's also an intersection operator, "!", for calculating the intersection of two 
-ranges. </p>
-<p>Cell references can be relative or absolute, which mainly affect how formulae are 
-copied between cells. For example, a formula (=A1*3) in cell "C3" becomes (=B1*3) 
-when copied one cell to the right into "D3". However, an absolute reference (which 
-uses "<span class="arithmatex">\(" as a prefix) is unaffected when moved. For instance (=\)</span>A$1*3) stops the "A" 
-and "1" from being changed by a move. </p>
-<p>My Calc.java support class includes methods for converting between simple cell 
-names and positions; they don't handle "~", "!", or absolute references using "$". </p>
+<p>Figure 4. Addressing Cells.</p>
+<p>For instance, the cell named "C5" in Figure 4 is at coordinate (2,4). Note that row
+names start at '1' but row positions begin at 0. A cell range is defined by the position
+of the top-left and bottom-right cells in the range's rectangle, and can use the same
+dual naming scheme. For example, the cell range B2:D3 is the rectangle between the
+cells (1,1) and (3,2).</p>
+<p>A spreadsheet document may contain multiple sheets, so a cell address can include a
+sheet name. The first sheet is called "Sheet1", the second "Sheet2", and so on. For
+example, "Sheet1.A3:Sheet3.D4" refers to a cube of 24 cells consisting of 3 sheets of
+8 cells between A3 and D4. Sheets can be assigned more informative names, if you
+wish.</p>
+<p>A collection of cell ranges is defined using "~" (the tilde) as the concatenation
+operator. For example, "A1:C3~B2:D2" is a group of two ranges, A1:C3 and B2:D2.
+The comma, ",", can be used as an alternative concatenation symbol, at least in some
+Calc functions.</p>
+<p>There's also an intersection operator, "!", for calculating the intersection of two
+ranges.</p>
+<p>Cell references can be relative or absolute, which mainly affect how formulae are
+copied between cells. For example, a formula (=A1*3) in cell "C3" becomes (=B1*3)
+when copied one cell to the right into "D3". However, an absolute reference (which
+uses "<span class="arithmatex">\(" as a prefix) is unaffected when moved. For instance (=\)</span>A$1*3) stops the "A"
+and "1" from being changed by a move.</p>
+<p>My Calc.java support class includes methods for converting between simple cell
+names and positions; they don't handle "~", "!", or absolute references using "$".</p>
 <h2 id="4-the-spreadsheet-service">4.  The Spreadsheet Service<a class="headerlink" href="#4-the-spreadsheet-service" title="Permanent link">&para;</a></h2>
-<p>The Spreadsheet service is a subclass of SheetCellRange, as shown in Figure 5, which 
-means that a sheet can be treated as a very big cell range. </p>
+<p>The Spreadsheet service is a subclass of SheetCellRange, as shown in Figure 5, which
+means that a sheet can be treated as a very big cell range.</p>
 <p><img alt="" src="images/19-Calc_API_Overview-5.png" /></p>
-<p>Figure 5. The Spreadsheet Service. </p>
-<dl>
-<dt>A great deal of spreadsheet-related functionality is implemented as interfaces </dt>
-<dt>belonging to the Spreadsheet service. The most important is probably XSpreadsheet </dt>
-<dt>(see lodoc xspreadsheet reference), which gives the programmer access to a </dt>
-<dt>sheet's cells and cell ranges via getCellByPosition(), getCellRangeByPosition(), and </dt>
-<dt>getCellRangeByName().  For example: </dt>
-<dd>
-<p>XSpreadsheet sheet = Calc.getSheet(doc, 0); 
-XCell cell = sheet.getCellByPosition(2, 4);    // (column,row) </p>
-</dd>
-</dl>
-<p>XCellRange cellRange1 = sheet.getCellRangeByPosition(1,1,3,2); 
-          // startColumn, startRow, endColumn, endRow </p>
-<p>XCellRange cellRange2 = sheet.getCellRangeByName("B2:D3"); </p>
-<p>Oddly enough there's no getCellByName() method, but my Calc.java class adds one. </p>
+<p>Figure 5. The Spreadsheet Service.</p>
+<p>A great deal of spreadsheet-related functionality is implemented as interfaces
+belonging to the Spreadsheet service. The most important is probably XSpreadsheet
+(see    lodoc xspreadsheet reference    ), which gives the programmer access to a
+sheet's cells and cell ranges via getCellByPosition(), getCellRangeByPosition(), and
+getCellRangeByName().  For example:</p>
+<div class="highlight"><pre><span></span><code>  <span class="p">:</span>
+<span class="n">XSpreadsheet</span> <span class="n">sheet</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getSheet</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">XCell</span> <span class="n">cell</span> <span class="o">=</span> <span class="n">sheet</span><span class="p">.</span><span class="na">getCellByPosition</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>    <span class="c1">// (column,row)</span>
+
+<span class="n">XCellRange</span> <span class="n">cellRange1</span> <span class="o">=</span> <span class="n">sheet</span><span class="p">.</span><span class="na">getCellRangeByPosition</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+          <span class="c1">// startColumn, startRow, endColumn, endRow</span>
+
+<span class="n">XCellRange</span> <span class="n">cellRange2</span> <span class="o">=</span> <span class="n">sheet</span><span class="p">.</span><span class="na">getCellRangeByName</span><span class="p">(</span><span class="s">&quot;B2:D3&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>Oddly enough there's no getCellByName() method, but my Calc.java class adds one.</p>
 <h2 id="5-cell-range-services">5.  Cell Range Services<a class="headerlink" href="#5-cell-range-services" title="Permanent link">&para;</a></h2>
-<p>The main service for cell ranges is SheetCellRange, which inherits the CellRange 
-service from the table module and several property-based classes, as indicated in </p>
+<p>The main service for cell ranges is SheetCellRange, which inherits the CellRange
+service from the table module and several property-based classes, as indicated in
+Figure 6.</p>
 <p><img alt="" src="images/19-Calc_API_Overview-6.png" /></p>
-<p>Figure 6. </p>
-<p><img alt="" src="images/19-Calc_API_Overview-6.png" /></p>
-<p>Figure 6. The Cell Range Services. </p>
-<p>SheetCellRange supports an XSheetCellRange interface, but that interface gets most 
-of its functionality by inheriting XCellRange from the table module. Most programs 
-that manipulate cell ranges tend to use XCellRange rather than XSheetCellRange.   </p>
-<p>XCellRange is where the useful cell and cell range access methods are defined, as 
-shown in the class diagram in Figure 7. </p>
+<p>Figure 6. The Cell Range Services.</p>
+<p>SheetCellRange supports an XSheetCellRange interface, but that interface gets most
+of its functionality by inheriting XCellRange from the table module. Most programs
+that manipulate cell ranges tend to use XCellRange rather than XSheetCellRange.</p>
+<p>XCellRange is where the useful cell and cell range access methods are defined, as
+shown in the class diagram in Figure 7.</p>
 <p><img alt="" src="images/19-Calc_API_Overview-7.jpg" /></p>
-<p>Figure 7. The CellRange Class Diagram. </p>
-<p>You can access the documentation using lodoc XCellRange. </p>
-<p>What's missing from XCellRange is a way to set the values in a cell range. This is 
-supported by the XCellRangeData interface (see Figure 6) which offers a 
-setDataArray() method (and a getDataArray()).  </p>
-<p>CellProperties in the table module is frequently accessed to adjust cell styling, such as 
-color, borders, and the justification and orientation of data inside a cell. However, 
-styling for a cell's text is handled by properties in the CharacterProperties or 
-ParagraphProperties classes (see Figure 6). </p>
-<p>Rows and columns of cells can be accessed using the TableRows and TableColumns 
-services (and their corresponding XTableRows and XTableColumns interfaces). </p>
-<p>They're accessed through the XColumnRowRange interface shown in Figure 6. Code 
-for obtaining the first row of a sheet is: </p>
-<p>XColumnRowRange crRange = Lo.qi(XColumnRowRange.class, sheet); 
-    // get the XColumnRowRange interface for the sheet </p>
-<p>XTableRows rows = crRange.getRows();  // get all the rows 
-XIndexAccess con = Lo.qi(XIndexAccess.class, rows); 
-                // treat the rows as an indexed container </p>
-<p>XCellRange rowRange = Lo.qi(XCellRange.class, con.getByIndex(0)); 
-                // access the first row as a cell range </p>
-<p>XTableRows is an indexed container containing a sequence of XCellRange objects. </p>
-<p>The TableRow services and interfaces are shown in Figure 8: </p>
+<p>Figure 7. The CellRange Class Diagram.</p>
+<p>You can access the documentation using  lodoc XCellRange    .</p>
+<p>What's missing from XCellRange is a way to set the values in a cell range. This is
+supported by the XCellRangeData interface (see Figure 6) which offers a
+setDataArray() method (and a getDataArray()).</p>
+<p>CellProperties in the table module is frequently accessed to adjust cell styling, such as
+color, borders, and the justification and orientation of data inside a cell. However,
+styling for a cell's text is handled by properties in the CharacterProperties or
+ParagraphProperties classes (see Figure 6).</p>
+<p>Rows and columns of cells can be accessed using the TableRows and TableColumns
+services (and their corresponding XTableRows and XTableColumns interfaces).
+They're accessed through the XColumnRowRange interface shown in Figure 6. Code
+for obtaining the first row of a sheet is:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XColumnRowRange</span> <span class="n">crRange</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XColumnRowRange</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">sheet</span><span class="p">);</span>
+    <span class="c1">// get the XColumnRowRange interface for the sheet</span>
+
+<span class="n">XTableRows</span> <span class="n">rows</span> <span class="o">=</span> <span class="n">crRange</span><span class="p">.</span><span class="na">getRows</span><span class="p">();</span>  <span class="c1">// get all the rows</span>
+<span class="n">XIndexAccess</span> <span class="n">con</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XIndexAccess</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">rows</span><span class="p">);</span>
+                <span class="c1">// treat the rows as an indexed container</span>
+
+<span class="n">XCellRange</span> <span class="n">rowRange</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XCellRange</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">con</span><span class="p">.</span><span class="na">getByIndex</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+                <span class="c1">// access the first row as a cell range</span>
+</code></pre></div>
+<p>XTableRows is an indexed container containing a sequence of XCellRange objects.
+The TableRow services and interfaces are shown in Figure 8:</p>
 <p><img alt="" src="images/19-Calc_API_Overview-8.png" /></p>
-<p>Figure 8. The TableRow Services and Interfaces. </p>
-<p>Similar coding is used to retrieve a column: XColumnRowRange.getColumns() gets 
-all the columns. Figure 9 shows the TableColumn services and interfaces. </p>
+<p>Figure 8. The TableRow Services and Interfaces.</p>
+<p>Similar coding is used to retrieve a column: XColumnRowRange.getColumns() gets
+all the columns. Figure 9 shows the TableColumn services and interfaces.</p>
 <p><img alt="" src="images/19-Calc_API_Overview-9.png" /></p>
-<p>Figure 9. The TableColumn Services and Interfaces. </p>
-<p>My Calc class includes methods that hide these details, so the accessing the first row 
-of the sheet becomes: 
-XCellRange rowRange = Calc.getRowRange(sheet, 0); </p>
+<p>Figure 9. The TableColumn Services and Interfaces.</p>
+<p>My Calc class includes methods that hide these details, so the accessing the first row
+of the sheet becomes:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XCellRange</span> <span class="n">rowRange</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getRowRange</span><span class="p">(</span><span class="n">sheet</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div>
 <h2 id="6-cell-services">6.  Cell Services<a class="headerlink" href="#6-cell-services" title="Permanent link">&para;</a></h2>
-<p>XCellRange.getCellByPosition() returns a single cell from a given cell range. </p>
-<p>However, this method can also be applied to a sheet because the API considers a sheet 
-to be a very big cell range. For example: 
-XCell cell = sheet.getCellByPosition(2, 4) 
-The SheetCell service manages properties related to cell formulae and cell input 
-validation. However, most cell functionality comes from inheriting the Cell service in 
-the table module, and its XCell interface. This arrangement is shown in Figure 10. </p>
-<p>. </p>
+<p>XCellRange.getCellByPosition() returns a single cell from a given cell range.
+However, this method can also be applied to a sheet because the API considers a sheet
+to be a very big cell range. For example:</p>
+<div class="highlight"><pre><span></span><code><span class="n">XCell</span> <span class="n">cell</span> <span class="o">=</span> <span class="n">sheet</span><span class="p">.</span><span class="na">getCellByPosition</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</code></pre></div>
+<p>The SheetCell service manages properties related to cell formulae and cell input
+validation. However, most cell functionality comes from inheriting the Cell service in
+the table module, and its XCell interface. This arrangement is shown in Figure 10.</p>
 <p><img alt="" src="images/19-Calc_API_Overview-10.png" /></p>
-<p>Figure 10. The SheetCell Services and Interfaces. </p>
-<dl>
-<dt>SheetCell doesn't support an XSheetCell interface; instead most programming is done </dt>
-<dt>using XCell. XCell contains useful methods for getting and setting the values in a cell </dt>
-<dt>(which may be numbers, text, or formulae). For example, the following stores the </dt>
-<dt>number 9 in the cell at coordinate (2, 4) (the "C5" cell): </dt>
-<dd>
-<p>XSpreadsheet sheet = Calc.getSheet(doc, 0); 
-XCell cell = sheet.getCellByPosition(2, 4);    // (column,row) 
-cell.setValue(9); </p>
-</dd>
-</dl>
-<p>SheetCell inherits the same properties as SheetCellRange. For example, 
-CellProperties stores cell formatting properties, while text styling properties are 
-supported by CharacterProperties and ParagraphProperties (see Figure 10). </p>
-<p>The Cell service supports both the XCell and XText interfaces. Via the XText 
-interface, it's possible to manipulate cell text in the same way that text is handled in a 
-text document. However, for most purposes, it’s enough to use XCell's setFormula() 
-which, despite its name, can be used to assign plain text to a cell. For instance: 
-cell.setFormula("hello");     // put "hello" text in the cell 
-Calc differentiates between ordinary text and formulae by expecting a formula to 
-begin with "=". </p>
-<p>The XCell class diagram is shown in Figure 11. </p>
+<p>Figure 10. The SheetCell Services and Interfaces.</p>
+<p>SheetCell doesn't support an XSheetCell interface; instead most programming is done
+using XCell. XCell contains useful methods for getting and setting the values in a cell
+(which may be numbers, text, or formulae). For example, the following stores the
+number 9 in the cell at coordinate (2, 4) (the "C5" cell):</p>
+<div class="highlight"><pre><span></span><code>  <span class="p">:</span>
+<span class="n">XSpreadsheet</span> <span class="n">sheet</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">.</span><span class="na">getSheet</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">XCell</span> <span class="n">cell</span> <span class="o">=</span> <span class="n">sheet</span><span class="p">.</span><span class="na">getCellByPosition</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>    <span class="c1">// (column,row)</span>
+<span class="n">cell</span><span class="p">.</span><span class="na">setValue</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+</code></pre></div>
+<p>SheetCell inherits the same properties as SheetCellRange. For example,
+CellProperties stores cell formatting properties, while text styling properties are
+supported by CharacterProperties and ParagraphProperties (see Figure 10).</p>
+<p>The Cell service supports both the XCell and XText interfaces. Via the XText
+interface, it's possible to manipulate cell text in the same way that text is handled in a
+text document. However, for most purposes, it’s enough to use XCell's setFormula()
+which, despite its name, can be used to assign plain text to a cell. For instance:</p>
+<div class="highlight"><pre><span></span><code><span class="n">cell</span><span class="p">.</span><span class="na">setFormula</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">);</span>     <span class="c1">// put &quot;hello&quot; text in the cell</span>
+</code></pre></div>
+<p>Calc differentiates between ordinary text and formulae by expecting a formula to
+begin with "=".</p>
+<p>The XCell class diagram is shown in Figure 11.</p>
 <p><img alt="" src="images/19-Calc_API_Overview-11.jpg" /></p>
-<p>Figure 11. The XCell Class Diagram. </p>
-<p>The documentation for XCell can be found using lodoc xcell. </p>
+<p>Figure 11. The XCell Class Diagram.</p>
+<p>The documentation for XCell can be found using <code>lodoc xcell</code>.</p>
 <h2 id="7-sheet-cell-ranges">7.  Sheet Cell Ranges<a class="headerlink" href="#7-sheet-cell-ranges" title="Permanent link">&para;</a></h2>
-<p>A collection of cell ranges has its own service, SheetCellRanges, shown in Figure 12. </p>
+<p>A collection of cell ranges has its own service, SheetCellRanges, shown in Figure 12.</p>
 <p><img alt="" src="images/19-Calc_API_Overview-12.png" /></p>
-<p>Figure 12. The SheetCellRanges Services and Interfaces. </p>
-<p>SheetCellRanges doesn't turn up much when programming since it's easy to access 
-multiple cell ranges by accessing them one at a time inside a loop. </p>
-<p>One major use for SheetCellRanges are in sheet searches which return the matching 
-cell ranges in a XSheetCellRangeContainer object. I'll give examples in Chapter 26. </p>
+<p>Figure 12. The SheetCellRanges Services and Interfaces.</p>
+<p>SheetCellRanges doesn't turn up much when programming since it's easy to access
+multiple cell ranges by accessing them one at a time inside a loop.</p>
+<p>One major use for SheetCellRanges are in sheet searches which return the matching
+cell ranges in a XSheetCellRangeContainer object. I'll give examples in Chapter 26.</p>
                 
               
               

@@ -1361,30 +1361,32 @@
                 <h1 id="chapter-42-sending-e-mail">Chapter 42. Sending E-mail<a class="headerlink" href="#chapter-42-sending-e-mail" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Topics</p>
-<p>SimpleSystemMail / 
-SimpleCommandMail; 
-Using the 
-MailServiceProvider 
-Service; Using 
-JavaMail; The Desktop 
-API; Thunderbird 
-Scripting; Office Mail 
-Merge </p>
-<p>Example folders: "Mail 
-Tests" and "Utils" </p>
+<p>SimpleSystemMail /
+SimpleCommandMail;
+Using the
+MailServiceProvider
+Service; Using
+JavaMail; The Desktop
+API; Thunderbird
+Scripting; Office Mail
+Merge</p>
+<p>Example folders: "Mail
+Tests" and "Utils"</p>
 </div>
-<p>The Jargon file is a humorous collection of computer 
-slang (online at <a href="http://www.catb.org/jargon/html/">http://www.catb.org/jargon/html/</a>), and its 
-entry for Zawinski's "Law of Software Envelopment" 
-(<a href="http://www.catb.org/jargon/html/Z/Zawinskis-Law.html">http://www.catb.org/jargon/html/Z/Zawinskis-Law.html</a>) 
-came to mind while I was preparing this chapter. It states: 
-"Every program attempts to expand until it can 
-read mail. Those programs which cannot so 
-expand are replaced by ones which can."<br />
-Office is a reasonable example (if you replace 'read' with 'send') because, depending 
-on how you count things, its API contains three different ways of sending e-mail. If 
-you program in Java, the number increases to six! These approaches are summarized 
-in Table 1, and none are without drawbacks. </p>
+<p>The Jargon file is a humorous collection of computer
+slang (online at <a href="http://www.catb.org/jargon/html/">http://www.catb.org/jargon/html/</a>), and its
+entry for Zawinski's "Law of Software Envelopment"
+(<a href="http://www.catb.org/jargon/html/Z/Zawinskis-Law.html">http://www.catb.org/jargon/html/Z/Zawinskis-Law.html</a>)
+came to mind while I was preparing this chapter. It states:</p>
+<blockquote>
+<p>"Every program attempts to expand until it can
+read mail. Those programs which cannot so
+expand are replaced by ones which can."</p>
+</blockquote>
+<p>Office is a reasonable example (if you replace 'read' with 'send') because, depending
+on how you count things, its API contains three different ways of sending e-mail. If
+you program in Java, the number increases to six! These approaches are summarized
+in Table 1, and none are without drawbacks.</p>
 <table>
 <thead>
 <tr>
@@ -1521,782 +1523,875 @@ in Table 1, and none are without drawbacks. </p>
 </tr>
 </tbody>
 </table>
-<p>Table 1. Office and Java Approaches for Sending E-mail. </p>
-<p>My aim is to write a sendMessage() function that sends a text message, optionally 
-including a file attachment, to a specified e-mail address. The mail will be sent 
-through an SMTP (Simple Mail Transfer Protocol) server that uses STARTTLS to 
-encrypt the link. I've tested the code using my local departmental server, and with my 
-Gmail account.  </p>
-<p>One surprising entry in Table 1 is Office's mail merge, which typically utilizes a 
-Writer template file and a spreadsheet (or database) to generate form letters addressed 
-to different people. These letters can be saved to files, sent to a printer, or posted out 
-as e-mail attachments. It's the last alternative that led me to include mail merging in 
-this chapter. </p>
+<p>Table 1. Office and Java Approaches for Sending E-mail.</p>
+<p>My aim is to write a sendMessage() function that sends a text message, optionally
+including a file attachment, to a specified e-mail address. The mail will be sent
+through an SMTP (Simple Mail Transfer Protocol) server that uses STARTTLS to
+encrypt the link. I've tested the code using my local departmental server, and with my
+Gmail account.</p>
+<p>One surprising entry in Table 1 is Office's mail merge, which typically utilizes a
+Writer template file and a spreadsheet (or database) to generate form letters addressed
+to different people. These letters can be saved to files, sent to a printer, or posted out
+as e-mail attachments. It's the last alternative that led me to include mail merging in
+this chapter.</p>
 <p>Table 1 identifies two "joint best choice" approaches for sending e-mail. If the mail-
-out is part of other Office-related tasks, such as the run-time generation of a 
-document, then its best to use Office's MailServiceProvider service since it nicely 
-integrates with the rest of the API. However, if you plan to write a standalone e-mail 
-application which loads and sends ODF attachments, then JavaMail has more features 
-(<a href="https://java.net/projects/javamail/pages/Home">https://java.net/projects/javamail/pages/Home</a>).  </p>
-<p>I'll start this chapter by explaining the Office services for sending e-mail: 
-SimpleSystemMail/SimpleCommandMail, and the newer MailServiceProvider. Then 
-I'll switch to non-Office approaches, looking first at JavaMail, followed by two 
-techniques which don't need an extra JAR file but do require the user to interact with 
-the OSes e-mail client. I'll finish with mail merge in Office. </p>
+out is part of other Office-related tasks, such as the run-time generation of a
+document, then its best to use Office's MailServiceProvider service since it nicely
+integrates with the rest of the API. However, if you plan to write a standalone e-mail
+application which loads and sends ODF attachments, then JavaMail has more features
+(<a href="https://java.net/projects/javamail/pages/Home">https://java.net/projects/javamail/pages/Home</a>).</p>
+<p>I'll start this chapter by explaining the Office services for sending e-mail:
+SimpleSystemMail/SimpleCommandMail, and the newer MailServiceProvider. Then
+I'll switch to non-Office approaches, looking first at JavaMail, followed by two
+techniques which don't need an extra JAR file but do require the user to interact with
+the OSes e-mail client. I'll finish with mail merge in Office.</p>
 <h2 id="1-simplesystemmailsimplecommandmail">1.  SimpleSystemMail/SimpleCommandMail<a class="headerlink" href="#1-simplesystemmailsimplecommandmail" title="Permanent link">&para;</a></h2>
-<p>The SimpleSystemMail and SimpleCommandMail services in the system module 
-send e-mail using the OSes default e-mail client. They both implement the same 
-interfaces, but SimpleSystemMail is for Windows, and SimpleCommandMail for 
-Linux and MacOS. Figure 1 shows the services and some of their interfaces. </p>
+<p>The SimpleSystemMail and SimpleCommandMail services in the system module
+send e-mail using the OSes default e-mail client. They both implement the same
+interfaces, but SimpleSystemMail is for Windows, and SimpleCommandMail for
+Linux and MacOS. Figure 1 shows the services and some of their interfaces.</p>
 <p><img alt="" src="images/42-Sending_E-mail-1.png" /></p>
-<p>Figure 1. The SimpleSystemMail and SimpleCommandMail Services. </p>
-<p>By utilizing the machine's e-mail client, the services don't need the programmer to 
-enter the mail server address, its port, and a login and password, since this 
-information is in the client's account settings (or user profile). A drawback of this 
-approach is that the message passes through the client's GUI, and the user must press 
-a "Send" button (or equivalent) to post the message. Fortunately, XSimpleMailClient 
-lets the user interface be mostly hidden, but a "Confirm" dialog like the one in Figure 
-2 still pops up. </p>
+<p>Figure 1. The SimpleSystemMail and SimpleCommandMail Services.</p>
+<p>By utilizing the machine's e-mail client, the services don't need the programmer to
+enter the mail server address, its port, and a login and password, since this
+information is in the client's account settings (or user profile). A drawback of this
+approach is that the message passes through the client's GUI, and the user must press
+a "Send" button (or equivalent) to post the message. Fortunately, XSimpleMailClient
+lets the user interface be mostly hidden, but a "Confirm" dialog like the one in Figure
+2 still pops up.</p>
 <p><img alt="" src="images/42-Sending_E-mail-2.png" /></p>
-<p>Figure 2.  The "Confirm" Dialog when using<br />
-SimpleSystemMail/SimpleCommandMail. </p>
-<p>This dialog can be disabled via the checkbox shown in Figure 2, but that's a bad idea 
-from a security viewpoint. </p>
-<p>SimpleSystemMail and SimpleCommandMail are utilized by sendEmailByClient() in 
-my Mail.java utility class: </p>
-<p>// in the Mail class 
-public static void sendEmailByClient(String to, String subject,<br />
-                                      String body, String fnm)<br />
-{ 
-  System.out.println("Sending e-mail by client..."); 
-  try { 
-    XSimpleMailClientSupplier mcSupp =<br />
-        Lo.createInstanceMCF(XSimpleMailClientSupplier.class,<br />
-                    "com.sun.star.system.SimpleSystemMail"); 
-                       // windows e-mail client service 
-    if (mcSupp == null) { 
-      mcSupp = Lo.createInstanceMCF( 
-                     XSimpleMailClientSupplier.class,<br />
-                     "com.sun.star.system.SimpleCommandMail"); 
-                   // returns null on Windows; used on Linux/Mac 
-      if (mcSupp == null) { 
-        System.out.println("Unable to create client"); 
-        return; 
-      } 
-    } </p>
-<div class="highlight"><pre><span></span><code>XSimpleMailClient mc = mcSupp.querySimpleMailClient(); 
-                // defaults to ThunderBird on my OS
+<p>Figure 2.  The "Confirm" Dialog when using
+SimpleSystemMail/SimpleCommandMail.</p>
+<p>This dialog can be disabled via the checkbox shown in Figure 2, but that's a bad idea
+from a security viewpoint.</p>
+<p>SimpleSystemMail and SimpleCommandMail are utilized by sendEmailByClient() in
+my Mail.java utility class:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Mail class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">sendEmailByClient</span><span class="p">(</span><span class="n">String</span> <span class="n">to</span><span class="p">,</span> <span class="n">String</span> <span class="n">subject</span><span class="p">,</span>
+                                      <span class="n">String</span> <span class="n">body</span><span class="p">,</span> <span class="n">String</span> <span class="n">fnm</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Sending e-mail by client...&quot;</span><span class="p">);</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">XSimpleMailClientSupplier</span> <span class="n">mcSupp</span> <span class="o">=</span>
+        <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XSimpleMailClientSupplier</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                    <span class="s">&quot;com.sun.star.system.SimpleSystemMail&quot;</span><span class="p">);</span>
+                       <span class="c1">// windows e-mail client service</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">mcSupp</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">mcSupp</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span>
+                     <span class="n">XSimpleMailClientSupplier</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                     <span class="s">&quot;com.sun.star.system.SimpleCommandMail&quot;</span><span class="p">);</span>
+                   <span class="c1">// returns null on Windows; used on Linux/Mac</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">mcSupp</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Unable to create client&quot;</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
 
-XSimpleMailMessage msg = mc.createSimpleMailMessage(); 
-msg.setRecipient(to); 
-msg.setSubject(subject);
+    <span class="n">XSimpleMailClient</span> <span class="n">mc</span> <span class="o">=</span> <span class="n">mcSupp</span><span class="p">.</span><span class="na">querySimpleMailClient</span><span class="p">();</span>
+                    <span class="c1">// defaults to ThunderBird on my OS</span>
 
-XSimpleMailMessage2 msg2 = Lo.qi(XSimpleMailMessage2.class, msg); 
-msg2.setBody(body);
+    <span class="n">XSimpleMailMessage</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">mc</span><span class="p">.</span><span class="na">createSimpleMailMessage</span><span class="p">();</span>
+    <span class="n">msg</span><span class="p">.</span><span class="na">setRecipient</span><span class="p">(</span><span class="n">to</span><span class="p">);</span>
+    <span class="n">msg</span><span class="p">.</span><span class="na">setSubject</span><span class="p">(</span><span class="n">subject</span><span class="p">);</span>
 
-if (fnm != null) { 
-  String[] attachs = new String[1];  
-  attachs[0] = FileIO.getAbsolutePath(fnm);  // attachment 
-  msg.setAttachement(attachs); 
-}
+    <span class="n">XSimpleMailMessage2</span> <span class="n">msg2</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XSimpleMailMessage2</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">msg</span><span class="p">);</span>
+    <span class="n">msg2</span><span class="p">.</span><span class="na">setBody</span><span class="p">(</span><span class="n">body</span><span class="p">);</span>
 
-mc.sendSimpleMailMessage(msg,  
-               SimpleMailClientFlags.NO_USER_INTERFACE); 
-     // hides GUI but still displays a &quot;Confirm&quot; dialog
+    <span class="k">if</span> <span class="p">(</span><span class="n">fnm</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">String</span><span class="o">[]</span> <span class="n">attachs</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+      <span class="n">attachs</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">FileIO</span><span class="p">.</span><span class="na">getAbsolutePath</span><span class="p">(</span><span class="n">fnm</span><span class="p">);</span>  <span class="c1">// attachment</span>
+      <span class="n">msg</span><span class="p">.</span><span class="na">setAttachement</span><span class="p">(</span><span class="n">attachs</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">mc</span><span class="p">.</span><span class="na">sendSimpleMailMessage</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span>
+                   <span class="n">SimpleMailClientFlags</span><span class="p">.</span><span class="na">NO_USER_INTERFACE</span><span class="p">);</span>
+         <span class="c1">// hides GUI but still displays a &quot;Confirm&quot; dialog</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">uno</span><span class="p">.</span><span class="na">Exception</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of sendEmailByClient()</span>
 </code></pre></div>
-<p>} 
-  catch(com.sun.star.uno.Exception e) 
-  {  System.out.println(e);  } 
-}  // end of sendEmailByClient() </p>
-<p>The function first tries to instantiate the Windows SimpleSystemMail service, which 
-returns null on a Linux/Mac platform, and then switches to SimpleCommandMail 
-(which returns null on Windows). The resulting XSimpleMailClientSupplier instance 
-is used to obtain a reference to the system's default e-mail client, as represented by 
-XSimpleMailClient. </p>
-<p>An XSimpleMailMessage object is initialized with the recipient, subject line, body 
-text, and optionally attached file. One of the quirks of the API is that the body text is 
-added via the XSimpleMailMessage2 subclass of  XSimpleMailMessage. </p>
-<p>A typical call to sendEmailByClient(): </p>
-<p>// part of LoMailer.java... </p>
-<p>Mail.sendEmailByClient("xxx@xxx", "Test", "Body", "skinner.png"); </p>
-<p>The default e-mail client on Windows is the application associated with the mailto 
-protocol, as depicted in Figure 3. </p>
+<p>The function first tries to instantiate the Windows SimpleSystemMail service, which
+returns null on a Linux/Mac platform, and then switches to SimpleCommandMail
+(which returns null on Windows). The resulting XSimpleMailClientSupplier instance
+is used to obtain a reference to the system's default e-mail client, as represented by
+XSimpleMailClient.</p>
+<p>An XSimpleMailMessage object is initialized with the recipient, subject line, body
+text, and optionally attached file. One of the quirks of the API is that the body text is
+added via the XSimpleMailMessage2 subclass of  XSimpleMailMessage.</p>
+<p>A typical call to sendEmailByClient():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of LoMailer.java...</span>
+<span class="n">Mail</span><span class="p">.</span><span class="na">sendEmailByClient</span><span class="p">(</span><span class="s">&quot;xxx@xxx&quot;</span><span class="p">,</span> <span class="s">&quot;Test&quot;</span><span class="p">,</span> <span class="s">&quot;Body&quot;</span><span class="p">,</span> <span class="s">&quot;skinner.png&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>The default e-mail client on Windows is the application associated with the mailto
+protocol, as depicted in Figure 3.</p>
 <p><img alt="" src="images/42-Sending_E-mail-3.png" /></p>
-<p>Figure 3. The Default E-mail Client of Windows 7. </p>
-<p>A good description of how to set up this association can be found at 
-<a href="http://www.ubergizmo.com/how-to/set-default-email-client-windows/">http://www.ubergizmo.com/how-to/set-default-email-client-windows/</a> </p>
+<p>Figure 3. The Default E-mail Client of Windows 7.</p>
+<p>A good description of how to set up this association can be found at
+<a href="http://www.ubergizmo.com/how-to/set-default-email-client-windows/">http://www.ubergizmo.com/how-to/set-default-email-client-windows/</a></p>
 <h2 id="2-using-the-mailserviceprovider-service">2.  Using the MailServiceProvider Service<a class="headerlink" href="#2-using-the-mailserviceprovider-service" title="Permanent link">&para;</a></h2>
-<p>The MailServiceProvider service utilizes a Python script called mailmerge.py which 
-creates a socket-based link to the specified mail server. If that link utilizes SSL (or its 
-successor TLS) for encrypted communication, then your code will probably crash 
-with the error message "No SSL support included in this Python".  </p>
-<p>This bug (<a href="https://bugs.documentfoundation.org/show_bug.cgi?id=77354">https://bugs.documentfoundation.org/show_bug.cgi?id=77354</a>) is marked 
-as "RESOLVED NOTOURBUG" at Office's bugzilla website which seems a bit 
-dismissive. The problem appears to be due to the position of Office's application 
-folders in Window's PATH environment variable. When Windows searches for two 
-DLLs, ssleay32.dll and libeay32.dll, which implement OpenSSL, it may find incorrect 
-versions in folders mentioned earlier in PATH. It's these incorrect DLLs that cause 
-Python to issue the cryptic error. One solution is to copy the correct DLLs from 
-Office's "program\" folder into the "program\python-core-???\lib\" folder (??? is a 
-version number, such as 3.3.3), thereby ensuring they're chosen first. </p>
-<p>Another issue with switching to MailServiceProvider is that the programmer must 
-supply more information  to setup the SMTP connection, namely the address of the 
-mail server, its port, and the login and password for accessing the server. </p>
-<p>MailServiceProvider is utilized by the Mail.sendEmail() function. Given below are 
-examples of how it sends e-mail to my local fivedots.coe.psu.ac.th mail server and to 
-the Gmail server at smtp.gmail.com: </p>
-<p>// part of LoMailer.java... </p>
-<p>Mail.sendEmail("fivedots.coe.psu.ac.th", 25, "ad", password, 
-      "xxx@xxx", "Test 1", "Body 1", "skinner.png"); </p>
-<p>Mail.sendEmail("smtp.gmail.com", 587,<br />
-               "<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#65;&#110;&#100;&#114;&#101;&#119;&#46;&#68;&#97;&#118;&#105;&#115;&#111;&#110;&#53;&#48;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#65;&#110;&#100;&#114;&#101;&#119;&#46;&#68;&#97;&#118;&#105;&#115;&#111;&#110;&#53;&#48;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>", password, 
-      "xxx@xxx","Test 2", "Body 2", "addresses.ods"); </p>
-<p>The Mail.sendEmail() arguments are: the mail server address, its port, the login and 
-password for the server, the recipient of the mail, the subject line, the body text, and 
-an optional attachment filename. </p>
-<p>SMTP is built on top of a TCP network link, and in these security conscious days 
-many companies and universities (including mine) use firewalls to block everything 
-but Web links. That means I cannot use MailServiceProvider to access my Gmail 
-account at work since its mail server is beyond my departmental firewall. However, I 
-can access the fivedots departmental mail server. </p>
-<p>MailServiceProvider is located in the mail module, along with several interfaces. The 
-other important service is MailMessage for constructing e-mail messages. Figure 4 
-shows the relationships between the services and their interfaces. </p>
-<p><img alt="" src="images/42-Sending_E-mail-4.png" /></p>
-<p>Figure 4. The MailServiceProvider and MailMessage Services. </p>
-<p>An SMTP service is created via the XMailServiceProvider interface: </p>
-<p>// part of Mail.sendEmail() 
-       : 
-XMailServiceProvider msp = 
-          Lo.createInstanceMCF(XMailServiceProvider.class, 
-                "com.sun.star.mail.MailServiceProvider"); 
-if (msp == null) { 
-  System.out.println("Could not create MailServiceProvider"); 
-  return; 
-} </p>
-<p>XMailService service = msp.create(MailServiceType.SMTP); 
-if (service == null) { 
-  System.out.println("Could not create SMTP MailService"); 
-  return; 
-} </p>
-<p>A listener can be attached to the service, to report on its connection status: </p>
-<p System.out.println_Connected="System.out.println(&quot;Connected" _="&quot;" _getServerName_e_="+getServerName(e));" server="server" to="to">// part of Mail.sendEmail() 
-      : 
-service.addConnectionListener( new XConnectionListener() { 
-  public void connected(EventObject e) </p>
-<p Disconnected_="Disconnected&quot;);" System.out.println_="System.out.println(&quot;">public void disconnected(EventObject e) </p>
-<p>public void disposing(EventObject e) {} 
-}); </p>
-<p>The connection requires address, port, protocol, login and password details, which are 
-supplied through XCurrentContext and XAuthenticator: </p>
-<dl>
-<dt>// in the Mail class</dt>
-<dt>public static void sendEmail(String mailhost, int port,</dt>
-<dt>String user, String password,</dt>
-<dt>String to, String subject, String body, String fnm)</dt>
-<dt>{</dt>
-<dd>// service creation code; see above </dd>
-</dl>
-<p>// initialize service data: context and authenticator 
-  XCurrentContext xcc = new XCurrentContext() { 
-    public Object getValueByName(String name) 
-    { 
-      if (name.equals("ServerName")) 
-        return (Object) mailhost; 
-      else if (name.equals("Port")) 
-        return (Object) new Integer(port); 
-      else if (name.equals("ConnectionType")) 
-        return (Object) "Ssl";     // or "Insecure"; 
-      else if (name.equals("Timeout")) 
-        return (Object)  new Integer(60); 
-      System.out.println("Do not recognize \"" + name + "\""); 
-      return null; 
-    } 
-  }; </p>
-<p>XAuthenticator auth = new XAuthenticator() { 
-    public String getUserName() 
-    { return user;  } 
-    public String getPassword() 
-    { return password;  } 
-  }; </p>
-<p>// connect to service 
-  service.connect(xcc, auth); 
-  System.out.println("Isconnected: " + service.isConnected()); </p>
-<p>I've hardwired a time of 60 seconds in XCurrentContext which sets how long the code 
-waits for a connection before giving up. </p>
-<p>MailMessage utilizes an unusual create() method, and the message's body is 
-represented by an XTransferable instance rather than a string: </p>
-<p>// part of Mail.sendEmail() 
-      : 
-String from = user + "@" + mailhost;  // person sending this e-mail 
-XMailMessage msg = com.sun.star.mail.MailMessage.create( 
-                 Lo.getContext(), to, from, 
-                 subject, new TextTransferable(body)); </p>
-<p>The online documentation for MailMessage.create() (use "lodoc MailMessage" to 
-access it) is misleading in that it doesn’t mention the need for the component context, 
-which is obtained with the Lo.getContext() call.  </p>
-<p>My TextTransferable class implements the XTransferable interface, which defines 
-how different MIME data types are transferred. XTransferable is mainly used in two 
-ways – for packaging e-mail data (as here), and for moving data to and from the 
-clipboard (which I'll discuss in the next chapter). </p>
-<p>TextTransferable lets Unicode text be treated as a transferable: </p>
-<p>// in the Utils/ folder 
-public class TextTransferable implements XTransferable 
-{ 
-  private final String text; 
-  private final String UNICODE_MIMETYPE ="text/plain;charset=utf-16"; </p>
-<p text="text">public TextTransferable(String s) </p>
-<p>public Object getTransferData(DataFlavor df)<br />
-                         throws UnsupportedFlavorException 
-  { if (!df.MimeType.equalsIgnoreCase(UNICODE_MIMETYPE)) 
-      throw new UnsupportedFlavorException(); 
-    return text; 
-  } </p>
-<p>public DataFlavor[] getTransferDataFlavors() 
-  { DataFlavor[] dfs = new DataFlavor[1]; 
-    dfs[0] = new DataFlavor(UNICODE_MIMETYPE, "Unicode Text", 
-                                      new Type(String.class)); 
-    return dfs; 
-  } </p>
-<p df.MimeType.equalsIgnoreCase_UNICODE_MIMETYPE_="df.MimeType.equalsIgnoreCase(UNICODE_MIMETYPE);" return="return">public boolean isDataFlavorSupported(DataFlavor df) </p>
-<p>}  // end of TextTransferable class </p>
-<p>A DataFlavor object hold three fields: the MIME type string for the data (e.g. </p>
-<p>"text/plain"), a 'human presentable' name for the data (which can be anything), and the 
-corresponding Office data type. </p>
-<p>We're not finished with transferable data since an attached file must also be packaged 
-in a similar way using Office's MailAttachment class and my FileTransferable class: </p>
-<p>// part of Mail.sendEmail() 
-if (fnm != null) 
-  msg.addAttachment( new MailAttachment( 
-                             new FileTransferable(fnm), fnm)); </p>
-<p>FileTransferable looks up the MIME type for its supplied file, and stores the file 
-contents in a byte array which is returned by getTransferData(): </p>
-<p>// in the Utils/ folder 
-public class FileTransferable implements XTransferable 
-{ 
-  private String mimeType = "application/octet-stream";   // default 
-  private byte[] fileData = null; </p>
-<p>public FileTransferable(String fnm) 
-  { <br />
-    mimeType = Info.getMIMEType(fnm); 
-    try { 
-      fileData = Files.readAllBytes( Paths.get(fnm)); 
-    } 
-    catch(java.lang.Exception e) 
-    {  System.out.println("Could not read bytes from " + fnm);  } 
-  }  // end of FileTransferable() </p>
-<p>public Object getTransferData(DataFlavor df)<br />
-                               throws UnsupportedFlavorException 
-  { if (!df.MimeType.equalsIgnoreCase(mimeType)) 
-      throw new UnsupportedFlavorException(); 
-    return fileData; 
-  }  // end of getTransferData() </p>
-<p>public DataFlavor[] getTransferDataFlavors() 
-  { DataFlavor[] flavors = new DataFlavor[1]; 
-    flavors[0] = new DataFlavor(mimeType, mimeType,<br />
-                                      new Type(byte[].class)); 
-    return flavors; 
-  } </p>
-<p df.MimeType.equalsIgnoreCase_mimeType_="df.MimeType.equalsIgnoreCase(mimeType);" return="return">public boolean isDataFlavorSupported(DataFlavor df) </p>
-<p>}  // end of FileTransferable class </p>
-<p>MIME type lookup is implemented by Info.getMIMEType() which uses Java's 
-MimetypesFileTypeMap to examine a file of MIME types stored in my Utils/ folder: </p>
-<p>// in the Info class 
-private static final String MIME_FNM = "mime.types"; </p>
-<p>public static String getMIMEType(String fnm) 
-{ 
-  File f = new File(fnm); 
-  try { 
-    MimetypesFileTypeMap mftMap = new MimetypesFileTypeMap( 
-                          FileIO.getUtilsFolder() + MIME_FNM); 
-    return mftMap.getContentType(f); 
-  } 
-  catch(java.lang.Exception e) 
-  {  System.out.println("Could not find " + MIME_FNM); <br />
-     return "application/octet-stream";   // better than nothing 
-  } 
-}  // end of getMIMEType() </p>
-<p>Back in Mail.sendEmail(), all that's left to do is to send the message using 
-XSmtpService.sendMailMessage(): </p>
-<p>// part of Mail.sendEmail()... </p>
-<p>XSmtpService smtpService = Lo.qi(XSmtpService.class, service); 
-smtpService.sendMailMessage(msg); </p>
-<p>service.disconnect(); </p>
-<h2 id="3-using-javamail">3.  Using JavaMail<a class="headerlink" href="#3-using-javamail" title="Permanent link">&para;</a></h2>
-<p>JavaMail can send and receive e-mail via SMTP, POP3 and IMAP (its website is 
-<a href="https://java.net/projects/javamail/pages/Home">https://java.net/projects/javamail/pages/Home</a>). Although JavaMail is mainly intended 
-to be a component of Java EE, it can be downloaded as a single JAR file 
-(javax.mail.jar) as an add-on to the JDK. It's being actively developed (the current 
-version is 1.5.6, released in mid 2016), and the website has lots of examples (see 
-<a href="http://java.net/projects/javamail/downloads/download/javamail-samples.zip">http://java.net/projects/javamail/downloads/download/javamail-samples.zip</a>), a FAQ, 
-and API documentation (at <a href="https://javamail.java.net/nonav/docs/api/">https://javamail.java.net/nonav/docs/api/</a>). </p>
-<p>The main textbook about JavaMail is: 
-JavaMail API 1<sup>st</sup> Edition 
-Elliotte Rusty Harold 
-O'Reilly, 2013 
-This started out as a chapter in Harold's "Java Network Programming" text, but was 
-separated off after the 3<sup>rd</sup> edition. </p>
-<p>Another nice resource if you want to build a GUI e-mail client using JavaMail is 
-chapter 5 of The Art of Java by Herbert Schlidt and James Holmes, McGraw Hill, 
-2003. </p>
-<p>JavaMail utilizes the same approach as mailmerge.py mentioned earlier – it creates an 
-SMTP connection using a TCP socket link to a mail server. As such it suffers from 
-the same problem with firewalls, which means that I can't use it with my Gmail 
-account when I'm at work. </p>
-<p>My non-Office e-mail support functions are in JMail.java, and have a similar interface 
-to the Office versions. For instance, JMail.sendEmail() is employed to send an e-mail 
-with JavaMail. The following two calls use the fivedots and Gmail servers: </p>
-<p>// in JMailer.java... </p>
-<p>JMail.sendEmail("fivedots.coe.psu.ac.th", 25, "ad", password, 
-      "xxx@xxx", "Test 1", "Body 1", "skinner.png"); </p>
-<p>JMail.sendEmail("smtp.gmail.com", 587,<br />
-               "<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#65;&#110;&#100;&#114;&#101;&#119;&#46;&#68;&#97;&#118;&#105;&#115;&#111;&#110;&#53;&#48;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#65;&#110;&#100;&#114;&#101;&#119;&#46;&#68;&#97;&#118;&#105;&#115;&#111;&#110;&#53;&#48;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>", password, 
-      "xxx@xxx","Test 2", "Body 2", "addresses.ods"); </p>
-<p>They're no different from my earlier Mail.sendEmail() examples, except for the name 
-of the support class. The arguments are: the mail server address, its port, the login and 
-password for the server, the recipient of the mail, the subject line, the body text, and 
-an optional attachment. </p>
-<p>JavaMail sending is based around three classes: Transport, Session, and Message. </p>
-<p>Transport specifies the underlying communication link, while Session handles the 
-details of the communication protocol using that link. For example, secure 
-communication is setup through properties passed to Session.getInstance(): </p>
-<p>// part of JMail.sendEmail()... </p>
-<p>Properties props = new Properties(); 
-props.put("mail.smtp.starttls.enable", "true"); 
-props.put("mail.smtp.ssl.trust", "*");  // no certificate needed 
-props.put("mail.smtp.timeout", "60000"); </p>
-<p>Session session = Session.getInstance(props); </p>
-<p>The mail server address, port, login and password details are used to create a 
-SMTPTransport instance (a subclass of Transport): </p>
-<p>// part of JMail.sendEmail()... </p>
-<p>URLName url = new URLName("smtp", mailhost, port, "",<br />
-                                              user, password); 
-Transport transport = new SMTPTransport(session, url); 
-transport.connect(mailhost, port, user, password); </p>
-<p>JavaMail supports two kinds of listeners, one for the connection and the other for 
-message delivery. Simple implementations are given in JMail.sendEmail(): </p>
-<p>// part of JMail.sendEmail()... </p>
-<div class="highlight"><pre><span></span><code>  :
-</code></pre></div>
-<p Connection="Connection" System.out.println_="System.out.println(&quot;" _e.getSource_="&quot;+e.getSource());" opened="opened" to:="to:">transport.addConnectionListener( new ConnectionListener() { 
-  public void opened(ConnectionEvent e)<br /></p>
-<p Connection="Connection" System.out.println_="System.out.println(&quot;" disconnected_="disconnected&quot;);">public void disconnected(ConnectionEvent e)<br /></p>
-<p>public void closed(ConnectionEvent e)<br />
-  {  System.out.println("  Connection closed"); } 
-}); </p>
-<p Message="Message" System.out.println_="System.out.println(&quot;" delivered_="delivered&quot;);">transport.addTransportListener( new TransportListener() { 
-  public void messageDelivered(TransportEvent e)<br /></p>
-<p Message="Message" System.out.println_="System.out.println(&quot;" delivered_="delivered&quot;);" not="not">public void messageNotDelivered(TransportEvent e)<br /></p>
-<p>public void messagePartiallyDelivered(TransportEvent e)<br />
-  {  System.out.println("  Message partially delivered");  } 
-}); </p>
-<p>An SMTP message has fields for the recipient, subject line, body text, and an optional 
-attached file: </p>
-<p>// part of JMail.sendEmail() 
-      : 
-SMTPMessage msg = new SMTPMessage(session); 
-msg.setReturnOption(SMTPMessage.RETURN_HDRS); 
-msg.setNotifyOptions(SMTPMessage.NOTIFY_SUCCESS | 
-                     SMTPMessage.NOTIFY_FAILURE); </p>
-<p>msg.setFrom();  // uses default 
-msg.setRecipient(Message.RecipientType.TO, new InternetAddress(to)); 
-msg.setSentDate(new Date()); 
-msg.setSubject(subject); </p>
-<p>if (attachFnm == null) 
-  msg.setText(body); 
-else {   // add body text and file as attachments 
-  MimeBodyPart p1 = new MimeBodyPart(); 
-  p1.setText(body); </p>
-<p>String mimeType = Info.getMIMEType(attachFnm); </p>
-<p>MimeBodyPart p2 = new MimeBodyPart(); 
-  FileDataSource fds = new FileDataSource(attachFnm); 
-  p2.setDataHandler(new DataHandler(fds));  // add data, 
-  p2.setFileName(fds.getName());            // filename, 
-  p2.setHeader("Content-Type", mimeType);   // MIME type </p>
-<p>// create multipart 
-  Multipart mp = new MimeMultipart(); 
-  mp.addBodyPart(p1);   // for body text<br />
-  mp.addBodyPart(p2);   // for the attached file<br />
-  msg.setContent(mp); 
-} </p>
-<p>If the message contains body text and an attachment then it's necessary to add them as 
-MimeBodyPart objects in a Multipart container. Body text on its own can be added 
-using SMTPMessage.setText().  </p>
-<p>The MimeBodyPart holding the attachment must include the file's MIME type in its 
-"Content-type" header. </p>
-<p>Once the message has been sent, the link is closed: </p>
-<p>transport.sendMessage(msg, msg.getAllRecipients()); 
-transport.close(); </p>
-<h2 id="4-the-desktop-api">4.  The Desktop API<a class="headerlink" href="#4-the-desktop-api" title="Permanent link">&para;</a></h2>
-<p>The Java equivalent of Office's SimpleSystemMail/SimpleCommandMail service is 
-the Desktop.mail() method. It utilizes the OSes default e-mail client to post a 
-message, which means that there's no need to download the javax.mail JAR. The 
-delivery doesn't need to explicitly include the mail server address, port, login, and 
-password since they're obtained from the client's settings.  </p>
-<p>Desktop.mail() utilizes the mailto protocol to communicate with the client, but its 
-specification (in RFC 2368, at <a href="http://www.ietf.org/rfc/rfc2368.txt">http://www.ietf.org/rfc/rfc2368.txt</a>) doesn't cover 
-attachments. There are unofficial extensions supported by some clients, but they're not 
-part of Thunderbird (but see the next section). </p>
-<p>The mailto syntax is: 
-"mailto:" recipients [ "?" key "=" value  ("&amp;" key "=" value)* ]<br />
-with 
- recipients: comma-separated e-mail addresses without spaces; Outlook needs 
-semicolons instead of commas; 
- key: subject, cc, bcc, body (note: there's no attachment keyword); 
- value: URL-encoded text (e.g. space becomes %20). </p>
-<p>An example:<br />
-mailto:xxx@xxx?subject=Hello&amp;body=How%20are%20you%3F 
-Desktop.mail() is employed by JMail.sendEmailByClient(). An example of its use: 
-JMail.sendEmailByClient("xxx@xxx", "Hello", "How are you?"); 
-There's no way in Desktop to suppress the client's GUI, which appears on-screen, and 
-the user must press the "Send" button (or equivalent) to post out the message. </p>
-<p>JMail.sendEmailByClient() is: </p>
-<p body_="body," null_="null);" sendEmailByClient_to_="sendEmailByClient(to," subject_="subject,">// in the JMail class 
-public static void sendEmailByClient(String to,<br />
-                                    String subject, String body) </p>
-<p>public static void sendEmailByClient(String to, String subject, <br />
-                                     String body, String fnm) 
-{<br />
-  if (!Desktop.isDesktopSupported()) { 
-    System.out.println("Desktop mail not supported"); 
-    return; 
-  } </p>
-<p>// construct "mailto:" string for Desktop.mail() 
-  String uriStr = String.format("mailto:%s?subject=%s&amp;body=%s", 
-                            encodeMailto(to), encodeMailto(subject),<br />
-                            encodeMailto(body) ); 
-  if (fnm != null) 
-    uriStr += "&amp;attachment=\"" + FileIO.getAbsolutePath(fnm) + "\"";  <br />
-  try { 
-    Desktop desktop = Desktop.getDesktop(); 
-    desktop.mail(new URI(uriStr)); 
-  }<br />
-  catch (Exception e)<br />
-  {  System.out.println(e); } 
-}  // end of sendEmailByClient() </p>
-<p>public static String encodeMailto(String str)<br />
-{ 
-  try { 
-    return URLEncoder.encode(str, "UTF-8").replace("+", "%20"); 
-  }<br />
-  catch (UnsupportedEncodingException e) { 
-     System.out.println("Could not encode: \"" + str + "\""); 
-     return null; 
-  } 
-}  // end of encodeMailto() </p>
-<p>Following the mailto specification, the key values in the mailto string must be URL 
-encoded. </p>
-<p>sendEmailByClient() has an attachment argument mainly because I've read that some 
-clients, such as Outlook, can accept it. But if I try to use an attachment with 
-Thunderbird, the call to Desktop.mail() fails. </p>
-<h2 id="5-thunderbird-scripting">5.  Thunderbird Scripting<a class="headerlink" href="#5-thunderbird-scripting" title="Permanent link">&para;</a></h2>
-<p>The reason for my uncertainty about Thunderbird supporting attachments is that 
-although it doesn't allow them in "mailto" strings, it can process attachments via its 
-GUI, and the command line (see 
-<a href="http://kb.mozillazine.org/Command_line_arguments_-_Thunderbird">http://kb.mozillazine.org/Command_line_arguments_-_Thunderbird</a>). Its command 
-line features open up another way of sending e-mail: by having Java execute 
-Thunderbird through an external script.  </p>
-<p>My Windows batch file, called TBExec.bat, applies various checks to its command 
-line arguments, and then invokes Thunderbird using: </p>
-<p>thunderbird.exe -compose "to='%1',subject='%2',<br />
-                          body='%3',attachment='%CD%\%4'"  </p>
-<p>The "attachment" value is an absolute file name. </p>
-<p>The Java code uses Runtime.exec() to execute the batch file, passing it three or four 
-arguments: </p>
-<p>// in the JMail class 
-public static void sendEmailByTB(String to, String subject,<br />
-                                 String body, String fnm)<br />
-{<br />
-  String mailExec =<br />
-      String.format("cmd /c TBExec.bat %s \"%s\" \"%s\"", 
-                                       to, subject, body); 
-  if (fnm != null)  // add attachment argument 
-    mailExec += " " + fnm; 
-  try { 
-    Process p = Runtime.getRuntime().exec(mailExec); 
-    p.waitFor(); 
-    System.out.println("Sent e-mail using Thunderbird"); 
-  } 
-  catch (java.lang.Exception e) { 
-    System.out.println("Unable to send Thunderbird mail: " + e); 
-  } 
-}  // end of sendEmailByTB() </p>
-<p>As with Desktop.mail(), there's no way to stop the Thunderbird GUI from being 
-displayed, and the user has to press the "Send" button to send off the message. </p>
-<h2 id="6-office-mail-merge">6.  Office Mail Merge<a class="headerlink" href="#6-office-mail-merge" title="Permanent link">&para;</a></h2>
-<p>Mail merge usually involves a spreadsheet of data and a form letter stored as a Writer 
-template (an OTT file). Data from the spreadsheet replaces fields in the template, such 
-as <Name> and <Address>, with real names and addresses, creating a series of 
-personalized letters. Other common uses are to generate labels and envelopes. </p>
-<p>After the letters (or labels or envelopes) have been created, they can be saved to files 
-(or to a single file), sent to a printer, or attached to e-mails. It's because of this last 
-choice that I've included mail merging here. </p>
-<p>Figure 5 pictures the mail merge stages in more detail. </p>
-<p><img alt="" src="images/42-Sending_E-mail-5.png" /></p>
-<p>Figure 5. Mail Merging using a Spreadsheet and a Writer Template. </p>
-<h3 id="61-preparing-the-mail-merge-inputs">6.1.  Preparing the Mail Merge Inputs<a class="headerlink" href="#61-preparing-the-mail-merge-inputs" title="Permanent link">&para;</a></h3>
-<p>Mail merge configuration is most easily done using Office's GUI and wizards, and is 
-excellently explained in chapter 11 of the Writer Guide (available from 
-<a href="https://th.libreoffice.org/get-help/documentation/">https://th.libreoffice.org/get-help/documentation/</a>). </p>
-<p>A screenshot of a typical spreadsheet is shown in Figure 6. </p>
-<p><img alt="" src="images/42-Sending_E-mail-6.png" /></p>
-<p>Figure 6. The addresses.ods Spreadsheet. </p>
-<p>The field names employed in the template correspond to column names in the 
-spreadsheet (e.g. "Title" and "First Name"). Also, if the merging involves posting out 
-of e-mails then there must be an "E-mail" column in the sheet; those addresses will be 
-used as the message recipients. </p>
-<p>The spreadsheet has to be converted into a data source for the merge. This is done via 
-Office's  File &gt; Wizards &gt; Address Data Source menu item, as explained in the Writer 
-Guide. The outcome is a new ODB file with the same name as the spreadsheet 
-(addresses.odb in my case). This data source can be viewed from inside Calc by 
-selecting the menu item View &gt; Data Sources. The GUI display is shown in Figure 7. </p>
-<p><img alt="" src="images/42-Sending_E-mail-7.png" /></p>
-<p>Figure 7. Addresses.ods with a Data Source. </p>
-<p>The "Addresses" data source has been opened to show its "Addresses" table. Both of 
-these names will be needed later when we start programming. </p>
-<p>The next step is to add fields in the "Addresses" table to the Writer template. This 
-involves dragging field names from the top row of the  table over to the template, and 
-positioning them in the text. Figure 8 shows part of the resulting template, stored in 
-formLetter.ott. </p>
-<p><img alt="" src="images/42-Sending_E-mail-8.png" /></p>
-<p>Figure 8. Part of formLetter.ott. </p>
-<p>The fields are automatically displayed in angled brackets inside gray rectangles.  </p>
-<h3 id="62-programming-the-mail-merge">6.2.  Programming the Mail Merge<a class="headerlink" href="#62-programming-the-mail-merge" title="Permanent link">&para;</a></h3>
-<p>The MailMerge service is located in the text module; most of its programming 
-involves setting properties, and then calling XJob.execute(). The main services and 
-interfaces are shown in Figure 9. </p>
-<p><img alt="" src="images/42-Sending_E-mail-9.png" /></p>
-<p>Figure 9. The MailMerge Service and Interfaces. </p>
-<p>The XMailMergeBroadcaster interface is employed to attach a listener to the merging 
-process, and XCancellable can kill the merge. </p>
-<p>If you look at the documentation for the MailMerge and DataAccessDescriptor 
-services (e.g. use "lodoc MailMerge"), you'll discover many properties in both, and 
-that most (but not all) of the DataAccessDescriptor properties are redefined in 
-MailMerge. </p>
-<p>The coding is summarized by the following snippet from Mail.mergeTask(): </p>
-<dl>
-<dt>// in Mail.mergeTask()</dt>
-<dd>XJob job = Lo.createInstanceMCF(XJob.class,<br />
-                             "com.sun.star.text.MailMerge"); </dd>
-<dt>XPropertySet props = Lo.qi(XPropertySet.class, job);</dt>
-<dt>Props.setProperty(props, "DataSourceName", dataSourceName);</dt>
-<dt>Props.setProperty(props, "Command", tableName);</dt>
-<dd>// many more properties are set... </dd>
-<dd></dd>
-</dl>
-<p>job.execute(new NamedValue[0]);  </p>
-<p>The MailMerge service is created as an XJob interface. Service properties are set, and 
-then the merge is carried out by calling XJob.execute(). The NamedValue array is 
-empty since there's no need to set any more properties using it. </p>
-<h3 id="63-specializing-the-merge">6.3.  Specializing the Merge<a class="headerlink" href="#63-specializing-the-merge" title="Permanent link">&para;</a></h3>
-<p>Mail.mergeTask() is passed numerous property values. To simplify its interface, the 
-call is hidden inside three other functions called Mail.mergeLetter(), 
-Mail.mergePrint(), and Mail.mergeEmail(), which focus on the three different 
-outcomes of a merge (see Figure 5). </p>
-<p>Mail.mergeLetter() takes four arguments, three of which (data source name, table 
-name, template filename) are needed for any kind of merge: </p>
-<p>// in  the Mail class 
-public static void mergeLetter(String dataSourceName,<br />
-                               String tableName, String templateFnm,<br />
-                               boolean isSingle) 
-{ System.out.println("Merging letters to files..."); 
-  mergeTask(dataSourceName, tableName, templateFnm,<br />
-          MailMergeType.FILE, 
-          isSingle, null, false, null, null, null); 
-  }  // end of mergeLetter() </p>
-<p>The following call to Mail.mergeLetter() saves six letters as "letter0.odt" to 
-"letter5.odt": </p>
-<p>// in MailMerge.java... </p>
-<p>private static final String DATA_SOURCE_NAME = "Addresses";<br />
-private static final String TABLE_NAME = "Addresses";<br />
-private static final String TEMPLATE_FNM = "formLetter.ott";  </p>
-<p>Mail.mergeLetter(DATA_SOURCE_NAME, TABLE_NAME, TEMPLATE_FNM, false); </p>
-<p>I've defined the data source name, table name, and template filename as constants to 
-make the call to Mail.mergeLetter() easier to read. The boolean argument specifies 
-whether a single file should hold all the generated letters. The generated filenames are 
-hardwired inside Mail.mergeTask() to be "letter" and a number. </p>
-<p>Six files are created since the spreadsheet (see Figure 6) has six rows of data. </p>
-<p>Mail.mergePrint() is passed the same first three arguments (data source name, table 
-name, template filename), and a printer name and a boolean to signal whether 
-multiple print jobs should be created: </p>
-<p>// in MailMerge.java... </p>
-<p>Mail.mergePrint(DATA_SOURCE_NAME, TABLE_NAME, TEMPLATE_FNM, 
-                "FinePrint", false); </p>
-<p>This example will send a single combined print job to the "FinePrint" printer. The 
-printer name can be obtained using one of the techniques explained in the previous 
-chapter. </p>
-<p>Mail.mergePrint() calls Mail.mergeTask() with its printer name and multiple jobs 
-boolean arguments set: </p>
-<p>// in the Mail class 
-public static void mergePrint(String dataSourceName,<br />
-                              String tableName, String templateFnm,<br />
-                       String printerName, boolean isMultipleJobs) 
-{<br />
-  System.out.println("Merging letters for printing..."); 
-  mergeTask(dataSourceName, tableName, templateFnm,<br />
-            MailMergeType.PRINTER, 
-           false, printerName, isMultipleJobs, null, null, null); 
-}  // end of mergePrint() </p>
-<p>Mail.mergeEmail() is passed the data source name, table name, and template filename 
-as before, and the mail server's password, e-mail subject line and body string: </p>
-<p>// in MailMerge.java... </p>
-<p>Mail.mergeEmail(DATA_SOURCE_NAME, TABLE_NAME, TEMPLATE_FNM,<br />
-                password,<br />
-                "Hello", "Please read the attached message."); </p>
-<p>Six e-mails are sent to the addresses listed in the "E-mail" column of the spreadsheet 
-(see Figure 6). Each e-mail contains the subject and body text supplied in the call, and 
-an attached copy of the personalized letter. </p>
-<p>Mail.mergeEmail() calls Mail.mergeTask(): </p>
-<p>// in the Mail class 
-public static void mergeEmail(String dataSourceName,<br />
-                              String tableName, String templateFnm,<br />
-                        String passwd, String subject, String body) 
-{<br />
-  System.out.println("Merging letters for sending as e-mail..."); 
-  boolean isConfigured = checkMailConfig(passwd); 
-  System.out.println("&rarr; Mailhost is " +<br />
-              (isConfigured ? "" : "NOT ") + "configured"); 
-  if (isConfigured) 
-    mergeTask(dataSourceName, tableName, templateFnm,<br />
-              MailMergeType.MAIL, 
-              false, null, false, passwd, subject, body); 
-}  // end of mergeEmail() </p>
-<p>The e-mailing employs the same mailmerge.py Python script as MailServiceProvider, 
-which means it will crash when using SSL encryption unless ssleay32.dll and 
-libeay32.dll have been copied from Office's "program\" folder into "program\python-
-core-???\lib\". Please refer back to section 2 for more details. </p>
-<p>mailmerge.py attempts to open a link with the specified mail server at the given port, 
-and usually has to supply a login and password to be allowed access. If you look back 
-at the arguments passed to Mail.mergeEmail() you can see that the password is 
-supplied, but what about the mail server address, its port, and a login name?  The only 
-way to specify them is via Writer's option dialog. The relevant windows are shown in </p>
-<p><img alt="" src="images/42-Sending_E-mail-10.png" /></p>
-<p>Figure 10. </p>
-<p><img alt="" src="images/42-Sending_E-mail-10.png" /></p>
-<p>Figure 10. Setting Writer E-mail Options. </p>
-<p>The left-hand dialog allows the mail server's address and port to be entered 
-(fivedots.coe.psu.ac.th and 25). If secure communication is required (i.e. SSL, TLS, or 
-STARTTLS), then the secure SSL checkbox is ticked and the "Server Authentication" 
-button pressed. A second dialog opens, shown on the right in Figure 10, which lets 
-you enter a login and password for accessing the server. It's good practice not to enter 
-a password since the data is stored as plain text in "registrymodifications.xcu" in 
-Office's user configuration directory (often the folder 
-<span class="arithmatex">\(APPDATA\)</span>\LibreOffice\??\user). It's safer to pass the password to 
-Mail.mergeTask() at run time, as I've done in Mail.mergeEmail(). </p>
-<p>mergeEmail() calls Mail.checkMailConfig() to check if the mail server address, port 
-number, username, and password can be found in "registrymodifications.xcu". If the 
-first three aren't present then checkMailConfig() returns false and the merge is 
-aborted. If the password is found, then a stern warning message is printed, but 
-merging continues. </p>
-<p>checkMailConfig() calls Info.getRegItemProp() which uses XPath to search through 
-"registrymodifications.xcu" for the specified property names and values.  </p>
-<h3 id="64-mergetask-implementing-mail-merging">6.4.  mergeTask(): Implementing Mail Merging<a class="headerlink" href="#64-mergetask-implementing-mail-merging" title="Permanent link">&para;</a></h3>
-<p>mergeTask() is an expanded version of the code snippet given above which creates an 
-XJob instance, sets properties in the MailMerge service, and calls XJob.execute(). </p>
-<p>The properties settings are spread across if-tests which determine if the task involves 
-file creation, printing, or e-mail. Also, a listener is attached to the merge process. The 
-mergeTask() code: </p>
-<p>// in the Mail class 
-public static void mergeTask(String dataSourceName,<br />
-                               String tableName, 
-                               String templateFnm,<br />
-         short outputType, boolean isSingle,           // for FILE 
-         String printerName, boolean isMultipleJobs,   // for PRINTER 
-         String passwd, String subject, String body)   // for MAIL 
-{<br />
-  XJob job = Lo.createInstanceMCF(XJob.class,<br />
-                          "com.sun.star.text.MailMerge"); 
-  if (job == null) { 
-    System.out.println("Could not create MailMerge service"); 
-    return; 
-  } </p>
-<p>XPropertySet props = Lo.qi(XPropertySet.class, job);  </p>
-<p>// standard task properties 
-  Props.setProperty(props, "DataSourceName", dataSourceName); <br />
-  Props.setProperty(props, "Command", tableName); 
-  Props.setProperty(props, "CommandType", CommandType.TABLE);<br />
-  Props.setProperty(props, "DocumentURL",<br />
-                                FileIO.fnmToURL(templateFnm));  </p>
-<p>// vary properties based on output type 
-  Props.setProperty(props, "OutputType", outputType); 
-  if (outputType == MailMergeType.FILE) { 
-    Props.setProperty(props, "SaveAsSingleFile", isSingle);  <br />
-    Props.setProperty(props, "FileNamePrefix", "letter"); <br />
-                                      // hardwired filename 
-  } 
-  else if (outputType == MailMergeType.PRINTER) { 
-    Props.setProperty(props, "SinglePrintJobs", isMultipleJobs); 
-                      // true means one print job for each letter 
-    PropertyValue[] pProps =<br />
-       Props.makeProps("PrinterName", printerName, "Wait", true); <br />
-                                        //  synchronous printing 
-           // from com.sun.star.view.PrintOptions 
-    Props.setProperty(props, "PrintOptions", pProps); 
-  } 
-  else if (outputType == MailMergeType.MAIL) { 
-    if (passwd != null) 
-      Props.setProperty(props, "OutServerPassword", passwd); </p>
-<div class="highlight"><pre><span></span><code>Props.setProperty(props, &quot;AddressFromColumn&quot;, &quot;E-mail&quot;);   
-                                  // hardwired column name 
-Props.setProperty(props, &quot;Subject&quot;, subject); 
-Props.setProperty(props, &quot;MailBody&quot;, body);
+<p>The MailServiceProvider service utilizes a Python script called mailmerge.py which
+creates a socket-based link to the specified mail server. If that link utilizes SSL (or its
+successor TLS) for encrypted communication, then your code will probably crash
+with the error message "No SSL support included in this Python".</p>
+<p>This bug (<a href="https://bugs.documentfoundation.org/show_bug.cgi?id=77354">https://bugs.documentfoundation.org/show_bug.cgi?id=77354</a>) is marked
+as "RESOLVED NOTOURBUG" at Office's bugzilla website which seems a bit
+dismissive. The problem appears to be due to the position of Office's application
+folders in Window's PATH environment variable. When Windows searches for two
+DLLs, ssleay32.dll and libeay32.dll, which implement OpenSSL, it may find incorrect
+versions in folders mentioned earlier in PATH. It's these incorrect DLLs that cause
+Python to issue the cryptic error. One solution is to copy the correct DLLs from
+Office's "program\" folder into the "program\python-core-???\lib\" folder (??? is a
+version number, such as 3.3.3), thereby ensuring they're chosen first.</p>
+<p>Another issue with switching to MailServiceProvider is that the programmer must
+supply more information  to setup the SMTP connection, namely the address of the
+mail server, its port, and the login and password for accessing the server.</p>
+<p>MailServiceProvider is utilized by the Mail.sendEmail() function. Given below are
+examples of how it sends e-mail to my local fivedots.coe.psu.ac.th mail server and to
+the Gmail server at smtp.gmail.com:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of LoMailer.java...</span>
+<span class="n">Mail</span><span class="p">.</span><span class="na">sendEmail</span><span class="p">(</span><span class="s">&quot;fivedots.coe.psu.ac.th&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="s">&quot;ad&quot;</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span>
+      <span class="s">&quot;xxx@xxx&quot;</span><span class="p">,</span> <span class="s">&quot;Test 1&quot;</span><span class="p">,</span> <span class="s">&quot;Body 1&quot;</span><span class="p">,</span> <span class="s">&quot;skinner.png&quot;</span><span class="p">);</span>
 
-Props.setProperty(props, &quot;SendAsAttachment&quot;, true); 
-Props.setProperty(props, &quot;AttachmentName&quot;, &quot;letter.pdf&quot;);  
-                                // hardwired filename and type 
-Props.setProperty(props, &quot;AttachmentFilter&quot;,  
-                                   &quot;writer_pdf_Export&quot;);
+<span class="n">Mail</span><span class="p">.</span><span class="na">sendEmail</span><span class="p">(</span><span class="s">&quot;smtp.gmail.com&quot;</span><span class="p">,</span> <span class="mi">587</span><span class="p">,</span>
+               <span class="s">&quot;Andrew.Davison50@gmail.com&quot;</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span>
+      <span class="s">&quot;xxx@xxx&quot;</span><span class="p">,</span><span class="s">&quot;Test 2&quot;</span><span class="p">,</span> <span class="s">&quot;Body 2&quot;</span><span class="p">,</span> <span class="s">&quot;addresses.ods&quot;</span><span class="p">);</span>
 </code></pre></div>
-<p>} </p>
-<p>// monitor task's execution 
-  XMailMergeBroadcaster xmmb =<br />
-                       Lo.qi(XMailMergeBroadcaster.class, job); 
-  xmmb.addMailMergeEventListener( new XMailMergeListener() 
-  { 
-    int count = 0; 
-    long start = System.currentTimeMillis(); </p>
-<div class="highlight"><pre><span></span><code>public void notifyMailMergeEvent(MailMergeEvent e) 
-{ count++; 
-  XModel model = e.Model; 
-  // Props.showProps(&quot;Mail merge event&quot;, model.getArgs()); 
-  long currTime = System.currentTimeMillis(); 
-  System.out.println(&quot;  Letter &quot; + count + &quot;: &quot; + 
-                            (currTime - start) + &quot;ms&quot;); 
-  start = currTime; 
-}
+<p>The Mail.sendEmail() arguments are: the mail server address, its port, the login and
+password for the server, the recipient of the mail, the subject line, the body text, and
+an optional attachment filename.</p>
+<p>SMTP is built on top of a TCP network link, and in these security conscious days
+many companies and universities (including mine) use firewalls to block everything
+but Web links. That means I cannot use MailServiceProvider to access my Gmail
+account at work since its mail server is beyond my departmental firewall. However, I
+can access the fivedots departmental mail server.</p>
+<p>MailServiceProvider is located in the mail module, along with several interfaces. The
+other important service is MailMessage for constructing e-mail messages. Figure 4
+shows the relationships between the services and their interfaces.</p>
+<p><img alt="" src="images/42-Sending_E-mail-4.png" /></p>
+<p>Figure 4. The MailServiceProvider and MailMessage Services.</p>
+<p>An SMTP service is created via the XMailServiceProvider interface:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of Mail.sendEmail()</span>
+       <span class="p">:</span>
+<span class="n">XMailServiceProvider</span> <span class="n">msp</span> <span class="o">=</span>
+          <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XMailServiceProvider</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                <span class="s">&quot;com.sun.star.mail.MailServiceProvider&quot;</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">msp</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not create MailServiceProvider&quot;</span><span class="p">);</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">XMailService</span> <span class="n">service</span> <span class="o">=</span> <span class="n">msp</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">MailServiceType</span><span class="p">.</span><span class="na">SMTP</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">service</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not create SMTP MailService&quot;</span><span class="p">);</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre></div>
-<p>}); </p>
-<p>try { 
-    job.execute(new NamedValue[0]);<br />
-  } 
-  catch (com.sun.star.uno.Exception e) {<br />
-    System.out.println("Could not start executing task: " + e);<br />
-  }<br />
-}  // end of mergeTask() </p>
-<p>There are four properties that are always set:  </p>
-<p>Props.setProperty(props, "DataSourceName", dataSourceName); <br />
-Props.setProperty(props, "Command", tableName); 
-Props.setProperty(props, "CommandType", CommandType.TABLE);<br />
-Props.setProperty(props, "DocumentURL",<br />
-                              FileIO.fnmToURL(templateFnm));  </p>
-<p>These specify the use of a spreadsheet table, the data source name, and the template 
-filename (as a URI). </p>
-<p>The other properties are divided up based on the MailMergeType constants FILE, 
-PRINT, and MAIL (see "lodoc MailMergeType").  </p>
-<p>I've hardwired certain properties to reduce the number of arguments that need to be 
-passed to Mail.mergeLetter(), Mail.mergePrint(), and Mail.mergeEmail(). </p>
-<p>The listener implements the XMailMergeListener interface, and is attached through 
-XMailMergeBroadcaster. notifyMailMergeEvent() is called each time a new letter is 
-created. For my addresses.ods spreadsheet, it's triggered six times since there are six 
-rows of data (see Figure 6). </p>
-<p>notifyMailMergeEvent() prints only timing information for each letter task, but more 
-details could be obtained by accessing the event's model. </p>
+<p>A listener can be attached to the service, to report on its connection status:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of Mail.sendEmail()</span>
+      <span class="p">:</span>
+<span class="n">service</span><span class="p">.</span><span class="na">addConnectionListener</span><span class="p">(</span> <span class="k">new</span> <span class="n">XConnectionListener</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">connected</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Connected to server &quot;</span> <span class="o">+</span><span class="n">getServerName</span><span class="p">(</span><span class="n">e</span><span class="p">));</span> <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">disconnected</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  Disconnected&quot;</span><span class="p">);</span> <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">disposing</span><span class="p">(</span><span class="n">EventObject</span> <span class="n">e</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>The connection requires address, port, protocol, login and password details, which are
+supplied through XCurrentContext and XAuthenticator:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Mail class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">sendEmail</span><span class="p">(</span><span class="n">String</span> <span class="n">mailhost</span><span class="p">,</span> <span class="kt">int</span> <span class="n">port</span><span class="p">,</span>
+                <span class="n">String</span> <span class="n">user</span><span class="p">,</span> <span class="n">String</span> <span class="n">password</span><span class="p">,</span>
+                <span class="n">String</span> <span class="n">to</span><span class="p">,</span> <span class="n">String</span> <span class="n">subject</span><span class="p">,</span> <span class="n">String</span> <span class="n">body</span><span class="p">,</span> <span class="n">String</span> <span class="n">fnm</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="p">:</span>  <span class="c1">// service creation code; see above</span>
+
+  <span class="c1">// initialize service data: context and authenticator</span>
+  <span class="n">XCurrentContext</span> <span class="n">xcc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">XCurrentContext</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="n">Object</span> <span class="nf">getValueByName</span><span class="p">(</span><span class="n">String</span> <span class="n">name</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">name</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;ServerName&quot;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">Object</span><span class="p">)</span> <span class="n">mailhost</span><span class="p">;</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">name</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;Port&quot;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">Object</span><span class="p">)</span> <span class="k">new</span> <span class="n">Integer</span><span class="p">(</span><span class="n">port</span><span class="p">);</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">name</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;ConnectionType&quot;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">Object</span><span class="p">)</span> <span class="s">&quot;Ssl&quot;</span><span class="p">;</span>     <span class="c1">// or &quot;Insecure&quot;;</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">name</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;Timeout&quot;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">Object</span><span class="p">)</span>  <span class="k">new</span> <span class="n">Integer</span><span class="p">(</span><span class="mi">60</span><span class="p">);</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Do not recognize \&quot;&quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>
+      <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+
+  <span class="n">XAuthenticator</span> <span class="n">auth</span> <span class="o">=</span> <span class="k">new</span> <span class="n">XAuthenticator</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getUserName</span><span class="p">()</span>
+    <span class="p">{</span> <span class="k">return</span> <span class="n">user</span><span class="p">;</span>  <span class="p">}</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getPassword</span><span class="p">()</span>
+    <span class="p">{</span> <span class="k">return</span> <span class="n">password</span><span class="p">;</span>  <span class="p">}</span>
+  <span class="p">};</span>
+
+  <span class="c1">// connect to service</span>
+  <span class="n">service</span><span class="p">.</span><span class="na">connect</span><span class="p">(</span><span class="n">xcc</span><span class="p">,</span> <span class="n">auth</span><span class="p">);</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Isconnected: &quot;</span> <span class="o">+</span> <span class="n">service</span><span class="p">.</span><span class="na">isConnected</span><span class="p">());</span>
+</code></pre></div>
+<p>I've hardwired a time of 60 seconds in XCurrentContext which sets how long the code
+waits for a connection before giving up.</p>
+<p>MailMessage utilizes an unusual create() method, and the message's body is
+represented by an XTransferable instance rather than a string:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of Mail.sendEmail()</span>
+      <span class="p">:</span>
+<span class="n">String</span> <span class="n">from</span> <span class="o">=</span> <span class="n">user</span> <span class="o">+</span> <span class="s">&quot;@&quot;</span> <span class="o">+</span> <span class="n">mailhost</span><span class="p">;</span>  <span class="c1">// person sending this e-mail</span>
+<span class="n">XMailMessage</span> <span class="n">msg</span> <span class="o">=</span> <span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">mail</span><span class="p">.</span><span class="na">MailMessage</span><span class="p">.</span><span class="na">create</span><span class="p">(</span>
+                 <span class="n">Lo</span><span class="p">.</span><span class="na">getContext</span><span class="p">(),</span> <span class="n">to</span><span class="p">,</span> <span class="n">from</span><span class="p">,</span>
+                 <span class="n">subject</span><span class="p">,</span> <span class="k">new</span> <span class="n">TextTransferable</span><span class="p">(</span><span class="n">body</span><span class="p">));</span>
+</code></pre></div>
+<p>The online documentation for MailMessage.create() (use <code>lodoc MailMessage</code> to
+access it) is misleading in that it doesn’t mention the need for the component context,
+which is obtained with the Lo.getContext() call.</p>
+<p>My TextTransferable class implements the XTransferable interface, which defines
+how different MIME data types are transferred. XTransferable is mainly used in two
+ways – for packaging e-mail data (as here), and for moving data to and from the
+clipboard (which I'll discuss in the next chapter).</p>
+<p>TextTransferable lets Unicode text be treated as a transferable:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Utils/ folder</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TextTransferable</span> <span class="kd">implements</span> <span class="n">XTransferable</span>
+<span class="p">{</span>
+  <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">text</span><span class="p">;</span>
+  <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">UNICODE_MIMETYPE</span> <span class="o">=</span><span class="s">&quot;text/plain;charset=utf-16&quot;</span><span class="p">;</span>
+
+  <span class="kd">public</span> <span class="nf">TextTransferable</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">text</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span>  <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="n">Object</span> <span class="nf">getTransferData</span><span class="p">(</span><span class="n">DataFlavor</span> <span class="n">df</span><span class="p">)</span>
+                         <span class="kd">throws</span> <span class="n">UnsupportedFlavorException</span>
+  <span class="p">{</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">df</span><span class="p">.</span><span class="na">MimeType</span><span class="p">.</span><span class="na">equalsIgnoreCase</span><span class="p">(</span><span class="n">UNICODE_MIMETYPE</span><span class="p">))</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="n">UnsupportedFlavorException</span><span class="p">();</span>
+    <span class="k">return</span> <span class="n">text</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="n">DataFlavor</span><span class="o">[]</span> <span class="nf">getTransferDataFlavors</span><span class="p">()</span>
+  <span class="p">{</span> <span class="n">DataFlavor</span><span class="o">[]</span> <span class="n">dfs</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DataFlavor</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+    <span class="n">dfs</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DataFlavor</span><span class="p">(</span><span class="n">UNICODE_MIMETYPE</span><span class="p">,</span> <span class="s">&quot;Unicode Text&quot;</span><span class="p">,</span>
+                                      <span class="k">new</span> <span class="n">Type</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">));</span>
+    <span class="k">return</span> <span class="n">dfs</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isDataFlavorSupported</span><span class="p">(</span><span class="n">DataFlavor</span> <span class="n">df</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="k">return</span> <span class="n">df</span><span class="p">.</span><span class="na">MimeType</span><span class="p">.</span><span class="na">equalsIgnoreCase</span><span class="p">(</span><span class="n">UNICODE_MIMETYPE</span><span class="p">);</span>  <span class="p">}</span>
+
+<span class="p">}</span>  <span class="c1">// end of TextTransferable class</span>
+</code></pre></div>
+<p>A DataFlavor object hold three fields: the MIME type string for the data (e.g.
+"text/plain"), a 'human presentable' name for the data (which can be anything), and the
+corresponding Office data type.</p>
+<p>We're not finished with transferable data since an attached file must also be packaged
+in a similar way using Office's MailAttachment class and my FileTransferable class:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of Mail.sendEmail()</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">fnm</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+  <span class="n">msg</span><span class="p">.</span><span class="na">addAttachment</span><span class="p">(</span> <span class="k">new</span> <span class="n">MailAttachment</span><span class="p">(</span>
+                             <span class="k">new</span> <span class="n">FileTransferable</span><span class="p">(</span><span class="n">fnm</span><span class="p">),</span> <span class="n">fnm</span><span class="p">));</span>
+</code></pre></div>
+<p>FileTransferable looks up the MIME type for its supplied file, and stores the file
+contents in a byte array which is returned by getTransferData():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Utils/ folder</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">FileTransferable</span> <span class="kd">implements</span> <span class="n">XTransferable</span>
+<span class="p">{</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">mimeType</span> <span class="o">=</span> <span class="s">&quot;application/octet-stream&quot;</span><span class="p">;</span>   <span class="c1">// default</span>
+  <span class="kd">private</span> <span class="kt">byte</span><span class="o">[]</span> <span class="n">fileData</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+
+  <span class="kd">public</span> <span class="nf">FileTransferable</span><span class="p">(</span><span class="n">String</span> <span class="n">fnm</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">mimeType</span> <span class="o">=</span> <span class="n">Info</span><span class="p">.</span><span class="na">getMIMEType</span><span class="p">(</span><span class="n">fnm</span><span class="p">);</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="n">fileData</span> <span class="o">=</span> <span class="n">Files</span><span class="p">.</span><span class="na">readAllBytes</span><span class="p">(</span> <span class="n">Paths</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">fnm</span><span class="p">));</span>
+    <span class="p">}</span>
+    <span class="k">catch</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">Exception</span> <span class="n">e</span><span class="p">)</span>
+    <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not read bytes from &quot;</span> <span class="o">+</span> <span class="n">fnm</span><span class="p">);</span>  <span class="p">}</span>
+  <span class="p">}</span>  <span class="c1">// end of FileTransferable()</span>
+
+
+  <span class="kd">public</span> <span class="n">Object</span> <span class="nf">getTransferData</span><span class="p">(</span><span class="n">DataFlavor</span> <span class="n">df</span><span class="p">)</span>
+                               <span class="kd">throws</span> <span class="n">UnsupportedFlavorException</span>
+  <span class="p">{</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">df</span><span class="p">.</span><span class="na">MimeType</span><span class="p">.</span><span class="na">equalsIgnoreCase</span><span class="p">(</span><span class="n">mimeType</span><span class="p">))</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="n">UnsupportedFlavorException</span><span class="p">();</span>
+    <span class="k">return</span> <span class="n">fileData</span><span class="p">;</span>
+  <span class="p">}</span>  <span class="c1">// end of getTransferData()</span>
+
+
+  <span class="kd">public</span> <span class="n">DataFlavor</span><span class="o">[]</span> <span class="nf">getTransferDataFlavors</span><span class="p">()</span>
+  <span class="p">{</span> <span class="n">DataFlavor</span><span class="o">[]</span> <span class="n">flavors</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DataFlavor</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+    <span class="n">flavors</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DataFlavor</span><span class="p">(</span><span class="n">mimeType</span><span class="p">,</span> <span class="n">mimeType</span><span class="p">,</span>
+                                      <span class="k">new</span> <span class="n">Type</span><span class="p">(</span><span class="kt">byte</span><span class="o">[]</span><span class="p">.</span><span class="na">class</span><span class="p">));</span>
+    <span class="k">return</span> <span class="n">flavors</span><span class="p">;</span>
+  <span class="p">}</span>
+
+
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isDataFlavorSupported</span><span class="p">(</span><span class="n">DataFlavor</span> <span class="n">df</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="k">return</span> <span class="n">df</span><span class="p">.</span><span class="na">MimeType</span><span class="p">.</span><span class="na">equalsIgnoreCase</span><span class="p">(</span><span class="n">mimeType</span><span class="p">);</span>  <span class="p">}</span>
+
+<span class="p">}</span>  <span class="c1">// end of FileTransferable class</span>
+</code></pre></div>
+<p>MIME type lookup is implemented by Info.getMIMEType() which uses Java's
+MimetypesFileTypeMap to examine a file of MIME types stored in my Utils/ folder:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Info class</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">MIME_FNM</span> <span class="o">=</span> <span class="s">&quot;mime.types&quot;</span><span class="p">;</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">getMIMEType</span><span class="p">(</span><span class="n">String</span> <span class="n">fnm</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">File</span> <span class="n">f</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="n">fnm</span><span class="p">);</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">MimetypesFileTypeMap</span> <span class="n">mftMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MimetypesFileTypeMap</span><span class="p">(</span>
+                          <span class="n">FileIO</span><span class="p">.</span><span class="na">getUtilsFolder</span><span class="p">()</span> <span class="o">+</span> <span class="n">MIME_FNM</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">mftMap</span><span class="p">.</span><span class="na">getContentType</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span><span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">Exception</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not find &quot;</span> <span class="o">+</span> <span class="n">MIME_FNM</span><span class="p">);</span>
+     <span class="k">return</span> <span class="s">&quot;application/octet-stream&quot;</span><span class="p">;</span>   <span class="c1">// better than nothing</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of getMIMEType()</span>
+</code></pre></div>
+<p>Back in Mail.sendEmail(), all that's left to do is to send the message using
+XSmtpService.sendMailMessage():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of Mail.sendEmail()...</span>
+<span class="n">XSmtpService</span> <span class="n">smtpService</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XSmtpService</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">service</span><span class="p">);</span>
+<span class="n">smtpService</span><span class="p">.</span><span class="na">sendMailMessage</span><span class="p">(</span><span class="n">msg</span><span class="p">);</span>
+
+<span class="n">service</span><span class="p">.</span><span class="na">disconnect</span><span class="p">();</span>
+</code></pre></div>
+<h2 id="3-using-javamail">3.  Using JavaMail<a class="headerlink" href="#3-using-javamail" title="Permanent link">&para;</a></h2>
+<p>JavaMail can send and receive e-mail via SMTP, POP3 and IMAP (its website is
+<a href="https://java.net/projects/javamail/pages/Home">https://java.net/projects/javamail/pages/Home</a>). Although JavaMail is mainly intended
+to be a component of Java EE, it can be downloaded as a single JAR file
+(javax.mail.jar) as an add-on to the JDK. It's being actively developed (the current
+version is 1.5.6, released in mid 2016), and the website has lots of examples (see
+<a href="http://java.net/projects/javamail/downloads/download/javamail-samples.zip">http://java.net/projects/javamail/downloads/download/javamail-samples.zip</a>), a FAQ,
+and API documentation (at <a href="https://javamail.java.net/nonav/docs/api/">https://javamail.java.net/nonav/docs/api/</a>).</p>
+<p>The main textbook about JavaMail is:</p>
+<ul>
+<li>JavaMail API 1<sup>st</sup> Edition
+Elliotte Rusty Harold
+O'Reilly, 2013</li>
+</ul>
+<p>This started out as a chapter in Harold's "Java Network Programming" text, but was
+separated off after the 3<sup>rd</sup> edition.</p>
+<p>Another nice resource if you want to build a GUI e-mail client using JavaMail is
+chapter 5 of The Art of Java by Herbert Schlidt and James Holmes, McGraw Hill,
+2003.</p>
+<p>JavaMail utilizes the same approach as mailmerge.py mentioned earlier – it creates an
+SMTP connection using a TCP socket link to a mail server. As such it suffers from
+the same problem with firewalls, which means that I can't use it with my Gmail
+account when I'm at work.</p>
+<p>My non-Office e-mail support functions are in JMail.java, and have a similar interface
+to the Office versions. For instance, JMail.sendEmail() is employed to send an e-mail
+with JavaMail. The following two calls use the fivedots and Gmail servers:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in JMailer.java...</span>
+<span class="n">JMail</span><span class="p">.</span><span class="na">sendEmail</span><span class="p">(</span><span class="s">&quot;fivedots.coe.psu.ac.th&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="s">&quot;ad&quot;</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span>
+      <span class="s">&quot;xxx@xxx&quot;</span><span class="p">,</span> <span class="s">&quot;Test 1&quot;</span><span class="p">,</span> <span class="s">&quot;Body 1&quot;</span><span class="p">,</span> <span class="s">&quot;skinner.png&quot;</span><span class="p">);</span>
+
+<span class="n">JMail</span><span class="p">.</span><span class="na">sendEmail</span><span class="p">(</span><span class="s">&quot;smtp.gmail.com&quot;</span><span class="p">,</span> <span class="mi">587</span><span class="p">,</span>
+               <span class="s">&quot;Andrew.Davison50@gmail.com&quot;</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span>
+      <span class="s">&quot;xxx@xxx&quot;</span><span class="p">,</span><span class="s">&quot;Test 2&quot;</span><span class="p">,</span> <span class="s">&quot;Body 2&quot;</span><span class="p">,</span> <span class="s">&quot;addresses.ods&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>They're no different from my earlier Mail.sendEmail() examples, except for the name
+of the support class. The arguments are: the mail server address, its port, the login and
+password for the server, the recipient of the mail, the subject line, the body text, and
+an optional attachment.</p>
+<p>JavaMail sending is based around three classes: Transport, Session, and Message.</p>
+<p>Transport specifies the underlying communication link, while Session handles the
+details of the communication protocol using that link. For example, secure
+communication is setup through properties passed to Session.getInstance():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of JMail.sendEmail()...</span>
+<span class="n">Properties</span> <span class="n">props</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Properties</span><span class="p">();</span>
+<span class="n">props</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;mail.smtp.starttls.enable&quot;</span><span class="p">,</span> <span class="s">&quot;true&quot;</span><span class="p">);</span>
+<span class="n">props</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;mail.smtp.ssl.trust&quot;</span><span class="p">,</span> <span class="s">&quot;*&quot;</span><span class="p">);</span>  <span class="c1">// no certificate needed</span>
+<span class="n">props</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="s">&quot;mail.smtp.timeout&quot;</span><span class="p">,</span> <span class="s">&quot;60000&quot;</span><span class="p">);</span>
+
+<span class="n">Session</span> <span class="n">session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">.</span><span class="na">getInstance</span><span class="p">(</span><span class="n">props</span><span class="p">);</span>
+</code></pre></div>
+<p>The mail server address, port, login and password details are used to create a
+SMTPTransport instance (a subclass of Transport):</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of JMail.sendEmail()...</span>
+<span class="n">URLName</span> <span class="n">url</span> <span class="o">=</span> <span class="k">new</span> <span class="n">URLName</span><span class="p">(</span><span class="s">&quot;smtp&quot;</span><span class="p">,</span> <span class="n">mailhost</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span>
+                                              <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">);</span>
+<span class="n">Transport</span> <span class="n">transport</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SMTPTransport</span><span class="p">(</span><span class="n">session</span><span class="p">,</span> <span class="n">url</span><span class="p">);</span>
+<span class="n">transport</span><span class="p">.</span><span class="na">connect</span><span class="p">(</span><span class="n">mailhost</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">);</span>
+</code></pre></div>
+<p>JavaMail supports two kinds of listeners, one for the connection and the other for
+message delivery. Simple implementations are given in JMail.sendEmail():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of JMail.sendEmail()...</span>
+      <span class="p">:</span>
+<span class="n">transport</span><span class="p">.</span><span class="na">addConnectionListener</span><span class="p">(</span> <span class="k">new</span> <span class="n">ConnectionListener</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">opened</span><span class="p">(</span><span class="n">ConnectionEvent</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  Connection opened to: &quot;</span><span class="o">+</span><span class="n">e</span><span class="p">.</span><span class="na">getSource</span><span class="p">());</span> <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">disconnected</span><span class="p">(</span><span class="n">ConnectionEvent</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  Connection disconnected&quot;</span><span class="p">);</span> <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">closed</span><span class="p">(</span><span class="n">ConnectionEvent</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  Connection closed&quot;</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="n">transport</span><span class="p">.</span><span class="na">addTransportListener</span><span class="p">(</span> <span class="k">new</span> <span class="n">TransportListener</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">messageDelivered</span><span class="p">(</span><span class="n">TransportEvent</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  Message delivered&quot;</span><span class="p">);</span>  <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">messageNotDelivered</span><span class="p">(</span><span class="n">TransportEvent</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  Message not delivered&quot;</span><span class="p">);</span>  <span class="p">}</span>
+
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">messagePartiallyDelivered</span><span class="p">(</span><span class="n">TransportEvent</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  Message partially delivered&quot;</span><span class="p">);</span>  <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>An SMTP message has fields for the recipient, subject line, body text, and an optional
+attached file:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// part of JMail.sendEmail()</span>
+      <span class="p">:</span>
+<span class="n">SMTPMessage</span> <span class="n">msg</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SMTPMessage</span><span class="p">(</span><span class="n">session</span><span class="p">);</span>
+<span class="n">msg</span><span class="p">.</span><span class="na">setReturnOption</span><span class="p">(</span><span class="n">SMTPMessage</span><span class="p">.</span><span class="na">RETURN_HDRS</span><span class="p">);</span>
+<span class="n">msg</span><span class="p">.</span><span class="na">setNotifyOptions</span><span class="p">(</span><span class="n">SMTPMessage</span><span class="p">.</span><span class="na">NOTIFY_SUCCESS</span> <span class="o">|</span>
+                     <span class="n">SMTPMessage</span><span class="p">.</span><span class="na">NOTIFY_FAILURE</span><span class="p">);</span>
+
+<span class="n">msg</span><span class="p">.</span><span class="na">setFrom</span><span class="p">();</span>  <span class="c1">// uses default</span>
+<span class="n">msg</span><span class="p">.</span><span class="na">setRecipient</span><span class="p">(</span><span class="n">Message</span><span class="p">.</span><span class="na">RecipientType</span><span class="p">.</span><span class="na">TO</span><span class="p">,</span> <span class="k">new</span> <span class="n">InternetAddress</span><span class="p">(</span><span class="n">to</span><span class="p">));</span>
+<span class="n">msg</span><span class="p">.</span><span class="na">setSentDate</span><span class="p">(</span><span class="k">new</span> <span class="n">Date</span><span class="p">());</span>
+<span class="n">msg</span><span class="p">.</span><span class="na">setSubject</span><span class="p">(</span><span class="n">subject</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">attachFnm</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+  <span class="n">msg</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">body</span><span class="p">);</span>
+<span class="k">else</span> <span class="p">{</span>   <span class="c1">// add body text and file as attachments</span>
+  <span class="n">MimeBodyPart</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MimeBodyPart</span><span class="p">();</span>
+  <span class="n">p1</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">body</span><span class="p">);</span>
+
+  <span class="n">String</span> <span class="n">mimeType</span> <span class="o">=</span> <span class="n">Info</span><span class="p">.</span><span class="na">getMIMEType</span><span class="p">(</span><span class="n">attachFnm</span><span class="p">);</span>
+
+  <span class="n">MimeBodyPart</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MimeBodyPart</span><span class="p">();</span>
+  <span class="n">FileDataSource</span> <span class="n">fds</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileDataSource</span><span class="p">(</span><span class="n">attachFnm</span><span class="p">);</span>
+  <span class="n">p2</span><span class="p">.</span><span class="na">setDataHandler</span><span class="p">(</span><span class="k">new</span> <span class="n">DataHandler</span><span class="p">(</span><span class="n">fds</span><span class="p">));</span>  <span class="c1">// add data,</span>
+  <span class="n">p2</span><span class="p">.</span><span class="na">setFileName</span><span class="p">(</span><span class="n">fds</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>            <span class="c1">// filename,</span>
+  <span class="n">p2</span><span class="p">.</span><span class="na">setHeader</span><span class="p">(</span><span class="s">&quot;Content-Type&quot;</span><span class="p">,</span> <span class="n">mimeType</span><span class="p">);</span>   <span class="c1">// MIME type</span>
+
+  <span class="c1">// create multipart</span>
+  <span class="n">Multipart</span> <span class="n">mp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MimeMultipart</span><span class="p">();</span>
+  <span class="n">mp</span><span class="p">.</span><span class="na">addBodyPart</span><span class="p">(</span><span class="n">p1</span><span class="p">);</span>   <span class="c1">// for body text</span>
+  <span class="n">mp</span><span class="p">.</span><span class="na">addBodyPart</span><span class="p">(</span><span class="n">p2</span><span class="p">);</span>   <span class="c1">// for the attached file</span>
+  <span class="n">msg</span><span class="p">.</span><span class="na">setContent</span><span class="p">(</span><span class="n">mp</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>If the message contains body text and an attachment then it's necessary to add them as
+MimeBodyPart objects in a Multipart container. Body text on its own can be added
+using SMTPMessage.setText().</p>
+<p>The MimeBodyPart holding the attachment must include the file's MIME type in its
+"Content-type" header.</p>
+<p>Once the message has been sent, the link is closed:</p>
+<div class="highlight"><pre><span></span><code><span class="n">transport</span><span class="p">.</span><span class="na">sendMessage</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">msg</span><span class="p">.</span><span class="na">getAllRecipients</span><span class="p">());</span>
+<span class="n">transport</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+</code></pre></div>
+<h2 id="4-the-desktop-api">4.  The Desktop API<a class="headerlink" href="#4-the-desktop-api" title="Permanent link">&para;</a></h2>
+<p>The Java equivalent of Office's SimpleSystemMail/SimpleCommandMail service is
+the Desktop.mail() method. It utilizes the OSes default e-mail client to post a
+message, which means that there's no need to download the javax.mail JAR. The
+delivery doesn't need to explicitly include the mail server address, port, login, and
+password since they're obtained from the client's settings.</p>
+<p>Desktop.mail() utilizes the mailto protocol to communicate with the client, but its
+specification (in RFC 2368, at <a href="http://www.ietf.org/rfc/rfc2368.txt">http://www.ietf.org/rfc/rfc2368.txt</a>) doesn't cover
+attachments. There are unofficial extensions supported by some clients, but they're not
+part of Thunderbird (but see the next section).</p>
+<p>The mailto syntax is:</p>
+<div class="highlight"><pre><span></span><code>&quot;mailto:&quot; recipients [ &quot;?&quot; key &quot;=&quot; value  (&quot;&amp;&quot; key &quot;=&quot; value)* ]
+</code></pre></div>
+<p>with</p>
+<ul>
+<li><code>recipients:</code> comma-separated e-mail addresses without spaces; Outlook needs
+semicolons instead of commas;</li>
+<li><code>key: subject, cc, bcc, body</code> (note: there's no attachment keyword);</li>
+<li><code>value:</code> URL-encoded text (e.g. space becomes %20).</li>
+</ul>
+<p>An example:</p>
+<div class="highlight"><pre><span></span><code>mailto:xxx@xxx?subject=Hello&amp;body=How%20are%20you%3F
+</code></pre></div>
+<p>Desktop.mail() is employed by JMail.sendEmailByClient(). An example of its use:</p>
+<div class="highlight"><pre><span></span><code>JMail.sendEmailByClient(&quot;xxx@xxx&quot;, &quot;Hello&quot;, &quot;How are you?&quot;);
+</code></pre></div>
+<p>There's no way in Desktop to suppress the client's GUI, which appears on-screen, and
+the user must press the "Send" button (or equivalent) to post out the message.</p>
+<p>JMail.sendEmailByClient() is:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the JMail class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">sendEmailByClient</span><span class="p">(</span><span class="n">String</span> <span class="n">to</span><span class="p">,</span>
+                                    <span class="n">String</span> <span class="n">subject</span><span class="p">,</span> <span class="n">String</span> <span class="n">body</span><span class="p">)</span>
+<span class="p">{</span>  <span class="n">sendEmailByClient</span><span class="p">(</span><span class="n">to</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>  <span class="p">}</span>
+
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">sendEmailByClient</span><span class="p">(</span><span class="n">String</span> <span class="n">to</span><span class="p">,</span> <span class="n">String</span> <span class="n">subject</span><span class="p">,</span>
+                                     <span class="n">String</span> <span class="n">body</span><span class="p">,</span> <span class="n">String</span> <span class="n">fnm</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">Desktop</span><span class="p">.</span><span class="na">isDesktopSupported</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Desktop mail not supported&quot;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// construct &quot;mailto:&quot; string for Desktop.mail()</span>
+  <span class="n">String</span> <span class="n">uriStr</span> <span class="o">=</span> <span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;mailto:%s?subject=%s&amp;body=%s&quot;</span><span class="p">,</span>
+                            <span class="n">encodeMailto</span><span class="p">(</span><span class="n">to</span><span class="p">),</span> <span class="n">encodeMailto</span><span class="p">(</span><span class="n">subject</span><span class="p">),</span>
+                            <span class="n">encodeMailto</span><span class="p">(</span><span class="n">body</span><span class="p">)</span> <span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">fnm</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="n">uriStr</span> <span class="o">+=</span> <span class="s">&quot;&amp;attachment=\&quot;&quot;</span> <span class="o">+</span> <span class="n">FileIO</span><span class="p">.</span><span class="na">getAbsolutePath</span><span class="p">(</span><span class="n">fnm</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">;</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">Desktop</span> <span class="n">desktop</span> <span class="o">=</span> <span class="n">Desktop</span><span class="p">.</span><span class="na">getDesktop</span><span class="p">();</span>
+    <span class="n">desktop</span><span class="p">.</span><span class="na">mail</span><span class="p">(</span><span class="k">new</span> <span class="n">URI</span><span class="p">(</span><span class="n">uriStr</span><span class="p">));</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+  <span class="p">{</span>  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">e</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of sendEmailByClient()</span>
+
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">encodeMailto</span><span class="p">(</span><span class="n">String</span> <span class="n">str</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">URLEncoder</span><span class="p">.</span><span class="na">encode</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="s">&quot;UTF-8&quot;</span><span class="p">).</span><span class="na">replace</span><span class="p">(</span><span class="s">&quot;+&quot;</span><span class="p">,</span> <span class="s">&quot;%20&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">UnsupportedEncodingException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+     <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not encode: \&quot;&quot;</span> <span class="o">+</span> <span class="n">str</span> <span class="o">+</span> <span class="s">&quot;\&quot;&quot;</span><span class="p">);</span>
+     <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of encodeMailto()</span>
+</code></pre></div>
+<p>Following the mailto specification, the key values in the mailto string must be URL
+encoded.</p>
+<p>sendEmailByClient() has an attachment argument mainly because I've read that some
+clients, such as Outlook, can accept it. But if I try to use an attachment with
+Thunderbird, the call to Desktop.mail() fails.</p>
+<h2 id="5-thunderbird-scripting">5.  Thunderbird Scripting<a class="headerlink" href="#5-thunderbird-scripting" title="Permanent link">&para;</a></h2>
+<p>The reason for my uncertainty about Thunderbird supporting attachments is that
+although it doesn't allow them in "mailto" strings, it can process attachments via its
+GUI, and the command line (see
+<a href="http://kb.mozillazine.org/Command_line_arguments_-_Thunderbird">http://kb.mozillazine.org/Command_line_arguments_-_Thunderbird</a>). Its command
+line features open up another way of sending e-mail: by having Java execute
+Thunderbird through an external script.</p>
+<p>My Windows batch file, called TBExec.bat, applies various checks to its command
+line arguments, and then invokes Thunderbird using:</p>
+<div class="highlight"><pre><span></span><code><span class="n">thunderbird</span><span class="p">.</span><span class="na">exe</span> <span class="o">-</span><span class="n">compose</span> <span class="s">&quot;to=&#39;%1&#39;,subject=&#39;%2&#39;,</span>
+<span class="s">                          body=&#39;%3&#39;,attachment=&#39;%CD%\%4&#39;&quot;</span>
+</code></pre></div>
+<p>The "attachment" value is an absolute file name.</p>
+<p>The Java code uses Runtime.exec() to execute the batch file, passing it three or four
+arguments:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the JMail class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">sendEmailByTB</span><span class="p">(</span><span class="n">String</span> <span class="n">to</span><span class="p">,</span> <span class="n">String</span> <span class="n">subject</span><span class="p">,</span>
+                                 <span class="n">String</span> <span class="n">body</span><span class="p">,</span> <span class="n">String</span> <span class="n">fnm</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">String</span> <span class="n">mailExec</span> <span class="o">=</span>
+      <span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;cmd /c TBExec.bat %s \&quot;%s\&quot; \&quot;%s\&quot;&quot;</span><span class="p">,</span>
+                                       <span class="n">to</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">body</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">fnm</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>  <span class="c1">// add attachment argument</span>
+    <span class="n">mailExec</span> <span class="o">+=</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">fnm</span><span class="p">;</span>
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">Process</span> <span class="n">p</span> <span class="o">=</span> <span class="n">Runtime</span><span class="p">.</span><span class="na">getRuntime</span><span class="p">().</span><span class="na">exec</span><span class="p">(</span><span class="n">mailExec</span><span class="p">);</span>
+    <span class="n">p</span><span class="p">.</span><span class="na">waitFor</span><span class="p">();</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Sent e-mail using Thunderbird&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">java</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Unable to send Thunderbird mail: &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of sendEmailByTB()</span>
+</code></pre></div>
+<p>As with Desktop.mail(), there's no way to stop the Thunderbird GUI from being
+displayed, and the user has to press the "Send" button to send off the message.</p>
+<h2 id="6-office-mail-merge">6.  Office Mail Merge<a class="headerlink" href="#6-office-mail-merge" title="Permanent link">&para;</a></h2>
+<p>Mail merge usually involves a spreadsheet of data and a form letter stored as a Writer
+template (an OTT file). Data from the spreadsheet replaces fields in the template, such
+as &lt; Name &gt; and &lt; Address &gt;, with real names and addresses, creating a series of
+personalized letters. Other common uses are to generate labels and envelopes.</p>
+<p>After the letters (or labels or envelopes) have been created, they can be saved to files
+(or to a single file), sent to a printer, or attached to e-mails. It's because of this last
+choice that I've included mail merging here.</p>
+<p>Figure 5 pictures the mail merge stages in more detail.</p>
+<p><img alt="" src="images/42-Sending_E-mail-5.png" /></p>
+<p>Figure 5. Mail Merging using a Spreadsheet and a Writer Template.</p>
+<h3 id="61-preparing-the-mail-merge-inputs">6.1.  Preparing the Mail Merge Inputs<a class="headerlink" href="#61-preparing-the-mail-merge-inputs" title="Permanent link">&para;</a></h3>
+<p>Mail merge configuration is most easily done using Office's GUI and wizards, and is
+excellently explained in chapter 11 of the Writer Guide (available from
+<a href="https://th.libreoffice.org/get-help/documentation/">https://th.libreoffice.org/get-help/documentation/</a>).</p>
+<p>A screenshot of a typical spreadsheet is shown in Figure 6.</p>
+<p><img alt="" src="images/42-Sending_E-mail-6.png" /></p>
+<p>Figure 6. The addresses.ods Spreadsheet.</p>
+<p>The field names employed in the template correspond to column names in the
+spreadsheet (e.g. "Title" and "First Name"). Also, if the merging involves posting out
+of e-mails then there must be an "E-mail" column in the sheet; those addresses will be
+used as the message recipients.</p>
+<p>The spreadsheet has to be converted into a data source for the merge. This is done via
+Office's  File, Wizards, Address Data Source menu item, as explained in the Writer
+Guide. The outcome is a new ODB file with the same name as the spreadsheet
+(addresses.odb in my case). This data source can be viewed from inside Calc by
+selecting the menu item View, Data Sources. The GUI display is shown in Figure 7.</p>
+<p><img alt="" src="images/42-Sending_E-mail-7.png" /></p>
+<p>Figure 7. Addresses.ods with a Data Source.</p>
+<p>The "Addresses" data source has been opened to show its "Addresses" table. Both of
+these names will be needed later when we start programming.</p>
+<p>The next step is to add fields in the "Addresses" table to the Writer template. This
+involves dragging field names from the top row of the  table over to the template, and
+positioning them in the text. Figure 8 shows part of the resulting template, stored in
+formLetter.ott.</p>
+<p><img alt="" src="images/42-Sending_E-mail-8.png" /></p>
+<p>Figure 8. Part of formLetter.ott.</p>
+<p>The fields are automatically displayed in angled brackets inside gray rectangles.</p>
+<h3 id="62-programming-the-mail-merge">6.2.  Programming the Mail Merge<a class="headerlink" href="#62-programming-the-mail-merge" title="Permanent link">&para;</a></h3>
+<p>The MailMerge service is located in the text module; most of its programming
+involves setting properties, and then calling XJob.execute(). The main services and
+interfaces are shown in Figure 9.</p>
+<p><img alt="" src="images/42-Sending_E-mail-9.png" /></p>
+<p>Figure 9. The MailMerge Service and Interfaces.</p>
+<p>The XMailMergeBroadcaster interface is employed to attach a listener to the merging
+process, and XCancellable can kill the merge.</p>
+<p>If you look at the documentation for the MailMerge and DataAccessDescriptor
+services (e.g. use <code>lodoc MailMerge</code>), you'll discover many properties in both, and
+that most (but not all) of the DataAccessDescriptor properties are redefined in
+MailMerge.</p>
+<p>The coding is summarized by the following snippet from Mail.mergeTask():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in Mail.mergeTask()</span>
+  <span class="p">:</span>
+<span class="n">XJob</span> <span class="n">job</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XJob</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                             <span class="s">&quot;com.sun.star.text.MailMerge&quot;</span><span class="p">);</span>
+
+<span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">job</span><span class="p">);</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;DataSourceName&quot;</span><span class="p">,</span> <span class="n">dataSourceName</span><span class="p">);</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;Command&quot;</span><span class="p">,</span> <span class="n">tableName</span><span class="p">);</span>
+  <span class="p">:</span>   <span class="c1">// many more properties are set...</span>
+  <span class="p">:</span>
+
+<span class="n">job</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="k">new</span> <span class="n">NamedValue</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
+</code></pre></div>
+<p>The MailMerge service is created as an XJob interface. Service properties are set, and
+then the merge is carried out by calling XJob.execute(). The NamedValue array is
+empty since there's no need to set any more properties using it.</p>
+<h3 id="63-specializing-the-merge">6.3.  Specializing the Merge<a class="headerlink" href="#63-specializing-the-merge" title="Permanent link">&para;</a></h3>
+<p>Mail.mergeTask() is passed numerous property values. To simplify its interface, the
+call is hidden inside three other functions called Mail.mergeLetter(),
+Mail.mergePrint(), and Mail.mergeEmail(), which focus on the three different
+outcomes of a merge (see Figure 5).</p>
+<p>Mail.mergeLetter() takes four arguments, three of which (data source name, table
+name, template filename) are needed for any kind of merge:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in  the Mail class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">mergeLetter</span><span class="p">(</span><span class="n">String</span> <span class="n">dataSourceName</span><span class="p">,</span>
+                               <span class="n">String</span> <span class="n">tableName</span><span class="p">,</span> <span class="n">String</span> <span class="n">templateFnm</span><span class="p">,</span>
+                               <span class="kt">boolean</span> <span class="n">isSingle</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Merging letters to files...&quot;</span><span class="p">);</span>
+  <span class="n">mergeTask</span><span class="p">(</span><span class="n">dataSourceName</span><span class="p">,</span> <span class="n">tableName</span><span class="p">,</span> <span class="n">templateFnm</span><span class="p">,</span>
+          <span class="n">MailMergeType</span><span class="p">.</span><span class="na">FILE</span><span class="p">,</span>
+          <span class="n">isSingle</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+  <span class="p">}</span>  <span class="c1">// end of mergeLetter()</span>
+</code></pre></div>
+<p>The following call to Mail.mergeLetter() saves six letters as "letter0.odt" to
+"letter5.odt":</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in MailMerge.java...</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">DATA_SOURCE_NAME</span> <span class="o">=</span> <span class="s">&quot;Addresses&quot;</span><span class="p">;</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">TABLE_NAME</span> <span class="o">=</span> <span class="s">&quot;Addresses&quot;</span><span class="p">;</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">TEMPLATE_FNM</span> <span class="o">=</span> <span class="s">&quot;formLetter.ott&quot;</span><span class="p">;</span>
+
+
+<span class="n">Mail</span><span class="p">.</span><span class="na">mergeLetter</span><span class="p">(</span><span class="n">DATA_SOURCE_NAME</span><span class="p">,</span> <span class="n">TABLE_NAME</span><span class="p">,</span> <span class="n">TEMPLATE_FNM</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+</code></pre></div>
+<p>I've defined the data source name, table name, and template filename as constants to
+make the call to Mail.mergeLetter() easier to read. The boolean argument specifies
+whether a single file should hold all the generated letters. The generated filenames are
+hardwired inside Mail.mergeTask() to be "letter" and a number.</p>
+<p>Six files are created since the spreadsheet (see Figure 6) has six rows of data.</p>
+<p>Mail.mergePrint() is passed the same first three arguments (data source name, table
+name, template filename), and a printer name and a boolean to signal whether
+multiple print jobs should be created:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in MailMerge.java...</span>
+<span class="n">Mail</span><span class="p">.</span><span class="na">mergePrint</span><span class="p">(</span><span class="n">DATA_SOURCE_NAME</span><span class="p">,</span> <span class="n">TABLE_NAME</span><span class="p">,</span> <span class="n">TEMPLATE_FNM</span><span class="p">,</span>
+                <span class="s">&quot;FinePrint&quot;</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+</code></pre></div>
+<p>This example will send a single combined print job to the "FinePrint" printer. The
+printer name can be obtained using one of the techniques explained in the previous
+chapter.</p>
+<p>Mail.mergePrint() calls Mail.mergeTask() with its printer name and multiple jobs
+boolean arguments set:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Mail class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">mergePrint</span><span class="p">(</span><span class="n">String</span> <span class="n">dataSourceName</span><span class="p">,</span>
+                              <span class="n">String</span> <span class="n">tableName</span><span class="p">,</span> <span class="n">String</span> <span class="n">templateFnm</span><span class="p">,</span>
+                       <span class="n">String</span> <span class="n">printerName</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">isMultipleJobs</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Merging letters for printing...&quot;</span><span class="p">);</span>
+  <span class="n">mergeTask</span><span class="p">(</span><span class="n">dataSourceName</span><span class="p">,</span> <span class="n">tableName</span><span class="p">,</span> <span class="n">templateFnm</span><span class="p">,</span>
+            <span class="n">MailMergeType</span><span class="p">.</span><span class="na">PRINTER</span><span class="p">,</span>
+           <span class="kc">false</span><span class="p">,</span> <span class="n">printerName</span><span class="p">,</span> <span class="n">isMultipleJobs</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of mergePrint()</span>
+</code></pre></div>
+<p>Mail.mergeEmail() is passed the data source name, table name, and template filename
+as before, and the mail server's password, e-mail subject line and body string:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in MailMerge.java...</span>
+<span class="n">Mail</span><span class="p">.</span><span class="na">mergeEmail</span><span class="p">(</span><span class="n">DATA_SOURCE_NAME</span><span class="p">,</span> <span class="n">TABLE_NAME</span><span class="p">,</span> <span class="n">TEMPLATE_FNM</span><span class="p">,</span>
+                <span class="n">password</span><span class="p">,</span>
+                <span class="s">&quot;Hello&quot;</span><span class="p">,</span> <span class="s">&quot;Please read the attached message.&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>Six e-mails are sent to the addresses listed in the "E-mail" column of the spreadsheet
+(see Figure 6). Each e-mail contains the subject and body text supplied in the call, and
+an attached copy of the personalized letter.</p>
+<p>Mail.mergeEmail() calls Mail.mergeTask():</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Mail class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">mergeEmail</span><span class="p">(</span><span class="n">String</span> <span class="n">dataSourceName</span><span class="p">,</span>
+                              <span class="n">String</span> <span class="n">tableName</span><span class="p">,</span> <span class="n">String</span> <span class="n">templateFnm</span><span class="p">,</span>
+                        <span class="n">String</span> <span class="n">passwd</span><span class="p">,</span> <span class="n">String</span> <span class="n">subject</span><span class="p">,</span> <span class="n">String</span> <span class="n">body</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Merging letters for sending as e-mail...&quot;</span><span class="p">);</span>
+  <span class="kt">boolean</span> <span class="n">isConfigured</span> <span class="o">=</span> <span class="n">checkMailConfig</span><span class="p">(</span><span class="n">passwd</span><span class="p">);</span>
+  <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;--&gt; Mailhost is &quot;</span> <span class="o">+</span>
+              <span class="p">(</span><span class="n">isConfigured</span> <span class="o">?</span> <span class="s">&quot;&quot;</span> <span class="p">:</span> <span class="s">&quot;NOT &quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;configured&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">isConfigured</span><span class="p">)</span>
+    <span class="n">mergeTask</span><span class="p">(</span><span class="n">dataSourceName</span><span class="p">,</span> <span class="n">tableName</span><span class="p">,</span> <span class="n">templateFnm</span><span class="p">,</span>
+              <span class="n">MailMergeType</span><span class="p">.</span><span class="na">MAIL</span><span class="p">,</span>
+              <span class="kc">false</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="n">passwd</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">body</span><span class="p">);</span>
+<span class="p">}</span>  <span class="c1">// end of mergeEmail()</span>
+</code></pre></div>
+<p>The e-mailing employs the same mailmerge.py Python script as MailServiceProvider,
+which means it will crash when using SSL encryption unless ssleay32.dll and
+libeay32.dll have been copied from Office's "program\" folder into "program\python-
+core-???\lib\". Please refer back to section 2 for more details.</p>
+<p>mailmerge.py attempts to open a link with the specified mail server at the given port,
+and usually has to supply a login and password to be allowed access. If you look back
+at the arguments passed to Mail.mergeEmail() you can see that the password is
+supplied, but what about the mail server address, its port, and a login name?  The only
+way to specify them is via Writer's option dialog. The relevant windows are shown in
+Figure 10.</p>
+<p><img alt="" src="images/42-Sending_E-mail-10.png" /></p>
+<p>Figure 10. Setting Writer E-mail Options.</p>
+<p>The left-hand dialog allows the mail server's address and port to be entered
+(fivedots.coe.psu.ac.th and 25). If secure communication is required (i.e. SSL, TLS, or
+STARTTLS), then the secure SSL checkbox is ticked and the "Server Authentication"
+button pressed. A second dialog opens, shown on the right in Figure 10, which lets
+you enter a login and password for accessing the server. It's good practice not to enter
+a password since the data is stored as plain text in "registrymodifications.xcu" in
+Office's user configuration directory (often the folder
+<span class="arithmatex">\(APPDATA\)</span>\LibreOffice\??\user). It's safer to pass the password to
+Mail.mergeTask() at run time, as I've done in Mail.mergeEmail().</p>
+<p>mergeEmail() calls Mail.checkMailConfig() to check if the mail server address, port
+number, username, and password can be found in "registrymodifications.xcu". If the
+first three aren't present then checkMailConfig() returns false and the merge is
+aborted. If the password is found, then a stern warning message is printed, but
+merging continues.</p>
+<p>checkMailConfig() calls Info.getRegItemProp() which uses XPath to search through
+"registrymodifications.xcu" for the specified property names and values.</p>
+<h3 id="64-mergetask-implementing-mail-merging">6.4.  mergeTask(): Implementing Mail Merging<a class="headerlink" href="#64-mergetask-implementing-mail-merging" title="Permanent link">&para;</a></h3>
+<p>mergeTask() is an expanded version of the code snippet given above which creates an
+XJob instance, sets properties in the MailMerge service, and calls XJob.execute().</p>
+<p>The properties settings are spread across if-tests which determine if the task involves
+file creation, printing, or e-mail. Also, a listener is attached to the merge process. The
+mergeTask() code:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// in the Mail class</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">mergeTask</span><span class="p">(</span><span class="n">String</span> <span class="n">dataSourceName</span><span class="p">,</span>
+                               <span class="n">String</span> <span class="n">tableName</span><span class="p">,</span>
+                               <span class="n">String</span> <span class="n">templateFnm</span><span class="p">,</span>
+         <span class="kt">short</span> <span class="n">outputType</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">isSingle</span><span class="p">,</span>           <span class="c1">// for FILE</span>
+         <span class="n">String</span> <span class="n">printerName</span><span class="p">,</span> <span class="kt">boolean</span> <span class="n">isMultipleJobs</span><span class="p">,</span>   <span class="c1">// for PRINTER</span>
+         <span class="n">String</span> <span class="n">passwd</span><span class="p">,</span> <span class="n">String</span> <span class="n">subject</span><span class="p">,</span> <span class="n">String</span> <span class="n">body</span><span class="p">)</span>   <span class="c1">// for MAIL</span>
+<span class="p">{</span>
+  <span class="n">XJob</span> <span class="n">job</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">createInstanceMCF</span><span class="p">(</span><span class="n">XJob</span><span class="p">.</span><span class="na">class</span><span class="p">,</span>
+                          <span class="s">&quot;com.sun.star.text.MailMerge&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">job</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not create MailMerge service&quot;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="n">XPropertySet</span> <span class="n">props</span> <span class="o">=</span> <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XPropertySet</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">job</span><span class="p">);</span>
+
+  <span class="c1">// standard task properties</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;DataSourceName&quot;</span><span class="p">,</span> <span class="n">dataSourceName</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;Command&quot;</span><span class="p">,</span> <span class="n">tableName</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;CommandType&quot;</span><span class="p">,</span> <span class="n">CommandType</span><span class="p">.</span><span class="na">TABLE</span><span class="p">);</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;DocumentURL&quot;</span><span class="p">,</span>
+                                <span class="n">FileIO</span><span class="p">.</span><span class="na">fnmToURL</span><span class="p">(</span><span class="n">templateFnm</span><span class="p">));</span>
+
+  <span class="c1">// vary properties based on output type</span>
+  <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;OutputType&quot;</span><span class="p">,</span> <span class="n">outputType</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">outputType</span> <span class="o">==</span> <span class="n">MailMergeType</span><span class="p">.</span><span class="na">FILE</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;SaveAsSingleFile&quot;</span><span class="p">,</span> <span class="n">isSingle</span><span class="p">);</span>
+    <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;FileNamePrefix&quot;</span><span class="p">,</span> <span class="s">&quot;letter&quot;</span><span class="p">);</span>
+                                      <span class="c1">// hardwired filename</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">outputType</span> <span class="o">==</span> <span class="n">MailMergeType</span><span class="p">.</span><span class="na">PRINTER</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;SinglePrintJobs&quot;</span><span class="p">,</span> <span class="n">isMultipleJobs</span><span class="p">);</span>
+                      <span class="c1">// true means one print job for each letter</span>
+    <span class="n">PropertyValue</span><span class="o">[]</span> <span class="n">pProps</span> <span class="o">=</span>
+       <span class="n">Props</span><span class="p">.</span><span class="na">makeProps</span><span class="p">(</span><span class="s">&quot;PrinterName&quot;</span><span class="p">,</span> <span class="n">printerName</span><span class="p">,</span> <span class="s">&quot;Wait&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+                                        <span class="c1">//  synchronous printing</span>
+           <span class="c1">// from com.sun.star.view.PrintOptions</span>
+    <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;PrintOptions&quot;</span><span class="p">,</span> <span class="n">pProps</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">outputType</span> <span class="o">==</span> <span class="n">MailMergeType</span><span class="p">.</span><span class="na">MAIL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">passwd</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+      <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;OutServerPassword&quot;</span><span class="p">,</span> <span class="n">passwd</span><span class="p">);</span>
+
+    <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;AddressFromColumn&quot;</span><span class="p">,</span> <span class="s">&quot;E-mail&quot;</span><span class="p">);</span>
+                                      <span class="c1">// hardwired column name</span>
+    <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;Subject&quot;</span><span class="p">,</span> <span class="n">subject</span><span class="p">);</span>
+    <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;MailBody&quot;</span><span class="p">,</span> <span class="n">body</span><span class="p">);</span>
+
+    <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;SendAsAttachment&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+    <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;AttachmentName&quot;</span><span class="p">,</span> <span class="s">&quot;letter.pdf&quot;</span><span class="p">);</span>
+                                    <span class="c1">// hardwired filename and type</span>
+    <span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;AttachmentFilter&quot;</span><span class="p">,</span>
+                                       <span class="s">&quot;writer_pdf_Export&quot;</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// monitor task&#39;s execution</span>
+  <span class="n">XMailMergeBroadcaster</span> <span class="n">xmmb</span> <span class="o">=</span>
+                       <span class="n">Lo</span><span class="p">.</span><span class="na">qi</span><span class="p">(</span><span class="n">XMailMergeBroadcaster</span><span class="p">.</span><span class="na">class</span><span class="p">,</span> <span class="n">job</span><span class="p">);</span>
+  <span class="n">xmmb</span><span class="p">.</span><span class="na">addMailMergeEventListener</span><span class="p">(</span> <span class="k">new</span> <span class="n">XMailMergeListener</span><span class="p">()</span>
+  <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">long</span> <span class="n">start</span> <span class="o">=</span> <span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">();</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">notifyMailMergeEvent</span><span class="p">(</span><span class="n">MailMergeEvent</span> <span class="n">e</span><span class="p">)</span>
+    <span class="p">{</span> <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+      <span class="n">XModel</span> <span class="n">model</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="na">Model</span><span class="p">;</span>
+      <span class="c1">// Props.showProps(&quot;Mail merge event&quot;, model.getArgs());</span>
+      <span class="kt">long</span> <span class="n">currTime</span> <span class="o">=</span> <span class="n">System</span><span class="p">.</span><span class="na">currentTimeMillis</span><span class="p">();</span>
+      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;  Letter &quot;</span> <span class="o">+</span> <span class="n">count</span> <span class="o">+</span> <span class="s">&quot;: &quot;</span> <span class="o">+</span>
+                                <span class="p">(</span><span class="n">currTime</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;ms&quot;</span><span class="p">);</span>
+      <span class="n">start</span> <span class="o">=</span> <span class="n">currTime</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="k">try</span> <span class="p">{</span>
+    <span class="n">job</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="k">new</span> <span class="n">NamedValue</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">catch</span> <span class="p">(</span><span class="n">com</span><span class="p">.</span><span class="na">sun</span><span class="p">.</span><span class="na">star</span><span class="p">.</span><span class="na">uno</span><span class="p">.</span><span class="na">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Could not start executing task: &quot;</span> <span class="o">+</span> <span class="n">e</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>  <span class="c1">// end of mergeTask()</span>
+</code></pre></div>
+<p>There are four properties that are always set:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;DataSourceName&quot;</span><span class="p">,</span> <span class="n">dataSourceName</span><span class="p">);</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;Command&quot;</span><span class="p">,</span> <span class="n">tableName</span><span class="p">);</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;CommandType&quot;</span><span class="p">,</span> <span class="n">CommandType</span><span class="p">.</span><span class="na">TABLE</span><span class="p">);</span>
+<span class="n">Props</span><span class="p">.</span><span class="na">setProperty</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s">&quot;DocumentURL&quot;</span><span class="p">,</span>
+                              <span class="n">FileIO</span><span class="p">.</span><span class="na">fnmToURL</span><span class="p">(</span><span class="n">templateFnm</span><span class="p">));</span>
+</code></pre></div>
+<p>These specify the use of a spreadsheet table, the data source name, and the template
+filename (as a URI).</p>
+<p>The other properties are divided up based on the MailMergeType constants FILE,
+PRINT, and MAIL (see <code>lodoc MailMergeType</code>).</p>
+<p>I've hardwired certain properties to reduce the number of arguments that need to be
+passed to Mail.mergeLetter(), Mail.mergePrint(), and Mail.mergeEmail().</p>
+<p>The listener implements the XMailMergeListener interface, and is attached through
+XMailMergeBroadcaster. notifyMailMergeEvent() is called each time a new letter is
+created. For my addresses.ods spreadsheet, it's triggered six times since there are six
+rows of data (see Figure 6).</p>
+<p>notifyMailMergeEvent() prints only timing information for each letter task, but more
+details could be obtained by accessing the event's model.</p>
 <h3 id="65-mail-merge-reliability">6.5.  Mail Merge Reliability<a class="headerlink" href="#65-mail-merge-reliability" title="Permanent link">&para;</a></h3>
-<p>Office's  mail merge wizard, which implements the "Office API" parts of Figure 5, 
-and so corresponds to my Mail.mergeTask()function, has a long history of crashing.  </p>
-<p>Mail.mergeTask() has always worked fine in my tests, except that it displays a 
-"LibreOffice has stopped working" error dialog after terminating. However, no 
-zombie Office processes are left over, so the dialog can be safely ignored and closed. </p>
+<p>Office's  mail merge wizard, which implements the "Office API" parts of Figure 5,
+and so corresponds to my Mail.mergeTask()function, has a long history of crashing.</p>
+<p>Mail.mergeTask() has always worked fine in my tests, except that it displays a
+"LibreOffice has stopped working" error dialog after terminating. However, no
+zombie Office processes are left over, so the dialog can be safely ignored and closed.</p>
                 
               
               

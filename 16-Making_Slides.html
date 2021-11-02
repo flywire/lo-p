@@ -1568,7 +1568,7 @@ may not be the case for other installations with different configurations.</p>
 methods, but the four in Figure 2 seem most useful. They set the "Layout" property in
 the DrawPage service in the com.sun.star.presentation module (not the one in the
 drawing module).</p>
-<p>The documentation for DrawPage (use lodoc DrawPage presentation service)
+<p>The documentation for DrawPage (use <code>lodoc DrawPage presentation service</code>)
 only says that "Layout" stores a short; it doesn't list the possible values or how they
 correspond to layouts. However, there is a list at the excellent Japanese Office
 website,  <a href="http://openoffice3.web.fc2.com/OOoBasic_Impress.html#OOoIPLy01a">http://openoffice3.web.fc2.com/OOoBasic_Impress.html#OOoIPLy01a</a>,
@@ -1764,7 +1764,7 @@ inherits both paragraph and character property classes, as indicated by Figure 5
 <p><img alt="" src="images/16-Making_Slides-5.png" /></p>
 <p>Figure 5. The TextRange Service.</p>
 <p>A look through the ParagraphProperties documentation reveals a "NumberingLevel"
-property which affects the displayed bullet level (use lodoc ParagraphProperties).</p>
+property which affects the displayed bullet level (use <code>lodoc ParagraphProperties</code>).</p>
 <p>Another way of finding out about the properties associated with XTextRange is to use
 my Props.showObjProps() to list all of them:</p>
 <div class="highlight"><pre><span></span><code><span class="n">Props</span><span class="p">.</span><span class="na">showObjProps</span><span class="p">(</span><span class="s">&quot;TextRange in OutlinerShape&quot;</span><span class="p">,</span> <span class="n">tr</span><span class="p">);</span>
@@ -2097,8 +2097,7 @@ dispatch commands.</p>
 their dispatch commands do appear in the UICommands.ods spreadsheet (available
 from <a href="https://arielch.fedorapeople.org/devel/ooo/UICommands.ods">https://arielch.fedorapeople.org/devel/ooo/UICommands.ods</a>). They're also
 mentioned, in less detail, in the online documentation for Impress dispatches at
-<a href="https://wiki.documentfoundation.org/Development/DispatchCommands#Impress_slot">https://wiki.documentfoundation.org/Development/DispatchCommands#Impress_slot</a>
-s_.28sdslots.29.</p>
+<a href="https://wiki.documentfoundation.org/Development/DispatchCommands#Impress_slots_.28sdslots.29">https://wiki.documentfoundation.org/Development/DispatchCommands#Impress_slots_.28sdslots.29</a>.</p>
 <p>It's quite easy to match up the tooltip names in the GUI with the dispatch names. For
 example, the smiley face in the Symbol shapes menu is called "Smiley Face" in the
 GUI and ".uno:SymbolShapes.smiley" in the UICommands spreadsheet.</p>
