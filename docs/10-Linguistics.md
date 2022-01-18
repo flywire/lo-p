@@ -352,7 +352,7 @@ Extensions:
 ```
 
 The "Loc" entries are the directories or OXT files containing the extensions. Most
-extensions are placed in the <OFFICE>\share\extensions\ folder on Windows.
+extensions are placed in the `<OFFICE>\share\extensions\` folder on Windows.
 
 Office can display similar information via its Tools, "Extension Manager" dialog, as
 in Figure 6.
@@ -828,7 +828,7 @@ https://extensions.libreoffice.org/extension-center?getCategories=Dictionary;
 many include a thesaurus with the dictionary.
 
 Thesaurus data is stored as ".idx" and ".dat" files in the same directory as the spell
-checker (i.e. in <OFFICE>\share\extensions\dict-en\), as can be seen in Figure 13.
+checker (i.e. in `<OFFICE>\share\extensions\dict-en\`), as can be seen in Figure 13.
 
 The files are built from WordNet data (https://wordnet.princeton.edu/), but use a text-
 based format explained very briefly in Daniel Naber's slides about the
@@ -847,7 +847,7 @@ nine for Java, listed at https://wordnet.princeton.edu/wordnet/related-projects/
 Office's default grammar checker (or proof reader) is Lightproof, a Python application
 developed by László Németh. Lightproof.py, and its support files, are installed in the
 same folder as the spell checker and thesaurus; on my machine that's
-<OFFICE>\share\extensions\dict-en\.
+`<OFFICE>\share\extensions\dict-en\`.
 
 Older versions of Lightproof are available from OpenOffice's extensions website at
 https://extensions.services.openoffice.org/project/lightproof. One reason for

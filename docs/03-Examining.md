@@ -43,7 +43,7 @@ online section is by typing:
 `loguide "Configuration Management"`
 
 Office stores a large assortment of XML configuration data as ".xcd" files in the
-<OFFICE>\share\registry directory. They can be programatically accessed in three
+`<OFFICE>\share\registry` directory. They can be programatically accessed in three
 steps: first a ConfigurationProvider service is created, which represents the
 configuration database tree. The tree is examined with a ConfigurationAccess service
 which is supplied with the path to the node of interest. Configuration properties can
@@ -85,8 +85,8 @@ System language location: ""
 ```
 
 Many other property names, which don't seem that useful, are documented in my Info
-class. One way of finding the most current list is to browse main.xcd in
-<OFFICE>\share\registry.
+class. One way of finding the most current list is to browse `main.xcd` in
+`<OFFICE>\share\registry`.
 
 
 ### 1.2.  Examining Path Settings

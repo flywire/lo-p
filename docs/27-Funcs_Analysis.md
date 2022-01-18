@@ -924,7 +924,7 @@ x == 200000.0 when x*1.0*0.075  == 15000
 
 ## 4.  Linear and Nonlinear Solving
 
-Calc supports both linear and nonlinear programming via its Tools  Solver menu
+Calc supports both linear and nonlinear programming via its Tools > Solver menu
 item. The name "linear programming" dates from just after World War II, and doesn't
 mean programming in the modern sense; in fact, it's probably better to use its other
 common name, "linear optimization".
@@ -953,7 +953,7 @@ solvers) – two linear optimizers called "LibreOffice Linear Solver" and "Libre
 CoinMP Linear Solver", and two nonlinear ones called "DEPS Evolutionary
 Algorithm" and "SCO Evolutionary Algorithm". The easiest way of checking the
 current solver situation in your version of Office is to look at Calc's Solver dialog
-window (by clicking on the Tools  Solver menu item), and click on the "Options"
+window (by clicking on the Tools > Solver menu item), and click on the "Options"
 button. The options dialog window lists all the installed solvers, and their numerous
 parameters, as in Figure 8.
 
@@ -966,7 +966,7 @@ Figure 8. The LibreOffice Solvers and their Parameters.
 Another way of getting a list of the installed solvers, is to call Calc.listSolvers(),
 which is demonstrated in the first example given below.
 
-The two linear solvers are implemented as DLLs, located in the <OFFICE>\program
+The two linear solvers are implemented as DLLs, located in the `<OFFICE>\program`
 folder as lpsolve55.dll and CoinMP.dll. The source code for these libraries is online,
 at https://docs.libreoffice.org/sccomp/html/files.html, with the code (and graphs of the
 code) accessible via the "Files" tab. The file names are LpsolveSolver.cxx and
@@ -1001,7 +1001,7 @@ also a Wikipedia page about COIN-OR.
 The two nonlinear solvers are known as DEPS and SCO for short, and are explained
 in the OpenOffice wiki at https://wiki.openoffice.org/wiki/NLPSolver, along with
 descriptions of their extensive (and complicated) parameters. They're implemented as
-JAR files, located in <OFFICE>\share\extensions\nlpsolver as nlpsolver.jar and
+JAR files, located in `<OFFICE>\share\extensions\nlpsolver` as nlpsolver.jar and
 EvolutionarySolver.jar. Two of the examples below use these solvers.
 
 
@@ -1013,9 +1013,9 @@ https://lpsolve.sourceforge.net/5.1/formulate.htm. There are three constraint
 inequalities:
 
 ```
-120x + 210y ≤ 15000
-110x + 30y ≤ 4000
-x + y ≤ 75
+120x + 210y <= 15000
+110x + 30y <= 4000
+x + y <= 75
 ```
 The 'profit' expression to be maximized is:
 
@@ -1305,8 +1305,8 @@ This restricts the search for intersection points to the top-right quadrant of t
 Alternatively I could have implemented two more constraints:
 
 ```
-x ≥ 0
-y ≥ 0
+x >= 0
+y >= 0
 ```
 
 The solver's results are printed by Calc.solverReport():
@@ -1379,9 +1379,9 @@ to Calc's solvers.
 There are three constraint inequalities:
 
 ```java
-x ≤ 6
-y ≤ 8
-z ≥ 4
+x <= 6
+y <= 8
+z >= 4
 ```
 
 The 'profit' expression to be maximized is:
@@ -1498,18 +1498,18 @@ The problem comes from the Wikipedia page on nonlinear programming
 inequalities:
 
 ```
-x ≥ 0
-y ≥ 0
+x >= 0
+y >= 0
 x
 2
  + y
 2
- ≥ 1
+ >= 1
 x
 2
  + y
 2
- ≤ 2
+ <= 2
 ```
 
 The 'profit' expression to be maximized is:

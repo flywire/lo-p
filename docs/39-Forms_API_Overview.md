@@ -43,7 +43,7 @@ creating a text-based form, it's well worth reading the Base chapter because it 
 into detail about the General, Data, and Events tab in the properties dialog.
 
 A somewhat simpler example, which is purely text-based without data sources, can be
-found at https://openoffice.blogs.com/forms_fromscratch.pdf. I used this article (which
+found at <https://openoffice.blogs.com/forms_fromscratch.pdf>. I used this article (which
 is titled "Creating Forms from Scratch") to create the scratchExample.odt file used
 here.
 
@@ -146,7 +146,7 @@ over in Office's very large awt module, which implements its version of Java's A
 The names of the services start to become a little unclear at this point since the words
 "Control" and "Model" often appear together (e.g. in FormControlModel,
 UnoControlButtonModel, and UnoControlModel). My advice is to remember that
-"Model beats Control" . If a class name includes the word "Model", then it's
+"Model beats Control" :-). If a class name includes the word "Model", then it's
 probably for the model/data part of the control. If the name contains only "Control"
 then it's most likely for the rendering/appearance or listener part of the control.
 
@@ -165,11 +165,11 @@ surrounding form.
 
 The principal documentation on the forms API is chapter 13 of the Developer's Guide
 available as
-https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf.
+<https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf>.
 Alternatively, you can read the chapter online, starting at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/Forms/Forms (or use
+<https://wiki.openoffice.org/wiki/Documentation/DevGuide/Forms/Forms> (or use
 `loGuide Forms`). The guide's form examples are at
-https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Forms.
+<https://api.libreoffice.org/examples/DevelopersGuide/examples.html#Forms>.
 
 
 ## 3.  Examining a Text-based Form

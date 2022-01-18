@@ -479,7 +479,7 @@ utilized. For example:
 // in CellTexts.java
      :
 // Insert two text paragraphs and a hyperlink into the cell
-XText xText = Lo.qi(XText.class, xCell);  // cell  text
+XText xText = Lo.qi(XText.class, xCell);  // cell -> text
 XTextCursor cursor = xText.createTextCursor();
 
 Write.appendPara(cursor, "Text in first line.");

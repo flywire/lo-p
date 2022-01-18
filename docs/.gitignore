@@ -1,0 +1,9 @@
+# Swap files
+*.swp
+
+# Output formats
+*.pdf
+*.odt
+*.mobi
+*.epub
+

@@ -384,9 +384,9 @@ The documentation on how to use this driver is quite sparse and out of date. The
 protocol is given as "sdbc:ado:<ADO specific connection string>", with two
 examples:
 
-* sdbc:ado:PROVIDER=Microsoft.Jet.OLEDB.4.0;
-DATA SOURCE= c:\northwind.mdb
-* sdbc:ado:Provider=msdaora;data source=testdb
+* `sdbc:ado:PROVIDER=Microsoft.Jet.OLEDB.4.0;`
+`DATA SOURCE= c:\northwind.mdb`
+* `sdbc:ado:Provider=msdaora;data source=testdb`
 The first is the most relevant, but only supports the old Access file format (MDB). For
 ACCDB files (Access 2007 and later), it must be revised to:
 

@@ -129,14 +129,14 @@ depending on if the macros are user or share, coded in Office Basic or another
 language, and on the version of Office and OS.
 
 The folders for share macros are probably the easiest to find – they're located inside
-<OFFICE>\share\ (e.g. C:\Program Files\LibreOffice 5\share\ on my machine). Basic
-macros are in share\basic\ while macros in other languages, such as Java, are in
-subfolders of share\Scripts\ (e.g. see Figure 3).
+`<OFFICE>\share\` (e.g. `C:\Program Files\LibreOffice 5\share\` on my machine). Basic
+macros are in `share\basic\` while macros in other languages, such as Java, are in
+subfolders of `share\Scripts\` (e.g. see Figure 3).
 
 
 ![](images/48-Event_Macros-3.png)
 
-Figure 3. The Non-Basic share\Scripts\ Macros Folders.
+Figure 3. The Non-Basic `share\Scripts\` Macros Folders.
 
 
 In other words, Java share macros will be in:
@@ -153,7 +153,7 @@ variable, which you can print out:
 echo %APPDATA%
 ```
 
-On my work test machine this prints "C:\Users\Ad\AppData\Roaming". You need to
+On my work test machine this prints `C:\Users\Ad\AppData\Roaming`. You need to
 locate the LibreOffice subdirectory in the Roaming\ folder and then its user\
 subdirectory, which will be inside LibreOffice\5\ or perhaps LibreOffice\4\. For
 instance, on one of my test machines the user\ folder is:
@@ -189,9 +189,9 @@ LANGPARAM identifies the macro's programming language, which may be "Basic",
 "BeanShell", "Java", "JavaScript", or "Python".
 
 LOCPARAM is the macro category, which for Java macros can be "user", "share", or
-"document". Extension macros use the label "user:uno_packages/" or
-"share:uno_packages/" followed by the name of the extension file (e.g.
-"user:uno_packages/FormMacros.oxt").
+"document". Extension macros use the label `user:uno_packages/` or
+`share:uno_packages/` followed by the name of the extension file (e.g.
+`user:uno_packages/FormMacros.oxt`).
 
 MACROPARAM takes the form:
 
@@ -381,39 +381,39 @@ Figure 4. The HelloWorld.printHW Macro.
 
 
 The four components of
-"HelloWorld.org.libreoffice.example.java_scripts.HelloWorld.printHW" are:
+`HelloWorld.org.libreoffice.example.java_scripts.HelloWorld.printHW` are:
 
 * folder: HelloWorld
-* package: org.libreoffice.example.java_scripts
-* class name: HelloWorld
-* function name: printHW
+* package: `org.libreoffice.example.java_scripts`
+* class name: `HelloWorld`
+* function name: `printHW`
 
-The HelloWorld\ folder is inside C:\Program Files\LibreOffice 5\share\Scripts\java\,
+The `HelloWorld\` folder is inside `C:\Program Files\LibreOffice 5\share\Scripts\java\`,
 as confirmed by Figure 5.
 
 
 ![](images/48-Event_Macros-5.png)
 
-Figure 5. The HelloWorld Folder in share\Scripts\java.
+Figure 5. The HelloWorld Folder in `share\Scripts\java`.
 
 
-Figure 5 also shows Highlight\, MemoryUsage\ and ShowEvent\ folders which hold
+Figure 5 also shows `Highlight\`, `MemoryUsage\` and `ShowEvent\` folders which hold
 the other three share macros listed by ListMacros.java.
 
-The HelloWorld\ folder contains the compiled HelloWorld class in a JAR file, and a
-parcel-descriptor.xml configuration file, which I'll explain later. It also has the source
+The `HelloWorld\` folder contains the compiled `HelloWorld` class in a JAR file, and a
+`parcel-descriptor.xml` configuration file, which I'll explain later. It also has the source
 code for HelloWorld, which isn’t required by Office, but included as an example for
-developers. Figure 6 shows the contents of HelloWorld\.
+developers. Figure 6 shows the contents of `HelloWorld\`.
 
 
 ![](images/48-Event_Macros-6.png)
 
-Figure 6. The Contents of the HelloWorld\ Folder.
+Figure 6. The Contents of the `HelloWorld\` Folder.
 
 
 The format of the HelloWorld class in the JAR file is:
 
-package org.libreoffice.example.java_scripts;
+`package org.libreoffice.example.java_scripts;`
 
 
 ```java
@@ -426,8 +426,8 @@ public class HelloWorld
 
 HelloWorld implements a single printHW() function.
 
-My FindMacros.java example calls Macros.findScripts() with a substring, and all the
-macro names containing that string are printed. For example, a search for "hello"
+My `FindMacros.java` example calls `Macros.findScripts()` with a substring, and all the
+macro names containing that string are printed. For example, a search for `hello`
 returns five matches:
 
 ```
@@ -658,7 +658,7 @@ Macros.execute("HelloWorld.org.libreoffice.example.
 ```
 
 This invokes the printHW() static method in the HelloWorld class in the
-org.libreoffice.example.java_scripts package shown back in Figure 4. The complete
+`org.libreoffice.example.java_scripts` package shown back in Figure 4. The complete
 code for the class (minus some comments) is:
 
 ```java
@@ -711,7 +711,7 @@ Figure 9. The LibreLogo Macro Module.
 Normally LibreLogo is accessed through its own View, Toolbars, Logo toolbar,
 which is just as well since the Macro selector doesn't list any macros in the LibreLogo
 module (see the empty area on the right of Figure 9). I had to examine the module's
-Python code in <OFFICE>\share\Scripts\python\LibreLogo\LibreLogo.py to work out
+Python code in `<OFFICE>\share\Scripts\python\LibreLogo\LibreLogo.py` to work out
 how to call it as a function.
 
 My UseLogo.java example creates a text document, writes the logo program text onto
@@ -951,8 +951,8 @@ jar cvf ShowEvent.jar ShowEvent.class
 ```
 
 The JAR is added to a new folder called ShowEvent\ beneath
-<OFFICE>\share\Scripts\java\, thereby making it a share macro. It's also necessary to
-include a parcel-descriptor.xml file:
+`<OFFICE>\share\Scripts\java\`, thereby making it a share macro. It's also necessary to
+include a `parcel-descriptor.xml` file:
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>

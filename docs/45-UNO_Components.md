@@ -54,7 +54,7 @@ service and interface with most of the necessary boilerplate API code. Other too
 mostly automate the creation of the component's extension file and its installation into
 Office.
 
-How this set of tools works together to form a code generation  compilation 
+How this set of tools works together to form a code generation -> compilation ->
 installation toolchain is somewhat confusing. Another problem is that some of the
 tools require changes to Window's PATH environment variable, and files and folders
 to be in specific locations. My solution to these issues is twelve (12!) batch files,
@@ -320,17 +320,17 @@ or use `loGuide "Type Mappings"`.
 ## 3.  Using idlc.bat
 
 My idlc.bat batch file utilizes idlc.exe, one of Office's SDK tools in
-<OFFICE>\sdk\bin\. Its main purpose is to generate type data, storing it in an URD
+`<OFFICE>\sdk\bin\`. Its main purpose is to generate type data, storing it in an URD
 file. A little more information can be found at
 https://api.libreoffice.org/docs/tools.html#idlc.
 
 Unfortunately,  idlc.exe can only process an IDL file if it's located in
-<OFFICE>\sdk\bin\, probably because its "-I" option can't find necessary support files
-when searching in other folders.  Also, the path to <OFFICE>\program\ must be
+`<OFFICE>\sdk\bin\`, probably because its "-I" option can't find necessary support files
+when searching in other folders.  Also, the path to `<OFFICE>\program\` must be
 added to Window's PATH environment variable so idlc.exe can employ DLLs stored
 there.
 
-The URD file is written to <OFFICE>\sdk\bin\, which is inconvenient, so idlc.bat
+The URD file is written to `<OFFICE>\sdk\bin\`, which is inconvenient, so idlc.bat
 moves the IDL and URD files back to the original directory.
 
 A typical call to idlc.bat uses the component's service name to identify the IDL file:
@@ -359,8 +359,8 @@ Tests\Component Tests\"
 
 The end result is the creation of a RandomSents.urd file.
 
-idlc.bat may fail because of its need to copy files into a folder beneath C:\Program
-Files\, which requires administrative privileges. The easiest workaround is to
+idlc.bat may fail because of its need to copy files into a folder beneath `C:\Program
+Files\`, which requires administrative privileges. The easiest workaround is to
 download the elevate.exe utility from https://code.kliu.org/misc/elevate/, which starts
 an administrative console so the necessary privileges are granted. The call to idlc.bat
 becomes:
@@ -382,7 +382,7 @@ descriptions in RDB (UCR stands for "Uno Core Reflection").
 The resulting RDB file can be printed using regview.exe.
 
 My regmerge.bat and regview.bat scripts call the corresponding UNO tools in
-<OFFICE>\program, and use the component's service name to identify the URD and
+`<OFFICE>\program`, and use the component's service name to identify the URD and
 RDB files. For example:
 
 ```
@@ -418,7 +418,7 @@ regview.bat.
 The RDB format was changed in LibreOffice 4.1, but most tools that use RDB can
 understand both the old and new formats. Unfortunately, regmerge.exe only generates
 old-style RDB, and regview cannot print the new format. That's means regview is
-useless for examining important registry databases in <OFFICE>\program, such as
+useless for examining important registry databases in `<OFFICE>\program`, such as
 types.rdb and services.rdb which use the new format.
 
 The API includes a com.sun.star.registry module with an XSimpleRegistry interface
@@ -433,7 +433,7 @@ readable).
 javamaker.exe (and cppumaker.exe) map IDL types to Java (and C++) using data
 from RDB files. RandomSents.rdb cannot be mapped on its own because it refers to
 types, such as XInterface, which it doesn't define. javamaker also needs Office's
-types.rdb, located in <OFFICE>\program.
+types.rdb, located in `<OFFICE>\program`.
 
 javamaker generates two things – a Java package representing the IDL module
 structure, and a Java ".class" file corresponding to the IDL interface.
@@ -528,10 +528,10 @@ few more times in the next two chapters since it can also generate code for add-
 and Calc add-ins.
 
 uno-skeletonmaker.exe suffers from the same constraints as idlc.exe – all its input
-data must be copied into its local directory (<OFFICE>\sdk\bin), and
-"<OFFICE>\program" must be added to Window's PATH environment variable so
-necessary DLLs can be located. As with idlc.exe, the copying of files into C:\Program
-Files\ requires administrative privileges, which may mean calling the batch file with
+data must be copied into its local directory (`<OFFICE>\sdk\bin`), and
+`<OFFICE>\program` must be added to Window's PATH environment variable so
+necessary DLLs can be located. As with idlc.exe, the copying of files into `C:\Program
+Files\` requires administrative privileges, which may mean calling the batch file with
 "elevate.exe".
 
 uno-skeletonmaker.exe requires a reference to the component's RDB file, Office's
@@ -621,7 +621,7 @@ getSentences().
 ## 7.  Compiling the Completed Implementation
 
 The completed RandomSentsImpl class is based on a Processing example at
-https://funprogramming.org/57-A-random-sentence-generator-writes-nonsense.html. I
+<https://funprogramming.org/57-A-random-sentence-generator-writes-nonsense.html>. I
 used that program's grammar and arrays of articles, adjectives, nouns, prepositions,
 and verbs.
 
@@ -916,7 +916,7 @@ by a Windows version of the UNIX zip tool downloaded from the Gow site
 ## 9.  Installing the Extension
 
 The Extension Manager can be started independently of Office by calling the unopkg
-tool in <OFFICE>\program with a "gui" argument; my extManager.bat script does
+tool in `<OFFICE>\program` with a "gui" argument; my extManager.bat script does
 this for you, resulting in a window something like Figure 7.
 
 
@@ -1010,12 +1010,12 @@ javac  -cp "%LO%\program\classes\*;."  %*
 ```
 
 The LO variable  is assigned the path to Office by code earlier in the script, and then
-javac looks in <Office>\program\classes for the JAR files that make up the API.
+javac looks in `<Office>\program\classes` for the JAR files that make up the API.
 
 This approach will not work when looking for the JAR that implements a new UNO
 component (e.g. RandomSentsImpl.jar in RandomSent.oxt). Extensions aren't stored
 with the API JARs, but usually in a folder below
-C:\Users\<USER_NAME>\AppData\Roaming\LibreOffice\. I say "usually" because
+`C:\Users\<USER_NAME>\AppData\Roaming\LibreOffice\`. I say "usually" because
 the location depends on the license details in the OXT description. The relevant field
 for RandomSent is:
 
@@ -1031,10 +1031,10 @@ for RandomSent is:
 ```
 
 The license will be accepted by a "user", which causes the extension to be installed in
-that user's AppData\Roaming\LibreOffice\ folder. Another licensing possibility is
+that user's `AppData\Roaming\LibreOffice\` folder. Another licensing possibility is
 "admin", which makes the extension available to everyone using Office on this
 machine. These are called shared mode extensions, and stored in
-<OFFICE>\share\extensions\.
+`<OFFICE>\share\extensions\`.
 
 In short then, how can javac.exe (and java.exe) find the JAR file for a new component
 when it comes time to compile (and run) a program such as PoemCreator.java?
@@ -1241,8 +1241,8 @@ Closing Office
 Office terminated
 
 Using RandomSents JAR:
-C:\Users\Ad\AppData\Roaming\LibreOffice\4\user\uno_packages\cache\uno
-_packages\lu29529rfgd.tmp_\RandomSents.oxt/RandomSentsImpl.jar
+`C:\Users\Ad\AppData\Roaming\LibreOffice\4\user\uno_packages\cache\uno
+_packages\lu29529rfgd.tmp_\RandomSents.oxt/RandomSentsImpl.jar`
 
 Compiling PoemCreator.java
            with LibreOffice SDK, JNA, Utils, and RandomSents...

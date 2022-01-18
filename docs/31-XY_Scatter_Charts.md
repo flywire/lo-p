@@ -430,7 +430,7 @@ public static int getNumberFormatKey(XChartDocument chartDoc,
 
 The string-to-key conversion is straight forward if you know what number format
 string to use, but there's little documentation on them. Probably the best approach is to
-use the Format  Cells menu item in a spreadsheet document, and examine the
+use the Format > Cells menu item in a spreadsheet document, and examine the
 dialog in Figure 7.
 
 

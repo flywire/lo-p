@@ -288,7 +288,7 @@ The calls to infilter.bat and convert.bat rely on the user knowing a filter's na
 other filters in Office?
 
 A list of filters present in OpenOffice in 2007 can be found at
-https://wiki.openoffice.org/wiki/Framework/Article/Filter/FilterList_OOo_3_0.
+<https://wiki.openoffice.org/wiki/Framework/Article/Filter/FilterList_OOo_3_0>.
 However, a better approach is to call my FiltersInfo.java example which prints all the
 filters currently installed in Office, and some extra details about the "AbiWord",
 "Pay", and "Clubs" filters:
@@ -472,7 +472,7 @@ equivalent to Office's libxslt library. This means that I can use the "Pay" and 
 filters outside of Office by passing them to Java's Xalan processor.
 
 There's a lot of information about JAXP online, including in Oracle's tutorial at
-https://docs.oracle.com/javase/tutorial/jaxp/. Also "XSLT 2.0 and XPath 2.0
+<https://docs.oracle.com/javase/tutorial/jaxp/>. Also "XSLT 2.0 and XPath 2.0
 Programmer's Reference" by Michael Kay, which I mentioned earlier, includes an
 appendix on JAXP.
 
@@ -1568,7 +1568,7 @@ objects back into XML documents. I'm interested in the unmarshalling parts so da
 can be passed to Office as Java objects rather than as XML.
 
 Most of the magic of the XML-to-Java conversion is performed by Java's xjc.exe tool
-which comes as part of the JDK (you'll find it in %java_home%\bin\ on Windows).
+which comes as part of the JDK (you'll find it in `%java_home%\bin\` on Windows).
 xjc processes an XML schema (an XSD file)  rather than XML since the schema
 contains information about the XML's underlying structure.
 
@@ -1611,7 +1611,7 @@ The schema gives the names and types for each field in a payment object, and mak
 payments a sequence of payment objects.
 
 A good tutorial on XSD can be found at w3schools.com:
-https://w3schools.com/Xml/schema_intro.asp
+<https://w3schools.com/Xml/schema_intro.asp>
 
 If the resulting schema is stored in pay.xsd, then xjc generates Java classes like so:
 

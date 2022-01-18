@@ -38,25 +38,25 @@ controlled and monitored by the program.
 The OOoBean class and its com.sun.star.comp.beans package aren't documented in
 LibreOffice, but there's an entire chapter about them in the Developer's Guide
 (chapter 16, "JavaBean for Office Components"), at
-https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf, and
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/JavaBean/JavaBean_for_Office_Components
+<https://wiki.openoffice.org/w/images/d/d9/DevelopersGuide_OOo3.1.0.pdf>, and
+<https://wiki.openoffice.org/wiki/Documentation/DevGuide/JavaBean/JavaBean_for_Office_Components>
 (or use `loGuide JavaBean`). The chapter's example,
 OOoBeanViewer, wraps OOoBean in an old-style Applet (not a JApplet), and can be
 downloaded from
-https://api.libreoffice.org/examples/DevelopersGuide/examples.html#OfficeBean.
+<https://api.libreoffice.org/examples/DevelopersGuide/examples.html#OfficeBean>.
 
 Another source of information is the OOoBean code at
-https://github.com/LibreOffice/core/blob/master/bean/com/sun/star/comp/beans/OOoBean.java.
+<https://github.com/LibreOffice/core/blob/master/bean/com/sun/star/comp/beans/OOoBean.java>.
 It's also possible to decompile OOoBean 's JAR file, which you'll find in
-<Office>\program\classes\officebean.jar.
+`<Office>\program\classes\officebean.jar`.
 
 As you browse the documentation and source code, you may get the feeling that
 OOoBean has been abandoned. It's true that some functionality have been deprecated,
 but OOoBean still mostly works. Setting it up is tricky, requiring an undocumented
-UNO_PATH environment variable to be set when Office is invoked. Also, integrating
-OOoBean with Swing and my LibreOffice support classes required some work.
+`UNO_PATH` environment variable to be set when Office is invoked. Also, integrating
+`OOoBean` with Swing and my LibreOffice support classes required some work.
 
-OOoBean utilizes many parts of the Office API, since it starts Office, loads a
+`OOoBean` utilizes many parts of the Office API, since it starts Office, loads a
 document, and displays it on a Java Canvas. Some of that can be seen in Figure 1
 which gives a simplified view of its classes and interfaces.
 
@@ -96,7 +96,7 @@ better by the LayoutManager service explained later.
 
 There's a table of one-line descriptions of OOoBean's methods in chapter 16 of the
 Developer's Guide, and online at
-https://wiki.openoffice.org/wiki/Documentation/DevGuide/JavaBean/API_Overview
+<https://wiki.openoffice.org/wiki/Documentation/DevGuide/JavaBean/API_Overview>
 (or use `loGuide JavaBean "API Overview"`). I'll only explain the methods used in
 my OBeanPanel class.
 
@@ -796,7 +796,7 @@ menus) corresponds to its name in Office's GUI.
 
 Another approach is to search Office's source code – dispatches are defined inside
 ".xcu" files, and the UI related files are mostly in the subdirectory
-<OFFICE>\officecfg\registry\schema\org\openoffice\Office\UI.
+`<OFFICE>\officecfg\registry\schema\org\openoffice\Office\UI`.
 
 
 #### Listening to User Input and the Window
