@@ -59,54 +59,52 @@ https://danielnaber.de/publications/, along with more recent material.
 
 Lingo.java prints a variety of information about the linguistics services:
 
-=== "java"
-    ```java
-    public static void main(String args[])
-    {
-      Lo.loadOffice();
-    
-      // print linguistics info
-      Write.dictsInfo();
-    
-      XLinguProperties linguProps = Write.getLinguProperties();
-      Props.showProps("Linguistic Manager", linguProps);
-    
-      Info.listExtensions();
-    
-      // get lingo manager
-      XLinguServiceManager2 lingoMgr =
-               Lo.createInstanceMCF(XLinguServiceManager2.class,
-                       "com.sun.star.linguistic2.LinguServiceManager");
-      if (lingoMgr == null) {
-        System.out.println("No linguistics manager found");
-        Lo.closeOffice();
-        return;
-      }
-    
-      Write.printServicesInfo(lingoMgr);
-    
-        : // code for using the services; see later
-    
-      Lo.closeOffice();
-    }  // end of main()
-    ```
+```java
+public static void main(String args[])
+{
+  Lo.loadOffice();
+
+  // print linguistics info
+  Write.dictsInfo();
+
+  XLinguProperties linguProps = Write.getLinguProperties();
+  Props.showProps("Linguistic Manager", linguProps);
+
+  Info.listExtensions();
+
+  // get lingo manager
+  XLinguServiceManager2 lingoMgr =
+           Lo.createInstanceMCF(XLinguServiceManager2.class,
+                   "com.sun.star.linguistic2.LinguServiceManager");
+  if (lingoMgr == null) {
+    System.out.println("No linguistics manager found");
+    Lo.closeOffice();
+    return;
+  }
+
+  Write.printServicesInfo(lingoMgr);
+
+    : // code for using the services; see later
+
+  Lo.closeOffice();
+}  // end of main()
+```
 
 
 ### 1.1.  Dictionary Information
 
 Write.dictsInfo() prints brief details about Office's dictionaries:
 
-=== "java"
-    ```java
-    No. of dictionaries: 5
-      standard.dic (1); active; ""; positive
-      en-GB.dic (42); active; "GB"; positive
-      en-US.dic (42); active; "US"; positive
-      technical.dic (258); active; ""; positive
-      IgnoreAllList (0); active; ""; positive
-    
-    No. of conversion dictionaries: 0
-    ```
+```java
+No. of dictionaries: 5
+  standard.dic (1); active; ""; positive
+  en-GB.dic (42); active; "GB"; positive
+  en-US.dic (42); active; "US"; positive
+  technical.dic (258); active; ""; positive
+  IgnoreAllList (0); active; ""; positive
+
+No. of conversion dictionaries: 0
+```
 
 Each line includes the name of a dictionary, its number of entries, whether it's active
 (i.e. being used), its locale, and whether it's a positive, negative, or mixed dictionary.
@@ -130,28 +128,27 @@ en-GB.dic won't be consulted when text is spell checked.
 
 Write.dictsInfo() is defined as:
 
-=== "java"
-    ```java
-    // in the Write class
-    public static void dictsInfo()
-    {
-      XSearchableDictionaryList dictList =
-               Lo.createInstanceMCF(XSearchableDictionaryList.class,
-                       "com.sun.star.linguistic2.DictionaryList");
-      if (dictList == null)
-        System.out.println("No list of dictionaries found");
-      else
-        printDictsInfo(dictList);
-    
-      XConversionDictionaryList cdList =
-               Lo.createInstanceMCF(XConversionDictionaryList.class,
-                   "com.sun.star.linguistic2.ConversionDictionaryList");
-      if (cdList == null)
-        System.out.println("No list of conversion dictionaries found");
-      else
-        printConDictsInfo(cdList);
-    }  // end of dictsInfo()
-    ```
+```java
+// in the Write class
+public static void dictsInfo()
+{
+  XSearchableDictionaryList dictList =
+           Lo.createInstanceMCF(XSearchableDictionaryList.class,
+                   "com.sun.star.linguistic2.DictionaryList");
+  if (dictList == null)
+    System.out.println("No list of dictionaries found");
+  else
+    printDictsInfo(dictList);
+
+  XConversionDictionaryList cdList =
+           Lo.createInstanceMCF(XConversionDictionaryList.class,
+               "com.sun.star.linguistic2.ConversionDictionaryList");
+  if (cdList == null)
+    System.out.println("No list of conversion dictionaries found");
+  else
+    printConDictsInfo(cdList);
+}  // end of dictsInfo()
+```
 
 It retrieves a conventional dictionary list first (called dictList), and iterates through its
 dictionaries using printDictsInfo(). Then it obtains the conversion dictionary list
@@ -169,41 +166,40 @@ Each dictionary in the list has an XDictionary interface which contains methods 
 accessing and changing its entries. printDictsInfo() retrieves an XDictionary array
 from the list, and prints out a summary of each dictionary:
 
-=== "java"
-    ```java
-    // in the Write class
-    public static void printDictsInfo(
-                          XSearchableDictionaryList dictList)
-    { if (dictList == null) {
-        System.out.println("Dictionary list is null");
-        return;
-      }
-      System.out.println("No. of dictionaries: " +
-                                         dictList.getCount());
-      XDictionary[] dicts = dictList.getDictionaries();
-      for(XDictionary dict : dicts)
-        System.out.println("  " + dict.getName() +
-                        " (" + dict.getCount() +
-                        "); " + (dict.isActive() ? "active" : "na") +
-                        "; \"" + dict.getLocale().Country +
-                        "\"; " +
-                        getDictType(dict.getDictionaryType()));
-      System.out.println();
-    }  // end of printDictsInfo()
-    
-    
-    public static String getDictType(DictionaryType dt)
-    {
-      if (dt == DictionaryType.POSITIVE)
-        return "positive";
-      else if (dt == DictionaryType.NEGATIVE)
-        return "negative";
-      else if (dt == DictionaryType.MIXED)
-        return "mixed";
-      else
-        return "??";
-    }  // end of getDictType()
-    ```
+```java
+// in the Write class
+public static void printDictsInfo(
+                      XSearchableDictionaryList dictList)
+{ if (dictList == null) {
+    System.out.println("Dictionary list is null");
+    return;
+  }
+  System.out.println("No. of dictionaries: " +
+                                     dictList.getCount());
+  XDictionary[] dicts = dictList.getDictionaries();
+  for(XDictionary dict : dicts)
+    System.out.println("  " + dict.getName() +
+                    " (" + dict.getCount() +
+                    "); " + (dict.isActive() ? "active" : "na") +
+                    "; \"" + dict.getLocale().Country +
+                    "\"; " +
+                    getDictType(dict.getDictionaryType()));
+  System.out.println();
+}  // end of printDictsInfo()
+
+
+public static String getDictType(DictionaryType dt)
+{
+  if (dt == DictionaryType.POSITIVE)
+    return "positive";
+  else if (dt == DictionaryType.NEGATIVE)
+    return "negative";
+  else if (dt == DictionaryType.MIXED)
+    return "mixed";
+  else
+    return "??";
+}  // end of getDictType()
+```
 
 Conversion dictionaries map words in one language/dialect to corresponding words in
 another language/dialect. 3 shows that conversion dictionaries are organized in
@@ -220,24 +216,23 @@ Write.dictsInfo() calls printConDictsInfo() to print the names of the conversion
 dictionaries – by extracting an XNameContainer from the dictionary list, and then
 pulling a list of the names from the container:
 
-=== "java"
-    ```java
-    // in the Write clas
-    public static void printConDictsInfo(
-                         XConversionDictionaryList cdList)
-    { if (cdList == null) {
-        System.out.println("Conversion Dictionary list is null");
-        return;
-      }
-      XNameContainer dcCon = cdList.getDictionaryContainer();
-      String[] dcNames = dcCon.getElementNames();
-      System.out.println("No. of conversion dictionaries: " +
-                                                dcNames.length);
-      for(String dcName : dcNames)
-        System.out.println("  " + dcName);
-      System.out.println();
-    }  // end of printConDictsInfo()
-    ```
+```java
+// in the Write clas
+public static void printConDictsInfo(
+                     XConversionDictionaryList cdList)
+{ if (cdList == null) {
+    System.out.println("Conversion Dictionary list is null");
+    return;
+  }
+  XNameContainer dcCon = cdList.getDictionaryContainer();
+  String[] dcNames = dcCon.getElementNames();
+  System.out.println("No. of conversion dictionaries: " +
+                                            dcNames.length);
+  for(String dcName : dcNames)
+    System.out.println("  " + dcName);
+  System.out.println();
+}  // end of printConDictsInfo()
+```
 
 
 Output similar to Write.dictsInfo() can be viewed via Office's Tools, Options,
@@ -275,12 +270,11 @@ https://libreoffice.org/get-help/documentation.
 Back in the Lingo.java example, Write.getLinguProperties() returns an instance of
 XLinguProperties, and its properties are printed by calling Props.showProps():
 
-=== "java"
-    ```java
-    // in Lingo.java
-    XLinguProperties linguProps = Write.getLinguProperties();
-    Props.showProps("Linguistic Manager", linguProps);
-    ```
+```java
+// in Lingo.java
+XLinguProperties linguProps = Write.getLinguProperties();
+Props.showProps("Linguistic Manager", linguProps);
+```
 
 The output:
 
@@ -371,32 +365,31 @@ Figure 6. The Extension Manager Dialog.
 
 The code for Info.listExtensions():
 
-=== "java"
-    ```java
-    // in the Info class
-    public static void listExtensions()
-    {
-      XPackageInformationProvider pip = getPip();
-      if (pip == null)
-        System.out.println("No package info provider found");
-      else {
-        String[][] extsTable = pip.getExtensionList();
-        System.out.println("\nExtensions:");
-        String serviceName;
-        for(int i=0; i < extsTable.length; i++) {
-          System.out.println((i+1) + ". ID: " + extsTable[i][0]);
-          System.out.println("   Version: " + extsTable[i][1]);
-          System.out.println("   Loc: " +
-                    pip.getPackageLocation(extsTable[i][0]));
-          System.out.println();
-        }
-      }
-    }  // end of listExtensions()
-    
-    
-    public static XPackageInformationProvider getPip()
-    {  return PackageInformationProvider.get(Lo.getContext());  }
-    ```
+```java
+// in the Info class
+public static void listExtensions()
+{
+  XPackageInformationProvider pip = getPip();
+  if (pip == null)
+    System.out.println("No package info provider found");
+  else {
+    String[][] extsTable = pip.getExtensionList();
+    System.out.println("\nExtensions:");
+    String serviceName;
+    for(int i=0; i < extsTable.length; i++) {
+      System.out.println((i+1) + ". ID: " + extsTable[i][0]);
+      System.out.println("   Version: " + extsTable[i][1]);
+      System.out.println("   Loc: " +
+                pip.getPackageLocation(extsTable[i][0]));
+      System.out.println();
+    }
+  }
+}  // end of listExtensions()
+
+
+public static XPackageInformationProvider getPip()
+{  return PackageInformationProvider.get(Lo.getContext());  }
+```
 
 Extensions are accessed via the XPackageInformationProvider interface.
 
@@ -421,22 +414,21 @@ Figure 7. The LinguServiceManager Service and Interfaces.
 In Lingo.java, the LinguServiceManager is instantiated and then
 Write.printServicesInfo() reports details about its services:
 
-=== "java"
-    ```java
-    // in Lingo.java
-       :
-    // get lingo manager
-    XLinguServiceManager2 lingoMgr =
-             Lo.createInstanceMCF(XLinguServiceManager2.class,
-                     "com.sun.star.linguistic2.LinguServiceManager");
-    if (lingoMgr == null) {
-      System.out.println("No linguistics manager found");
-      Lo.closeOffice();
-      return;
-    }
-    
-    Write.printServicesInfo(lingoMgr);
-    ```
+```java
+// in Lingo.java
+   :
+// get lingo manager
+XLinguServiceManager2 lingoMgr =
+         Lo.createInstanceMCF(XLinguServiceManager2.class,
+                 "com.sun.star.linguistic2.LinguServiceManager");
+if (lingoMgr == null) {
+  System.out.println("No linguistics manager found");
+  Lo.closeOffice();
+  return;
+}
+
+Write.printServicesInfo(lingoMgr);
+```
 
 Typical output from Write.printServicesInfo():
 
@@ -514,42 +506,41 @@ The three lists are generated by Write.printServicesInfo() calling
 Write.printAvailServiceInfo(), Write.printConfigServiceInfo(), and
 Write.printLocales():
 
-=== "java"
-    ```java
-    // in the Writer class
-    public static void printServicesInfo(
-                              XLinguServiceManager2 lingoMgr)
-    {
-      com.sun.star.lang.Locale loc =
-                      new com.sun.star.lang.Locale("en","US","");
-                            // American English locale
-    
-      System.out.println("Available Services:");
-      printAvailServiceInfo(lingoMgr, "SpellChecker", loc);
-      printAvailServiceInfo(lingoMgr, "Thesaurus", loc);
-      printAvailServiceInfo(lingoMgr, "Hyphenator", loc);
-      printAvailServiceInfo(lingoMgr, "Proofreader", loc);
-      System.out.println();
-    
-      System.out.println("Configured Services:");
-      printConfigServiceInfo(lingoMgr, "SpellChecker", loc);
-      printConfigServiceInfo(lingoMgr, "Thesaurus", loc);
-      printConfigServiceInfo(lingoMgr, "Hyphenator", loc);
-      printConfigServiceInfo(lingoMgr, "Proofreader", loc);
-      System.out.println();
-    
-      printLocales("SpellChecker", lingoMgr.getAvailableLocales(
-                           "com.sun.star.linguistic2.SpellChecker"));
-      printLocales("Thesaurus", lingoMgr.getAvailableLocales(
-                           "com.sun.star.linguistic2.Thesaurus"));
-      printLocales("Hyphenator", lingoMgr.getAvailableLocales(
-                          "com.sun.star.linguistic2.Hyphenator"));
-      printLocales("Proofreader", lingoMgr.getAvailableLocales(
-                          "com.sun.star.linguistic2.Proofreader"));
-      System.out.println();
-    
-    }  // end of printServicesInfo()
-    ```
+```java
+// in the Writer class
+public static void printServicesInfo(
+                          XLinguServiceManager2 lingoMgr)
+{
+  com.sun.star.lang.Locale loc =
+                  new com.sun.star.lang.Locale("en","US","");
+                        // American English locale
+
+  System.out.println("Available Services:");
+  printAvailServiceInfo(lingoMgr, "SpellChecker", loc);
+  printAvailServiceInfo(lingoMgr, "Thesaurus", loc);
+  printAvailServiceInfo(lingoMgr, "Hyphenator", loc);
+  printAvailServiceInfo(lingoMgr, "Proofreader", loc);
+  System.out.println();
+
+  System.out.println("Configured Services:");
+  printConfigServiceInfo(lingoMgr, "SpellChecker", loc);
+  printConfigServiceInfo(lingoMgr, "Thesaurus", loc);
+  printConfigServiceInfo(lingoMgr, "Hyphenator", loc);
+  printConfigServiceInfo(lingoMgr, "Proofreader", loc);
+  System.out.println();
+
+  printLocales("SpellChecker", lingoMgr.getAvailableLocales(
+                       "com.sun.star.linguistic2.SpellChecker"));
+  printLocales("Thesaurus", lingoMgr.getAvailableLocales(
+                       "com.sun.star.linguistic2.Thesaurus"));
+  printLocales("Hyphenator", lingoMgr.getAvailableLocales(
+                      "com.sun.star.linguistic2.Hyphenator"));
+  printLocales("Proofreader", lingoMgr.getAvailableLocales(
+                      "com.sun.star.linguistic2.Proofreader"));
+  System.out.println();
+
+}  // end of printServicesInfo()
+```
 
 The choice of services depends on the current locale, so printServicesInfo() begins by
 creating an American English locale, which matches my version of Office.
@@ -566,16 +557,15 @@ Locale objects from XLinguServiceManager.getAvailableLocales().
 There's a few examples in Lingo.java of applying the spell checker to individual
 words:
 
-=== "java"
-    ```java
-    // in Lingo.java
-    XSpellChecker speller = lingoMgr.getSpellChecker();
-    
-    Write.spellWord("horseback", speller);
-    Write.spellWord("ceurse", speller);
-    Write.spellWord("magisian", speller);
-    Write.spellWord("ellucidate", speller);
-    ```
+```java
+// in Lingo.java
+XSpellChecker speller = lingoMgr.getSpellChecker();
+
+Write.spellWord("horseback", speller);
+Write.spellWord("ceurse", speller);
+Write.spellWord("magisian", speller);
+Write.spellWord("ellucidate", speller);
+```
 
 XLinguServiceManager.getSpellChecker() returns a reference to the spell checker,
 and Write.spellWord() checks the supplied word. For the code above, the following is
@@ -612,27 +602,26 @@ Figure 8. The SpellChecker Service and Interfaces.
 Write.spellWord() utilizes XSpellChecker.spell() to find a spelling mistake, then
 prints the alternative spellings:
 
-=== "java"
-    ```java
-    // in the Write class
-    public static boolean spellWord(String word, XSpellChecker speller)
-    {
-      com.sun.star.lang.Locale loc =
-               new com.sun.star.lang.Locale("en", "US", "");
-                                       // American English
-      PropertyValue[] props = new PropertyValue[0];
-    
-      XSpellAlternatives alts = speller.spell(word, loc, props);
-      if (alts != null) {
-        System.out.println("* \"" + word + "\" is unknown. Try:");
-        String[] altWords = alts.getAlternatives();
-        Lo.printNames(altWords);
-        return false;
-      }
-      else
-        return true;
-    }   // end of spellWord()
-    ```
+```java
+// in the Write class
+public static boolean spellWord(String word, XSpellChecker speller)
+{
+  com.sun.star.lang.Locale loc =
+           new com.sun.star.lang.Locale("en", "US", "");
+                                   // American English
+  PropertyValue[] props = new PropertyValue[0];
+
+  XSpellAlternatives alts = speller.spell(word, loc, props);
+  if (alts != null) {
+    System.out.println("* \"" + word + "\" is unknown. Try:");
+    String[] altWords = alts.getAlternatives();
+    Lo.printNames(altWords);
+    return false;
+  }
+  else
+    return true;
+}   // end of spellWord()
+```
 
 XSpellChecker.spell() requires a locale and an array of properties, which I've left
 empty. The properties are those associated with XLinguProperties, which were listed
@@ -641,12 +630,11 @@ is presently true, which means that words in all-caps will be checked. The prope
 can be changed to false inside the PropertyValue array passed to
 XSpellChecker.spell(). For example:
 
-=== "java"
-    ```java
-    PropertyValue[] props =
-           Props.makeProps("IsSpellCapitalization", false);
-    XSpellAlternatives alts = speller.spell(word, loc, props);
-    ```
+```java
+PropertyValue[] props =
+       Props.makeProps("IsSpellCapitalization", false);
+XSpellAlternatives alts = speller.spell(word, loc, props);
+```
 
 Now an incorrectly spelt word in all-caps, such as "CEURSE", will be skipped over.
 
@@ -657,11 +645,10 @@ reports "CEURSE" as incorrectly spelt.
 
 Even a property change performed through the XLinguProperties interface, such as:
 
-=== "java"
-    ```java
-    XLinguProperties linguProps = Write.getLinguProperties();
-    Props.setProperty(linguProps, "IsSpellCapitalization", false);
-    ```
+```java
+XLinguProperties linguProps = Write.getLinguProperties();
+Props.setProperty(linguProps, "IsSpellCapitalization", false);
+```
 
 fails to change XSpellChecker.spell()'s behavior. The only way to make a change to
 the linguistic properties that is acted upon is through the "Options" pane in the
@@ -702,33 +689,31 @@ Unfortunately, there appears to be no API for accessing these Hunspell options. 
 best that can be done is to use a dispatch message to open the "English Sentence
 Checking" dialog in Figure 10. This done by calling Write.openSentCheckOptions():
 
-=== "java"
-    ```java
-    GUI.setVisible(doc, true);   // Office must be visible...
-    Lo.wait(2000);
-    Write.openSentCheckOptions();  // for the dialog to appear
-    ```
+```java
+GUI.setVisible(doc, true);   // Office must be visible...
+Lo.wait(2000);
+Write.openSentCheckOptions();  // for the dialog to appear
+```
 
 Write.openSentCheckOptions() uses an ".uno:OptionsTreeDialog" dispatch along
 with an URL argument for the dialog's XML definition file:
 
-=== "java"
-    ```java
-    // in the Writer class
-    public static void openSentCheckOptions()
-    // open "Options - Language Settings - English sentence checking
-    {
-      XPackageInformationProvider pip = Info.getPip();
-      String langExt = pip.getPackageLocation(
-                        "org.openoffice.en.hunspell.dictionaries");
-      // System.out.println("Lang Ext: " + langExt);
-      String url = langExt + "/dialog/en.xdl";
-    
-      PropertyValue[] props = Props.makeProps("OptionsPageURL", url);
-      Lo.dispatchCmd("OptionsTreeDialog", props);
-      Lo.wait(2000);
-    }  // end of openSentCheckOptions()
-    ```
+```java
+// in the Writer class
+public static void openSentCheckOptions()
+// open "Options - Language Settings - English sentence checking
+{
+  XPackageInformationProvider pip = Info.getPip();
+  String langExt = pip.getPackageLocation(
+                    "org.openoffice.en.hunspell.dictionaries");
+  // System.out.println("Lang Ext: " + langExt);
+  String url = langExt + "/dialog/en.xdl";
+
+  PropertyValue[] props = Props.makeProps("OptionsPageURL", url);
+  Lo.dispatchCmd("OptionsTreeDialog", props);
+  Lo.wait(2000);
+}  // end of openSentCheckOptions()
+```
 
 The XML file's location is obtained in two steps. First the ID of the Hunspell service
 ("org.openoffice.en.hunspell.dictionaries") is passed to
@@ -753,18 +738,17 @@ The URL required by the "OptionsTreeDialog" dispatch is constructed by appending
 
 Lingo.java contains two examples of how to use the thesaurus:
 
-=== "java"
-    ```java
-    // in Lingo.java
-       :
-    XLinguServiceManager2 lingoMgr =
-             Lo.createInstanceMCF(XLinguServiceManager2.class,
-                     "com.sun.star.linguistic2.LinguServiceManager");
-       :
-    XThesaurus thesaurus = lingoMgr.getThesaurus();
-    Write.printMeaning("magician", thesaurus);
-    Write.printMeaning("elucidate", thesaurus);
-    ```
+```java
+// in Lingo.java
+   :
+XLinguServiceManager2 lingoMgr =
+         Lo.createInstanceMCF(XLinguServiceManager2.class,
+                 "com.sun.star.linguistic2.LinguServiceManager");
+   :
+XThesaurus thesaurus = lingoMgr.getThesaurus();
+Write.printMeaning("magician", thesaurus);
+Write.printMeaning("elucidate", thesaurus);
+```
 
 The output from the first call to Write.printMeaning() is:
 
@@ -803,37 +787,36 @@ Figure 13. The Thesaurus Service and Interfaces.
 Write.printMeaning() calls XThesaurus.queryMeanings(), and prints the array of
 results:
 
-=== "java"
-    ```java
-    public static int printMeaning(String word, XThesaurus thesaurus)
-    {
-      com.sun.star.lang.Locale loc =
-                   new com.sun.star.lang.Locale("en", "US", "");
-                                          // American English
-      PropertyValue[] props = new PropertyValue[0];
-    
-      XMeaning[] meanings = thesaurus.queryMeanings(word, loc, props);
-      if (meanings == null) {
-        System.out.println("\"" + word +
-                                  "\" NOT found in thesaurus\n");
-        return 0;
-      }
-      else {
-        System.out.println("\"" + word + "\" found in thesaurus;
-                       number of meanings: " + meanings.length);
-        for (int i=0; i < meanings.length; i++) {
-          System.out.println((i+1) + ". Meaning: " +
-                                           meanings[i].getMeaning());
-          String[] synonyms = meanings[i].querySynonyms();
-          System.out.println("  No. of synonyms: " + synonyms.length);
-          for (int k=0; k < synonyms.length; k++)
-            System.out.println("    " + synonyms[k]);
-          System.out.println();
-        }
-        return meanings.length;
-      }
-    }  // end of printMeaning()
-    ```
+```java
+public static int printMeaning(String word, XThesaurus thesaurus)
+{
+  com.sun.star.lang.Locale loc =
+               new com.sun.star.lang.Locale("en", "US", "");
+                                      // American English
+  PropertyValue[] props = new PropertyValue[0];
+
+  XMeaning[] meanings = thesaurus.queryMeanings(word, loc, props);
+  if (meanings == null) {
+    System.out.println("\"" + word +
+                              "\" NOT found in thesaurus\n");
+    return 0;
+  }
+  else {
+    System.out.println("\"" + word + "\" found in thesaurus;
+                   number of meanings: " + meanings.length);
+    for (int i=0; i < meanings.length; i++) {
+      System.out.println((i+1) + ". Meaning: " +
+                                       meanings[i].getMeaning());
+      String[] synonyms = meanings[i].querySynonyms();
+      System.out.println("  No. of synonyms: " + synonyms.length);
+      for (int k=0; k < synonyms.length; k++)
+        System.out.println("    " + synonyms[k]);
+      System.out.println();
+    }
+    return meanings.length;
+  }
+}  // end of printMeaning()
+```
 
 In a similar way to XSpellChecker.spell(), XThesaurus.queryMeanings() requires a
 locale and an optional array of properties. printMeaning() utilizes American English,
@@ -921,36 +904,33 @@ Proofreader (1):
 This information can be used to set the proof reader. LanguageTool is made the
 default by calling Write.setConfiguredServices() like so:
 
-=== "java"
-    ```java
-    Write.setConfiguredServices(lingoMgr, "Proofreader",
-                              "org.languagetool.openoffice.Main");
-    ```
+```java
+Write.setConfiguredServices(lingoMgr, "Proofreader",
+                          "org.languagetool.openoffice.Main");
+```
 
 Alternatively, Lightproof can be enabled with:
 
-=== "java"
-    ```java
-    Write.setConfiguredServices(lingoMgr, "Proofreader",
-                        "org.libreoffice.comp.pyuno.Lightproof.en");
-    ```
+```java
+Write.setConfiguredServices(lingoMgr, "Proofreader",
+                    "org.libreoffice.comp.pyuno.Lightproof.en");
+```
 
 The code for Write.setConfiguredServices() is:
 
-=== "java"
-    ```java
-    // in the Write class
-    public static void setConfiguredServices(
-                          XLinguServiceManager2 lingoMgr,
-                          String service, String implName)
-    {
-      com.sun.star.lang.Locale loc =
-                      new com.sun.star.lang.Locale("en","US","");
-      String[] implNames = { implName };
-      lingoMgr.setConfiguredServices(
-          "com.sun.star.linguistic2." + service, loc, implNames);
-    }  // end of setConfiguredServices()
-    ```
+```java
+// in the Write class
+public static void setConfiguredServices(
+                      XLinguServiceManager2 lingoMgr,
+                      String service, String implName)
+{
+  com.sun.star.lang.Locale loc =
+                  new com.sun.star.lang.Locale("en","US","");
+  String[] implNames = { implName };
+  lingoMgr.setConfiguredServices(
+      "com.sun.star.linguistic2." + service, loc, implNames);
+}  // end of setConfiguredServices()
+```
 
 The function utilizes XLinguServiceManager.setConfiguredServices() to attach a
 particular implementation service (e.g. LanguageTool) to a specified linguistic service
@@ -992,16 +972,15 @@ Proofreader API.
 
 In Lingo.java the proof reader is loaded and called like so:
 
-=== "java"
-    ```java
-    // in Lingo.java
-        :
-    XProofreader proofreader = Write.loadProofreader();
-    System.out.println("Proofing...");
-    int numErrs =
-         Write.proofSentence("i dont have one one dogs.", proofreader);
-    System.out.println("No. of proofing errors: " + numErrs + "\n");
-    ```
+```java
+// in Lingo.java
+    :
+XProofreader proofreader = Write.loadProofreader();
+System.out.println("Proofing...");
+int numErrs =
+     Write.proofSentence("i dont have one one dogs.", proofreader);
+System.out.println("No. of proofing errors: " + numErrs + "\n");
+```
 
 The output is:
 
@@ -1032,51 +1011,49 @@ Figure 17. The Proofreader Service and Interfaces.
 
 Write.loadProofreader() creates the service:
 
-=== "java"
-    ```java
-    public static XProofreader loadProofreader()
-    {  return Lo.createInstanceMCF(XProofreader.class,
-                        "com.sun.star.linguistic2.Proofreader");  }
-    ```
+```java
+public static XProofreader loadProofreader()
+{  return Lo.createInstanceMCF(XProofreader.class,
+                    "com.sun.star.linguistic2.Proofreader");  }
+```
 
 Write.proofSentence() passes a sentence to XProofreader.doProofreading(), and prints
 the errors inside the returned ProofreadingResult instance:
 
-=== "java"
-    ```java
-    public static int proofSentence(String sent,
-                                     XProofreader proofreader)
-    { com.sun.star.lang.Locale loc =
-                 new com.sun.star.lang.Locale("en", "US", "");
-                         // American English
-      PropertyValue[] props = new PropertyValue[0];
-      int numErrs = 0;
-      ProofreadingResult prRes =
-               proofreader.doProofreading("1", sent, loc,
-                                          0, sent.length(), props);
-      if (prRes != null) {
-        SingleProofreadingError[] errs = prRes.aErrors;
-        if (errs.length > 0)
-          for(SingleProofreadingError err : errs) {
-            printProofError(sent, err);
-            numErrs++;
-          }
+```java
+public static int proofSentence(String sent,
+                                 XProofreader proofreader)
+{ com.sun.star.lang.Locale loc =
+             new com.sun.star.lang.Locale("en", "US", "");
+                     // American English
+  PropertyValue[] props = new PropertyValue[0];
+  int numErrs = 0;
+  ProofreadingResult prRes =
+           proofreader.doProofreading("1", sent, loc,
+                                      0, sent.length(), props);
+  if (prRes != null) {
+    SingleProofreadingError[] errs = prRes.aErrors;
+    if (errs.length > 0)
+      for(SingleProofreadingError err : errs) {
+        printProofError(sent, err);
+        numErrs++;
       }
-      return numErrs;
-    }  // end of proofSentence()
-    
-    public static void printProofError(String str,
-                                  SingleProofreadingError err)
-    { String errText = str.substring(err.nErrorStart,
-                                   err.nErrorStart + err.nErrorLength);
-      System.out.println("G* " + err.aShortComment +
-                                        " in: \"" + errText + "\"");
-      if (err.aSuggestions.length > 0)
-        System.out.println("   Suggested change: \"" +
-                                         err.aSuggestions[0] + "\"");
-      System.out.println();
-    }  // end of printProofError()
-    ```
+  }
+  return numErrs;
+}  // end of proofSentence()
+
+public static void printProofError(String str,
+                              SingleProofreadingError err)
+{ String errText = str.substring(err.nErrorStart,
+                               err.nErrorStart + err.nErrorLength);
+  System.out.println("G* " + err.aShortComment +
+                                    " in: \"" + errText + "\"");
+  if (err.aSuggestions.length > 0)
+    System.out.println("   Suggested change: \"" +
+                                     err.aSuggestions[0] + "\"");
+  System.out.println();
+}  // end of printProofError()
+```
 
 XProofreader.doProofreading() requires a locale and properties array in the same way
 as the earlier spell checking and thesaurus methods. It also needs two indices for the
@@ -1107,23 +1084,22 @@ Gaelic.
 
 There are two examples of language guessing in Lingo.java:
 
-=== "java"
-    ```java
-    // in Lingo.java
-       :
-    Locale loc = Write.guessLocale(
-                  "The rain in Spain stays mainly on the plain.");
-    Write.printLocale(loc);
-    if (loc != null)
-      System.out.println("Guessed language: " + loc.Language);
-    
-    loc = Write.guessLocale(
-                "A vaincre sans péril, on triomphe sans gloire.");
-              // To win without risk is a triumph without glory.
-    
-    if (loc != null)
-      System.out.println("Guessed language: " + loc.Language);
-    ```
+```java
+// in Lingo.java
+   :
+Locale loc = Write.guessLocale(
+              "The rain in Spain stays mainly on the plain.");
+Write.printLocale(loc);
+if (loc != null)
+  System.out.println("Guessed language: " + loc.Language);
+
+loc = Write.guessLocale(
+            "A vaincre sans péril, on triomphe sans gloire.");
+          // To win without risk is a triumph without glory.
+
+if (loc != null)
+  System.out.println("Guessed language: " + loc.Language);
+```
 
 The output is:
 
@@ -1136,23 +1112,22 @@ Guessed language: fr
 Write.guessLocale() creates the service, its interface, and calls
 XLanguageGuessing.guessPrimaryLanguage():
 
-=== "java"
-    ```java
-    // in the Writer class
-    public static com.sun.star.lang.Locale guessLocale(String testStr)
-    {
-      XLanguageGuessing guesser =
-           Lo.createInstanceMCF(XLanguageGuessing.class,
-                   "com.sun.star.linguistic2.LanguageGuessing");
-      if (guesser == null) {
-        System.out.println("No language guesser found");
-        return null;
-      }
-      else
-        return guesser.guessPrimaryLanguage(testStr,
-                                             0, testStr.length());
-    }  // end of guessLocale()
-    ```
+```java
+// in the Writer class
+public static com.sun.star.lang.Locale guessLocale(String testStr)
+{
+  XLanguageGuessing guesser =
+       Lo.createInstanceMCF(XLanguageGuessing.class,
+               "com.sun.star.linguistic2.LanguageGuessing");
+  if (guesser == null) {
+    System.out.println("No language guesser found");
+    return null;
+  }
+  else
+    return guesser.guessPrimaryLanguage(testStr,
+                                         0, testStr.length());
+}  // end of guessLocale()
+```
 
 XLanguageGuessing actually guesses a locale rather than a language, and the locale
 includes information about the language, country and a variant BCP 47 language
@@ -1164,20 +1139,19 @@ back to Java's Locale class which includes similar methods.
 Write.printLocale() converts an Office locale into a Java version, then prints its data
 in long form:
 
-=== "java"
-    ```java
-    public static void printLocale(com.sun.star.lang.Locale loc)
-    {
-      if (loc != null)  {
-        java.util.Locale jloc =
-            new java.util.Locale(loc.Language, loc.Country, loc.Variant);
-        System.out.println("Locale lang: \"" +
-                                       jloc.getDisplayLanguage() +
-                   "\"; country: \"" + jloc.getDisplayCountry() +
-                   "\"; variant: \"" + jloc.getDisplayVariant() + "\"");
-      }
-    }  // end of printLocale()
-    ```
+```java
+public static void printLocale(com.sun.star.lang.Locale loc)
+{
+  if (loc != null)  {
+    java.util.Locale jloc =
+        new java.util.Locale(loc.Language, loc.Country, loc.Variant);
+    System.out.println("Locale lang: \"" +
+                                   jloc.getDisplayLanguage() +
+               "\"; country: \"" + jloc.getDisplayCountry() +
+               "\"; variant: \"" + jloc.getDisplayVariant() + "\"");
+  }
+}  // end of printLocale()
+```
 
 
 ## 6.  Spell Checking and Grammar Checking a Document
@@ -1201,90 +1175,88 @@ paragraph are extracted using a sentence-based BreakIterator.
 
 The main() function of LingoFile.java:
 
-=== "java"
-    ```java
-    public static void main(String args[])
-    {
-      if (args.length < 1) {
-        System.out.println("Usage: run LingoFile <fnm>");
-        return;
-      }
-    
-      XComponentLoader loader = Lo.loadOffice();
-      XTextDocument doc = Write.openDoc(args[0], loader);
-      if (doc == null) {
-        System.out.println("Could not open " + args[0]);
-        Lo.closeOffice();
-        return;
-      }
-    
-      // load spell checker, proof reader
-      XSpellChecker speller = Write.loadSpellChecker();
-      XProofreader proofreader = Write.loadProofreader();
-    
-      BreakIterator bi = BreakIterator.getSentenceInstance(
-                                              java.util.Locale.US);
-    
-      // iterate through the doc by paragraphs
-      XParagraphCursor paraCursor = Write.getParagraphCursor(doc);
-      paraCursor.gotoStart(false);     // go to start of text
-      String currPara;
-      do {
-        paraCursor.gotoEndOfParagraph(true);
-                              // select all of paragraph
-        currPara = paraCursor.getString();
-        if (currPara.length() > 0)
-          checkSentences(currPara, bi, speller, proofreader);
-      } while (paraCursor.gotoNextParagraph(false));
-    
-      Lo.closeDoc(doc);
-      Lo.closeOffice();
-    }  // end of main()
-    ```
+```java
+public static void main(String args[])
+{
+  if (args.length < 1) {
+    System.out.println("Usage: run LingoFile <fnm>");
+    return;
+  }
+
+  XComponentLoader loader = Lo.loadOffice();
+  XTextDocument doc = Write.openDoc(args[0], loader);
+  if (doc == null) {
+    System.out.println("Could not open " + args[0]);
+    Lo.closeOffice();
+    return;
+  }
+
+  // load spell checker, proof reader
+  XSpellChecker speller = Write.loadSpellChecker();
+  XProofreader proofreader = Write.loadProofreader();
+
+  BreakIterator bi = BreakIterator.getSentenceInstance(
+                                          java.util.Locale.US);
+
+  // iterate through the doc by paragraphs
+  XParagraphCursor paraCursor = Write.getParagraphCursor(doc);
+  paraCursor.gotoStart(false);     // go to start of text
+  String currPara;
+  do {
+    paraCursor.gotoEndOfParagraph(true);
+                          // select all of paragraph
+    currPara = paraCursor.getString();
+    if (currPara.length() > 0)
+      checkSentences(currPara, bi, speller, proofreader);
+  } while (paraCursor.gotoNextParagraph(false));
+
+  Lo.closeDoc(doc);
+  Lo.closeOffice();
+}  // end of main()
+```
 
 Write.loadSpellChecker() hides the creation of the linguistics manager, and its
 retrieval of the spell checker:
 
-=== "java"
-    ```java
-    // in the Write class
-    public static XSpellChecker loadSpellChecker()
-    {
-      XLinguServiceManager lingoMgr =
-               Lo.createInstanceMCF(XLinguServiceManager.class,
-                       "com.sun.star.linguistic2.LinguServiceManager");
-      if (lingoMgr == null) {
-        System.out.println("No linguistics manager found");
-        return null;
-      }
-      else
-        return lingoMgr.getSpellChecker();
-    }  // end of loadSpellChecker()
-    
-    The BreakIterator is instantiated in main() using:
-    BreakIterator bi =
-            BreakIterator.getSentenceInstance(java.util.Locale.US);
-    but employed inside checkSentences(), which splits a paragraph into sentences:
-    
-    // in LingoFile.java
-    private static void checkSentences(String currPara,
-                   BreakIterator bi,
-                   XSpellChecker speller, XProofreader proofreader)
-    {
-      System.out.println("\n>> " + currPara);
-      bi.setText(currPara);
-      int lastIdx = bi.first();
-      while (lastIdx != BreakIterator.DONE) {
-        int firstIdx = lastIdx;
-        lastIdx = bi.next();
-        if (lastIdx != BreakIterator.DONE) {
-          String sentence = currPara.substring(firstIdx, lastIdx);
-          Write.proofSentence(sentence, proofreader);
-          Write.spellSentence(sentence, speller);
-        }
-      }
-    }  // end of checkSentences()
-    ```
+```java
+// in the Write class
+public static XSpellChecker loadSpellChecker()
+{
+  XLinguServiceManager lingoMgr =
+           Lo.createInstanceMCF(XLinguServiceManager.class,
+                   "com.sun.star.linguistic2.LinguServiceManager");
+  if (lingoMgr == null) {
+    System.out.println("No linguistics manager found");
+    return null;
+  }
+  else
+    return lingoMgr.getSpellChecker();
+}  // end of loadSpellChecker()
+
+The BreakIterator is instantiated in main() using:
+BreakIterator bi =
+        BreakIterator.getSentenceInstance(java.util.Locale.US);
+but employed inside checkSentences(), which splits a paragraph into sentences:
+
+// in LingoFile.java
+private static void checkSentences(String currPara,
+               BreakIterator bi,
+               XSpellChecker speller, XProofreader proofreader)
+{
+  System.out.println("\n>> " + currPara);
+  bi.setText(currPara);
+  int lastIdx = bi.first();
+  while (lastIdx != BreakIterator.DONE) {
+    int firstIdx = lastIdx;
+    lastIdx = bi.next();
+    if (lastIdx != BreakIterator.DONE) {
+      String sentence = currPara.substring(firstIdx, lastIdx);
+      Write.proofSentence(sentence, proofreader);
+      Write.spellSentence(sentence, speller);
+    }
+  }
+}  // end of checkSentences()
+```
 
 The index positions of the start of the current sentence and the start of the next
 sentence are stored in firstIdx and lastIdx, and used to extract a substring spanning the
@@ -1292,21 +1264,20 @@ current sentence. This is passed to Write.spellSentence() and Write.proofSentenc
 for spell and proof checking. Write.spellSentence() splits the sentence into an array of
 words, and calls Write.spellWord() on each one:
 
-=== "java"
-    ```java
-    // in the Write class
-    public static int spellSentence(String sent, XSpellChecker speller)
-    {
-      String[] words = sent.split("\\W+");   // split into words
-      int count = 0;
-      boolean isCorrect;
-      for(String word : words) {
-        isCorrect = spellWord(word, speller);
-        count = count + (isCorrect? 0 : 1);
-      }
-      return count;
-    }  // end of spellSentence()
-    ```
+```java
+// in the Write class
+public static int spellSentence(String sent, XSpellChecker speller)
+{
+  String[] words = sent.split("\\W+");   // split into words
+  int count = 0;
+  boolean isCorrect;
+  for(String word : words) {
+    isCorrect = spellWord(word, speller);
+    count = count + (isCorrect? 0 : 1);
+  }
+  return count;
+}  // end of spellSentence()
+```
 
 The poorly written "badGrammar.odt" is shown in Figure 18.
 

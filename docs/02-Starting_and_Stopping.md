@@ -42,26 +42,25 @@ Every program must load Office before working with a document, and shut it down
 before exiting. These tasks are handled by loadOffice() and closeOffice() from the Lo
 utility class. A typical program will look like the following:
 
-=== "java"
-    ```java
-    import com.sun.star.uno.*;
-    import com.sun.star.lang.*;
-    import com.sun.star.frame.*;
-    
-    
-    public class OfficeInfo
-    {
-      public static void main(String[] args)
-      {
-        XComponentLoader loader = Lo.loadOffice();
-    
-        // load, manipulate and close a document
-    
-        Lo.closeOffice();
-      } // end of main()
-    
-    }  // end of OfficeInfo class
-    ```
+```java
+import com.sun.star.uno.*;
+import com.sun.star.lang.*;
+import com.sun.star.frame.*;
+
+
+public class OfficeInfo
+{
+  public static void main(String[] args)
+  {
+    XComponentLoader loader = Lo.loadOffice();
+
+    // load, manipulate and close a document
+
+    Lo.closeOffice();
+  } // end of main()
+
+}  // end of OfficeInfo class
+```
 
 Lo.loadOffice() invokes Office and sets up a UNO bridge using named pipes. There's
 also a Lo.loadSocketOffice() which uses sockets instead of pipes. Both functions
@@ -73,46 +72,45 @@ both cases, a remote component context is created on the Java side (see Chapter 
 Figure 2) and then a service manager, Desktop object, and component loader are
 initialized. The code below shows some details:
 
-=== "java"
-    ```java
-    // in the Lo class
-    // globals
-    private static XComponentContext xcc = null;
-    private static XDesktop xDesktop = null;
-    private static XMultiComponentFactory mcFactory = null;
-    
-    
-    public static XComponentLoader loadOffice(boolean usingPipes)
-    {
-      System.out.println("Loading Office...");
-      if (usingPipes)
-        xcc = bootstrapContext(); // connects to office via pipes
-      else
-        xcc = socketContext();    // connects to office via a socket
-      if (xcc == null) {
-        System.out.println("Office context could not be created");
-        System.exit(1);
-      }
-    
-      // get the remote office service manager
-      mcFactory = xcc.getServiceManager();
-      if (mcFactory == null) {
-        System.out.println("Office Service Manager is unavailable");
-        System.exit(1);
-      }
-    
-      // desktop service handles application windows and documents
-      xDesktop = createInstanceMCF(XDesktop.class,
-                                   "com.sun.star.frame.Desktop");
-      if (xDesktop == null) {
-        System.out.println("Could not create a desktop service");
-        System.exit(1);
-      }
-    
-      // XComponentLoader provides ability to load components
-      return Lo.qi(XComponentLoader.class, xDesktop);
-    }  // end of loadOffice()
-    ```
+```java
+// in the Lo class
+// globals
+private static XComponentContext xcc = null;
+private static XDesktop xDesktop = null;
+private static XMultiComponentFactory mcFactory = null;
+
+
+public static XComponentLoader loadOffice(boolean usingPipes)
+{
+  System.out.println("Loading Office...");
+  if (usingPipes)
+    xcc = bootstrapContext(); // connects to office via pipes
+  else
+    xcc = socketContext();    // connects to office via a socket
+  if (xcc == null) {
+    System.out.println("Office context could not be created");
+    System.exit(1);
+  }
+
+  // get the remote office service manager
+  mcFactory = xcc.getServiceManager();
+  if (mcFactory == null) {
+    System.out.println("Office Service Manager is unavailable");
+    System.exit(1);
+  }
+
+  // desktop service handles application windows and documents
+  xDesktop = createInstanceMCF(XDesktop.class,
+                               "com.sun.star.frame.Desktop");
+  if (xDesktop == null) {
+    System.out.println("Could not create a desktop service");
+    System.exit(1);
+  }
+
+  // XComponentLoader provides ability to load components
+  return Lo.qi(XComponentLoader.class, xDesktop);
+}  // end of loadOffice()
+```
 
 loadOffice() probably illustrates my most significant coding decisions – the use of
 global static variables inside the Lo class. In particular, the XComponentContext,
@@ -125,33 +123,32 @@ second call will overwrite the globals set during the first call.
 
 The creation of the XDesktop interface object uses createInstanceMCF():
 
-=== "java"
-    ```java
-    // in the Lo class
-    public static <T> T createInstanceMCF(Class<T> aType,
-                                                String serviceName)
-    { if ((xcc == null) || (mcFactory == null)) {
-        System.out.println("No office connection found");
-        return null;
-      }
-    
-      T interfaceObj = null;
-      try {   // get service, then interface
-        Object o = mcFactory.createInstanceWithContext(serviceName, xcc);
-        interfaceObj = Lo.qi(aType, o);
-      }
-      catch (Exception e) {
-        System.out.println("Couldn't create interface for \"" +
-                                          serviceName + "\": " + e);
-      }
-      return interfaceObj;
-    }  // end of createInstanceMCF()
-    
-    
-    public static <T> T qi(Class<T> aType, Object o)
-    // the "Loki" function -- reduces typing
-    {  return UnoRuntime.queryInterface(aType, o);  }
-    ```
+```java
+// in the Lo class
+public static <T> T createInstanceMCF(Class<T> aType,
+                                            String serviceName)
+{ if ((xcc == null) || (mcFactory == null)) {
+    System.out.println("No office connection found");
+    return null;
+  }
+
+  T interfaceObj = null;
+  try {   // get service, then interface
+    Object o = mcFactory.createInstanceWithContext(serviceName, xcc);
+    interfaceObj = Lo.qi(aType, o);
+  }
+  catch (Exception e) {
+    System.out.println("Couldn't create interface for \"" +
+                                      serviceName + "\": " + e);
+  }
+  return interfaceObj;
+}  // end of createInstanceMCF()
+
+
+public static <T> T qi(Class<T> aType, Object o)
+// the "Loki" function -- reduces typing
+{  return UnoRuntime.queryInterface(aType, o);  }
+```
 
 If you ignore the error-checking, createInstanceMCF() does two things. The call to
 XMultiComponentFactory.createInstanceWithContext() asks the service manager
@@ -189,15 +186,14 @@ Office via pipes. It starts Office by calling Java's Runtime.exec(), and I've us
 same approach, but assumed that soffice.exe is part of Window's PATH environment
 variable. The relevant code fragment is:
 
-=== "java"
-    ```java
-    String[] cmdArray = new String[3];
-    cmdArray[0] = "soffice";
-    cmdArray[1] = "-headless";
-    cmdArray[2] = "-accept=socket,host=localhost,port=" +
-                                           SOCKET_PORT + ";urp;";
-    Process p = Runtime.getRuntime().exec(cmdArray);
-    ```
+```java
+String[] cmdArray = new String[3];
+cmdArray[0] = "soffice";
+cmdArray[1] = "-headless";
+cmdArray[2] = "-accept=socket,host=localhost,port=" +
+                                       SOCKET_PORT + ";urp;";
+Process p = Runtime.getRuntime().exec(cmdArray);
+```
 
 SOCKET_PORT has the value 8100. Since this port number is fixed, it’s possible to
 check the socket’s status outside Office. For example, on Windows, I type:
@@ -239,20 +235,19 @@ The Unix shell script versions of these files could use killall, pkill, ps, or k
 Lo.killOffice() inelegantly terminates Office by calling the lokill.bat script from
 inside Java:
 
-=== "java"
-    ```java
-    // part of the Lo class
-    public static void killOffice()
-    {
-      try {
-        Runtime.getRuntime().exec("cmd /c lokill.bat");
-        System.out.println("Killed Office");
-      }
-      catch (java.lang.Exception e) {
-        System.out.println("Unable to kill Office: " + e);
-      }
-    }  // end of killOffice()
-    ```
+```java
+// part of the Lo class
+public static void killOffice()
+{
+  try {
+    Runtime.getRuntime().exec("cmd /c lokill.bat");
+    System.out.println("Killed Office");
+  }
+  catch (java.lang.Exception e) {
+    System.out.println("Unable to kill Office: " + e);
+  }
+}  // end of killOffice()
+```
 
 The code is nasty since it relies on there being a cmd.exe OS tool and a lokill.bat
 batch file in the current directory.
@@ -263,26 +258,25 @@ batch file in the current directory.
 The general format of a program that opens a document, manipulates it in some way,
 and then saves it, is:
 
-=== "java"
-    ```java
-    public static void main(String[] args)
-    {
-      XComponentLoader loader = Lo.loadOffice();
-      XComponent doc = Lo.openDoc(args[0], loader);
-      if (doc == null) {
-        System.out.println("Could not open " + args[0]);
-        Lo.closeOffice();
-        return;
-      }
-    
-      // use the Office API to manipulate doc...
-    
-    
-      Lo.saveDoc(doc, "foo.docx");  // save as a Word file
-      Lo.closeDoc(doc);
-      Lo.closeOffice();
-    } // end of main()
-    ```
+```java
+public static void main(String[] args)
+{
+  XComponentLoader loader = Lo.loadOffice();
+  XComponent doc = Lo.openDoc(args[0], loader);
+  if (doc == null) {
+    System.out.println("Could not open " + args[0]);
+    Lo.closeOffice();
+    return;
+  }
+
+  // use the Office API to manipulate doc...
+
+
+  Lo.saveDoc(doc, "foo.docx");  // save as a Word file
+  Lo.closeDoc(doc);
+  Lo.closeOffice();
+} // end of main()
+```
 
 The new methods are Lo.openDoc(), Lo.saveDoc(), and Lo.closeDoc().
 
@@ -290,13 +284,12 @@ openDoc() calls XComponentLoader.loadComponentFromURL(), which requires a
 document URL, the type of Office frame used to display the document, optional
 search flags, and an array of document properties. For example:
 
-=== "java"
-    ```java
-    String fileURL = FileIO.fnmToURL(fnm);
-    PropertyValue[] props = Props.makeProps("Hidden", true);
-    XComponent doc =
-             loader.loadComponentFromURL(fileURL, "_blank", 0, props);
-    ```
+```java
+String fileURL = FileIO.fnmToURL(fnm);
+PropertyValue[] props = Props.makeProps("Hidden", true);
+XComponent doc =
+         loader.loadComponentFromURL(fileURL, "_blank", 0, props);
+```
 
 The frame type is almost always "_blank" which indicates that a new window will be
 created for the newly loaded document. (Other possibilities are listed in the
@@ -358,12 +351,11 @@ Table 2. URLs for Creating New Documents.
 
 For instance, a Writer document is created by:
 
-=== "java"
-    ```java
-    XComponent doc =
-         loader.loadComponentFromURL("private:factory/swriter",
-                                     "_blank", 0, props);
-    ```
+```java
+XComponent doc =
+     loader.loadComponentFromURL("private:factory/swriter",
+                                 "_blank", 0, props);
+```
 
 The utility classes include code for simplifying the creation of Writer, Draw, Impress,
 Calc, and Base documents, which I'll be looking at in later chapters.
@@ -375,16 +367,15 @@ Lo.loadDoc() and Lo.createDoc() do a bit of additional work after document
 loading/creation – they instantiate a XMultiServiceFactory service manager which is
 stored in the Lo class. This is done by applying Lo.qi() to the document:
 
-=== "java"
-    ```java
-    // global in Lo.java
-    private static XMultiServiceFactory msFactory = null;
-    
-    // in loadDoc()
-    XComponent doc =
-          loader.loadComponentFromURL(fileURL, "_blank", 0, props);
-    msFactory =  Lo.qi(XMultiServiceFactory.class, doc);
-    ```
+```java
+// global in Lo.java
+private static XMultiServiceFactory msFactory = null;
+
+// in loadDoc()
+XComponent doc =
+      loader.loadComponentFromURL(fileURL, "_blank", 0, props);
+msFactory =  Lo.qi(XMultiServiceFactory.class, doc);
+```
 
 I first employed Lo.qi() in createInstanceMCF() to access an interface inside a
 service. This time qi() is casting one interface (XComponent) to another
@@ -424,16 +415,15 @@ entered into an Office dialog by the user before the file can be opened again.
 
 The steps in saving a file are:
 
-=== "java"
-    ```java
-    String saveFileURL = FileIO.fnmToURL(fnm);
-    String[] nms = new String[] {"Overwrite", "FilterName", "Password"};
-    Object[] vals = new Object[] {true, format, password};
-    PropertyValue[] storeProps = Props.makeProps(nms, vals);
-    
-    XStorable store = Lo.qi(XStorable.class, doc);
-    store.storeToURL(saveFileURL, storeProps);
-    ```
+```java
+String saveFileURL = FileIO.fnmToURL(fnm);
+String[] nms = new String[] {"Overwrite", "FilterName", "Password"};
+Object[] vals = new Object[] {true, format, password};
+PropertyValue[] storeProps = Props.makeProps(nms, vals);
+
+XStorable store = Lo.qi(XStorable.class, doc);
+store.storeToURL(saveFileURL, storeProps);
+```
 
 I've used a variant of the Props.makeProps() method to create an array of three
 properties. If you don't want a password, then the third property should be left out.
@@ -458,10 +448,9 @@ Rather than force a programmer to search through this list for the correct name,
 Lo.saveDoc() allows him to supply just the name and extension of the output file. For
 example, in section 3, Lo.saveDoc() was called like so:
 
-=== "java"
-    ```java
-    Lo.saveDoc(doc, "foo.docx");
-    ```
+```java
+Lo.saveDoc(doc, "foo.docx");
+```
 
 saveDoc() extracts the file extension (i.e. "docx") and maps it to a corresponding filter
 name in Office (in this case, "Office Open XML Text"). One concern is that it's not
@@ -476,12 +465,11 @@ filter "writer_pdf_Export", but if the document is a spreadsheet then
 extension and the document's service name, which is accessed via the XServiceInfo
 interface:
 
-=== "java"
-    ```java
-    XServiceInfo xInfo = Lo.qi(XServiceInfo.class, doc);
-    boolean isWriter =     // is it a Writer doc?
-            xInfo.supportsService("com.sun.star.text.TextDocument");
-    ```
+```java
+XServiceInfo xInfo = Lo.qi(XServiceInfo.class, doc);
+boolean isWriter =     // is it a Writer doc?
+        xInfo.supportsService("com.sun.star.text.TextDocument");
+```
 
 The main document service names are listed in Table 3.
 
@@ -519,11 +507,10 @@ Lo.saveDoc() before calling Lo.closeDoc().
 The code for closing employs Lo.qi() to cast the document's XComponent interface to
 XCloseable:
 
-=== "java"
-    ```java
-    XCloseable closeable =  Lo.qi(XCloseable.class, doc);
-    closeable.close(false);   // doc. closed without saving
-    ```
+```java
+XCloseable closeable =  Lo.qi(XCloseable.class, doc);
+closeable.close(false);   // doc. closed without saving
+```
 
 
 ## 7.  A General Purpose Converter
@@ -532,52 +519,49 @@ The DocConverter.java example in "Office Tests/" takes two command line
 arguments: the name of an input file and the extension that should be used when
 saving the loaded document. For instance:
 
-=== "java"
-    ```java
-    run DocConverter points.ppt odp
-    ```
+```java
+run DocConverter points.ppt odp
+```
 
 will save slides in MS PowerPoint format as an Impress presentation. The following
 converts a JPEG image into PNG:
-=== "java"
-    ```java
-    run DocConverter skinner.jpg png
-    ```
+```java
+run DocConverter skinner.jpg png
+```
 
 The code for DocConverter is short:
 
-=== "java"
-    ```java
-    import com.sun.star.uno.*;
-    import com.sun.star.lang.*;
-    import com.sun.star.frame.*;
-    
-    
-    public class DocConverter
-    {
-      public static void main(String args[])
-      {
-        if (args.length != 2) {
-          System.out.println("Usage: DocConverter fnm extension");
-          return;
-        }
-    
-        XComponentLoader loader = Lo.loadOffice();
-        XComponent doc = Lo.openDoc(args[0], loader);
-        if (doc == null) {
-          System.out.println("Could not open " + args[0]);
-          Lo.closeOffice();
-          return;
-        }
-    
-        String name = Info.getName(args[0]);
-        Lo.saveDoc(doc, name + "." + args[1]);
-        Lo.closeDoc(doc);
-        Lo.closeOffice();
-      } // end of main()
-    
-    }  // end of DocConverter class
-    ```
+```java
+import com.sun.star.uno.*;
+import com.sun.star.lang.*;
+import com.sun.star.frame.*;
+
+
+public class DocConverter
+{
+  public static void main(String args[])
+  {
+    if (args.length != 2) {
+      System.out.println("Usage: DocConverter fnm extension");
+      return;
+    }
+
+    XComponentLoader loader = Lo.loadOffice();
+    XComponent doc = Lo.openDoc(args[0], loader);
+    if (doc == null) {
+      System.out.println("Could not open " + args[0]);
+      Lo.closeOffice();
+      return;
+    }
+
+    String name = Info.getName(args[0]);
+    Lo.saveDoc(doc, name + "." + args[1]);
+    Lo.closeDoc(doc);
+    Lo.closeOffice();
+  } // end of main()
+
+}  // end of DocConverter class
+```
 
 
 ## 8.  Bug Detection and Reporting

@@ -49,45 +49,43 @@ down Office.
 
 The main() function:
 
-=== "java"
-    ```java
-    // in BasicShow.java
-    public static void main(String args[])
-    {
-      XComponentLoader loader = Lo.loadOffice();
-      XComponent doc = Lo.openDoc(args[0], loader);
-      if (doc == null) {
-        System.out.println("Could not open "+ args[0]);
-        Lo.closeOffice();
-        return;
-      }
-    
-      GUI.setVisible(doc, true);
-         // slideshow start() crashes if the doc is not visible
-    
-      XPresentation2 show = Draw.getShow(doc);
-      Props.showObjProps("Slide show", show);
-      show.start();
-      XSlideShowController sc = Draw.getShowController(show);
-      Draw.waitEnded(sc);   // BasicShow waits for the user
-                            // to finish the slide show
-      Lo.closeDoc(doc);
-      Lo.closeOffice();
-    }  // end of main()
-    ```
+```java
+// in BasicShow.java
+public static void main(String args[])
+{
+  XComponentLoader loader = Lo.loadOffice();
+  XComponent doc = Lo.openDoc(args[0], loader);
+  if (doc == null) {
+    System.out.println("Could not open "+ args[0]);
+    Lo.closeOffice();
+    return;
+  }
+
+  GUI.setVisible(doc, true);
+     // slideshow start() crashes if the doc is not visible
+
+  XPresentation2 show = Draw.getShow(doc);
+  Props.showObjProps("Slide show", show);
+  show.start();
+  XSlideShowController sc = Draw.getShowController(show);
+  Draw.waitEnded(sc);   // BasicShow waits for the user
+                        // to finish the slide show
+  Lo.closeDoc(doc);
+  Lo.closeOffice();
+}  // end of main()
+```
 
 The document is opened in the normal way and a slide show object created by calling
 Draw.getShow(), which is defined as:
 
-=== "java"
-    ```java
-    // in the Draw class
-    public static XPresentation2 getShow(XComponent doc)
-    {
-      XPresentationSupplier ps = Lo.qi(XPresentationSupplier.class, doc);
-      return Lo.qi(XPresentation2.class, ps.getPresentation());
-    }
-    ```
+```java
+// in the Draw class
+public static XPresentation2 getShow(XComponent doc)
+{
+  XPresentationSupplier ps = Lo.qi(XPresentationSupplier.class, doc);
+  return Lo.qi(XPresentation2.class, ps.getPresentation());
+}
+```
 
 The call to Props.showObjProps() in main() prints the properties associated with the
 slide show, most of which are defined in the Presentation service (see Figure 1):
@@ -123,27 +121,26 @@ XSlideShowController instance is requested too quickly – null will be returned
 slide show hasn't finished being created. Draw.getShowController() handles this issue
 by waiting:
 
-=== "java"
-    ```java
-    // in the Draw class
-    public static XSlideShowController getShowController(
-                                            XPresentation2 show)
-    // keep trying to get the slide show controller
-    {
-      XSlideShowController sc = show.getController();
-         // may return null if executed too quickly after start of show
-    
-      int numTries = 1;
-      if ((sc == null) && (numTries < 4)) {  // try 3 times
-        Lo.delay(1000);  // give the slide show time to start
-        numTries++;
-        sc = show.getController();
-      }
-      if (sc == null)
-        System.out.println("Could not obtain slide show controller");
-      return sc;
-    }  // end of XSlideShowController getShowController()
-    ```
+```java
+// in the Draw class
+public static XSlideShowController getShowController(
+                                        XPresentation2 show)
+// keep trying to get the slide show controller
+{
+  XSlideShowController sc = show.getController();
+     // may return null if executed too quickly after start of show
+
+  int numTries = 1;
+  if ((sc == null) && (numTries < 4)) {  // try 3 times
+    Lo.delay(1000);  // give the slide show time to start
+    numTries++;
+    sc = show.getController();
+  }
+  if (sc == null)
+    System.out.println("Could not obtain slide show controller");
+  return sc;
+}  // end of XSlideShowController getShowController()
+```
 
 getShowController() tries to obtain the controller three times before giving up and
 returning null.
@@ -158,16 +155,15 @@ Back in BasicShow.java, the main() function suspends by calling Draw.waitEnded()
 the idea is that the program will sleep until the human presenter ends the slide show.
 waitEnded() is implemented using XSlideShowController:
 
-=== "java"
-    ```java
-    // in the Draw class
-    public static void waitEnded(XSlideShowController sc)
-    {
-      while (sc.getCurrentSlideIndex() != -1) //presentation not ended
-        Lo.delay(1000);
-      System.out.println("End of presentation detected");
-    }
-    ```
+```java
+// in the Draw class
+public static void waitEnded(XSlideShowController sc)
+{
+  while (sc.getCurrentSlideIndex() != -1) //presentation not ended
+    Lo.delay(1000);
+  System.out.println("End of presentation detected");
+}
+```
 
 XSlideShowController.getCurrentSlideIndex() normally returns a slide index (i.e. 0 or
 greater), but when the slide show has finished it returns -1. waitEnded() keeps polling
@@ -180,75 +176,72 @@ The AutoShow.java example removes the need for a presenter to click on a slide t
 progress to the next one, and terminates the show itself after the last slide had been
 displayed:
 
-=== "java"
-    ```java
-    // in AutoShow.java
-    public static void main(String args[])
-    {
-      XComponentLoader loader = Lo.loadOffice();
-      XComponent doc = Lo.openDoc(args[0], loader);
-      if (doc == null) {
-        System.out.println("Could not open "+ args[0]);
-        Lo.closeOffice();
-        return;
-      }
-    
-      GUI.setVisible(doc, true);
-    
-      // fast automatic change between all the slides
-      XDrawPage[] slides = Draw.getSlidesArr(doc);
-      for(XDrawPage slide : slides)
-        Draw.setTransition(slide, FadeEffect.NONE, AnimationSpeed.FAST,
-                                         Draw.AUTO_CHANGE, 1);
-    
-      XPresentation2 show = Draw.getShow(doc);
-      show.start();
-    
-      XSlideShowController sc = Draw.getShowController(show);
-    
-      Draw.waitLast(sc, 3000);  // terminate 3 seconds after the
-                                // last slide has been shown
-      System.out.println("Ending the slide show");
-      sc.deactivate();
-      show.end();
-    
-      Lo.closeDoc(doc);
-      Lo.closeOffice();
-    }  // end of main()
-    ```
+```java
+// in AutoShow.java
+public static void main(String args[])
+{
+  XComponentLoader loader = Lo.loadOffice();
+  XComponent doc = Lo.openDoc(args[0], loader);
+  if (doc == null) {
+    System.out.println("Could not open "+ args[0]);
+    Lo.closeOffice();
+    return;
+  }
+
+  GUI.setVisible(doc, true);
+
+  // fast automatic change between all the slides
+  XDrawPage[] slides = Draw.getSlidesArr(doc);
+  for(XDrawPage slide : slides)
+    Draw.setTransition(slide, FadeEffect.NONE, AnimationSpeed.FAST,
+                                     Draw.AUTO_CHANGE, 1);
+
+  XPresentation2 show = Draw.getShow(doc);
+  show.start();
+
+  XSlideShowController sc = Draw.getShowController(show);
+
+  Draw.waitLast(sc, 3000);  // terminate 3 seconds after the
+                            // last slide has been shown
+  System.out.println("Ending the slide show");
+  sc.deactivate();
+  show.end();
+
+  Lo.closeDoc(doc);
+  Lo.closeOffice();
+}  // end of main()
+```
 
 #### Automatic Slide Transitioning
 
 The automated transition between slides is configured by calling Draw.setTransition()
 on every slide in the deck:
 
-=== "java"
-    ```java
-    Draw.setTransition(slide, FadeEffect.NONE,
-                              AnimationSpeed.FAST,
-                              Draw.AUTO_CHANGE, 1);
-    ```
+```java
+Draw.setTransition(slide, FadeEffect.NONE,
+                          AnimationSpeed.FAST,
+                          Draw.AUTO_CHANGE, 1);
+```
 
 setTransition() combines the setting of four slide properties: "Effect", "Speed",
 "Change", and "Duration":
 
-=== "java"
-    ```java
-    // in the Draw class
-    public static void setTransition(XDrawPage currSlide,
-                 FadeEffect fadeEffect, AnimationSpeed speed,
-                 int change, int duration)
-    { try {
-        XPropertySet props = Lo.qi(XPropertySet.class, currSlide);
-        props.setPropertyValue("Effect", fadeEffect);
-        props.setPropertyValue("Speed", speed);
-        props.setPropertyValue("Change", change);
-        props.setPropertyValue("Duration", duration);  // in seconds
-      }
-      catch (Exception e)
-      {  System.out.println("Could not set slide transition");  }
-    }  // end of setTransition()
-    ```
+```java
+// in the Draw class
+public static void setTransition(XDrawPage currSlide,
+             FadeEffect fadeEffect, AnimationSpeed speed,
+             int change, int duration)
+{ try {
+    XPropertySet props = Lo.qi(XPropertySet.class, currSlide);
+    props.setPropertyValue("Effect", fadeEffect);
+    props.setPropertyValue("Speed", speed);
+    props.setPropertyValue("Change", change);
+    props.setPropertyValue("Duration", duration);  // in seconds
+  }
+  catch (Exception e)
+  {  System.out.println("Could not set slide transition");  }
+}  // end of setTransition()
+```
 
 Slide transition properties (such as "Effect", "Speed", "Change", and "Duration") are
 defined in the com.sun.star.presentation.DrawPage service. However, the possible
@@ -274,14 +267,13 @@ The "Change" property specifies how a transition is triggered. The property can 
 one of three integer values, which aren't defined by an enum for some reason. Instead,
 the programmer can use constants defined in my Draw class:
 
-=== "java"
-    ```java
-    // in the Draw class
-    // slide show change constants
-    public static final int CLICK_ALL_CHANGE = 0;
-    public static final int AUTO_CHANGE = 1;
-    public static final int CLICK_PAGE_CHANGE = 2;
-    ```
+```java
+// in the Draw class
+// slide show change constants
+public static final int CLICK_ALL_CHANGE = 0;
+public static final int AUTO_CHANGE = 1;
+public static final int CLICK_PAGE_CHANGE = 2;
+```
 
 The default behavior is represented by 0 (`Draw.CLICK_ALL_CHANGE`) which requires
 the presenter to click on a slide to change it, and a click is also need to trigger any
@@ -301,19 +293,18 @@ slide stays on display before the transition effect begins. This is different fr
 The other aspect of this automated slide show is making it stop when the last slide has
 been displayed. This is implemented by Draw.waitLast():
 
-=== "java"
-    ```java
-    // in the Draw class
-    public static void waitLast(XSlideShowController sc, int delay)
-    {
-      int numSlides = sc.getSlideCount();
-      while (sc.getCurrentSlideIndex() < numSlides-1) {
-                     // has not yet reached the last slide
-        Lo.delay(500);
-      }
-      Lo.delay(delay);
-    }  // end of waitLast()
-    ```
+```java
+// in the Draw class
+public static void waitLast(XSlideShowController sc, int delay)
+{
+  int numSlides = sc.getSlideCount();
+  while (sc.getCurrentSlideIndex() < numSlides-1) {
+                 // has not yet reached the last slide
+    Lo.delay(500);
+  }
+  Lo.delay(delay);
+}  // end of waitLast()
+```
 
 waitLast() keeps checking the current slide index and sleeps until the last slide in the
 deck is reached. It then goes to sleep one last time, to give the final slide time to be
@@ -326,27 +317,26 @@ Another common kind of automated slide show is one that plays the show repeatedl
 only terminating when the presenter steps in and presses the ESC key. This only
 requires four lines to be changed in AutoShow.java, shown in bold below:
 
-=== "java"
-    ```java
-    // in AutoShow.java
-      :
-    XPresentation2 show = Draw.getShow(doc);
-    Props.showObjProps("Slide show", show);
-    Props.setProperty(show, "IsEndless", true);
-    Props.setProperty(show, "Pause", 0);
-                       // no pause before repeating
-    show.start();
-    
-    XSlideShowController sc = Draw.getShowController(show);
-    
-    // Draw.waitLast(sc, 3000);
-            // commented out; replaced by the next line
-    Draw.waitEnded(sc);
-    System.out.println("Ending the slide show");
-    sc.deactivate();
-    show.end();
-      :
-    ```
+```java
+// in AutoShow.java
+  :
+XPresentation2 show = Draw.getShow(doc);
+Props.showObjProps("Slide show", show);
+Props.setProperty(show, "IsEndless", true);
+Props.setProperty(show, "Pause", 0);
+                   // no pause before repeating
+show.start();
+
+XSlideShowController sc = Draw.getShowController(show);
+
+// Draw.waitLast(sc, 3000);
+        // commented out; replaced by the next line
+Draw.waitEnded(sc);
+System.out.println("Ending the slide show");
+sc.deactivate();
+show.end();
+  :
+```
 
 The "IsEndless" property turns on slide show cycling, and "Pause" indicates how long
 the black "Click to exit" screen is displayed before the show restarts.
@@ -366,47 +356,45 @@ Draw.buildPlayList() creates the named play list using three arguments: the slid
 document, an array of slide indices which represents the intended playing sequence,
 and a name for the list. For example:
 
-=== "java"
-    ```java
-    int[] slideIdxs = new int[] {5, 6, 7, 8};
-    XNameContainer playList =
-             Draw.buildPlayList(doc, slideIdxs, "ShortPlay");
-    ```
+```java
+int[] slideIdxs = new int[] {5, 6, 7, 8};
+XNameContainer playList =
+         Draw.buildPlayList(doc, slideIdxs, "ShortPlay");
+```
 
 This creates a play list called "ShortPlay" which will show the slides with indices 5, 6,
 7, and 8 (note: the first slide has index 0). Draw.buildPlayList is used in the
 CustomShow.java example:
 
-=== "java"
-    ```java
-    // in CustomShow.java
-    public static void main(String args[])
-    {
-      XComponentLoader loader = Lo.loadOffice();
-      XComponent doc = Lo.openDoc("algs.odp", loader);
-      if (doc == null) {
-        System.out.println("Could not open algs.odp");
-        Lo.closeOffice();
-        return;
-      }
-    
-      GUI.setVisible(doc, true);
-    
-      int[] slideIdxs = new int[] {5, 6, 7, 8};
-      XNameContainer playList =
-          Draw.buildPlayList(doc, slideIdxs, "ShortPlay");
-    
-      XPresentation2 show = Draw.getShow(doc);
-      Props.setProperty(show, "CustomShow", "ShortPlay");
-    
-      show.start();
-      XSlideShowController sc = Draw.getShowController(show);
-      Draw.waitEnded(sc);
-    
-      Lo.closeDoc(doc);
-      Lo.closeOffice();
-    }  // end of main()
-    ```
+```java
+// in CustomShow.java
+public static void main(String args[])
+{
+  XComponentLoader loader = Lo.loadOffice();
+  XComponent doc = Lo.openDoc("algs.odp", loader);
+  if (doc == null) {
+    System.out.println("Could not open algs.odp");
+    Lo.closeOffice();
+    return;
+  }
+
+  GUI.setVisible(doc, true);
+
+  int[] slideIdxs = new int[] {5, 6, 7, 8};
+  XNameContainer playList =
+      Draw.buildPlayList(doc, slideIdxs, "ShortPlay");
+
+  XPresentation2 show = Draw.getShow(doc);
+  Props.setProperty(show, "CustomShow", "ShortPlay");
+
+  show.start();
+  XSlideShowController sc = Draw.getShowController(show);
+  Draw.waitEnded(sc);
+
+  Lo.closeDoc(doc);
+  Lo.closeOffice();
+}  // end of main()
+```
 
 The play list is installed by setting the "CustomShow" property in the slide show. The
 rest of the code in CustomShow.java is similar to the BasicShow.java example.
@@ -417,94 +405,90 @@ rest of the code in CustomShow.java is similar to the BasicShow.java example.
 The most confusing part of Draw.buildPlayList() is its use of two containers to hold
 the play list:
 
-=== "java"
-    ```java
-    // part of buildPlayList() in the Draw class
-          :
-    // get name container for the slide show
-    XNameContainer playList = Draw.getPlayList(doc);
-    
-    // get factory from the container
-    XSingleServiceFactory xFactory =
-                Lo.qi(XSingleServiceFactory.class, playList);
-    
-    // use factory to make an index container
-    XIndexContainer slidesCon =  Lo.qi(XIndexContainer.class,
-                                       xFactory.createInstance());
-          :
-    ```
+```java
+// part of buildPlayList() in the Draw class
+      :
+// get name container for the slide show
+XNameContainer playList = Draw.getPlayList(doc);
+
+// get factory from the container
+XSingleServiceFactory xFactory =
+            Lo.qi(XSingleServiceFactory.class, playList);
+
+// use factory to make an index container
+XIndexContainer slidesCon =  Lo.qi(XIndexContainer.class,
+                                   xFactory.createInstance());
+      :
+```
 
 An index container is created by XSingleServiceFactory.createInstance(), which
 requires a factory instance. This factory is most conveniently obtained from an
 existing container, namely the one for the slide show. That's obtained by
 Draw.getPlayList():
 
-=== "java"
-    ```java
-    // in the Draw class
-    public static XNameContainer getPlayList(XComponent doc)
-    // get a name container for the play list
-    {
-      XCustomPresentationSupplier cpSupp =
-                Lo.qi(XCustomPresentationSupplier.class, doc);
-      return cpSupp.getCustomPresentations();
-    }
-    ```
+```java
+// in the Draw class
+public static XNameContainer getPlayList(XComponent doc)
+// get a name container for the play list
+{
+  XCustomPresentationSupplier cpSupp =
+            Lo.qi(XCustomPresentationSupplier.class, doc);
+  return cpSupp.getCustomPresentations();
+}
+```
 
 Draw.buildPlayList() fills the index container with references to the slides, and then
 places it inside the name container:
 
-=== "java"
-    ```java
-    /* store the index container under the play list name
-       in the name container */
-    playList.insertByName(customName, slidesCon);
-    ```
+```java
+/* store the index container under the play list name
+   in the name container */
+playList.insertByName(customName, slidesCon);
+```
 
 In other words, the play list is a name container holding a named index container.
 
 The rest of buildPlayList() is straightforward:
 
-=== "java"
-    ```java
-    // in the Draw class
-    public static XNameContainer buildPlayList(XComponent doc,
-                              int[] slideIdxs, String customName)
-    {
-      // get a name container for the play list
-      XNameContainer playList = Draw.getPlayList(doc);
-    
-      try {
-        // create an index container for the play list
-        XSingleServiceFactory xFactory =
-                Lo.qi(XSingleServiceFactory.class, playList);
-        XIndexContainer slidesCon =  Lo.qi(XIndexContainer.class,
-                                          xFactory.createInstance());
-    
-        /* index container is assigned slide references
-           whose indices come from slideIdxs
-        */
-        System.out.println("Building play list using: ");
-        for(int j=0; j < slideIdxs.length; j++) {
-          XDrawPage slide = Draw.getSlide(doc, slideIdxs[j]);
-          if (slide != null) {
-            slidesCon.insertByIndex(j, slide);
-            System.out.println("  Slide " + slideIdxs[j]);
-          }
-        }
-    
-        /* store the index container under the play list name
-           in the name container */
-        playList.insertByName(customName, slidesCon);
-        System.out.println("Playlist has name: " + customName + "\n");
-        return playList;
+```java
+// in the Draw class
+public static XNameContainer buildPlayList(XComponent doc,
+                          int[] slideIdxs, String customName)
+{
+  // get a name container for the play list
+  XNameContainer playList = Draw.getPlayList(doc);
+
+  try {
+    // create an index container for the play list
+    XSingleServiceFactory xFactory =
+            Lo.qi(XSingleServiceFactory.class, playList);
+    XIndexContainer slidesCon =  Lo.qi(XIndexContainer.class,
+                                      xFactory.createInstance());
+
+    /* index container is assigned slide references
+       whose indices come from slideIdxs
+    */
+    System.out.println("Building play list using: ");
+    for(int j=0; j < slideIdxs.length; j++) {
+      XDrawPage slide = Draw.getSlide(doc, slideIdxs[j]);
+      if (slide != null) {
+        slidesCon.insertByIndex(j, slide);
+        System.out.println("  Slide " + slideIdxs[j]);
       }
-      catch (com.sun.star.uno.Exception e)
-      {  System.out.println("Unable to build play list: " + e);
-         return null;
-      }
-    }  // end of buildPlayList()
-    ```
+    }
+
+    /* store the index container under the play list name
+       in the name container */
+    playList.insertByName(customName, slidesCon);
+    System.out.println("Playlist has name: " + customName + "\n");
+    return playList;
+  }
+  catch (com.sun.star.uno.Exception e)
+  {  System.out.println("Unable to build play list: " + e);
+     return null;
+  }
+}  // end of buildPlayList()
+```
 
 The for-loop employs the array of indices to get references to the slides via
 Draw.getSlide(). Each reference is added to the index container.

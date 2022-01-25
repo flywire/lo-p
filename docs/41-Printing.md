@@ -67,13 +67,12 @@ whether a printer supports a document type, and the answer may be "no".
 
 The following code locates print services that support GIF documents sent from a file:
 
-=== "java"
-    ```java
-    // stage 1: find print services for GIF files
-    DocFlavor gifFlavor = DocFlavor.INPUT_STREAM.GIF;
-    PrintService[] services =
-           PrintServiceLookup.lookupPrintServices(gifFlavor, null);
-    ```
+```java
+// stage 1: find print services for GIF files
+DocFlavor gifFlavor = DocFlavor.INPUT_STREAM.GIF;
+PrintService[] services =
+       PrintServiceLookup.lookupPrintServices(gifFlavor, null);
+```
 
 The matching print services are returned in a PrintService[] array.
 
@@ -99,15 +98,14 @@ job, such as whether it has successfully finished.
 The following code fragment looks for printer services that can print on both sides of
 A4 paper:
 
-=== "java"
-    ```java
-    // stage 1 example using attributes
-    AttributeSet attrs = new HashAttributeSet();
-    attrs.add(MediaSizeName.ISO_A4);
-    attrs.add(Sides.DUPLEX);
-    PrintService[] services =
-             PrintServiceLookup.lookupPrintServices(null, attrs);
-    ```
+```java
+// stage 1 example using attributes
+AttributeSet attrs = new HashAttributeSet();
+attrs.add(MediaSizeName.ISO_A4);
+attrs.add(Sides.DUPLEX);
+PrintService[] services =
+         PrintServiceLookup.lookupPrintServices(null, attrs);
+```
 
 AttributeSet is an interface and HashAttributeSet an implementation which supports
 the four kinds of attributes.
@@ -120,34 +118,31 @@ example above.
 
 The next fragment creates a Doc object for a GIF file, a stage 2 task in JPS printing:
 
-=== "java"
-    ```java
-    // stage 2 : create a Doc object for a GIF file
-    FileInputStream in = new FileInputStream(fileName);
-    Doc doc = new SimpleDoc(in, gifFlavor, null);
-    ```
+```java
+// stage 2 : create a Doc object for a GIF file
+FileInputStream in = new FileInputStream(fileName);
+Doc doc = new SimpleDoc(in, gifFlavor, null);
+```
 
 The third argument of the SimpleDoc constructor can be a set of document attributes
 (DAs).
 
 JPS stage 3 involves the creation of a print job, and perhaps a listener:
 
-=== "java"
-    ```java
-    // stage 3: print job creation
-    DocPrintJob job = service[0].createPrintJob();
-    job.addPrintJobListener(new PrintJobAdapter() {...} );
-    ```
+```java
+// stage 3: print job creation
+DocPrintJob job = service[0].createPrintJob();
+job.addPrintJobListener(new PrintJobAdapter() {...} );
+```
 
 The listener will receive information about the print job's progress as print job
 attributes (PJAs).
 
 Stage 4 starts the printing:
 
-=== "java"
-    ```java
-    job.print(doc, null);
-    ```
+```java
+job.print(doc, null);
+```
 
 The second argument of print() can be a set of print request attributes (PRAs).
 
@@ -158,24 +153,23 @@ The ListPrinters.java example in this section focuses on JPS stage 1. It prints 
 details about all the available printers, fuller information about the default printer, and
 a list of printer names. The main() function:
 
-=== "java"
-    ```java
-    // in ListPrinters.java
-    public static void main(String [] args)
-    {
-      JPrint.listServices();         // short info
-      // JPrint.listServices(true);  // full info, but slow to generate
-    
-      PrintService ps = PrintServiceLookup.lookupDefaultPrintService();
-      System.out.println("Default printer \"" + ps.getName() + "\":");
-      JPrint.listService(ps, true);  // full info on default printer
-    
-      String[] pNames = JPrint.getPrinterNames();
-      System.out.println("Printer names (" + pNames.length + "):");
-      for(String pName : pNames)
-        System.out.println("  " + pName);
-    }  // end of main()
-    ```
+```java
+// in ListPrinters.java
+public static void main(String [] args)
+{
+  JPrint.listServices();         // short info
+  // JPrint.listServices(true);  // full info, but slow to generate
+
+  PrintService ps = PrintServiceLookup.lookupDefaultPrintService();
+  System.out.println("Default printer \"" + ps.getName() + "\":");
+  JPrint.listService(ps, true);  // full info on default printer
+
+  String[] pNames = JPrint.getPrinterNames();
+  System.out.println("Printer names (" + pNames.length + "):");
+  for(String pName : pNames)
+    System.out.println("  " + pName);
+}  // end of main()
+```
 
 Most of the functionality is implemented by the JPrint.java utility class.
 
@@ -220,72 +214,70 @@ correctly print it. For instance, it may be output as a mishmash of ASCII charac
 
 The service listing methods in JPrint.java:
 
-=== "java"
-    ```java
-    // in the JPrint class
-    public static void listServices(boolean showAll)
-    { PrintService[] psa =
-          PrintServiceLookup.lookupPrintServices(null, null);
-      listServices(psa, showAll);
+```java
+// in the JPrint class
+public static void listServices(boolean showAll)
+{ PrintService[] psa =
+      PrintServiceLookup.lookupPrintServices(null, null);
+  listServices(psa, showAll);
+}
+
+
+public static void listServices(PrintService[] psa,
+                                         boolean showAll)
+{ if (psa != null && psa.length > 0) {
+    System.out.println("\n-------- Print services (" +
+                           psa.length + ") ----------\n");
+    for (int i = 0; i < psa.length; i++) {
+      System.out.println((i+1) + ". \"" + psa[i].getName() + "\"");
+      listService(psa[i], showAll);
     }
-    
-    
-    public static void listServices(PrintService[] psa,
-                                             boolean showAll)
-    { if (psa != null && psa.length > 0) {
-        System.out.println("\n-------- Print services (" +
-                               psa.length + ") ----------\n");
-        for (int i = 0; i < psa.length; i++) {
-          System.out.println((i+1) + ". \"" + psa[i].getName() + "\"");
-          listService(psa[i], showAll);
-        }
-        System.out.println("------------------\n");
-      }
-      else
-        System.out.println("No print services found");
-    }  // end of listServices()
-    
-    
-    
-    public static void listService(PrintService ps, boolean showAll)
-    {
-      // print basic attributes
-      Attribute[] attrs = ps.getAttributes().toArray();
-      for(Attribute attr : attrs)
-        System.out.println("  " + attr.getName() + ":" + attr);
-    
-      // print the supported MIME types
-      System.out.print("  Supported doc types: ");
-      DocFlavor[] flavors = ps.getSupportedDocFlavors();
-      for (int j = 0; j < flavors.length; j++) {
-        // Filter out DocFlavors that have a representation class other
-        // than java.io.InputStream.
-    
-        String repclass = flavors[j].getRepresentationClassName();
-        if (!repclass.equals("java.io.InputStream")) // restrict to files
-          continue;
-        System.out.print(" " + flavors[j].getMimeType());
-      }
-      System.out.println();
-    
-      // print every printer attribute
-      if (showAll) {
-        System.out.println("  ----");
-        ArrayList<NamedAttribute> attrList = getAttributes(ps);
-        Collections.sort(attrList);
-        for (NamedAttribute attr : attrList)
-          printAttr(ps, attr.getAttribute());
-      }
-      System.out.println();
-    }  // end of listService()
-    ```
+    System.out.println("------------------\n");
+  }
+  else
+    System.out.println("No print services found");
+}  // end of listServices()
+
+
+
+public static void listService(PrintService ps, boolean showAll)
+{
+  // print basic attributes
+  Attribute[] attrs = ps.getAttributes().toArray();
+  for(Attribute attr : attrs)
+    System.out.println("  " + attr.getName() + ":" + attr);
+
+  // print the supported MIME types
+  System.out.print("  Supported doc types: ");
+  DocFlavor[] flavors = ps.getSupportedDocFlavors();
+  for (int j = 0; j < flavors.length; j++) {
+    // Filter out DocFlavors that have a representation class other
+    // than java.io.InputStream.
+
+    String repclass = flavors[j].getRepresentationClassName();
+    if (!repclass.equals("java.io.InputStream")) // restrict to files
+      continue;
+    System.out.print(" " + flavors[j].getMimeType());
+  }
+  System.out.println();
+
+  // print every printer attribute
+  if (showAll) {
+    System.out.println("  ----");
+    ArrayList<NamedAttribute> attrList = getAttributes(ps);
+    Collections.sort(attrList);
+    for (NamedAttribute attr : attrList)
+      printAttr(ps, attr.getAttribute());
+  }
+  System.out.println();
+}  // end of listService()
+```
 
 The lookupPrintServices() call in listServices():
 
-=== "java"
-    ```java
-    PrintServiceLookup.lookupPrintServices(null, null)
-    ```
+```java
+PrintServiceLookup.lookupPrintServices(null, null)
+```
 
 has no DocFlavor or attribute arguments, so every printer service will be returned in
 the array. listServices() iterates through each PrintService object, and prints its basic
@@ -299,13 +291,12 @@ https://docs.oracle.com/javase/8/docs/api/javax/print/attribute/Attribute.html. 
 subclasses are listed, including PrinterName, Sides, and Chromacity. A taste of what
 can be printed occurs when the default printer's details are listed:
 
-=== "java"
-    ```java
-    // in ListPrinters.java...
-    PrintService ps = PrintServiceLookup.lookupDefaultPrintService();
-    System.out.println("Default printer \"" + ps.getName() + "\":");
-    JPrint.listService(ps, true);  // full info
-    ```
+```java
+// in ListPrinters.java...
+PrintService ps = PrintServiceLookup.lookupDefaultPrintService();
+System.out.println("Default printer \"" + ps.getName() + "\":");
+JPrint.listService(ps, true);  // full info
+```
 
 The default printer for my test machine is an old laser printer. ListPrinter.java reports
 the following:
@@ -352,19 +343,18 @@ print request attributes to narrow down the search. Some examples can be found i
 Discovery.java. For instance, the following fragment looks for printers that can
 process JPEG files:
 
-=== "java"
-    ```java
-    // in Discovery.java...
-    DocFlavor flavor = DocFlavor.INPUT_STREAM.JPEG;
-    PrintService[] psa =
-             PrintServiceLookup.lookupPrintServices(flavor, null);
-    
-    System.out.println("\nServices that support " + flavor);
-    String[] pNames = JPrint.getPrinterNames(psa);
-    if (pNames != null)
-      for (String pName : pNames)
-        System.out.println("  " + pName);
-    ```
+```java
+// in Discovery.java...
+DocFlavor flavor = DocFlavor.INPUT_STREAM.JPEG;
+PrintService[] psa =
+         PrintServiceLookup.lookupPrintServices(flavor, null);
+
+System.out.println("\nServices that support " + flavor);
+String[] pNames = JPrint.getPrinterNames(psa);
+if (pNames != null)
+  for (String pName : pNames)
+    System.out.println("  " + pName);
+```
 
 It's very likely that the printers listed by this search can also output PDF, Word,
 PowerPoint and other file formats printable from Office, since Office delivers pages
@@ -372,12 +362,11 @@ to a printer rendered as images.
 
 However, if a search is made for printers that can process PDF files:
 
-=== "java"
-    ```java
-    DocFlavor flavor = DocFlavor.INPUT_STREAM.PDF;
-    PrintService[] psa =
-             PrintServiceLookup.lookupPrintServices(flavor, null);
-    ```
+```java
+DocFlavor flavor = DocFlavor.INPUT_STREAM.PDF;
+PrintService[] psa =
+         PrintServiceLookup.lookupPrintServices(flavor, null);
+```
 
 then no matches are found. This means that none of the printers can process PDF by
 themselves.
@@ -392,33 +381,31 @@ String[] pNames = JPrint.findPrinterNames("HP");
 Multiple attributes can be used in a search. The following looks for all the "HP"
 printer services that support color:
 
-=== "java"
-    ```java
-    // in Discovery.java...
-    AttributeSet attrs = new HashAttributeSet();
-    System.out.println("\nHP Services that support color:");
-    PrintService[] psa;
-    
-    for (String pName : pNames) {   // from the "HP" search above
-      attrs.clear();
-      attrs.add(new PrinterName(pName, null));   // must be included
-      attrs.add(ColorSupported.SUPPORTED);
-      psa = PrintServiceLookup.lookupPrintServices(null, attrs);
-      if (psa.length > 0)
-        System.out.println("  " + pName);
-    }
-    ```
+```java
+// in Discovery.java...
+AttributeSet attrs = new HashAttributeSet();
+System.out.println("\nHP Services that support color:");
+PrintService[] psa;
+
+for (String pName : pNames) {   // from the "HP" search above
+  attrs.clear();
+  attrs.add(new PrinterName(pName, null));   // must be included
+  attrs.add(ColorSupported.SUPPORTED);
+  psa = PrintServiceLookup.lookupPrintServices(null, attrs);
+  if (psa.length > 0)
+    System.out.println("  " + pName);
+}
+```
 
 It's possible to look for color printers with less code:
 
-=== "java"
-    ```java
-    // in Discovery.java...
-    AttributeSet attrs = new HashAttributeSet();
-    attrs.add(ColorSupported.SUPPORTED);
-    PrintService[] psa =
-        PrintServiceLookup.lookupPrintServices(null, attrs);
-    ```
+```java
+// in Discovery.java...
+AttributeSet attrs = new HashAttributeSet();
+attrs.add(ColorSupported.SUPPORTED);
+PrintService[] psa =
+    PrintServiceLookup.lookupPrintServices(null, attrs);
+```
 
 Unfortunately the returned print services include non-color printers. It seems that the
 printer name must be part of the attribute set to get a correct match.
@@ -426,55 +413,52 @@ printer name must be part of the attribute set to get a correct match.
 DocFlavors and attributes can be combined, as in the following that looks for a printer
 that supports JPEG and A4 paper:
 
-=== "java"
-    ```java
-    // in Discovery.java...
-    DocFlavor flavor = DocFlavor.INPUT_STREAM.JPEG;
-    AttributeSet attrs = new HashAttributeSet();
-    attrs.add(MediaSizeName.ISO_A4);
-    PrintService[] psa =
-        PrintServiceLookup.lookupPrintServices(flavor, attrs);
-    ```
+```java
+// in Discovery.java...
+DocFlavor flavor = DocFlavor.INPUT_STREAM.JPEG;
+AttributeSet attrs = new HashAttributeSet();
+attrs.add(MediaSizeName.ISO_A4);
+PrintService[] psa =
+    PrintServiceLookup.lookupPrintServices(flavor, attrs);
+```
 
 A quite different printer selection approach is to display a dialog box at run time to let
 the user set the search criteria. Java offers ServiceUI.printDialog() for this, which I've
 wrapped inside JPrint.dialogSelect():
 
-=== "java"
-    ```java
-    // in the JPrint class
-    public static PrintService dialogSelect()
-    {
-      GUI.setLookFeel();
-      PrintService psa[] =
-                  PrintServiceLookup.lookupPrintServices(null, null);
-      PrintService defaultService =
-                  PrintServiceLookup.lookupDefaultPrintService();
-      PrintRequestAttributeSet attrs =
-                  new HashPrintRequestAttributeSet();  // none
-    
-      PrintService service = ServiceUI.printDialog(null, 100, 100,
-                                   psa, defaultService, null, attrs);
-      if (service == null)
-        System.out.println("No print service selected");
-      return service;
-    }  // end of dialogSelect()
-    ```
+```java
+// in the JPrint class
+public static PrintService dialogSelect()
+{
+  GUI.setLookFeel();
+  PrintService psa[] =
+              PrintServiceLookup.lookupPrintServices(null, null);
+  PrintService defaultService =
+              PrintServiceLookup.lookupDefaultPrintService();
+  PrintRequestAttributeSet attrs =
+              new HashPrintRequestAttributeSet();  // none
+
+  PrintService service = ServiceUI.printDialog(null, 100, 100,
+                               psa, defaultService, null, attrs);
+  if (service == null)
+    System.out.println("No print service selected");
+  return service;
+}  // end of dialogSelect()
+```
 
 dialogSelect() initializes ServiceUI.printDialog() with a list of printer services, the
 default printer, and an empty print request attribute set.
 
 In Discovery.java, JPrint.dialogSelect() is called like so:
 
-=== "java"
-    ```java
-    // in Discovery.java...
-    PrintService ps = JPrint.dialogSelect();
-    if (ps != null) {
-      System.out.println("\nYou selected " + ps.getName());
-      JPrint.listService(ps, true);  // full info
-    }
-    ```
+```java
+// in Discovery.java...
+PrintService ps = JPrint.dialogSelect();
+if (ps != null) {
+  System.out.println("\nYou selected " + ps.getName());
+  JPrint.listService(ps, true);  // full info
+}
+```
 
 The dialog looks like Figure 1.
 
@@ -494,74 +478,72 @@ After a print service has been selected, JPS stages 2-4 involve instantiating a 
 object, creating a print job, and starting the printing. These are managed by my
 JPrint.printFile():
 
-=== "java"
-    ```java
-    // in the JPrint class
-    public static void printFile(PrintService ps, String fnm)
-    {
-      if (ps == null) {
-        System.out.println("Print service is null");
-        return;
-      }
-    
-      DocPrintJob printJob = ps.createPrintJob();   // stage 2
-      try {
-        InputStream is = new FileInputStream(fnm);
-        DocFlavor flavor = getFlavor(ps, fnm);
-        Doc doc = new SimpleDoc(is, flavor, null);  // stage 3
-        printJob.print(doc, null);                  // stage 4
-        is.close();
-      }
-      catch(Exception e) {
-        System.out.println("Unable to print " + fnm);
-        System.out.println(e);
-      }
-    }  // end of printFile()
-    ```
+```java
+// in the JPrint class
+public static void printFile(PrintService ps, String fnm)
+{
+  if (ps == null) {
+    System.out.println("Print service is null");
+    return;
+  }
+
+  DocPrintJob printJob = ps.createPrintJob();   // stage 2
+  try {
+    InputStream is = new FileInputStream(fnm);
+    DocFlavor flavor = getFlavor(ps, fnm);
+    Doc doc = new SimpleDoc(is, flavor, null);  // stage 3
+    printJob.print(doc, null);                  // stage 4
+    is.close();
+  }
+  catch(Exception e) {
+    System.out.println("Unable to print " + fnm);
+    System.out.println(e);
+  }
+}  // end of printFile()
+```
 
 The user supplies a PrintService and a filename. A DocFlavor for the file is obtained
 by JPrint.getFlavor():
 
-=== "java"
-    ```java
-    // in the JPrint class
-    public static DocFlavor getFlavor(PrintService ps, String fnm)
-    {
-       DocFlavor flavor = getFlavorFromFnm(fnm);
-       System.out.println("File-based DocFlavor: " + flavor);
-       if (!ps.isDocFlavorSupported(flavor)) {
-         System.out.println("Not supported by printer;
-                                          using autosense");
-         flavor = DocFlavor.INPUT_STREAM.AUTOSENSE;
-       }
-       return flavor;
-    }  // end of getFlavor()
-    
-    
-    
-    public static DocFlavor getFlavorFromFnm(String fnm)
-    {
-      String ext = fnm.substring(fnm.lastIndexOf('.') + 1).
-    
-                                          toLowerCase();
-      if (ext.equals("gif"))
-        return DocFlavor.INPUT_STREAM.GIF;
-      else if (ext.equals("jpeg"))
-        return DocFlavor.INPUT_STREAM.JPEG;
-      else if (ext.equals("jpg"))
-        return DocFlavor.INPUT_STREAM.JPEG;
-      else if (ext.equals("png"))
-        return DocFlavor.INPUT_STREAM.PNG;
-      else if (ext.equals("ps"))
-        return DocFlavor.INPUT_STREAM.POSTSCRIPT;
-      else if (ext.equals("pdf"))
-        return DocFlavor.INPUT_STREAM.PDF;
-      else if (ext.equals("txt"))
-        return DocFlavor.INPUT_STREAM.TEXT_PLAIN_HOST;
-      else     // try to determine flavor from file content
-        return DocFlavor.INPUT_STREAM.AUTOSENSE;
-    }  // end of getFlavorFromFnm
-    ```
+```java
+// in the JPrint class
+public static DocFlavor getFlavor(PrintService ps, String fnm)
+{
+   DocFlavor flavor = getFlavorFromFnm(fnm);
+   System.out.println("File-based DocFlavor: " + flavor);
+   if (!ps.isDocFlavorSupported(flavor)) {
+     System.out.println("Not supported by printer;
+                                      using autosense");
+     flavor = DocFlavor.INPUT_STREAM.AUTOSENSE;
+   }
+   return flavor;
+}  // end of getFlavor()
+
+
+
+public static DocFlavor getFlavorFromFnm(String fnm)
+{
+  String ext = fnm.substring(fnm.lastIndexOf('.') + 1).
+
+                                      toLowerCase();
+  if (ext.equals("gif"))
+    return DocFlavor.INPUT_STREAM.GIF;
+  else if (ext.equals("jpeg"))
+    return DocFlavor.INPUT_STREAM.JPEG;
+  else if (ext.equals("jpg"))
+    return DocFlavor.INPUT_STREAM.JPEG;
+  else if (ext.equals("png"))
+    return DocFlavor.INPUT_STREAM.PNG;
+  else if (ext.equals("ps"))
+    return DocFlavor.INPUT_STREAM.POSTSCRIPT;
+  else if (ext.equals("pdf"))
+    return DocFlavor.INPUT_STREAM.PDF;
+  else if (ext.equals("txt"))
+    return DocFlavor.INPUT_STREAM.TEXT_PLAIN_HOST;
+  else     // try to determine flavor from file content
+    return DocFlavor.INPUT_STREAM.AUTOSENSE;
+}  // end of getFlavorFromFnm
+```
 
 getFlavorFromFnm() uses the file's extension to choose a
 DocFlavor.INPUT_STREAM constant, which is checked by the print service in
@@ -569,36 +551,35 @@ PrintService.isDocFlavorSupported().
 
 JPrint.printFile() is utilized in my JDocPrinter.java example:
 
-=== "java"
-    ```java
-    // in JDocPrinter.java
-    public static void main(String[] args)
-    {
-      if ((args.length < 1) || (args.length > 2)) {
-        System.out.println("Usage: java JDocPrinter <filename>
-                       [<(partial)printer-name>]");
-        return;
-      }
-    
-      String fnm = args[0];
-      String pName = null;
-      if (args.length == 2) {
-        String[] pNames = JPrint.findPrinterNames(args[1]);
-        if (pNames != null) {
-          System.out.println("Using first match: \"" + pNames[0] + "\"");
-          pName = pNames[0];
-        }
-      }
-      if (pName != null)
-        JPrint.print(pName, fnm);
-      else {
-        PrintService ps = JPrint.dialogSelect();
-        if (ps != null)
-          // JPrint.printMonitorFile(ps, fnm);
-          JPrint.printFile(ps, fnm);
-      }
-    }  // end of main()
-    ```
+```java
+// in JDocPrinter.java
+public static void main(String[] args)
+{
+  if ((args.length < 1) || (args.length > 2)) {
+    System.out.println("Usage: java JDocPrinter <filename>
+                   [<(partial)printer-name>]");
+    return;
+  }
+
+  String fnm = args[0];
+  String pName = null;
+  if (args.length == 2) {
+    String[] pNames = JPrint.findPrinterNames(args[1]);
+    if (pNames != null) {
+      System.out.println("Using first match: \"" + pNames[0] + "\"");
+      pName = pNames[0];
+    }
+  }
+  if (pName != null)
+    JPrint.print(pName, fnm);
+  else {
+    PrintService ps = JPrint.dialogSelect();
+    if (ps != null)
+      // JPrint.printMonitorFile(ps, fnm);
+      JPrint.printFile(ps, fnm);
+  }
+}  // end of main()
+```
 
 JPrint.printMonitorFile() is fancier version of JPrint.printFile() which attaches a
 PrintJobListener to the print job. The listener's methods are triggered as the job passes
@@ -607,40 +588,38 @@ or printing error.
 
 The lines in JPrint.printMonitorFile() that add the listener to the print job are:
 
-=== "java"
-    ```java
-    // in JPrint.printMonitorFile()...
-    DocPrintJob printJob = ps.createPrintJob();
-    printJob.addPrintJobListener(new PJWatcher());
-    ```
+```java
+// in JPrint.printMonitorFile()...
+DocPrintJob printJob = ps.createPrintJob();
+printJob.addPrintJobListener(new PJWatcher());
+```
 
 PJWatcher implements the PrintJobListener interface:
 
-=== "java"
-    ```java
-    // in the JPrint class
-    private static class PJWatcher implements PrintJobListener
-    {
-      public void printDataTransferCompleted(PrintJobEvent pje)
-      {  System.out.println(" >> Data transferred to printer"); }
-    
-      public void printJobCanceled(PrintJobEvent pje)
-      {  System.out.println(" >> Print job was cancelled");  }
-    
-      public void printJobCompleted(PrintJobEvent pje)
-      {  System.out.println(" >> Print job completed successfully");  }
-    
-      public void printJobFailed(PrintJobEvent pje)
-      {  System.out.println(" >> Print job failed");  }
-    
-      public void printJobNoMoreEvents(PrintJobEvent pje)
-      {  System.out.println(" >> No more events will be delivered");  }
-    
-      public void printJobRequiresAttention(PrintJobEvent pje)
-      {  System.out.println(" >> Print job needs attention"); }
-    
-    }  // end of PJWatcher class
-    ```
+```java
+// in the JPrint class
+private static class PJWatcher implements PrintJobListener
+{
+  public void printDataTransferCompleted(PrintJobEvent pje)
+  {  System.out.println(" >> Data transferred to printer"); }
+
+  public void printJobCanceled(PrintJobEvent pje)
+  {  System.out.println(" >> Print job was cancelled");  }
+
+  public void printJobCompleted(PrintJobEvent pje)
+  {  System.out.println(" >> Print job completed successfully");  }
+
+  public void printJobFailed(PrintJobEvent pje)
+  {  System.out.println(" >> Print job failed");  }
+
+  public void printJobNoMoreEvents(PrintJobEvent pje)
+  {  System.out.println(" >> No more events will be delivered");  }
+
+  public void printJobRequiresAttention(PrintJobEvent pje)
+  {  System.out.println(" >> Print job needs attention"); }
+
+}  // end of PJWatcher class
+```
 
 ### 1.4.  More Information on javax.print
 
@@ -725,59 +704,58 @@ simple. The DocPrinter.java example illustrates this by printing any Office docu
 supplied on its command line to the default printer or to the one named in the second
 command line argument. The complete code:
 
-=== "java"
-    ```java
-    // in DocPrinter.java
-    public static void main(String args[])
-    {
-      if ((args.length < 1) || (args.length > 3)) {
-        System.out.println("Usage: DocPrinter fnm
-                            [printer-name [no-of-pages]]");
-        return;
-      }
-    
-      String fnm = args[0];
-      String pName = JPrint.getDefaultPrinterName();  // default
-    
-      if (args.length > 1) {   // 2 or 3 args
-        String[] printerNames = JPrint.findPrinterNames(args[1]);
-        if (printerNames == null)
-          System.out.println("Using default printer: \"" +
-                                                pName + "\"");
-        else {
-          pName = printerNames[0];
-          System.out.println("Using first matching printer: \"" +
-                                                  pName + "\"");
-        }
-      }
-    
-      String pagesStr = "1-";   // default is print all pages
-      if (args.length == 3)
-        pagesStr = args[2];
-    
-      XComponentLoader loader = Lo.loadOffice();
-      XComponent doc = Lo.openDoc(fnm, loader);
-      if (doc == null) {
-        System.out.println("Could not open " + fnm);
-        Lo.closeOffice();
-        return;
-      }
-      int docType = Info.reportDocType(doc);
-    
-      XPrintable xp = Lo.qi(XPrintable.class, doc);
-      if (xp == null)
-        System.out.println("Cannot print; XPrintable is null");
-      else if (!Print.isPrintable(docType))
-        System.out.println("Cannot print that document type");
-      else {
-        Print.usePrinter(xp, pName);
-        Print.reportPrinterProps(xp);
-        Print.print(xp, pagesStr);
-      }
-      Lo.closeDoc(doc);
-      Lo.closeOffice();
-    }  // end of main()
-    ```
+```java
+// in DocPrinter.java
+public static void main(String args[])
+{
+  if ((args.length < 1) || (args.length > 3)) {
+    System.out.println("Usage: DocPrinter fnm
+                        [printer-name [no-of-pages]]");
+    return;
+  }
+
+  String fnm = args[0];
+  String pName = JPrint.getDefaultPrinterName();  // default
+
+  if (args.length > 1) {   // 2 or 3 args
+    String[] printerNames = JPrint.findPrinterNames(args[1]);
+    if (printerNames == null)
+      System.out.println("Using default printer: \"" +
+                                            pName + "\"");
+    else {
+      pName = printerNames[0];
+      System.out.println("Using first matching printer: \"" +
+                                              pName + "\"");
+    }
+  }
+
+  String pagesStr = "1-";   // default is print all pages
+  if (args.length == 3)
+    pagesStr = args[2];
+
+  XComponentLoader loader = Lo.loadOffice();
+  XComponent doc = Lo.openDoc(fnm, loader);
+  if (doc == null) {
+    System.out.println("Could not open " + fnm);
+    Lo.closeOffice();
+    return;
+  }
+  int docType = Info.reportDocType(doc);
+
+  XPrintable xp = Lo.qi(XPrintable.class, doc);
+  if (xp == null)
+    System.out.println("Cannot print; XPrintable is null");
+  else if (!Print.isPrintable(docType))
+    System.out.println("Cannot print that document type");
+  else {
+    Print.usePrinter(xp, pName);
+    Print.reportPrinterProps(xp);
+    Print.print(xp, pagesStr);
+  }
+  Lo.closeDoc(doc);
+  Lo.closeOffice();
+}  // end of main()
+```
 
 An optional third command line argument is a page range, given in string form. For
 instance, "2-4;6" will print pages 2 to 4 and 6 (with the page numbering starting at 1).
@@ -793,30 +771,29 @@ Lo.MATH.
 The loaded document is cast to XPrintable (see Figure 1), and Print.isPrintable() tests
 for those document types that can be printed using XPrintable.print():
 
-=== "java"
-    ```java
-    // in the Print class
-    public static boolean isPrintable(int docType)
-    { return ((docType == Lo.WRITER) || (docType == Lo.CALC) ||
-              (docType == Lo.DRAW) || (docType == Lo.IMPRESS));  }
-    
-    Print.usePrinter() adds the printer's name and paper format to the XPrintable
-    properties by calling XPrintable.setPrinter() with an array of PrintDescriptor
-    properties (see Figure 1):
-    
-    // in the Print.java class
-    public static void usePrinter(XPrintable xp, String printer)
-    {
-      if (xp == null) {
-        System.out.println("Cannot set printer XPrintable is null");
-        return;
-      }
-      System.out.println("Using printer \"" + printer + "\"");
-      xp.setPrinter( Props.makeProps("Name", printer,
-                                     "PaperFormat", PaperFormat.A4) );
-      setListener(xp);
-    }
-    ```
+```java
+// in the Print class
+public static boolean isPrintable(int docType)
+{ return ((docType == Lo.WRITER) || (docType == Lo.CALC) ||
+          (docType == Lo.DRAW) || (docType == Lo.IMPRESS));  }
+
+Print.usePrinter() adds the printer's name and paper format to the XPrintable
+properties by calling XPrintable.setPrinter() with an array of PrintDescriptor
+properties (see Figure 1):
+
+// in the Print.java class
+public static void usePrinter(XPrintable xp, String printer)
+{
+  if (xp == null) {
+    System.out.println("Cannot set printer XPrintable is null");
+    return;
+  }
+  System.out.println("Using printer \"" + printer + "\"");
+  xp.setPrinter( Props.makeProps("Name", printer,
+                                 "PaperFormat", PaperFormat.A4) );
+  setListener(xp);
+}
+```
 
 Table 1 lists the PrintDescriptor properties, or use my lodoc.bat script to access the
 class' documentation online (type `lodoc PrinterDescriptor`).
@@ -846,61 +823,59 @@ Print.setListener() inside Print.usePrinter() attaches an XPrintJobListener list
 the print job by casting XPrintable to XPrintJobBroadcaster (see Figure 1).
 
 
-=== "java"
-    ```java
-    // in the Print class
-    public static void setListener(XPrintable xp)
-    {
-      if (xp == null) {
-        System.out.println("Cannot set listener; XPrintable is null");
-        return;
-      }
-    
-      XPrintJobBroadcaster pb = Lo.qi(XPrintJobBroadcaster.class, xp);
-      if (pb == null) {
-        System.out.println("Cannot obtain print job broadcaster");
-        return;
-      }
-    
-      pb.addPrintJobListener( new XPrintJobListener()
-      {
-         public void printJobEvent(PrintJobEvent e)
-         { System.out.println("Print Job status: " +
-                                  printableState(e.State));  }
-    
-         public void disposing(com.sun.star.lang.EventObject e)
-         {  System.out.println("Disposing of print job: " + e);  }
-      });
-    }  // end of setListener()
-    ```
+```java
+// in the Print class
+public static void setListener(XPrintable xp)
+{
+  if (xp == null) {
+    System.out.println("Cannot set listener; XPrintable is null");
+    return;
+  }
+
+  XPrintJobBroadcaster pb = Lo.qi(XPrintJobBroadcaster.class, xp);
+  if (pb == null) {
+    System.out.println("Cannot obtain print job broadcaster");
+    return;
+  }
+
+  pb.addPrintJobListener( new XPrintJobListener()
+  {
+     public void printJobEvent(PrintJobEvent e)
+     { System.out.println("Print Job status: " +
+                              printableState(e.State));  }
+
+     public void disposing(com.sun.star.lang.EventObject e)
+     {  System.out.println("Disposing of print job: " + e);  }
+  });
+}  // end of setListener()
+```
 
 XPrintJobListener.printJobEvent() is called at different stages during the job's
 execution, and Print.printableState() converts the retrieved PrintableState constant
 into a more readable string:
 
-=== "java"
-    ```java
-    // in the Print class
-    public static String printableState(PrintableState val)
-    {
-     if (val == PrintableState.JOB_STARTED )
-       return "JOB_STARTED";
-     else if (val == PrintableState.JOB_COMPLETED )
-       return "JOB_COMPLETED";
-     else if (val == PrintableState.JOB_SPOOLED )
-       return "JOB_SPOOLED";
-     else if (val == PrintableState.JOB_ABORTED )
-       return "JOB_ABORTED";
-     else if (val == PrintableState.JOB_FAILED )
-       return "JOB_FAILED";
-     else if (val == PrintableState.JOB_SPOOLING_FAILED )
-       return "JOB_SPOOLING_FAILED";
-     else {
-       System.out.println("Unknown printable state");
-       return "??";
-     }
-    }  // end of printableState()
-    ```
+```java
+// in the Print class
+public static String printableState(PrintableState val)
+{
+ if (val == PrintableState.JOB_STARTED )
+   return "JOB_STARTED";
+ else if (val == PrintableState.JOB_COMPLETED )
+   return "JOB_COMPLETED";
+ else if (val == PrintableState.JOB_SPOOLED )
+   return "JOB_SPOOLED";
+ else if (val == PrintableState.JOB_ABORTED )
+   return "JOB_ABORTED";
+ else if (val == PrintableState.JOB_FAILED )
+   return "JOB_FAILED";
+ else if (val == PrintableState.JOB_SPOOLING_FAILED )
+   return "JOB_SPOOLING_FAILED";
+ else {
+   System.out.println("Unknown printable state");
+   return "??";
+ }
+}  // end of printableState()
+```
 
 The PrintableState constants are summarized in Table 2.
 
@@ -925,42 +900,41 @@ Back in the main() function of DocPrinter.java, Print.reportPrinterProps() outpu
 printer's PrintDescriptor settings (listed in Table 1). It loops through the properties
 array returned by XPrintable.getPrinter():
 
-=== "java"
-    ```java
-    // in the Print class
-    public static void reportPrinterProps(XPrintable xp)
-    {
-      if (xp == null) {
-        System.out.println("Cannot report printer props");
-        return;
+```java
+// in the Print class
+public static void reportPrinterProps(XPrintable xp)
+{
+  if (xp == null) {
+    System.out.println("Cannot report printer props");
+    return;
+  }
+
+  PropertyValue[] printProps = xp.getPrinter();
+  if (printProps == null)
+    System.out.println("No Printer properties found");
+  else {
+    System.out.println("Printer properties:");
+    String name;
+    for (PropertyValue prop : printProps) {
+      name = prop.Name;
+      if (name.equals("PaperOrientation"))
+        System.out.println("  " + name + ": " +
+               paperOrientation((PaperOrientation)prop.Value));
+      else if (name.equals("PaperFormat"))
+        System.out.println("  " + name + ": " +
+                       paperFormat((PaperFormat)prop.Value));
+      else if (name.equals("PaperSize")) {
+        Size sz = (Size)prop.Value;
+        System.out.println("  " + name + ": (" +
+                            sz.Width + ", " + sz.Height + ")");
       }
-    
-      PropertyValue[] printProps = xp.getPrinter();
-      if (printProps == null)
-        System.out.println("No Printer properties found");
-      else {
-        System.out.println("Printer properties:");
-        String name;
-        for (PropertyValue prop : printProps) {
-          name = prop.Name;
-          if (name.equals("PaperOrientation"))
-            System.out.println("  " + name + ": " +
-                   paperOrientation((PaperOrientation)prop.Value));
-          else if (name.equals("PaperFormat"))
-            System.out.println("  " + name + ": " +
-                           paperFormat((PaperFormat)prop.Value));
-          else if (name.equals("PaperSize")) {
-            Size sz = (Size)prop.Value;
-            System.out.println("  " + name + ": (" +
-                                sz.Width + ", " + sz.Height + ")");
-          }
-          else
-            System.out.println("  " + name + ": " + prop.Value);
-        }
-        System.out.println();
-      }
-    }  // end of reportPrinterProps()
-    ```
+      else
+        System.out.println("  " + name + ": " + prop.Value);
+    }
+    System.out.println();
+  }
+}  // end of reportPrinterProps()
+```
 
 The constants in the PaperOrientation and PaperFormat classes are mapped to more
 easily understood strings.
@@ -1006,30 +980,29 @@ Table 3. Properties in com.sun.star.view.PrintOptions.
 
 The configuration and printing is carried out by Print.print():
 
-=== "java"
-    ```java
-    // in the Print class
-    public static void print(XPrintable xp)
-    {  print(xp, "1-");  }   // print all the pages
-    
-    
-    public static void print(XPrintable xp, String pagesStr)
-    {
-      if (xp == null) {
-        System.out.println("Cannot print; XPrintable is null");
-        return;
-      }
-      System.out.println("Print range: " + pagesStr);
-      System.out.println("Sending document...");
-    
-      PropertyValue[] props =
-               Props.makeProps("Pages", pagesStr, "Wait", true);
-                                              // synchronous
-                     // see com.sun.star.view.PrintOptions
-      xp.print(props);    // print the document
-      System.out.println("Delivered");
-    }  // end of print()
-    ```
+```java
+// in the Print class
+public static void print(XPrintable xp)
+{  print(xp, "1-");  }   // print all the pages
+
+
+public static void print(XPrintable xp, String pagesStr)
+{
+  if (xp == null) {
+    System.out.println("Cannot print; XPrintable is null");
+    return;
+  }
+  System.out.println("Print range: " + pagesStr);
+  System.out.println("Sending document...");
+
+  PropertyValue[] props =
+           Props.makeProps("Pages", pagesStr, "Wait", true);
+                                          // synchronous
+                 // see com.sun.star.view.PrintOptions
+  xp.print(props);    // print the document
+  System.out.println("Delivered");
+}  // end of print()
+```
 
 Two properties are set: "Pages" and "Wait". "Pages" could be left out if all of the
 document is to printed, but "Wait" is necessary; it forces the print() call to wait until
@@ -1049,47 +1022,45 @@ related to documents, which are stored in the many subclasses below the Settings
 service (see Figure 3). The ShowPrintProps.java example prints out those properties
 for a given input document. The relevant lines are:
 
-=== "java"
-    ```java
-    // in ShowPrintProps.java...
-    int docType = Info.reportDocType(doc);
-    XProperty Set docProps = Print.getDocSettings(docType);
-    
-    Props.showProps("Document Settings", docProps);
-    ```
+```java
+// in ShowPrintProps.java...
+int docType = Info.reportDocType(doc);
+XProperty Set docProps = Print.getDocSettings(docType);
+
+Props.showProps("Document Settings", docProps);
+```
 
 The document type returned by Info.reportDocType() is employed by
 Print.getDocSettings() to decide which of the subclasses of the Settings service (once
 again, see Figure 3) should be instantiated:
 
-=== "java"
-    ```java
-    // in the Print class
-    public static XPropertySet getDocSettings(int docType)
-    {
-      XPropertySet props = null;
-      if (docType == Lo.WRITER)
-        props = Lo.createInstanceMSF(XPropertySet.class,
-                      "com.sun.star.text.DocumentSettings");
-      else if (docType == Lo.IMPRESS)
-        props = Lo.createInstanceMSF(XPropertySet.class,
-                      "com.sun.star.presentation.DocumentSettings");
-      else if (docType == Lo.DRAW)
-        props = Lo.createInstanceMSF(XPropertySet.class,
-                      "com.sun.star.drawing.DocumentSettings");
-      else if (docType == Lo.CALC)
-        props = Lo.createInstanceMSF(XPropertySet.class,
-                      "com.sun.star.sheet.DocumentSettings");
-      else if (docType == Lo.BASE)
-        System.out.println("No document settings for a base doc");
-      else if (docType == Lo.MATH)
-        System.out.println("No document settings for a math doc");
-      else
-        System.out.println("Unknown document type");
-    
-      return props;
-    }  // end of getDocSettings()
-    ```
+```java
+// in the Print class
+public static XPropertySet getDocSettings(int docType)
+{
+  XPropertySet props = null;
+  if (docType == Lo.WRITER)
+    props = Lo.createInstanceMSF(XPropertySet.class,
+                  "com.sun.star.text.DocumentSettings");
+  else if (docType == Lo.IMPRESS)
+    props = Lo.createInstanceMSF(XPropertySet.class,
+                  "com.sun.star.presentation.DocumentSettings");
+  else if (docType == Lo.DRAW)
+    props = Lo.createInstanceMSF(XPropertySet.class,
+                  "com.sun.star.drawing.DocumentSettings");
+  else if (docType == Lo.CALC)
+    props = Lo.createInstanceMSF(XPropertySet.class,
+                  "com.sun.star.sheet.DocumentSettings");
+  else if (docType == Lo.BASE)
+    System.out.println("No document settings for a base doc");
+  else if (docType == Lo.MATH)
+    System.out.println("No document settings for a math doc");
+  else
+    System.out.println("Unknown document type");
+
+  return props;
+}  // end of getDocSettings()
+```
 
 All these setting services support XPropertySet, which is returned as
 Print.getDocSettings()'s result.
@@ -1287,15 +1258,14 @@ Table 9. Properties in com.sun.star.text.PagePrintSettings.
 
 These properties are printed by casting the document to XPagePrintable:
 
-=== "java"
-    ```java
-    // part of ShowPrintProps.java...
-    if (docType == Lo.WRITER) {
-      XPagePrintable xpp = Lo.qi(XPagePrintable.class, doc);
-      PropertyValue[] printProps = xpp.getPagePrintSettings();
-      Props.showProps("Page print settings", printProps);
-    }
-    ```
+```java
+// part of ShowPrintProps.java...
+if (docType == Lo.WRITER) {
+  XPagePrintable xpp = Lo.qi(XPagePrintable.class, doc);
+  PropertyValue[] printProps = xpp.getPagePrintSettings();
+  Props.showProps("Page print settings", printProps);
+}
+```
 
 Typical output is:
 
@@ -1341,14 +1311,13 @@ This organization of the documentation may be an error, since the
 XGlobalSheetSettings properties are accessed in the usual way, by instantiating the
 GlobalSheetSettings service, and casting it to XPropertySet:
 
-=== "java"
-    ```java
-    XPropertySet globalSheetProps =
-          Lo.createInstanceMCF(XPropertySet.class,
-                 "com.sun.star.sheet.GlobalSheetSettings");
-    
-    Props.showProps("Global Sheet Settings", globalSheetProps);
-    ```
+```java
+XPropertySet globalSheetProps =
+      Lo.createInstanceMCF(XPropertySet.class,
+             "com.sun.star.sheet.GlobalSheetSettings");
+
+Props.showProps("Global Sheet Settings", globalSheetProps);
+```
 
 GlobalSheetSettings properties are applied to all sheets, so you may want to reset a
 changed property to its original value after a print. There's an example of using global
@@ -1359,23 +1328,21 @@ styles in Chapter 22, so I refer you back there for the details. A page style is
 associated with a sheet, and so it's necessary to first choose a sheet to examine, and
 then access its "PageStyle" property:
 
-=== "java"
-    ```java
-    XSpreadsheetDocument ssDoc = Calc.getSSDoc(doc);
-    XSpreadsheet sheet = Calc.getSheet(ssDoc, 0);   // first sheet
-    
-    String styleName = (String) Props.getProperty(sheet, "PageStyle");
-    System.out.println("\nPageStyle of first sheet: " + styleName);
-    ```
+```java
+XSpreadsheetDocument ssDoc = Calc.getSSDoc(doc);
+XSpreadsheet sheet = Calc.getSheet(ssDoc, 0);   // first sheet
+
+String styleName = (String) Props.getProperty(sheet, "PageStyle");
+System.out.println("\nPageStyle of first sheet: " + styleName);
+```
 
 The page style name is used to lookup the properties for that particular style:
 
-=== "java"
-    ```java
-    XPropertySet props = Info.getStyleProps(doc, "PageStyles",
-                                                         styleName);
-    Props.showProps(styleName + " PageStyles", props);
-    ```
+```java
+XPropertySet props = Info.getStyleProps(doc, "PageStyles",
+                                                     styleName);
+Props.showProps(styleName + " PageStyles", props);
+```
 
 Props.showProps() prints an extensive list of properties, drawn form several services
 in the PageStyle hierarchy. A simplified version of that hierarchy is shown in Figure
@@ -1474,20 +1441,19 @@ on each sheet.
 
 After the document has been loaded, the printing is carried out by:
 
-=== "java"
-    ```java
-    // part of TextPrinter.java...
-    XPrintable xp = Lo.qi(XPrintable.class, doc);
-    Print.usePrinter(xp, pName);
-    
-    XPagePrintable xpp = Lo.qi(XPagePrintable.class, doc);
-    PropertyValue[] props = xpp.getPagePrintSettings();
-    Props.setProp(props, "IsLandscape", true);
-    Props.setProp(props, "PageColumns", (short)2);
-    
-    xpp.setPagePrintSettings(props);
-    xpp.printPages(new PropertyValue[1]);    // empty array of props
-    ```
+```java
+// part of TextPrinter.java...
+XPrintable xp = Lo.qi(XPrintable.class, doc);
+Print.usePrinter(xp, pName);
+
+XPagePrintable xpp = Lo.qi(XPagePrintable.class, doc);
+PropertyValue[] props = xpp.getPagePrintSettings();
+Props.setProp(props, "IsLandscape", true);
+Props.setProp(props, "PageColumns", (short)2);
+
+xpp.setPagePrintSettings(props);
+xpp.printPages(new PropertyValue[1]);    // empty array of props
+```
 
 To help understand what the code is doing, refer back to Figure 2. The document is
 cast to XPrintable so the printer settings can be initialized by Print.usePrinter(). Then
@@ -1504,10 +1470,9 @@ XPagePrintable.printPages() rather than to XPagePrintable.setPagePrintSettings()
 
 The last two lines from above would be replaced by:
 
-=== "java"
-    ```java
-    xpp.printPages(props);
-    ```
+```java
+xpp.printPages(props);
+```
 
 Unfortunately this produces the same output in my tests.
 
@@ -1539,29 +1504,28 @@ utilized.
 
 After the document has been loaded, the printing is carried out by the following code:
 
-=== "java"
-    ```java
-    // part of ImpressPrinter.java...
-    // set document props
-    XPropertySet props = Lo.createInstanceMSF(XPropertySet.class,
-                       "com.sun.star.presentation.DocumentSettings");
-    Props.setProperties(props,
-      new String[] {"IsPrintHandout","SlidesPerHandout","IsPrintFitPage",
-                    "IsPrintDate", "PrintQuality", "PrinterName" },
-      new Object[] { true, (short)6, true, true, 2, pName}   // 2 == B&W
-    );
-    Props.showProps("Document Settings", props);
-    
-    // set printer props
-    XPrintable xp = Lo.qi(XPrintable.class, doc);
-    Print.usePrinter(xp, pName);
-    xp.setPrinter( Props.makeProps(
-                  "PaperOrientation", PaperOrientation.LANDSCAPE,
-                  "PaperFormat", PaperFormat.A4) );
-    Print.reportPrinterProps(xp);
-    
-    Print.print(xp);
-    ```
+```java
+// part of ImpressPrinter.java...
+// set document props
+XPropertySet props = Lo.createInstanceMSF(XPropertySet.class,
+                   "com.sun.star.presentation.DocumentSettings");
+Props.setProperties(props,
+  new String[] {"IsPrintHandout","SlidesPerHandout","IsPrintFitPage",
+                "IsPrintDate", "PrintQuality", "PrinterName" },
+  new Object[] { true, (short)6, true, true, 2, pName}   // 2 == B&W
+);
+Props.showProps("Document Settings", props);
+
+// set printer props
+XPrintable xp = Lo.qi(XPrintable.class, doc);
+Print.usePrinter(xp, pName);
+xp.setPrinter( Props.makeProps(
+              "PaperOrientation", PaperOrientation.LANDSCAPE,
+              "PaperFormat", PaperFormat.A4) );
+Print.reportPrinterProps(xp);
+
+Print.print(xp);
+```
 
 To help understand what the code is doing, refer back to Figure 2. A presentation
 DocumentSettings service is created, and its printing properties set. The
@@ -1571,10 +1535,9 @@ and "IsPrintDate" from HeaderFooterSettings (see Table 8). This leaves the
 "SlidesPerHandout" property, which isn't documented anywhere. I discovered it by
 looking at the print-out of that service's properties with:
 
-=== "java"
-    ```java
-    Props.showProps("Document Settings", props);
-    ```
+```java
+Props.showProps("Document Settings", props);
+```
 
 The printer properties are set as in earlier examples, but with the addition of
 "PaperOrientation" and "PaperFormat" which are PrintDescriptor properties (see table
@@ -1607,44 +1570,43 @@ The good news is that all of these setting are correctly processed at print-time
 
 After the document has been loaded, the printing is carried out by:
 
-=== "java"
-    ```java
-    // part of SheetPrinter.java...
-    
-    XSpreadsheet sheet = Calc.getSheet(doc, 0);  // first sheet
-    String styleName = (String) Props.getProperty(sheet, "PageStyle");
-    
-    // get the properties set for the sheet's page style
-    XPropertySet props =
-                  Info.getStyleProps(doc, "PageStyles", styleName);
-    Props.setProperty(props, "ScaleToPagesY", (short)2);
-                     // use a max of 2 pages on the y-axis
-    Props.showProps(styleName, props);
-    
-    showTotalsHeader(props);
-    
-    /*
-      // print only the "E" column
-      XPrintAreas printAreas = Lo.qi(XPrintAreas.class, sheet);
-      printAreas.setPrintAreas(new CellRangeAddress[] {});
-                     // reset print areas
-    
-      CellRangeAddress addr = Calc.getAddress(sheet, "E1:E111");
-      printAreas.setPrintAreas(new CellRangeAddress[]{ addr });
-                     // set area
-    */
-    
-    // set printer settings
-    XPrintable xp = Lo.qi(XPrintable.class, doc);
-    Print.usePrinter(xp, pName);
-    PropertyValue[] printProps =
-        Props.makeProps("PaperOrientation", PaperOrientation.LANDSCAPE,
-                        "PageFormat", PaperFormat.A4);
-    xp.setPrinter(printProps);
-    Print.reportPrinterProps(xp);
-    
-    Print.print(xp);
-    ```
+```java
+// part of SheetPrinter.java...
+
+XSpreadsheet sheet = Calc.getSheet(doc, 0);  // first sheet
+String styleName = (String) Props.getProperty(sheet, "PageStyle");
+
+// get the properties set for the sheet's page style
+XPropertySet props =
+              Info.getStyleProps(doc, "PageStyles", styleName);
+Props.setProperty(props, "ScaleToPagesY", (short)2);
+                 // use a max of 2 pages on the y-axis
+Props.showProps(styleName, props);
+
+showTotalsHeader(props);
+
+/*
+  // print only the "E" column
+  XPrintAreas printAreas = Lo.qi(XPrintAreas.class, sheet);
+  printAreas.setPrintAreas(new CellRangeAddress[] {});
+                 // reset print areas
+
+  CellRangeAddress addr = Calc.getAddress(sheet, "E1:E111");
+  printAreas.setPrintAreas(new CellRangeAddress[]{ addr });
+                 // set area
+*/
+
+// set printer settings
+XPrintable xp = Lo.qi(XPrintable.class, doc);
+Print.usePrinter(xp, pName);
+PropertyValue[] printProps =
+    Props.makeProps("PaperOrientation", PaperOrientation.LANDSCAPE,
+                    "PageFormat", PaperFormat.A4);
+xp.setPrinter(printProps);
+Print.reportPrinterProps(xp);
+
+Print.print(xp);
+```
 
 The scaling is done by accessing the sheet's page style properties, and setting the
 "ScaleToPagesY" value. This is one of the TablePageStyle properties listed in Table
@@ -1655,32 +1617,31 @@ The scaling is done by accessing the sheet's page style properties, and setting 
 
 The headers and footers are manipulated by showTotalsHeader():
 
-=== "java"
-    ```java
-    // in SheetPrinter.java
-    private static void showTotalsHeader(XPropertySet props)
-    // change the header of the sheet
-    {
-      //  get the right-hand header and footer
-      XHeaderFooterContent header =
-                Calc.getHeadFoot(props, "RightPageHeaderContent");
-      XHeaderFooterContent footer =
-                Calc.getHeadFoot(props, "RightPageFooterContent");
-    
-      // print details about them
-      Calc.printHeadFoot("Right Header", header);
-      Calc.printHeadFoot("Right Footer", footer);
-    
-      // modify the header center text to be "Totals"
-      Calc.setHeadFoot(header, Calc.HF_CENTER, "Totals");
-    
-      // turn on headers and make left and right page headers the same
-      Props.setProperty(props, "HeaderIsOn", true);
-      Props.setProperty(props, "HeaderIsShared", true);
-                                  // from style.PageProperties
-      Props.setProperty(props, "RightPageHeaderContent", header);
-      }  // end of showTotalsHeader()
-    ```
+```java
+// in SheetPrinter.java
+private static void showTotalsHeader(XPropertySet props)
+// change the header of the sheet
+{
+  //  get the right-hand header and footer
+  XHeaderFooterContent header =
+            Calc.getHeadFoot(props, "RightPageHeaderContent");
+  XHeaderFooterContent footer =
+            Calc.getHeadFoot(props, "RightPageFooterContent");
+
+  // print details about them
+  Calc.printHeadFoot("Right Header", header);
+  Calc.printHeadFoot("Right Footer", footer);
+
+  // modify the header center text to be "Totals"
+  Calc.setHeadFoot(header, Calc.HF_CENTER, "Totals");
+
+  // turn on headers and make left and right page headers the same
+  Props.setProperty(props, "HeaderIsOn", true);
+  Props.setProperty(props, "HeaderIsShared", true);
+                              // from style.PageProperties
+  Props.setProperty(props, "RightPageHeaderContent", header);
+  }  // end of showTotalsHeader()
+```
 
 A sheet may have two headers (one for the left hand page, one for the right) and two
 footers, which are accessed as XHeaderFooterContent objects (see
@@ -1695,84 +1656,80 @@ service (see Table 12).
 Calc.getHeadFoot() retrieves the page style properties, and returns the requested
 XHeaderFooterContent:
 
-=== "java"
-    ```java
-    // in the Calc class
-    public static XHeaderFooterContent getHeadFoot(XPropertySet props,
-                                                   String content)
-    {  return Lo.qi( XHeaderFooterContent.class,
-                                Props.getProperty(props, content));  }
-    ```
+```java
+// in the Calc class
+public static XHeaderFooterContent getHeadFoot(XPropertySet props,
+                                               String content)
+{  return Lo.qi( XHeaderFooterContent.class,
+                            Props.getProperty(props, content));  }
+```
 
 Calc.printHeadFoot() prints the three text fields inside the XHeaderFooterContent
 object:
 
-=== "java"
-    ```java
-    // in the Calc class
-    public static void printHeadFoot(String title,
-                                     XHeaderFooterContent hfc)
-    { XText left = hfc.getLeftText();
-      XText center = hfc.getCenterText();
-      XText right = hfc.getRightText();
-      System.out.println(title + ": \"" + left.getString() + "\" : \"" +
-                                    center.getString() + "\" : \"" +
-                                    right.getString() + "\"");
-    }  // end of showHeadFoot()
-    ```
+```java
+// in the Calc class
+public static void printHeadFoot(String title,
+                                 XHeaderFooterContent hfc)
+{ XText left = hfc.getLeftText();
+  XText center = hfc.getCenterText();
+  XText right = hfc.getRightText();
+  System.out.println(title + ": \"" + left.getString() + "\" : \"" +
+                                center.getString() + "\" : \"" +
+                                right.getString() + "\"");
+}  // end of showHeadFoot()
+```
 
 Calc.setHeadFoot() can change the text in the left, center, or right of a
 XHeaderFooterContent instance:
 
-=== "java"
-    ```java
-    // in the Calc class
-    public static void setHeadFoot(XHeaderFooterContent hfc,
-                                         int region, String text)
-    { XText xText = getRegion(hfc, region);
-      if (xText == null) {
-        System.out.println("Could not set text");
-        return;
-      }
-      XTextCursor headerCursor = xText.createTextCursor();
-      headerCursor.gotoStart(false);
-      headerCursor.gotoEnd(true);
-      headerCursor.setString(text);
-    }  // end of setHeadFoot()
-    
-    
-    public static XText getRegion(XHeaderFooterContent hfc, int region)
-    {
-      if (hfc == null) {
-        System.out.println("Header/footer content is null");
-        return null;
-      }
-      if (region == HF_LEFT)
-        return hfc.getLeftText();
-      else if (region == HF_CENTER)
-        return hfc.getCenterText();
-      else if (region == HF_RIGHT)
-        return hfc.getRightText();
-      else {
-        System.out.println("Unknown header/footer region");
-        return null;
-      }
-    }  // end of getRegion()
-    ```
+```java
+// in the Calc class
+public static void setHeadFoot(XHeaderFooterContent hfc,
+                                     int region, String text)
+{ XText xText = getRegion(hfc, region);
+  if (xText == null) {
+    System.out.println("Could not set text");
+    return;
+  }
+  XTextCursor headerCursor = xText.createTextCursor();
+  headerCursor.gotoStart(false);
+  headerCursor.gotoEnd(true);
+  headerCursor.setString(text);
+}  // end of setHeadFoot()
+
+
+public static XText getRegion(XHeaderFooterContent hfc, int region)
+{
+  if (hfc == null) {
+    System.out.println("Header/footer content is null");
+    return null;
+  }
+  if (region == HF_LEFT)
+    return hfc.getLeftText();
+  else if (region == HF_CENTER)
+    return hfc.getCenterText();
+  else if (region == HF_RIGHT)
+    return hfc.getRightText();
+  else {
+    System.out.println("Unknown header/footer region");
+    return null;
+  }
+}  // end of getRegion()
+```
 
 Back in SheetPrinter.java, showTotalsHeader() changes the central text field of the
 right header to "Totals". It then switches on the display of headers, makes the left and
 right headers the same, and inserts the modified XHeaderFooterContent instance back
 into the page styles:
 
-=== "java"
-    ```java
-    // part of showTotalsHeader() in SheetPrinter.java...
-    Props.setProperty(props, "HeaderIsOn", true);
-    Props.setProperty(props, "HeaderIsShared", true);
-                              // from style.PageProperties
-    Props.setProperty(props, "RightPageHeaderContent", header);
-    ```
+```java
+// part of showTotalsHeader() in SheetPrinter.java...
+Props.setProperty(props, "HeaderIsOn", true);
+Props.setProperty(props, "HeaderIsShared", true);
+                          // from style.PageProperties
+Props.setProperty(props, "RightPageHeaderContent", header);
+```
 
 #### Print Areas
 
@@ -1793,17 +1750,16 @@ rows and/or columns are repeated if a sheet spans several pages.
 The commented out code in SheetPrinter.java does two things: it cancels any existing
 print areas, and specifies that only the "E" column will be printed:
 
-=== "java"
-    ```java
-    // part of SheetPrinter.java...
-    XPrintAreas printAreas = Lo.qi(XPrintAreas.class, sheet);
-    printAreas.setPrintAreas(new CellRangeAddress[] {});
-                         // cancel print areas
-    
-    CellRangeAddress addr = Calc.getAddress(sheet, "E1:E111");
-    printAreas.setPrintAreas(new CellRangeAddress[]{ addr });
-                        // set area to be the "E" column
-    ```
+```java
+// part of SheetPrinter.java...
+XPrintAreas printAreas = Lo.qi(XPrintAreas.class, sheet);
+printAreas.setPrintAreas(new CellRangeAddress[] {});
+                     // cancel print areas
+
+CellRangeAddress addr = Calc.getAddress(sheet, "E1:E111");
+printAreas.setPrintAreas(new CellRangeAddress[]{ addr });
+                    // set area to be the "E" column
+```
 
 
 ### 5.4.  Printing a Single Sheet
@@ -1819,61 +1775,60 @@ the sheet to the foreground in the Calc application.
 The PrintSheet.java example shows how to do this for a spreadsheet of three sheets,
 where only "Sheet2" is printed:
 
-=== "java"
-    ```java
-    // in PrintSheet.java
-    public static void main(String args[])
-    {
-      // hardwired spreadsheet and printer choice
-      String fnm = "tables.ods";
-      String pName = "FinePrint";
-    
-      // load the spreadsheet
-      XComponentLoader loader = Lo.loadOffice();
-      XComponent cDoc = Lo.openReadOnlyDoc(fnm, loader);
-      XSpreadsheetDocument doc = Calc.getSSDoc(cDoc);
-      if (doc == null) {
-        System.out.println("Could not open " + fnm);
-        Lo.closeOffice();
-        return;
-      }
-    
-      // what are the sheets called?
-      String[] sheetNms = Calc.getSheetNames(doc);
-      System.out.println("Names of sheets (" + sheetNms.length + "):");
-      for(String sheetNm : sheetNms)
-        System.out.println("  " + sheetNm);
-    
-      // make "Sheet2" active
-      XSpreadsheet sheet = Calc.getSheet(doc, "Sheet2");
-      Calc.setActiveSheet(doc, sheet);
-    
-      // set Global Sheet settings
-      // changes are remembered
-      XPropertySet gsProps =
-                  Lo.createInstanceMCF(XPropertySet.class,
-                       "com.sun.star.sheet.GlobalSheetSettings");
-      Props.setProperty(gsProps, "PrintAllSheets", false);
-      System.out.println();
-      Props.showProps("Global Sheet Settings", gsProps);
-    
-      // set printer settings
-      XPrintable xp = Lo.qi(XPrintable.class, doc);
-      Print.usePrinter(xp, pName);
-      PropertyValue[] printProps =
-          Props.makeProps("PaperOrientation", PaperOrientation.LANDSCAPE,
-                          "PageFormat", PaperFormat.A4);
-      xp.setPrinter(printProps);
-    
-      Print.print(xp);
-    
-      // reset global settings
-      Props.setProperty(gsProps, "PrintAllSheets", true);
-    
-      Lo.closeDoc(doc);
-      Lo.closeOffice();
-    }  // end of main()
-    ```
+```java
+// in PrintSheet.java
+public static void main(String args[])
+{
+  // hardwired spreadsheet and printer choice
+  String fnm = "tables.ods";
+  String pName = "FinePrint";
+
+  // load the spreadsheet
+  XComponentLoader loader = Lo.loadOffice();
+  XComponent cDoc = Lo.openReadOnlyDoc(fnm, loader);
+  XSpreadsheetDocument doc = Calc.getSSDoc(cDoc);
+  if (doc == null) {
+    System.out.println("Could not open " + fnm);
+    Lo.closeOffice();
+    return;
+  }
+
+  // what are the sheets called?
+  String[] sheetNms = Calc.getSheetNames(doc);
+  System.out.println("Names of sheets (" + sheetNms.length + "):");
+  for(String sheetNm : sheetNms)
+    System.out.println("  " + sheetNm);
+
+  // make "Sheet2" active
+  XSpreadsheet sheet = Calc.getSheet(doc, "Sheet2");
+  Calc.setActiveSheet(doc, sheet);
+
+  // set Global Sheet settings
+  // changes are remembered
+  XPropertySet gsProps =
+              Lo.createInstanceMCF(XPropertySet.class,
+                   "com.sun.star.sheet.GlobalSheetSettings");
+  Props.setProperty(gsProps, "PrintAllSheets", false);
+  System.out.println();
+  Props.showProps("Global Sheet Settings", gsProps);
+
+  // set printer settings
+  XPrintable xp = Lo.qi(XPrintable.class, doc);
+  Print.usePrinter(xp, pName);
+  PropertyValue[] printProps =
+      Props.makeProps("PaperOrientation", PaperOrientation.LANDSCAPE,
+                      "PageFormat", PaperFormat.A4);
+  xp.setPrinter(printProps);
+
+  Print.print(xp);
+
+  // reset global settings
+  Props.setProperty(gsProps, "PrintAllSheets", true);
+
+  Lo.closeDoc(doc);
+  Lo.closeOffice();
+}  // end of main()
+```
 
 One issue with changing GlobalSheet settings is that they are remembered after Office
 has closed, and will be used by default during future prints. In that case, it's a good
@@ -1908,22 +1863,21 @@ There's also the issue of moving around the tabbed windows and their fields. Thi
 be implemented using Java's Robot class to send TAB and CTRL-TAB characters, as
 in:
 
-=== "java"
-    ```java
-    private static void ctrlTab()
-    // send a CTRL-TAB character combination
-    { try {
-        Robot robot = new Robot();
-        robot.keyPress(KeyEvent.VK_CONTROL);
-        robot.keyPress(KeyEvent.VK_TAB);
-        robot.delay(100);
-        robot.keyRelease(KeyEvent.VK_TAB);
-        robot.keyRelease(KeyEvent.VK_CONTROL);
-      }
-      catch(AWTException e)
-      { System.out.println(e); }
-    }   // end of ctrlTab()
-    ```
+```java
+private static void ctrlTab()
+// send a CTRL-TAB character combination
+{ try {
+    Robot robot = new Robot();
+    robot.keyPress(KeyEvent.VK_CONTROL);
+    robot.keyPress(KeyEvent.VK_TAB);
+    robot.delay(100);
+    robot.keyRelease(KeyEvent.VK_TAB);
+    robot.keyRelease(KeyEvent.VK_CONTROL);
+  }
+  catch(AWTException e)
+  { System.out.println(e); }
+}   // end of ctrlTab()
+```
 
 The difficulty is knowing how many TABs and CTRL-TABs are needed, which
 depends on the tab ordering of each window.

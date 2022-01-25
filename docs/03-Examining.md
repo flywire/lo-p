@@ -58,22 +58,21 @@ simplest version of getConfig() looks along both paths by default so the program
 only has to supply a property name when calling the method. This is illustrated in the
 OfficeInfo.java example in the "Office Tests/" folder:
 
-=== "java"
-    ```java
-    // in OfficeInfo.java
-    XComponentLoader loader = Lo.loadOffice();
-    
-    // look up 5 Office properties
-    System.out.println("Office name: " + Info.getConfig("ooName"));
-    System.out.println("Office version (long): " +
-                             Info.getConfig("ooSetupVersionAboutBox"));
-    System.out.println("Office version (short): " +
-                             Info.getConfig("ooSetupVersion"));
-    System.out.println("Office language location: " +
-                             Info.getConfig("ooLocale"));
-    System.out.println("System language location: \"" +
-                           Info.getConfig("ooSetupSystemLocale") + "\"");
-    ```
+```java
+// in OfficeInfo.java
+XComponentLoader loader = Lo.loadOffice();
+
+// look up 5 Office properties
+System.out.println("Office name: " + Info.getConfig("ooName"));
+System.out.println("Office version (long): " +
+                         Info.getConfig("ooSetupVersionAboutBox"));
+System.out.println("Office version (short): " +
+                         Info.getConfig("ooSetupVersion"));
+System.out.println("Office language location: " +
+                         Info.getConfig("ooLocale"));
+System.out.println("System language location: \"" +
+                       Info.getConfig("ooSetupSystemLocale") + "\"");
+```
 
 On one of my test machines, the following is printed:
 
@@ -117,17 +116,16 @@ Info.getOfficeDir().
 
 Examples of using Info.getOfficeDir() and Info.getPaths() appear in OfficeInfo.java:
 
-=== "java"
-    ```java
-    // in OfficeInfo.java
-    System.out.println("Office Dir: " + Info.getOfficeDir());
-    
-    System.out.println("Working Dir: " + Info.getPaths("Work"));
-    System.out.println("Addin Dir: " + Info.getPaths("Addin"));
-    System.out.println("Filters Dir: " + Info.getPaths("Filter"));
-    System.out.println("Templates Dirs: " + Info.getPaths("Template"));
-    System.out.println("Gallery Dir: " + Info.getPaths("Gallery"));
-    ```
+```java
+// in OfficeInfo.java
+System.out.println("Office Dir: " + Info.getOfficeDir());
+
+System.out.println("Working Dir: " + Info.getPaths("Work"));
+System.out.println("Addin Dir: " + Info.getPaths("Addin"));
+System.out.println("Filters Dir: " + Info.getPaths("Filter"));
+System.out.println("Templates Dirs: " + Info.getPaths("Template"));
+System.out.println("Gallery Dir: " + Info.getPaths("Gallery"));
+```
 
 
 ## 2.  Getting and Setting Document Properties
@@ -164,20 +162,19 @@ My DocProps.java example prints the document properties by calling:
 printDocProperties() converts the document to an XDocumentPropertiesSupplier
 interface, and extracts the XDocumentProperties object:
 
-=== "java"
-    ```java
-    public static void printDocProperties(XComponent doc)
-    {
-      XDocumentPropertiesSupplier docPropsSupp =
-                UnoRuntime.queryInterface(
-                       XDocumentPropertiesSupplier.class, doc);
-      XDocumentProperties dps = docPropsSupp.getDocumentProperties();
-    
-      printDocProps(dps);
-      XPropertyContainer udProps = dps.getUserDefinedProperties();
-      Props.showObjProps("UserDefined Info", udProps);
-     }  // end of printDocProperties()
-    ```
+```java
+public static void printDocProperties(XComponent doc)
+{
+  XDocumentPropertiesSupplier docPropsSupp =
+            UnoRuntime.queryInterface(
+                   XDocumentPropertiesSupplier.class, doc);
+  XDocumentProperties dps = docPropsSupp.getDocumentProperties();
+
+  printDocProps(dps);
+  XPropertyContainer udProps = dps.getUserDefinedProperties();
+  Props.showObjProps("UserDefined Info", udProps);
+ }  // end of printDocProperties()
+```
 
 Although the XDocumentProperties interface belongs to a DocumentProperties
 service, that service does not contain any properties/attributes. Instead its data is
@@ -188,19 +185,18 @@ XDocumentProperties.getAuthor().
 As a consequence, my printDocProps() consists of a long list of get method calls
 inside print statements:
 
-=== "java"
-    ```java
-    public static void printDocProps(XDocumentProperties dps)
-    {
-      System.out.println("Document Properties Info");
-      System.out.println("Author: " + dps.getAuthor());
-      System.out.println("Title: " + dps.getTitle());
-      System.out.println("Subject: " + dps.getSubject());
-      System.out.println("Description: " + dps.getDescription());
-      System.out.println("Generator: " + dps.getGenerator());
-         :  // more of the same
-    }
-    ```
+```java
+public static void printDocProps(XDocumentProperties dps)
+{
+  System.out.println("Document Properties Info");
+  System.out.println("Author: " + dps.getAuthor());
+  System.out.println("Title: " + dps.getTitle());
+  System.out.println("Subject: " + dps.getSubject());
+  System.out.println("Description: " + dps.getDescription());
+  System.out.println("Generator: " + dps.getGenerator());
+     :  // more of the same
+}
+```
 
 However, user-defined file properties are accessed with an XPropertyContainer, as
 can be seen back in printDocProperties().
@@ -211,31 +207,29 @@ can be seen back in printDocProperties().
 The setting of document properties is done with set methods, as in Info.setDocProps()
 which sets the file's subject, title, and author properties:
 
-=== "java"
-    ```java
-    // in the Info class
-    public static void setDocProps(XComponent doc,
-                     String subject, String title, String author)
-    {
-      XDocumentPropertiesSupplier dpSupplier =
-               UnoRuntime.queryInterface(
-                     XDocumentPropertiesSupplier.class, doc);
-      XDocumentProperties docProps =
-                     dpSupplier.getDocumentProperties();
-      docProps.setSubject(subject);
-      docProps.setTitle(title);
-      docProps.setAuthor(author);
-    }  // end setDocProps()
-    ```
+```java
+// in the Info class
+public static void setDocProps(XComponent doc,
+                 String subject, String title, String author)
+{
+  XDocumentPropertiesSupplier dpSupplier =
+           UnoRuntime.queryInterface(
+                 XDocumentPropertiesSupplier.class, doc);
+  XDocumentProperties docProps =
+                 dpSupplier.getDocumentProperties();
+  docProps.setSubject(subject);
+  docProps.setTitle(title);
+  docProps.setAuthor(author);
+}  // end setDocProps()
+```
 
 This method is called at the end of DocProps.java:
 
-=== "java"
-    ```java
-    // code fragment from DocProps.java
-    Info.setDocProps(doc, "Example", "Examples", "Andrew Davison");
-    Lo.save(doc);     // must save or the props are lost
-    ```
+```java
+// code fragment from DocProps.java
+Info.setDocProps(doc, "Example", "Examples", "Andrew Davison");
+Lo.save(doc);     // must save or the props are lost
+```
 
 After the properties are changed, the document must be saved otherwise the changes
 will be lost when the document is closed.
@@ -296,47 +290,46 @@ The methods are shown in action in the DocProps.java example, which loads a
 document and prints information about its services, interfaces, methods, and
 properties. The relevant code fragment:
 
-=== "java"
-    ```java
-    // part of DocProps.java
-    XComponent doc = Lo.openDoc(args[0], loader);
-    
-    System.out.println("\n------ Services for this document: -------");
-    for(String service : Info.getServices(doc))
-      System.out.println("  " + service);
-    
-    System.out.println("\n--- Available Services for this doc: ---");
-    int count = 0;
-    for(String service : Info.getAvailableServices(doc)) {
-      System.out.println("  " + service);
-      count++;
-    }
-    System.out.println("No. available services: " + count);
-    
-    System.out.println("\n------ Interfaces for this document: -------");
-    count = 0;
-    for(String intfs : Info.getInterfaces(doc)) {
-      System.out.println("  " + intfs);
-      count++;
-    }
-    System.out.println("No. interfaces: " + count);
-    
-    String interfaceName = "com.sun.star.text.XTextDocument";
-    System.out.println("\n------ Methods for interface " +
-                                        interfaceName + ": ------");
-    String[] methods = Info.getMethods(interfaceName);
-    for(String methodName : methods)
-      System.out.println("  " + methodName + "();");
-    System.out.println("No. methods: " + methods.length);
-    
-    System.out.println("\n---- Properties for this document: ----");
-    count = 0;
-    for(Property p : Props.getProperties(doc)) {
-      System.out.println("  " + Props.showProperty(p));
-      count++;
-    }
-    System.out.println("No. properties: " + count);
-    ```
+```java
+// part of DocProps.java
+XComponent doc = Lo.openDoc(args[0], loader);
+
+System.out.println("\n------ Services for this document: -------");
+for(String service : Info.getServices(doc))
+  System.out.println("  " + service);
+
+System.out.println("\n--- Available Services for this doc: ---");
+int count = 0;
+for(String service : Info.getAvailableServices(doc)) {
+  System.out.println("  " + service);
+  count++;
+}
+System.out.println("No. available services: " + count);
+
+System.out.println("\n------ Interfaces for this document: -------");
+count = 0;
+for(String intfs : Info.getInterfaces(doc)) {
+  System.out.println("  " + intfs);
+  count++;
+}
+System.out.println("No. interfaces: " + count);
+
+String interfaceName = "com.sun.star.text.XTextDocument";
+System.out.println("\n------ Methods for interface " +
+                                    interfaceName + ": ------");
+String[] methods = Info.getMethods(interfaceName);
+for(String methodName : methods)
+  System.out.println("  " + methodName + "();");
+System.out.println("No. methods: " + methods.length);
+
+System.out.println("\n---- Properties for this document: ----");
+count = 0;
+for(Property p : Props.getProperties(doc)) {
+  System.out.println("  " + Props.showProperty(p));
+  count++;
+}
+System.out.println("No. properties: " + count);
+```
 
 When I examined a Word file with this program, only three services were found:
 OfficeDocument, GenericTextDocument, and TextDocument, which correspond to
@@ -346,11 +339,10 @@ can call 206 other available services, 69 interfaces, and manipulate 40 properti
 
 In the code above only the methods available to XTextDocument are printed:
 
-=== "java"
-    ```java
-    String interfaceName = "com.sun.star.text.XTextDocument";
-    String[] methods = Info.getMethods(interfaceName);
-    ```
+```java
+String interfaceName = "com.sun.star.text.XTextDocument";
+String[] methods = Info.getMethods(interfaceName);
+```
 
 Sixteen methods are listed, collectively inherited from the interfaces in
 XTextDocument 's inheritance hierarchy shown in Figure 5.
@@ -371,36 +363,34 @@ by calling Props.showProperty(). If you only want to know about one specific
 property then use Props.getProperty(), which requires a reference to the document and
 the property name:
 
-=== "java"
-    ```java
-    String propName = "CharacterCount";
-    System.out.println("Value of " + propName + ": " +
-                             Props.getProperty(doc, propName) );
-    ```
+```java
+String propName = "CharacterCount";
+System.out.println("Value of " + propName + ": " +
+                         Props.getProperty(doc, propName) );
+```
 
 File Types
 Another group of utility methods let a programmer investigate a file's document type.
 
 The DocProps.java example also shows these methods in action:
 
-=== "java"
-    ```java
-    // part of DocProps.java
-    XComponentLoader loader = Lo.loadOffice();
-    
-    String ext = Info.getExt(args[0]);
-    if (ext != null) {
-      System.out.println("\nFile Extension: " + ext);
-      System.out.println("Extension format: " + Lo.ext2Format(ext));
-    }
-    
-    // get document type
-    String docType = Info.getDocType(args[0]);
-    if (docType != null) {
-      System.out.println("Doc type: " + docType + "\n");
-      Props.showDocTypeProps(docType);
-    }
-    ```
+```java
+// part of DocProps.java
+XComponentLoader loader = Lo.loadOffice();
+
+String ext = Info.getExt(args[0]);
+if (ext != null) {
+  System.out.println("\nFile Extension: " + ext);
+  System.out.println("Extension format: " + Lo.ext2Format(ext));
+}
+
+// get document type
+String docType = Info.getDocType(args[0]);
+if (docType != null) {
+  System.out.println("Doc type: " + docType + "\n");
+  Props.showDocTypeProps(docType);
+}
+```
 
 One advantage of these functions is that they can be called before the file's document
 is loaded with Lo.openDoc().
@@ -462,13 +452,12 @@ did install successfully.
 Once installed, MRI can be accessed through Office's GUI via the Tools, Add-ons
 menu item, or programmatically as in my ExamineDoc.java example:
 
-=== "java"
-    ```java
-    // part of ExamineDoc.java
-    XComponentLoader loader = Lo.loadOffice();
-    XComponent doc = Lo.openDoc(args[0], loader);
-    Lo.mriInspect(doc);
-    ```
+```java
+// part of ExamineDoc.java
+XComponentLoader loader = Lo.loadOffice();
+XComponent doc = Lo.openDoc(args[0], loader);
+Lo.mriInspect(doc);
+```
 
 A window appears, like the one in Figure 6.
 
@@ -493,24 +482,23 @@ A click on a method or property will cause code to be generated which utilizes t
 method or property. For example, when I clicked on the CharacterCount property
 (shown at the bottom of Figure 6), the following code fragment was produced:
 
-=== "java"
-    ```java
-    public static void snippet(XComponentContext xComponentContext,
-                                   Object oInitialTarget)
-    { try {
-        XPropertySet xPropSet = UnoRuntime.queryInterface(
-                                  XPropertySet.class, oInitialTarget);
-        int nCharacterCount = AnyConverter.toInt(
-                     xPropSet.getPropertyValue("CharacterCount"));
-      }
-      catch (UnknownPropertyException e1)
-      { e1.printStackTrace(); }
-      catch (IllegalArgumentException e2)
-      { e2.printStackTrace(); }
-      catch (WrappedTargetException e3)
-      { e3.printStackTrace(); }
-    }
-    ```
+```java
+public static void snippet(XComponentContext xComponentContext,
+                               Object oInitialTarget)
+{ try {
+    XPropertySet xPropSet = UnoRuntime.queryInterface(
+                              XPropertySet.class, oInitialTarget);
+    int nCharacterCount = AnyConverter.toInt(
+                 xPropSet.getPropertyValue("CharacterCount"));
+  }
+  catch (UnknownPropertyException e1)
+  { e1.printStackTrace(); }
+  catch (IllegalArgumentException e2)
+  { e2.printStackTrace(); }
+  catch (WrappedTargetException e3)
+  { e3.printStackTrace(); }
+}
+```
 
 The snippet() function is passed the component context and initial target object (the
 text document). UnoRuntime.queryInterface() casts the document to the XPropertySet
@@ -533,22 +521,21 @@ navigating MRI's object hierarchy
 Lo.mriInspect() executes the following code, which I lifted from the "Run MRI"
 section of the MRI wiki:
 
-=== "java"
-    ```java
-    // in Lo.java
-    public static void mriInspect(Object obj)
-    {
-      XIntrospection xi =
-            createInstanceMCF(XIntrospection.class, "mytools.Mri");
-      if (xi == null) {
-        System.out.println("MRI Inspector Service could not
-                            be instantiated");
-        return;
-      }
-      System.out.println("MRI Inspector Service instantiated");
-      xi.inspect(obj);
-    }  // end of mriInspect()
-    ```
+```java
+// in Lo.java
+public static void mriInspect(Object obj)
+{
+  XIntrospection xi =
+        createInstanceMCF(XIntrospection.class, "mytools.Mri");
+  if (xi == null) {
+    System.out.println("MRI Inspector Service could not
+                        be instantiated");
+    return;
+  }
+  System.out.println("MRI Inspector Service instantiated");
+  xi.inspect(obj);
+}  // end of mriInspect()
+```
 
 "mytools.Mri" is the name of the service added to Office when MRI is installed.
 
@@ -559,15 +546,14 @@ One drawback is that inspect() returns immediately after spawning the MRI GUI (i
 the window in Figure 3), allowing ExamineDoc.java to continue. It would be better if
 the program paused, which can be achieved by calling Lo.waitEnter():
 
-=== "java"
-    ```java
-    // part of ExamineDoc.java
-    XComponentLoader loader = Lo.loadOffice();
-    XComponent doc = Lo.openDoc(args[0], loader);
-    Lo.mriInspect(doc);
-    
-    Lo.waitEnter();
-    ```
+```java
+// part of ExamineDoc.java
+XComponentLoader loader = Lo.loadOffice();
+XComponent doc = Lo.openDoc(args[0], loader);
+Lo.mriInspect(doc);
+
+Lo.waitEnter();
+```
 
 Another issue is that when the MRI window is closed by the user, the link to Office is
 broken (the UNO bridge is deleted). But this doesn't happen if the document is visible
@@ -577,34 +563,32 @@ In general, it turns out to be quite useful to display the document, especially 
 program debugging and development. A visible document allows the coder to see
 incremental changes as they occur.
 
-The simplest way of making a document visible is by employing the FC
+The simplest way of making a document visible is by employing the FCM
 relationship mentioned in Chapter 1. Starting from the document, it's easy to switch to
 the XModel interface, and from there go to the container window. Its XWindow
 interface has a setVisible() method that can make the document visible (or hide it).
 
 The corresponding code fragment is:
 
-=== "java"
-    ```java
-    XModel model = Lo.qi(XModel.class, doc);
-    XFrame frame = model.getCurrentController().getFrame();
-    XWindow xWindow = frame.getContainerWindow();
-    xWindow.setVisible(true);   // or false to hide
-    xWindow.setFocus();
-    ```
+```java
+XModel model = Lo.qi(XModel.class, doc);
+XFrame frame = model.getCurrentController().getFrame();
+XWindow xWindow = frame.getContainerWindow();
+xWindow.setVisible(true);   // or false to hide
+xWindow.setFocus();
+```
 
 This code is packaged up in the GUI utility class, and called with GUI.setVisible().
 
 The code in ExpandDoc becomes:
 
-=== "java"
-    ```java
-    // part of ExamineDoc.java
-    XComponentLoader loader = Lo.loadOffice();
-    XComponent doc = Lo.openDoc(args[0], loader);
-    
-    GUI.setVisible(doc, true);   // needed so that close of MRI doesn't
-                                 // cause the UNO bridge to be disposed
-    Lo.mriInspect(doc);
-    Lo.waitEnter();
-    ```
+```java
+// part of ExamineDoc.java
+XComponentLoader loader = Lo.loadOffice();
+XComponent doc = Lo.openDoc(args[0], loader);
+
+GUI.setVisible(doc, true);   // needed so that close of MRI doesn't
+                             // cause the UNO bridge to be disposed
+Lo.mriInspect(doc);
+Lo.waitEnter();
+```

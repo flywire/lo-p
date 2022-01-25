@@ -44,74 +44,73 @@ as when it is opened, closed, minimized, and made active.
 
 The DocWindow.java example illustrates how to use the listener:
 
-=== "java"
-    ```java
-    public class DocWindow implements XTopWindowListener
-    {
-    
-      public DocWindow(String fnm)
-      {
-        XComponentLoader loader = Lo.loadOffice();
-    
-        XExtendedToolkit tk = Lo.createInstanceMCF(
-                    XExtendedToolkit.class, "com.sun.star.awt.Toolkit");
-        if (tk != null)
-          tk.addTopWindowListener(this);
-    
-        XComponent doc = Lo.openDoc(fnm, loader);
-        if (doc == null) {
-          System.out.println("Could not open " + fnm);
-          Lo.closeOffice();
-          return;
-        }
-    
-        GUI.setVisible(doc, true);
-    
-         // various window manipulation code; see below
-         //     :
-    
-        Lo.closeDoc(doc);
-        Lo.closeOffice();
-      } // end of DocWindow()
-    
-    
-    
-      // --------- 7 XTopWindowListener methods -----------
-    
-      public void windowOpened(EventObject event)
-      {
-        System.out.println("WL: Opened");
-        XWindow xWin = Lo.qi(XWindow.class, event.Source);
-        GUI.printRect( xWin.getPosSize());
-      }  // end of windowOpened()
-    
-      public void windowActivated(EventObject event)
-      { System.out.println("WL: Activated");
-        System.out.println("  Title bar: \"" + GUI.getTitleBar() + "\"");
-      }  // end of windowActivated()
-    
-      public void windowMinimized(EventObject event)
-      { System.out.println("WL: Minimized");  }
-    
-      public void windowNormalized(EventObject event)
-      { System.out.println("WL: Normalized");  }
-    
-      public void windowDeactivated(EventObject event)
-      { System.out.println("WL: De-activated");  }
-    
-      public void windowClosing(EventObject event) // never called (?)
-      { System.out.println("WL: Closing");  }
-    
-      public void windowClosed(EventObject event)
-      { System.out.println("WL: Closed");  }
-    
-      // --------- XEventListener method ------------
-    
-      public void disposing(EventObject event)   // never called (?)
-      { System.out.println("WL: Disposing");  }
-    
-    }  // end of DocWindow class
-    ```
+```java
+public class DocWindow implements XTopWindowListener
+{
+
+  public DocWindow(String fnm)
+  {
+    XComponentLoader loader = Lo.loadOffice();
+
+    XExtendedToolkit tk = Lo.createInstanceMCF(
+                XExtendedToolkit.class, "com.sun.star.awt.Toolkit");
+    if (tk != null)
+      tk.addTopWindowListener(this);
+
+    XComponent doc = Lo.openDoc(fnm, loader);
+    if (doc == null) {
+      System.out.println("Could not open " + fnm);
+      Lo.closeOffice();
+      return;
+    }
+
+    GUI.setVisible(doc, true);
+
+     // various window manipulation code; see below
+     //     :
+
+    Lo.closeDoc(doc);
+    Lo.closeOffice();
+  } // end of DocWindow()
+
+
+
+  // --------- 7 XTopWindowListener methods -----------
+
+  public void windowOpened(EventObject event)
+  {
+    System.out.println("WL: Opened");
+    XWindow xWin = Lo.qi(XWindow.class, event.Source);
+    GUI.printRect( xWin.getPosSize());
+  }  // end of windowOpened()
+
+  public void windowActivated(EventObject event)
+  { System.out.println("WL: Activated");
+    System.out.println("  Title bar: \"" + GUI.getTitleBar() + "\"");
+  }  // end of windowActivated()
+
+  public void windowMinimized(EventObject event)
+  { System.out.println("WL: Minimized");  }
+
+  public void windowNormalized(EventObject event)
+  { System.out.println("WL: Normalized");  }
+
+  public void windowDeactivated(EventObject event)
+  { System.out.println("WL: De-activated");  }
+
+  public void windowClosing(EventObject event) // never called (?)
+  { System.out.println("WL: Closing");  }
+
+  public void windowClosed(EventObject event)
+  { System.out.println("WL: Closed");  }
+
+  // --------- XEventListener method ------------
+
+  public void disposing(EventObject event)   // never called (?)
+  { System.out.println("WL: Disposing");  }
+
+}  // end of DocWindow class
+```
 
 The class implements seven methods for XTopWindowListener, and disposing()
 inherited from XEventListener.
@@ -124,10 +123,9 @@ XTopWindowListener, XFocusListener, and the XKeyHandler listener.
 When an event arrives at a listener method, one of the more useful things to do is to
 transform it into an XWindow instance:
 
-=== "java"
-    ```java
-    XWindow xWin = Lo.qi(XWindow.class, event.Source);
-    ```
+```java
+XWindow xWin = Lo.qi(XWindow.class, event.Source);
+```
 
 It's then possible to access details about the frame, such as its size.
 
@@ -162,21 +160,20 @@ process IDs.
 In the DocWindow.java example, the document window’s handle is retrieved first,
 then minimization and re-activation methods change the window:
 
-=== "java"
-    ```java
-    // part of DocWindow.java
-    HWND handle = JNAUtils.getHandle();
-    System.out.println("Handle: \"" +
-                           JNAUtils.handleString(handle) + "\"");
-    
-    JNAUtils.winMinimize(handle);
-                      // triggers minimized and de-activated events
-    Lo.delay(3000);
-    
-    JNAUtils.winRestore(handle);
-                     // triggers normalized and activated events
-    Lo.delay(3000);
-    ```
+```java
+// part of DocWindow.java
+HWND handle = JNAUtils.getHandle();
+System.out.println("Handle: \"" +
+                       JNAUtils.handleString(handle) + "\"");
+
+JNAUtils.winMinimize(handle);
+                  // triggers minimized and de-activated events
+Lo.delay(3000);
+
+JNAUtils.winRestore(handle);
+                 // triggers normalized and activated events
+Lo.delay(3000);
+```
 
 The calls to Lo.delay() slow down the window changes at run time so the user can see
 what's happening.
@@ -207,47 +204,46 @@ JNA.
 Office termination is most easily observed by attaching a listener to the Desktop
 object, as in DocMonitor.java:
 
-=== "java"
-    ```java
-    public class DocMonitor
+```java
+public class DocMonitor
+{
+  public DocMonitor(String fnm)
+  {
+    XComponentLoader loader = Lo.loadOffice();
+
+    XDesktop xDesktop = Lo.getDesktop();
+    xDesktop.addTerminateListener( new XTerminateListener()
     {
-      public DocMonitor(String fnm)
-      {
-        XComponentLoader loader = Lo.loadOffice();
-    
-        XDesktop xDesktop = Lo.getDesktop();
-        xDesktop.addTerminateListener( new XTerminateListener()
-        {
-           public void queryTermination(EventObject e)
-                                    throws TerminationVetoException
-           {  System.out.println("TL: Starting Closing");   }
-    
-           public void notifyTermination(EventObject e)
-           {  System.out.println("TL: Finished Closing"); }
-    
-           public void disposing(EventObject e)
-           {  System.out.println("TL: Disposing");  }
-        });
-    
-        XComponent doc = Lo.openDoc(fnm, loader);
-        if (doc == null) {
-          System.out.println("Could not open " + fnm);
-          Lo.closeOffice();
-          return;
-        }
-    
-        GUI.setVisible(doc, true);
-    
-        System.out.println("Waiting for 5 secs before closing doc…");
-        Lo.delay(5000);
-        Lo.closeDoc(doc);
-    
-        System.out.println("Waiting for 5 secs before closing Office…");
-        Lo.delay(5000);
-        Lo.closeOffice();
-      }  // end of DocMonitor()
+       public void queryTermination(EventObject e)
+                                throws TerminationVetoException
+       {  System.out.println("TL: Starting Closing");   }
+
+       public void notifyTermination(EventObject e)
+       {  System.out.println("TL: Finished Closing"); }
+
+       public void disposing(EventObject e)
+       {  System.out.println("TL: Disposing");  }
+    });
+
+    XComponent doc = Lo.openDoc(fnm, loader);
+    if (doc == null) {
+      System.out.println("Could not open " + fnm);
+      Lo.closeOffice();
+      return;
     }
-    ```
+
+    GUI.setVisible(doc, true);
+
+    System.out.println("Waiting for 5 secs before closing doc…");
+    Lo.delay(5000);
+    Lo.closeDoc(doc);
+
+    System.out.println("Waiting for 5 secs before closing Office…");
+    Lo.delay(5000);
+    Lo.closeOffice();
+  }  // end of DocMonitor()
+}
+```
 
 An XTerminateListener is attached to the XDesktop instance. The program's output
 is:
@@ -282,30 +278,29 @@ approach to work when using a socket-based link to Office.
 
 The modified parts of DocMonitor.java are:
 
-=== "java"
-    ```java
-    // in DocMonitor()
-    XComponentLoader loader = // Lo.loadOffice();
-                              Lo.loadSocketOffice();
-         :  // more code
-    
-    XComponent bridgeComp = Lo.getBridge();
-    if (bridgeComp != null) {
-      System.out.println("Found bridge");
-      bridgeComp.addEventListener( new XEventListener()
-      {
-        public void disposing(EventObject e)
-        { /* remote bridge has gone down, because
-             office crashed or was terminated. */
-          System.out.println("Office bridge has gone!!");
-          System.exit(1);
-        }
-      });
+```java
+// in DocMonitor()
+XComponentLoader loader = // Lo.loadOffice();
+                          Lo.loadSocketOffice();
+     :  // more code
+
+XComponent bridgeComp = Lo.getBridge();
+if (bridgeComp != null) {
+  System.out.println("Found bridge");
+  bridgeComp.addEventListener( new XEventListener()
+  {
+    public void disposing(EventObject e)
+    { /* remote bridge has gone down, because
+         office crashed or was terminated. */
+      System.out.println("Office bridge has gone!!");
+      System.exit(1);
     }
-    
-    XComponent doc = Lo.openDoc(fnm, loader);
-         :   // more code
-    ```
+  });
+}
+
+XComponent doc = Lo.openDoc(fnm, loader);
+     :   // more code
+```
 
 Since the disappearance of the Office bridge is a fatal event, disposing() finishes by
 calling System.exit() to kill Java.
@@ -386,31 +381,30 @@ when the dispatch works, and raises an exception when the dispatch really fails.
 The code is wrapped up in Lo.dispatchCmd() , which is called twice in the
 DispatchTest.java example:
 
-=== "java"
-    ```java
-    public DispatchTest(String fnm)
-    {
-      XComponentLoader loader = Lo.loadOffice();
-    
-      XComponent doc = Lo.openDoc(fnm, loader);
-      if (doc == null) {
-        System.out.println("Could not open " + fnm);
-        Lo.closeOffice();
-        return;
-      }
-    
-      GUI.setVisible(doc, true);
-      Lo.delay(100);
-      toggleSlidePane();
-    
-      Lo.dispatchCmd("HelpIndex");     // show online Help
-    
-      Lo.dispatchCmd("Presentation");  // start slideshow
-    
-      //Lo.closeDoc(doc);
-      //Lo.closeOffice();
-    }  // end of DispatchTest()
-    ```
+```java
+public DispatchTest(String fnm)
+{
+  XComponentLoader loader = Lo.loadOffice();
+
+  XComponent doc = Lo.openDoc(fnm, loader);
+  if (doc == null) {
+    System.out.println("Could not open " + fnm);
+    Lo.closeOffice();
+    return;
+  }
+
+  GUI.setVisible(doc, true);
+  Lo.delay(100);
+  toggleSlidePane();
+
+  Lo.dispatchCmd("HelpIndex");     // show online Help
+
+  Lo.dispatchCmd("Presentation");  // start slideshow
+
+  //Lo.closeDoc(doc);
+  //Lo.closeOffice();
+}  // end of DispatchTest()
+```
 
 The Lo.dispatchCmd() string doesn't require an ".uno"" prefix. The first call sends
 ".uno:HelpIndex" to open Office's help window, and the second (".uno:Presentation")
@@ -432,31 +426,30 @@ ALT-l.
 
 toggleSlidePane() 'types' these key strokes with the help of Java's Robot class:
 
-=== "java"
-    ```java
-    // in DispatchTest.java
-    
-    private void toggleSlidePane()
-    // send ALT-v and then ALT-l to foreground window;
-    // makes slide pane appear/disappear in Impress
-    {
-      try {
-        Robot robot = new Robot();
-        robot.setAutoDelay(250);
-        robot.keyPress(KeyEvent.VK_ALT);
-    
-        robot.keyPress(KeyEvent.VK_V);
-        robot.keyRelease(KeyEvent.VK_V);
-    
-        robot.keyPress(KeyEvent.VK_L);
-        robot.keyRelease(KeyEvent.VK_L);
-    
-        robot.keyRelease(KeyEvent.VK_ALT);
-      }
-      catch(AWTException e)
-      {  System.out.println("sendkeys slidePane exception: " + e); }
-    }   // end of toggleSlidePane()
-    ```
+```java
+// in DispatchTest.java
+
+private void toggleSlidePane()
+// send ALT-v and then ALT-l to foreground window;
+// makes slide pane appear/disappear in Impress
+{
+  try {
+    Robot robot = new Robot();
+    robot.setAutoDelay(250);
+    robot.keyPress(KeyEvent.VK_ALT);
+
+    robot.keyPress(KeyEvent.VK_V);
+    robot.keyRelease(KeyEvent.VK_V);
+
+    robot.keyPress(KeyEvent.VK_L);
+    robot.keyRelease(KeyEvent.VK_L);
+
+    robot.keyRelease(KeyEvent.VK_ALT);
+  }
+  catch(AWTException e)
+  {  System.out.println("sendkeys slidePane exception: " + e); }
+}   // end of toggleSlidePane()
+```
 
 This technique has a few drawbacks – one is that Robot can only send key strokes to
 the currently active window on the OS' desktop. I've assumed this is Office, because I

@@ -210,17 +210,16 @@ class, then explain the additional highlighting code in a later section.
 The template in addonImpl.ftl represents a single Java class, which extends
 WeakBase and implements seven interfaces:
 
-=== "java"
-    ```java
-    public class ${className} extends WeakBase implements
-             XInitialization, XServiceInfo,
-             XDispatchProvider, XDispatch,   // for the add-on
-             XActionListener, XTopWindowListener,
-             XKeyListener                    // for the dialog
-    {
-     //  ... add-on code
-    }
-    ```
+```java
+public class ${className} extends WeakBase implements
+         XInitialization, XServiceInfo,
+         XDispatchProvider, XDispatch,   // for the add-on
+         XActionListener, XTopWindowListener,
+         XKeyListener                    // for the dialog
+{
+ //  ... add-on code
+}
+```
 
 WeakBase is the base class used by all components (which includes add-ons and Calc
 Addins). XServiceInfo and XInitialization handle the creation and initialization of the
@@ -229,46 +228,44 @@ service at run time.
 The XDispatchProvider method, queryDispatch(), implements the dispatch handler
 for the add-on – it accepts the command URLs associated with the add-on:
 
-=== "java"
-    ```java
-    // in EzHighlightAddonInpl.java
-    public XDispatch queryDispatch(URL commandURL,
-                          String targetFrameName, int searchFlags)
-    {
-      if (commandURL.Protocol.compareTo(
-                     "org.openoffice.ezhighlightAddon:") == 0) {
-        if (commandURL.Path.compareTo("EzHighlight") == 0) {
-          System.out.println("queryDispatch() for \"EzHighlight\"");
-          return this;
-        }
-        if (commandURL.Path.compareTo("help") == 0) {
-          System.out.println("queryDispatch() for \"help\"");
-          return this;
-        }
-      }
-      return null;
-    }  // end of queryDispatch()
-    ```
+```java
+// in EzHighlightAddonInpl.java
+public XDispatch queryDispatch(URL commandURL,
+                      String targetFrameName, int searchFlags)
+{
+  if (commandURL.Protocol.compareTo(
+                 "org.openoffice.ezhighlightAddon:") == 0) {
+    if (commandURL.Path.compareTo("EzHighlight") == 0) {
+      System.out.println("queryDispatch() for \"EzHighlight\"");
+      return this;
+    }
+    if (commandURL.Path.compareTo("help") == 0) {
+      System.out.println("queryDispatch() for \"help\"");
+      return this;
+    }
+  }
+  return null;
+}  // end of queryDispatch()
+```
 
 The handler signals its acceptance of a command URL by returning a dispatch object
 which Office uses to process the command. EzHighlightAddonImpl also implements
 the XDispatch interface, so returns a reference to itself. This means that Office calls
 EzHighlightAddonImpl.dispatch(), passing it the command URL and other properties:
 
-=== "java"
-    ```java
-    // in EzHighlightAddonInpl.java
-    public void dispatch(URL commandURL, PropertyValue[] props)
-    {
-      if (commandURL.Protocol.compareTo(
-                   "org.openoffice.ezhighlightAddon:") == 0) {
-        if (commandURL.Path.compareTo("EzHighlight") == 0)
-          processCmd("EzHighlight");
-        if (commandURL.Path.compareTo("help") == 0)
-          processCmd("help");
-      }
-    }  // end of dispatch()
-    ```
+```java
+// in EzHighlightAddonInpl.java
+public void dispatch(URL commandURL, PropertyValue[] props)
+{
+  if (commandURL.Protocol.compareTo(
+               "org.openoffice.ezhighlightAddon:") == 0) {
+    if (commandURL.Path.compareTo("EzHighlight") == 0)
+      processCmd("EzHighlight");
+    if (commandURL.Path.compareTo("help") == 0)
+      processCmd("help");
+  }
+}  // end of dispatch()
+```
 
 The template-generated code inside dispatch() distinguishes between the possible
 command names ("EzHighlight" and "help") by calling processCmd() with different
@@ -278,100 +275,98 @@ If processCmd()'s input argument is "help", then GUI.showMessageBox() is called 
 display the window shown in Figure 6, while "EzHighlight" triggers the dialog in
 Figure 4. The processCmd() code is:
 
-=== "java"
-    ```java
-    // in EzHighlightAddonInpl.java...
-    
-    // globals
-    private XDialog dialog = null;
-    
-    private Console console;    // for debugging output
-    private int printCount = 1;
-    
-    
-    private void processCmd(String cmd)
-    {
-      XComponent doc = Lo.addonInitialize(xcc);
-                       // so my utils can be used safely
-    
-      System.out.println("Window title: " + GUI.getTitleBar());
-      System.out.println(printCount++ +
-                     ". dispatch() called for \"" + cmd + "\"");
-    
-      if (cmd.equals("help")) {
-        GUI.showMessageBox("Add-on Help",
-              "Type in the text, then press return or
-               click the Ok button.");
-        return;
-      }
-    
-      // "EzHighlight" is processed by the following code...
-    
-      console.setVisible(true);
-    
-      dialog = Dialogs.loadAddonDialog(
-                        "org.openoffice.ezhighlightAddon",
-                        "dialogLibrary/" + cmd + ".xdl");
-      if (dialog == null) {
-        System.out.println("Could not load " + cmd + " dialog");
-        return;
-      }
-    
-      XControl dialogControl = Dialogs.getDialogControl(dialog);
-      initDialog(dialogControl);
-      Dialogs.execute(dialogControl);
-    
-      console.setVisible(false);
-    }  // end of processCmd()
-    ```
+```java
+// in EzHighlightAddonInpl.java...
+
+// globals
+private XDialog dialog = null;
+
+private Console console;    // for debugging output
+private int printCount = 1;
+
+
+private void processCmd(String cmd)
+{
+  XComponent doc = Lo.addonInitialize(xcc);
+                   // so my utils can be used safely
+
+  System.out.println("Window title: " + GUI.getTitleBar());
+  System.out.println(printCount++ +
+                 ". dispatch() called for \"" + cmd + "\"");
+
+  if (cmd.equals("help")) {
+    GUI.showMessageBox("Add-on Help",
+          "Type in the text, then press return or
+           click the Ok button.");
+    return;
+  }
+
+  // "EzHighlight" is processed by the following code...
+
+  console.setVisible(true);
+
+  dialog = Dialogs.loadAddonDialog(
+                    "org.openoffice.ezhighlightAddon",
+                    "dialogLibrary/" + cmd + ".xdl");
+  if (dialog == null) {
+    System.out.println("Could not load " + cmd + " dialog");
+    return;
+  }
+
+  XControl dialogControl = Dialogs.getDialogControl(dialog);
+  initDialog(dialogControl);
+  Dialogs.execute(dialogControl);
+
+  console.setVisible(false);
+}  // end of processCmd()
+```
 
 Lo.addonInitialize() initializes the globals used by my Lo utility library and other
 support classes:
 
-=== "java"
-    ```java
-    // in the Lo class
-    // globals
-    private static XComponentContext xcc = null;
-    private static XDesktop xDesktop = null;
-    private static XMultiComponentFactory mcFactory = null;
-    private static XMultiServiceFactory msFactory = null;
-    
-    
-    public static XComponent addonInitialize(
-                                 XComponentContext addonXcc)
-    { xcc = addonXcc;
-      if (xcc == null)  {
-        System.out.println("Could not access component context");
-        return null;
-      }
-    
-      mcFactory = xcc.getServiceManager();
-      if (mcFactory == null) {
-        System.out.println("Office Service Manager is unavailable");
-        return null;
-      }
-    
-      try {
-        Object oDesktop = mcFactory.createInstanceWithContext(
-                             "com.sun.star.frame.Desktop", xcc);
-        xDesktop = Lo.qi(XDesktop.class, oDesktop);
-      }
-      catch (Exception e) {
-        System.out.println("Could not access desktop");
-        return null;
-      }
-    
-      XComponent doc = xDesktop.getCurrentComponent();
-      if (doc == null)  {
-        System.out.println("Could not access document");
-        return null;
-      }
-    
-      msFactory =  Lo.qi(XMultiServiceFactory.class, doc);
-      return doc;
-    }  // end of addonInitialize()
-    ```
+```java
+// in the Lo class
+// globals
+private static XComponentContext xcc = null;
+private static XDesktop xDesktop = null;
+private static XMultiComponentFactory mcFactory = null;
+private static XMultiServiceFactory msFactory = null;
+
+
+public static XComponent addonInitialize(
+                             XComponentContext addonXcc)
+{ xcc = addonXcc;
+  if (xcc == null)  {
+    System.out.println("Could not access component context");
+    return null;
+  }
+
+  mcFactory = xcc.getServiceManager();
+  if (mcFactory == null) {
+    System.out.println("Office Service Manager is unavailable");
+    return null;
+  }
+
+  try {
+    Object oDesktop = mcFactory.createInstanceWithContext(
+                         "com.sun.star.frame.Desktop", xcc);
+    xDesktop = Lo.qi(XDesktop.class, oDesktop);
+  }
+  catch (Exception e) {
+    System.out.println("Could not access desktop");
+    return null;
+  }
+
+  XComponent doc = xDesktop.getCurrentComponent();
+  if (doc == null)  {
+    System.out.println("Could not access document");
+    return null;
+  }
+
+  msFactory =  Lo.qi(XMultiServiceFactory.class, doc);
+  return doc;
+}  // end of addonInitialize()
+```
 
 addonInitialize() returns an instance of XComponent, which refers to the document
 currently loaded into Office. Later this will be used to highlight the document's text.
@@ -541,51 +536,48 @@ The exported XML is:
 The dialog loading code in EzHighlightAddonInpl.java assumes that the dialog's
 filename is the same as the command URL name, as can be seen in processCmd():
 
-=== "java"
-    ```java
-    // part of processCmd() in EzHighlightAddonInpl.java...
-    
-    dialog = Dialogs.loadAddonDialog("org.openoffice.ezhighlightAddon",
-                                "dialogLibrary/" + cmd + ".xdl");
-    ```
+```java
+// part of processCmd() in EzHighlightAddonInpl.java...
+
+dialog = Dialogs.loadAddonDialog("org.openoffice.ezhighlightAddon",
+                            "dialogLibrary/" + cmd + ".xdl");
+```
 
 processCmd() also assumes that the XDL file is in a dialogLibrary/ sub-directory. I'll
 explain how this is part of the add-on's OXT file in a later section.
 
 Dialogs.loadAddonDialog() is defined as:
 
-=== "java"
-    ```java
-    // in the Dialogs class
-    public static XDialog loadAddonDialog(String extensionID,
-                                          String dialogFnm)
-    { XDialogProvider dp =
-               Lo.createInstanceMCF(XDialogProvider.class,
-                             "com.sun.star.awt.DialogProvider");
-      if (dp == null) {
-        System.out.println("Could not access the Dialog Provider");
-        return null;
-      }
-      try {
-        return dp.createDialog("vnd.sun.star.extension://" +
-                                    extensionID + "/" + dialogFnm);
-      }
-      catch (java.lang.Exception e) {
-        System.out.println("Could not load the dialog: \"" +
-                                       dialogFnm + "\": " + e);
-        return null;
-      }
-    }  // end of loadAddonDialog()
-    ```
+```java
+// in the Dialogs class
+public static XDialog loadAddonDialog(String extensionID,
+                                      String dialogFnm)
+{ XDialogProvider dp =
+           Lo.createInstanceMCF(XDialogProvider.class,
+                         "com.sun.star.awt.DialogProvider");
+  if (dp == null) {
+    System.out.println("Could not access the Dialog Provider");
+    return null;
+  }
+  try {
+    return dp.createDialog("vnd.sun.star.extension://" +
+                                extensionID + "/" + dialogFnm);
+  }
+  catch (java.lang.Exception e) {
+    System.out.println("Could not load the dialog: \"" +
+                                   dialogFnm + "\": " + e);
+    return null;
+  }
+}  // end of loadAddonDialog()
+```
 
 The crucial line is the call to XDialogProvider.createDialog(), which constructs the
 dialog name:
 
-=== "java"
-    ```java
-    vnd.sun.star.extension://org.openoffice.ezhighlightAddon/
-                                           dialogLibrary/EzHighlight
-    ```
+```java
+vnd.sun.star.extension://org.openoffice.ezhighlightAddon/
+                                       dialogLibrary/EzHighlight
+```
 
 The dialog is loaded from the ezhighlightAddon extension.
 
@@ -595,57 +587,54 @@ The dialog is loaded from the ezhighlightAddon extension.
 Back in processCmd(), listeners are attached to the loaded dialog, and the dialog is
 made visible on-screen:
 
-=== "java"
-    ```java
-    // in processCmd() in EzHighlightAddonInpl.java...
-    
-    XControl dialogControl = Dialogs.getDialogControl(dialog);
-    initDialog(dialogControl);
-    Dialogs.execute(dialogControl);
-    ```
+```java
+// in processCmd() in EzHighlightAddonInpl.java...
+
+XControl dialogControl = Dialogs.getDialogControl(dialog);
+initDialog(dialogControl);
+Dialogs.execute(dialogControl);
+```
 
 Dialogs.getDialogControl() casts the XDialog into an XControl:
 
-=== "java"
-    ```java
-    // in the Dialogs class
-    public static XControl getDialogControl(XDialog dialog)
-    {  return Lo.qi(XControl.class, dialog);  }
-    ```
+```java
+// in the Dialogs class
+public static XControl getDialogControl(XDialog dialog)
+{  return Lo.qi(XControl.class, dialog);  }
+```
 
 The initDialog() method inside EzHighlightAddonInpl.java attaches three listeners to
 the dialog: a window listener, an action listener for the "CommandButton1" button,
 and a key listener for the "TextField1" text field:
 
-=== "java"
-    ```java
-    // in the EzHighlightAddonInpl class
-    // globals
-    private XTextComponent textBox;
-                 // the text in the dialog's text field
-    
-    
-    private void initDialog(XControl dialogControl)
-    {
-      // listen to the dialog window
-      XTopWindow topWin = Dialogs.getDialogWindow(dialogControl);
-      topWin.addTopWindowListener(this);
-    
-      // Dialogs.showControlInfo(dialogControl);
-    
-      // set listener for Ok button
-      XButton button = Lo.qi(XButton.class,
-          Dialogs.findControl(dialogControl, "CommandButton1"));
-      button.addActionListener(this);
-    
-      // set listener for text box
-      textBox = Lo.qi(XTextComponent.class,
-          Dialogs.findControl(dialogControl, "TextField1"));
-      XWindow xTFWindow = (XWindow) Lo.qi(XWindow.class, textBox);
-      xTFWindow.addKeyListener(this);
-      xTFWindow.setFocus();
-    }  // end of initDialog()
-    ```
+```java
+// in the EzHighlightAddonInpl class
+// globals
+private XTextComponent textBox;
+             // the text in the dialog's text field
+
+
+private void initDialog(XControl dialogControl)
+{
+  // listen to the dialog window
+  XTopWindow topWin = Dialogs.getDialogWindow(dialogControl);
+  topWin.addTopWindowListener(this);
+
+  // Dialogs.showControlInfo(dialogControl);
+
+  // set listener for Ok button
+  XButton button = Lo.qi(XButton.class,
+      Dialogs.findControl(dialogControl, "CommandButton1"));
+  button.addActionListener(this);
+
+  // set listener for text box
+  textBox = Lo.qi(XTextComponent.class,
+      Dialogs.findControl(dialogControl, "TextField1"));
+  XWindow xTFWindow = (XWindow) Lo.qi(XWindow.class, textBox);
+  xTFWindow.addKeyListener(this);
+  xTFWindow.setFocus();
+}  // end of initDialog()
+```
 
 These controls and listeners are all from Office's com.sun.star.awt module. The dialog
 and listeners will be invoked by Office at run time, and so should use its API, not
@@ -667,16 +656,15 @@ The dialog contains five components: two labels, two text fields, and a button.
 
 Dialogs.findControl() uses a control's name to find it inside a dialog:
 
-=== "java"
-    ```java
-    // in Dialogs class
-    public static XControl findControl(XControl dialogCtrl,
-                                      String name)
-    { XControlContainer ctrlCon =
-                      Lo.qi(XControlContainer.class, dialogCtrl);
-      return ctrlCon.getControl(name);
-    }
-    ```
+```java
+// in Dialogs class
+public static XControl findControl(XControl dialogCtrl,
+                                  String name)
+{ XControlContainer ctrlCon =
+                  Lo.qi(XControlContainer.class, dialogCtrl);
+  return ctrlCon.getControl(name);
+}
+```
 
 initDialog() converts the returned "CommandButton1" control into an XButton, and
 the "TextField1" control into an XTextComponent so that listeners can be attached to
@@ -688,41 +676,40 @@ XActionListener.actionPerformed() deals with button presses,
 XTopWindowListener.windowClosing() listens for the closing of the dialog, and
 XKeyListener.keyPressed() captures the user typing <ENTER> into the text field:
 
-=== "java"
-    ```java
-    // in the EzHighlightAddonInpl class
-    // globals
-    private XDialog dialog = null;
-    private XTextComponent textBox;
-    
-    
-    public void actionPerformed(ActionEvent e)
-    {
-      String info = textBox.getText();
-      if (info.equals(""))
-        return;
-      System.out.println("Info: \"" + info +"\"");
-      textBox.setText("");
-      // ADD code here
-    }  // end of actionPerformed()
-    
-    
-    public void windowClosing(EventObject event)
-    {  dialog.endExecute();   }
-    
-    
-    public void keyPressed(KeyEvent event)
-    {
-      if (event.KeyCode == Key.RETURN) {
-        String info = textBox.getText();
-        if (info.equals(""))
-          return;
-        System.out.println("Info: \"" + info +"\"");
-        textBox.setText("");
-        // ADD code here
-      }
-    }  // end of keyPressed()
-    ```
+```java
+// in the EzHighlightAddonInpl class
+// globals
+private XDialog dialog = null;
+private XTextComponent textBox;
+
+
+public void actionPerformed(ActionEvent e)
+{
+  String info = textBox.getText();
+  if (info.equals(""))
+    return;
+  System.out.println("Info: \"" + info +"\"");
+  textBox.setText("");
+  // ADD code here
+}  // end of actionPerformed()
+
+
+public void windowClosing(EventObject event)
+{  dialog.endExecute();   }
+
+
+public void keyPressed(KeyEvent event)
+{
+  if (event.KeyCode == Key.RETURN) {
+    String info = textBox.getText();
+    if (info.equals(""))
+      return;
+    System.out.println("Info: \"" + info +"\"");
+    textBox.setText("");
+    // ADD code here
+  }
+}  // end of keyPressed()
+```
 
 The template generated code for actionPerformed() and keyPressed() only print
 information to the Console window. Add-on specific functionality is added next.
@@ -738,110 +725,106 @@ processCmd() converts the XComponent document returned by Lo.addonInitialize()
 into an XTextDocument, assuming that the currently loaded document is text-based.
 If it isn't then there's no point continuing:
 
-=== "java"
-    ```java
-    // in the EzHighlightAddonInpl class
-    // globals
-    private XTextDocument textDoc;
-    
-    
-    // in processCmd()
-        :
-    XComponent doc = Lo.addonInitialize(xcc);
-    // added
-    textDoc = Write.getTextDoc(doc);
-    if (textDoc == null)
-      return;
-        :
-    ```
+```java
+// in the EzHighlightAddonInpl class
+// globals
+private XTextDocument textDoc;
+
+
+// in processCmd()
+    :
+XComponent doc = Lo.addonInitialize(xcc);
+// added
+textDoc = Write.getTextDoc(doc);
+if (textDoc == null)
+  return;
+    :
+```
 
 initDialog() is extended to access the word count text field. It's only used to report the
 number of changes, so doesn't need a listener:
 
-=== "java"
-    ```java
-    // in the EzHighlightAddonInpl class
-    // globals
-    private XTextComponent countTextBox;
-    
-    
-    // in initDialog()
-        :
-    // get a reference to the count text field; added
-    countTextBox = Lo.qi(XTextComponent.class,
-              Dialogs.findControl(dialogControl, "TextField2"));
-        :
-    ```
+```java
+// in the EzHighlightAddonInpl class
+// globals
+private XTextComponent countTextBox;
+
+
+// in initDialog()
+    :
+// get a reference to the count text field; added
+countTextBox = Lo.qi(XTextComponent.class,
+          Dialogs.findControl(dialogControl, "TextField2"));
+    :
+```
 
 actionPerformed() and keyPressed() must trigger the highlighting code, which is
 implemented in applyEzHighlighting():
 
-=== "java"
-    ```java
-    // added to actionPerformed()
-        :
-    int count = applyEzHighlighting(info);
-    countTextBox.setText(""+count);
-    
-    
-    // added to keyPressed()
-        :
-    int count = applyEzHighlighting(info);
-    countTextBox.setText(""+count);
-    ```
+```java
+// added to actionPerformed()
+    :
+int count = applyEzHighlighting(info);
+countTextBox.setText(""+count);
+
+
+// added to keyPressed()
+    :
+int count = applyEzHighlighting(info);
+countTextBox.setText(""+count);
+```
 
 applyEzHighlighting() is passed the text entered by the user through the dialog. It uses
 the XReplaceable and XReplaceDescriptor interfaces to perform a search and replace
 through the document. This technique, and very similar code, was explained in
 Chapter 9. applyEzHighlighting() is:
 
-=== "java"
-    ```java
-    // in the EzHighlightAddonInpl class
-    // globals
-    private XTextDocument textDoc;
-    
-    
-    private int applyEzHighlighting(String searchKey)
-    /* Matches whole words and is case sensitive.
-    
-       Highlights in bold and red;  */
-    {
-      System.out.println("applyEzHighlighting(): " + searchKey);
-    
-      XReplaceable repl = Lo.qi(XReplaceable.class, textDoc);
-      XReplaceDescriptor desc = repl.createReplaceDescriptor();
-    
-      /* Get a XPropertyReplace object for altering the properties
-         of the replaced text */
-      XPropertyReplace propReplace = Lo.qi(XPropertyReplace.class, desc);
-    
-      // Set the replaced text to bold and red
-      PropertyValue wv = new PropertyValue("CharWeight", -1,
-                  FontWeight.BOLD, PropertyState.DIRECT_VALUE);
-      PropertyValue cv = new PropertyValue("CharColor", -1,
-              Color.RED.getRGB(), PropertyState.DIRECT_VALUE);
-      PropertyValue[] props = new PropertyValue[] {cv, wv};
-    
-      try {
-        propReplace.setReplaceAttributes(props);
-    
-        // Only match whole words and be case sensitive
-        desc.setPropertyValue("SearchCaseSensitive", true);
-        desc.setPropertyValue("SearchWords", true);
-      }
-      catch (com.sun.star.uno.Exception ex) {
-        System.out.println("Error setting up search properties");
-        return -1;
-      }
-    
-      /* Replaces all instances of searchKey with new Text properties
-         and gets the number of changed instances */
-      desc.setSearchString(searchKey);
-      desc.setReplaceString(searchKey);
-      return repl.replaceAll(desc);
-    }  // end of applyEzHighlighting()
-    ```
+```java
+// in the EzHighlightAddonInpl class
+// globals
+private XTextDocument textDoc;
+
+
+private int applyEzHighlighting(String searchKey)
+/* Matches whole words and is case sensitive.
+
+   Highlights in bold and red;  */
+{
+  System.out.println("applyEzHighlighting(): " + searchKey);
+
+  XReplaceable repl = Lo.qi(XReplaceable.class, textDoc);
+  XReplaceDescriptor desc = repl.createReplaceDescriptor();
+
+  /* Get a XPropertyReplace object for altering the properties
+     of the replaced text */
+  XPropertyReplace propReplace = Lo.qi(XPropertyReplace.class, desc);
+
+  // Set the replaced text to bold and red
+  PropertyValue wv = new PropertyValue("CharWeight", -1,
+              FontWeight.BOLD, PropertyState.DIRECT_VALUE);
+  PropertyValue cv = new PropertyValue("CharColor", -1,
+          Color.RED.getRGB(), PropertyState.DIRECT_VALUE);
+  PropertyValue[] props = new PropertyValue[] {cv, wv};
+
+  try {
+    propReplace.setReplaceAttributes(props);
+
+    // Only match whole words and be case sensitive
+    desc.setPropertyValue("SearchCaseSensitive", true);
+    desc.setPropertyValue("SearchWords", true);
+  }
+  catch (com.sun.star.uno.Exception ex) {
+    System.out.println("Error setting up search properties");
+    return -1;
+  }
+
+  /* Replaces all instances of searchKey with new Text properties
+     and gets the number of changed instances */
+  desc.setSearchString(searchKey);
+  desc.setReplaceString(searchKey);
+  return repl.replaceAll(desc);
+}  // end of applyEzHighlighting()
+```
 
 
 ## 7.  Configuring the Add-on
@@ -1134,11 +1117,10 @@ configuration files have already been created and are in certain locations.
 The completed EzHighlightAddonImpl.java file is compiled, then added to
 EzHighlight.jar with a manifest that refers to Utils.jar:
 
-=== "java"
-    ```java
-    RegistrationClassName: EzHighlightAddonImpl
-    Class-Path: Utils.jar
-    ```
+```java
+RegistrationClassName: EzHighlightAddonImpl
+Class-Path: Utils.jar
+```
 
 Utils.jar contains my support classes, which may be required by the add-on at run-
 time. installAddon.bat will add it to the OXT file along with EzHighlight.jar.
@@ -1229,12 +1211,11 @@ description, which explains why those files are in EzHighlight/.
 The dialog description (EzHighlight.xdl) is stored in its own subdirectory,
 dialogLibrary/, to match the dialog loading code in EzHighlightAddonInpl.java:
 
-=== "java"
-    ```java
-    // in processCmd()
-    dialog = Dialogs.loadAddonDialog("org.openoffice.ezhighlightAddon",
-                                "dialogLibrary/" + cmd + ".xdl");
-    ```
+```java
+// in processCmd()
+dialog = Dialogs.loadAddonDialog("org.openoffice.ezhighlightAddon",
+                            "dialogLibrary/" + cmd + ".xdl");
+```
 
 The images/ subdirectory contains the extension manager icon (ezhighlight.png) and
 two sizes of GUI icons (ezhighlight16.png and ezhighlight26.png). The GUI icons

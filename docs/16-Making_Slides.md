@@ -36,48 +36,47 @@ special symbols, block arrows, 3D shapes, flowchart elements, callouts, and star
 MakeSlides.java creates a slide deck, adds the five slides to it, and finishes by saving
 the presentation in "makeslides.odp":
 
-=== "java"
-    ```java
-    public static void main (String args[])
-    {
-      XComponentLoader loader = Lo.loadOffice();
-      XComponent doc = Draw.createImpressDoc(loader);  // Impress doc
-      if (doc == null) {
-        System.out.println("Impress doc creation failed");
-        Lo.closeOffice();
-        return;
-      }
-    
-      // first slide: title + subtitle
-      XDrawPage currSlide = Draw.getSlide(doc, 0);
-      Draw.showShapesInfo(currSlide);
-      Draw.titleSlide(currSlide, "Java-Generated Slides",
-                                          "Using LibreOffice");
-      Draw.showShapesInfo(currSlide);
-    
-      // second slide (bullets and image)
-      currSlide = Draw.addSlide(doc);
-      doBullets(currSlide);
-    
-      // third slide: title and video
-      currSlide = Draw.addSlide(doc);
-      Draw.titleOnlySlide(currSlide, "Clock Video");
-      Draw.drawMedia(currSlide, "clock.avi", 20, 70, 50, 50);
-    
-      // fourth slide: buttons
-      currSlide = Draw.addSlide(doc);
-      buttonShapes(currSlide);
-    
-      // fifth slide: shapes created with dispatches
-      dispatchShapes(doc);
-    
-      System.out.println("Total no. of slides: " +
-                                  Draw.getSlidesCount(doc));
-      Lo.saveDoc(doc, "makeslides.odp");
-      Lo.closeDoc(doc);
-      Lo.closeOffice();
-    } // end of main()
-    ```
+```java
+public static void main (String args[])
+{
+  XComponentLoader loader = Lo.loadOffice();
+  XComponent doc = Draw.createImpressDoc(loader);  // Impress doc
+  if (doc == null) {
+    System.out.println("Impress doc creation failed");
+    Lo.closeOffice();
+    return;
+  }
+
+  // first slide: title + subtitle
+  XDrawPage currSlide = Draw.getSlide(doc, 0);
+  Draw.showShapesInfo(currSlide);
+  Draw.titleSlide(currSlide, "Java-Generated Slides",
+                                      "Using LibreOffice");
+  Draw.showShapesInfo(currSlide);
+
+  // second slide (bullets and image)
+  currSlide = Draw.addSlide(doc);
+  doBullets(currSlide);
+
+  // third slide: title and video
+  currSlide = Draw.addSlide(doc);
+  Draw.titleOnlySlide(currSlide, "Clock Video");
+  Draw.drawMedia(currSlide, "clock.avi", 20, 70, 50, 50);
+
+  // fourth slide: buttons
+  currSlide = Draw.addSlide(doc);
+  buttonShapes(currSlide);
+
+  // fifth slide: shapes created with dispatches
+  dispatchShapes(doc);
+
+  System.out.println("Total no. of slides: " +
+                              Draw.getSlidesCount(doc));
+  Lo.saveDoc(doc, "makeslides.odp");
+  Lo.closeDoc(doc);
+  Lo.closeOffice();
+} // end of main()
+```
 
 The five slides are explained in the following sections.
 
@@ -87,12 +86,11 @@ The five slides are explained in the following sections.
 Draw.createImpressDoc() calls Lo.createDoc(), supplying it with the Impress
 document string type:
 
-=== "java"
-    ```java
-    // in the Draw class
-    public static XComponent createImpressDoc(XComponentLoader loader)
-    {  return Lo.createDoc("simpress", loader);  }
-    ```
+```java
+// in the Draw class
+public static XComponent createImpressDoc(XComponentLoader loader)
+{  return Lo.createDoc("simpress", loader);  }
+```
 
 This creates a new slide deck with one slide whose layout depends on Impress' default
 settings. Figure 1 shows the usual layout when a user starts Impress.
@@ -109,38 +107,36 @@ TitleTextShape, and the larger rectangle below is a SubTitleShape.
 This first slide, which is at index position 0 in the deck, can be referred to by calling
 Draw.getSlide():
 
-=== "java"
-    ```java
-    XDrawPage currSlide = Draw.getSlide(doc, 0);
-    ```
+```java
+XDrawPage currSlide = Draw.getSlide(doc, 0);
+```
 
 This is the same method used to get the first page in a Draw document, so I won't go
 through it again. The XDrawPage object can be examined by calling
 Draw.showShapesInfo() which lists all the shapes (both draw and presentation ones)
 on the slide:
 
-=== "java"
-    ```java
-    // in Draw
-    public static void showShapesInfo(XDrawPage dp)
-    {
-      System.out.println("Draw Page shapes:");
-      ArrayList<XShape> shapes = getShapes(dp);
-      if (shapes != null) {
-        for(XShape shape : shapes)
-          showShapeInfo(shape);
-      }
-    }  // end of showShapesInfo()
-    
-    
-    public static void showShapeInfo(XShape xShape)
-    { System.out.println("  Shape service: " + xShape.getShapeType() +
-                         "; z-order: " + getZOrder(xShape));
-    }  // end of showShapeInfo()
-    
-    public static int getZOrder(XShape shape)
-    {  return (Integer) Props.getProperty(shape, "ZOrder");  }
-    ```
+```java
+// in Draw
+public static void showShapesInfo(XDrawPage dp)
+{
+  System.out.println("Draw Page shapes:");
+  ArrayList<XShape> shapes = getShapes(dp);
+  if (shapes != null) {
+    for(XShape shape : shapes)
+      showShapeInfo(shape);
+  }
+}  // end of showShapesInfo()
+
+
+public static void showShapeInfo(XShape xShape)
+{ System.out.println("  Shape service: " + xShape.getShapeType() +
+                     "; z-order: " + getZOrder(xShape));
+}  // end of showShapeInfo()
+
+public static int getZOrder(XShape shape)
+{  return (Integer) Props.getProperty(shape, "ZOrder");  }
+```
 
 Draw.showShapesInfo() output for the first slide is:
 
@@ -166,11 +162,10 @@ Figure 2. Slide Layout Methods.
 
 A title/subtitle layout is used for the first slide by calling:
 
-=== "java"
-    ```java
-    Draw.titleSlide(currSlide, "Java-Generated Slides",
-                                           "Using LibreOffice");
-    ```
+```java
+Draw.titleSlide(currSlide, "Java-Generated Slides",
+                                       "Using LibreOffice");
+```
 
 It generates the slide shown in Figure 3.
 
@@ -195,79 +190,77 @@ correspond to layouts. However, there is a list at the excellent Japanese Office
 website,  https://openoffice3.web.fc2.com/OOoBasic_Impress.html#OOoIPLy01a,
 which I used as the basis of the layout constants in my Draw class:
 
-=== "java"
-    ```java
-    // in Draw
-    public static final int LAYOUT_TITLE_SUB = 0;
-                // title, and subtitle below (the default, usually)
-    
-    public static final int LAYOUT_TITLE_BULLETS = 1;
-               // the usual one you want
-    
-    public static final int LAYOUT_TITLE_CHART = 2;
-    public static final int LAYOUT_TITLE_2CONTENT = 3;
-                       // 2 boxes: 1x2  (row x column), 1 row
-    public static final int LAYOUT_TITLE_CONTENT_CHART = 4;
-    public static final int LAYOUT_TITLE_CONTENT_CLIP = 6;
-    public static final int LAYOUT_TITLE_CHART_CONTENT = 7;
-    public static final int LAYOUT_TITLE_TABLE = 8;
-    public static final int LAYOUT_TITLE_CLIP_CONTENT = 9;
-    public static final int LAYOUT_TITLE_CONTENT_OBJECT = 10;
-    
-    public static final int LAYOUT_TITLE_OBJECT = 11;
-    public static final int LAYOUT_TITLE_CONTENT_2CONTENT = 12;
-                // 3 boxes in 2 columns: 1 in first col, 2 in second
-    public static final int LAYOUT_TITLE_OBJECT_CONTENT = 13;
-    public static final int LAYOUT_TITLE_CONTENT_OVER_CONTENT = 14;
-                // 2 boxes: 2x1, 1 column
-    public static final int LAYOUT_TITLE_2CONTENT_CONTENT = 15;
-                // 3 boxes in 2 columns: 2 in first col, 1 in second
-    public static final int LAYOUT_TITLE_2CONTENT_OVER_CONTENT = 16;
-                // 3 boxes on 2 rows: 2 on first row, 1 on second
-    public static final int LAYOUT_TITLE_CONTENT_OVER_OBJECT = 17;
-    public static final int LAYOUT_TITLE_4OBJECT = 18;  // 4 boxes: 2x2
-    
-    public static final int LAYOUT_TITLE_ONLY = 19;
-                // title only; no body shape
-    public static final int LAYOUT_BLANK = 20;
-    
-    public static final int LAYOUT_VTITLE_VTEXT_CHART = 27;
-           // vertical title, vertical text, and chart
-    public static final int LAYOUT_VTITLE_VTEXT = 28;
-    public static final int LAYOUT_TITLE_VTEXT = 29;
-    public static final int LAYOUT_TITLE_VTEXT_CLIP = 30;
-    
-    public static final int LAYOUT_CENTERED_TEXT = 32;
-    
-    public static final int LAYOUT_TITLE_4CONTENT = 33; // 4 boxes: 2x2
-    public static final int LAYOUT_TITLE_6CONTENT = 34; // 6 boxes: 2x3
-    ```
+```java
+// in Draw
+public static final int LAYOUT_TITLE_SUB = 0;
+            // title, and subtitle below (the default, usually)
+
+public static final int LAYOUT_TITLE_BULLETS = 1;
+           // the usual one you want
+
+public static final int LAYOUT_TITLE_CHART = 2;
+public static final int LAYOUT_TITLE_2CONTENT = 3;
+                   // 2 boxes: 1x2  (row x column), 1 row
+public static final int LAYOUT_TITLE_CONTENT_CHART = 4;
+public static final int LAYOUT_TITLE_CONTENT_CLIP = 6;
+public static final int LAYOUT_TITLE_CHART_CONTENT = 7;
+public static final int LAYOUT_TITLE_TABLE = 8;
+public static final int LAYOUT_TITLE_CLIP_CONTENT = 9;
+public static final int LAYOUT_TITLE_CONTENT_OBJECT = 10;
+
+public static final int LAYOUT_TITLE_OBJECT = 11;
+public static final int LAYOUT_TITLE_CONTENT_2CONTENT = 12;
+            // 3 boxes in 2 columns: 1 in first col, 2 in second
+public static final int LAYOUT_TITLE_OBJECT_CONTENT = 13;
+public static final int LAYOUT_TITLE_CONTENT_OVER_CONTENT = 14;
+            // 2 boxes: 2x1, 1 column
+public static final int LAYOUT_TITLE_2CONTENT_CONTENT = 15;
+            // 3 boxes in 2 columns: 2 in first col, 1 in second
+public static final int LAYOUT_TITLE_2CONTENT_OVER_CONTENT = 16;
+            // 3 boxes on 2 rows: 2 on first row, 1 on second
+public static final int LAYOUT_TITLE_CONTENT_OVER_OBJECT = 17;
+public static final int LAYOUT_TITLE_4OBJECT = 18;  // 4 boxes: 2x2
+
+public static final int LAYOUT_TITLE_ONLY = 19;
+            // title only; no body shape
+public static final int LAYOUT_BLANK = 20;
+
+public static final int LAYOUT_VTITLE_VTEXT_CHART = 27;
+       // vertical title, vertical text, and chart
+public static final int LAYOUT_VTITLE_VTEXT = 28;
+public static final int LAYOUT_TITLE_VTEXT = 29;
+public static final int LAYOUT_TITLE_VTEXT_CLIP = 30;
+
+public static final int LAYOUT_CENTERED_TEXT = 32;
+
+public static final int LAYOUT_TITLE_4CONTENT = 33; // 4 boxes: 2x2
+public static final int LAYOUT_TITLE_6CONTENT = 34; // 6 boxes: 2x3
+```
 
 The four constants highlighted above are used by the Draw methods described next.
 
 Draw.titleSlide() starts by setting the slide's "Layout" property to
 LAYOUT_TITLE_SUB:
 
-=== "java"
-    ```java
-    // in Draw
-    public static void titleSlide(XDrawPage currSlide,
-                                  String title, String subTitle)
-    {
-      Props.setProperty(currSlide, "Layout", LAYOUT_TITLE_SUB);
-                                     // title and subtitle
-    
-      // add the title text to the title shape
-      XShape xs = Draw.findShapeByType(currSlide, Draw.TITLE_TEXT);
-      XText textField = Lo.qi(XText.class, xs);
-      textField.setString(title);
-    
-      // add the subtitle text to the subtitle shape
-      xs = Draw.findShapeByType(currSlide, Draw.SUBTITLE_TEXT);
-      textField = Lo.qi(XText.class, xs);
-      textField.setString(subTitle);
-    }  // end of titleSlide()
-    ```
+```java
+// in Draw
+public static void titleSlide(XDrawPage currSlide,
+                              String title, String subTitle)
+{
+  Props.setProperty(currSlide, "Layout", LAYOUT_TITLE_SUB);
+                                 // title and subtitle
+
+  // add the title text to the title shape
+  XShape xs = Draw.findShapeByType(currSlide, Draw.TITLE_TEXT);
+  XText textField = Lo.qi(XText.class, xs);
+  textField.setString(title);
+
+  // add the subtitle text to the subtitle shape
+  xs = Draw.findShapeByType(currSlide, Draw.SUBTITLE_TEXT);
+  textField = Lo.qi(XText.class, xs);
+  textField.setString(subTitle);
+}  // end of titleSlide()
+```
 
 This changes the slide's layout to an empty TitleTextShape and SubtitleShape. The
 functions adds title and subtitle strings to these shapes, and returns. The tricky part  is
@@ -277,57 +270,53 @@ One (bad) solution is to use the index ordering of the shapes on the slide, whic
 displayed by Draw.showShapesInfo(). It turns out that TitleTextShape is first (i.e. at
 index 0), and SubtitleShape second. This can be used to write the following code:
 
-=== "java"
-    ```java
-    XShapes xShapes = Lo.qi(XShapes.class, currSlide);
-    
-    XShape titleShape = Lo.qi(XShape.class, xShapes.getByIndex(0));
-    XShape subTitleShape = Lo.qi(XShape.class, xShapes.getByIndex(1));
-    ```
+```java
+XShapes xShapes = Lo.qi(XShapes.class, currSlide);
+
+XShape titleShape = Lo.qi(XShape.class, xShapes.getByIndex(0));
+XShape subTitleShape = Lo.qi(XShape.class, xShapes.getByIndex(1));
+```
 
 This is a bit hacky, so I coded Draw.findShapeByType() instead, which searches for a
 shape based on its type:
 
-=== "java"
-    ```java
-    // in Draw
-    public static XShape findShapeByType(XDrawPage slide,
-                                         String shapeType)
-    { ArrayList<XShape> shapes = getShapes(slide);
-      if (shapes == null) {
-        System.out.println("No shapes were found in the draw page");
-        return null;
-      }
-      for (XShape shape : shapes) {
-        if (shapeType.equals(shape.getShapeType()))
-          return shape;
-      }
-      System.out.println("No shape found of type \"" +
-                                            shapeType + "\"");
-      return null;
-    }  // end of findShapeByType()
-    ```
+```java
+// in Draw
+public static XShape findShapeByType(XDrawPage slide,
+                                     String shapeType)
+{ ArrayList<XShape> shapes = getShapes(slide);
+  if (shapes == null) {
+    System.out.println("No shapes were found in the draw page");
+    return null;
+  }
+  for (XShape shape : shapes) {
+    if (shapeType.equals(shape.getShapeType()))
+      return shape;
+  }
+  System.out.println("No shape found of type \"" +
+                                        shapeType + "\"");
+  return null;
+}  // end of findShapeByType()
+```
 
 I added constants to the Draw class so the programmer wouldn't have to remember
 long shape type names:
 
-=== "java"
-    ```java
-    // in Draw
-    public static final String TITLE_TEXT =
-                       "com.sun.star.presentation.TitleTextShape";
-    public static final String SUBTITLE_TEXT =
-                       "com.sun.star.presentation.SubtitleShape";
-    public static final String BULLETS_TEXT =
-    ```
+```java
+// in Draw
+public static final String TITLE_TEXT =
+                   "com.sun.star.presentation.TitleTextShape";
+public static final String SUBTITLE_TEXT =
+                   "com.sun.star.presentation.SubtitleShape";
+public static final String BULLETS_TEXT =
+```
                    "com.sun.star.presentation.OutlinerShape";
 
 This allows me to find the title shape by calling:
 
-=== "java"
-    ```java
-    XShape xs = Draw.findShapeByType(currSlide, Draw.TITLE_TEXT);
-    ```
+```java
+XShape xs = Draw.findShapeByType(currSlide, Draw.TITLE_TEXT);
+```
 
 
 ## 2.  The Second Slide (Title, Bullets, and Image)
@@ -335,12 +324,11 @@ This allows me to find the title shape by calling:
 The second slide uses a title and bullet points layout, with an image added at the
 bottom right corner. The relevant lines in MakeSlides.java are:
 
-=== "java"
-    ```java
-    // in main() in MakeSlides.java...
-    currSlide = Draw.addSlide(doc);
-    doBullets(currSlide);
-    ```
+```java
+// in main() in MakeSlides.java...
+currSlide = Draw.addSlide(doc);
+doBullets(currSlide);
+```
 
 The result is shown in Figure 4.
 
@@ -352,58 +340,56 @@ Figure 4. A Slide with a Title, Bullet Points, and an Image.
 
 The slide is created by doBullets() in MakeSlides.java:
 
-=== "java"
-    ```java
-    // in MakeSlides.java
-    private static void doBullets(XDrawPage currSlide)
-    {
-      XText body = Draw.bulletsSlide(currSlide,
-                                     "What is an Algorithm?");
-    
-      // bullet levels are 0, 1, 2,...
-    
-      Draw.addBullet(body, 0, "An algorithm is a finite
-                              set of unambiguous instructions
-                              for solving a problem.");
-      Draw.addBullet(body, 1, "An algorithm is correct if on
-                              all legitimate inputs, it outputs
-                              the right answer in a finite amount
-                              of time");
-      Draw.addBullet(body, 0, "Can be expressed as");
-      Draw.addBullet(body, 1, "pseudocode");
-      Draw.addBullet(body, 1, "flow charts");
-      Draw.addBullet(body, 1, "text in a natural language
-                                              (e.g. English)");
-      Draw.addBullet(body, 1, "computer code");
-    
-      // add the image
-      XShape im = Draw.drawImageOffset(currSlide, "skinner.png",
-                                                   0.6, 0.5);
-                // in bottom right corner, and scaled if necessary
-      Draw.moveToBottom(currSlide, im);  //move pic below slide text
-    }  // end of doBullets()
-    ```
+```java
+// in MakeSlides.java
+private static void doBullets(XDrawPage currSlide)
+{
+  XText body = Draw.bulletsSlide(currSlide,
+                                 "What is an Algorithm?");
+
+  // bullet levels are 0, 1, 2,...
+
+  Draw.addBullet(body, 0, "An algorithm is a finite
+                          set of unambiguous instructions
+                          for solving a problem.");
+  Draw.addBullet(body, 1, "An algorithm is correct if on
+                          all legitimate inputs, it outputs
+                          the right answer in a finite amount
+                          of time");
+  Draw.addBullet(body, 0, "Can be expressed as");
+  Draw.addBullet(body, 1, "pseudocode");
+  Draw.addBullet(body, 1, "flow charts");
+  Draw.addBullet(body, 1, "text in a natural language
+                                          (e.g. English)");
+  Draw.addBullet(body, 1, "computer code");
+
+  // add the image
+  XShape im = Draw.drawImageOffset(currSlide, "skinner.png",
+                                               0.6, 0.5);
+            // in bottom right corner, and scaled if necessary
+  Draw.moveToBottom(currSlide, im);  //move pic below slide text
+}  // end of doBullets()
+```
 
 Draw.bulletsSlide() works in a similar way to Draw.titleSlide() – first the slide's
 layout is set, then the presentation shapes are found and modified:
 
-=== "java"
-    ```java
-    // in Draw
-    public static XText bulletsSlide(XDrawPage currSlide, String title)
-    {
-      Props.setProperty(currSlide, "Layout", LAYOUT_TITLE_BULLETS);
-    
-      // add the title text to the title shape
-      XShape xs = Draw.findShapeByType(currSlide, Draw.TITLE_TEXT);
-      XText textField = Lo.qi(XText.class, xs);
-      textField.setString(title);
-    
-      // return a reference to the bullet text area
-      xs = Draw.findShapeByType(currSlide, Draw.BULLETS_TEXT);
-      return Lo.qi(XText.class, xs);
-    }  // end of bulletsSlide()
-    ```
+```java
+// in Draw
+public static XText bulletsSlide(XDrawPage currSlide, String title)
+{
+  Props.setProperty(currSlide, "Layout", LAYOUT_TITLE_BULLETS);
+
+  // add the title text to the title shape
+  XShape xs = Draw.findShapeByType(currSlide, Draw.TITLE_TEXT);
+  XText textField = Lo.qi(XText.class, xs);
+  textField.setString(title);
+
+  // return a reference to the bullet text area
+  xs = Draw.findShapeByType(currSlide, Draw.BULLETS_TEXT);
+  return Lo.qi(XText.class, xs);
+}  // end of bulletsSlide()
+```
 
 The `Draw.LAYOUT_TITLE_BULLETS` constant changes the slide's layout to contain
 two presentation shapes – a TitleTextShape at the top, and an OutlinerShape beneath
@@ -418,19 +404,18 @@ into the shape by other code (i.e. by Draw.addBullet()).
 Draw.addBullet() converts the shape's XText reference into an XTextRange, which
 offers a setString() method:
 
-=== "java"
-    ```java
-      public static void addBullet(XText bullsText, int level,
-                                                         String text)
-      { // access the end of the bullets text
-        XTextRange tr = Lo.qi(XTextRange.class,bullsText).getEnd();
-    
-        // set the bullet's level
-        Props.setProperty(tr, "NumberingLevel",(short)level);
-    
-        tr.setString(text + "\n");  // add the text
-      }  // end of addBullet()
-    ```
+```java
+  public static void addBullet(XText bullsText, int level,
+                                                     String text)
+  { // access the end of the bullets text
+    XTextRange tr = Lo.qi(XTextRange.class,bullsText).getEnd();
+
+    // set the bullet's level
+    Props.setProperty(tr, "NumberingLevel",(short)level);
+
+    tr.setString(text + "\n");  // add the text
+  }  // end of addBullet()
+```
 
 As explained in Chapter 5, XTextRange is part of the TextRange service which
 inherits both paragraph and character property classes, as indicated by Figure 5.
@@ -447,10 +432,9 @@ property which affects the displayed bullet level (use `lodoc ParagraphPropertie
 Another way of finding out about the properties associated with XTextRange is to use
 my Props.showObjProps() to list all of them:
 
-=== "java"
-    ```java
-    Props.showObjProps("TextRange in OutlinerShape", tr);
-    ```
+```java
+Props.showObjProps("TextRange in OutlinerShape", tr);
+```
 
 The bullet text is added with XTextRange.setString(). A newline is added to the text
 before the set, to ensure that the string is treated as a complete paragraph. The
@@ -468,10 +452,9 @@ specifies its position in terms of fractional offsets from the top-left corner o
 
 For example:
 
-=== "java"
-    ```java
-    XShape im = Draw.drawImageOffset(currSlide, "skinner.png", 0.6, 0.5);
-    ```
+```java
+XShape im = Draw.drawImageOffset(currSlide, "skinner.png", 0.6, 0.5);
+```
 
 The last two arguments mean that the image's top-left corner will be placed at a point
 that is 0.6 of the slide's width across and 0.5 of its height down. drawImageOffset()
@@ -480,64 +463,62 @@ the slide. The scaling is the same along both dimensions so the picture isn't di
 
 The code for Draw.drawImageOffset():
 
-=== "java"
-    ```java
-    // in Draw
-    public static XShape drawImageOffset(XDrawPage slide,
-                    String imFnm, double xOffset, double yOffset)
-    {
-      if ((xOffset < 0) || (xOffset >= 1)) {
-        System.out.println("xOffset should be between 0-1; using 0.5");
-        xOffset = 0.5;
-      }
-      if ((yOffset < 0) || (yOffset >= 1)) {
-        System.out.println("yOffset should be between 0-1; using 0.5");
-        yOffset = 0.5;
-      }
-    
-      Size slideSize = Draw.getSlideSize(slide);  // in mm units
-      if (slideSize == null) {
-        System.out.println("Image drawing cannot proceed");
-        return null;
-      }
-      int x = (int)Math.round(slideSize.Width * xOffset); //in mm units
-      int y = (int)Math.round(slideSize.Height * yOffset);
-    
-      int maxWidth = slideSize.Width - x;
-      int maxHeight = slideSize.Height - y;
-      Size imSize = Images.calcScale(imFnm, maxWidth, maxHeight);
-    
-      return drawImage(slide, imFnm, x, y,
-                             imSize.Width, imSize.Height);
-    }  // end of drawImageOffset()
-    ```
+```java
+// in Draw
+public static XShape drawImageOffset(XDrawPage slide,
+                String imFnm, double xOffset, double yOffset)
+{
+  if ((xOffset < 0) || (xOffset >= 1)) {
+    System.out.println("xOffset should be between 0-1; using 0.5");
+    xOffset = 0.5;
+  }
+  if ((yOffset < 0) || (yOffset >= 1)) {
+    System.out.println("yOffset should be between 0-1; using 0.5");
+    yOffset = 0.5;
+  }
+
+  Size slideSize = Draw.getSlideSize(slide);  // in mm units
+  if (slideSize == null) {
+    System.out.println("Image drawing cannot proceed");
+    return null;
+  }
+  int x = (int)Math.round(slideSize.Width * xOffset); //in mm units
+  int y = (int)Math.round(slideSize.Height * yOffset);
+
+  int maxWidth = slideSize.Width - x;
+  int maxHeight = slideSize.Height - y;
+  Size imSize = Images.calcScale(imFnm, maxWidth, maxHeight);
+
+  return drawImage(slide, imFnm, x, y,
+                         imSize.Width, imSize.Height);
+}  // end of drawImageOffset()
+```
 
 drawImageOffset()  uses the slide's size to determine an (x, y) position for the image,
 and its width and height. Images.calcScale() calculates the best width and height for
 the image frame such that the image will be drawn entirely on the slide:
 
-=== "java"
-    ```java
-    // in the Images class
-    public static Size calcScale(String fnm, int maxWidth,
-                                                 int maxHeight)
-    { Size imSize = Images.getSize100mm(fnm);   // in 1/100 mm units
-      if (imSize == null)
-        return null;
-    
-      // calculate the scale factors to obtain these maximums
-      double widthScale = ((double)maxWidth*100)/imSize.Width;
-      double heightScale = ((double)maxHeight*100)/imSize.Height;
-    
-      // use the smallest scale factor
-      double scaleFactor = (widthScale < heightScale) ?
-                                          widthScale : heightScale;
-      // calculate new dimensions for the image
-      int w = (int)Math.round(imSize.Width * scaleFactor/100);
-      int h = (int)Math.round(imSize.Height * scaleFactor/100);
-      return new Size(w, h);
-    }  // end of calcScale()
-    ```
+```java
+// in the Images class
+public static Size calcScale(String fnm, int maxWidth,
+                                             int maxHeight)
+{ Size imSize = Images.getSize100mm(fnm);   // in 1/100 mm units
+  if (imSize == null)
+    return null;
+
+  // calculate the scale factors to obtain these maximums
+  double widthScale = ((double)maxWidth*100)/imSize.Width;
+  double heightScale = ((double)maxHeight*100)/imSize.Height;
+
+  // use the smallest scale factor
+  double scaleFactor = (widthScale < heightScale) ?
+                                      widthScale : heightScale;
+  // calculate new dimensions for the image
+  int w = (int)Math.round(imSize.Width * scaleFactor/100);
+  int h = (int)Math.round(imSize.Height * scaleFactor/100);
+  return new Size(w, h);
+}  // end of calcScale()
+```
 
 calcScale() uses Images.getSize100mm() to retrieve the size of the image in 1/100
 mm units, and then a scale factor is calculated for both the width and height. This is
@@ -558,29 +539,27 @@ When this slide appears in a slide show, the video will automatically start play
 
 The code for generating this slide is:
 
-=== "java"
-    ```java
-    // main() of MakeSlides.java...
-    currSlide = Draw.addSlide(doc);
-    Draw.titleOnlySlide(currSlide, "Clock Video");
-    Draw.drawMedia(currSlide, "clock.avi", 20, 70, 50, 50);
-    ```
+```java
+// main() of MakeSlides.java...
+currSlide = Draw.addSlide(doc);
+Draw.titleOnlySlide(currSlide, "Clock Video");
+Draw.drawMedia(currSlide, "clock.avi", 20, 70, 50, 50);
+```
 
 Draw.titleOnlySlide()  works in a similar way to titleSlide() and bulletsSlide():
 
-=== "java"
-    ```java
-    // in Draw
-    public static void titleOnlySlide(XDrawPage currSlide, String header)
-    {
-      Props.setProperty(currSlide, "Layout", LAYOUT_TITLE_ONLY);
-                                      // title only; no body shape
-      // add the text to the title shape
-      XShape xs = Draw.findShapeByType(currSlide, Draw.TITLE_TEXT);
-      XText textField = Lo.qi(XText.class, xs);
-      textField.setString(header);
-    }  // end of titleOnlySlide()
-    ```
+```java
+// in Draw
+public static void titleOnlySlide(XDrawPage currSlide, String header)
+{
+  Props.setProperty(currSlide, "Layout", LAYOUT_TITLE_ONLY);
+                                  // title only; no body shape
+  // add the text to the title shape
+  XShape xs = Draw.findShapeByType(currSlide, Draw.TITLE_TEXT);
+  XText textField = Lo.qi(XText.class, xs);
+  textField.setString(header);
+}  // end of titleOnlySlide()
+```
 
 The MediaShape service doesn't appear in the Office documentation. Perhaps one
 reason for its absence is that the shape behaves a little 'erratically'. In particular,
@@ -590,30 +569,28 @@ frame is sometimes incorrectly placed, although the video plays correctly.
 
 Draw.drawMedia() is defined as:
 
-=== "java"
-    ```java
-    // in Draw
-    public static XShape drawMedia(XDrawPage slide, String fnm,
-                                int x, int y, int width, int height)
-    // causes Office to crash on exiting
-    {
-      XShape shape = addShape(slide, "MediaShape",
-                                           x, y, width, height);
-      // Props.showObjProps("Shape", shape);
-      System.out.println("Loading media: \"" + fnm + "\"");
-      Props.setProperty(shape, "MediaURL", FileIO.fnmToURL(fnm));
-      Props.setProperty(shape, "Loop", true);
-      return shape;
-    }  // end of drawMedia()
-    ```
+```java
+// in Draw
+public static XShape drawMedia(XDrawPage slide, String fnm,
+                            int x, int y, int width, int height)
+// causes Office to crash on exiting
+{
+  XShape shape = addShape(slide, "MediaShape",
+                                       x, y, width, height);
+  // Props.showObjProps("Shape", shape);
+  System.out.println("Loading media: \"" + fnm + "\"");
+  Props.setProperty(shape, "MediaURL", FileIO.fnmToURL(fnm));
+  Props.setProperty(shape, "Loop", true);
+  return shape;
+}  // end of drawMedia()
+```
 
 In the absence of documentation, I used Props.showObjProps() to list the properties
 for the MediaShape:
 
-=== "java"
-    ```java
-    Props.showObjProps("Shape", shape);
-    ```
+```java
+Props.showObjProps("Shape", shape);
+```
 
 The "MediaURL" property requires a file in URL format, and "Loop" is a boolean for
 making the animation play repeatedly.
@@ -636,47 +613,45 @@ Figure 7. A Slide with Two 'Buttons'.
 
 The relevant code in main() of MakeSlides.java is:
 
-=== "java"
-    ```java
-    currSlide = Draw.addSlide(doc);
-    buttonShapes(currSlide);
-    ```
+```java
+currSlide = Draw.addSlide(doc);
+buttonShapes(currSlide);
+```
 
 This button approach to playing a video doesn't suffer from the strange behavior when
 using MediaShape on the third slide.
 
 The buttonShapes() method in MakeSlides.java creates the slide:
 
-=== "java"
-    ```java
-    // in MakeSlides.java
-    private static void buttonShapes(XDrawPage currSlide)
-    {
-      Draw.titleOnlySlide(currSlide, "Wildlife Video Via Button");
-    
-      // button in the center of the slide
-      com.sun.star.awt.Size sz = Draw.getSlideSize(currSlide);
-      int width = 80;
-      int height = 40;
-      XShape ellipse = Draw.drawEllipse(currSlide, (sz.Width-width)/2,
-                            (sz.Height-height)/2, width, height);
-      Draw.addText(ellipse, "Start Video", 30);
-    
-      Props.setProperty(ellipse, "OnClick", ClickAction.DOCUMENT);
-      Props.setProperty(ellipse, "Bookmark",
-                            FileIO.fnmToURL("wildlife.wmv"));
-    
-      // draw a rounded rectangle with text
-      XShape button = Draw.drawRectangle(currSlide,
-               sz.Width-width-5, sz.Height-height-5, width, height);
-      Draw.addText(button, "Click to go\nto Slide 1");
-      Draw.setGradientColor(button, "Radial red/yellow");
-      Props.setProperty(button, "CornerRadius", 300); // 1/100 mm units
-    
-      Props.setProperty(button, "OnClick", ClickAction.FIRSTPAGE);
-         // clicking makes the presentation jump to first slide
-    }  // end of buttonShapes()
-    ```
+```java
+// in MakeSlides.java
+private static void buttonShapes(XDrawPage currSlide)
+{
+  Draw.titleOnlySlide(currSlide, "Wildlife Video Via Button");
+
+  // button in the center of the slide
+  com.sun.star.awt.Size sz = Draw.getSlideSize(currSlide);
+  int width = 80;
+  int height = 40;
+  XShape ellipse = Draw.drawEllipse(currSlide, (sz.Width-width)/2,
+                        (sz.Height-height)/2, width, height);
+  Draw.addText(ellipse, "Start Video", 30);
+
+  Props.setProperty(ellipse, "OnClick", ClickAction.DOCUMENT);
+  Props.setProperty(ellipse, "Bookmark",
+                        FileIO.fnmToURL("wildlife.wmv"));
+
+  // draw a rounded rectangle with text
+  XShape button = Draw.drawRectangle(currSlide,
+           sz.Width-width-5, sz.Height-height-5, width, height);
+  Draw.addText(button, "Click to go\nto Slide 1");
+  Draw.setGradientColor(button, "Radial red/yellow");
+  Props.setProperty(button, "CornerRadius", 300); // 1/100 mm units
+
+  Props.setProperty(button, "OnClick", ClickAction.FIRSTPAGE);
+     // clicking makes the presentation jump to first slide
+}  // end of buttonShapes()
+```
 
 A minor point of interest is that a rounded rectangle is a RectangleShape, but with its
 "CornerRadius" property set.
@@ -720,13 +695,12 @@ execute macros and external programs. In both cases, the "Bookmark" property is
 used to specify the URL of the macro or program. For example, the following will
 invoke Windows' calculator when the button is pressed:
 
-=== "java"
-    ```java
-    Props.setProperty(button, "OnClick", ClickAction.PROGRAM);
-    Props.setProperty(button, "Bookmark",
-               FileIO.fnmToURL(System.getenv("SystemRoot") +
-                               "\\System32\\calc.exe") );
-    ```
+```java
+Props.setProperty(button, "OnClick", ClickAction.PROGRAM);
+Props.setProperty(button, "Bookmark",
+           FileIO.fnmToURL(System.getenv("SystemRoot") +
+                           "\\System32\\calc.exe") );
+```
 
 "Bookmark" requires an absolute path to the application, converted to URL form.
 
@@ -763,13 +737,12 @@ page appears, and fade effects that make a shape gradually appear in a given spo
 The following code fragment makes the ellipse on the fourth slide fade into view,
 starting with the bottom of the shape:
 
-=== "java"
-    ```java
-    // in buttonShapes() in MakeSlides.java
-    Props.setProperty(ellipse, "Effect",
-                          AnimationEffect.FADE_FROM_BOTTOM);
-    Props.setProperty(ellipse, "Speed", AnimationSpeed.SLOW);
-    ```
+```java
+// in buttonShapes() in MakeSlides.java
+Props.setProperty(ellipse, "Effect",
+                      AnimationEffect.FADE_FROM_BOTTOM);
+Props.setProperty(ellipse, "Speed", AnimationSpeed.SLOW);
+```
 
 The animation speed can be set to AnimationSpeed.SLOW,
 AnimationSpeed.MEDIUM, or AnimationSpeed.FAST.
@@ -789,12 +762,11 @@ If you browse chapter 9 of the Impress user's guide on slide shows, its animatio
 capabilities extend well beyond the constants in AnimationEffect. These features are
 available through the XAnimationNode interface, which is obtained like so:
 
-=== "java"
-    ```java
-    XAnimationNodeSupplier nodeSupp =
-                     Lo.qi(XAnimationNodeSupplier.class, slide);
-    XAnimationNode slideNode = nodeSupp.getAnimationNode();
-    ```
+```java
+XAnimationNodeSupplier nodeSupp =
+                 Lo.qi(XAnimationNodeSupplier.class, slide);
+XAnimationNode slideNode = nodeSupp.getAnimationNode();
+```
 
 XAnimationNode allows a programmer much finer control over animation timings
 and animation paths for shapes. XAnimationNode is part of the large
@@ -856,58 +828,57 @@ GUI and ".uno:SymbolShapes.smiley" in the UICommands spreadsheet.
 
 MakeSlides.java generates the eight shapes in Figure 9 by calling dispatchShapes():
 
-=== "java"
-    ```java
-    // in MakeSlides.java
-    private static void dispatchShapes(XComponent doc)
-    {
-      XDrawPage currSlide = Draw.addSlide(doc);
-      Draw.titleOnlySlide(currSlide, "Dispatched Shapes");
-    
-      GUI.setVisible(doc, true);
-      Lo.wait(1000);
-      Draw.gotoPage(doc, currSlide);
-      System.out.println("Viewing Slide number: " +
-           Draw.getSlideNumber(Draw.getViewedPage(doc)));
-    
-      // first row
-      XShape dShape = Draw.addDispatchShape(currSlide,
-                          "BasicShapes.diamond", 20, 60, 50, 30);
-    
-      Draw.addDispatchShape(currSlide,
-                          "HalfSphere", 80, 60, 50, 30);  // 3D
-    
-      dShape = Draw.addDispatchShape(currSlide,
-                   "CalloutShapes.cloud-callout", 140, 60, 50, 30);
-      Draw.setBitmapColor(dShape, "Sky");
-    
-      dShape = Draw.addDispatchShape(currSlide,
-                "FlowChartShapes.flowchart-card", 200, 60, 50, 30);
-      Draw.setHatchingColor(dShape, "Black -45 degrees");
-    
-      // second row
-      dShape = Draw.addDispatchShape(currSlide,
-                        "StarShapes.star12", 20, 140, 40, 40);
-      Draw.setGradientColor(dShape, "Radial red/yellow");
-      Props.setProperty(dShape, "LineStyle", LineStyle.NONE);
-                                             // no outline
-    
-      dShape = Draw.addDispatchShape(currSlide,
-                        "SymbolShapes.heart", 80, 140, 40, 40);
-      Props.setProperty(dShape, "FillColor", 0xFF0000);
-    
-      Draw.addDispatchShape(currSlide,
-                 "ArrowShapes.left-right-arrow", 140, 140, 50, 30);
-                 // Block Arrow sub-menu
-    
-      dShape = Draw.addDispatchShape(currSlide,
-                          "Cyramid", 200, 120, 50, 50);
-                          // 3D pyramid, misspelt
-      Draw.setBitmapColor(dShape, "Stone");
-    
-      Draw.showShapesInfo(currSlide);
-    }  // end of dispatchShapes()
-    ```
+```java
+// in MakeSlides.java
+private static void dispatchShapes(XComponent doc)
+{
+  XDrawPage currSlide = Draw.addSlide(doc);
+  Draw.titleOnlySlide(currSlide, "Dispatched Shapes");
+
+  GUI.setVisible(doc, true);
+  Lo.wait(1000);
+  Draw.gotoPage(doc, currSlide);
+  System.out.println("Viewing Slide number: " +
+       Draw.getSlideNumber(Draw.getViewedPage(doc)));
+
+  // first row
+  XShape dShape = Draw.addDispatchShape(currSlide,
+                      "BasicShapes.diamond", 20, 60, 50, 30);
+
+  Draw.addDispatchShape(currSlide,
+                      "HalfSphere", 80, 60, 50, 30);  // 3D
+
+  dShape = Draw.addDispatchShape(currSlide,
+               "CalloutShapes.cloud-callout", 140, 60, 50, 30);
+  Draw.setBitmapColor(dShape, "Sky");
+
+  dShape = Draw.addDispatchShape(currSlide,
+            "FlowChartShapes.flowchart-card", 200, 60, 50, 30);
+  Draw.setHatchingColor(dShape, "Black -45 degrees");
+
+  // second row
+  dShape = Draw.addDispatchShape(currSlide,
+                    "StarShapes.star12", 20, 140, 40, 40);
+  Draw.setGradientColor(dShape, "Radial red/yellow");
+  Props.setProperty(dShape, "LineStyle", LineStyle.NONE);
+                                         // no outline
+
+  dShape = Draw.addDispatchShape(currSlide,
+                    "SymbolShapes.heart", 80, 140, 40, 40);
+  Props.setProperty(dShape, "FillColor", 0xFF0000);
+
+  Draw.addDispatchShape(currSlide,
+             "ArrowShapes.left-right-arrow", 140, 140, 50, 30);
+             // Block Arrow sub-menu
+
+  dShape = Draw.addDispatchShape(currSlide,
+                      "Cyramid", 200, 120, 50, 50);
+                      // 3D pyramid, misspelt
+  Draw.setBitmapColor(dShape, "Stone");
+
+  Draw.showShapesInfo(currSlide);
+}  // end of dispatchShapes()
+```
 
 A title-only slide is created, followed by eight calls to Draw.addDispatchShape() to
 create two rows of four shapes in Figure 9.
@@ -938,21 +909,20 @@ and setting the current page displayed in this view.
 Draw.gotoPage() gets the XController interface for the document, and converts it to
 XDrawView so the visible page can be set:
 
-=== "java"
-    ```java
-    // in Draw
-    public static void gotoPage(XComponent doc, XDrawPage page)
-    { XController ctrl = GUI.getCurrentController(doc);
-      gotoPage(ctrl, page);
-    }  // end of jumpToPage()
-    
-    
-    public static void gotoPage(XController ctrl, XDrawPage page)
-    {
-      XDrawView xDrawView = Lo.qi(XDrawView.class, ctrl);
-      xDrawView.setCurrentPage(page);
-    }  // end of gotoPage()
-    ```
+```java
+// in Draw
+public static void gotoPage(XComponent doc, XDrawPage page)
+{ XController ctrl = GUI.getCurrentController(doc);
+  gotoPage(ctrl, page);
+}  // end of jumpToPage()
+
+
+public static void gotoPage(XController ctrl, XDrawPage page)
+{
+  XDrawView xDrawView = Lo.qi(XDrawView.class, ctrl);
+  xDrawView.setCurrentPage(page);
+}  // end of gotoPage()
+```
 
 After the call to Draw.gotoPage(), the specified draw page will be visible on-screen,
 and so receive any dispatch commands.
@@ -960,16 +930,15 @@ and so receive any dispatch commands.
 Draw.getViewedPage()  returns a reference to the currently viewed page by calling
 XDrawView.getCurrentPage():
 
-=== "java"
-    ```java
-    // in Draw
-    public static XDrawPage getViewedPage(XComponent doc)
-    {
-      XController ctrl = GUI.getCurrentController(doc);
-      XDrawView xDrawView = Lo.qi(XDrawView.class, ctrl);
-      return xDrawView.getCurrentPage();
-    }  // end of getViewedPage()
-    ```
+```java
+// in Draw
+public static XDrawPage getViewedPage(XComponent doc)
+{
+  XController ctrl = GUI.getCurrentController(doc);
+  XDrawView xDrawView = Lo.qi(XDrawView.class, ctrl);
+  return xDrawView.getCurrentPage();
+}  // end of getViewedPage()
+```
 
 
 ### 6.2.  Adding a Dispatch Shape to the Visible Page
@@ -986,59 +955,57 @@ Robot class.
 Draw.addDispatchShape() uses createDispatchShape() to create the shape, and then
 positions and resizes it:
 
-=== "java"
-    ```java
-    // in Draw
-    public static XShape addDispatchShape(XDrawPage slide,
-                  String shapeDispatch,
-                  int x, int y, int width, int height)
-    {
-      warnsPosition(slide, x, y);
-      XShape shape = createDispatchShape(slide, shapeDispatch);
-      if (shape != null) {
-        setPosition(shape, x, y);
-        setSize(shape, width, height);
-      }
-      return shape;
-    }  // end of addDispatchShape()
-    ```
+```java
+// in Draw
+public static XShape addDispatchShape(XDrawPage slide,
+              String shapeDispatch,
+              int x, int y, int width, int height)
+{
+  warnsPosition(slide, x, y);
+  XShape shape = createDispatchShape(slide, shapeDispatch);
+  if (shape != null) {
+    setPosition(shape, x, y);
+    setSize(shape, width, height);
+  }
+  return shape;
+}  // end of addDispatchShape()
+```
 
 Draw.createDispatchShape() implements icon selection and click-and-drag:
 
-=== "java"
-    ```java
-    // in Draw
-    public static XShape createDispatchShape(XDrawPage slide,
-                                          String shapeDispatch)
-    { int numShapes = slide.getCount();
-    
-      Lo.dispatchCmd(shapeDispatch);
-                // select the shape icon; Office must be visible
-      Lo.wait(1000);
-    
-      // click and drag on the page to create the shape on the page;
-      // the current page must be visible
-      java.awt.Point p1 =
-                  JNAUtils.getClickPoint( JNAUtils.getHandle() );
-      java.awt.Point p2 = JNAUtils.getOffsetPoint(p1, 100, 100);
-                                              // hardwired offset
-      JNAUtils.doDrag(p1, p2);  // drag the cursor between p1 and p2
-      Lo.wait(2000);
-    
-      /* get a reference to the shape by assuming it's
-         the top one on the page */
-      int numShapes2 = slide.getCount();
-      if (numShapes2 == numShapes+1) {  // there's a new shape
-        System.out.println("Shape \"" + shapeDispatch + "\" created");
-        return Draw.findTopShape(slide);
-      }
-      else {   // no new shape
-        System.out.println("Shape \"" + shapeDispatch +
-                                                  "\" not created");
-        return null;
-      }
-    }  // end of createDispatchShape()
-    ```
+```java
+// in Draw
+public static XShape createDispatchShape(XDrawPage slide,
+                                      String shapeDispatch)
+{ int numShapes = slide.getCount();
+
+  Lo.dispatchCmd(shapeDispatch);
+            // select the shape icon; Office must be visible
+  Lo.wait(1000);
+
+  // click and drag on the page to create the shape on the page;
+  // the current page must be visible
+  java.awt.Point p1 =
+              JNAUtils.getClickPoint( JNAUtils.getHandle() );
+  java.awt.Point p2 = JNAUtils.getOffsetPoint(p1, 100, 100);
+                                          // hardwired offset
+  JNAUtils.doDrag(p1, p2);  // drag the cursor between p1 and p2
+  Lo.wait(2000);
+
+  /* get a reference to the shape by assuming it's
+     the top one on the page */
+  int numShapes2 = slide.getCount();
+  if (numShapes2 == numShapes+1) {  // there's a new shape
+    System.out.println("Shape \"" + shapeDispatch + "\" created");
+    return Draw.findTopShape(slide);
+  }
+  else {   // no new shape
+    System.out.println("Shape \"" + shapeDispatch +
+                                              "\" not created");
+    return null;
+  }
+}  // end of createDispatchShape()
+```
 
 The click-and-drag operation doesn't return a reference to the shape, so
 createDispatchShape() ends by calling Draw.findTopShape(). It returns a reference to
@@ -1050,32 +1017,30 @@ the top-most shape on the page, which I'm assuming is the new shape.
 JNAUtils.getHandle() returns Window's handle for Office, and getClickPoint()
 calculates the center of the Office window:
 
-=== "java"
-    ```java
-    // in JNAUtils
-    public static Point getClickPoint(HWND handle)
-    {
-      Rectangle bounds = getBounds(handle);
-      if (bounds == null) {
-        System.out.println("Bounding rectangle is null");
-        return null;
-      }
-    
-      int xCenter = bounds.x + bounds.width/2;
-      int yCenter = bounds.y + bounds.height/2;
-      return new Point(xCenter, yCenter);
-    }  // end of getClickPoint()
-    ```
+```java
+// in JNAUtils
+public static Point getClickPoint(HWND handle)
+{
+  Rectangle bounds = getBounds(handle);
+  if (bounds == null) {
+    System.out.println("Bounding rectangle is null");
+    return null;
+  }
+
+  int xCenter = bounds.x + bounds.width/2;
+  int yCenter = bounds.y + bounds.height/2;
+  return new Point(xCenter, yCenter);
+}  // end of getClickPoint()
+```
 
 I'm hoping that this point is somewhere on the slide.
 
 JNAUtils.getOffsetPoint() creates a second point offset some distance from the first:
 
-=== "java"
-    ```java
-    public static Point getOffsetPoint(Point p1, int xDist, int yDist)
-    {  return new Point( p1.x + xDist, p1.y + yDist);  }
-    ```
+```java
+public static Point getOffsetPoint(Point p1, int xDist, int yDist)
+{  return new Point( p1.x + xDist, p1.y + yDist);  }
+```
 
 Again, I'm hoping this point is on the slide.
 
@@ -1084,41 +1049,40 @@ window. doDrag() moves the cursor to the first point, then sends press and move
 events to simulate a cursor drag to the second point. It finishes by sending a release
 event for the mouse button:
 
-=== "java"
-    ```java
-    // in JNAUtils
-    public static void doDrag(final Point clickPt,
-                                        final Point releasePt)
-    // drag the cursor between the two points
-    { if (clickPt == null) {
-        System.out.println("Click point is null");
-        return;
+```java
+// in JNAUtils
+public static void doDrag(final Point clickPt,
+                                    final Point releasePt)
+// drag the cursor between the two points
+{ if (clickPt == null) {
+    System.out.println("Click point is null");
+    return;
+  }
+  if (releasePt == null) {
+    System.out.println("Release point is null");
+    return;
+  }
+
+  EventQueue.invokeLater(new Runnable() {
+    public void run() {
+      try {
+        Point oldPos = MouseInfo.getPointerInfo().getLocation();
+        Robot r = new Robot();
+        r.mouseMove(clickPt.x, clickPt.y);
+        Lo.delay(300);
+        r.mousePress(InputEvent.BUTTON1_MASK);
+        Lo.delay(300);
+        r.mouseMove(releasePt.x, releasePt.y);
+        Lo.delay(300);
+        r.mouseRelease(InputEvent.BUTTON1_MASK);
+        r.mouseMove(oldPos.x, oldPos.y);
       }
-      if (releasePt == null) {
-        System.out.println("Release point is null");
-        return;
-      }
-    
-      EventQueue.invokeLater(new Runnable() {
-        public void run() {
-          try {
-            Point oldPos = MouseInfo.getPointerInfo().getLocation();
-            Robot r = new Robot();
-            r.mouseMove(clickPt.x, clickPt.y);
-            Lo.delay(300);
-            r.mousePress(InputEvent.BUTTON1_MASK);
-            Lo.delay(300);
-            r.mouseMove(releasePt.x, releasePt.y);
-            Lo.delay(300);
-            r.mouseRelease(InputEvent.BUTTON1_MASK);
-            r.mouseMove(oldPos.x, oldPos.y);
-          }
-          catch(AWTException e)
-          {  System.out.println("Unable to carry out Drag: " + e); }
-        }
-      });
-    }  // end of doDrag()
-    ```
+      catch(AWTException e)
+      {  System.out.println("Unable to carry out Drag: " + e); }
+    }
+  });
+}  // end of doDrag()
+```
 
 The Robot events must be added to Java's event queue, so are wrapped up in a call to
 EventQueue.invokeLater(). The final call to Robot.mouseMove() moves the cursor
@@ -1159,11 +1123,10 @@ com.sun.star.drawing package.
 
 It should be possible to build a 3D cube by calling:
 
-=== "java"
-    ```java
-    XShape shape3D = Draw.addShape(currSlide,
-                          "Shape3DCubeObject", 120, 120, 60, 60);
-    ```
+```java
+XShape shape3D = Draw.addShape(currSlide,
+                      "Shape3DCubeObject", 120, 120, 60, 60);
+```
 
 I tried this, and it nearly worked. The resulting slide contains a Shape3DCubeObject
 object, which I deduced by listing all the shapes on the current slide with

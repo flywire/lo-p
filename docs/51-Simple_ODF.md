@@ -26,7 +26,7 @@ few of these lower-level techniques, but is mainly about the
 Simple API for ODF, a sub-project of the Apache ODF
 Toolkit (https://incubator.apache.org/odftoolkit/simple/). It's
 a small Java API for creating, modifying and extracting
-data from ODF documents, built on top of the ODFDO
+data from ODF documents, built on top of the ODFDOM
 library (https://incubator.apache.org/odftoolkit/odfdom/). Rather surprisingly, its
 support for the concatenation of documents is better than that in the Office API.
 
@@ -127,36 +127,35 @@ section 2.
 The following DocInfo.java example uses Info.printDocProperties() to print document
 details:
 
-=== "java"
-    ```java
-    // in DocInfo.java
-    public class DocInfo
-    {
-      public static void main(String args[])
-      {
-        if (args.length < 1) {
-          System.out.println("Usage: run DocInfo <fnm>");
-          return;
-        }
-    
-        XComponentLoader loader = Lo.loadOffice();
-        XComponent doc = Lo.openDoc(args[0], loader);
-        if (doc == null) {
-          System.out.println("Could not open " + args[0]);
-          Lo.closeOffice();
-          return;
-        }
-    
-        System.out.println();
-        Props.showObjProps("Document", doc);
-        Info.printDocProperties(doc);
-    
-        Lo.closeDoc(doc);
-        Lo.closeOffice();
-      }  // end of main()
-    
-    }  // end of DocInfo class
-    ```
+```java
+// in DocInfo.java
+public class DocInfo
+{
+  public static void main(String args[])
+  {
+    if (args.length < 1) {
+      System.out.println("Usage: run DocInfo <fnm>");
+      return;
+    }
+
+    XComponentLoader loader = Lo.loadOffice();
+    XComponent doc = Lo.openDoc(args[0], loader);
+    if (doc == null) {
+      System.out.println("Could not open " + args[0]);
+      Lo.closeOffice();
+      return;
+    }
+
+    System.out.println();
+    Props.showObjProps("Document", doc);
+    Info.printDocProperties(doc);
+
+    Lo.closeDoc(doc);
+    Lo.closeOffice();
+  }  // end of main()
+
+}  // end of DocInfo class
+```
 
 When DocInfo is passed algs.odp, some of the output is:
 
@@ -177,31 +176,30 @@ Document Properties Info
 Info.printDocProperties() calls many XDocumentProperties.getXXX() methods to
 obtain these details:
 
-=== "java"
-    ```java
-    // in the Info class
-    public static void printDocProperties(Object doc)
-    {
-      XDocumentPropertiesSupplier docPropsSupp =
-               Lo.qi(XDocumentPropertiesSupplier.class, doc);
-      XDocumentProperties dps = docPropsSupp.getDocumentProperties();
-      printDocProps(dps);
-    
-      XPropertyContainer udProps = dps.getUserDefinedProperties();
-      Props.showObjProps("UserDefined Info", udProps);
-    }  // end of printDocProperties()
-    
-    
-    public static void printDocProps(XDocumentProperties dps)
-    {
-      System.out.println("Document Properties Info");
-    
-      System.out.println("  Author: " + dps.getAuthor());
-      System.out.println("  Title: " + dps.getTitle());
-      System.out.println("  Subject: " + dps.getSubject());
-         :  // many more prints
-    }  // end of printDocProps()
-    ```
+```java
+// in the Info class
+public static void printDocProperties(Object doc)
+{
+  XDocumentPropertiesSupplier docPropsSupp =
+           Lo.qi(XDocumentPropertiesSupplier.class, doc);
+  XDocumentProperties dps = docPropsSupp.getDocumentProperties();
+  printDocProps(dps);
+
+  XPropertyContainer udProps = dps.getUserDefinedProperties();
+  Props.showObjProps("UserDefined Info", udProps);
+}  // end of printDocProperties()
+
+
+public static void printDocProps(XDocumentProperties dps)
+{
+  System.out.println("Document Properties Info");
+
+  System.out.println("  Author: " + dps.getAuthor());
+  System.out.println("  Title: " + dps.getTitle());
+  System.out.println("  Subject: " + dps.getSubject());
+     :  // many more prints
+}  // end of printDocProps()
+```
 
 XDocumentProperties replaces the deprecated XDocumentInfo interface, which has
 been removed from LibreOffice (although it's still in OpenOffice). The two classes
@@ -216,42 +214,41 @@ shown next.
 My DocUnzip.java example shows how it's possible to list the zipped contents of a
 document, access its MIME-type, and extract a zipped file:
 
-=== "java"
-    ```java
-    // in DocUnzip.java
-    public class DocUnzip
-    {
-      public static void main(String args[])
-      {
-        if ((args.length < 1) || (args.length > 2)) {
-          System.out.println("Usage: run DocUnzip <fnm> [<ExtractFnm>]");
-          return;
-        }
-        XComponentLoader loader = Lo.loadOffice();
-    
-        FileIO.zipList(args[0]);
-        // FileIO.zipListUno(args[0]);   // only names listed
-    
-        // get zip access to the document
-        XZipFileAccess zfa = FileIO.zipAccess(args[0]);
-    
-        String mimeType = FileIO.getMimeType(zfa);
-        System.out.println("MIME type: " + mimeType);
-        System.out.println("Other MIME type approach: " +
-                                    Info.getMIMEType(args[0]));
-    
-        // convert MIME-type too other forms
-        int docType = Info.mimeDocType(mimeType);
-        System.out.println("Doc Type: " + docType + "; " +
-                                     Lo.docTypeStr(docType));
-    
-        if (args.length == 2)   // extract the named file
-          FileIO.unzipFile(zfa, args[1]);
-    
-        Lo.closeOffice();
-      }  // end of main()
-    }  // end of DocUnzip class
-    ```
+```java
+// in DocUnzip.java
+public class DocUnzip
+{
+  public static void main(String args[])
+  {
+    if ((args.length < 1) || (args.length > 2)) {
+      System.out.println("Usage: run DocUnzip <fnm> [<ExtractFnm>]");
+      return;
+    }
+    XComponentLoader loader = Lo.loadOffice();
+
+    FileIO.zipList(args[0]);
+    // FileIO.zipListUno(args[0]);   // only names listed
+
+    // get zip access to the document
+    XZipFileAccess zfa = FileIO.zipAccess(args[0]);
+
+    String mimeType = FileIO.getMimeType(zfa);
+    System.out.println("MIME type: " + mimeType);
+    System.out.println("Other MIME type approach: " +
+                                Info.getMIMEType(args[0]));
+
+    // convert MIME-type too other forms
+    int docType = Info.mimeDocType(mimeType);
+    System.out.println("Doc Type: " + docType + "; " +
+                                 Lo.docTypeStr(docType));
+
+    if (args.length == 2)   // extract the named file
+      FileIO.unzipFile(zfa, args[1]);
+
+    Lo.closeOffice();
+  }  // end of main()
+}  // end of DocUnzip class
+```
 
 The program can be called like so:
 
@@ -272,7 +269,7 @@ Raw Size    Size     Date        Time         Name
 0         0        Jan 6, 2017  9:54:00 AM   Configurations2/popupmenu/
 0         0        Jan 6, 2017  9:54:00 AM   Configurations2/floater/
 0         0        Jan 6, 2017  9:54:00 AM   Configurations2/images/Bitmaps/
-0         2        Jan 6, 2017  9:54:00 A
+0         2        Jan 6, 2017  9:54:00 AM
 Configurations2/accelerator/current.xml
 0         0        Jan 6, 2017  9:54:00 AM   Configurations2/menubar/
 0         0        Jan 6, 2017  9:54:00 AM   Configurations2/progressbar/
@@ -280,25 +277,25 @@ Configurations2/accelerator/current.xml
 0         0        Jan 6, 2017  9:54:00 AM   Configurations2/statusbar/
 0         0        Jan 6, 2017  9:54:00 AM   Configurations2/toolpanel/
 83608     6501     Jan 6, 2017  9:54:00 AM   styles.xml
-4364      4364     Jan 6, 2017  9:54:00 A
+4364      4364     Jan 6, 2017  9:54:00 AM
 Pictures/100000000000004600000035E6F1CB2181A9ACF1.png
-16977     16977    Jan 6, 2017  9:54:00 A
+16977     16977    Jan 6, 2017  9:54:00 AM
 Pictures/10000000000003080000002A0A348B9039C3652D.png
-20480     20480    Jan 6, 2017  9:54:00 A
+20480     20480    Jan 6, 2017  9:54:00 AM
 Pictures/10000000000001F4000001F4E2E69E1D.jpg
-45056     45056    Jan 6, 2017  9:54:00 A
+45056     45056    Jan 6, 2017  9:54:00 AM
 Pictures/10000000000000C8000000EEB0A3D2D2.jpg
-8192      8192     Jan 6, 2017  9:54:00 A
+8192      8192     Jan 6, 2017  9:54:00 AM
 Pictures/10000000000000E1000000E1B343DD04.jpg
-40960     40960    Jan 6, 2017  9:54:00 A
+40960     40960    Jan 6, 2017  9:54:00 AM
 Pictures/10000000000000E60000015E784CAA37.jpg
-69632     69632    Jan 6, 2017  9:54:00 A
+69632     69632    Jan 6, 2017  9:54:00 AM
 Pictures/10000000000000DC000000FF9A43DBBF.jpg
-28672     28672    Jan 6, 2017  9:54:00 A
+28672     28672    Jan 6, 2017  9:54:00 AM
 Pictures/100000000000011800000160792BAA16.jpg
-12288     12288    Jan 6, 2017  9:54:00 A
+12288     12288    Jan 6, 2017  9:54:00 AM
 Pictures/10000000000000DC0000014B7CFE8C49.jpg
-11901     11901    Jan 6, 2017  9:54:00 A
+11901     11901    Jan 6, 2017  9:54:00 AM
 Pictures/10000000000000BC0000010DD7ECB1F7.jpg
 18238     18238    Jan 6, 2017  9:54:02 AM   Thumbnails/thumbnail.png
 86313     8040     Jan 6, 2017  9:54:02 AM   content.xml
@@ -323,28 +320,27 @@ Most of the output is a detailed listing of the zipped contents of algs.odp.
 There are two "zipList" functions in the FileIO utility class. FileIO.zipListUno() is
 simpler since only file and folder names are printed:
 
-=== "java"
-    ```java
-    // in the FileIO class
-    public static void zipListUno(String fnm)
-    {
-      XZipFileAccess zfa = zipAccess(fnm);
-      XNameAccess nmAccess = Lo.qi(XNameAccess.class, zfa);
-      String[] names = nmAccess.getElementNames();
-    
-      System.out.println("\nZipped Contents of " + fnm);
-      Lo.printNames(names, 1);
-    }  // end of zipListUno()
-    
-    
-    public static XZipFileAccess zipAccess(String fnm)
-    // get zip access to the document using Office API
-    {
-      return Lo.createInstanceMCF(XZipFileAccess.class,
-                             "com.sun.star.packages.zip.ZipFileAccess",
-                             new Object[]{ fnmToURL(fnm) });
-    }
-    ```
+```java
+// in the FileIO class
+public static void zipListUno(String fnm)
+{
+  XZipFileAccess zfa = zipAccess(fnm);
+  XNameAccess nmAccess = Lo.qi(XNameAccess.class, zfa);
+  String[] names = nmAccess.getElementNames();
+
+  System.out.println("\nZipped Contents of " + fnm);
+  Lo.printNames(names, 1);
+}  // end of zipListUno()
+
+
+public static XZipFileAccess zipAccess(String fnm)
+// get zip access to the document using Office API
+{
+  return Lo.createInstanceMCF(XZipFileAccess.class,
+                         "com.sun.star.packages.zip.ZipFileAccess",
+                         new Object[]{ fnmToURL(fnm) });
+}
+```
 
 XZipFileAccess is created by instantiating the ZipFileAccess service with the
 document's filename. The interface is cast to XNameAccess which allows the names
@@ -363,38 +359,37 @@ file (e.g. its compressed size). I was unable to find a way of creating ZipEntry
 but Java contains a complete zip API. By using Java rather than Office, I was able to
 implement a more fancy "zipList":
 
-=== "java"
-    ```java
-    // in the FileIO class
-    public static void zipList(String fnm)
-    // using the Java API
-    {
-      DateFormat df= DateFormat.getDateInstance();   // date format
-      DateFormat tf= DateFormat.getTimeInstance();   // time format
-      tf.setTimeZone( TimeZone.getDefault() );
-      try {
-        ZipFile zfile = new ZipFile(fnm);
-        System.out.println("Listing of " + zfile.getName() + ":");
-        System.out.println("Raw  Size  Size  Date   Time   Name");
-        System.out.println("---  ----  ----  ----   ----   ----");
-        Enumeration<? extends java.util.zip.ZipEntry> zfs =
-                                                zfile.entries();
-        while (zfs.hasMoreElements()) {
-          java.util.zip.ZipEntry entry =
-                  (java.util.zip.ZipEntry) zfs.nextElement();
-          Date d = new Date(entry.getTime());
-          System.out.print( padSpaces(entry.getSize(), 9) + " ");
-          System.out.print( padSpaces(entry.getCompressedSize(),7)+ " ");
-          System.out.print(" " + df.format(d) + " ");
-          System.out.print(" " + tf.format(d) + "  ");
-          System.out.println(" " + entry.getName());
-        }
-        System.out.println();
-      }
-      catch (java.io.IOException e)
-      {  System.out.println(e); }
-    }  // end of zipList()
-    ```
+```java
+// in the FileIO class
+public static void zipList(String fnm)
+// using the Java API
+{
+  DateFormat df= DateFormat.getDateInstance();   // date format
+  DateFormat tf= DateFormat.getTimeInstance();   // time format
+  tf.setTimeZone( TimeZone.getDefault() );
+  try {
+    ZipFile zfile = new ZipFile(fnm);
+    System.out.println("Listing of " + zfile.getName() + ":");
+    System.out.println("Raw  Size  Size  Date   Time   Name");
+    System.out.println("---  ----  ----  ----   ----   ----");
+    Enumeration<? extends java.util.zip.ZipEntry> zfs =
+                                            zfile.entries();
+    while (zfs.hasMoreElements()) {
+      java.util.zip.ZipEntry entry =
+              (java.util.zip.ZipEntry) zfs.nextElement();
+      Date d = new Date(entry.getTime());
+      System.out.print( padSpaces(entry.getSize(), 9) + " ");
+      System.out.print( padSpaces(entry.getCompressedSize(),7)+ " ");
+      System.out.print(" " + df.format(d) + " ");
+      System.out.print(" " + tf.format(d) + "  ");
+      System.out.println(" " + entry.getName());
+    }
+    System.out.println();
+  }
+  catch (java.io.IOException e)
+  {  System.out.println(e); }
+}  // end of zipList()
+```
 
 Another advantage of switching to Java are the large number of online examples of
 zip manipulation; my zipList() function is closely based on one at
@@ -407,101 +402,99 @@ FileIO.getMimeType() employs XZipFileAccess.getStreamByPattern() to access the
 zipped mimetype file as an input stream.
 
 
-=== "java"
-    ```java
-    // in the FileIO class
-    public static String getMimeType(XZipFileAccess zfa)
-    {
-      try {
-        XInputStream inStream = zfa.getStreamByPattern("mimetype");
-        String[] lines = FileIO.readLines(inStream);
-        if (lines != null)
-          return lines[0].trim();
-      }
-      catch (com.sun.star.uno.Exception e)
-      {  System.out.println(e);  }
-    
-      System.out.println("No mimetype found");
-      return null;
-    }  // end of getMimeType()
-    
-    There's an alternative approach which looks up the file's MIME-type  using the Java
-    API class MimetypesFileTypeMap:
-    
-    // in the Info class
-    // global
-    private static final String MIME_FNM = "mime.types";
-    
-    
-    public static String getMIMEType(String fnm)
-    {
-      try {
-        MimetypesFileTypeMap mftMap = new MimetypesFileTypeMap(
-                             FileIO.getUtilsFolder() + MIME_FNM);
-        return mftMap.getContentType(new File(fnm));
-      }
-      catch(java.lang.Exception e)
-      {  System.out.println("Could not find " + MIME_FNM);
-         return "application/octet-stream";   // better than nothing
-      }
-    }  // end of getMIMEType()
-    
-    The MimetypesFileTypeMap() constructor examines a list of MIME-types loaded
-    from the utility classes folder.
-    
-    Most of my utility functions use document 'types' coded as integers rather than as
-    MIME-type strings; the values are defined at the start of the Lo utility class:
-    
-    // in the Lo class
-    public static final int UNKNOWN = 0;
-    public static final int WRITER = 1;
-    public static final int BASE = 2;
-    public static final int CALC = 3;
-    public static final int DRAW = 4;
-    public static final int IMPRESS = 5;
-    public static final int MATH = 6;
-    
-    Info.mimeDocType() maps ODF MIME-type strings to one of these integers:
-    
-    // in the Info class
-    public static int mimeDocType(String mimeType)
-    {
-      if (mimeType == null)
-        return Lo.UNKNOWN;
-    
-      if (mimeType.contains("vnd.oasis.opendocument.text"))
-        return Lo.WRITER;
-      else if (mimeType.contains("vnd.oasis.opendocument.base"))
-        return Lo.BASE;
-      else if (mimeType.contains("vnd.oasis.opendocument.spreadsheet"))
-        return Lo.CALC;
-      else if (mimeType.contains("vnd.oasis.opendocument.graphics") ||
-               mimeType.contains("vnd.oasis.opendocument.image") ||
-               mimeType.contains("vnd.oasis.opendocument.chart"))
-        return Lo.DRAW;
-      else if (mimeType.contains("vnd.oasis.opendocument.presentation"))
-        return Lo.IMPRESS;
-      else if (mimeType.contains("vnd.oasis.opendocument.formula"))
-        return Lo.MATH;
-      else return Lo.UNKNOWN;
-    }  // end of mimeDocType()
-    ```
+```java
+// in the FileIO class
+public static String getMimeType(XZipFileAccess zfa)
+{
+  try {
+    XInputStream inStream = zfa.getStreamByPattern("mimetype");
+    String[] lines = FileIO.readLines(inStream);
+    if (lines != null)
+      return lines[0].trim();
+  }
+  catch (com.sun.star.uno.Exception e)
+  {  System.out.println(e);  }
+
+  System.out.println("No mimetype found");
+  return null;
+}  // end of getMimeType()
+
+There's an alternative approach which looks up the file's MIME-type  using the Java
+API class MimetypesFileTypeMap:
+
+// in the Info class
+// global
+private static final String MIME_FNM = "mime.types";
+
+
+public static String getMIMEType(String fnm)
+{
+  try {
+    MimetypesFileTypeMap mftMap = new MimetypesFileTypeMap(
+                         FileIO.getUtilsFolder() + MIME_FNM);
+    return mftMap.getContentType(new File(fnm));
+  }
+  catch(java.lang.Exception e)
+  {  System.out.println("Could not find " + MIME_FNM);
+     return "application/octet-stream";   // better than nothing
+  }
+}  // end of getMIMEType()
+
+The MimetypesFileTypeMap() constructor examines a list of MIME-types loaded
+from the utility classes folder.
+
+Most of my utility functions use document 'types' coded as integers rather than as
+MIME-type strings; the values are defined at the start of the Lo utility class:
+
+// in the Lo class
+public static final int UNKNOWN = 0;
+public static final int WRITER = 1;
+public static final int BASE = 2;
+public static final int CALC = 3;
+public static final int DRAW = 4;
+public static final int IMPRESS = 5;
+public static final int MATH = 6;
+
+Info.mimeDocType() maps ODF MIME-type strings to one of these integers:
+
+// in the Info class
+public static int mimeDocType(String mimeType)
+{
+  if (mimeType == null)
+    return Lo.UNKNOWN;
+
+  if (mimeType.contains("vnd.oasis.opendocument.text"))
+    return Lo.WRITER;
+  else if (mimeType.contains("vnd.oasis.opendocument.base"))
+    return Lo.BASE;
+  else if (mimeType.contains("vnd.oasis.opendocument.spreadsheet"))
+    return Lo.CALC;
+  else if (mimeType.contains("vnd.oasis.opendocument.graphics") ||
+           mimeType.contains("vnd.oasis.opendocument.image") ||
+           mimeType.contains("vnd.oasis.opendocument.chart"))
+    return Lo.DRAW;
+  else if (mimeType.contains("vnd.oasis.opendocument.presentation"))
+    return Lo.IMPRESS;
+  else if (mimeType.contains("vnd.oasis.opendocument.formula"))
+    return Lo.MATH;
+  else return Lo.UNKNOWN;
+}  // end of mimeDocType()
+```
 
 Some of my functions also utilize short document type strings, which are also defined
 in the Lo class:
 
-=== "java"
-    ```java
-    // in the Lo class
-    // docType strings
-    public static final String UNKNOWN_STR = "unknown";
-    public static final String WRITER_STR = "swriter";
-    public static final String BASE_STR = "sbase";
-    public static final String CALC_STR = "scalc";
-    public static final String DRAW_STR = "sdraw";
-    public static final String IMPRESS_STR = "simpress";
-    public static final String MATH_STR = "smath";
-    ```
+```java
+// in the Lo class
+// docType strings
+public static final String UNKNOWN_STR = "unknown";
+public static final String WRITER_STR = "swriter";
+public static final String BASE_STR = "sbase";
+public static final String CALC_STR = "scalc";
+public static final String DRAW_STR = "sdraw";
+public static final String IMPRESS_STR = "simpress";
+public static final String MATH_STR = "smath";
+```
 
 Lo.docTypeStr() maps document type integers to these strings.
 
@@ -511,30 +504,29 @@ Lo.docTypeStr() maps document type integers to these strings.
 The XZipFileAccess.getStreamByPattern() method used in FileIO.getMimeType() is
 also employed by FileIO.unzipFile() to extract a zipped file:
 
-=== "java"
-    ```java
-    // in FileIO class
-    public static void unzipFile(XZipFileAccess zfa, String fnm)
-    {
-      String fileName = Info.getName(fnm);
-      String ext = Info.getExt(fnm);
-      try {
-        System.out.println("Extracting " + fnm);
-        XInputStream inStream = zfa.getStreamByPattern("*" + fnm);
-    
-        XSimpleFileAccess3 fileAcc =
-              Lo.createInstanceMCF(XSimpleFileAccess3.class,
-                        "com.sun.star.ucb.SimpleFileAccess");
-    
-        String copyFnm =  (ext == null) ? (fileName + "Copy") :
-                                          (fileName + "Copy." + ext);
-        System.out.println("Saving to " + copyFnm);
-        fileAcc.writeFile(FileIO.fnmToURL(copyFnm), inStream);
-      }
-      catch (com.sun.star.uno.Exception e)
-      {  System.out.println(e);  }
-    }  // end of unzipFile()
-    ```
+```java
+// in FileIO class
+public static void unzipFile(XZipFileAccess zfa, String fnm)
+{
+  String fileName = Info.getName(fnm);
+  String ext = Info.getExt(fnm);
+  try {
+    System.out.println("Extracting " + fnm);
+    XInputStream inStream = zfa.getStreamByPattern("*" + fnm);
+
+    XSimpleFileAccess3 fileAcc =
+          Lo.createInstanceMCF(XSimpleFileAccess3.class,
+                    "com.sun.star.ucb.SimpleFileAccess");
+
+    String copyFnm =  (ext == null) ? (fileName + "Copy") :
+                                      (fileName + "Copy." + ext);
+    System.out.println("Saving to " + copyFnm);
+    fileAcc.writeFile(FileIO.fnmToURL(copyFnm), inStream);
+  }
+  catch (com.sun.star.uno.Exception e)
+  {  System.out.println(e);  }
+}  // end of unzipFile()
+```
 
 The XZipFileAccess.getStreamByPattern() call includes the wildcard character "*" so
 the filename will be found even if prefixed by a directory path, as in the case of an
@@ -606,38 +598,37 @@ image rather than to one side.
 
 The MakeTextDoc.java code:
 
-=== "java"
-    ```java
-    public class MakeTextDoc
-    {
-      public static void main(String[] args)
-      {
-        try {
-          TextDocument doc = TextDocument.newTextDocument();
-          doc.newImage(new URI("odf-logo.png"));
-    
-          // add paragraphs and list
-          doc.addParagraph("Hello World, Hello Simple ODF!");
-          doc.addParagraph("The following is a list.");
-          List list = doc.addList();
-          String[] items = {"item1", "item2", "item3"};
-          list.addItems(items);
-    
-          // add table
-          Table table = doc.addTable(2, 2);
-          Cell cell = table.getCellByPosition(0, 0);
-          cell.setStringValue("Hello World!");
-    
-          System.out.println("Creating MakeTextDoc.odt");
-          doc.save("MakeTextDoc.odt");
-        }
-        catch (Exception e) {
-          System.out.println(e);
-        }
-      }  // end of main()
-    
-    } // end of MakeTextDoc class
-    ```
+```java
+public class MakeTextDoc
+{
+  public static void main(String[] args)
+  {
+    try {
+      TextDocument doc = TextDocument.newTextDocument();
+      doc.newImage(new URI("odf-logo.png"));
+
+      // add paragraphs and list
+      doc.addParagraph("Hello World, Hello Simple ODF!");
+      doc.addParagraph("The following is a list.");
+      List list = doc.addList();
+      String[] items = {"item1", "item2", "item3"};
+      list.addItems(items);
+
+      // add table
+      Table table = doc.addTable(2, 2);
+      Cell cell = table.getCellByPosition(0, 0);
+      cell.setStringValue("Hello World!");
+
+      System.out.println("Creating MakeTextDoc.odt");
+      doc.save("MakeTextDoc.odt");
+    }
+    catch (Exception e) {
+      System.out.println(e);
+    }
+  }  // end of main()
+
+} // end of MakeTextDoc class
+```
 
 I was unable to find a way of changing the image's text wrap property to affect the
 paragraph's position. It's probably do-able using the lower-level ODFDOM  library,
@@ -659,29 +650,28 @@ Figure 5. The Output of MakeSheet.java.
 
 The program:
 
-=== "java"
-    ```java
-    public class MakeSheet
-    {
-      public static void main(String[] args)
-      {
-        try {
-          SpreadsheetDocument doc =
-                 SpreadsheetDocument.newSpreadsheetDocument();
-          Table sheet = doc.getSheetByIndex(0);
-          sheet.getCellByPosition(0, 0).setStringValue("Hello");
-          for (int row = 0; row < 5; row++)
-            sheet.getCellByPosition(1, row).setDoubleValue(row*2.0);
-    
-          System.out.println("Saving document to makeSheet.ods");
-          doc.save("makeSheet.ods");
-        }
-        catch (Exception e)
-        {  System.out.println(e); }
-      }  // end of main()
-    
-    }  // end of MakeSheet class
-    ```
+```java
+public class MakeSheet
+{
+  public static void main(String[] args)
+  {
+    try {
+      SpreadsheetDocument doc =
+             SpreadsheetDocument.newSpreadsheetDocument();
+      Table sheet = doc.getSheetByIndex(0);
+      sheet.getCellByPosition(0, 0).setStringValue("Hello");
+      for (int row = 0; row < 5; row++)
+        sheet.getCellByPosition(1, row).setDoubleValue(row*2.0);
+
+      System.out.println("Saving document to makeSheet.ods");
+      doc.save("makeSheet.ods");
+    }
+    catch (Exception e)
+    {  System.out.println(e); }
+  }  // end of main()
+
+}  // end of MakeSheet class
+```
 
 #### Make a Slide Deck
 
@@ -696,51 +686,50 @@ Figure 6. The Output of MakeSlides.java.
 
 The program:
 
-=== "java"
-    ```java
-    public class MakeSlides
-    {
-      public static void main(String[] args)
-      {
-        try {
-          PresentationDocument doc =
-                    PresentationDocument.newPresentationDocument();
-    
-          // a title slide
-          Slide slide1 = doc.newSlide(0, "slide1",
-                                       SlideLayout.TITLE_ONLY);
-          Textbox titleBox = slide1.getTextboxByUsage(
-                                 PresentationClass.TITLE).get(0);
-          titleBox.setTextContent("Important Slide Presentation");
-    
-          // a slide with text bullets and a picture
-          Slide slide2 = doc.newSlide(1, "slide2",
-                                     SlideLayout.TITLE_OUTLINE);
-          titleBox = slide2.getTextboxByUsage(
-                                 PresentationClass.TITLE).get(0);
-          titleBox.setTextContent("Overview");
-    
-          Textbox outline = slide2.getTextboxByUsage(
-                                 PresentationClass.OUTLINE).get(0);
-          List txtList = outline.addList();   // two bullets
-          txtList.addItem("Item 1");
-          txtList.addItem("Item 2");
-    
-          Image image = Image.newImage(slide2, new URI("skinner.png"));
-          FrameRectangle rect = image.getRectangle();
-          rect.setX(8);     // position the image
-          rect.setY(4);
-          image.setRectangle(rect);
-    
-          System.out.println("Saving document to makeSlides.odp");
-          doc.save("makeSlides.odp");
-        }
-        catch (Exception e)
-        { System.out.println(e);  }
-      }  // end of main()
-    
-    }  // end of MakeSlides class
-    ```
+```java
+public class MakeSlides
+{
+  public static void main(String[] args)
+  {
+    try {
+      PresentationDocument doc =
+                PresentationDocument.newPresentationDocument();
+
+      // a title slide
+      Slide slide1 = doc.newSlide(0, "slide1",
+                                   SlideLayout.TITLE_ONLY);
+      Textbox titleBox = slide1.getTextboxByUsage(
+                             PresentationClass.TITLE).get(0);
+      titleBox.setTextContent("Important Slide Presentation");
+
+      // a slide with text bullets and a picture
+      Slide slide2 = doc.newSlide(1, "slide2",
+                                 SlideLayout.TITLE_OUTLINE);
+      titleBox = slide2.getTextboxByUsage(
+                             PresentationClass.TITLE).get(0);
+      titleBox.setTextContent("Overview");
+
+      Textbox outline = slide2.getTextboxByUsage(
+                             PresentationClass.OUTLINE).get(0);
+      List txtList = outline.addList();   // two bullets
+      txtList.addItem("Item 1");
+      txtList.addItem("Item 2");
+
+      Image image = Image.newImage(slide2, new URI("skinner.png"));
+      FrameRectangle rect = image.getRectangle();
+      rect.setX(8);     // position the image
+      rect.setY(4);
+      image.setRectangle(rect);
+
+      System.out.println("Saving document to makeSlides.odp");
+      doc.save("makeSlides.odp");
+    }
+    catch (Exception e)
+    { System.out.println(e);  }
+  }  // end of main()
+
+}  // end of MakeSlides class
+```
 
 Programming with this part of the API is a littlie tricky since slide elements are
 represented by different types of boxes. I also found it hard to determine the position
@@ -753,29 +742,28 @@ Back in Chapter 17, section 4, I had to use copy and paste dispatch commands in 
 slide-sorter view to rearrange a deck. Moving a slide in the Simple API is much
 easier, as shown in MoveSlide.java, which moves the first slide of the deck to its end:
 
-=== "java"
-    ```java
-    public class MoveSlide
-    {
-      public static void main(String[] args)
-      {
-        try {
-          PresentationDocument doc =
-                 PresentationDocument.loadDocument("algs.odp");
-          int numSlides = doc.getSlideCount();
-          System.out.println("Moving first slide to the end");
-          doc.moveSlide(0, numSlides);   // why not numSlides-1?
-    
-          System.out.println("Saving document to algsMoved.odp");
-          doc.save("algsMoved.odp");
-          doc.close();
-        }
-        catch (Exception e)
-        {  System.out.println(e); }
-      }  // end of main()
-    
-    }  // end of MoveSlide class
-    ```
+```java
+public class MoveSlide
+{
+  public static void main(String[] args)
+  {
+    try {
+      PresentationDocument doc =
+             PresentationDocument.loadDocument("algs.odp");
+      int numSlides = doc.getSlideCount();
+      System.out.println("Moving first slide to the end");
+      doc.moveSlide(0, numSlides);   // why not numSlides-1?
+
+      System.out.println("Saving document to algsMoved.odp");
+      doc.save("algsMoved.odp");
+      doc.close();
+    }
+    catch (Exception e)
+    {  System.out.println(e); }
+  }  // end of main()
+
+}  // end of MoveSlide class
+```
 
 PresentationDocument.moveSlide() works without a hitch, although I'm confused
 why I need to supply numSlides as the second numerical argument rather than
@@ -796,33 +784,32 @@ examples are much simpler to program than equivalent ones using the Office API.
 CombineTexts.java adds the contents of doc2.odt to the end of the contents of
 doc1.odt, separating them with a page break. The result is saved to combined.odt:
 
-=== "java"
-    ```java
-    public class CombineTexts
-    {
-      public static void main(String[] args)
-      {
-        try {
-          TextDocument doc1 = TextDocument.loadDocument("doc1.odt");
-          TextDocument doc2 = TextDocument.loadDocument("doc2.odt");
-    
-          doc1.addPageBreak();
-          Paragraph lastPara = doc1.getParagraphByReverseIndex(0, false);
-    
-          // insert contents at end and copy styles
-          doc1.insertContentFromDocumentAfter(doc2, lastPara, true);
-    
-          System.out.println("Saving combination to combined.odt");
-          doc1.save("combined.odt");
-          doc1.close();
-          doc2.close();
-        }
-        catch (Exception e)
-        {  System.out.println(e); }
-      }  // end of main()
-    
-    }  // end of CombineTexts class
-    ```
+```java
+public class CombineTexts
+{
+  public static void main(String[] args)
+  {
+    try {
+      TextDocument doc1 = TextDocument.loadDocument("doc1.odt");
+      TextDocument doc2 = TextDocument.loadDocument("doc2.odt");
+
+      doc1.addPageBreak();
+      Paragraph lastPara = doc1.getParagraphByReverseIndex(0, false);
+
+      // insert contents at end and copy styles
+      doc1.insertContentFromDocumentAfter(doc2, lastPara, true);
+
+      System.out.println("Saving combination to combined.odt");
+      doc1.save("combined.odt");
+      doc1.close();
+      doc2.close();
+    }
+    catch (Exception e)
+    {  System.out.println(e); }
+  }  // end of main()
+
+}  // end of CombineTexts class
+```
 
 The crucial method is TextDocument.insertContentFromDocumentAfter().
 
@@ -832,35 +819,34 @@ The crucial method is TextDocument.insertContentFromDocumentAfter().
 CombineSheets.java places the sheets in ss2.odt after the sheets in ss1.odt, and saves
 the result in combined.ods:
 
-=== "java"
-    ```java
-    public class CombineSheets
-    {
-      public static void main(String[] args)
-      {
-        try {
-          SpreadsheetDocument doc1 =
-                  SpreadsheetDocument.loadDocument("ss1.ods");
-          SpreadsheetDocument doc2 =
-                  SpreadsheetDocument.loadDocument("ss2.ods");
-          int numSheets2 = doc2.getSheetCount();
-    
-          // add sheets of second document to end of first doc
-          for(int i=0; i < numSheets2; i++) {
-            Table t = doc2.getSheetByIndex(i);
-            doc1.appendSheet(t, t.getTableName());
-          }
-          System.out.println("Saving combination to combined.ods");
-          doc1.save("combined.ods");
-          doc1.close();
-          doc2.close();
-        }
-        catch (Exception e)
-        {  System.out.println(e); }
-      }  // end of main()
-    
-    }  // end of CombineSheets class
-    ```
+```java
+public class CombineSheets
+{
+  public static void main(String[] args)
+  {
+    try {
+      SpreadsheetDocument doc1 =
+              SpreadsheetDocument.loadDocument("ss1.ods");
+      SpreadsheetDocument doc2 =
+              SpreadsheetDocument.loadDocument("ss2.ods");
+      int numSheets2 = doc2.getSheetCount();
+
+      // add sheets of second document to end of first doc
+      for(int i=0; i < numSheets2; i++) {
+        Table t = doc2.getSheetByIndex(i);
+        doc1.appendSheet(t, t.getTableName());
+      }
+      System.out.println("Saving combination to combined.ods");
+      doc1.save("combined.ods");
+      doc1.close();
+      doc2.close();
+    }
+    catch (Exception e)
+    {  System.out.println(e); }
+  }  // end of main()
+
+}  // end of CombineSheets class
+```
 
 Sadly there isn't a single method that appends tables. Instead  I've used a loop to
 append each sheet from ss2.ods after the sheets in ss1.ods.
@@ -871,29 +857,28 @@ append each sheet from ss2.ods after the sheets in ss1.ods.
 CombineDecks.java adds the slides in deck2.odp after the slides in deck1.odp, saving
 the result in combined.odp:
 
-=== "java"
-    ```java
-    public class CombineDecks
-    {
-      public static void main(String[] args)
-      {
-        try {
-          PresentationDocument doc1 =
-                  PresentationDocument.loadDocument("deck1.odp");
-          PresentationDocument doc2 =
-                  PresentationDocument.loadDocument("deck2.odp");
-          doc1.appendPresentation(doc2);
-          System.out.println("Saving combination to combined.odp");
-          doc1.save("combined.odp");
-          doc1.close();
-          doc2.close();
-        }
-        catch (Exception e)
-        {  System.out.println(e); }
-      }  // end of main()
-    
-    }  // end of CombineDecks class
-    ```
+```java
+public class CombineDecks
+{
+  public static void main(String[] args)
+  {
+    try {
+      PresentationDocument doc1 =
+              PresentationDocument.loadDocument("deck1.odp");
+      PresentationDocument doc2 =
+              PresentationDocument.loadDocument("deck2.odp");
+      doc1.appendPresentation(doc2);
+      System.out.println("Saving combination to combined.odp");
+      doc1.save("combined.odp");
+      doc1.close();
+      doc2.close();
+    }
+    catch (Exception e)
+    {  System.out.println(e); }
+  }  // end of main()
+
+}  // end of CombineDecks class
+```
 
 The PresentationDocument.appendPresentation() method does all the work, and
 should be compared to my hacky Office solution in Chapter 17, section 5.

@@ -66,119 +66,115 @@ Base.printDriverProperties() functions, as seen in CSVQuery.java explained next.
 CSVQuery.java opens a CSV file, examines its us-500 table, and prints the first
 names of the people resident in New York City:
 
-=== "java"
-    ```java
-    // part of CSVQuery.java...
-    XResultSet rs = Base.executeQuery("SELECT \"first_name\" FRO
-                        \"us-500\" WHERE \"City\" = 'New York'", conn);
-    BaseTablePrinter.printResultSet(rs);
-    ```
+```java
+// part of CSVQuery.java...
+XResultSet rs = Base.executeQuery("SELECT \"first_name\" FROM
+                    \"us-500\" WHERE \"City\" = 'New York'", conn);
+BaseTablePrinter.printResultSet(rs);
+```
 
 The novel parts of CSVQuery.java are how it sets up the database connection and
 how it determines the table's format. The main() function:
 
-=== "java"
-    ```java
-    // global
-    private static final String FNM = "us-500.csv";
-    
-    
-    // in CSVQuery.java
-    public static void main(String[] args)
-    {
-      XComponentLoader loader = Lo.loadOffice();
-    
-      XDriverManager dm = Base.getDriverManager();
-      if (dm == null) {
-        System.out.println("Could not access Driver manager");
-        Lo.closeOffice();
-        return;
-      }
-    
-      ArrayList<String> driveNms = Base.getSupportedDrivers();
-      System.out.println("Drivers (" + driveNms.size() + "):");
-      for(String driveNm : driveNms)
-        System.out.println("  " + driveNm);
-      System.out.println();
-    
-      String url = "sdbc:flat:" + FileIO.fnmToURL(FNM);
-      System.out.println("Using URL: " + url);
-    
-      XDriver driver = Base.getDriverByURL(url);
-      Base.printDriverProperties(driver, url);
-    
-      // set up properties for a CSV file with no password
-      PropertyValue[] props = Props.makeProps(
-            new String[] { "user", "password",
-                           "JavaDriverClass", "Extension",
-                           "HeaderLine", "FieldDelimiter",
-                           "StringDelimiter" },
-            new Object[] { "", "",
-                   "com.sun.star.comp.sdbc.flat.ODriver", "csv",
-                    true, ",", "\"\"" }
-              );
-    
-      XConnection conn = null;
-      try {
-        conn = dm.getConnectionWithInfo(url, props);
-    
-        // ArrayList<String> tableNames = Base.getTablesNames(conn);
-        ArrayList<String> tableNames = Base.getTablesNamesMD(conn);
-        System.out.println("No. of tables: " + tableNames.size());
-        System.out.println( Arrays.toString(tableNames.toArray()));
-                    // reports all CSV tables ??
-    
-        XResultSet rs = Base.executeQuery("SELECT \"first_name\" FRO
-                \"us-500\" WHERE \"City\" = 'New York'", conn);
-        BaseTablePrinter.printResultSet(rs);
-      }
-      catch(Exception e) {
-        System.out.println(e);
-      }
-    
-      Base.closeConnection(conn);
-      Lo.closeOffice();
-    }  // end of main()
-    ```
+```java
+// global
+private static final String FNM = "us-500.csv";
+
+
+// in CSVQuery.java
+public static void main(String[] args)
+{
+  XComponentLoader loader = Lo.loadOffice();
+
+  XDriverManager dm = Base.getDriverManager();
+  if (dm == null) {
+    System.out.println("Could not access Driver manager");
+    Lo.closeOffice();
+    return;
+  }
+
+  ArrayList<String> driveNms = Base.getSupportedDrivers();
+  System.out.println("Drivers (" + driveNms.size() + "):");
+  for(String driveNm : driveNms)
+    System.out.println("  " + driveNm);
+  System.out.println();
+
+  String url = "sdbc:flat:" + FileIO.fnmToURL(FNM);
+  System.out.println("Using URL: " + url);
+
+  XDriver driver = Base.getDriverByURL(url);
+  Base.printDriverProperties(driver, url);
+
+  // set up properties for a CSV file with no password
+  PropertyValue[] props = Props.makeProps(
+        new String[] { "user", "password",
+                       "JavaDriverClass", "Extension",
+                       "HeaderLine", "FieldDelimiter",
+                       "StringDelimiter" },
+        new Object[] { "", "",
+               "com.sun.star.comp.sdbc.flat.ODriver", "csv",
+                true, ",", "\"\"" }
+          );
+
+  XConnection conn = null;
+  try {
+    conn = dm.getConnectionWithInfo(url, props);
+
+    // ArrayList<String> tableNames = Base.getTablesNames(conn);
+    ArrayList<String> tableNames = Base.getTablesNamesMD(conn);
+    System.out.println("No. of tables: " + tableNames.size());
+    System.out.println( Arrays.toString(tableNames.toArray()));
+                // reports all CSV tables ??
+
+    XResultSet rs = Base.executeQuery("SELECT \"first_name\" FROM
+            \"us-500\" WHERE \"City\" = 'New York'", conn);
+    BaseTablePrinter.printResultSet(rs);
+  }
+  catch(Exception e) {
+    System.out.println(e);
+  }
+
+  Base.closeConnection(conn);
+  Lo.closeOffice();
+}  // end of main()
+```
 
 The XDriverManager interface is obtained by Base.getDriverManager():
 
-=== "java"
-    ```java
-    // in the Base class
-    public static XDriverManager getDriverManager()
-    { return Lo.createInstanceMCF(XDriverManager.class,
-                                  "com.sun.star.sdbc.DriverManager");
-    }
-    ```
+```java
+// in the Base class
+public static XDriverManager getDriverManager()
+{ return Lo.createInstanceMCF(XDriverManager.class,
+                              "com.sun.star.sdbc.DriverManager");
+}
+```
 
 Base.getSupportedDrivers() returns a list of all the Base drivers:
 
-=== "java"
-    ```java
-    // in the Base class
-    public static ArrayList<String> getSupportedDrivers()
-    {
-      XDriverManager dm = getDriverManager();
-      XEnumerationAccess enumAccess =
-                       Lo.qi(XEnumerationAccess.class, dm);
-      XEnumeration driversEnum = enumAccess.createEnumeration();
-      if (driversEnum == null) {
-        System.out.println("No drivers found");
-        return null;
-      }
-    
-      ArrayList<String> drivers = new ArrayList<String>();
-      while(driversEnum.hasMoreElements()) {
-        try {
-          drivers.add( Info.getImplementationName(
-                              driversEnum.nextElement()) );
-        }
-        catch(com.sun.star.uno.Exception e) {}
-      }
-      return drivers;
-    }  // end of getSupportedDrivers()
-    ```
+```java
+// in the Base class
+public static ArrayList<String> getSupportedDrivers()
+{
+  XDriverManager dm = getDriverManager();
+  XEnumerationAccess enumAccess =
+                   Lo.qi(XEnumerationAccess.class, dm);
+  XEnumeration driversEnum = enumAccess.createEnumeration();
+  if (driversEnum == null) {
+    System.out.println("No drivers found");
+    return null;
+  }
+
+  ArrayList<String> drivers = new ArrayList<String>();
+  while(driversEnum.hasMoreElements()) {
+    try {
+      drivers.add( Info.getImplementationName(
+                          driversEnum.nextElement()) );
+    }
+    catch(com.sun.star.uno.Exception e) {}
+  }
+  return drivers;
+}  // end of getSupportedDrivers()
+```
 
 The XDriverManager interface is cast to XEnumerationAccess, which can loop
 through the drivers and access their names. The list on one of my test machines is:
@@ -206,65 +202,62 @@ There's no need for the programmer to explicitly load a driver, since Base does 
 automatically based on the database protocol in the file's URL. The URL is
 constructed with the following code:
 
-=== "java"
-    ```java
-    // part of CSVQuery.java...
-    String url = "sdbc:flat:" + FileIO.fnmToURL(FNM);
-    System.out.println("Using URL: " + url);
-    
-    XDriver driver = Base.getDriverByURL(url);
-    ```
+```java
+// part of CSVQuery.java...
+String url = "sdbc:flat:" + FileIO.fnmToURL(FNM);
+System.out.println("Using URL: " + url);
+
+XDriver driver = Base.getDriverByURL(url);
+```
 
 The database protocol is set to be "sdbc:flat", and the local file is converted to "file://"
 URL form; the resulting URL is:
 
-=== "java"
-    ```java
-    sdbc:flat:file:///C:/Users/Ad/Desktop/LibreOffice Tests/
-                                            Base Tests/us-500.csv
-    ```
+```java
+sdbc:flat:file:///C:/Users/Ad/Desktop/LibreOffice Tests/
+                                        Base Tests/us-500.csv
+```
 
 Base.getDriverByURL() is:
 
-=== "java"
-    ```java
-    // in the Base class
-    public static XDriver getDriverByURL(String url)
-    { XDriverAccess driverAccess =
-            Lo.createInstanceMCF(XDriverAccess.class,
-                                 "com.sun.star.sdbc.DriverManager");
-      return driverAccess.getDriverByURL(url);
-    }  // end of getDriverByURL()
-    
-    Base.printDriverProperties() prints the driver's name, and its properties:
-    
-    // in the Base class
-    public static void printDriverProperties(XDriver driver, String url)
-    {
-      if (driver == null) {
-        System.out.println("Driver is null");
-        return;
-      }
-      try {
-        System.out.println("Driver Name: " +
-                        Info.getImplementationName(driver));
-    
-        DriverPropertyInfo[] dpInfo = driver.getPropertyInfo(url, null);
-        if (dpInfo == null) {
-          System.out.println("Properties info for the driver is null");
-          return;
-        }
-        System.out.println("No. of Driver properties: " + dpInfo.length);
-        for(int i=0; i < dpInfo.length; i++)
-           System.out.println("  " + dpInfo[i].Name + " = " +
-                                     dpInfo[i].Value);
-        System.out.println();
-      }
-      catch(SQLException e) {
-        System.out.println("No properties info for the driver");
-      }
-    }  // end of printDriverProperties()
-    ```
+```java
+// in the Base class
+public static XDriver getDriverByURL(String url)
+{ XDriverAccess driverAccess =
+        Lo.createInstanceMCF(XDriverAccess.class,
+                             "com.sun.star.sdbc.DriverManager");
+  return driverAccess.getDriverByURL(url);
+}  // end of getDriverByURL()
+
+Base.printDriverProperties() prints the driver's name, and its properties:
+
+// in the Base class
+public static void printDriverProperties(XDriver driver, String url)
+{
+  if (driver == null) {
+    System.out.println("Driver is null");
+    return;
+  }
+  try {
+    System.out.println("Driver Name: " +
+                    Info.getImplementationName(driver));
+
+    DriverPropertyInfo[] dpInfo = driver.getPropertyInfo(url, null);
+    if (dpInfo == null) {
+      System.out.println("Properties info for the driver is null");
+      return;
+    }
+    System.out.println("No. of Driver properties: " + dpInfo.length);
+    for(int i=0; i < dpInfo.length; i++)
+       System.out.println("  " + dpInfo[i].Name + " = " +
+                                 dpInfo[i].Value);
+    System.out.println();
+  }
+  catch(SQLException e) {
+    System.out.println("No properties info for the driver");
+  }
+}  // end of printDriverProperties()
+```
 
 The method utilizes XDriver.getPropertyInfo() (see Figure 2) to access an array of
 DriverProperty objects.
@@ -306,21 +299,20 @@ of answers are the OpenOffice and LibreOffice forums where people have dealt wit
 similar questions before. The properties are passed to the connection by calling
 XDriverManager.getConnectionWithInfo():
 
-=== "java"
-    ```java
-    // part of CSVQuery.java...
-    // set up properties for a CSV file with no password
-    PropertyValue[] props = Props.makeProps(
-            new String[] { "user", "password",
-                           "JavaDriverClass", "Extension",
-                           "HeaderLine", "FieldDelimiter",
-                           "StringDelimiter" },
-            new Object[] { "", "",
-                   "com.sun.star.comp.sdbc.flat.ODriver", "csv",
-                    true, ",", "\"\"" }
-          );
-    XConnection conn = dm.getConnectionWithInfo(url, props);
-    ```
+```java
+// part of CSVQuery.java...
+// set up properties for a CSV file with no password
+PropertyValue[] props = Props.makeProps(
+        new String[] { "user", "password",
+                       "JavaDriverClass", "Extension",
+                       "HeaderLine", "FieldDelimiter",
+                       "StringDelimiter" },
+        new Object[] { "", "",
+               "com.sun.star.comp.sdbc.flat.ODriver", "csv",
+                true, ",", "\"\"" }
+      );
+XConnection conn = dm.getConnectionWithInfo(url, props);
+```
 
 
 ## 2.  Finding out about Tables
@@ -331,18 +323,17 @@ In my earlier ODB document examples, I used classes from the sdbcx module to get
 schema information (see Figure 10). For example, Base.getTablesNames() accesses
 information about all the tables in the database:
 
-=== "java"
-    ```java
-    // in the Base class
-    public static ArrayList<String> getTablesNames(XConnection conn)
-    {
-      XTablesSupplier tblsSupplier =
-                        Lo.qi(XTablesSupplier.class, conn);
-      XNameAccess tables = tblsSupplier.getTables();
-      String[] tableNms = tables.getElementNames();
-      return new ArrayList<String>(Arrays.asList(tableNms));
-    }  // end of getTablesNames()
-    ```
+```java
+// in the Base class
+public static ArrayList<String> getTablesNames(XConnection conn)
+{
+  XTablesSupplier tblsSupplier =
+                    Lo.qi(XTablesSupplier.class, conn);
+  XNameAccess tables = tblsSupplier.getTables();
+  String[] tableNms = tables.getElementNames();
+  return new ArrayList<String>(Arrays.asList(tableNms));
+}  // end of getTablesNames()
+```
 
 This technique doesn't work with non-Office databases, such as CSV files, Access
 databases, and spreadsheets. If Base.getTablesNames() is passed a connection to these
@@ -351,27 +342,26 @@ then the XTablesSupplier instance is set to null.
 Fortunately, there's an alternative, lower-level approach based on using the
 DatabaseMetaData service (see Figure 1), as implemented in getTablesNamesMD():
 
-=== "java"
-    ```java
-    // in the Base class
-    public static ArrayList<String> getTablesNamesMD(XConnection conn)
-    // get table names using DatabaseMetaData
-    {
-      ArrayList<String> names = new ArrayList<String>();
-      try {
-         XDatabaseMetaData dm = conn.getMetaData();
-         XResultSet rs = dm.getTables(null, null, "%",
-                                             new String[]{"TABLE"});
-         XRow xRow = Lo.qi(XRow.class, rs);
-         while (rs.next())
-           names.add(xRow.getString(3));    // 3 == table name
-       }
-       catch(SQLException e) {
-         System.out.println(e);
-       }
-       return names;
-     }  // end of getTablesNamesMD()
-    ```
+```java
+// in the Base class
+public static ArrayList<String> getTablesNamesMD(XConnection conn)
+// get table names using DatabaseMetaData
+{
+  ArrayList<String> names = new ArrayList<String>();
+  try {
+     XDatabaseMetaData dm = conn.getMetaData();
+     XResultSet rs = dm.getTables(null, null, "%",
+                                         new String[]{"TABLE"});
+     XRow xRow = Lo.qi(XRow.class, rs);
+     while (rs.next())
+       names.add(xRow.getString(3));    // 3 == table name
+   }
+   catch(SQLException e) {
+     System.out.println(e);
+   }
+   return names;
+ }  // end of getTablesNamesMD()
+```
 
 Table schema details are retrieved by querying XDatabaseMetaData, which lets
 Base.getTablesNamesMD() return a list of table names. The bad news is that the
@@ -415,52 +405,51 @@ No. of tables: 5
 
 The main() function for AccessQuery.java:
 
-=== "java"
-    ```java
-    //private static final String FNM = "Books.mdb";
-    private static final String FNM = "Books.accdb";
-    
-    
-    // in AccessQuery.java
-    public static void main(String[] args)
-    {
-      XComponentLoader loader = Lo.loadOffice();
-    
-      XDriverManager dm = Base.getDriverManager();
-      if (dm == null) {
-        System.out.println("Could not access Driver manager");
-        Lo.closeOffice();
-        return;
-      }
-    
-      String url = "sdbc:ado:PROVIDER=Microsoft.ACE.OLEDB.12.0;
-                    DATA SOURCE=" +
-                    FileIO.getAbsolutePath(FNM);
-                             // for accdb *and* mdb files
-      System.out.println("Using URL: " + url);
-    
-      XConnection conn = null;
-      try {
-        conn = dm.getConnectionWithInfo(url, null);
-                      // no connection properties needed
-    
-        ArrayList<String> tableNames = Base.getTablesNamesMD(conn);
-        System.out.println("No. of tables: " + tableNames.size());
-        System.out.println( Arrays.toString(tableNames.toArray()));
-                 // table list includes an empty string
-    
-        XResultSet rs = Base.executeQuery(
-                          "SELECT * FROM \"Authors\"", conn);
-        BaseTablePrinter.printResultSet(rs);
-      }
-      catch(Exception e) {
-        System.out.println(e);
-      }
-    
-      Base.closeConnection(conn);
-      Lo.closeOffice();
-    }  // end of main()
-    ```
+```java
+//private static final String FNM = "Books.mdb";
+private static final String FNM = "Books.accdb";
+
+
+// in AccessQuery.java
+public static void main(String[] args)
+{
+  XComponentLoader loader = Lo.loadOffice();
+
+  XDriverManager dm = Base.getDriverManager();
+  if (dm == null) {
+    System.out.println("Could not access Driver manager");
+    Lo.closeOffice();
+    return;
+  }
+
+  String url = "sdbc:ado:PROVIDER=Microsoft.ACE.OLEDB.12.0;
+                DATA SOURCE=" +
+                FileIO.getAbsolutePath(FNM);
+                         // for accdb *and* mdb files
+  System.out.println("Using URL: " + url);
+
+  XConnection conn = null;
+  try {
+    conn = dm.getConnectionWithInfo(url, null);
+                  // no connection properties needed
+
+    ArrayList<String> tableNames = Base.getTablesNamesMD(conn);
+    System.out.println("No. of tables: " + tableNames.size());
+    System.out.println( Arrays.toString(tableNames.toArray()));
+             // table list includes an empty string
+
+    XResultSet rs = Base.executeQuery(
+                      "SELECT * FROM \"Authors\"", conn);
+    BaseTablePrinter.printResultSet(rs);
+  }
+  catch(Exception e) {
+    System.out.println(e);
+  }
+
+  Base.closeConnection(conn);
+  Lo.closeOffice();
+}  // end of main()
+```
 
 
 ## 4.  Querying a Calc Spreadsheet
@@ -470,47 +459,46 @@ CalcQuery.java examines the "Marks" spreadsheet in totals.ods.
 The Calc driver treats each named sheet in the spreadsheet as a separate table. This
 time, Base.getTablesNamesMD() returns a correct list of the sheet names.
 
-=== "java"
-    ```java
-    private static final String FNM = "totals.ods";
-    
-    
-    // in CalcQuery.java
-    public static void main(String[] args)
-    {
-      XComponentLoader loader = Lo.loadOffice();
-      XDriverManager dm = Base.getDriverManager();
-      if (dm == null) {
-        System.out.println("Could not access Driver manager");
-        Lo.closeOffice();
-        return;
-      }
-    
-      String url = "sdbc:calc:" + FileIO.fnmToURL(FNM);
-      System.out.println("Using URL: " + url);
-    
-      XConnection conn = null;
-      try {
-        conn = dm.getConnectionWithInfo(url, null);
-                      // no connection properties needed
-    
-        ArrayList<String> tableNames = Base.getTablesNamesMD(conn);
-        System.out.println("No. of tables: " + tableNames.size());
-        System.out.println( Arrays.toString(tableNames.toArray()));
-    
-        XResultSet rs = Base.executeQuery(
-               "SELECT \"Stud. No.\", \"Fin/45\" FROM \"Marks\"
-                WHERE \"Fin/45\" < 20", conn);
-        BaseTablePrinter.printResultSet(rs);
-      }
-      catch(Exception e) {
-        System.out.println(e);
-      }
-    
-      Base.closeConnection(conn);
-      Lo.closeOffice();
-    }  // end of main()
-    ```
+```java
+private static final String FNM = "totals.ods";
+
+
+// in CalcQuery.java
+public static void main(String[] args)
+{
+  XComponentLoader loader = Lo.loadOffice();
+  XDriverManager dm = Base.getDriverManager();
+  if (dm == null) {
+    System.out.println("Could not access Driver manager");
+    Lo.closeOffice();
+    return;
+  }
+
+  String url = "sdbc:calc:" + FileIO.fnmToURL(FNM);
+  System.out.println("Using URL: " + url);
+
+  XConnection conn = null;
+  try {
+    conn = dm.getConnectionWithInfo(url, null);
+                  // no connection properties needed
+
+    ArrayList<String> tableNames = Base.getTablesNamesMD(conn);
+    System.out.println("No. of tables: " + tableNames.size());
+    System.out.println( Arrays.toString(tableNames.toArray()));
+
+    XResultSet rs = Base.executeQuery(
+           "SELECT \"Stud. No.\", \"Fin/45\" FROM \"Marks\"
+            WHERE \"Fin/45\" < 20", conn);
+    BaseTablePrinter.printResultSet(rs);
+  }
+  catch(Exception e) {
+    System.out.println(e);
+  }
+
+  Base.closeConnection(conn);
+  Lo.closeOffice();
+}  // end of main()
+```
 
 
 ## 5.  Querying a Thunderbird Address Book
@@ -552,56 +540,55 @@ Base.displayTablesSchema() lists the table and column information for the connec
 database, using sdbcx to get the table names. However, there's a meta data variant
 which utilizes Base.getTablesNamesMD(), as shown below:
 
-=== "java"
-    ```java
-    // in the Base class
-    public static void displayTablesSchema(XConnection conn)
-    {  displayTablesSchema(conn, true);  }
-    
-    
-    public static void displayTablesSchema(XConnection conn,
-                                           boolean useSDBCX)
-    {
-      ArrayList<String> tableNames = (useSDBCX) ? getTablesNames(conn) :
-                                                getTablesNamesMD(conn);
-        // choose to use SDBCX or DatabaseMetaData
-      if (tableNames == null)
-        System.out.println("No tables found in database");
+```java
+// in the Base class
+public static void displayTablesSchema(XConnection conn)
+{  displayTablesSchema(conn, true);  }
+
+
+public static void displayTablesSchema(XConnection conn,
+                                       boolean useSDBCX)
+{
+  ArrayList<String> tableNames = (useSDBCX) ? getTablesNames(conn) :
+                                            getTablesNamesMD(conn);
+    // choose to use SDBCX or DatabaseMetaData
+  if (tableNames == null)
+    System.out.println("No tables found in database");
+  else {
+    System.out.println("No. of tables: " + tableNames.size());
+    ArrayList<String> columnNames;
+    for(String tableName : tableNames) {
+      System.out.print("  " + tableName + ":");
+      columnNames = getColumnNames(conn, tableName);
+      if (columnNames == null)
+        System.out.println(" -- no column names --");
       else {
-        System.out.println("No. of tables: " + tableNames.size());
-        ArrayList<String> columnNames;
-        for(String tableName : tableNames) {
-          System.out.print("  " + tableName + ":");
-          columnNames = getColumnNames(conn, tableName);
-          if (columnNames == null)
-            System.out.println(" -- no column names --");
-          else {
-            for(String colName : columnNames)
-              System.out.print(" \"" + colName + "\"");
-            System.out.println("\n");
-          }
-        }
+        for(String colName : columnNames)
+          System.out.print(" \"" + colName + "\"");
+        System.out.println("\n");
       }
-    }  // end of displayTablesSchema()
-    
-    
-    public static ArrayList<String> getColumnNames(
-                         XConnection conn, String tableName)
-    {
-      ArrayList<String> names = new ArrayList<String>();
-      try {
-        XDatabaseMetaData dm = conn.getMetaData();
-        XResultSet rs = dm.getColumns(null, null, tableName, "%");
-        XRow xRow = Lo.qi(XRow.class, rs);
-        while (rs.next())
-          names.add(xRow.getString(4));    // 4 == column name
-      }
-      catch(SQLException e) {
-        System.out.println(e);
-      }
-      return names;
-    }  // end of getColumnNames()
-    ```
+    }
+  }
+}  // end of displayTablesSchema()
+
+
+public static ArrayList<String> getColumnNames(
+                     XConnection conn, String tableName)
+{
+  ArrayList<String> names = new ArrayList<String>();
+  try {
+    XDatabaseMetaData dm = conn.getMetaData();
+    XResultSet rs = dm.getColumns(null, null, tableName, "%");
+    XRow xRow = Lo.qi(XRow.class, rs);
+    while (rs.next())
+      names.add(xRow.getString(4));    // 4 == column name
+  }
+  catch(SQLException e) {
+    System.out.println(e);
+  }
+  return names;
+}  // end of getColumnNames()
+```
 
 A `Base.displayTablesSchema(conn,false)` call produces the following
 information when the connection is linked to Thunderbird:
@@ -662,40 +649,39 @@ Printing 8 rows from table AddressBook
 
 The main() function of ThunderbirdQuery.java:
 
-=== "java"
-    ```java
-    // in ThunderbirdQuery.java
-    public static void main(String[] args)
-    {
-      XComponentLoader loader = Lo.loadOffice();
-    
-      XDriverManager dm = Base.getDriverManager();
-      if (dm == null) {
-        System.out.println("Could not access Driver manager");
-        Lo.closeOffice();
-        return;
-      }
-    
-      XConnection conn = null;
-      try {
-        conn = dm.getConnectionWithInfo(
-                        "sdbc:address:thunderbird", null);
-    
-        ArrayList<String> tableNames = Base.getTablesNamesMD(conn);
-        System.out.println("No. of tables: " + tableNames.size());
-        System.out.println( Arrays.toString(tableNames.toArray()));
-    
-        Base.displayTablesSchema(conn, false); // use getTablesNamesMD()
-    
-        XResultSet rs = Base.executeQuery(
-                "SELECT \"E-mail\" FROM \"AddressBook\"", conn);
-        BaseTablePrinter.printResultSet(rs);
-      }
-      catch(Exception e) {
-        System.out.println(e);
-      }
-    
-      Base.closeConnection(conn);
-      Lo.closeOffice();
-    }  // end of main()
-    ```
+```java
+// in ThunderbirdQuery.java
+public static void main(String[] args)
+{
+  XComponentLoader loader = Lo.loadOffice();
+
+  XDriverManager dm = Base.getDriverManager();
+  if (dm == null) {
+    System.out.println("Could not access Driver manager");
+    Lo.closeOffice();
+    return;
+  }
+
+  XConnection conn = null;
+  try {
+    conn = dm.getConnectionWithInfo(
+                    "sdbc:address:thunderbird", null);
+
+    ArrayList<String> tableNames = Base.getTablesNamesMD(conn);
+    System.out.println("No. of tables: " + tableNames.size());
+    System.out.println( Arrays.toString(tableNames.toArray()));
+
+    Base.displayTablesSchema(conn, false); // use getTablesNamesMD()
+
+    XResultSet rs = Base.executeQuery(
+            "SELECT \"E-mail\" FROM \"AddressBook\"", conn);
+    BaseTablePrinter.printResultSet(rs);
+  }
+  catch(Exception e) {
+    System.out.println(e);
+  }
+
+  Base.closeConnection(conn);
+  Lo.closeOffice();
+}  // end of main()
+```

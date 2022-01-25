@@ -66,82 +66,80 @@ closing a row set; Lo.killOffice() must be called to end the program.
 
 UseRowSets.java executes a row set containing a simple SQL query:
 
-=== "java"
-    ```java
-    // in UseRowSets.java
-    public static void main(String[] args)
-    {
-      XComponentLoader loader = Lo.loadOffice();
-      execQuery();
-      Lo.closeOffice();
-      Lo.killOffice();    // needed to clean-up after XRowSet
-    }  // end of main()
-    
-    
-    private static void execQuery()
-    {
-      try {
-        System.out.println("Initializing rowset...");
-        XRowSet xRowSet = Base.rowSetQuery("liangTables.odb",
-              "SELECT \"firstName\", \"lastName\" FROM \"Student\"");
-    
-        // add rowset listener
-        xRowSet.addRowSetListener( new XRowSetListener() {
-          public void cursorMoved(EventObject e)
-          {  System.out.println("Cursor moved");  }
-    
-          public void rowChanged(EventObject e)
-          {  System.out.println("Row changed");  }
-    
-          public void rowSetChanged(EventObject e)
-          {  System.out.println("RowSet changed");  }
-    
-          public void disposing(EventObject e)
-          {  System.out.println("RowSet being destroyed"); }
-        });
-    
-        System.out.println("Executing rowset...");
-        xRowSet.execute();
-    
-        BaseTablePrinter.printResultSet(xRowSet);
-          // possible since XRowSet is a subclass of XResultSet
-    
-        // dispose of row set
-        XComponent xComp = Lo.qi(XComponent.class, xRowSet);
-        xComp.dispose();
-      }
-      catch(com.sun.star.uno.Exception e)
-      {  System.out.println(e);  }
-    }  // end of execQuery()
-    ```
+```java
+// in UseRowSets.java
+public static void main(String[] args)
+{
+  XComponentLoader loader = Lo.loadOffice();
+  execQuery();
+  Lo.closeOffice();
+  Lo.killOffice();    // needed to clean-up after XRowSet
+}  // end of main()
+
+
+private static void execQuery()
+{
+  try {
+    System.out.println("Initializing rowset...");
+    XRowSet xRowSet = Base.rowSetQuery("liangTables.odb",
+          "SELECT \"firstName\", \"lastName\" FROM \"Student\"");
+
+    // add rowset listener
+    xRowSet.addRowSetListener( new XRowSetListener() {
+      public void cursorMoved(EventObject e)
+      {  System.out.println("Cursor moved");  }
+
+      public void rowChanged(EventObject e)
+      {  System.out.println("Row changed");  }
+
+      public void rowSetChanged(EventObject e)
+      {  System.out.println("RowSet changed");  }
+
+      public void disposing(EventObject e)
+      {  System.out.println("RowSet being destroyed"); }
+    });
+
+    System.out.println("Executing rowset...");
+    xRowSet.execute();
+
+    BaseTablePrinter.printResultSet(xRowSet);
+      // possible since XRowSet is a subclass of XResultSet
+
+    // dispose of row set
+    XComponent xComp = Lo.qi(XComponent.class, xRowSet);
+    xComp.dispose();
+  }
+  catch(com.sun.star.uno.Exception e)
+  {  System.out.println(e);  }
+}  // end of execQuery()
+```
 
 The tricky initialization of RowSet properties is handled by Base.rowSetQuery():
 
-=== "java"
-    ```java
-    // in the Base class
-    public static XRowSet rowSetQuery(String fnm, String query)
-    {
-      XRowSet xRowSet = Lo.createInstanceMCF(XRowSet.class,
-                                     "com.sun.star.sdb.RowSet");
-    
-      Props.setProperty(xRowSet, "DataSourceName", FileIO.fnmToURL(fnm));
-      Props.setProperty(xRowSet, "CommandType", CommandType.COMMAND);
-                                           // TABLE, QUERY or COMMAND
-      Props.setProperty(xRowSet, "Command", query);
-             // command could be a table, query name, or SQL,
-             // depending on the CommandType
-    
-      // set these if your database requires a login
-      // Props.setProperty(xRowSet, "User", "");
-      // Props.setProperty(xRowSet, "Password", "");
-    
-      // more attributes are defined in sdb and sdbc Rowset...
-    
-    
-      return xRowSet;
-    }  // end of rowSetQuery()
-    ```
+```java
+// in the Base class
+public static XRowSet rowSetQuery(String fnm, String query)
+{
+  XRowSet xRowSet = Lo.createInstanceMCF(XRowSet.class,
+                                 "com.sun.star.sdb.RowSet");
+
+  Props.setProperty(xRowSet, "DataSourceName", FileIO.fnmToURL(fnm));
+  Props.setProperty(xRowSet, "CommandType", CommandType.COMMAND);
+                                       // TABLE, QUERY or COMMAND
+  Props.setProperty(xRowSet, "Command", query);
+         // command could be a table, query name, or SQL,
+         // depending on the CommandType
+
+  // set these if your database requires a login
+  // Props.setProperty(xRowSet, "User", "");
+  // Props.setProperty(xRowSet, "Password", "");
+
+  // more attributes are defined in sdb and sdbc Rowset...
+
+
+  return xRowSet;
+}  // end of rowSetQuery()
+```
 
 Base.rowSetQuery() shows that initializing a row set is less work than directly
 obtaining an ODB data source, connecting to the database, and creating a Statement
@@ -151,11 +149,10 @@ xRowSet.execute();
 Once the row set has been populated, it's passed to BaseTablePrinter.printResultSet()
 where it's treated as an XResultSet instance:
 
-=== "java"
-    ```java
-    // in execQuery()...
-    BaseTablePrinter.printResultSet(xRowSet);
-    ```
+```java
+// in execQuery()...
+BaseTablePrinter.printResultSet(xRowSet);
+```
 
 #### Listening to the Row Set
 
@@ -175,12 +172,11 @@ Figure 3. The Execution of UseRowSets.java.
 
 The disposal of the row set is easy:
 
-=== "java"
-    ```java
-    // at the end of execQuery()...
-    XComponent xComp = Lo.qi(XComponent.class, xRowSet);
-    xComp.dispose();
-    ```
+```java
+// at the end of execQuery()...
+XComponent xComp = Lo.qi(XComponent.class, xRowSet);
+xComp.dispose();
+```
 
 Back in main(), Lo.closeOffice() is executed, returns, but then the program hangs. A
 call to Lo.killOffice() (which utilizes Window's taskkill) is needed to terminate the
@@ -210,33 +206,32 @@ It's possible to add (or register) new data sources to Base's database context, 
 won't be using that feature. Currently registered sources are listed by
 Base.printRegisteredDataSources():
 
-=== "java"
-    ```java
-    // in the Base class
-    public static void printRegisteredDataSources()
-    // print all registered datasources
-    {
-      XDatabaseRegistrations dbRegs =
-           Lo.createInstanceMCF(XDatabaseRegistrations.class,
-                               "com.sun.star.sdb.DatabaseContext");
-    
-      XNameAccess nmsAccess = Lo.createInstanceMCF(XNameAccess.class,
-                                 "com.sun.star.sdb.DatabaseContext");
-    
-      String dsNames[] = nmsAccess.getElementNames();
-      System.out.println("Registered Data Sources (" +
-                                      dsNames.length + ")");
-      for (int i = 0; i < dsNames.length; ++i) {
-        String dbLoc = null;
-        try {
-          dbLoc = dbRegs.getDatabaseLocation(dsNames[i]);
-        }
-        catch(com.sun.star.uno.Exception e) {}
-        System.out.println("  " + dsNames[i] + " in " + dbLoc);
-      }
-      System.out.println();
-    }  // end of printRegisteredDataSources()
-    ```
+```java
+// in the Base class
+public static void printRegisteredDataSources()
+// print all registered datasources
+{
+  XDatabaseRegistrations dbRegs =
+       Lo.createInstanceMCF(XDatabaseRegistrations.class,
+                           "com.sun.star.sdb.DatabaseContext");
+
+  XNameAccess nmsAccess = Lo.createInstanceMCF(XNameAccess.class,
+                             "com.sun.star.sdb.DatabaseContext");
+
+  String dsNames[] = nmsAccess.getElementNames();
+  System.out.println("Registered Data Sources (" +
+                                  dsNames.length + ")");
+  for (int i = 0; i < dsNames.length; ++i) {
+    String dbLoc = null;
+    try {
+      dbLoc = dbRegs.getDatabaseLocation(dsNames[i]);
+    }
+    catch(com.sun.star.uno.Exception e) {}
+    System.out.println("  " + dsNames[i] + " in " + dbLoc);
+  }
+  System.out.println();
+}  // end of printRegisteredDataSources()
+```
 
 The method iterates through the data source names in the database context, printing
 the locations of their associated databases. The output for my version of Base is:
@@ -259,66 +254,64 @@ having to first instantiate XOfficeDatabaseDocument (i.e. without opening the OD
 file).
 
 
-=== "java"
-    ```java
-    // in DataSourcer.java
-    public static void main(String[] args)
-    {
-      XComponentLoader loader = Lo.loadOffice();
-    
-      Base.printRegisteredDataSources();  // explained above
-    
-      XConnection conn = null;
-      try {
-        XDataSource dataSource =
-              Base.getFileDataSource("liangTables.odb");
-              // no office document opened
-    
-        conn = dataSource.getConnection("", ""); // no login/password
-    
-        XResultSet rs = Base.executeQuery(
-            "SELECT \"firstName\", \"lastName\" FROM \"Student\"", conn);
-        BaseTablePrinter.printResultSet(rs);
-      }
-      catch(SQLException e) {
-        System.out.println(e);
-      }
-    
-      Base.closeConnection(conn);
-      Lo.closeOffice();
-      Lo.killOffice();   // needed when Base.getFileDataSource() used
-    }  // end of main()
-    ```
+```java
+// in DataSourcer.java
+public static void main(String[] args)
+{
+  XComponentLoader loader = Lo.loadOffice();
+
+  Base.printRegisteredDataSources();  // explained above
+
+  XConnection conn = null;
+  try {
+    XDataSource dataSource =
+          Base.getFileDataSource("liangTables.odb");
+          // no office document opened
+
+    conn = dataSource.getConnection("", ""); // no login/password
+
+    XResultSet rs = Base.executeQuery(
+        "SELECT \"firstName\", \"lastName\" FROM \"Student\"", conn);
+    BaseTablePrinter.printResultSet(rs);
+  }
+  catch(SQLException e) {
+    System.out.println(e);
+  }
+
+  Base.closeConnection(conn);
+  Lo.closeOffice();
+  Lo.killOffice();   // needed when Base.getFileDataSource() used
+}  // end of main()
+```
 
 The database context is manipulated by Base.getFileDataSource():
 
-=== "java"
-    ```java
-    // in the Base class
-    public static XDataSource getFileDataSource(String fnm)
-    {
-      try {
-        String fileURL = FileIO.fnmToURL(fnm);
-        XNameAccess nmsAccess = Lo.createInstanceMCF(XNameAccess.class,
-                                "com.sun.star.sdb.DatabaseContext");
-        XDataSource ds = Lo.qi(XDataSource.class,
-                                   nmsAccess.getByName(fileURL) );
-        if (ds == null) {
-          System.out.println("No data source for " + fnm);
-          return null;
-        }
-        else {
-          System.out.println("Found data source for " + fnm);
-          return ds;
-        }
-      }
-      catch(com.sun.star.uno.Exception e) {
-        System.out.println("Unable to access data source for " + fnm +
-                           ": " + e.getMessage());
-        return null;
-      }
-    }  // end of getFileDataSource()
-    ```
+```java
+// in the Base class
+public static XDataSource getFileDataSource(String fnm)
+{
+  try {
+    String fileURL = FileIO.fnmToURL(fnm);
+    XNameAccess nmsAccess = Lo.createInstanceMCF(XNameAccess.class,
+                            "com.sun.star.sdb.DatabaseContext");
+    XDataSource ds = Lo.qi(XDataSource.class,
+                               nmsAccess.getByName(fileURL) );
+    if (ds == null) {
+      System.out.println("No data source for " + fnm);
+      return null;
+    }
+    else {
+      System.out.println("Found data source for " + fnm);
+      return ds;
+    }
+  }
+  catch(com.sun.star.uno.Exception e) {
+    System.out.println("Unable to access data source for " + fnm +
+                       ": " + e.getMessage());
+    return null;
+  }
+}  // end of getFileDataSource()
+```
 
 The database context's XNameAccess interface is used to map the supplied filename
 to a data source.
@@ -348,47 +341,46 @@ XOfficeDatabaseDocument object. This means that only a single Calc document is
 manipulated by the program so no problems arise with my support classes. This
 approach is implemented in StoreInCalc.java:
 
-=== "java"
-    ```java
-    // globals
-    private static final String FNM = "liangTables.odb";
-    private static final String CALC_FNM = "liangCalc.ods";
-    
-    
-    // in StoreInCalc.java
-    public static void main(String[] args)
-    {
-      XComponentLoader loader = Lo.loadOffice();
-      XSpreadsheetDocument doc = Calc.createDoc(loader);
-      if (doc == null) {
-        System.out.println("Document creation failed");
-        Lo.closeOffice();
-        return;
-      }
-      System.out.println("Created a Calc document");
-    
-      XSpreadsheet sheet = Calc.getSheet(doc, 0);
-      if (sheet == null) {
-        System.out.println("No spreadsheet found");
-        Lo.closeOffice();
-        return;
-      }
-    
-      GUI.setVisible(doc, true);  // show the new sheet
-    
-      Object[][] rsa = queryDB(FNM,
-             "SELECT \"firstName\", \"lastName\" FROM \"Student\"");
-      if (rsa != null)
-        fillSheet(sheet, rsa);
-      Lo.delay(3000);  // wait for visible sheet to be changed
-    
-      Lo.saveDoc(doc, CALC_FNM);
-      Lo.closeDoc(doc);
-      Lo.closeOffice();
-    
-      // Lo.killOffice();   // needed when getFileDataSource() used
-    }  // end of main()
-    ```
+```java
+// globals
+private static final String FNM = "liangTables.odb";
+private static final String CALC_FNM = "liangCalc.ods";
+
+
+// in StoreInCalc.java
+public static void main(String[] args)
+{
+  XComponentLoader loader = Lo.loadOffice();
+  XSpreadsheetDocument doc = Calc.createDoc(loader);
+  if (doc == null) {
+    System.out.println("Document creation failed");
+    Lo.closeOffice();
+    return;
+  }
+  System.out.println("Created a Calc document");
+
+  XSpreadsheet sheet = Calc.getSheet(doc, 0);
+  if (sheet == null) {
+    System.out.println("No spreadsheet found");
+    Lo.closeOffice();
+    return;
+  }
+
+  GUI.setVisible(doc, true);  // show the new sheet
+
+  Object[][] rsa = queryDB(FNM,
+         "SELECT \"firstName\", \"lastName\" FROM \"Student\"");
+  if (rsa != null)
+    fillSheet(sheet, rsa);
+  Lo.delay(3000);  // wait for visible sheet to be changed
+
+  Lo.saveDoc(doc, CALC_FNM);
+  Lo.closeDoc(doc);
+  Lo.closeOffice();
+
+  // Lo.killOffice();   // needed when getFileDataSource() used
+}  // end of main()
+```
 
 The program creates a XSpreadsheetDocument object, which is left open while
 queryDB() queries the database. The result set is returned as a 2D array called rsa,
@@ -397,28 +389,27 @@ closed.
 
 queryDB() accesses the database as a data source, not as a document:
 
-=== "java"
-    ```java
-    // in StoreInCalc.java
-    private static Object[][] queryDB(String fnm, String query)
-    {
-      Object[][] rsa = null;
-      XConnection conn = null;
-      try {
-        XDataSource dataSource = Base.getFileDataSource(fnm);
-        conn = dataSource.getConnection("", "");
-    
-        XResultSet rs = Base.executeQuery(query, conn);
-        rsa = Base.getResultSetArr(rs);
-      }
-      catch(SQLException e) {
-        System.out.println(e);
-      }
-    
-      Base.closeConnection(conn);
-      return rsa;
-    }  // end of queryDB()
-    ```
+```java
+// in StoreInCalc.java
+private static Object[][] queryDB(String fnm, String query)
+{
+  Object[][] rsa = null;
+  XConnection conn = null;
+  try {
+    XDataSource dataSource = Base.getFileDataSource(fnm);
+    conn = dataSource.getConnection("", "");
+
+    XResultSet rs = Base.executeQuery(query, conn);
+    rsa = Base.getResultSetArr(rs);
+  }
+  catch(SQLException e) {
+    System.out.println(e);
+  }
+
+  Base.closeConnection(conn);
+  return rsa;
+}  // end of queryDB()
+```
 
 Base.getResultSetArr() returns the result set as a 2D array of Objects. It builds the
 array by traversing the result set a row at a time, creating a one-dimensional array for
@@ -426,19 +417,18 @@ each row. The data structure could be a defined as a 2D array of strings, except
 the Calc API requires an object array fillSheet() uses XCellRangeData.setDataArray()
 to add the array to the sheet:
 
-=== "java"
-    ```java
-    // in StoreInCalc.java
-    private static void fillSheet(XSpreadsheet sheet, Object[][] rsa)
-    {
-      try {
-        XCellRange cellRange = sheet.getCellRangeByPosition(0, 0,
-                                     rsa[0].length-1, rsa.length-1);
-        XCellRangeData xData = Lo.qi(XCellRangeData.class, cellRange);
-        xData.setDataArray(rsa);
-      }
-      catch (Exception e) {
-        System.out.println("Could not writes values to cells");
-      }
-    }  // end of fillSheet()
-    ```
+```java
+// in StoreInCalc.java
+private static void fillSheet(XSpreadsheet sheet, Object[][] rsa)
+{
+  try {
+    XCellRange cellRange = sheet.getCellRangeByPosition(0, 0,
+                                 rsa[0].length-1, rsa.length-1);
+    XCellRangeData xData = Lo.qi(XCellRangeData.class, cellRange);
+    xData.setDataArray(rsa);
+  }
+  catch (Exception e) {
+    System.out.println("Could not writes values to cells");
+  }
+}  // end of fillSheet()
+```

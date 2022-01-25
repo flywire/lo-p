@@ -45,59 +45,58 @@ pounds sold, and rounds the result to the nearest cent. For example, cell "D2" c
 Most of the main() function for GarlicSecrets.java is shown below. I'll explain the
 commented out parts in later sections:
 
-=== "java"
-    ```java
-    // in GarlicSecrets.java
-    
-    private static final String FNM = "produceSales.xlsx";
-    private static final String OUT_FNM = "garlicSecrets.ods";
-    
-    
-    public static void main(String args[])
-    {
-      XComponentLoader loader = Lo.loadOffice();
-      XSpreadsheetDocument doc = Calc.openDoc(FNM, loader);
-      if (doc == null) {
-        System.out.println("Could not open " + FNM);
-        Lo.closeOffice();
-        return;
-      }
-    
-      GUI.setVisible(doc, true);
-      XSpreadsheet sheet = Calc.getSheet(doc, 0);
-      Calc.gotoCell(doc, "A1");  // make sure top of sheet is visible
-    
-      // freeze first 3 rows of view
-      // Calc.freezeRows(doc, 3);
-    
-      // report total for the "Total" column
-      XCellRange totalRange = Calc.getColRange(sheet, 3);
-      double total =
-          Calc.computeFunction(GeneralFunction.SUM, totalRange);
-      System.out.printf("Total before change: %.2f\n", total);
-    
-      increaseGarlicCost(doc, sheet);
-    
-      // recalculate total and print again
-      total = Calc.computeFunction(GeneralFunction.SUM, totalRange);
-      System.out.printf("Total after change:  %.2f\n", total);
-    
-    
-      // add a label at the bottom of the data, and hide it...
-    
-      // split sheet into panes...
-    
-      // make top pane the active one in the first sheet...
-    
-      // add a new first row, and label that as at the bottom...
-    
-      Lo.saveDoc(doc, OUT_FNM);
-    
-      Lo.waitEnter();
-      Lo.closeDoc(doc);
-      Lo.closeOffice();
-    }  // end of main()
-    ```
+```java
+// in GarlicSecrets.java
+
+private static final String FNM = "produceSales.xlsx";
+private static final String OUT_FNM = "garlicSecrets.ods";
+
+
+public static void main(String args[])
+{
+  XComponentLoader loader = Lo.loadOffice();
+  XSpreadsheetDocument doc = Calc.openDoc(FNM, loader);
+  if (doc == null) {
+    System.out.println("Could not open " + FNM);
+    Lo.closeOffice();
+    return;
+  }
+
+  GUI.setVisible(doc, true);
+  XSpreadsheet sheet = Calc.getSheet(doc, 0);
+  Calc.gotoCell(doc, "A1");  // make sure top of sheet is visible
+
+  // freeze first 3 rows of view
+  // Calc.freezeRows(doc, 3);
+
+  // report total for the "Total" column
+  XCellRange totalRange = Calc.getColRange(sheet, 3);
+  double total =
+      Calc.computeFunction(GeneralFunction.SUM, totalRange);
+  System.out.printf("Total before change: %.2f\n", total);
+
+  increaseGarlicCost(doc, sheet);
+
+  // recalculate total and print again
+  total = Calc.computeFunction(GeneralFunction.SUM, totalRange);
+  System.out.printf("Total after change:  %.2f\n", total);
+
+
+  // add a label at the bottom of the data, and hide it...
+
+  // split sheet into panes...
+
+  // make top pane the active one in the first sheet...
+
+  // add a new first row, and label that as at the bottom...
+
+  Lo.saveDoc(doc, OUT_FNM);
+
+  Lo.waitEnter();
+  Lo.closeDoc(doc);
+  Lo.closeOffice();
+}  // end of main()
+```
 
 
 ## 1.  Freezing Rows
@@ -115,24 +114,23 @@ view when the spreadsheet is scrolled up or down.
 
 Calc.freezeRows() and Calc.freezeCols() are implemented using Calc.freeze():
 
-=== "java"
-    ```java
-    // in the Calc class
-    public static void freezeRows(XSpreadsheetDocument doc, int numRows)
-    {  freeze(doc, 0, numRows);  }
-    
-    
-    public static void freezeCols(XSpreadsheetDocument doc, int numCols)
-    {  freeze(doc, numCols, 0);  }
-    
-    
-    public static void freeze(XSpreadsheetDocument doc,
-                                   int numCols, int numRows)
-    { XViewFreezable xFreeze =
-               Lo.qi(XViewFreezable.class, getController(doc));
-      xFreeze.freezeAtPosition(numCols, numRows);
-    }
-    ```
+```java
+// in the Calc class
+public static void freezeRows(XSpreadsheetDocument doc, int numRows)
+{  freeze(doc, 0, numRows);  }
+
+
+public static void freezeCols(XSpreadsheetDocument doc, int numCols)
+{  freeze(doc, numCols, 0);  }
+
+
+public static void freeze(XSpreadsheetDocument doc,
+                               int numCols, int numRows)
+{ XViewFreezable xFreeze =
+           Lo.qi(XViewFreezable.class, getController(doc));
+  xFreeze.freezeAtPosition(numCols, numRows);
+}
+```
 
 Calc.freeze() accesses the SpreadsheetView service (see Figure 2) via the document's
 controller, and utilizes its XViewFreezable interface to call freezeAtPosition().
@@ -177,57 +175,54 @@ Table 1. Some GeneralFunctions.
 GeneralFunction.SUM is used in main(), to sum the "TOTALS" column of the
 spreadsheet:
 
-=== "java"
-    ```java
-    // in GarlicSecrets.java
-    XCellRange totalRange = Calc.getColRange(sheet, 3);
-    double total =
-          Calc.computeFunction(GeneralFunction.SUM, totalRange);
-    ```
+```java
+// in GarlicSecrets.java
+XCellRange totalRange = Calc.getColRange(sheet, 3);
+double total =
+      Calc.computeFunction(GeneralFunction.SUM, totalRange);
+```
 
 Cal.getColRange() utilizes the XColumnRowRange interface to access the sheet as a
 series of columns. The required column is extracted from the series via its index
 position:
 
-=== "java"
-    ```java
-    // in the Calc class
-    public static XCellRange getColRange(XSpreadsheet sheet, int idx)
-    {
-      XColumnRowRange crRange = Lo.qi(XColumnRowRange.class, sheet);
-      XTableColumns cols = crRange.getColumns();  // get all columns
-    
-      XIndexAccess con = Lo.qi(XIndexAccess.class, cols);
-      try {   // get column at idx position
-        return Lo.qi(XCellRange.class, con.getByIndex(idx));
-      }
-      catch(Exception e)
-      {  System.out.println("Could not access range for col pos " +idx);
-         return null;
-      }
-    }  // end of getColRange()
-    ```
+```java
+// in the Calc class
+public static XCellRange getColRange(XSpreadsheet sheet, int idx)
+{
+  XColumnRowRange crRange = Lo.qi(XColumnRowRange.class, sheet);
+  XTableColumns cols = crRange.getColumns();  // get all columns
+
+  XIndexAccess con = Lo.qi(XIndexAccess.class, cols);
+  try {   // get column at idx position
+    return Lo.qi(XCellRange.class, con.getByIndex(idx));
+  }
+  catch(Exception e)
+  {  System.out.println("Could not access range for col pos " +idx);
+     return null;
+  }
+}  // end of getColRange()
+```
 
 The sheet can also be treated as a series of rows by calling
 XColumnRowRange.getRows(), as in Calc.getRowRange():
 
-=== "java"
-    ```java
-    // in the Calc class
-    public static XCellRange getRowRange(XSpreadsheet sheet, int idx)
-    {
-      XColumnRowRange crRange = Lo.qi(XColumnRowRange.class, sheet);
-      XTableRows rows = crRange.getRows();  // get all rows
-      XIndexAccess con = Lo.qi(XIndexAccess.class, rows);
-      try {  // get row at idx position
-        return Lo.qi(XCellRange.class, con.getByIndex(idx));
-      }
-      catch(Exception e)
-      {  System.out.println("Could not access range for row pos " +idx);
-         return null;
-      }
-    }  // end of getRowRange()
-    ```
+```java
+// in the Calc class
+public static XCellRange getRowRange(XSpreadsheet sheet, int idx)
+{
+  XColumnRowRange crRange = Lo.qi(XColumnRowRange.class, sheet);
+  XTableRows rows = crRange.getRows();  // get all rows
+  XIndexAccess con = Lo.qi(XIndexAccess.class, rows);
+  try {  // get row at idx position
+    return Lo.qi(XCellRange.class, con.getByIndex(idx));
+  }
+  catch(Exception e)
+  {  System.out.println("Could not access range for row pos " +idx);
+     return null;
+  }
+}  // end of getRowRange()
+```
 
 The column returned by `Calc.getColRange(sheet,3)` includes the cell containing
 the word "TOTALS", but GeneralFunction.SUM only sums cells holding numerical
@@ -236,22 +231,21 @@ data.
 Calc.computeFunction() obtains the XSheetOperation interface for the cell range, and
 calls XSheetOperation.computeFunction() to apply a GeneralFunction:
 
-=== "java"
-    ```java
-    // in the Calc class
-    public static double computeFunction(GeneralFunction fn,
-                                           XCellRange cellRange)
-    { try {
-        XSheetOperation sheetOp =
-                         Lo.qi(XSheetOperation.class, cellRange);
-        return sheetOp.computeFunction(fn);
-      }
-      catch(Exception e)
-      {  System.out.println("Compute function failed: " + e);
-         return 0;
-      }
-    }  // end of computeFunction()
-    ```
+```java
+// in the Calc class
+public static double computeFunction(GeneralFunction fn,
+                                       XCellRange cellRange)
+{ try {
+    XSheetOperation sheetOp =
+                     Lo.qi(XSheetOperation.class, cellRange);
+    return sheetOp.computeFunction(fn);
+  }
+  catch(Exception e)
+  {  System.out.println("Compute function failed: " + e);
+     return 0;
+  }
+}  // end of computeFunction()
+```
 
 
 ## 3.  Searching for the Cost of Garlic, and Increasing it
@@ -267,34 +261,33 @@ scanning reaches an empty cell, the end of the data has been reached, and the fu
 returns.
 
 
-=== "java"
-    ```java
-    // in GarlicSecrets.java
-    private static int increaseGarlicCost(XSpreadsheetDocument doc,
-                                          XSpreadsheet sheet)
-    { int row = 0;
-      XCell prodCell = Calc.getCell(sheet, 0, row);
-                  // get produce cell in first row
-      XCell costCell;
-      while (prodCell.getType() !=  CellContentType.EMPTY) {
-        // iterate down produce column until an empty cell is reached
-        if (prodCell.getFormula().equals("Garlic")) {
-          Calc.gotoCell(doc, Calc.getCellStr(0, row));
-                                  // show the cell on-screen
-          costCell = Calc.getCell(sheet, 1, row);
-                                  // change cost/pound entry in the row
-          costCell.setValue( 1.05* costCell.getValue());
-          Props.setProperty(costCell, "CharWeight",
-                               com.sun.star.awt.FontWeight.BOLD);
-          Props.setProperty(costCell, "CharColor", 0xFF0000);  // red
-        }
-        row++;
-        prodCell = Calc.getCell(sheet, 0, row);
-                       // get produce cell in next row
-      }
-      return row;
-    }  // end of increaseGarlicCost()
-    ```
+```java
+// in GarlicSecrets.java
+private static int increaseGarlicCost(XSpreadsheetDocument doc,
+                                      XSpreadsheet sheet)
+{ int row = 0;
+  XCell prodCell = Calc.getCell(sheet, 0, row);
+              // get produce cell in first row
+  XCell costCell;
+  while (prodCell.getType() !=  CellContentType.EMPTY) {
+    // iterate down produce column until an empty cell is reached
+    if (prodCell.getFormula().equals("Garlic")) {
+      Calc.gotoCell(doc, Calc.getCellStr(0, row));
+                              // show the cell on-screen
+      costCell = Calc.getCell(sheet, 1, row);
+                              // change cost/pound entry in the row
+      costCell.setValue( 1.05* costCell.getValue());
+      Props.setProperty(costCell, "CharWeight",
+                           com.sun.star.awt.FontWeight.BOLD);
+      Props.setProperty(costCell, "CharColor", 0xFF0000);  // red
+    }
+    row++;
+    prodCell = Calc.getCell(sheet, 0, row);
+                   // get produce cell in next row
+  }
+  return row;
+}  // end of increaseGarlicCost()
+```
 
 To help the user see that changes have been made to the sheet, the text of each
 updated "Cost per Pound" cell is made bold and red. The cell properties being altered
@@ -317,19 +310,18 @@ Total after change:  231488.58
 The change made by increaseGarlicCost() are of a top-secret nature, and so the code
 adds an invisible message to the end of the sheet:
 
-=== "java"
-    ```java
-    // in main() of GarlicSecrets.java
-        :
-    int emptyRowNum = findEmptyRow(sheet);
-    addGarlicLabel(doc, sheet, emptyRowNum);  // add msg to row
-    
-    Lo.delay(2000);       // wait a bit before hiding row
-    
-    XCellRange rowRange = Calc.getRowRange(sheet, emptyRowNum);
-    Props.setProperty(rowRange, "IsVisible", false);
-        :
-    ```
+```java
+// in main() of GarlicSecrets.java
+    :
+int emptyRowNum = findEmptyRow(sheet);
+addGarlicLabel(doc, sheet, emptyRowNum);  // add msg to row
+
+Lo.delay(2000);       // wait a bit before hiding row
+
+XCellRange rowRange = Calc.getRowRange(sheet, emptyRowNum);
+Props.setProperty(rowRange, "IsVisible", false);
+    :
+```
 
 findEmptyRow() returns the index of the first empty row in the sheet, which happens
 to be the first row after the end of the data. It passes the index to addGarlicLabel()
@@ -356,40 +348,39 @@ findEmptyRow() utilizes a sheet ranges query to find all the empty cell ranges i
 first column (XCellRangesQuery.queryEmptyCells()). Then it extracts the smallest
 row index from those ranges:
 
-=== "java"
-    ```java
-    // in GarlicSecrets.java
-    public static int findEmptyRow(XSpreadsheet sheet)
-    {
-      // create a cell range spanning the first column of the sheet
-      XCellRange colRange = Calc.getColRange(sheet, 0);
-      Calc.printAddress(colRange);
-    
-      // build query using the column cell range
-      XCellRangesQuery crQuery =
-                       Lo.qi(XCellRangesQuery.class, colRange);
-    
-      // find all empty cell ranges in the column
-      XSheetCellRanges scRanges = crQuery.queryEmptyCells();
-    
-      CellRangeAddress[] addrs = scRanges.getRangeAddresses();
-      Calc.printAddresses(addrs);
-    
-      // find smallest row index in those ranges
-      int row = -1;
-      if (addrs != null) {
-        row  = addrs[0].StartRow;
-        for (int i = 1; i < addrs.length; i++) {
-          if (row < addrs[i].StartRow)
-            row = addrs[i].StartRow;
-        }
-        System.out.println("First empty row is at position: " + row);
-      }
-      else
-        System.out.println("Could not find an empty row");
-      return row;
-    }  // end of findEmptyRow()
-    ```
+```java
+// in GarlicSecrets.java
+public static int findEmptyRow(XSpreadsheet sheet)
+{
+  // create a cell range spanning the first column of the sheet
+  XCellRange colRange = Calc.getColRange(sheet, 0);
+  Calc.printAddress(colRange);
+
+  // build query using the column cell range
+  XCellRangesQuery crQuery =
+                   Lo.qi(XCellRangesQuery.class, colRange);
+
+  // find all empty cell ranges in the column
+  XSheetCellRanges scRanges = crQuery.queryEmptyCells();
+
+  CellRangeAddress[] addrs = scRanges.getRangeAddresses();
+  Calc.printAddresses(addrs);
+
+  // find smallest row index in those ranges
+  int row = -1;
+  if (addrs != null) {
+    row  = addrs[0].StartRow;
+    for (int i = 1; i < addrs.length; i++) {
+      if (row < addrs[i].StartRow)
+        row = addrs[i].StartRow;
+    }
+    System.out.println("First empty row is at position: " + row);
+  }
+  else
+    System.out.println("Could not find an empty row");
+  return row;
+}  // end of findEmptyRow()
+```
 
 The XCellRangesQuery interface needs a cell range to search, which is obtained by
 calling Calc.getColRange() to get the first column. The cell range is printed by
@@ -404,10 +395,9 @@ The first column extends down to row 1048576.
 XCellRangesQuery.queryEmptyCells() returns an XSheetCellRanges object, and an
 array of cell range addresses are extracted from it. Calc.printAddresses() prints:
 
-=== "java"
-    ```java
-    Range: Sheet1.A5001:A1048576
-    ```
+```java
+Range: Sheet1.A5001:A1048576
+```
 
 There's only one empty cell range in the column, starting at row position 5001 and
 extending to the bottom of the sheet. This is correct because the produce data is made
@@ -423,36 +413,35 @@ addGarlicLabel() adds the large text string "Top Secret Garlic Changes" to the f
 cell in the supplied row. The cell is made wider by merging a few cells together, made
 taller by adjusting the row height, and turned bright red.
 
-=== "java"
-    ```java
-    // in GarlicSecrets.java
-    private static void addGarlicLabel(XSpreadsheetDocument doc,
-                              XSpreadsheet sheet, int emptyRowNum)
-    {
-      Calc.gotoCell(doc, Calc.getCellStr(0, emptyRowNum));
-         // goto first cell of the empty row
-    
-      // merge first few cells of the row
-      XCellRange cellRange = Calc.getCellRange(sheet, 0, emptyRowNum,
-                                                      3, emptyRowNum);
-      XMergeable xMerge = Lo.qi(XMergeable.class, cellRange);
-      xMerge.merge(true);
-    
-      Calc.setRowHeight(sheet, emptyRowNum, 18);  // make row taller
-    
-      // set text and properties in the cell
-      XCell cell = Calc.getCell(sheet, 0, emptyRowNum);
-      cell.setFormula("Top Secret Garlic Changes");  // add text
-    
-      // adjust cell text properties
-      Props.setProperty(cell, "CharWeight",
-                                  com.sun.star.awt.FontWeight.BOLD);
-      Props.setProperty(cell, "CharHeight", 24);
-      Props.setProperty(cell, "CellBackColor", 0xFF0000);  // red
-      Props.setProperty(cell, "HoriJustify", CellHoriJustify.CENTER);
-      Props.setProperty(cell, "VertJustify", CellVertJustify.CENTER);
-    }  // end of addGarlicLabel()
-    ```
+```java
+// in GarlicSecrets.java
+private static void addGarlicLabel(XSpreadsheetDocument doc,
+                          XSpreadsheet sheet, int emptyRowNum)
+{
+  Calc.gotoCell(doc, Calc.getCellStr(0, emptyRowNum));
+     // goto first cell of the empty row
+
+  // merge first few cells of the row
+  XCellRange cellRange = Calc.getCellRange(sheet, 0, emptyRowNum,
+                                                  3, emptyRowNum);
+  XMergeable xMerge = Lo.qi(XMergeable.class, cellRange);
+  xMerge.merge(true);
+
+  Calc.setRowHeight(sheet, emptyRowNum, 18);  // make row taller
+
+  // set text and properties in the cell
+  XCell cell = Calc.getCell(sheet, 0, emptyRowNum);
+  cell.setFormula("Top Secret Garlic Changes");  // add text
+
+  // adjust cell text properties
+  Props.setProperty(cell, "CharWeight",
+                              com.sun.star.awt.FontWeight.BOLD);
+  Props.setProperty(cell, "CharHeight", 24);
+  Props.setProperty(cell, "CellBackColor", 0xFF0000);  // red
+  Props.setProperty(cell, "HoriJustify", CellHoriJustify.CENTER);
+  Props.setProperty(cell, "VertJustify", CellVertJustify.CENTER);
+}  // end of addGarlicLabel()
+```
 
 Cell merging requires a cell range, which is obtained by calling the version of
 Calc.getCellRange that employs start and end cell positions in (column, row) order.
@@ -466,16 +455,15 @@ merge() with a boolean argument to merge or unmerge a cell range.
 Changing the cell height affects the entire row, not just the merged cells, and so
 Calc.setRowHeight() manipulates a cell range representing the row:
 
-=== "java"
-    ```java
-    // in the Calc class
-    public static void setRowHeight(XSpreadsheet sheet,
-                                            int idx, int height)
-    { XCellRange rowRange = getRowRange(sheet, idx);
-      Props.setProperty(rowRange, "Height", height*100);
-                                            // in 1/100 mm units
-    }
-    ```
+```java
+// in the Calc class
+public static void setRowHeight(XSpreadsheet sheet,
+                                        int idx, int height)
+{ XCellRange rowRange = getRowRange(sheet, idx);
+  Props.setProperty(rowRange, "Height", height*100);
+                                        // in 1/100 mm units
+}
+```
 
 setRowHeight() illustrates the difficulties of finding property documentation. The first
 line obtains an XCellRange interface for the row, and the second line changes a
@@ -507,10 +495,9 @@ row. TableRow contains four properties, one of which is "Height".
 Another approach for finding the service is to call Info.showServices(). For example,
 by adding the following line to Calc.setRowHeight():
 
-=== "java"
-    ```java
-    Info.showServices("Cell range for a row", cellRange);
-    ```
+```java
+Info.showServices("Cell range for a row", cellRange);
+```
 
 The following is printed:
 
@@ -523,10 +510,9 @@ Back in addGarlicLabel(), text is stored in the cell, and its properties set. Al
 XMergeable changes a cell range into a cell, it doesn't return a reference to that cell. It
 can be accessed by calling Calc.getCell():
 
-=== "java"
-    ```java
-    XCell cell = Calc.getCell(sheet, 0, emptyRowNum);
-    ```
+```java
+XCell cell = Calc.getCell(sheet, 0, emptyRowNum);
+```
 
 The various cell properties changed in addGarlicLabel() are inherited from different
 classes shown in Figure 6.
@@ -541,15 +527,14 @@ Figure 6. The SheetCell Services and Interfaces.
 
 Back in main(), the newly created label is hidden after an interval of  2 seconds:
 
-=== "java"
-    ```java
-    // in main() of GarlicSecrets.java
-    Lo.delay(2000);       // wait a bit before hiding last row
-    
-    XCellRange rowRange = Calc.getRowRange(sheet, emptyRowNum);
-    Props.setProperty(rowRange, "IsVisible", false);
-       :
-    ```
+```java
+// in main() of GarlicSecrets.java
+Lo.delay(2000);       // wait a bit before hiding last row
+
+XCellRange rowRange = Calc.getRowRange(sheet, emptyRowNum);
+Props.setProperty(rowRange, "IsVisible", false);
+   :
+```
 
 Row invisibility requires a property change to the row. The row's cell range is
 obtained by calling Calc.getRowRange(), and then the "IsVisible" property is
@@ -574,25 +559,23 @@ Figure 7. Two Views of the Sheet.
 
 The code in main() of GarlicSecrets.java for this:
 
-=== "java"
-    ```java
-    // in GarlicSecrets.java
-        :
-    // split window into 2 view panes
-    String cellName = Calc.getCellStr(0, emptyRowNum-2);
-    System.out.println("Splitting at: " + cellName);
-    Calc.splitWindow(doc, cellName);   // doesn't work with Calc.freeze()
-        :
-    ```
+```java
+// in GarlicSecrets.java
+    :
+// split window into 2 view panes
+String cellName = Calc.getCellStr(0, emptyRowNum-2);
+System.out.println("Splitting at: " + cellName);
+Calc.splitWindow(doc, cellName);   // doesn't work with Calc.freeze()
+    :
+```
 
 Calc.splitWindow() can utilize the SpreadsheetView service (see Figure 2), and its
 XViewSplitable interface:
 
-=== "java"
-    ```java
-    XController controller = Calc.getController(doc);
-    XViewSplitable viewSplit = Lo.qi(XViewSplitable.class, xController);
-    ```
+```java
+XController controller = Calc.getController(doc);
+XViewSplitable viewSplit = Lo.qi(XViewSplitable.class, xController);
+```
 
 Unfortunately, XViewSplitable only offers a splitAtPosition() method which specifies
 the split location in terms of pixels. In addition, the interface is deprecated.
@@ -601,22 +584,21 @@ A better alternative is to employ the "splitWindow" dispatch command, which has 
 "ToPoint" property argument for a cell name (e.g. "A4999") where the split will
 occur. Therefore, Calc.splitWindow() is coded as:
 
-=== "java"
-    ```java
-    // in the Calc class
-    public static void splitWindow(XSpreadsheetDocument doc,
-                                          String cellName)
-    { XFrame frame = getController(doc).getFrame();
-      gotoCell(frame, cellName);
-      Lo.dispatchCmd(frame, "SplitWindow",
-                       Props.makeProps("ToPoint", cellName));
-      }  // end of splitWindow()
-    
-    
-    public static void gotoCell(XFrame frame, String cellName)
-    {  Lo.dispatchCmd(frame, "GoToCell",
-                      Props.makeProps("ToPoint", cellName));  }
-    ```
+```java
+// in the Calc class
+public static void splitWindow(XSpreadsheetDocument doc,
+                                      String cellName)
+{ XFrame frame = getController(doc).getFrame();
+  gotoCell(frame, cellName);
+  Lo.dispatchCmd(frame, "SplitWindow",
+                   Props.makeProps("ToPoint", cellName));
+  }  // end of splitWindow()
+
+
+public static void gotoCell(XFrame frame, String cellName)
+{  Lo.dispatchCmd(frame, "GoToCell",
+                  Props.makeProps("ToPoint", cellName));  }
+```
 
 The call to Calc.gotoCell() changes the on-screen active cell. If it's left out then the
 "SplitWindow" dispatch creates a split at the currently selected cell rather than the
@@ -633,47 +615,45 @@ object, and a collection of all the current panes can be accessed through the
 SpreadsheetView service. This approach is implemented in Calc.getViewPanes(),
 which returns the collection as an array:
 
-=== "java"
-    ```java
-    // in the Calc class
-    public static XViewPane[] getViewPanes(XSpreadsheetDocument doc)
-    {
-      XIndexAccess con = Lo.qi(XIndexAccess.class, getController(doc));
-      if (con == null) {
-        System.out.println("Could not access the view pane container");
-        return null;
-      }
-      if (con.getCount() == 0) {
-        System.out.println("No view panes found");
-        return null;
-      }
-    
-      // put each XViewPane obj in container into an array
-      XViewPane[] panes = new XViewPane[con.getCount()];
-      for (int i=0; i < con.getCount(); i++) {
-        try {
-          panes[i] = Lo.qi(XViewPane.class, con.getByIndex(i));
-        }
-        catch(Exception e)
-        {  System.out.println("Could not get view pane " + i);  }
-      }
-      return panes;
-    }  // end of getViewPanes()
-    
-    Calc.getViewPanes() is called like so:
-    
-    XViewPane[] panes = Calc.getViewPanes(doc);
-    System.out.println("No of panes: " + panes.length);
-    ```
+```java
+// in the Calc class
+public static XViewPane[] getViewPanes(XSpreadsheetDocument doc)
+{
+  XIndexAccess con = Lo.qi(XIndexAccess.class, getController(doc));
+  if (con == null) {
+    System.out.println("Could not access the view pane container");
+    return null;
+  }
+  if (con.getCount() == 0) {
+    System.out.println("No view panes found");
+    return null;
+  }
+
+  // put each XViewPane obj in container into an array
+  XViewPane[] panes = new XViewPane[con.getCount()];
+  for (int i=0; i < con.getCount(); i++) {
+    try {
+      panes[i] = Lo.qi(XViewPane.class, con.getByIndex(i));
+    }
+    catch(Exception e)
+    {  System.out.println("Could not get view pane " + i);  }
+  }
+  return panes;
+}  // end of getViewPanes()
+
+Calc.getViewPanes() is called like so:
+
+XViewPane[] panes = Calc.getViewPanes(doc);
+System.out.println("No of panes: " + panes.length);
+```
 
 The XViewPane interface has methods for setting and getting the visible row and
 column in the view. For example, the first pane can be made to show the first row, by
 calling:
 
-=== "java"
-    ```java
-    panes[0].setFirstVisibleRow(0);
-    ```
+```java
+panes[0].setFirstVisibleRow(0);
+```
 
 
 ## 7.  View States, and Making the Top Pane Active
@@ -756,14 +736,13 @@ the data in a more easily accessible form. Calc.getViewStates() parses the view 
 string, creating an array of ViewState objects, one object for each sheet in the
 document. For example, the following code is in GarlicSecrets.java:
 
-=== "java"
-    ```java
-    // in GarlicSecrets.java
-       :
-    ViewState[] states = Calc.getViewStates(doc);
-    for(ViewState s : states)
-      s.report();
-    ```
+```java
+// in GarlicSecrets.java
+   :
+ViewState[] states = Calc.getViewStates(doc);
+for(ViewState s : states)
+  s.report();
+```
 
 When it's executed after the sheet has been split as shown in Figure 7, the following is
 printed:
@@ -782,30 +761,29 @@ says that the sheet is split vertically, and the lower pane is active (in focus)
 
 Calc.getViewStates() is implemented as:
 
-=== "java"
-    ```java
-    // in the Calc class
-    public static ViewState[] getViewStates(XSpreadsheetDocument doc)
-    {
-      // get view data from controller
-      XController ctrl = getController(doc);
-      String viewData = (String) ctrl.getViewData();
-    
-      // split into parts based on ";" delimiter
-      String[] viewParts = viewData.split(";");
-      if (viewParts.length < 4) {
-        System.out.println("No sheet view states found in view data");
-        return null;
-      }
-    
-      // build view states array from view data after first 3 entries
-      ViewState[] states = new ViewState[viewParts.length-3];
-      for(int i=3; i < viewParts.length; i++)
-        states[i-3] = new ViewState(viewParts[i]);
-                           // construct view state object
-      return states;
-    } // end of getViewStates()
-    ```
+```java
+// in the Calc class
+public static ViewState[] getViewStates(XSpreadsheetDocument doc)
+{
+  // get view data from controller
+  XController ctrl = getController(doc);
+  String viewData = (String) ctrl.getViewData();
+
+  // split into parts based on ";" delimiter
+  String[] viewParts = viewData.split(";");
+  if (viewParts.length < 4) {
+    System.out.println("No sheet view states found in view data");
+    return null;
+  }
+
+  // build view states array from view data after first 3 entries
+  ViewState[] states = new ViewState[viewParts.length-3];
+  for(int i=3; i < viewParts.length; i++)
+    states[i-3] = new ViewState(viewParts[i]);
+                       // construct view state object
+  return states;
+} // end of getViewStates()
+```
 
 The first three entries in the view data (i.e. the document's zoom, active sheet, and
 scrollbar position) are discarded, so only the document's view states are stored.
@@ -813,37 +791,36 @@ scrollbar position) are discarded, so only the document's view states are stored
 Paired with Calc.getViewStates() is Calc.setViewStates() which uses an array of
 ViewState objects to update the view states of a document. It is coded as:
 
-=== "java"
-    ```java
-    // in the Calc class
-    public static void setViewStates(XSpreadsheetDocument doc,
-                                      ViewState[] states)
-    {
-      // get view data from controller
-      XController ctrl = getController(doc);
-      String viewData = (String) ctrl.getViewData();
-      String[] viewParts = viewData.split(";");
-      if (viewParts.length < 4) {
-        System.out.println("No sheet states found in view data");
-        return;
-      }
-    
-      // start building a string holding the modified view data
-      StringBuilder vdNew = new StringBuilder();
-      for (int i=0; i < 3; i++)  // copy first 3 parts unchanged
-        vdNew.append(viewParts[i]).append(";");
-    
-      // build rest of string using supplied view states array
-      for(int i=0; i < states.length; i++) {
-        vdNew.append( states[i].toString());  //add new state as string
-        if (i != states.length-1)
-          vdNew.append(";");
-      }
-    
-      // use string to update controller's view data
-      ctrl.restoreViewData(vdNew.toString());
-     } // end of setViewStates()
-    ```
+```java
+// in the Calc class
+public static void setViewStates(XSpreadsheetDocument doc,
+                                  ViewState[] states)
+{
+  // get view data from controller
+  XController ctrl = getController(doc);
+  String viewData = (String) ctrl.getViewData();
+  String[] viewParts = viewData.split(";");
+  if (viewParts.length < 4) {
+    System.out.println("No sheet states found in view data");
+    return;
+  }
+
+  // start building a string holding the modified view data
+  StringBuilder vdNew = new StringBuilder();
+  for (int i=0; i < 3; i++)  // copy first 3 parts unchanged
+    vdNew.append(viewParts[i]).append(";");
+
+  // build rest of string using supplied view states array
+  for(int i=0; i < states.length; i++) {
+    vdNew.append( states[i].toString());  //add new state as string
+    if (i != states.length-1)
+      vdNew.append(";");
+  }
+
+  // use string to update controller's view data
+  ctrl.restoreViewData(vdNew.toString());
+ } // end of setViewStates()
+```
 
 A new view data string is constructed, and loaded into the document by calling
 XController.restoreViewData(). The string is composed from view state strings
@@ -855,23 +832,22 @@ XController.getViewData().
 I'm finally able to change the active pane to be the top view. While I'm at it, I'll also
 move the view in that newly activated pane to the top of the sheet:
 
-=== "java"
-    ```java
-    // in main() in GarlicSecrets.java
-           :
-    ViewState[] states = Calc.getViewStates(doc);
-    
-    // move focus to top pane in the first sheet
-    states[0].movePaneFocus(ViewState.MOVE_UP);
-    Calc.setViewStates(doc, states);
-    
-    Calc.gotoCell(doc, "A1");    // move selection to top cell
-    
-    // print revised view states
-    states = Calc.getViewStates(doc);
-    for(ViewState s : states)
-      s.report();
-    ```
+```java
+// in main() in GarlicSecrets.java
+       :
+ViewState[] states = Calc.getViewStates(doc);
+
+// move focus to top pane in the first sheet
+states[0].movePaneFocus(ViewState.MOVE_UP);
+Calc.setViewStates(doc, states);
+
+Calc.gotoCell(doc, "A1");    // move selection to top cell
+
+// print revised view states
+states = Calc.getViewStates(doc);
+for(ViewState s : states)
+  s.report();
+```
      :
 
 The view states are obtained by calling Calc.getViewStates(). The states[] array will
@@ -906,57 +882,56 @@ having the programmer supply a pane number  (i.e., 0, 1, 2, or 3 as shown in Fig
 since these numbers may not all be used in a given split. Instead the focus change is
 specified in terms of a direction, as shown in the code:
 
-=== "java"
-    ```java
-    // in the ViewState class
-    
-    // globals for moving the pane focus
-    public static final int MOVE_UP = 0;
-    public static final int MOVE_DOWN = 1;
-    public static final int MOVE_LEFT = 2;
-    public static final int MOVE_RIGHT = 3;
-    
-    private int focusNum;
-    
-    
-    public void movePaneFocus(int dir)
-    {
-      if (dir == MOVE_UP) {
-        if (focusNum == 3)
-          focusNum = 1;
-        else if (focusNum == 2)
-          focusNum = 0;
-        else
-          System.out.println("cannot move up");
-      }
-      else if (dir == MOVE_DOWN) {
-        if (focusNum == 1)
-          focusNum = 3;
-        else if (focusNum == 0)
-          focusNum = 2;
-        else
-          System.out.println("cannot move down");
-      }
-      else if (dir == MOVE_LEFT) {
-        if (focusNum == 1)
-          focusNum = 0;
-        else if (focusNum == 3)
-          focusNum = 2;
-        else
-          System.out.println("cannot move left");
-      }
-      else if (dir == MOVE_RIGHT) {
-        if (focusNum == 0)
-          focusNum = 1;
-        else if (focusNum == 2)
-          focusNum = 3;
-        else
-          System.out.println("cannot move right");
-      }
-      else
-        System.out.println("Unknown move direction");
-    }  // end of movePaneFocus()
-    ```
+```java
+// in the ViewState class
+
+// globals for moving the pane focus
+public static final int MOVE_UP = 0;
+public static final int MOVE_DOWN = 1;
+public static final int MOVE_LEFT = 2;
+public static final int MOVE_RIGHT = 3;
+
+private int focusNum;
+
+
+public void movePaneFocus(int dir)
+{
+  if (dir == MOVE_UP) {
+    if (focusNum == 3)
+      focusNum = 1;
+    else if (focusNum == 2)
+      focusNum = 0;
+    else
+      System.out.println("cannot move up");
+  }
+  else if (dir == MOVE_DOWN) {
+    if (focusNum == 1)
+      focusNum = 3;
+    else if (focusNum == 0)
+      focusNum = 2;
+    else
+      System.out.println("cannot move down");
+  }
+  else if (dir == MOVE_LEFT) {
+    if (focusNum == 1)
+      focusNum = 0;
+    else if (focusNum == 3)
+      focusNum = 2;
+    else
+      System.out.println("cannot move left");
+  }
+  else if (dir == MOVE_RIGHT) {
+    if (focusNum == 0)
+      focusNum = 1;
+    else if (focusNum == 2)
+      focusNum = 3;
+    else
+      System.out.println("cannot move right");
+  }
+  else
+    System.out.println("Unknown move direction");
+}  // end of movePaneFocus()
+```
 
 
 ## 8.  Adding a New First Row and Shifting Cells
@@ -965,13 +940,12 @@ The final task in GarlicSecrets.java is to add the "Top Secret Garlic Changes" t
 the sheet again, this time as a visible title for the spreadsheet. The only new API
 feature used is the insertion of a row. This is done with:
 
-=== "java"
-    ```java
-    // in GarlicSecrets.java
-    // add a new first row, and label it
-    Calc.insertRow(sheet, 0);
-    addGarlicLabel(doc, sheet, 0);
-    ```
+```java
+// in GarlicSecrets.java
+// add a new first row, and label it
+Calc.insertRow(sheet, 0);
+addGarlicLabel(doc, sheet, 0);
+```
 
 The addGarlicLabel() method is unchanged from earlier, but is now passed row index
 0 rather than the last row. The result is shown in Figure 10.
@@ -987,29 +961,27 @@ access the sheet's XColumnRowRange interface, to retrieve a TableRows object. Th
 XTableRows interface supports the adding and removal of rows at specified index
 positions. This allows Calc.insertRow() to be coded as:
 
-=== "java"
-    ```java
-    // in the Calc class
-    public static void insertRow(XSpreadsheet sheet, int idx)
-    {
-      XColumnRowRange crRange = Lo.qi(XColumnRowRange.class, sheet);
-      XTableRows rows = crRange.getRows();
-      rows.insertByIndex(idx, 1);   // add 1 row at idx position
-    }
-    ```
+```java
+// in the Calc class
+public static void insertRow(XSpreadsheet sheet, int idx)
+{
+  XColumnRowRange crRange = Lo.qi(XColumnRowRange.class, sheet);
+  XTableRows rows = crRange.getRows();
+  rows.insertByIndex(idx, 1);   // add 1 row at idx position
+}
+```
 
 There's a similar Calc.insertCols() method that utilizes the XTableColumns interface:
 
-=== "java"
-    ```java
-    // in the Calc class
-    public static void insertColumn(XSpreadsheet sheet, int idx)
-    {
-      XColumnRowRange crRange = Lo.qi(XColumnRowRange.class, sheet);
-      XTableColumns cols = crRange.getColumns();
-      cols.insertByIndex(idx, 1);   // add 1 column at idx position
-    }
-    ```
+```java
+// in the Calc class
+public static void insertColumn(XSpreadsheet sheet, int idx)
+{
+  XColumnRowRange crRange = Lo.qi(XColumnRowRange.class, sheet);
+  XTableColumns cols = crRange.getColumns();
+  cols.insertByIndex(idx, 1);   // add 1 column at idx position
+}
+```
 
 The insertion of an arbitrary number of blank cells into a sheet is a bit more
 complicated because existing cells must be 'moved' out of the way, and this can be
@@ -1019,31 +991,29 @@ direction. XCellRangeMovement is supported by the Spreadsheet service.
 
 The Calc.insertCells() method implements this approach:
 
-=== "java"
-    ```java
-    // in the Calc class
-    public static void insertCells(XSpreadsheet sheet,
-                            XCellRange cellRange, boolean isShiftRight)
-    /* insert blank cells at cellRange, moving the existing ones
-       to the right or down depending on the boolean argument */
-    {
-      XCellRangeMovement mover =
-                           Lo.qi(XCellRangeMovement.class, sheet);
-      CellRangeAddress addr = getAddress(cellRange);  // cells to shift
-      if (isShiftRight)   // move right
-        mover.insertCells(addr, CellInsertMode.RIGHT);
-      else                // or move down
-        mover.insertCells(addr, CellInsertMode.DOWN);
-    }  // end of insertCells()
-    ```
+```java
+// in the Calc class
+public static void insertCells(XSpreadsheet sheet,
+                        XCellRange cellRange, boolean isShiftRight)
+/* insert blank cells at cellRange, moving the existing ones
+   to the right or down depending on the boolean argument */
+{
+  XCellRangeMovement mover =
+                       Lo.qi(XCellRangeMovement.class, sheet);
+  CellRangeAddress addr = getAddress(cellRange);  // cells to shift
+  if (isShiftRight)   // move right
+    mover.insertCells(addr, CellInsertMode.RIGHT);
+  else                // or move down
+    mover.insertCells(addr, CellInsertMode.DOWN);
+}  // end of insertCells()
+```
 
 An example call:
 
-=== "java"
-    ```java
-    XCellRange blanks = Calc.getCellRange(sheet, "A4999:B5001");
-    Calc.insertCells(sheet, blanks, true);  // shift right
-    ```
+```java
+XCellRange blanks = Calc.getCellRange(sheet, "A4999:B5001");
+Calc.insertCells(sheet, blanks, true);  // shift right
+```
 
 This shifts the last three rows of the produce sheet (A4999:B5001) to the right by two
 cells, producing Figure 11.

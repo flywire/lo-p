@@ -121,53 +121,52 @@ from a security viewpoint.
 SimpleSystemMail and SimpleCommandMail are utilized by sendEmailByClient() in
 my Mail.java utility class:
 
-=== "java"
-    ```java
-    // in the Mail class
-    public static void sendEmailByClient(String to, String subject,
-                                          String body, String fnm)
-    {
-      System.out.println("Sending e-mail by client...");
-      try {
-        XSimpleMailClientSupplier mcSupp =
-            Lo.createInstanceMCF(XSimpleMailClientSupplier.class,
-                        "com.sun.star.system.SimpleSystemMail");
-                           // windows e-mail client service
-        if (mcSupp == null) {
-          mcSupp = Lo.createInstanceMCF(
-                         XSimpleMailClientSupplier.class,
-                         "com.sun.star.system.SimpleCommandMail");
-                       // returns null on Windows; used on Linux/Mac
-          if (mcSupp == null) {
-            System.out.println("Unable to create client");
-            return;
-          }
-        }
-    
-        XSimpleMailClient mc = mcSupp.querySimpleMailClient();
-                        // defaults to ThunderBird on my OS
-    
-        XSimpleMailMessage msg = mc.createSimpleMailMessage();
-        msg.setRecipient(to);
-        msg.setSubject(subject);
-    
-        XSimpleMailMessage2 msg2 = Lo.qi(XSimpleMailMessage2.class, msg);
-        msg2.setBody(body);
-    
-        if (fnm != null) {
-          String[] attachs = new String[1];
-          attachs[0] = FileIO.getAbsolutePath(fnm);  // attachment
-          msg.setAttachement(attachs);
-        }
-    
-        mc.sendSimpleMailMessage(msg,
-                       SimpleMailClientFlags.NO_USER_INTERFACE);
-             // hides GUI but still displays a "Confirm" dialog
+```java
+// in the Mail class
+public static void sendEmailByClient(String to, String subject,
+                                      String body, String fnm)
+{
+  System.out.println("Sending e-mail by client...");
+  try {
+    XSimpleMailClientSupplier mcSupp =
+        Lo.createInstanceMCF(XSimpleMailClientSupplier.class,
+                    "com.sun.star.system.SimpleSystemMail");
+                       // windows e-mail client service
+    if (mcSupp == null) {
+      mcSupp = Lo.createInstanceMCF(
+                     XSimpleMailClientSupplier.class,
+                     "com.sun.star.system.SimpleCommandMail");
+                   // returns null on Windows; used on Linux/Mac
+      if (mcSupp == null) {
+        System.out.println("Unable to create client");
+        return;
       }
-      catch(com.sun.star.uno.Exception e)
-      {  System.out.println(e);  }
-    }  // end of sendEmailByClient()
-    ```
+    }
+
+    XSimpleMailClient mc = mcSupp.querySimpleMailClient();
+                    // defaults to ThunderBird on my OS
+
+    XSimpleMailMessage msg = mc.createSimpleMailMessage();
+    msg.setRecipient(to);
+    msg.setSubject(subject);
+
+    XSimpleMailMessage2 msg2 = Lo.qi(XSimpleMailMessage2.class, msg);
+    msg2.setBody(body);
+
+    if (fnm != null) {
+      String[] attachs = new String[1];
+      attachs[0] = FileIO.getAbsolutePath(fnm);  // attachment
+      msg.setAttachement(attachs);
+    }
+
+    mc.sendSimpleMailMessage(msg,
+                   SimpleMailClientFlags.NO_USER_INTERFACE);
+         // hides GUI but still displays a "Confirm" dialog
+  }
+  catch(com.sun.star.uno.Exception e)
+  {  System.out.println(e);  }
+}  // end of sendEmailByClient()
+```
 
 The function first tries to instantiate the Windows SimpleSystemMail service, which
 returns null on a Linux/Mac platform, and then switches to SimpleCommandMail
@@ -181,11 +180,10 @@ added via the XSimpleMailMessage2 subclass of  XSimpleMailMessage.
 
 A typical call to sendEmailByClient():
 
-=== "java"
-    ```java
-    // part of LoMailer.java...
-    Mail.sendEmailByClient("xxx@xxx", "Test", "Body", "skinner.png");
-    ```
+```java
+// part of LoMailer.java...
+Mail.sendEmailByClient("xxx@xxx", "Test", "Body", "skinner.png");
+```
 
 The default e-mail client on Windows is the application associated with the mailto
 protocol, as depicted in Figure 3.
@@ -225,16 +223,15 @@ MailServiceProvider is utilized by the Mail.sendEmail() function. Given below ar
 examples of how it sends e-mail to my local fivedots.coe.psu.ac.th mail server and to
 the Gmail server at smtp.gmail.com:
 
-=== "java"
-    ```java
-    // part of LoMailer.java...
-    Mail.sendEmail("fivedots.coe.psu.ac.th", 25, "ad", password,
-          "xxx@xxx", "Test 1", "Body 1", "skinner.png");
-    
-    Mail.sendEmail("smtp.gmail.com", 587,
-                   "Andrew.Davison50@gmail.com", password,
-          "xxx@xxx","Test 2", "Body 2", "addresses.ods");
-    ```
+```java
+// part of LoMailer.java...
+Mail.sendEmail("fivedots.coe.psu.ac.th", 25, "ad", password,
+      "xxx@xxx", "Test 1", "Body 1", "skinner.png");
+
+Mail.sendEmail("smtp.gmail.com", 587,
+               "Andrew.Davison50@gmail.com", password,
+      "xxx@xxx","Test 2", "Body 2", "addresses.ods");
+```
 
 The Mail.sendEmail() arguments are: the mail server address, its port, the login and
 password for the server, the recipient of the mail, the subject line, the body text, and
@@ -258,82 +255,79 @@ Figure 4. The MailServiceProvider and MailMessage Services.
 
 An SMTP service is created via the XMailServiceProvider interface:
 
-=== "java"
-    ```java
-    // part of Mail.sendEmail()
-           :
-    XMailServiceProvider msp =
-              Lo.createInstanceMCF(XMailServiceProvider.class,
-                    "com.sun.star.mail.MailServiceProvider");
-    if (msp == null) {
-      System.out.println("Could not create MailServiceProvider");
-      return;
-    }
-    
-    XMailService service = msp.create(MailServiceType.SMTP);
-    if (service == null) {
-      System.out.println("Could not create SMTP MailService");
-      return;
-    }
-    ```
+```java
+// part of Mail.sendEmail()
+       :
+XMailServiceProvider msp =
+          Lo.createInstanceMCF(XMailServiceProvider.class,
+                "com.sun.star.mail.MailServiceProvider");
+if (msp == null) {
+  System.out.println("Could not create MailServiceProvider");
+  return;
+}
+
+XMailService service = msp.create(MailServiceType.SMTP);
+if (service == null) {
+  System.out.println("Could not create SMTP MailService");
+  return;
+}
+```
 
 A listener can be attached to the service, to report on its connection status:
 
-=== "java"
-    ```java
-    // part of Mail.sendEmail()
-          :
-    service.addConnectionListener( new XConnectionListener() {
-      public void connected(EventObject e)
-      {  System.out.println("Connected to server " +getServerName(e)); }
-    
-      public void disconnected(EventObject e)
-      {  System.out.println("  Disconnected"); }
-    
-      public void disposing(EventObject e) {}
-    });
-    ```
+```java
+// part of Mail.sendEmail()
+      :
+service.addConnectionListener( new XConnectionListener() {
+  public void connected(EventObject e)
+  {  System.out.println("Connected to server " +getServerName(e)); }
+
+  public void disconnected(EventObject e)
+  {  System.out.println("  Disconnected"); }
+
+  public void disposing(EventObject e) {}
+});
+```
 
 The connection requires address, port, protocol, login and password details, which are
 supplied through XCurrentContext and XAuthenticator:
 
-=== "java"
-    ```java
-    // in the Mail class
-    public static void sendEmail(String mailhost, int port,
-                    String user, String password,
-                    String to, String subject, String body, String fnm)
+```java
+// in the Mail class
+public static void sendEmail(String mailhost, int port,
+                String user, String password,
+                String to, String subject, String body, String fnm)
+{
+  :  // service creation code; see above
+
+  // initialize service data: context and authenticator
+  XCurrentContext xcc = new XCurrentContext() {
+    public Object getValueByName(String name)
     {
-      :  // service creation code; see above
-    
-      // initialize service data: context and authenticator
-      XCurrentContext xcc = new XCurrentContext() {
-        public Object getValueByName(String name)
-        {
-          if (name.equals("ServerName"))
-            return (Object) mailhost;
-          else if (name.equals("Port"))
-            return (Object) new Integer(port);
-          else if (name.equals("ConnectionType"))
-            return (Object) "Ssl";     // or "Insecure";
-          else if (name.equals("Timeout"))
-            return (Object)  new Integer(60);
-          System.out.println("Do not recognize \"" + name + "\"");
-          return null;
-        }
-      };
-    
-      XAuthenticator auth = new XAuthenticator() {
-        public String getUserName()
-        { return user;  }
-        public String getPassword()
-        { return password;  }
-      };
-    
-      // connect to service
-      service.connect(xcc, auth);
-      System.out.println("Isconnected: " + service.isConnected());
-    ```
+      if (name.equals("ServerName"))
+        return (Object) mailhost;
+      else if (name.equals("Port"))
+        return (Object) new Integer(port);
+      else if (name.equals("ConnectionType"))
+        return (Object) "Ssl";     // or "Insecure";
+      else if (name.equals("Timeout"))
+        return (Object)  new Integer(60);
+      System.out.println("Do not recognize \"" + name + "\"");
+      return null;
+    }
+  };
+
+  XAuthenticator auth = new XAuthenticator() {
+    public String getUserName()
+    { return user;  }
+    public String getPassword()
+    { return password;  }
+  };
+
+  // connect to service
+  service.connect(xcc, auth);
+  System.out.println("Isconnected: " + service.isConnected());
+```
 
 I've hardwired a time of 60 seconds in XCurrentContext which sets how long the code
 waits for a connection before giving up.
@@ -341,15 +335,14 @@ waits for a connection before giving up.
 MailMessage utilizes an unusual create() method, and the message's body is
 represented by an XTransferable instance rather than a string:
 
-=== "java"
-    ```java
-    // part of Mail.sendEmail()
-          :
-    String from = user + "@" + mailhost;  // person sending this e-mail
-    XMailMessage msg = com.sun.star.mail.MailMessage.create(
-                     Lo.getContext(), to, from,
-                     subject, new TextTransferable(body));
-    ```
+```java
+// part of Mail.sendEmail()
+      :
+String from = user + "@" + mailhost;  // person sending this e-mail
+XMailMessage msg = com.sun.star.mail.MailMessage.create(
+                 Lo.getContext(), to, from,
+                 subject, new TextTransferable(body));
+```
 
 The online documentation for MailMessage.create() (use `lodoc MailMessage` to
 access it) is misleading in that it doesn’t mention the need for the component context,
@@ -362,36 +355,35 @@ clipboard (which I'll discuss in the next chapter).
 
 TextTransferable lets Unicode text be treated as a transferable:
 
-=== "java"
-    ```java
-    // in the Utils/ folder
-    public class TextTransferable implements XTransferable
-    {
-      private final String text;
-      private final String UNICODE_MIMETYPE ="text/plain;charset=utf-16";
-    
-      public TextTransferable(String s)
-      {  text = s;  }
-    
-      public Object getTransferData(DataFlavor df)
-                             throws UnsupportedFlavorException
-      { if (!df.MimeType.equalsIgnoreCase(UNICODE_MIMETYPE))
-          throw new UnsupportedFlavorException();
-        return text;
-      }
-    
-      public DataFlavor[] getTransferDataFlavors()
-      { DataFlavor[] dfs = new DataFlavor[1];
-        dfs[0] = new DataFlavor(UNICODE_MIMETYPE, "Unicode Text",
-                                          new Type(String.class));
-        return dfs;
-      }
-    
-      public boolean isDataFlavorSupported(DataFlavor df)
-      {  return df.MimeType.equalsIgnoreCase(UNICODE_MIMETYPE);  }
-    
-    }  // end of TextTransferable class
-    ```
+```java
+// in the Utils/ folder
+public class TextTransferable implements XTransferable
+{
+  private final String text;
+  private final String UNICODE_MIMETYPE ="text/plain;charset=utf-16";
+
+  public TextTransferable(String s)
+  {  text = s;  }
+
+  public Object getTransferData(DataFlavor df)
+                         throws UnsupportedFlavorException
+  { if (!df.MimeType.equalsIgnoreCase(UNICODE_MIMETYPE))
+      throw new UnsupportedFlavorException();
+    return text;
+  }
+
+  public DataFlavor[] getTransferDataFlavors()
+  { DataFlavor[] dfs = new DataFlavor[1];
+    dfs[0] = new DataFlavor(UNICODE_MIMETYPE, "Unicode Text",
+                                      new Type(String.class));
+    return dfs;
+  }
+
+  public boolean isDataFlavorSupported(DataFlavor df)
+  {  return df.MimeType.equalsIgnoreCase(UNICODE_MIMETYPE);  }
+
+}  // end of TextTransferable class
+```
 
 A DataFlavor object hold three fields: the MIME type string for the data (e.g.
 "text/plain"), a 'human presentable' name for the data (which can be anything), and the
@@ -400,94 +392,90 @@ corresponding Office data type.
 We're not finished with transferable data since an attached file must also be packaged
 in a similar way using Office's MailAttachment class and my FileTransferable class:
 
-=== "java"
-    ```java
-    // part of Mail.sendEmail()
-    if (fnm != null)
-      msg.addAttachment( new MailAttachment(
-                                 new FileTransferable(fnm), fnm));
-    ```
+```java
+// part of Mail.sendEmail()
+if (fnm != null)
+  msg.addAttachment( new MailAttachment(
+                             new FileTransferable(fnm), fnm));
+```
 
 FileTransferable looks up the MIME type for its supplied file, and stores the file
 contents in a byte array which is returned by getTransferData():
 
-=== "java"
-    ```java
-    // in the Utils/ folder
-    public class FileTransferable implements XTransferable
-    {
-      private String mimeType = "application/octet-stream";   // default
-      private byte[] fileData = null;
-    
-    
-      public FileTransferable(String fnm)
-      {
-        mimeType = Info.getMIMEType(fnm);
-        try {
-          fileData = Files.readAllBytes( Paths.get(fnm));
-        }
-        catch(java.lang.Exception e)
-        {  System.out.println("Could not read bytes from " + fnm);  }
-      }  // end of FileTransferable()
-    
-    
-      public Object getTransferData(DataFlavor df)
-                                   throws UnsupportedFlavorException
-      { if (!df.MimeType.equalsIgnoreCase(mimeType))
-          throw new UnsupportedFlavorException();
-        return fileData;
-      }  // end of getTransferData()
-    
-    
-      public DataFlavor[] getTransferDataFlavors()
-      { DataFlavor[] flavors = new DataFlavor[1];
-        flavors[0] = new DataFlavor(mimeType, mimeType,
-                                          new Type(byte[].class));
-        return flavors;
-      }
-    
-    
-      public boolean isDataFlavorSupported(DataFlavor df)
-      {  return df.MimeType.equalsIgnoreCase(mimeType);  }
-    
-    }  // end of FileTransferable class
-    ```
+```java
+// in the Utils/ folder
+public class FileTransferable implements XTransferable
+{
+  private String mimeType = "application/octet-stream";   // default
+  private byte[] fileData = null;
+
+
+  public FileTransferable(String fnm)
+  {
+    mimeType = Info.getMIMEType(fnm);
+    try {
+      fileData = Files.readAllBytes( Paths.get(fnm));
+    }
+    catch(java.lang.Exception e)
+    {  System.out.println("Could not read bytes from " + fnm);  }
+  }  // end of FileTransferable()
+
+
+  public Object getTransferData(DataFlavor df)
+                               throws UnsupportedFlavorException
+  { if (!df.MimeType.equalsIgnoreCase(mimeType))
+      throw new UnsupportedFlavorException();
+    return fileData;
+  }  // end of getTransferData()
+
+
+  public DataFlavor[] getTransferDataFlavors()
+  { DataFlavor[] flavors = new DataFlavor[1];
+    flavors[0] = new DataFlavor(mimeType, mimeType,
+                                      new Type(byte[].class));
+    return flavors;
+  }
+
+
+  public boolean isDataFlavorSupported(DataFlavor df)
+  {  return df.MimeType.equalsIgnoreCase(mimeType);  }
+
+}  // end of FileTransferable class
+```
 
 MIME type lookup is implemented by Info.getMIMEType() which uses Java's
 MimetypesFileTypeMap to examine a file of MIME types stored in my Utils/ folder:
 
-=== "java"
-    ```java
-    // in the Info class
-    private static final String MIME_FNM = "mime.types";
-    
-    
-    public static String getMIMEType(String fnm)
-    {
-      File f = new File(fnm);
-      try {
-        MimetypesFileTypeMap mftMap = new MimetypesFileTypeMap(
-                              FileIO.getUtilsFolder() + MIME_FNM);
-        return mftMap.getContentType(f);
-      }
-      catch(java.lang.Exception e)
-      {  System.out.println("Could not find " + MIME_FNM);
-         return "application/octet-stream";   // better than nothing
-      }
-    }  // end of getMIMEType()
-    ```
+```java
+// in the Info class
+private static final String MIME_FNM = "mime.types";
+
+
+public static String getMIMEType(String fnm)
+{
+  File f = new File(fnm);
+  try {
+    MimetypesFileTypeMap mftMap = new MimetypesFileTypeMap(
+                          FileIO.getUtilsFolder() + MIME_FNM);
+    return mftMap.getContentType(f);
+  }
+  catch(java.lang.Exception e)
+  {  System.out.println("Could not find " + MIME_FNM);
+     return "application/octet-stream";   // better than nothing
+  }
+}  // end of getMIMEType()
+```
 
 Back in Mail.sendEmail(), all that's left to do is to send the message using
 XSmtpService.sendMailMessage():
 
-=== "java"
-    ```java
-    // part of Mail.sendEmail()...
-    XSmtpService smtpService = Lo.qi(XSmtpService.class, service);
-    smtpService.sendMailMessage(msg);
-    
-    service.disconnect();
-    ```
+```java
+// part of Mail.sendEmail()...
+XSmtpService smtpService = Lo.qi(XSmtpService.class, service);
+smtpService.sendMailMessage(msg);
+
+service.disconnect();
+```
 
 
 ## 3.  Using JavaMail
@@ -522,16 +510,15 @@ My non-Office e-mail support functions are in JMail.java, and have a similar int
 to the Office versions. For instance, JMail.sendEmail() is employed to send an e-mail
 with JavaMail. The following two calls use the fivedots and Gmail servers:
 
-=== "java"
-    ```java
-    // in JMailer.java...
-    JMail.sendEmail("fivedots.coe.psu.ac.th", 25, "ad", password,
-          "xxx@xxx", "Test 1", "Body 1", "skinner.png");
-    
-    JMail.sendEmail("smtp.gmail.com", 587,
-                   "Andrew.Davison50@gmail.com", password,
-          "xxx@xxx","Test 2", "Body 2", "addresses.ods");
-    ```
+```java
+// in JMailer.java...
+JMail.sendEmail("fivedots.coe.psu.ac.th", 25, "ad", password,
+      "xxx@xxx", "Test 1", "Body 1", "skinner.png");
+
+JMail.sendEmail("smtp.gmail.com", 587,
+               "Andrew.Davison50@gmail.com", password,
+      "xxx@xxx","Test 2", "Body 2", "addresses.ods");
+```
 
 They're no different from my earlier Mail.sendEmail() examples, except for the name
 of the support class. The arguments are: the mail server address, its port, the login and
@@ -544,97 +531,93 @@ Transport specifies the underlying communication link, while Session handles the
 details of the communication protocol using that link. For example, secure
 communication is setup through properties passed to Session.getInstance():
 
-=== "java"
-    ```java
-    // part of JMail.sendEmail()...
-    Properties props = new Properties();
-    props.put("mail.smtp.starttls.enable", "true");
-    props.put("mail.smtp.ssl.trust", "*");  // no certificate needed
-    props.put("mail.smtp.timeout", "60000");
-    
-    Session session = Session.getInstance(props);
-    ```
+```java
+// part of JMail.sendEmail()...
+Properties props = new Properties();
+props.put("mail.smtp.starttls.enable", "true");
+props.put("mail.smtp.ssl.trust", "*");  // no certificate needed
+props.put("mail.smtp.timeout", "60000");
+
+Session session = Session.getInstance(props);
+```
 
 The mail server address, port, login and password details are used to create a
 SMTPTransport instance (a subclass of Transport):
 
-=== "java"
-    ```java
-    // part of JMail.sendEmail()...
-    URLName url = new URLName("smtp", mailhost, port, "",
-                                                  user, password);
-    Transport transport = new SMTPTransport(session, url);
-    transport.connect(mailhost, port, user, password);
-    ```
+```java
+// part of JMail.sendEmail()...
+URLName url = new URLName("smtp", mailhost, port, "",
+                                              user, password);
+Transport transport = new SMTPTransport(session, url);
+transport.connect(mailhost, port, user, password);
+```
 
 JavaMail supports two kinds of listeners, one for the connection and the other for
 message delivery. Simple implementations are given in JMail.sendEmail():
 
-=== "java"
-    ```java
-    // part of JMail.sendEmail()...
-          :
-    transport.addConnectionListener( new ConnectionListener() {
-      public void opened(ConnectionEvent e)
-      {  System.out.println("  Connection opened to: "+e.getSource()); }
-    
-      public void disconnected(ConnectionEvent e)
-      {  System.out.println("  Connection disconnected"); }
-    
-      public void closed(ConnectionEvent e)
-      {  System.out.println("  Connection closed"); }
-    });
-    
-    transport.addTransportListener( new TransportListener() {
-      public void messageDelivered(TransportEvent e)
-      {  System.out.println("  Message delivered");  }
-    
-      public void messageNotDelivered(TransportEvent e)
-      {  System.out.println("  Message not delivered");  }
-    
-      public void messagePartiallyDelivered(TransportEvent e)
-      {  System.out.println("  Message partially delivered");  }
-    });
-    ```
+```java
+// part of JMail.sendEmail()...
+      :
+transport.addConnectionListener( new ConnectionListener() {
+  public void opened(ConnectionEvent e)
+  {  System.out.println("  Connection opened to: "+e.getSource()); }
+
+  public void disconnected(ConnectionEvent e)
+  {  System.out.println("  Connection disconnected"); }
+
+  public void closed(ConnectionEvent e)
+  {  System.out.println("  Connection closed"); }
+});
+
+transport.addTransportListener( new TransportListener() {
+  public void messageDelivered(TransportEvent e)
+  {  System.out.println("  Message delivered");  }
+
+  public void messageNotDelivered(TransportEvent e)
+  {  System.out.println("  Message not delivered");  }
+
+  public void messagePartiallyDelivered(TransportEvent e)
+  {  System.out.println("  Message partially delivered");  }
+});
+```
 
 An SMTP message has fields for the recipient, subject line, body text, and an optional
 attached file:
 
-=== "java"
-    ```java
-    // part of JMail.sendEmail()
-          :
-    SMTPMessage msg = new SMTPMessage(session);
-    msg.setReturnOption(SMTPMessage.RETURN_HDRS);
-    msg.setNotifyOptions(SMTPMessage.NOTIFY_SUCCESS |
-                         SMTPMessage.NOTIFY_FAILURE);
-    
-    msg.setFrom();  // uses default
-    msg.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
-    msg.setSentDate(new Date());
-    msg.setSubject(subject);
-    
-    if (attachFnm == null)
-      msg.setText(body);
-    else {   // add body text and file as attachments
-      MimeBodyPart p1 = new MimeBodyPart();
-      p1.setText(body);
-    
-      String mimeType = Info.getMIMEType(attachFnm);
-    
-      MimeBodyPart p2 = new MimeBodyPart();
-      FileDataSource fds = new FileDataSource(attachFnm);
-      p2.setDataHandler(new DataHandler(fds));  // add data,
-      p2.setFileName(fds.getName());            // filename,
-      p2.setHeader("Content-Type", mimeType);   // MIME type
-    
-      // create multipart
-      Multipart mp = new MimeMultipart();
-      mp.addBodyPart(p1);   // for body text
-      mp.addBodyPart(p2);   // for the attached file
-      msg.setContent(mp);
-    }
-    ```
+```java
+// part of JMail.sendEmail()
+      :
+SMTPMessage msg = new SMTPMessage(session);
+msg.setReturnOption(SMTPMessage.RETURN_HDRS);
+msg.setNotifyOptions(SMTPMessage.NOTIFY_SUCCESS |
+                     SMTPMessage.NOTIFY_FAILURE);
+
+msg.setFrom();  // uses default
+msg.setRecipient(Message.RecipientType.TO, new InternetAddress(to));
+msg.setSentDate(new Date());
+msg.setSubject(subject);
+
+if (attachFnm == null)
+  msg.setText(body);
+else {   // add body text and file as attachments
+  MimeBodyPart p1 = new MimeBodyPart();
+  p1.setText(body);
+
+  String mimeType = Info.getMIMEType(attachFnm);
+
+  MimeBodyPart p2 = new MimeBodyPart();
+  FileDataSource fds = new FileDataSource(attachFnm);
+  p2.setDataHandler(new DataHandler(fds));  // add data,
+  p2.setFileName(fds.getName());            // filename,
+  p2.setHeader("Content-Type", mimeType);   // MIME type
+
+  // create multipart
+  Multipart mp = new MimeMultipart();
+  mp.addBodyPart(p1);   // for body text
+  mp.addBodyPart(p2);   // for the attached file
+  msg.setContent(mp);
+}
+```
 
 If the message contains body text and an attachment then it's necessary to add them as
 MimeBodyPart objects in a Multipart container. Body text on its own can be added
@@ -645,11 +628,10 @@ The MimeBodyPart holding the attachment must include the file's MIME type in its
 
 Once the message has been sent, the link is closed:
 
-=== "java"
-    ```java
-    transport.sendMessage(msg, msg.getAllRecipients());
-    transport.close();
-    ```
+```java
+transport.sendMessage(msg, msg.getAllRecipients());
+transport.close();
+```
 
 
 ## 4.  The Desktop API
@@ -695,49 +677,48 @@ the user must press the "Send" button (or equivalent) to post out the message.
 
 JMail.sendEmailByClient() is:
 
-=== "java"
-    ```java
-    // in the JMail class
-    public static void sendEmailByClient(String to,
-                                        String subject, String body)
-    {  sendEmailByClient(to, subject, body, null);  }
-    
-    
-    
-    public static void sendEmailByClient(String to, String subject,
-                                         String body, String fnm)
-    {
-      if (!Desktop.isDesktopSupported()) {
-        System.out.println("Desktop mail not supported");
-        return;
-      }
-    
-      // construct "mailto:" string for Desktop.mail()
-      String uriStr = String.format("mailto:%s?subject=%s&body=%s",
-                                encodeMailto(to), encodeMailto(subject),
-                                encodeMailto(body) );
-      if (fnm != null)
-        uriStr += "&attachment=\"" + FileIO.getAbsolutePath(fnm) + "\"";
-      try {
-        Desktop desktop = Desktop.getDesktop();
-        desktop.mail(new URI(uriStr));
-      }
-      catch (Exception e)
-      {  System.out.println(e); }
-    }  // end of sendEmailByClient()
-    
-    
-    public static String encodeMailto(String str)
-    {
-      try {
-        return URLEncoder.encode(str, "UTF-8").replace("+", "%20");
-      }
-      catch (UnsupportedEncodingException e) {
-         System.out.println("Could not encode: \"" + str + "\"");
-         return null;
-      }
-    }  // end of encodeMailto()
-    ```
+```java
+// in the JMail class
+public static void sendEmailByClient(String to,
+                                    String subject, String body)
+{  sendEmailByClient(to, subject, body, null);  }
+
+
+
+public static void sendEmailByClient(String to, String subject,
+                                     String body, String fnm)
+{
+  if (!Desktop.isDesktopSupported()) {
+    System.out.println("Desktop mail not supported");
+    return;
+  }
+
+  // construct "mailto:" string for Desktop.mail()
+  String uriStr = String.format("mailto:%s?subject=%s&body=%s",
+                            encodeMailto(to), encodeMailto(subject),
+                            encodeMailto(body) );
+  if (fnm != null)
+    uriStr += "&attachment=\"" + FileIO.getAbsolutePath(fnm) + "\"";
+  try {
+    Desktop desktop = Desktop.getDesktop();
+    desktop.mail(new URI(uriStr));
+  }
+  catch (Exception e)
+  {  System.out.println(e); }
+}  // end of sendEmailByClient()
+
+
+public static String encodeMailto(String str)
+{
+  try {
+    return URLEncoder.encode(str, "UTF-8").replace("+", "%20");
+  }
+  catch (UnsupportedEncodingException e) {
+     System.out.println("Could not encode: \"" + str + "\"");
+     return null;
+  }
+}  // end of encodeMailto()
+```
 
 Following the mailto specification, the key values in the mailto string must be URL
 encoded.
@@ -759,38 +740,36 @@ Thunderbird through an external script.
 My Windows batch file, called TBExec.bat, applies various checks to its command
 line arguments, and then invokes Thunderbird using:
 
-=== "java"
-    ```java
-    thunderbird.exe -compose "to='%1',subject='%2',
-                              body='%3',attachment='%CD%\%4'"
-    ```
+```java
+thunderbird.exe -compose "to='%1',subject='%2',
+                          body='%3',attachment='%CD%\%4'"
+```
 
 The "attachment" value is an absolute file name.
 
 The Java code uses Runtime.exec() to execute the batch file, passing it three or four
 arguments:
 
-=== "java"
-    ```java
-    // in the JMail class
-    public static void sendEmailByTB(String to, String subject,
-                                     String body, String fnm)
-    {
-      String mailExec =
-          String.format("cmd /c TBExec.bat %s \"%s\" \"%s\"",
-                                           to, subject, body);
-      if (fnm != null)  // add attachment argument
-        mailExec += " " + fnm;
-      try {
-        Process p = Runtime.getRuntime().exec(mailExec);
-        p.waitFor();
-        System.out.println("Sent e-mail using Thunderbird");
-      }
-      catch (java.lang.Exception e) {
-        System.out.println("Unable to send Thunderbird mail: " + e);
-      }
-    }  // end of sendEmailByTB()
-    ```
+```java
+// in the JMail class
+public static void sendEmailByTB(String to, String subject,
+                                 String body, String fnm)
+{
+  String mailExec =
+      String.format("cmd /c TBExec.bat %s \"%s\" \"%s\"",
+                                       to, subject, body);
+  if (fnm != null)  // add attachment argument
+    mailExec += " " + fnm;
+  try {
+    Process p = Runtime.getRuntime().exec(mailExec);
+    p.waitFor();
+    System.out.println("Sent e-mail using Thunderbird");
+  }
+  catch (java.lang.Exception e) {
+    System.out.println("Unable to send Thunderbird mail: " + e);
+  }
+}  // end of sendEmailByTB()
+```
 
 As with Desktop.mail(), there's no way to stop the Thunderbird GUI from being
 displayed, and the user has to press the "Send" button to send off the message.
@@ -885,21 +864,20 @@ MailMerge.
 
 The coding is summarized by the following snippet from Mail.mergeTask():
 
-=== "java"
-    ```java
-    // in Mail.mergeTask()
-      :
-    XJob job = Lo.createInstanceMCF(XJob.class,
-                                 "com.sun.star.text.MailMerge");
-    
-    XPropertySet props = Lo.qi(XPropertySet.class, job);
-    Props.setProperty(props, "DataSourceName", dataSourceName);
-    Props.setProperty(props, "Command", tableName);
-      :   // many more properties are set...
-      :
-    
-    job.execute(new NamedValue[0]);
-    ```
+```java
+// in Mail.mergeTask()
+  :
+XJob job = Lo.createInstanceMCF(XJob.class,
+                             "com.sun.star.text.MailMerge");
+
+XPropertySet props = Lo.qi(XPropertySet.class, job);
+Props.setProperty(props, "DataSourceName", dataSourceName);
+Props.setProperty(props, "Command", tableName);
+  :   // many more properties are set...
+  :
+
+job.execute(new NamedValue[0]);
+```
 
 The MailMerge service is created as an XJob interface. Service properties are set, and
 then the merge is carried out by calling XJob.execute(). The NamedValue array is
@@ -916,32 +894,30 @@ outcomes of a merge (see Figure 5).
 Mail.mergeLetter() takes four arguments, three of which (data source name, table
 name, template filename) are needed for any kind of merge:
 
-=== "java"
-    ```java
-    // in  the Mail class
-    public static void mergeLetter(String dataSourceName,
-                                   String tableName, String templateFnm,
-                                   boolean isSingle)
-    { System.out.println("Merging letters to files...");
-      mergeTask(dataSourceName, tableName, templateFnm,
-              MailMergeType.FILE,
-              isSingle, null, false, null, null, null);
-      }  // end of mergeLetter()
-    ```
+```java
+// in  the Mail class
+public static void mergeLetter(String dataSourceName,
+                               String tableName, String templateFnm,
+                               boolean isSingle)
+{ System.out.println("Merging letters to files...");
+  mergeTask(dataSourceName, tableName, templateFnm,
+          MailMergeType.FILE,
+          isSingle, null, false, null, null, null);
+  }  // end of mergeLetter()
+```
 
 The following call to Mail.mergeLetter() saves six letters as "letter0.odt" to
 "letter5.odt":
 
-=== "java"
-    ```java
-    // in MailMerge.java...
-    private static final String DATA_SOURCE_NAME = "Addresses";
-    private static final String TABLE_NAME = "Addresses";
-    private static final String TEMPLATE_FNM = "formLetter.ott";
-    
-    
-    Mail.mergeLetter(DATA_SOURCE_NAME, TABLE_NAME, TEMPLATE_FNM, false);
-    ```
+```java
+// in MailMerge.java...
+private static final String DATA_SOURCE_NAME = "Addresses";
+private static final String TABLE_NAME = "Addresses";
+private static final String TEMPLATE_FNM = "formLetter.ott";
+
+
+Mail.mergeLetter(DATA_SOURCE_NAME, TABLE_NAME, TEMPLATE_FNM, false);
+```
 
 I've defined the data source name, table name, and template filename as constants to
 make the call to Mail.mergeLetter() easier to read. The boolean argument specifies
@@ -954,12 +930,11 @@ Mail.mergePrint() is passed the same first three arguments (data source name, ta
 name, template filename), and a printer name and a boolean to signal whether
 multiple print jobs should be created:
 
-=== "java"
-    ```java
-    // in MailMerge.java...
-    Mail.mergePrint(DATA_SOURCE_NAME, TABLE_NAME, TEMPLATE_FNM,
-                    "FinePrint", false);
-    ```
+```java
+// in MailMerge.java...
+Mail.mergePrint(DATA_SOURCE_NAME, TABLE_NAME, TEMPLATE_FNM,
+                "FinePrint", false);
+```
 
 This example will send a single combined print job to the "FinePrint" printer. The
 printer name can be obtained using one of the techniques explained in the previous
@@ -968,30 +943,28 @@ chapter.
 Mail.mergePrint() calls Mail.mergeTask() with its printer name and multiple jobs
 boolean arguments set:
 
-=== "java"
-    ```java
-    // in the Mail class
-    public static void mergePrint(String dataSourceName,
-                                  String tableName, String templateFnm,
-                           String printerName, boolean isMultipleJobs)
-    {
-      System.out.println("Merging letters for printing...");
-      mergeTask(dataSourceName, tableName, templateFnm,
-                MailMergeType.PRINTER,
-               false, printerName, isMultipleJobs, null, null, null);
-    }  // end of mergePrint()
-    ```
+```java
+// in the Mail class
+public static void mergePrint(String dataSourceName,
+                              String tableName, String templateFnm,
+                       String printerName, boolean isMultipleJobs)
+{
+  System.out.println("Merging letters for printing...");
+  mergeTask(dataSourceName, tableName, templateFnm,
+            MailMergeType.PRINTER,
+           false, printerName, isMultipleJobs, null, null, null);
+}  // end of mergePrint()
+```
 
 Mail.mergeEmail() is passed the data source name, table name, and template filename
 as before, and the mail server's password, e-mail subject line and body string:
 
-=== "java"
-    ```java
-    // in MailMerge.java...
-    Mail.mergeEmail(DATA_SOURCE_NAME, TABLE_NAME, TEMPLATE_FNM,
-                    password,
-                    "Hello", "Please read the attached message.");
-    ```
+```java
+// in MailMerge.java...
+Mail.mergeEmail(DATA_SOURCE_NAME, TABLE_NAME, TEMPLATE_FNM,
+                password,
+                "Hello", "Please read the attached message.");
+```
 
 Six e-mails are sent to the addresses listed in the "E-mail" column of the spreadsheet
 (see Figure 6). Each e-mail contains the subject and body text supplied in the call, and
@@ -999,23 +972,22 @@ an attached copy of the personalized letter.
 
 Mail.mergeEmail() calls Mail.mergeTask():
 
-=== "java"
-    ```java
-    // in the Mail class
-    public static void mergeEmail(String dataSourceName,
-                                  String tableName, String templateFnm,
-                            String passwd, String subject, String body)
-    {
-      System.out.println("Merging letters for sending as e-mail...");
-      boolean isConfigured = checkMailConfig(passwd);
-      System.out.println("--> Mailhost is " +
-                  (isConfigured ? "" : "NOT ") + "configured");
-      if (isConfigured)
-        mergeTask(dataSourceName, tableName, templateFnm,
-                  MailMergeType.MAIL,
-                  false, null, false, passwd, subject, body);
-    }  // end of mergeEmail()
-    ```
+```java
+// in the Mail class
+public static void mergeEmail(String dataSourceName,
+                              String tableName, String templateFnm,
+                        String passwd, String subject, String body)
+{
+  System.out.println("Merging letters for sending as e-mail...");
+  boolean isConfigured = checkMailConfig(passwd);
+  System.out.println("--> Mailhost is " +
+              (isConfigured ? "" : "NOT ") + "configured");
+  if (isConfigured)
+    mergeTask(dataSourceName, tableName, templateFnm,
+              MailMergeType.MAIL,
+              false, null, false, passwd, subject, body);
+}  // end of mergeEmail()
+```
 
 The e-mailing employs the same mailmerge.py Python script as MailServiceProvider,
 which means it will crash when using SSL encryption unless ssleay32.dll and
@@ -1064,102 +1036,100 @@ The properties settings are spread across if-tests which determine if the task i
 file creation, printing, or e-mail. Also, a listener is attached to the merge process. The
 mergeTask() code:
 
-=== "java"
-    ```java
-    // in the Mail class
-    public static void mergeTask(String dataSourceName,
-                                   String tableName,
-                                   String templateFnm,
-             short outputType, boolean isSingle,           // for FILE
-             String printerName, boolean isMultipleJobs,   // for PRINTER
-             String passwd, String subject, String body)   // for MAIL
-    {
-      XJob job = Lo.createInstanceMCF(XJob.class,
-                              "com.sun.star.text.MailMerge");
-      if (job == null) {
-        System.out.println("Could not create MailMerge service");
-        return;
-      }
-    
-      XPropertySet props = Lo.qi(XPropertySet.class, job);
-    
-      // standard task properties
-      Props.setProperty(props, "DataSourceName", dataSourceName);
-      Props.setProperty(props, "Command", tableName);
-      Props.setProperty(props, "CommandType", CommandType.TABLE);
-      Props.setProperty(props, "DocumentURL",
-                                    FileIO.fnmToURL(templateFnm));
-    
-      // vary properties based on output type
-      Props.setProperty(props, "OutputType", outputType);
-      if (outputType == MailMergeType.FILE) {
-        Props.setProperty(props, "SaveAsSingleFile", isSingle);
-        Props.setProperty(props, "FileNamePrefix", "letter");
-                                          // hardwired filename
-      }
-      else if (outputType == MailMergeType.PRINTER) {
-        Props.setProperty(props, "SinglePrintJobs", isMultipleJobs);
-                          // true means one print job for each letter
-        PropertyValue[] pProps =
-           Props.makeProps("PrinterName", printerName, "Wait", true);
-                                            //  synchronous printing
-               // from com.sun.star.view.PrintOptions
-        Props.setProperty(props, "PrintOptions", pProps);
-      }
-      else if (outputType == MailMergeType.MAIL) {
-        if (passwd != null)
-          Props.setProperty(props, "OutServerPassword", passwd);
-    
-        Props.setProperty(props, "AddressFromColumn", "E-mail");
-                                          // hardwired column name
-        Props.setProperty(props, "Subject", subject);
-        Props.setProperty(props, "MailBody", body);
-    
-        Props.setProperty(props, "SendAsAttachment", true);
-        Props.setProperty(props, "AttachmentName", "letter.pdf");
-                                        // hardwired filename and type
-        Props.setProperty(props, "AttachmentFilter",
-                                           "writer_pdf_Export");
-      }
-    
-      // monitor task's execution
-      XMailMergeBroadcaster xmmb =
-                           Lo.qi(XMailMergeBroadcaster.class, job);
-      xmmb.addMailMergeEventListener( new XMailMergeListener()
-      {
-        int count = 0;
-        long start = System.currentTimeMillis();
-    
-        public void notifyMailMergeEvent(MailMergeEvent e)
-        { count++;
-          XModel model = e.Model;
-          // Props.showProps("Mail merge event", model.getArgs());
-          long currTime = System.currentTimeMillis();
-          System.out.println("  Letter " + count + ": " +
-                                    (currTime - start) + "ms");
-          start = currTime;
-        }
-      });
-    
-      try {
-        job.execute(new NamedValue[0]);
-      }
-      catch (com.sun.star.uno.Exception e) {
-        System.out.println("Could not start executing task: " + e);
-      }
-    }  // end of mergeTask()
-    ```
+```java
+// in the Mail class
+public static void mergeTask(String dataSourceName,
+                               String tableName,
+                               String templateFnm,
+         short outputType, boolean isSingle,           // for FILE
+         String printerName, boolean isMultipleJobs,   // for PRINTER
+         String passwd, String subject, String body)   // for MAIL
+{
+  XJob job = Lo.createInstanceMCF(XJob.class,
+                          "com.sun.star.text.MailMerge");
+  if (job == null) {
+    System.out.println("Could not create MailMerge service");
+    return;
+  }
+
+  XPropertySet props = Lo.qi(XPropertySet.class, job);
+
+  // standard task properties
+  Props.setProperty(props, "DataSourceName", dataSourceName);
+  Props.setProperty(props, "Command", tableName);
+  Props.setProperty(props, "CommandType", CommandType.TABLE);
+  Props.setProperty(props, "DocumentURL",
+                                FileIO.fnmToURL(templateFnm));
+
+  // vary properties based on output type
+  Props.setProperty(props, "OutputType", outputType);
+  if (outputType == MailMergeType.FILE) {
+    Props.setProperty(props, "SaveAsSingleFile", isSingle);
+    Props.setProperty(props, "FileNamePrefix", "letter");
+                                      // hardwired filename
+  }
+  else if (outputType == MailMergeType.PRINTER) {
+    Props.setProperty(props, "SinglePrintJobs", isMultipleJobs);
+                      // true means one print job for each letter
+    PropertyValue[] pProps =
+       Props.makeProps("PrinterName", printerName, "Wait", true);
+                                        //  synchronous printing
+           // from com.sun.star.view.PrintOptions
+    Props.setProperty(props, "PrintOptions", pProps);
+  }
+  else if (outputType == MailMergeType.MAIL) {
+    if (passwd != null)
+      Props.setProperty(props, "OutServerPassword", passwd);
+
+    Props.setProperty(props, "AddressFromColumn", "E-mail");
+                                      // hardwired column name
+    Props.setProperty(props, "Subject", subject);
+    Props.setProperty(props, "MailBody", body);
+
+    Props.setProperty(props, "SendAsAttachment", true);
+    Props.setProperty(props, "AttachmentName", "letter.pdf");
+                                    // hardwired filename and type
+    Props.setProperty(props, "AttachmentFilter",
+                                       "writer_pdf_Export");
+  }
+
+  // monitor task's execution
+  XMailMergeBroadcaster xmmb =
+                       Lo.qi(XMailMergeBroadcaster.class, job);
+  xmmb.addMailMergeEventListener( new XMailMergeListener()
+  {
+    int count = 0;
+    long start = System.currentTimeMillis();
+
+    public void notifyMailMergeEvent(MailMergeEvent e)
+    { count++;
+      XModel model = e.Model;
+      // Props.showProps("Mail merge event", model.getArgs());
+      long currTime = System.currentTimeMillis();
+      System.out.println("  Letter " + count + ": " +
+                                (currTime - start) + "ms");
+      start = currTime;
+    }
+  });
+
+  try {
+    job.execute(new NamedValue[0]);
+  }
+  catch (com.sun.star.uno.Exception e) {
+    System.out.println("Could not start executing task: " + e);
+  }
+}  // end of mergeTask()
+```
 
 There are four properties that are always set:
 
-=== "java"
-    ```java
-    Props.setProperty(props, "DataSourceName", dataSourceName);
-    Props.setProperty(props, "Command", tableName);
-    Props.setProperty(props, "CommandType", CommandType.TABLE);
-    Props.setProperty(props, "DocumentURL",
-                                  FileIO.fnmToURL(templateFnm));
-    ```
+```java
+Props.setProperty(props, "DataSourceName", dataSourceName);
+Props.setProperty(props, "Command", tableName);
+Props.setProperty(props, "CommandType", CommandType.TABLE);
+Props.setProperty(props, "DocumentURL",
+                              FileIO.fnmToURL(templateFnm));
+```
 
 These specify the use of a spreadsheet table, the data source name, and the template
 filename (as a URI).

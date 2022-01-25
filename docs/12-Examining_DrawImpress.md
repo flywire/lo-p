@@ -16,64 +16,62 @@ including how to retrieve information on their layers and styles.
 
 The SlidesInfo.java main() function:
 
-=== "java"
-    ```java
-    public static void main(String args[])
-    {
-      if (args.length != 1) {
-        System.out.println("Usage: SlidesInfo <filename>");
-        return;
-      }
-    
-      XComponentLoader loader = Lo.loadOffice();
-      XComponent doc = Lo.openDoc(args[0], loader);
-      if (doc == null) {
-        System.out.println("Could not open the file: " + args[0]);
-        Lo.closeOffice();
-        return;
-      }
-    
-      if (!Draw.isShapesBased(doc)) {
-        System.out.println("-- not a drawing or slides presentation");
-        Lo.closeOffice();
-        return;
-      }
-    
-      GUI.setVisible(doc, true);
-      Lo.delay(1000);    // need delay or zoom may not work
-    
-      GUI.zoom(doc, GUI.ENTIRE_PAGE);
-             // or GUI.OPTIMAL, GUI.PAGE_WIDTH, GUI.ENTIRE_PAGE
-      // GUI.zoomValue(doc, 60);   // percentage size
-    
-      System.out.println("\nNo of slides: " +
-                              Draw.getSlidesCount(doc) + "\n");
-    
-      XDrawPage currSlide = Draw.getSlide(doc, 0); // access first page
-    
-      Size sz = Draw.getSlideSize(currSlide);
-      System.out.println("Size of slide (mm): (" +
-                                sz.Width + ", " + sz.Height + ")\n");
-      reportLayers(doc);
-      reportStyles(doc);
-    
-      Lo.closeDoc(doc);
-      Lo.closeOffice();
-    } // end of main()
-    ```
+```java
+public static void main(String args[])
+{
+  if (args.length != 1) {
+    System.out.println("Usage: SlidesInfo <filename>");
+    return;
+  }
+
+  XComponentLoader loader = Lo.loadOffice();
+  XComponent doc = Lo.openDoc(args[0], loader);
+  if (doc == null) {
+    System.out.println("Could not open the file: " + args[0]);
+    Lo.closeOffice();
+    return;
+  }
+
+  if (!Draw.isShapesBased(doc)) {
+    System.out.println("-- not a drawing or slides presentation");
+    Lo.closeOffice();
+    return;
+  }
+
+  GUI.setVisible(doc, true);
+  Lo.delay(1000);    // need delay or zoom may not work
+
+  GUI.zoom(doc, GUI.ENTIRE_PAGE);
+         // or GUI.OPTIMAL, GUI.PAGE_WIDTH, GUI.ENTIRE_PAGE
+  // GUI.zoomValue(doc, 60);   // percentage size
+
+  System.out.println("\nNo of slides: " +
+                          Draw.getSlidesCount(doc) + "\n");
+
+  XDrawPage currSlide = Draw.getSlide(doc, 0); // access first page
+
+  Size sz = Draw.getSlideSize(currSlide);
+  System.out.println("Size of slide (mm): (" +
+                            sz.Width + ", " + sz.Height + ")\n");
+  reportLayers(doc);
+  reportStyles(doc);
+
+  Lo.closeDoc(doc);
+  Lo.closeOffice();
+} // end of main()
+```
 
 Lo.openDoc() is capable of opening any Office document, and importing documents
 in other formats, so it's worthwhile checking the resulting XComponent object before
 progressing. Draw.isShapesBased() returns true if the file holds a Draw or Impress
 document:
 
-=== "java"
-    ```java
-    // in the Draw class
-    public static boolean isShapesBased(XComponent doc)
-    {  return Info.isDocType(doc, Lo.DRAW_SERVICE) ||
-              Info.isDocType(doc, Lo.IMPRESS_SERVICE);  }
-    ```
+```java
+// in the Draw class
+public static boolean isShapesBased(XComponent doc)
+{  return Info.isDocType(doc, Lo.DRAW_SERVICE) ||
+          Info.isDocType(doc, Lo.IMPRESS_SERVICE);  }
+```
 
 The document is made visible on-screen by calling GUI.setVisible(), and the
 application view is resized so all the drawing (or slide) is visible inside the window.
@@ -85,36 +83,35 @@ the user to supply a zooming percentage.
 These two methods are defined using Lo.dispatchCmd(), which was introduced at the
 end of Chapter 4:
 
-=== "java"
-    ```java
-    // in the Draw class
-    public static void zoom(XComponent doc, short view)
-    {
-      if (view == OPTIMAL)
-        Lo.dispatchCmd("ZoomOptimal");
-      else if (view == PAGE_WIDTH)
-        Lo.dispatchCmd("ZoomPageWidth");
-      if (view == ENTIRE_PAGE)
-        Lo.dispatchCmd("ZoomPage");
-      else {
-        System.out.println("Did not recognize zoom view: " +
-                                  view + "; using optimal");
-        Lo.dispatchCmd("ZoomOptimal");
-      }
-      Lo.delay(500);
-    }  // end of zoom()
-    
-    
-    public static void zoomValue(XComponent doc, int value)
-    // zoom to a specific value using a dispatch
-    {
-      String[] zoomLabels = {"Zoom.Value", "Zoom.ValueSet", "Zoom.Type"};
-      Object[] zoomVals = {(short)value, 28703, 0};
-    
-      Lo.dispatchCmd("Zoom", Props.makeProps(zoomLabels, zoomVals));
-      Lo.delay(500);
-    }  // end of zoomValue()
-    ```
+```java
+// in the Draw class
+public static void zoom(XComponent doc, short view)
+{
+  if (view == OPTIMAL)
+    Lo.dispatchCmd("ZoomOptimal");
+  else if (view == PAGE_WIDTH)
+    Lo.dispatchCmd("ZoomPageWidth");
+  if (view == ENTIRE_PAGE)
+    Lo.dispatchCmd("ZoomPage");
+  else {
+    System.out.println("Did not recognize zoom view: " +
+                              view + "; using optimal");
+    Lo.dispatchCmd("ZoomOptimal");
+  }
+  Lo.delay(500);
+}  // end of zoom()
+
+
+public static void zoomValue(XComponent doc, int value)
+// zoom to a specific value using a dispatch
+{
+  String[] zoomLabels = {"Zoom.Value", "Zoom.ValueSet", "Zoom.Type"};
+  Object[] zoomVals = {(short)value, 28703, 0};
+
+  Lo.dispatchCmd("Zoom", Props.makeProps(zoomLabels, zoomVals));
+  Lo.delay(500);
+}  // end of zoomValue()
+```
 
 I found the four dispatch commands ("ZoomOptimal", "ZoomPageWidth",
 "ZoomPage", and "Zoom") by browsing the "Development/DispatchCommands"
@@ -147,27 +144,26 @@ newly created Draw document.
 Draw.getSlidesCount() calls Draw.getSlides() which returns an XDrawPages object;
 XDrawPages supports a getCount() method:
 
-=== "java"
-    ```java
-    // in the Draw class
-    public static int getSlidesCount(XComponent doc)
-    {
-      XDrawPages slides = getSlides(doc);
-      if (slides == null)
-        return 0;
-      return slides.getCount();
-    }  // end of getSlidesCount()
-    
-    
-    public static XDrawPages getSlides(XComponent doc)
-    // return all the pages as an XDrawPages object
-    {
-      XDrawPagesSupplier supplier = Lo.qi(XDrawPagesSupplier.class, doc);
-      if (supplier == null)
-        return null;
-      return supplier.getDrawPages();
-    }  // end of getSlides()
-    ```
+```java
+// in the Draw class
+public static int getSlidesCount(XComponent doc)
+{
+  XDrawPages slides = getSlides(doc);
+  if (slides == null)
+    return 0;
+  return slides.getCount();
+}  // end of getSlidesCount()
+
+
+public static XDrawPages getSlides(XComponent doc)
+// return all the pages as an XDrawPages object
+{
+  XDrawPagesSupplier supplier = Lo.qi(XDrawPagesSupplier.class, doc);
+  if (supplier == null)
+    return null;
+  return supplier.getDrawPages();
+}  // end of getSlides()
+```
 
 getSlides() employs the XDrawPagesSupplier interface which is part of
 GenericDrawingDocument shown in Figure 2 of Chapter 11.
@@ -175,50 +171,48 @@ GenericDrawingDocument shown in Figure 2 of Chapter 11.
 Draw.getSlide() (note: no "s") also calls Draw.getSlides(), but treats the XDrawPages
 object as an indexed container of XDrawPage objects:
 
-=== "java"
-    ```java
-    // in the Draw class
-    public static XDrawPage getSlide(XComponent doc, int idx)
-    {   return getSlide( getSlides(doc), idx);  }
-    
-    
-    public static XDrawPage getSlide(XDrawPages slides, int idx)
-    {
-      XDrawPage slide = null;
-      try {
-        slide = Lo.qi(XDrawPage.class, slides.getByIndex(idx));
-      }
-      catch(Exception e)
-      {  System.out.println("Could not get slide " + idx);  }
-      return slide;
-    }  // end of getSlide()
-    ```
+```java
+// in the Draw class
+public static XDrawPage getSlide(XComponent doc, int idx)
+{   return getSlide( getSlides(doc), idx);  }
+
+
+public static XDrawPage getSlide(XDrawPages slides, int idx)
+{
+  XDrawPage slide = null;
+  try {
+    slide = Lo.qi(XDrawPage.class, slides.getByIndex(idx));
+  }
+  catch(Exception e)
+  {  System.out.println("Could not get slide " + idx);  }
+  return slide;
+}  // end of getSlide()
+```
 
 Draw.getSlideSize() returns a com.sun.star.awt.Size object created from looking up
 the "Width" and "Height" properties of the supplied slide/page:
 
-=== "java"
-    ```java
-    // in the Draw class
-    public static Size getSlideSize(XDrawPage xDrawPage)
-    // get size of the given page (in mm units)
-    {
-      try {
-        XPropertySet props = Lo.qi(XPropertySet.class, xDrawPage);
-        if (props == null) {
-           System.out.println("No slide properties found");
-           return null;
-         }
-        int width = (Integer) props.getPropertyValue("Width");
-        int height = (Integer) props.getPropertyValue("Height");
-        return new Size(width/100, height/100);
-      }
-      catch(Exception e)
-      {  System.out.println("Could not get page dimensions");
-         return null;
-      }
-    }  // end of getSlideSize()
-    ```
+```java
+// in the Draw class
+public static Size getSlideSize(XDrawPage xDrawPage)
+// get size of the given page (in mm units)
+{
+  try {
+    XPropertySet props = Lo.qi(XPropertySet.class, xDrawPage);
+    if (props == null) {
+       System.out.println("No slide properties found");
+       return null;
+     }
+    int width = (Integer) props.getPropertyValue("Width");
+    int height = (Integer) props.getPropertyValue("Height");
+    return new Size(width/100, height/100);
+  }
+  catch(Exception e)
+  {  System.out.println("Could not get page dimensions");
+     return null;
+  }
+}  // end of getSlideSize()
+```
 
 These Width" and "Height" properties are stored in XDrawPage's GenericDrawPage
 service, shown in Figure 5 of Chapter 11.
@@ -244,22 +238,21 @@ possible to create new layers.
 
 reportLayers() in SlidesInfo.java prints each layer's properties:
 
-=== "java"
-    ```java
-    // in SlidesInfo.java
-    private static void reportLayers(XComponent doc)
-    {
-      XLayerManager lm = Draw.getLayerManager(doc);
-      for(int i=0; i < lm.getCount(); i++)
-        try {
-          Props.showObjProps(" Layer " + i, lm.getByIndex(i));
-        }
-        catch(com.sun.star.uno.Exception e) {}
-    
-      XLayer layer = Draw.getLayer(doc, "backgroundobjects");
-      Props.showObjProps("Background Object Props", layer);
-    }  // end of reportLayers()
-    ```
+```java
+// in SlidesInfo.java
+private static void reportLayers(XComponent doc)
+{
+  XLayerManager lm = Draw.getLayerManager(doc);
+  for(int i=0; i < lm.getCount(); i++)
+    try {
+      Props.showObjProps(" Layer " + i, lm.getByIndex(i));
+    }
+    catch(com.sun.star.uno.Exception e) {}
+
+  XLayer layer = Draw.getLayer(doc, "backgroundobjects");
+  Props.showObjProps("Background Object Props", layer);
+}  // end of reportLayers()
+```
 
 Draw.getLayerManager() obtains an XLayerManager instance which can be treated as
 an indexed container of XLayer objects. Draw.getLayer() converts the
@@ -365,32 +358,31 @@ style family are given in the DrawPictures.java example in Chapter 14.
 
 The reportStyles() method inside SlidesInfo.java is:
 
-=== "java"
-    ```java
-    private static void reportStyles(XComponent doc)
-    // report style information: families, styles, properties
-    {
-      String[] styleNames = Info.getStyleFamilyNames(doc);
-      System.out.println("Style Families in this document:");
-      Lo.printNames(styleNames);
-    
-      for (String styleName : styleNames) {
-        String[] conNames = Info.getStyleNames(doc, styleName);
-        System.out.println("Styles in the \"" +
-                            styleName + "\" style family:");
-        Lo.printNames(conNames);
-      }
-    
-    /*
-      XPropertySet props = Info.getStyleProps(doc,
-                                    "Default", "outline1");
-      XPropertySet props = Info.getStyleProps(doc,
-                                    "graphics", "objectwitharrow");
-             // accessing a style causes Office to crash upon exiting
-      Props.showProps("Object Arrow Properties", props);   // long
-    */
-    }  // end of reportStyles()
-    ```
+```java
+private static void reportStyles(XComponent doc)
+// report style information: families, styles, properties
+{
+  String[] styleNames = Info.getStyleFamilyNames(doc);
+  System.out.println("Style Families in this document:");
+  Lo.printNames(styleNames);
+
+  for (String styleName : styleNames) {
+    String[] conNames = Info.getStyleNames(doc, styleName);
+    System.out.println("Styles in the \"" +
+                        styleName + "\" style family:");
+    Lo.printNames(conNames);
+  }
+
+/*
+  XPropertySet props = Info.getStyleProps(doc,
+                                "Default", "outline1");
+  XPropertySet props = Info.getStyleProps(doc,
+                                "graphics", "objectwitharrow");
+         // accessing a style causes Office to crash upon exiting
+  Props.showProps("Object Arrow Properties", props);   // long
+*/
+}  // end of reportStyles()
+```
 
 The method prints the names of the style families, and the names of the styles
 (property sets) inside each family. Typical output is:

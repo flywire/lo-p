@@ -83,21 +83,20 @@ families, then the style family (e.g. "ParagraphStyle"), and then the style (e.g
 
 "Standard"):
 
-=== "java"
-    ```java
-    // 1. get the style families
-    XStyleFamiliesSupplier xSupplier =
-                           Lo.qi(XStyleFamiliesSupplier.class, doc);
-    XNameAccess nameAcc = xSupplier.getStyleFamilies();
-    
-    // 2. get the paragraph style family
-    XNameContainer paraStyleCon = Lo.qi(XNameContainer.class,
-                              nameAcc.getByName("ParagraphStyles"));
-    
-    // 3. get the 'standard' style (property set)
-    XPropertySet standardProps = Lo.qi(XPropertySet.class,
-                              paraStyleCon.getByName("Standard"));
-    ```
+```java
+// 1. get the style families
+XStyleFamiliesSupplier xSupplier =
+                       Lo.qi(XStyleFamiliesSupplier.class, doc);
+XNameAccess nameAcc = xSupplier.getStyleFamilies();
+
+// 2. get the paragraph style family
+XNameContainer paraStyleCon = Lo.qi(XNameContainer.class,
+                          nameAcc.getByName("ParagraphStyles"));
+
+// 3. get the 'standard' style (property set)
+XPropertySet standardProps = Lo.qi(XPropertySet.class,
+                          paraStyleCon.getByName("Standard"));
+```
 
 The code that implements this process in the Write utility class is a bit more
 complicated since the calls to getByName() may raise exceptions if their string
@@ -200,18 +199,17 @@ My StylesInfo.java example illustrates some of the Writer and Info utility funct
 for examining style families and their property sets. The main() function starts by
 listing the style families names:
 
-=== "java"
-    ```java
-    XTextDocument doc = Write.openDoc(args[0], loader);
-    
-    // get all the style families for this document
-    String[] styleFamilies = Info.getStyleFamilyNames(doc);
-    System.out.println("No. of Style Family Names: " +
-                                      styleFamilies.length);
-    for(String styleFamily : styleFamilies)
-      System.out.println("  " + styleFamily);
-    System.out.println();
-    ```
+```java
+XTextDocument doc = Write.openDoc(args[0], loader);
+
+// get all the style families for this document
+String[] styleFamilies = Info.getStyleFamilyNames(doc);
+System.out.println("No. of Style Family Names: " +
+                                  styleFamilies.length);
+for(String styleFamily : styleFamilies)
+  System.out.println("  " + styleFamily);
+System.out.println();
+```
 
 The output lists the five family names:
 
@@ -229,34 +227,32 @@ XStyleFamiliesSupplier interface. Then the style families XNameAccess collection
 obtained by calling XStyleFamiliesSupplier.getStyleFamilies().The family names in
 that collection are extracted with XNameAccess.getElementName():
 
-=== "java"
-    ```java
-    public static String[] getStyleFamilyNames(XComponent doc)
-    // in the Info class
-    {
-      XStyleFamiliesSupplier xSupplier =  Lo.qi(
-                                XStyleFamiliesSupplier.class, doc);
-      XNameAccess nameAcc = xSupplier.getStyleFamilies();
-      String[] names = nameAcc.getElementNames();
-      Arrays.sort(names);
-      return names;
-    }  // end of getStyleFamilyNames()
-    ```
+```java
+public static String[] getStyleFamilyNames(XComponent doc)
+// in the Info class
+{
+  XStyleFamiliesSupplier xSupplier =  Lo.qi(
+                            XStyleFamiliesSupplier.class, doc);
+  XNameAccess nameAcc = xSupplier.getStyleFamilies();
+  String[] names = nameAcc.getElementNames();
+  Arrays.sort(names);
+  return names;
+}  // end of getStyleFamilyNames()
+```
 
 Back in StylesInfo.java, the main() function continues by looping through the list of
 style family names, printing all the style (property set) names in each family:
 
-=== "java"
-    ```java
-    // list all the style names for each style family
-    for(int i=0; i < styleFamilies.length; i++) {
-      String styleFamily = styleFamilies[i];
-      System.out.println((i+1) + ". \"" + styleFamily +
-                                   "\" Style Family contains:");
-      String[] styleNames = Info.getStyleNames(doc, styleFamily);
-      Lo.printNames(styleNames);
-    }
-    ```
+```java
+// list all the style names for each style family
+for(int i=0; i < styleFamilies.length; i++) {
+  String styleFamily = styleFamilies[i];
+  System.out.println((i+1) + ". \"" + styleFamily +
+                               "\" Style Family contains:");
+  String[] styleNames = Info.getStyleNames(doc, styleFamily);
+  Lo.printNames(styleNames);
+}
+```
 
 The output is lengthy, but informative:
 
@@ -327,65 +323,61 @@ The output is lengthy, but informative:
 Info.getStyleNames() retrieves the XNameContainer object for each style family, and
 extracts its style (property set) names using getElementNames():
 
-=== "java"
-    ```java
-    public static String[] getStyleNames(XComponent doc,
-                                    String familyStyleName)
-    // in Info.java
-    { XNameContainer styleContainer =
-                    getStyleContainer(doc, familyStyleName);
-      if (styleContainer == null)
-        return null;
-      else {
-        String[] names = styleContainer.getElementNames();
-        Arrays.sort(names);
-        return names;
-      }
-    }  // end of getStyleNames()
-    ```
+```java
+public static String[] getStyleNames(XComponent doc,
+                                String familyStyleName)
+// in Info.java
+{ XNameContainer styleContainer =
+                getStyleContainer(doc, familyStyleName);
+  if (styleContainer == null)
+    return null;
+  else {
+    String[] names = styleContainer.getElementNames();
+    Arrays.sort(names);
+    return names;
+  }
+}  // end of getStyleNames()
+```
 
 The last part of StylesInfo.java lists the properties for a specific property set.
 Info.getStyleProps() does that:
 
-=== "java"
-    ```java
-    XPropertySet getStyleProps(XComponent doc,
-                         String familyStyleName, String propSetNm)
-    { XNameContainer styleContainer =
-               getStyleContainer(doc, familyStyleName);
-               // container is a collection of named property sets
-      if (styleContainer == null)
-        return null;
-      else {
-        XPropertySet nameProps = null;
-        try {
-          nameProps = Lo.qi( XPropertySet.class,
-                        styleContainer.getByName(propSetNm));
-        }
-        catch(Exception e)
-        {  System.out.println("Could not access style: " + e);  }
-        return nameProps;
-      }
-    }  // end of getStyleProps()
-    ```
+```java
+XPropertySet getStyleProps(XComponent doc,
+                     String familyStyleName, String propSetNm)
+{ XNameContainer styleContainer =
+           getStyleContainer(doc, familyStyleName);
+           // container is a collection of named property sets
+  if (styleContainer == null)
+    return null;
+  else {
+    XPropertySet nameProps = null;
+    try {
+      nameProps = Lo.qi( XPropertySet.class,
+                    styleContainer.getByName(propSetNm));
+    }
+    catch(Exception e)
+    {  System.out.println("Could not access style: " + e);  }
+    return nameProps;
+  }
+}  // end of getStyleProps()
+```
 
 Its arguments are the document, the style family name, and style (property set) name.
 
 A reference to the property set is returned. Accessing the "Standard" style (property
 set) of the "ParagraphStyle" family would require:
 
-=== "java"
-    ```java
-    XPropertySet props =
-           Info.getStyleProps(doc, "ParagraphStyles", "Standard")
-    ```
+```java
+XPropertySet props =
+       Info.getStyleProps(doc, "ParagraphStyles", "Standard")
+```
 
 The property set can be nicely printed by calling Props.showProps():
 
-=== "java"
-    ```java
-    Props.showProps("ParagraphStyles \"Standard\"", props );
-    ```
+```java
+Props.showProps("ParagraphStyles \"Standard\"", props );
+```
 
 The output is long, but begins and ends like so:
 
@@ -423,12 +415,11 @@ being XStyle since all the different style services support it (as shown in Figu
 
 For example:
 
-=== "java"
-    ```java
-    // create a new paragraph style
-    XStyle paraStyle = Lo.createInstanceMSF(XStyle.class,
-                           "com.sun.star.style.ParagraphStyle");
-    ```
+```java
+// create a new paragraph style
+XStyle paraStyle = Lo.createInstanceMSF(XStyle.class,
+                       "com.sun.star.style.ParagraphStyle");
+```
 
 Lo.createInstanceMSF()'s second argument is the full name of the service, and the
 first argument is the interface. All the style services are located in the
@@ -437,19 +428,17 @@ first argument is the interface. All the style services are located in the
 Since I want to change property in this new style, I cast the XStyle interface to
 XPropertySet:
 
-=== "java"
-    ```java
-    XPropertySet props = Lo.qi(XPropertySet.class, paraStyle);
-    ```
+```java
+XPropertySet props = Lo.qi(XPropertySet.class, paraStyle);
+```
 
 A property is modified using setPropertyValue().
 
-=== "java"
-    ```java
-    props.setPropertyValue("ParaBottomMargin", 400);
-    props.setPropertyValue("CharFontName", "Times New Roman");
-    props.setPropertyValue("CharHeight", 12.0f);
-    ```
+```java
+props.setPropertyValue("ParaBottomMargin", 400);
+props.setPropertyValue("CharFontName", "Times New Roman");
+props.setPropertyValue("CharHeight", 12.0f);
+```
 
 These three properties are defined in one of the 'Properties' classes inherited by
 ParagraphStyle (as shown in Figure 4). "ParaBottomMargin" appears in
@@ -459,15 +448,14 @@ CharacterProperties.
 After setting the style's properties, the new style added to the document's paragraph
 style family:
 
-=== "java"
-    ```java
-    // access the paragraph style family
-    XNameContainer paraStyles =
-               Info.getStyleContainer(textDoc, "ParagraphStyles");
-    
-    // store the style in the style family with the name "Foo"
-    paraStyles.insertByName("Foo", props);
-    ```
+```java
+// access the paragraph style family
+XNameContainer paraStyles =
+           Info.getStyleContainer(textDoc, "ParagraphStyles");
+
+// store the style in the style family with the name "Foo"
+paraStyles.insertByName("Foo", props);
+```
 
 The style is stored with the name "Foo", but any unique name would be good (perhaps
 one a little more descriptive than "Foo" would be better).
@@ -475,54 +463,53 @@ one a little more descriptive than "Foo" would be better).
 The style creation code in StoryCreator.java is located in createParaStyle() and
 follows the  code fragment sequence described above:
 
-=== "java"
-    ```java
-    public static boolean createParaStyle(XTextDocument textDoc,
-                                                   String styleName)
-    // create a new paragraph container/style called styleName
-    {
-      XNameContainer paraStyles =
-            Info.getStyleContainer(textDoc, "ParagraphStyles");
-      if (paraStyles == null)
-        return false;
-    
-      try {
-        // create new paragraph style properties set
-        XStyle paraStyle = Lo.createInstanceMSF(
-                     XStyle.class, "com.sun.star.style.ParagraphStyle");
-        XPropertySet props = Lo.qi(XPropertySet.class, paraStyle);
-    
-        // set some properties
-        props.setPropertyValue("CharFontName", "Times New Roman");
-        props.setPropertyValue("CharHeight", 12.0f);
-        props.setPropertyValue("ParaBottomMargin", 400);
-                                       //  4mm, in 100th mm units
-    
-        // set paragraph line spacing to 6mm
-        LineSpacing lineSpacing = new LineSpacing();
-          lineSpacing.Mode = LineSpacingMode.FIX;
-          lineSpacing.Height = 600;
-          props.setPropertyValue("ParaLineSpacing", lineSpacing);
-    
-        // some more common properties; not all used here
-        /* props.setPropertyValue("CharWeight",
-                                   com.sun.star.awt.FontWeight.BOLD);
-           props.setPropertyValue("CharAutoKerning", true);
-           props.setPropertyValue("ParaAdjust",
-                                  ParagraphAdjust.CENTER_value);
-           props.setPropertyValue("ParaFirstLineIndent", 0);
-           props.setPropertyValue("BreakType", BreakType.PAGE_AFTER);
-        */
-          // store those properties in a container called styleName
-          paraStyles.insertByName(styleName, props);
-          return true;
-        }
-        catch(com.sun.star.uno.Exception e)
-        { System.out.println("Could not set paragraph style");
-          return false;
-        }
-      }  // end of createParaStyle()
-    ```
+```java
+public static boolean createParaStyle(XTextDocument textDoc,
+                                               String styleName)
+// create a new paragraph container/style called styleName
+{
+  XNameContainer paraStyles =
+        Info.getStyleContainer(textDoc, "ParagraphStyles");
+  if (paraStyles == null)
+    return false;
+
+  try {
+    // create new paragraph style properties set
+    XStyle paraStyle = Lo.createInstanceMSF(
+                 XStyle.class, "com.sun.star.style.ParagraphStyle");
+    XPropertySet props = Lo.qi(XPropertySet.class, paraStyle);
+
+    // set some properties
+    props.setPropertyValue("CharFontName", "Times New Roman");
+    props.setPropertyValue("CharHeight", 12.0f);
+    props.setPropertyValue("ParaBottomMargin", 400);
+                                   //  4mm, in 100th mm units
+
+    // set paragraph line spacing to 6mm
+    LineSpacing lineSpacing = new LineSpacing();
+      lineSpacing.Mode = LineSpacingMode.FIX;
+      lineSpacing.Height = 600;
+      props.setPropertyValue("ParaLineSpacing", lineSpacing);
+
+    // some more common properties; not all used here
+    /* props.setPropertyValue("CharWeight",
+                               com.sun.star.awt.FontWeight.BOLD);
+       props.setPropertyValue("CharAutoKerning", true);
+       props.setPropertyValue("ParaAdjust",
+                              ParagraphAdjust.CENTER_value);
+       props.setPropertyValue("ParaFirstLineIndent", 0);
+       props.setPropertyValue("BreakType", BreakType.PAGE_AFTER);
+    */
+      // store those properties in a container called styleName
+      paraStyles.insertByName(styleName, props);
+      return true;
+    }
+    catch(com.sun.star.uno.Exception e)
+    { System.out.println("Could not set paragraph style");
+      return false;
+    }
+  }  // end of createParaStyle()
+```
 
 The "ParaLineSpacing" property is a little more complex than the others since its
 value isn't a basic type, but a LineSpacing object.
@@ -540,16 +527,15 @@ LineSpacing documentation page  into the browser.
 
 In StoryCreator.java, createParaStyle() is called like so:
 
-=== "java"
-    ```java
-    XTextDocument doc = Write.createDoc(loader);
-    
-    if (!createParaStyle(doc, "adParagraph")){
-      System.out.println("Could not create new paragraph style");
-      Lo.closeOffice();
-      return;
-    }
-    ```
+```java
+XTextDocument doc = Write.createDoc(loader);
+
+if (!createParaStyle(doc, "adParagraph")){
+  System.out.println("Could not create new paragraph style");
+  Lo.closeOffice();
+  return;
+}
+```
 
 A new style called "adParagraph" is added to the paragraph style family. It uses
 Times New Roman 12pt font, and leaves a 6mm space between paragraphs.
@@ -573,20 +559,18 @@ XTextRange can be cast to XPropertySet to make the properties in
 ParagraphProperties and CharacterProperties accessible. An existing (or new)
 paragraph style is applied to a text range by setting its "ParaStyleName" property:
 
-=== "java"
-    ```java
-    XTextRange xTextRange = doc.getText().getStart();
-    XPropertySet props = Lo.qi(XPropertySet.class, xTextRange);
-    props.setProperty("ParaStyleName", "adParagraph");
-    ```
+```java
+XTextRange xTextRange = doc.getText().getStart();
+XPropertySet props = Lo.qi(XPropertySet.class, xTextRange);
+props.setProperty("ParaStyleName", "adParagraph");
+```
 
 Using Props.setProperty(), simplifies this to:
 
-=== "java"
-    ```java
-    XTextRange xTextRange = doc.getText().getStart();
-    Props.setProperty(xTextRange, "ParaStyleName", "adParagraph");
-    ```
+```java
+XTextRange xTextRange = doc.getText().getStart();
+Props.setProperty(xTextRange, "ParaStyleName", "adParagraph");
+```
 
 The code above obtains the text range at the start of the document, and set its
 paragraph style to "adParagraph". Any text added from this position onwards will use
@@ -612,23 +596,21 @@ Figure 9. Cursor Access to Text Properties.
 This hierarchy means that a cursor can access the TextRange service and its text
 properties. The following code fragment demonstrates the idea:
 
-=== "java"
-    ```java
-    XTextCursor cursor = Write.getCursor(textDoc);
-    cursor.gotoEnd(true);   // select the entire document
-    
-    XPropertySet props = Lo.qi(XPropertySet.class, cursor);
-    props.setProperty("ParaStyleName", "adParagraph");
-    ```
+```java
+XTextCursor cursor = Write.getCursor(textDoc);
+cursor.gotoEnd(true);   // select the entire document
+
+XPropertySet props = Lo.qi(XPropertySet.class, cursor);
+props.setProperty("ParaStyleName", "adParagraph");
+```
 
 Using Props.setProperty(), simplifies this to:
 
-=== "java"
-    ```java
-    XTextCursor cursor = Write.getCursor(textDoc);
-    cursor.gotoEnd(true);
-    Props.setProperty(cursor, "ParaStyleName", "adParagraph");
-    ```
+```java
+XTextCursor cursor = Write.getCursor(textDoc);
+cursor.gotoEnd(true);
+Props.setProperty(cursor, "ParaStyleName", "adParagraph");
+```
 
 This approach is employed in StoryCreator.java when some paragraphs (such as
 section headers) need to use a paragraph style other than "adParagraph". I'll supply
@@ -640,15 +622,14 @@ details in a moment.
 StoryCreator.java starts by setting the "adParagraph" style, then employs readText()
 to read text from a file and add it to the document:
 
-=== "java"
-    ```java
-    XTextRange xTextRange = doc.getText().getStart();
-    Props.setProperty(xTextRange, "ParaStyleName", "adParagraph");
-    
-    XTextCursor cursor = Write.getCursor(doc);
-    readText("scandal.txt", cursor);
-    Write.endParagraph(cursor);
-    ```
+```java
+XTextRange xTextRange = doc.getText().getStart();
+Props.setProperty(xTextRange, "ParaStyleName", "adParagraph");
+
+XTextCursor cursor = Write.getCursor(doc);
+readText("scandal.txt", cursor);
+Write.endParagraph(cursor);
+```
 
 readText() assumes the text file has a certain format. For example, "scandal.txt"
 begins like so:
@@ -684,75 +665,73 @@ Figure 10. The Output of StoryCreator.java.
 
 readText() is implemented using Java's FileReader and BufferedReader:
 
-=== "java"
-    ```java
-    public static void readText(String fnm, XTextCursor cursor)
-    /* Write the text in fnm into a Office document.
-    
-       Use current paragraph styling unless the line starts
-       with "Title: ", "Author: ", or "Part ".
-    
-    */
-    {
-      StringBuilder sb = new StringBuilder(0);
-      BufferedReader br = null;
-      try {
-        br = new BufferedReader(new FileReader(fnm));
-        System.out.println("Reading text from: " + fnm);
-    
-        String line;
-        while ((line = br.readLine()) != null) {
-          // System.out.println("<" + line + ">");
-          if (line.length() == 0) {
-            if (sb.length() > 0)
-              Write.appendPara(cursor, sb.toString());
-            sb.setLength(0);
-          }
-          else if (line.startsWith("Title: ")) {
-            Write.appendPara(cursor, line.substring(7));
-            Write.stylePrevParagraph(cursor, "Title");
-          }
-          else if (line.startsWith("Author: ")) {
-            Write.appendPara(cursor, line.substring(8));
-            Write.stylePrevParagraph(cursor, "Subtitle");
-          }
-          else if (line.startsWith("Part ")) {
-            Write.appendPara(cursor, line);
-            Write.stylePrevParagraph(cursor, "Heading");
-          }
-          else {
-            sb.append(line + " ");
-          }
-        }
+```java
+public static void readText(String fnm, XTextCursor cursor)
+/* Write the text in fnm into a Office document.
+
+   Use current paragraph styling unless the line starts
+   with "Title: ", "Author: ", or "Part ".
+
+*/
+{
+  StringBuilder sb = new StringBuilder(0);
+  BufferedReader br = null;
+  try {
+    br = new BufferedReader(new FileReader(fnm));
+    System.out.println("Reading text from: " + fnm);
+
+    String line;
+    while ((line = br.readLine()) != null) {
+      // System.out.println("<" + line + ">");
+      if (line.length() == 0) {
         if (sb.length() > 0)
           Write.appendPara(cursor, sb.toString());
+        sb.setLength(0);
       }
-      catch (FileNotFoundException ex)
-      {  System.out.println("Could not open: " + fnm); }
-      catch (IOException ex)
-      {  System.out.println("Read error: " + ex); }
-      finally {
-        try {
-          if (br != null)
-            br.close();
-        }
-        catch (IOException ex)
-        {  System.out.println("Problem closing " + fnm); }
+      else if (line.startsWith("Title: ")) {
+        Write.appendPara(cursor, line.substring(7));
+        Write.stylePrevParagraph(cursor, "Title");
       }
-    }  // end of readText()
-    ```
+      else if (line.startsWith("Author: ")) {
+        Write.appendPara(cursor, line.substring(8));
+        Write.stylePrevParagraph(cursor, "Subtitle");
+      }
+      else if (line.startsWith("Part ")) {
+        Write.appendPara(cursor, line);
+        Write.stylePrevParagraph(cursor, "Heading");
+      }
+      else {
+        sb.append(line + " ");
+      }
+    }
+    if (sb.length() > 0)
+      Write.appendPara(cursor, sb.toString());
+  }
+  catch (FileNotFoundException ex)
+  {  System.out.println("Could not open: " + fnm); }
+  catch (IOException ex)
+  {  System.out.println("Read error: " + ex); }
+  finally {
+    try {
+      if (br != null)
+        br.close();
+    }
+    catch (IOException ex)
+    {  System.out.println("Problem closing " + fnm); }
+  }
+}  // end of readText()
+```
 
 The interesting bits are the calls to Write.appendPara() and
 Write.stylePrevParagraph() which add a paragraph to the document and apply a style
 to it. For instance:
 
-=== "java"
-    ```java
-    else if (line.startsWith("Author: ")) {
-      Write.appendPara(cursor, line.substring(8));
-      Write.stylePrevParagraph(cursor, "Subtitle");
-    }
-    ```
+```java
+else if (line.startsWith("Author: ")) {
+  Write.appendPara(cursor, line.substring(8));
+  Write.stylePrevParagraph(cursor, "Subtitle");
+}
+```
 
 Write.appendPara() writes the string into the document as a paragraph (the input line
 without the "Author: " substring). Write.stylePrevParagraph() changes the paragraph
@@ -762,30 +741,29 @@ The hard part of Write.stylePrevParagraph() is making sure that the style change
 affects the previous paragraph. Text appended after this line should use "adParagraph"
 styling.
 
-=== "java"
-    ```java
-    public static void stylePrevParagraph(XTextCursor cursor,
-                                          Object propVal)
-    {  stylePrevParagraph(cursor, "ParaStyleName", propVal);  }
-    
-    
-    public static void stylePrevParagraph(XTextCursor cursor,
-                                 String propName, Object propVal)
-    {
-      // save current property
-      Object oldValue = Props.getProperty(cursor, propName);
-    
-      // apply property change to previous paragraph
-      XParagraphCursor paraCursor = Lo.qi(
-                                    XParagraphCursor.class, cursor);
-      paraCursor.gotoPreviousParagraph(true);   // select prev para
-      Props.setProperty(paraCursor, propName, propVal);
-    
-      // reset the cursor and property
-      paraCursor.gotoNextParagraph(false);
-      Props.setProperty(cursor, propName, oldValue);
-    }  // end of stylePrevParagraph()
-    ```
+```java
+public static void stylePrevParagraph(XTextCursor cursor,
+                                      Object propVal)
+{  stylePrevParagraph(cursor, "ParaStyleName", propVal);  }
+
+
+public static void stylePrevParagraph(XTextCursor cursor,
+                             String propName, Object propVal)
+{
+  // save current property
+  Object oldValue = Props.getProperty(cursor, propName);
+
+  // apply property change to previous paragraph
+  XParagraphCursor paraCursor = Lo.qi(
+                                XParagraphCursor.class, cursor);
+  paraCursor.gotoPreviousParagraph(true);   // select prev para
+  Props.setProperty(paraCursor, propName, propVal);
+
+  // reset the cursor and property
+  paraCursor.gotoNextParagraph(false);
+  Props.setProperty(cursor, propName, oldValue);
+}  // end of stylePrevParagraph()
+```
 
 The current "ParaStyleName" value is stored before changing its value in the selected
 range. Afterwards, that style name is applied back to the cursor.
@@ -809,24 +787,23 @@ Write.stylePrevParagraph(). styleLeft() is passed an integer position which lies
 left of the current cursor position. Character style changes are applied to the text range
 defined by that distance:
 
-=== "java"
-    ```java
-    public static void styleLeft(XTextCursor cursor,
-                       int pos, String propName, Object propVal)
-    {
-      // save current property
-      Object oldValue = Props.getProperty(cursor, propName);
-    
-      // apply property change to the left of cursor
-      int currPos = getPosition(cursor);
-      cursor.goLeft((short)(currPos-pos), true);
-      Props.setProperty(cursor, propName, propVal);
-    
-      // reset the cursor and property
-      cursor.goRight((short)(currPos-pos), false);
-      Props.setProperty(cursor, propName, oldValue);
-    }  // end of styleLeft()
-    ```
+```java
+public static void styleLeft(XTextCursor cursor,
+                   int pos, String propName, Object propVal)
+{
+  // save current property
+  Object oldValue = Props.getProperty(cursor, propName);
+
+  // apply property change to the left of cursor
+  int currPos = getPosition(cursor);
+  cursor.goLeft((short)(currPos-pos), true);
+  Props.setProperty(cursor, propName, propVal);
+
+  // reset the cursor and property
+  cursor.goRight((short)(currPos-pos), false);
+  Props.setProperty(cursor, propName, oldValue);
+}  // end of styleLeft()
+```
 
 An XTextCursor is used to select the range, and the new style is set. Then the cursor
 is moved back to its old position, and the previous style reapplied.
@@ -834,29 +811,28 @@ is moved back to its old position, and the previous style reapplied.
 The Write class contain a few support functions that set common styles using
 styleLeft():
 
-=== "java"
-    ```java
-    public static void styleLeftBold(XTextCursor cursor, int pos)
-    {  styleLeft(cursor, pos, "CharWeight",
-                               com.sun.star.awt.FontWeight.BOLD);  }
-    
-    
-    public static void styleLeftItalic(XTextCursor cursor, int pos)
-    {  styleLeft(cursor, pos, "CharPosture",
-                               com.sun.star.awt.FontSlant.ITALIC);  }
-    
-    
-    public static void styleLeftColor(XTextCursor cursor,
-                                       int pos, java.awt.Color col)
-    {  styleLeft(cursor, pos, "CharColor", Lo.getColorInt(col));  }
-    
-    
-    public static void styleLeftCode(XTextCursor cursor, int pos)
-    // code is text in 10pt Courier New
-    {  styleLeft(cursor, pos, "CharFontName", "Courier New");
-       styleLeft(cursor, pos, "CharHeight", 10);
-    }
-    ```
+```java
+public static void styleLeftBold(XTextCursor cursor, int pos)
+{  styleLeft(cursor, pos, "CharWeight",
+                           com.sun.star.awt.FontWeight.BOLD);  }
+
+
+public static void styleLeftItalic(XTextCursor cursor, int pos)
+{  styleLeft(cursor, pos, "CharPosture",
+                           com.sun.star.awt.FontSlant.ITALIC);  }
+
+
+public static void styleLeftColor(XTextCursor cursor,
+                                   int pos, java.awt.Color col)
+{  styleLeft(cursor, pos, "CharColor", Lo.getColorInt(col));  }
+
+
+public static void styleLeftCode(XTextCursor cursor, int pos)
+// code is text in 10pt Courier New
+{  styleLeft(cursor, pos, "CharFontName", "Courier New");
+   styleLeft(cursor, pos, "CharHeight", 10);
+}
+```
 
 The position (the pos value) passed to styleLeft() can be obtained from
 Write.getPosition(), or as the result of the Write.append() methods.
@@ -864,22 +840,21 @@ Write.getPosition(), or as the result of the Write.append() methods.
 My BuildDoc.java example contains several examples of how to use
 Write.styleLeft():
 
-=== "java"
-    ```java
-    // code fragment from BuildDoc.java
-    XTextCursor cursor = Write.getCursor(doc);
-    
-    int pos = Write.append(cursor, "Some examples of simple text ");
-    Write.append(cursor, "styles.\n");
-    Write.styleLeftBold(cursor, pos);  // bold text back to pos
-    
-    pos = Write.getPosition(cursor);
-    Write.appendPara(cursor, "This line is written in red italics.");
-    Write.styleLeftColor(cursor, pos, Color.RED);   // red
-    Write.styleLeftItalic(cursor, pos);             // italics
-    
-    Write.appendPara(cursor, "Back to old style\n");
-    ```
+```java
+// code fragment from BuildDoc.java
+XTextCursor cursor = Write.getCursor(doc);
+
+int pos = Write.append(cursor, "Some examples of simple text ");
+Write.append(cursor, "styles.\n");
+Write.styleLeftBold(cursor, pos);  // bold text back to pos
+
+pos = Write.getPosition(cursor);
+Write.appendPara(cursor, "This line is written in red italics.");
+Write.styleLeftColor(cursor, pos, Color.RED);   // red
+Write.styleLeftItalic(cursor, pos);             // italics
+
+Write.appendPara(cursor, "Back to old style\n");
+```
 
 The resulting text in the document looks like Figure 11.
 
@@ -891,19 +866,18 @@ Figure 11. Styled Text.
 
 The following fragment from BuildDoc.java applies a 'code' styling to several lines:
 
-=== "java"
-    ```java
-    // code fragment from BuildDoc.java
-    Write.appendPara(cursor, "Here's some code:");
-    
-    pos = Write.getPosition(cursor);
-    Write.append(cursor, "\npublic class Hello\n");
-    Write.append(cursor, "{\n");
-    Write.append(cursor, "  public static void main(String args[]\n");
-    Write.append(cursor, " { System.out.println(\"Hello Andrew\"); }\n");
-    Write.appendPara(cursor, "}  // end of Hello class\n");
-    Write.styleLeftCode(cursor, pos);
-    ```
+```java
+// code fragment from BuildDoc.java
+Write.appendPara(cursor, "Here's some code:");
+
+pos = Write.getPosition(cursor);
+Write.append(cursor, "\npublic class Hello\n");
+Write.append(cursor, "{\n");
+Write.append(cursor, "  public static void main(String args[]\n");
+Write.append(cursor, " { System.out.println(\"Hello Andrew\"); }\n");
+Write.appendPara(cursor, "}  // end of Hello class\n");
+Write.styleLeftCode(cursor, pos);
+```
 
 Figure 12 shows the generated document text.
 
@@ -924,17 +898,16 @@ Text hyperlinks are implemented as styles, using "HyperLinkURL", and perhaps
 "HyperLinkName", and "HyperLinkTarget". BuildDoc.java shows how the
 "HyperLinkURL" property is set:
 
-=== "java"
-    ```java
-    Write.appendPara(cursor, "A link to my JLOP website:");
-    String urlStr = "https://fivedots.coe.psu.ac.th/~ad/jlop/";
-    
-    pos = Write.getPosition(cursor);
-    Write.append(cursor, urlStr);
-    
-    Write.styleLeft(cursor, pos, "HyperLinkURL", urlStr);
-    Write.endParagraph(cursor);
-    ```
+```java
+Write.appendPara(cursor, "A link to my JLOP website:");
+String urlStr = "https://fivedots.coe.psu.ac.th/~ad/jlop/";
+
+pos = Write.getPosition(cursor);
+Write.append(cursor, urlStr);
+
+Write.styleLeft(cursor, pos, "HyperLinkURL", urlStr);
+Write.endParagraph(cursor);
+```
 
 When the document is viewed, the text is drawn as a link as in Figure 13.
 
@@ -959,16 +932,15 @@ It's straightforward to number paragraphs by using Write.styleLeft() and the
 "NumberingStyleName" property. The following code from BuildDoc.java, numbers
 three paragraphs:
 
-=== "java"
-    ```java
-    // code fragment from BuildDoc.java
-    Write.appendPara(cursor, "The following points are important:");
-    
-    pos = Write.appendPara(cursor, "Have a good breakfast");
-    Write.appendPara(cursor, "Have a good lunch");
-    Write.appendPara(cursor, "Have a good dinner\n");
-    Write.styleLeft(cursor, pos, "NumberingStyleName", "Numbering 1");
-    ```
+```java
+// code fragment from BuildDoc.java
+Write.appendPara(cursor, "The following points are important:");
+
+pos = Write.appendPara(cursor, "Have a good breakfast");
+Write.appendPara(cursor, "Have a good lunch");
+Write.appendPara(cursor, "Have a good dinner\n");
+Write.styleLeft(cursor, pos, "NumberingStyleName", "Numbering 1");
+```
 
 The result is shown in Figure 14.
 
@@ -996,10 +968,9 @@ count when numbering another group of text. For example, a second group of
 numbered paragraphs appearing in the document after Figure 14 would start at '4'.
 This is fixed by setting the "ParaIsNumberingRestart" property to true:
 
-=== "java"
-    ```java
-    Write.styleLeft(cursor, pos, "ParaIsNumberingRestart", true);
-    ```
+```java
+Write.styleLeft(cursor, pos, "ParaIsNumberingRestart", true);
+```
 
 One large topic I won’t be looking at is document numbering. This includes the
 numbering of chapter headings and lines. Chapter and line numbering are dealt with
@@ -1018,13 +989,12 @@ StoryCreator.java illustrates three other styling effects: the creation of a hea
 setting the page to A4 format, and employing page numbers in the footer. The
 relevant calls are:
 
-=== "java"
-    ```java
-    // code fragment in StoryCreator.java
-    Write.setHeader(doc, "From: " + args[0]);
-    Write.setA4PageFormat(doc);
-    Write.setPageNumbers(doc);
-    ```
+```java
+// code fragment in StoryCreator.java
+Write.setHeader(doc, "From: " + args[0]);
+Write.setA4PageFormat(doc);
+Write.setPageNumbers(doc);
+```
 
 Write.setA4PageFormat() sets the page formatting. Write.setPageNumbers() utilizes
 text fields, which I'll examine in the "Text Fields" section in Chapter 7.
@@ -1033,52 +1003,50 @@ Changing the header in Write.setHeader() requires the setting of the "HeaderIsOn
 boolean in the "Standard" page style. Adding text to the header is done via an XText
 reference. The code for Write.setHeader():
 
-=== "java"
-    ```java
-    public static void setHeader(XTextDocument textDoc, String hText)
-    /* Modify the header via the page style for the document.
-    
-       Put the text on the right hand side in the header in
-       Times New Roman, 10pt */
-    {
-      XPropertySet props =
-             Info.getStyleProps(textDoc, "PageStyles", "Standard");
-      if (props == null) {
-        System.out.println("Could not access standard page style");
-        return;
-      }
-    
-      try {
-        props.setPropertyValue("HeaderIsOn", true);
-                     // header is turned on in the document
-    
-        // access the header's XText and cursor
-        XText headerText = Lo.qi(XText.class,
-                             props.getPropertyValue("HeaderText"));
-        XTextCursor headerCursor = headerText.createTextCursor();
-        headerCursor.gotoEnd(false);
-    
-        // header is on the rhs and in Times New Roman, 10pt
-        XPropertySet headerProps = Lo.qi(
-                                    XPropertySet.class, headerCursor);
-        headerProps.setPropertyValue("CharFontName","Times New Roman");
-        headerProps.setPropertyValue("CharHeight", 10);
-        headerProps.setPropertyValue("ParaAdjust",ParagraphAdjust.RIGHT);
-    
-        headerText.setString(hText + "\n");
-      }
-      catch (Exception ex)
-      {  System.out.println(ex); }
-    }  // end of setHeader()
-    ```
+```java
+public static void setHeader(XTextDocument textDoc, String hText)
+/* Modify the header via the page style for the document.
+
+   Put the text on the right hand side in the header in
+   Times New Roman, 10pt */
+{
+  XPropertySet props =
+         Info.getStyleProps(textDoc, "PageStyles", "Standard");
+  if (props == null) {
+    System.out.println("Could not access standard page style");
+    return;
+  }
+
+  try {
+    props.setPropertyValue("HeaderIsOn", true);
+                 // header is turned on in the document
+
+    // access the header's XText and cursor
+    XText headerText = Lo.qi(XText.class,
+                         props.getPropertyValue("HeaderText"));
+    XTextCursor headerCursor = headerText.createTextCursor();
+    headerCursor.gotoEnd(false);
+
+    // header is on the rhs and in Times New Roman, 10pt
+    XPropertySet headerProps = Lo.qi(
+                                XPropertySet.class, headerCursor);
+    headerProps.setPropertyValue("CharFontName","Times New Roman");
+    headerProps.setPropertyValue("CharHeight", 10);
+    headerProps.setPropertyValue("ParaAdjust",ParagraphAdjust.RIGHT);
+
+    headerText.setString(hText + "\n");
+  }
+  catch (Exception ex)
+  {  System.out.println(ex); }
+}  // end of setHeader()
+```
 
 The header's XText reference is retrieved via the page style's "HeaderText" property,
 and a cursor is created local to the header:
 
-=== "java"
-    ```java
-    XTextCursor headerCursor = headerText.createTextCursor();
-    ```
+```java
+XTextCursor headerCursor = headerText.createTextCursor();
+```
 
 This cursor can only move around inside the header not the entire document.
 
