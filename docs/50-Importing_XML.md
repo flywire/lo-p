@@ -293,40 +293,41 @@ However, a better approach is to call my FiltersInfo.java example which prints a
 filters currently installed in Office, and some extra details about the "AbiWord",
 "Pay", and "Clubs" filters:
 
-```java
-// in FiltersInfo.java
-public class FiltersInfo
-{
-  public static void main(String[] args)
-  {
-    XComponentLoader loader = Lo.loadOffice();
-
-    // print the names of all the filters in Office
-    String[] filterNms = Info.getFilterNames();
-    System.out.println("Filter Names");
-    Lo.printNames(filterNms, 3);
-
-    // print some extra info on 3 filters
-    PropertyValue[] props = Info.getFilterProps("AbiWord");
-    Props.showProps("AbiWord Filter", props);
-
-    props = Info.getFilterProps("Pay");
-    Props.showProps("Pay Filter", props);
-
-    props = Info.getFilterProps("Clubs");
-    Props.showProps("Clubs Filter", props);
-    int flags = (int) Props.getValue("Flags", props);
-
-    System.out.println("Filter flags: " +
-                           Integer.toHexString(flags));
-    System.out.println(" Import: " + Info.isImport(flags));
-    System.out.println(" Export: " + Info.isExport(flags));
-
-    Lo.closeOffice();
-  }   // end of main()
-
-}  // end of FiltersInfo class
-```
+=== "java"
+    ```java
+    // in FiltersInfo.java
+    public class FiltersInfo
+    {
+      public static void main(String[] args)
+      {
+        XComponentLoader loader = Lo.loadOffice();
+    
+        // print the names of all the filters in Office
+        String[] filterNms = Info.getFilterNames();
+        System.out.println("Filter Names");
+        Lo.printNames(filterNms, 3);
+    
+        // print some extra info on 3 filters
+        PropertyValue[] props = Info.getFilterProps("AbiWord");
+        Props.showProps("AbiWord Filter", props);
+    
+        props = Info.getFilterProps("Pay");
+        Props.showProps("Pay Filter", props);
+    
+        props = Info.getFilterProps("Clubs");
+        Props.showProps("Clubs Filter", props);
+        int flags = (int) Props.getValue("Flags", props);
+    
+        System.out.println("Filter flags: " +
+                               Integer.toHexString(flags));
+        System.out.println(" Import: " + Info.isImport(flags));
+        System.out.println(" Export: " + Info.isExport(flags));
+    
+        Lo.closeOffice();
+      }   // end of main()
+    
+    }  // end of FiltersInfo class
+    ```
 
 The output from FiltersInfo starts with a long list of  filter names:
 
@@ -352,46 +353,48 @@ names.
 The names are obtained by Info.getFilterNames(), which utilizes the FilterFactory
 service:
 
-```java
-// in the Info class
-public static String[] getFilterNames()
-{
-  XNameAccess na = Lo.createInstanceMCF(XNameAccess.class,
-                        "com.sun.star.document.FilterFactory");
-  if (na == null) {
-    System.out.println("No Filter factory found");
-    return null;
-  }
-  else
-    return na.getElementNames();
-}  // end of getFilterNames()
-```
+=== "java"
+    ```java
+    // in the Info class
+    public static String[] getFilterNames()
+    {
+      XNameAccess na = Lo.createInstanceMCF(XNameAccess.class,
+                            "com.sun.star.document.FilterFactory");
+      if (na == null) {
+        System.out.println("No Filter factory found");
+        return null;
+      }
+      else
+        return na.getElementNames();
+    }  // end of getFilterNames()
+    ```
 
 Sometimes it's useful to know more about a filter than just it's name, such as whether
 it's for importing, exporting, or both. Additional information is available as an array
 of properties, by calling Info.getFilterProps() with the filter's name:
 
-```java
-// in the Info class
-public static PropertyValue[] getFilterProps(String filterNm)
-{
-  XNameAccess na = Lo.createInstanceMCF(XNameAccess.class,
-                           "com.sun.star.document.FilterFactory");
-  if (na == null) {
-    System.out.println("No Filter factory found");
-    return null;
-  }
-  else {
-    try {
-     return (PropertyValue[]) na.getByName(filterNm);
-    }
-    catch(Exception e) {
-      System.out.println("Could not find filter for " + filterNm);
-      return null;
-    }
-  }
-}  // end of getFilterProps()
-```
+=== "java"
+    ```java
+    // in the Info class
+    public static PropertyValue[] getFilterProps(String filterNm)
+    {
+      XNameAccess na = Lo.createInstanceMCF(XNameAccess.class,
+                               "com.sun.star.document.FilterFactory");
+      if (na == null) {
+        System.out.println("No Filter factory found");
+        return null;
+      }
+      else {
+        try {
+         return (PropertyValue[]) na.getByName(filterNm);
+        }
+        catch(Exception e) {
+          System.out.println("Could not find filter for " + filterNm);
+          return null;
+        }
+      }
+    }  // end of getFilterProps()
+    ```
 
 getFilterProps() is called three times in FiltersInfo.java to retrieve details about the
 "AbiWord", "Pay", and "Clubs" filters. The output for "Clubs" is:
@@ -435,16 +438,17 @@ The most cryptic of the properties is the filter flags integer (524355 in the ex
 above). It's actually a collection of bitwise OR'ed hexadecimals, and FiltersInfo.java
 shows how they can be accessed:
 
-```java
-// part of FiltersInfo.java...
-
-int flags = (int) Props.getValue("Flags", props);
-System.out.println("Filter flags: " + Integer.toHexString(flags));
-           // print as a hexadecimal string
-
-System.out.println(" Import: " + Info.isImport(flags));
-System.out.println(" Export: " + Info.isExport(flags));
-```
+=== "java"
+    ```java
+    // part of FiltersInfo.java...
+    
+    int flags = (int) Props.getValue("Flags", props);
+    System.out.println("Filter flags: " + Integer.toHexString(flags));
+               // print as a hexadecimal string
+    
+    System.out.println(" Import: " + Info.isImport(flags));
+    System.out.println(" Export: " + Info.isExport(flags));
+    ```
 
 The output is:
 
@@ -506,84 +510,86 @@ clubs.odt isn't nicely formatted like Figure 10.
 
 The ApplyInFilter program:
 
-```java
-public class ApplyInFilter
-{
-  public static void main(String[] args)
-  {
-    if (args.length != 3) {
-      System.out.println("Usage: java ApplyInFilter
-                <XML fnm> <Flat XML import filter> <new ODF>");
-      return;
-    }
-
-    // convert the data to Flat XML
-    String xmlStr = XML.applyXSLT(args[0], args[1]);
-    if (xmlStr == null) {
-      System.out.println("Filtering failed");
-      return;
-    }
-
-    // save flat XML data in a temp file
-    String flatFnm = FileIO.createTempFile("xml");
-    FileIO.saveString(flatFnm, xmlStr);
-
-    XComponentLoader loader = Lo.loadOffice();
-
-    // get the type of the output file
-    String odfFnm = args[2];
-    String docType = Lo.ext2DocType( Info.getExt(odfFnm));
-    System.out.println("Doc type: " + docType);
-
-    // open temp file using the correct Flat XML filter
-    XComponent doc = Lo.openFlatDoc(flatFnm, docType, loader);
-    if (doc == null)
-      System.out.println("Document creation failed");
-    else {
-      GUI.setVisible(doc, true);
-      Lo.waitEnter();
-      Lo.saveDoc(doc, odfFnm);
-      Lo.closeDoc(doc);
-    }
-    Lo.closeOffice();
-  }   // end of main()
-
-}  // end of ApplyInFilter class
-
-Java's XSLT processor is called by XML.applyXSLT():
-
-// in the XML class
-public static String applyXSLT(String xmlFnm, String xslFnm)
-{
-  try {
-    TransformerFactory tf = TransformerFactory.newInstance();
-    Source xslt = new StreamSource(new File(xslFnm));
-    Transformer t = tf.newTransformer(xslt);
-
-    System.out.println("Applying filter " + xslFnm +
-                                            " to " + xmlFnm);
-    Source text = new StreamSource(new File(xmlFnm));
-    StreamResult result = new StreamResult(new StringWriter());
-
-    t.transform(text, result);
-    return result.getWriter().toString();
-  }
-  catch(Exception e)
-  {  System.out.println("Unable to transform " + xmlFnm +
-                        " with " + xslFnm);
-     System.out.println("  " + e);
-     return null;
-  }
-}   // end of applyXSLT()
-```
+=== "java"
+    ```java
+    public class ApplyInFilter
+    {
+      public static void main(String[] args)
+      {
+        if (args.length != 3) {
+          System.out.println("Usage: java ApplyInFilter
+                    <XML fnm> <Flat XML import filter> <new ODF>");
+          return;
+        }
+    
+        // convert the data to Flat XML
+        String xmlStr = XML.applyXSLT(args[0], args[1]);
+        if (xmlStr == null) {
+          System.out.println("Filtering failed");
+          return;
+        }
+    
+        // save flat XML data in a temp file
+        String flatFnm = FileIO.createTempFile("xml");
+        FileIO.saveString(flatFnm, xmlStr);
+    
+        XComponentLoader loader = Lo.loadOffice();
+    
+        // get the type of the output file
+        String odfFnm = args[2];
+        String docType = Lo.ext2DocType( Info.getExt(odfFnm));
+        System.out.println("Doc type: " + docType);
+    
+        // open temp file using the correct Flat XML filter
+        XComponent doc = Lo.openFlatDoc(flatFnm, docType, loader);
+        if (doc == null)
+          System.out.println("Document creation failed");
+        else {
+          GUI.setVisible(doc, true);
+          Lo.waitEnter();
+          Lo.saveDoc(doc, odfFnm);
+          Lo.closeDoc(doc);
+        }
+        Lo.closeOffice();
+      }   // end of main()
+    
+    }  // end of ApplyInFilter class
+    
+    Java's XSLT processor is called by XML.applyXSLT():
+    
+    // in the XML class
+    public static String applyXSLT(String xmlFnm, String xslFnm)
+    {
+      try {
+        TransformerFactory tf = TransformerFactory.newInstance();
+        Source xslt = new StreamSource(new File(xslFnm));
+        Transformer t = tf.newTransformer(xslt);
+    
+        System.out.println("Applying filter " + xslFnm +
+                                                " to " + xmlFnm);
+        Source text = new StreamSource(new File(xmlFnm));
+        StreamResult result = new StreamResult(new StringWriter());
+    
+        t.transform(text, result);
+        return result.getWriter().toString();
+      }
+      catch(Exception e)
+      {  System.out.println("Unable to transform " + xmlFnm +
+                            " with " + xslFnm);
+         System.out.println("  " + e);
+         return null;
+      }
+    }   // end of applyXSLT()
+    ```
 
 The resulting Flat XML is saved to a temporary file by ApplyInFilter.java, and then
 the document type of the output file is obtained:
 
-```java
-// part of ApplyInFilter.java...
-String docType = Lo.ext2DocType( Info.getExt(odfFnm));
-```
+=== "java"
+    ```java
+    // part of ApplyInFilter.java...
+    String docType = Lo.ext2DocType( Info.getExt(odfFnm));
+    ```
 
 The docType string is "scalc" when the ODT file is payment.ods, and "swriter" for
 clubs.odt.
@@ -591,37 +597,39 @@ clubs.odt.
 Lo.openFlatDoc() uses the document type to select the correct Flat XML filter, and
 passes it to Lo.openDoc() as the "FilterName" property:
 
-```java
-// in the Lo class
-public static XComponent openFlatDoc(String fnm, String docType,
-                                       XComponentLoader loader)
-{ String nm = XML.getFlatFilterName(docType);
-  return openDoc(fnm, loader, Props.makeProps("FilterName", nm));
-}
-```
+=== "java"
+    ```java
+    // in the Lo class
+    public static XComponent openFlatDoc(String fnm, String docType,
+                                           XComponentLoader loader)
+    { String nm = XML.getFlatFilterName(docType);
+      return openDoc(fnm, loader, Props.makeProps("FilterName", nm));
+    }
+    ```
 
 XML.getFlatFilterName() maps a document type to an appropriate Flat XML filter
 name:
 
-```java
-// in the XML class
-public static String getFlatFilterName(String docType)
-{
-  if (docType == Lo.WRITER_STR)
-    return "OpenDocument Text Flat XML";
-  else if (docType == Lo.CALC_STR)
-    return "OpenDocument Spreadsheet Flat XML";
-  else if (docType == Lo.DRAW_STR)
-    return "OpenDocument Drawing Flat XML";
-  else if (docType == Lo.IMPRESS_STR)
-    return "OpenDocument Presentation Flat XML";
-  else {
-    System.out.println("No Flat XML filter for this
-                        document type; using Flat text");
-    return "OpenDocument Text Flat XML";
-  }
-}  // end of getFlatFilterName()
-```
+=== "java"
+    ```java
+    // in the XML class
+    public static String getFlatFilterName(String docType)
+    {
+      if (docType == Lo.WRITER_STR)
+        return "OpenDocument Text Flat XML";
+      else if (docType == Lo.CALC_STR)
+        return "OpenDocument Spreadsheet Flat XML";
+      else if (docType == Lo.DRAW_STR)
+        return "OpenDocument Drawing Flat XML";
+      else if (docType == Lo.IMPRESS_STR)
+        return "OpenDocument Presentation Flat XML";
+      else {
+        System.out.println("No Flat XML filter for this
+                            document type; using Flat text");
+        return "OpenDocument Text Flat XML";
+      }
+    }  // end of getFlatFilterName()
+    ```
 
 
 ### 2.2.  Exporting XML with Java
@@ -653,66 +661,68 @@ Info"), but Office automatically changes spaces inside names to "_20_". So I had
 change the XSLT rules to refer to these names (i.e.  "Club_20_Name",
 "Club_20_Code", "Age_20_Groups", and "Club_20_Info").
 
-```java
-The ApplyOutFilter program:
-
-public class ApplyOutFilter
-{
-  public static void main(String[] args)
-  {
-    if (args.length != 3) {
-     System.out.println("Usage: java ApplyOutFilter <XML file>
-                        <Flat XML export filter> <new XML file>");
-      return;
-    }
-
-    XComponentLoader loader = Lo.loadOffice();
-    XComponent doc = Lo.openDoc(args[0], loader);
-    if (doc == null) {
-      System.out.println("Could not open document: " + args[0]);
-      Lo.closeOffice();
-      return;
-    }
-
-    // save flat XML data
-    String flatFnm = FileIO.createTempFile("xml");
-    Lo.saveDoc(doc, flatFnm);
-    Lo.closeDoc(doc);
-
-    // use XSLT to convert Flat XML into simple XML
-    String filteredXML = XML.applyXSLT(flatFnm, args[1]);
-    if (filteredXML == null)
-      System.out.println("Filtering failed");
-    else {
-      // indent, print, and save
-      String xmlStr = XML.indent2Str(filteredXML);
-      System.out.println(xmlStr);
-      FileIO.saveString(args[2], xmlStr);
-    }
-
-    Lo.closeOffice();
-  }   // end of main()
-
-
-}  // end of ApplyOutFilter class
-```
+=== "java"
+    ```java
+    The ApplyOutFilter program:
+    
+    public class ApplyOutFilter
+    {
+      public static void main(String[] args)
+      {
+        if (args.length != 3) {
+         System.out.println("Usage: java ApplyOutFilter <XML file>
+                            <Flat XML export filter> <new XML file>");
+          return;
+        }
+    
+        XComponentLoader loader = Lo.loadOffice();
+        XComponent doc = Lo.openDoc(args[0], loader);
+        if (doc == null) {
+          System.out.println("Could not open document: " + args[0]);
+          Lo.closeOffice();
+          return;
+        }
+    
+        // save flat XML data
+        String flatFnm = FileIO.createTempFile("xml");
+        Lo.saveDoc(doc, flatFnm);
+        Lo.closeDoc(doc);
+    
+        // use XSLT to convert Flat XML into simple XML
+        String filteredXML = XML.applyXSLT(flatFnm, args[1]);
+        if (filteredXML == null)
+          System.out.println("Filtering failed");
+        else {
+          // indent, print, and save
+          String xmlStr = XML.indent2Str(filteredXML);
+          System.out.println(xmlStr);
+          FileIO.saveString(args[2], xmlStr);
+        }
+    
+        Lo.closeOffice();
+      }   // end of main()
+    
+    
+    }  // end of ApplyOutFilter class
+    ```
 
 At the end of ApplyOutFilter.java, the XML text in xmlStr is indented and printed.
 The indention is carried out by XML.indent2Str() which calls XML.applyXSLT2str()
 with an indenting transformation loaded from indent.xsl:
 
-```java
-// in the XML class
-// global
-private static final String INDENT_FNM = "indent.xsl";
-  // for indenting XML tags, and adding newlines between tags
-
-
-public static String indent2Str(String xmlStr)
-{  return applyXSLT2str(xmlStr,
-                    FileIO.getUtilsFolder()+INDENT_FNM);
-}
-```
+=== "java"
+    ```java
+    // in the XML class
+    // global
+    private static final String INDENT_FNM = "indent.xsl";
+      // for indenting XML tags, and adding newlines between tags
+    
+    
+    public static String indent2Str(String xmlStr)
+    {  return applyXSLT2str(xmlStr,
+                        FileIO.getUtilsFolder()+INDENT_FNM);
+    }
+    ```
 
 applyXSLT2str() is a variant of XML.applyXSLT() which reads XML from a string
 rather than a file.
@@ -778,7 +788,7 @@ Node.ATTRIBUTE.
 
 There are many online tutorials on Java and DOM, such as Oracle's at
 https://docs.oracle.com/javase/tutorial/jaxp/dom/. Two other good ones are mkyong's
-starting at https://mkyong.com/tutorials/java-xml-tutorials/ and "Easy DOM
+starting at https://mkyong.com/tutorials/java-xml-tutorials/ and "Easy DO
 Parsing in Java" by Eric Bruno at https://drdobbs.com/jvm/easy-dom-parsing-in-java/231002580/.
 I've 'borrowed' some of Bruno's DOM functions for my XML.java
 support class, and his company.xml example.
@@ -847,44 +857,45 @@ Clicking on the arrow heads expand or contract the tree view.
 My ExamineCompany.java example loads this data as a DOM tree, and extracts
 various information:
 
-```java
-// in ExamineCompany.java
-public class ExamineCompany
-{
-  public static void main(String[] args) throws Exception
-  {
-    Document doc = XML.loadDoc("company.xml");
-    NodeList root = doc.getChildNodes();  // get the document's root
-
-    // move down the tree to the executive in the first company node
-    Node comps = XML.getNode("Companies", root);
-    Node comp = XML.getNode("Company", comps.getChildNodes());
-    Node exec = XML.getNode("Executive", comp.getChildNodes());
-
-    // print the executive's data
-    String execType = XML.getNodeAttr("type", exec);
-    NodeList exNodes = exec.getChildNodes();
-    String lastName = XML.getNodeValue("LastName", exNodes);
-    String firstName = XML.getNodeValue("FirstName", exNodes);
-    String street = XML.getNodeValue("street", exNodes);
-    String city = XML.getNodeValue("city", exNodes);
-    String state = XML.getNodeValue("state", exNodes);
-    String zip = XML.getNodeValue("zip", exNodes);
-
-    System.out.println(execType);
-    System.out.println(lastName + ", " + firstName);
-    System.out.println(street);
-    System.out.println(city + ", " + state + " " + zip);
-
-    // get all the data in the tree for a given node/tag name
-    NodeList lnNodes = doc.getElementsByTagName("LastName");
-    ArrayList<String> lastnames = XML.getNodeValues(lnNodes);
-    System.out.println("All lastnames:");
-    for(String lastname: lastnames)
-      System.out.println("  " + lastname);
-  }  // end of main()
-}  // end of ExamineCompany class
-```
+=== "java"
+    ```java
+    // in ExamineCompany.java
+    public class ExamineCompany
+    {
+      public static void main(String[] args) throws Exception
+      {
+        Document doc = XML.loadDoc("company.xml");
+        NodeList root = doc.getChildNodes();  // get the document's root
+    
+        // move down the tree to the executive in the first company node
+        Node comps = XML.getNode("Companies", root);
+        Node comp = XML.getNode("Company", comps.getChildNodes());
+        Node exec = XML.getNode("Executive", comp.getChildNodes());
+    
+        // print the executive's data
+        String execType = XML.getNodeAttr("type", exec);
+        NodeList exNodes = exec.getChildNodes();
+        String lastName = XML.getNodeValue("LastName", exNodes);
+        String firstName = XML.getNodeValue("FirstName", exNodes);
+        String street = XML.getNodeValue("street", exNodes);
+        String city = XML.getNodeValue("city", exNodes);
+        String state = XML.getNodeValue("state", exNodes);
+        String zip = XML.getNodeValue("zip", exNodes);
+    
+        System.out.println(execType);
+        System.out.println(lastName + ", " + firstName);
+        System.out.println(street);
+        System.out.println(city + ", " + state + " " + zip);
+    
+        // get all the data in the tree for a given node/tag name
+        NodeList lnNodes = doc.getElementsByTagName("LastName");
+        ArrayList<String> lastnames = XML.getNodeValues(lnNodes);
+        System.out.println("All lastnames:");
+        for(String lastname: lastnames)
+          System.out.println("  " + lastname);
+      }  // end of main()
+    }  // end of ExamineCompany class
+    ```
 
 The program outputs details about the first company, and the lastnames of all the
 company bosses:
@@ -903,93 +914,98 @@ All lastnames:
 XML.getNode() searches through a list of nodes, and returns the first with the
 specified tag name:
 
-```java
-// in the XML class
-public static Node getNode(String tagName, NodeList nodes)
-{
-  for (int i = 0; i < nodes.getLength(); i++) {
-    Node node = nodes.item(i);
-    if (node.getNodeName().equalsIgnoreCase(tagName))
-      return node;
-  }
-  return null;
-}  // end of getNode()
-```
+=== "java"
+    ```java
+    // in the XML class
+    public static Node getNode(String tagName, NodeList nodes)
+    {
+      for (int i = 0; i < nodes.getLength(); i++) {
+        Node node = nodes.item(i);
+        if (node.getNodeName().equalsIgnoreCase(tagName))
+          return node;
+      }
+      return null;
+    }  // end of getNode()
+    ```
 
 XML.getNodeValue() looks for a node in a list based on its tag name, and extracts the
 data stored beneath that node.
 
-```java
-// in the XML class
-public static String getNodeValue(String tagName, NodeList nodes)
-{
-  if (nodes == null)
-    return "";
-  for (int i = 0; i < nodes.getLength(); i++) {
-    Node n = nodes.item(i);
-    if (n.getNodeName().equalsIgnoreCase(tagName))
-      return getNodeValue(n);
-  }
-  return "";
-}  // end of getNodeValue()
-```
+=== "java"
+    ```java
+    // in the XML class
+    public static String getNodeValue(String tagName, NodeList nodes)
+    {
+      if (nodes == null)
+        return "";
+      for (int i = 0; i < nodes.getLength(); i++) {
+        Node n = nodes.item(i);
+        if (n.getNodeName().equalsIgnoreCase(tagName))
+          return getNodeValue(n);
+      }
+      return "";
+    }  // end of getNodeValue()
+    ```
 
 The second version of XML.getNodeValue() retrieves the text from a node's
 TEXT_NODE child (if there is one):
 
-```java
-// in the XML class
-public static String getNodeValue(Node node)
-{
-  if (node == null)
-    return "";
-  NodeList childNodes = node.getChildNodes();
-  for (int i = 0; i < childNodes.getLength(); i++) {
-    Node n = childNodes.item(i);
-    if (n.getNodeType() == Node.TEXT_NODE)
-      return n.getNodeValue().trim();
-  }
-  return "";
-}  // end of getNodeValue()
-```
+=== "java"
+    ```java
+    // in the XML class
+    public static String getNodeValue(Node node)
+    {
+      if (node == null)
+        return "";
+      NodeList childNodes = node.getChildNodes();
+      for (int i = 0; i < childNodes.getLength(); i++) {
+        Node n = childNodes.item(i);
+        if (n.getNodeType() == Node.TEXT_NODE)
+          return n.getNodeValue().trim();
+      }
+      return "";
+    }  // end of getNodeValue()
+    ```
 
 XML.getNodeValues() constructs a list of the data stored in all the supplied nodes:
 
-```java
-// in the XML class
-public static ArrayList<String> getNodeValues(NodeList nodes)
-{
-  if (nodes == null)
-    return null;
-  ArrayList<String> vals = new ArrayList<String>();
-  for (int i = 0; i < nodes.getLength(); i++) {
-     String val = getNodeValue(nodes.item(i));
-     if (val != null)
-       vals.add(val);
-  }
-  return vals;
-}  // end of getNodeValues()
-```
+=== "java"
+    ```java
+    // in the XML class
+    public static ArrayList<String> getNodeValues(NodeList nodes)
+    {
+      if (nodes == null)
+        return null;
+      ArrayList<String> vals = new ArrayList<String>();
+      for (int i = 0; i < nodes.getLength(); i++) {
+         String val = getNodeValue(nodes.item(i));
+         if (val != null)
+           vals.add(val);
+      }
+      return vals;
+    }  // end of getNodeValues()
+    ```
 
 XML.getNodeAttr() extracts data from a node's attribute:
 
-```java
-// in the XML class
-public static String getNodeAttr(String attrName, Node node)
-{
-  if (node == null)
-    return "";
-  NamedNodeMap attrs = node.getAttributes();
-  if (attrs == null)
-    return "";
-  for (int i = 0; i < attrs.getLength(); i++) {
-    Node attr = attrs.item(i);
-    if (attr.getNodeName().equalsIgnoreCase(attrName))
-      return attr.getNodeValue().trim();
-  }
-  return "";
-}  // end of getNodeAttr()
-```
+=== "java"
+    ```java
+    // in the XML class
+    public static String getNodeAttr(String attrName, Node node)
+    {
+      if (node == null)
+        return "";
+      NamedNodeMap attrs = node.getAttributes();
+      if (attrs == null)
+        return "";
+      for (int i = 0; i < attrs.getLength(); i++) {
+        Node attr = attrs.item(i);
+        if (attr.getNodeName().equalsIgnoreCase(attrName))
+          return attr.getNodeValue().trim();
+      }
+      return "";
+    }  // end of getNodeAttr()
+    ```
 
 Converting XML to Spreadsheet Data
 It's fairly easy to map XML data into a spreadsheet format of rows and columns.
@@ -1038,82 +1054,85 @@ My CreatePay.java example utilizes XML.getAllNodeValues() to build a 2D array
 from the pay.xml data, and calls Calc.setArray() to add the data to a new Calc
 document:
 
-```java
-// in CreatePay.java
-public class CreatePay
-{
-  public static void main(String args[])
-  {
-    Document xdoc = XML.loadDoc("pay.xml");
-    NodeList pays = xdoc.getElementsByTagName("payment");
-    if (pays == null)
-      return;
-
-    Object[][] data = XML.getAllNodeValues(pays,
-             new String[]{"purpose", "amount", "tax", "maturity"});
-    Lo.printTable("payments", data);
-
-    XComponentLoader loader = Lo.loadOffice();
-    XSpreadsheetDocument doc = Calc.createDoc(loader);
-    if (doc == null) {
-      System.out.println("Document creation failed");
-      Lo.closeOffice();
-      return;
-    }
-    GUI.setVisible(doc, true);
-    XSpreadsheet sheet = Calc.getSheet(doc, 0);
-
-    Calc.setArray(sheet, "A1", data);
-
-    // Lo.saveDoc(doc, "payCreated.ods");
-    Lo.waitEnter();
-    Lo.closeDoc(doc);
-    Lo.closeOffice();
-  }  // end of main()
-
-}  // end of CreatePay class
-```
+=== "java"
+    ```java
+    // in CreatePay.java
+    public class CreatePay
+    {
+      public static void main(String args[])
+      {
+        Document xdoc = XML.loadDoc("pay.xml");
+        NodeList pays = xdoc.getElementsByTagName("payment");
+        if (pays == null)
+          return;
+    
+        Object[][] data = XML.getAllNodeValues(pays,
+                 new String[]{"purpose", "amount", "tax", "maturity"});
+        Lo.printTable("payments", data);
+    
+        XComponentLoader loader = Lo.loadOffice();
+        XSpreadsheetDocument doc = Calc.createDoc(loader);
+        if (doc == null) {
+          System.out.println("Document creation failed");
+          Lo.closeOffice();
+          return;
+        }
+        GUI.setVisible(doc, true);
+        XSpreadsheet sheet = Calc.getSheet(doc, 0);
+    
+        Calc.setArray(sheet, "A1", data);
+    
+        // Lo.saveDoc(doc, "payCreated.ods");
+        Lo.waitEnter();
+        Lo.closeDoc(doc);
+        Lo.closeOffice();
+      }  // end of main()
+    
+    }  // end of CreatePay class
+    ```
 
 The list of payment nodes is obtained using:
 
-```java
-// part of CreatePay.java...
-
-NodeList pays = xdoc.getElementsByTagName("payment");
-The 2D array of payment data is constructed by:
-
-// part of CreatePay.java...
-
-Object[][] data = XML.getAllNodeValues(pays,
-        new String[]{"purpose", "amount", "tax", "maturity"});
-```
+=== "java"
+    ```java
+    // part of CreatePay.java...
+    
+    NodeList pays = xdoc.getElementsByTagName("payment");
+    The 2D array of payment data is constructed by:
+    
+    // part of CreatePay.java...
+    
+    Object[][] data = XML.getAllNodeValues(pays,
+            new String[]{"purpose", "amount", "tax", "maturity"});
+    ```
 
 The first argument of getAllNodeValues() is the list of nodes to be scanned, and the
 second parameter is an array of tag names. The named nodes are assumed to be
 children of each  node in the list, and their data becomes one row in the 2D array. The
 method's code:
 
-```java
-// in the XML class
-public static Object[][] getAllNodeValues(NodeList rowNodes,
-                                          String[] colIDs)
-{ int numRows = rowNodes.getLength();
-  int numCols = colIDs.length;
-  Object[][] data = new Object[numRows+1][numCols];
-
-  // put column names in first row of array
-  for (int col = 0; col < numCols; col++)
-    data[0][col] = Lo.capitalize( colIDs[col]);
-
-  for (int i = 0; i < numRows; i++) {
-    // extract column data for ith row
-    NodeList colNodes = rowNodes.item(i).getChildNodes();
-    for (int col = 0; col < numCols; col++)
-       data[i+1][col] = getNodeValue(colIDs[col], colNodes);
-  }
-  return data;
-}  // end of getAllNodeValues()
-```
+=== "java"
+    ```java
+    // in the XML class
+    public static Object[][] getAllNodeValues(NodeList rowNodes,
+                                              String[] colIDs)
+    { int numRows = rowNodes.getLength();
+      int numCols = colIDs.length;
+      Object[][] data = new Object[numRows+1][numCols];
+    
+      // put column names in first row of array
+      for (int col = 0; col < numCols; col++)
+        data[0][col] = Lo.capitalize( colIDs[col]);
+    
+      for (int i = 0; i < numRows; i++) {
+        // extract column data for ith row
+        NodeList colNodes = rowNodes.item(i).getChildNodes();
+        for (int col = 0; col < numCols; col++)
+           data[i+1][col] = getNodeValue(colIDs[col], colNodes);
+      }
+      return data;
+    }  // end of getAllNodeValues()
+    ```
 
 XML.getAllNodeValues() also adds a header row to the array made up of the tag
 names.
@@ -1180,44 +1199,45 @@ The CreateAssoc.java example loads clubs.xml, and selects the first association.
 list of clubs is passed to XML.getAllNodeValues() for conversion into an array. The
 complete program is:
 
-```java
-// in CreateAssoc.java
-public class CreateAssoc
-{
-  public static void main(String args[])
-  {
-    Document xdoc = XML.loadDoc("clubs.xml");
-    NodeList root = xdoc.getChildNodes();
-
-    // get the first association
-    Node cdb = XML.getNode("club-database", root);
-    Node assoc1 = XML.getNode("association", cdb.getChildNodes());
-    NodeList clubs = assoc1.getChildNodes();
-
-    // convert clubs information into an array
-    Object[][] data = XML.getAllNodeValues(clubs,
-      new String[]{"name", "contact", "location", "phone", "email"});
-    Lo.printTable("clubs", data);
-
-    XComponentLoader loader = Lo.loadOffice();
-    XSpreadsheetDocument doc = Calc.createDoc(loader);
-    if (doc == null) {
-      System.out.println("Document creation failed");
-      Lo.closeOffice();
-      return;
-    }
-    GUI.setVisible(doc, true);
-    XSpreadsheet sheet = Calc.getSheet(doc, 0);
-    Calc.setArray(sheet, "A1", data);
-
-    // Lo.saveDoc(doc, "clubsCreated.ods");
-    Lo.waitEnter();
-    Lo.closeDoc(doc);
-    Lo.closeOffice();
-  }  // end of main()
-
-}  // end of CreateAssoc class
-```
+=== "java"
+    ```java
+    // in CreateAssoc.java
+    public class CreateAssoc
+    {
+      public static void main(String args[])
+      {
+        Document xdoc = XML.loadDoc("clubs.xml");
+        NodeList root = xdoc.getChildNodes();
+    
+        // get the first association
+        Node cdb = XML.getNode("club-database", root);
+        Node assoc1 = XML.getNode("association", cdb.getChildNodes());
+        NodeList clubs = assoc1.getChildNodes();
+    
+        // convert clubs information into an array
+        Object[][] data = XML.getAllNodeValues(clubs,
+          new String[]{"name", "contact", "location", "phone", "email"});
+        Lo.printTable("clubs", data);
+    
+        XComponentLoader loader = Lo.loadOffice();
+        XSpreadsheetDocument doc = Calc.createDoc(loader);
+        if (doc == null) {
+          System.out.println("Document creation failed");
+          Lo.closeOffice();
+          return;
+        }
+        GUI.setVisible(doc, true);
+        XSpreadsheet sheet = Calc.getSheet(doc, 0);
+        Calc.setArray(sheet, "A1", data);
+    
+        // Lo.saveDoc(doc, "clubsCreated.ods");
+        Lo.waitEnter();
+        Lo.closeDoc(doc);
+        Lo.closeOffice();
+      }  // end of main()
+    
+    }  // end of CreateAssoc class
+    ```
 
 XML.getAllNodeValues() only requests data for five of the seven elements ("name",
 "contact", "location", "phone", "email") to reduce the information returned. The
@@ -1331,79 +1351,82 @@ their names. Also, the data is always doubly quoted.
 
 ExtractXMLInfo.java travels over the DOM tree, printing what it finds to a text file:
 
-```java
-// in ExtractXMLInfo.java
-public static void main(String[] args) throws Exception
-{
-  if (args.length != 1) {
-    System.out.println("Usage: run ExtractXMLInfo <XML file>");
-    return;
-  }
-  Document doc = XML.loadDoc(args[0]);
-  if (doc == null)
-    return;
-
-  String fname = Info.getName(args[0]);
-  String outFnm = fname + "XML.txt";
-  System.out.println("Writing XML data from " + args[0] +
-                                           " to " + outFnm);
-  PrintWriter pw = new PrintWriter(new FileWriter(outFnm));
-
-  NodeList root = doc.getChildNodes();
-  // there may be multiple trees; visit each one
-  for (int i = 0; i < root.getLength(); i++) {
-    visitNode(pw, root.item(i), "");
-    pw.write("\n");
-  }
-  pw.close();
-}  // end of main()
-```
+=== "java"
+    ```java
+    // in ExtractXMLInfo.java
+    public static void main(String[] args) throws Exception
+    {
+      if (args.length != 1) {
+        System.out.println("Usage: run ExtractXMLInfo <XML file>");
+        return;
+      }
+      Document doc = XML.loadDoc(args[0]);
+      if (doc == null)
+        return;
+    
+      String fname = Info.getName(args[0]);
+      String outFnm = fname + "XML.txt";
+      System.out.println("Writing XML data from " + args[0] +
+                                               " to " + outFnm);
+      PrintWriter pw = new PrintWriter(new FileWriter(outFnm));
+    
+      NodeList root = doc.getChildNodes();
+      // there may be multiple trees; visit each one
+      for (int i = 0; i < root.getLength(); i++) {
+        visitNode(pw, root.item(i), "");
+        pw.write("\n");
+      }
+      pw.close();
+    }  // end of main()
+    ```
 
 visitNode() prints the node's tag, any attribute data, any text child node data, and
 recursively visits the rest of the node's children:
 
-```java
-// part of ExtractXMLInfo.java
-private static void visitNode(PrintWriter pw, Node node, String ind)
-{
-  pw.write(ind + node.getNodeName());
-  visitAttrs(pw, node);
-
-  // examine all the child nodes
-  NodeList nodeList = node.getChildNodes();
-  for (int i = 0; i < nodeList.getLength(); i++) {
-    Node child = nodeList.item(i);
-    if (child.getNodeType() == Node.TEXT_NODE) {
-      String trimmedVal = child.getNodeValue().trim();
-      if (trimmedVal.length() == 0)
-        pw.write("\n");
-      else
-        pw.write(": \"" + trimmedVal + "\"");
-           // element names with values end with ':'
-    }
-    else if (child.getNodeType() == Node.ELEMENT_NODE)
-      visitNode(pw, child, ind+"  ");
-  }
-} // end of visitNode()
-```
+=== "java"
+    ```java
+    // part of ExtractXMLInfo.java
+    private static void visitNode(PrintWriter pw, Node node, String ind)
+    {
+      pw.write(ind + node.getNodeName());
+      visitAttrs(pw, node);
+    
+      // examine all the child nodes
+      NodeList nodeList = node.getChildNodes();
+      for (int i = 0; i < nodeList.getLength(); i++) {
+        Node child = nodeList.item(i);
+        if (child.getNodeType() == Node.TEXT_NODE) {
+          String trimmedVal = child.getNodeValue().trim();
+          if (trimmedVal.length() == 0)
+            pw.write("\n");
+          else
+            pw.write(": \"" + trimmedVal + "\"");
+               // element names with values end with ':'
+        }
+        else if (child.getNodeType() == Node.ELEMENT_NODE)
+          visitNode(pw, child, ind+"  ");
+      }
+    } // end of visitNode()
+    ```
 
 visitAttrs() prints attribute names and data:
 
-```java
-// part of ExtractXMLInfo.java
-private static void visitAttrs(PrintWriter pw, Node node)
-{
-  NamedNodeMap attrs = node.getAttributes();
-  if (attrs != null) {
-    for (int i = 0; i < attrs.getLength(); i++) {
-      Node attr = attrs.item(i);
-      pw.write("  " + attr.getNodeName() + "= \"" +
-                             attr.getNodeValue() + "\"");
-           // attribute names end with '='
-    }
-  }
-}  // end of visitAttrs()
-```
+=== "java"
+    ```java
+    // part of ExtractXMLInfo.java
+    private static void visitAttrs(PrintWriter pw, Node node)
+    {
+      NamedNodeMap attrs = node.getAttributes();
+      if (attrs != null) {
+        for (int i = 0; i < attrs.getLength(); i++) {
+          Node attr = attrs.item(i);
+          pw.write("  " + attr.getNodeName() + "= \"" +
+                                 attr.getNodeValue() + "\"");
+               // attribute names end with '='
+        }
+      }
+    }  // end of visitAttrs()
+    ```
 
 When ExtractXMLInfo.java has finished stripping the XML, the next stage is to call
 BuildXMLSheet.java to load the text into Office as a Calc sheet. This is done by
@@ -1411,129 +1434,131 @@ converting it into a 2D array which is added to the spreadsheet by Calc.setArray
 
 The main() function of BuildXMLSheet.java calls getData() to create the array:
 
-```java
-// in BuildXMLSheet.java
-public static void main(String[] args)
-{
-  if (args.length != 1) {
-    System.out.println("Usage: run BuildXMLSheet <XML textfile>");
-    return;
-  }
-
-  Object[][] data = getData(args[0]);
-  Lo.printTable(args[0] + " data", data);
-
-  XComponentLoader loader = Lo.loadOffice();
-  XSpreadsheetDocument doc = Calc.createDoc(loader);
-  if (doc == null) {
-    System.out.println("Document creation failed");
-    Lo.closeOffice();
-    return;
-  }
-  GUI.setVisible(doc, true);
-  Lo.delay(2000);
-  XSpreadsheet sheet = Calc.getSheet(doc, 0);
-  Calc.setArray(sheet, "A1", data);
-
-  // Lo.saveDoc(doc, "createdSS.ods");
-  Lo.waitEnter();
-    Lo.closeDoc(doc);
-    Lo.closeOffice();
-  }  // end of main()
-```
+=== "java"
+    ```java
+    // in BuildXMLSheet.java
+    public static void main(String[] args)
+    {
+      if (args.length != 1) {
+        System.out.println("Usage: run BuildXMLSheet <XML textfile>");
+        return;
+      }
+    
+      Object[][] data = getData(args[0]);
+      Lo.printTable(args[0] + " data", data);
+    
+      XComponentLoader loader = Lo.loadOffice();
+      XSpreadsheetDocument doc = Calc.createDoc(loader);
+      if (doc == null) {
+        System.out.println("Document creation failed");
+        Lo.closeOffice();
+        return;
+      }
+      GUI.setVisible(doc, true);
+      Lo.delay(2000);
+      XSpreadsheet sheet = Calc.getSheet(doc, 0);
+      Calc.setArray(sheet, "A1", data);
+    
+      // Lo.saveDoc(doc, "createdSS.ods");
+      Lo.waitEnter();
+        Lo.closeDoc(doc);
+        Lo.closeOffice();
+      }  // end of main()
+    ```
 
 getData() builds the array in two steps: initially a list of differently sized arrays is
 created, one for each input line. Then the list is converted into a 2D array where every
 row has the same length.
 
-```java
-// part of BuildXMLSheet.java
-private static Object[][] getData(String fnm)
-{
-  int maxCols = 0;    // max number of columns across all rows
-
-  // each input line is stored as an array inside a list
-  ArrayList<Object[]> rows = new ArrayList<Object[]>();
-
-  System.out.println("Reading data from " + fnm);
-  try {
-    BufferedReader br = new BufferedReader(new FileReader(fnm));
-    String line;
-    while ((line = br.readLine()) != null) {
-       Object[] toks = splitLine(line);
-           // read a line as an array of tokens (strings)
-      if (toks.length > 0)
-        rows.add(toks);
-      if (toks.length > maxCols)
-        maxCols = toks.length;
-    }
-  }
-  catch(IOException e) {
-    System.out.println("Could not read " + fnm);
-    return null;
-  }
-
-  // convert list of different length arrays into a
-  // fixed length 2D array
-  Object[][] data = new Object[rows.size()][maxCols];
-  for (int r = 0; r < rows.size(); r++) {
-    Object[] row = rows.get(r);
-    for (int c = 0; c < maxCols; c++) {
-      if (c >= row.length)
-        data[r][c] = "";   // pad out array row with empty strings
-      else
-        data[r][c] = row[c];
-    }
-  }
-  return data;
-}  // end of getData()
-
-splitLine() converts an input line into an array of tokens.
-
-
-// part of BuildXMLSheet.java
-private static String[] splitLine(String ln)
-{
-  ln += " "; // To detect last token when not quoted...
-
-  boolean inQuote = false;
-  boolean isIndenting = true;
-  int numSpaces = 0;
-
-  StringBuilder word = new StringBuilder();
-  ArrayList<String> toks = new ArrayList<String>();
-               // used to store tokens for the final array
-
-  for (int i = 0; i < ln.length(); i++) {
-    char ch = ln.charAt(i);
-
-    if (ch != ' ' && isIndenting)
-      isIndenting = false;
-
-    if (ch == ' ' && isIndenting) {
-      numSpaces++;
-      if (numSpaces%2 == 0)
-        toks.add("");  // convert two space indent into ""
-    }
-    else if (ch == '\"' || ch == ' ' && !inQuote) {
-      // treat a double quoted string as one token
-      if (ch == '\"')
-        inQuote = !inQuote;
-      if (!inQuote && word.length() > 0) {
-        char lastCh = word.charAt(word.length()-1);
-        if ((lastCh == ':') || (lastCh == '='))
-          // strip element and attribute assignment symbols
-          word.deleteCharAt(word.length()-1);
-        toks.add(word.toString());
-        word.delete(0, word.length());
+=== "java"
+    ```java
+    // part of BuildXMLSheet.java
+    private static Object[][] getData(String fnm)
+    {
+      int maxCols = 0;    // max number of columns across all rows
+    
+      // each input line is stored as an array inside a list
+      ArrayList<Object[]> rows = new ArrayList<Object[]>();
+    
+      System.out.println("Reading data from " + fnm);
+      try {
+        BufferedReader br = new BufferedReader(new FileReader(fnm));
+        String line;
+        while ((line = br.readLine()) != null) {
+           Object[] toks = splitLine(line);
+               // read a line as an array of tokens (strings)
+          if (toks.length > 0)
+            rows.add(toks);
+          if (toks.length > maxCols)
+            maxCols = toks.length;
+        }
       }
-    }
-    else
-      word.append(ch);
-  }
-  return toks.toArray(new String[toks.size()]);
-}  // end of splitLine()
-```
+      catch(IOException e) {
+        System.out.println("Could not read " + fnm);
+        return null;
+      }
+    
+      // convert list of different length arrays into a
+      // fixed length 2D array
+      Object[][] data = new Object[rows.size()][maxCols];
+      for (int r = 0; r < rows.size(); r++) {
+        Object[] row = rows.get(r);
+        for (int c = 0; c < maxCols; c++) {
+          if (c >= row.length)
+            data[r][c] = "";   // pad out array row with empty strings
+          else
+            data[r][c] = row[c];
+        }
+      }
+      return data;
+    }  // end of getData()
+    
+    splitLine() converts an input line into an array of tokens.
+    
+    
+    // part of BuildXMLSheet.java
+    private static String[] splitLine(String ln)
+    {
+      ln += " "; // To detect last token when not quoted...
+    
+      boolean inQuote = false;
+      boolean isIndenting = true;
+      int numSpaces = 0;
+    
+      StringBuilder word = new StringBuilder();
+      ArrayList<String> toks = new ArrayList<String>();
+                   // used to store tokens for the final array
+    
+      for (int i = 0; i < ln.length(); i++) {
+        char ch = ln.charAt(i);
+    
+        if (ch != ' ' && isIndenting)
+          isIndenting = false;
+    
+        if (ch == ' ' && isIndenting) {
+          numSpaces++;
+          if (numSpaces%2 == 0)
+            toks.add("");  // convert two space indent into ""
+        }
+        else if (ch == '\"' || ch == ' ' && !inQuote) {
+          // treat a double quoted string as one token
+          if (ch == '\"')
+            inQuote = !inQuote;
+          if (!inQuote && word.length() > 0) {
+            char lastCh = word.charAt(word.length()-1);
+            if ((lastCh == ':') || (lastCh == '='))
+              // strip element and attribute assignment symbols
+              word.deleteCharAt(word.length()-1);
+            toks.add(word.toString());
+            word.delete(0, word.length());
+          }
+        }
+        else
+          word.append(ch);
+      }
+      return toks.toArray(new String[toks.size()]);
+    }  // end of splitLine()
+    ```
 
 Every two spaces at the start of a line is stored as an empty string in the row array.
 These strings will later occupy spreadsheet cells at the start of a row, causing the
@@ -1642,41 +1667,42 @@ The details of the ObjectFactory aren't important, but the get/set methods in th
 Payments and Payment classes will be useful. My UnmarshallPay.java example
 shows how to use these classes:
 
-```java
-// in UnmarshallPay.java
-import java.io.*;
-import java.util.*;
-import javax.xml.bind.*;
-import Pay.*;   // the package for the Pay classes
-
-public class UnmarshallPay
-{
-  public static void main(String[] args)
-  {
-    try {
-      // initialize the Payments objects using pay.xml
-      JAXBContext jaxbContext =
-               JAXBContext.newInstance(Payments.class);
-      Unmarshaller jaxbUnmarshaller =
-               jaxbContext.createUnmarshaller();
-      Payments pays = (Payments) jaxbUnmarshaller.unmarshal(
-                                     new File("pay.xml"));
-
-      List<Payment> payList = pays.getPayment();
-
-      // print payment names and amounts
-      System.out.println("Payments");
-      for(Payment p : payList)
-        System.out.println("  " + p.getPurpose() +
-                           ": " + p.getAmount());
-    }
-    catch (JAXBException e) {
-      e.printStackTrace();
-    }
-  }  // end of main()
-
-}  // end of UnmarshallPay class
-```
+=== "java"
+    ```java
+    // in UnmarshallPay.java
+    import java.io.*;
+    import java.util.*;
+    import javax.xml.bind.*;
+    import Pay.*;   // the package for the Pay classes
+    
+    public class UnmarshallPay
+    {
+      public static void main(String[] args)
+      {
+        try {
+          // initialize the Payments objects using pay.xml
+          JAXBContext jaxbContext =
+                   JAXBContext.newInstance(Payments.class);
+          Unmarshaller jaxbUnmarshaller =
+                   jaxbContext.createUnmarshaller();
+          Payments pays = (Payments) jaxbUnmarshaller.unmarshal(
+                                         new File("pay.xml"));
+    
+          List<Payment> payList = pays.getPayment();
+    
+          // print payment names and amounts
+          System.out.println("Payments");
+          for(Payment p : payList)
+            System.out.println("  " + p.getPurpose() +
+                               ": " + p.getAmount());
+        }
+        catch (JAXBException e) {
+          e.printStackTrace();
+        }
+      }  // end of main()
+    
+    }  // end of UnmarshallPay class
+    ```
 
 main() creates an Unmarshaller object for the Payments class, which is initialized
 with data from pay.xml. It then iterates through the Payment objects and prints their
@@ -1716,45 +1742,46 @@ Each Association object holds a list of Club objects. Club contains get/set meth
 accessing its fields. My UnmarshallClubs.java example shows how to use these
 classes:
 
-```java
-// in UnmarshallClubs.java
-import java.io.*;
-import java.util.*;
-import javax.xml.bind.*;
-import Clubs.*;  // the package for the Club classes
-
-
-public class UnmarshallClubs
-{
-  public static void main(String[] args)
-  {
-    try {
-      // initialize the Clubs objects using clubs.xml
-      JAXBContext jaxbContext =
-               JAXBContext.newInstance(ClubDatabase.class);
-      Unmarshaller jaxbUnmarshaller =
-               jaxbContext.createUnmarshaller();
-      ClubDatabase cd = (ClubDatabase) jaxbUnmarshaller.unmarshal(
-                                 new File("clubs.xml"));
-
-      List<Association> assocList = cd.getAssociation();
-
-      // print club names for all the associations
-      System.out.println("Associations");
-      for(Association assoc : assocList) {
-        System.out.println("  " + assoc.getId());
-        List<Club> clubs = assoc.getClub();
-        for(Club club : clubs)
-          System.out.println("    " + club.getName());
-      }
-    }
-    catch (JAXBException e) {
-      e.printStackTrace();
-    }
-  }  // end of main()
-
-}  // end of UnmarshallClubs class
-```
+=== "java"
+    ```java
+    // in UnmarshallClubs.java
+    import java.io.*;
+    import java.util.*;
+    import javax.xml.bind.*;
+    import Clubs.*;  // the package for the Club classes
+    
+    
+    public class UnmarshallClubs
+    {
+      public static void main(String[] args)
+      {
+        try {
+          // initialize the Clubs objects using clubs.xml
+          JAXBContext jaxbContext =
+                   JAXBContext.newInstance(ClubDatabase.class);
+          Unmarshaller jaxbUnmarshaller =
+                   jaxbContext.createUnmarshaller();
+          ClubDatabase cd = (ClubDatabase) jaxbUnmarshaller.unmarshal(
+                                     new File("clubs.xml"));
+    
+          List<Association> assocList = cd.getAssociation();
+    
+          // print club names for all the associations
+          System.out.println("Associations");
+          for(Association assoc : assocList) {
+            System.out.println("  " + assoc.getId());
+            List<Club> clubs = assoc.getClub();
+            for(Club club : clubs)
+              System.out.println("    " + club.getName());
+          }
+        }
+        catch (JAXBException e) {
+          e.printStackTrace();
+        }
+      }  // end of main()
+    
+    }  // end of UnmarshallClubs class
+    ```
 
 The unmarshalling is similar to before except that the ClubDatabase object is
 initialized with data from clubs.xml. The code iterates through the clubs in each
@@ -1877,47 +1904,48 @@ The top-level class is Current which stores the weather attributes as objects.
 My UnmarshallWeather.java example examines weather.xml to report if it was
 raining on the report day:
 
-```java
-// in UnmarshallWeather.java
-public class UnmarshallWeather
-{
-  public static void main(String[] args)
-  {
-    try {
-      JAXBContext jaxbContext =
-                    JAXBContext.newInstance(Current.class);
-      Unmarshaller jaxbUnmarshaller =
-                    jaxbContext.createUnmarshaller();
-      Current currWeather = (Current) jaxbUnmarshaller.unmarshal(
-                                 new File("weather.xml"));
-
-      // get precipitation as a boolean
-      String rainingStatus =
-                currWeather.getPrecipitation().getValue();
-      boolean isRaining = rainingStatus.equals("yes");
-
-      // get date in day/month/year format
-      XMLGregorianCalendar gCal =
-               currWeather.getLastupdate().getValueAttribute();
-      Calendar cal = gCal.toGregorianCalendar();
-
-      SimpleDateFormat formatter =
-                          new SimpleDateFormat("dd/MM/yyyy");
-      formatter.setTimeZone(cal.getTimeZone());
-      String dateStr = formatter.format(cal.getTime());
-
-      if (isRaining)
-        System.out.println("It was raining on " + dateStr);
-      else
-        System.out.println("It was NOT raining on " + dateStr);
-    }
-    catch (JAXBException e) {
-      e.printStackTrace();
-    }
-  }  // end of main()
-
-}  // end of UnmarshallWeather class
-```
+=== "java"
+    ```java
+    // in UnmarshallWeather.java
+    public class UnmarshallWeather
+    {
+      public static void main(String[] args)
+      {
+        try {
+          JAXBContext jaxbContext =
+                        JAXBContext.newInstance(Current.class);
+          Unmarshaller jaxbUnmarshaller =
+                        jaxbContext.createUnmarshaller();
+          Current currWeather = (Current) jaxbUnmarshaller.unmarshal(
+                                     new File("weather.xml"));
+    
+          // get precipitation as a boolean
+          String rainingStatus =
+                    currWeather.getPrecipitation().getValue();
+          boolean isRaining = rainingStatus.equals("yes");
+    
+          // get date in day/month/year format
+          XMLGregorianCalendar gCal =
+                   currWeather.getLastupdate().getValueAttribute();
+          Calendar cal = gCal.toGregorianCalendar();
+    
+          SimpleDateFormat formatter =
+                              new SimpleDateFormat("dd/MM/yyyy");
+          formatter.setTimeZone(cal.getTimeZone());
+          String dateStr = formatter.format(cal.getTime());
+    
+          if (isRaining)
+            System.out.println("It was raining on " + dateStr);
+          else
+            System.out.println("It was NOT raining on " + dateStr);
+        }
+        catch (JAXBException e) {
+          e.printStackTrace();
+        }
+      }  // end of main()
+    
+    }  // end of UnmarshallWeather class
+    ```
 
 The output is:
 

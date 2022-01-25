@@ -161,18 +161,20 @@ Some code snippets will help clarify the hierarchies shown in Figures 2-5. The
 following lines load a Draw (or Impress) document called "foo" as an XComponent
 object.
 
-```java
-XComponentLoader loader = Lo.loadOffice();
-XComponent doc = Lo.openDoc("foo", loader);
-```
+=== "java"
+    ```java
+    XComponentLoader loader = Lo.loadOffice();
+    XComponent doc = Lo.openDoc("foo", loader);
+    ```
 
 A common next step is to access the draw pages in the document using the
 XDrawPagesSupplier interface shown in Figure 2:
 
-```java
-XDrawPagesSupplier supplier = Lo.qi(XDrawPagesSupplier.class, doc);
-XDrawPages pages = supplier.getDrawPages();
-```
+=== "java"
+    ```java
+    XDrawPagesSupplier supplier = Lo.qi(XDrawPagesSupplier.class, doc);
+    XDrawPages pages = supplier.getDrawPages();
+    ```
 
 This code works whether the document is a sequence of draw pages (i.e. a Draw
 document) or slides (i.e. an Impress document).
@@ -180,9 +182,10 @@ document) or slides (i.e. an Impress document).
 Using the ideas shown in Figure 3, a particular draw page is accessed based on its
 index position. The first draw page in the document is retrieved with:
 
-```java
-XDrawPage page = Lo.qi(XDrawPage.class, pages.getByIndex(0));
-```
+=== "java"
+    ```java
+    XDrawPage page = Lo.qi(XDrawPage.class, pages.getByIndex(0));
+    ```
 
 Pages are numbered from 0, and a newly created document always contains one page.
 
@@ -190,10 +193,11 @@ The XDrawPage interface is supported by the GenericDrawPage service (see Figure
 5), which holds the page's properties. The following snippet returns the width of the
 page and its page number:
 
-```java
-int width =  (Integer)Props.getProperty(page, "Width");
-int pageNumber = (Short)Props.getProperty(page, "Number");
-```
+=== "java"
+    ```java
+    int width =  (Integer)Props.getProperty(page, "Width");
+    int pageNumber = (Short)Props.getProperty(page, "Number");
+    ```
 
 The "Width" and "Number" properties are documented in the GenericDrawPage
 service page at
@@ -204,10 +208,11 @@ Once a single page has been retrieved, it's possible to access its shapes (as sh
 Figure 4). The following code converts the XDrawPage object to XShapes, and
 accesses the first XShape in its indexed container:
 
-```java
-XShapes shapes = Lo.qi(XShapes.class, page);
-XShape shape = Lo.qi(XShape.class, shapes.getByIndex(0))
-```
+=== "java"
+    ```java
+    XShapes shapes = Lo.qi(XShapes.class, page);
+    XShape shape = Lo.qi(XShape.class, shapes.getByIndex(0))
+    ```
 
 
 ## 4.  Shapes in a Drawing
@@ -255,10 +260,11 @@ LineProperties, and RotationDescriptor services. For instance, to make the recta
 red, the "FillColor" property, defined in the FillProperties service, must be set. The
 code for doing this is not complex:
 
-```java
-Props.setProperty(shape, "FillColor", 0xFF0000);
-                              // hexadecimal for red
-```
+=== "java"
+    ```java
+    Props.setProperty(shape, "FillColor", 0xFF0000);
+                                  // hexadecimal for red
+    ```
 
 The complication comes in knowing that a property called "FillColor" exists. Visit the
 shape's service documentation (e.g. the RectangleShape page at
@@ -273,13 +279,14 @@ services above the Text service (see Figure 7).
 Changing text requires that the text be selected first, which takes us back XText and
 Chapter 5. For example, the text height is changed to 18pt by:
 
-```java
-XText xText = Lo.qi(XText.class, shape);
-XTextCursor cursor = xText.createTextCursor();
-cursor.gotoStart(false);
-cursor.gotoEnd(true);   // select all text
-Props.setProperty(cursor, "CharHeight", 18);
-```
+=== "java"
+    ```java
+    XText xText = Lo.qi(XText.class, shape);
+    XTextCursor cursor = xText.createTextCursor();
+    cursor.gotoStart(false);
+    cursor.gotoEnd(true);   // select all text
+    Props.setProperty(cursor, "CharHeight", 18);
+    ```
 
 First the shape is converted into an XText reference so that text selection can be done
 using a cursor.
@@ -352,15 +359,16 @@ Figure 11. The Slide Show Presentation Services.
 
 Code for starting a slide show for the "foo" document:
 
-```java
-XComponentLoader loader = Lo.loadOffice();
-XComponent doc = Lo.openDoc("foo", loader);
-
-XPresentationSupplier ps = Lo.qi(XPresentationSupplier.class, doc);
-XPresentation show = Lo.qi(XPresentation.class,
-                                         ps.getPresentation());
-show.start();
-```
+=== "java"
+    ```java
+    XComponentLoader loader = Lo.loadOffice();
+    XComponent doc = Lo.openDoc("foo", loader);
+    
+    XPresentationSupplier ps = Lo.qi(XPresentationSupplier.class, doc);
+    XPresentation show = Lo.qi(XPresentation.class,
+                                             ps.getPresentation());
+    show.start();
+    ```
 
 The Presentation service is a bit lacking, so an extended service, Presentation2, was
 added more recently. It can access an XSlideShowController interface which gives

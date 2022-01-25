@@ -100,31 +100,34 @@ First the document is converted into a supplier, then its getXXX() method is cal
 (see column 3 of Table 1). For example, accessing the graphic objects in a document
 (see row 3 of Table 1) requires:
 
-```java
-// get the graphic objects supplier
-XTextGraphicObjectsSupplier imsSupplier =
-               Lo.qi(XTextGraphicObjectsSupplier.class, doc);
-
-// access the graphic objects collection
-XNameAccess xNameAccess = imsSupplier.getGraphicObjects();
-```
+=== "java"
+    ```java
+    // get the graphic objects supplier
+    XTextGraphicObjectsSupplier imsSupplier =
+                   Lo.qi(XTextGraphicObjectsSupplier.class, doc);
+    
+    // access the graphic objects collection
+    XNameAccess xNameAccess = imsSupplier.getGraphicObjects();
+    ```
 
 The names associated with the graphic objects in XNameAccess can be extracted with
 XNameAccess.getElementNames(), and printed:
 
-```java
-String[] names = xNameAccess.getElementNames();
-System.out.println("Number of graphic names: " + names.length);
-Arrays.sort(names);       // sort them, if you want
-Lo.printNames(names);     // useful for printing long lists
-```
+=== "java"
+    ```java
+    String[] names = xNameAccess.getElementNames();
+    System.out.println("Number of graphic names: " + names.length);
+    Arrays.sort(names);       // sort them, if you want
+    Lo.printNames(names);     // useful for printing long lists
+    ```
 
 A particular object in an XNameAccess collection is retrieved with getByName():
 
-```java
-XInterface oGraphic = xNameAccess.getByName("foo");
-                    // get graphic object called "foo"
-```
+=== "java"
+    ```java
+    XInterface oGraphic = xNameAccess.getByName("foo");
+                        // get graphic object called "foo"
+    ```
 
 XInterface is the Office equivalent of Java's Object: every interface subclasses
 XInterface.
@@ -133,10 +136,11 @@ A common next step is to convert the object into a property set, which makes it
 possible to lookup the properties stored in the object's service. For instance, the
 graphic object’s filename or URL can be retrieved using:
 
-```java
-XPropertySet props =  Lo.qi(XPropertySet.class, oGraphic);
-String fnm = (String) props.getPropertyValue("GraphicURL");
-```
+=== "java"
+    ```java
+    XPropertySet props =  Lo.qi(XPropertySet.class, oGraphic);
+    String fnm = (String) props.getPropertyValue("GraphicURL");
+    ```
 
 I know the graphic object's URL is stored in the "GraphicURL" property from looking
 at the documentation for the TextGraphicObject service. It can be (almost) directly
@@ -222,20 +226,21 @@ latter when manipulating the shape of the frame.
 In my BuildDoc.java example, text frame creation is done by Write.addTextFrame(),
 with BuildDoc supplying the frame's y-axis coordinate position for its anchor:
 
-```java
-// code fragment in BuildDoc.java
-XTextViewCursor tvc = Write.getViewCursor(doc);
-int yPos = tvc.getPosition().Y;   // y-axis anchor position
-
-        :  // other unrelated code
-
-Write.appendPara(cursor, "A text frame");
-
-Write.addTextFrame(cursor, yPos,
-       "This is a newly created text frame.\n
-        Which is over on the right of the page, next to the code.",
-            4000, 1500);   // width x height of frame
-```
+=== "java"
+    ```java
+    // code fragment in BuildDoc.java
+    XTextViewCursor tvc = Write.getViewCursor(doc);
+    int yPos = tvc.getPosition().Y;   // y-axis anchor position
+    
+            :  // other unrelated code
+    
+    Write.appendPara(cursor, "A text frame");
+    
+    Write.addTextFrame(cursor, yPos,
+           "This is a newly created text frame.\n
+            Which is over on the right of the page, next to the code.",
+                4000, 1500);   // width x height of frame
+    ```
 
 An anchor specifies how the text content is positioned relative to the ordinary text
 around it. Anchoring can be relative to a character, paragraph, page, or another frame.
@@ -258,76 +263,78 @@ document, and then passed to Write.addTextFrame().
 
 Write.addTextFrame() is defined as:
 
-```java
-public static void addTextFrame(XTextCursor cursor, int yPos,
-                           String text, int width, int height)
-{
-  try {
-    XTextFrame xFrame = Lo.createInstanceMSF(XTextFrame.class,
-                            "com.sun.star.text.TextFrame");
-    if (xFrame == null) {
-      System.out.println("Could not create a text frame");
-      return;
-    }
-
-    // convert frame to a shape interface; set size
-    XShape tfShape = Lo.qi(XShape.class, xFrame);
-    tfShape.setSize(new Size(width, height));
-
-    // get properties of the frame
-    XPropertySet frameProps = Lo.qi(XPropertySet.class, xFrame);
-
-    // anchor the text frame to the page
-    frameProps.setPropertyValue("AnchorType",
-                          TextContentAnchorType.AT_PAGE);
-    frameProps.setPropertyValue("FrameIsAutomaticHeight", true);
-                                      // will grow if necessary
-
-    // add a red border around all 4 sides
-    BorderLine border = new BorderLine();
-    border.OuterLineWidth = 1;
-    border.Color = 0xFF0000;  // red
-    frameProps.setPropertyValue("TopBorder", border);
-    frameProps.setPropertyValue("BottomBorder", border);
-    frameProps.setPropertyValue("LeftBorder", border);
-    frameProps.setPropertyValue("RightBorder", border);
-
-    // make the text frame blue
-    frameProps.setPropertyValue("BackTransparent", false);
-                                           // not transparent
-    frameProps.setPropertyValue("BackColor", 0xCCCCFF);   // blue
-
-    // set the horizontal and vertical position
-    frameProps.setPropertyValue("HoriOrient",
-                                HoriOrientation.RIGHT);
-
-    frameProps.setPropertyValue("VertOrient",
-                                VertOrientation.NONE);
-    frameProps.setPropertyValue("VertOrientPosition", yPos);
-                                                 // down from top
-
-    // insert empty text frame into document
-    append(cursor, xFrame);
-    endParagraph(cursor);
-
-    // add text to the text frame
-    XText xFrameText = xFrame.getText();
-    XTextCursor xFrameCursor = xFrameText.createTextCursor();
-    xFrameText.insertString(xFrameCursor, text, false);
-  }
-  catch (Exception e) {
-    System.out.println("Insertion of text frame failed: " + e);
-  }
-}  // end of addTextFrame()
-```
+=== "java"
+    ```java
+    public static void addTextFrame(XTextCursor cursor, int yPos,
+                               String text, int width, int height)
+    {
+      try {
+        XTextFrame xFrame = Lo.createInstanceMSF(XTextFrame.class,
+                                "com.sun.star.text.TextFrame");
+        if (xFrame == null) {
+          System.out.println("Could not create a text frame");
+          return;
+        }
+    
+        // convert frame to a shape interface; set size
+        XShape tfShape = Lo.qi(XShape.class, xFrame);
+        tfShape.setSize(new Size(width, height));
+    
+        // get properties of the frame
+        XPropertySet frameProps = Lo.qi(XPropertySet.class, xFrame);
+    
+        // anchor the text frame to the page
+        frameProps.setPropertyValue("AnchorType",
+                              TextContentAnchorType.AT_PAGE);
+        frameProps.setPropertyValue("FrameIsAutomaticHeight", true);
+                                          // will grow if necessary
+    
+        // add a red border around all 4 sides
+        BorderLine border = new BorderLine();
+        border.OuterLineWidth = 1;
+        border.Color = 0xFF0000;  // red
+        frameProps.setPropertyValue("TopBorder", border);
+        frameProps.setPropertyValue("BottomBorder", border);
+        frameProps.setPropertyValue("LeftBorder", border);
+        frameProps.setPropertyValue("RightBorder", border);
+    
+        // make the text frame blue
+        frameProps.setPropertyValue("BackTransparent", false);
+                                               // not transparent
+        frameProps.setPropertyValue("BackColor", 0xCCCCFF);   // blue
+    
+        // set the horizontal and vertical position
+        frameProps.setPropertyValue("HoriOrient",
+                                    HoriOrientation.RIGHT);
+    
+        frameProps.setPropertyValue("VertOrient",
+                                    VertOrientation.NONE);
+        frameProps.setPropertyValue("VertOrientPosition", yPos);
+                                                     // down from top
+    
+        // insert empty text frame into document
+        append(cursor, xFrame);
+        endParagraph(cursor);
+    
+        // add text to the text frame
+        XText xFrameText = xFrame.getText();
+        XTextCursor xFrameCursor = xFrameText.createTextCursor();
+        xFrameText.insertString(xFrameCursor, text, false);
+      }
+      catch (Exception e) {
+        System.out.println("Insertion of text frame failed: " + e);
+      }
+    }  // end of addTextFrame()
+    ```
 
 addTextFrame() starts by creating a TextFrame service, and accessing its XTextFrame
 interface:
 
-```java
-XTextFrame xFrame = Lo.createInstanceMSF(XTextFrame.class,
-                                "com.sun.star.text.TextFrame");
-```
+=== "java"
+    ```java
+    XTextFrame xFrame = Lo.createInstanceMSF(XTextFrame.class,
+                                    "com.sun.star.text.TextFrame");
+    ```
 
 The service name for a text frame is listed as "TextFrame" in row 1 of Table 1, but
 Lo.createInstanceMSF() requires a fully qualified name. Almost all the text content
@@ -357,18 +364,19 @@ switch off the "VertOrient" vertical orientation.
 Towards the end of Write.addTextFrame(), the frame is added to the document by
 calling a version of Write.append() that expects an XTextContent object:
 
-```java
-// in the Write class
-public static int append(XTextCursor cursor,
-                                 XTextContent textContent)
-// append text content such as a text frame, table, text field
-{
-  XText xText = cursor.getText();
-  xText.insertTextContent(cursor, textContent, false);
-  cursor.gotoEnd(false);
-  return getPosition(cursor);
-}
-```
+=== "java"
+    ```java
+    // in the Write class
+    public static int append(XTextCursor cursor,
+                                     XTextContent textContent)
+    // append text content such as a text frame, table, text field
+    {
+      XText xText = cursor.getText();
+      xText.insertTextContent(cursor, textContent, false);
+      cursor.gotoEnd(false);
+      return getPosition(cursor);
+    }
+    ```
 
 It utilizes the XText.insertTextContent() method.
 
@@ -404,57 +412,59 @@ In this section I'll explain how to insert mathematical formulae into a text doc
 The example code is in MathQuestions.java, but most of the formula embedding is
 performed by Write.addFormula():
 
-```java
-public static void addFormula(XTextCursor cursor, String formula)
-{
-  try {
-    XTextContent embedContent =
-              Lo.createInstanceMSF(XTextContent.class,
-                      "com.sun.star.text.TextEmbeddedObject");
-    if (embedContent == null) {
-      System.out.println("Could not create a formula");
-      return;
-    }
-
-    // get property set for the embedded object
-    XPropertySet props =  Lo.qi(XPropertySet.class, embedContent);
-
-    // set class ID (type) for object
-    props.setPropertyValue("CLSID", Lo.MATH_CLSID);
-
-    // anchor object as a character
-    props.setPropertyValue("AnchorType",
-                            TextContentAnchorType.AS_CHARACTER);
-
-    // insert empty object into document
-    append(cursor, embedContent);
-    endLine(cursor);
-
-    // access object's model
-    XEmbeddedObjectSupplier2 supp = Lo.qi(
-                 XEmbeddedObjectSupplier2.class, embedContent);
-    XComponent oEmbed = supp.getEmbeddedObject();
-
-    // insert formula into the object
-    XPropertySet formulaProps = Lo.qi(XPropertySet.class, oEmbed);
-    formulaProps.setPropertyValue("Formula", formula);
-  }
-  catch (Exception e) {
-    System.out.println("\"" + formula + "\" failed: " + e);
-  }
-}  // end of addFormula()
-```
+=== "java"
+    ```java
+    public static void addFormula(XTextCursor cursor, String formula)
+    {
+      try {
+        XTextContent embedContent =
+                  Lo.createInstanceMSF(XTextContent.class,
+                          "com.sun.star.text.TextEmbeddedObject");
+        if (embedContent == null) {
+          System.out.println("Could not create a formula");
+          return;
+        }
+    
+        // get property set for the embedded object
+        XPropertySet props =  Lo.qi(XPropertySet.class, embedContent);
+    
+        // set class ID (type) for object
+        props.setPropertyValue("CLSID", Lo.MATH_CLSID);
+    
+        // anchor object as a character
+        props.setPropertyValue("AnchorType",
+                                TextContentAnchorType.AS_CHARACTER);
+    
+        // insert empty object into document
+        append(cursor, embedContent);
+        endLine(cursor);
+    
+        // access object's model
+        XEmbeddedObjectSupplier2 supp = Lo.qi(
+                     XEmbeddedObjectSupplier2.class, embedContent);
+        XComponent oEmbed = supp.getEmbeddedObject();
+    
+        // insert formula into the object
+        XPropertySet formulaProps = Lo.qi(XPropertySet.class, oEmbed);
+        formulaProps.setPropertyValue("Formula", formula);
+      }
+      catch (Exception e) {
+        System.out.println("\"" + formula + "\" failed: " + e);
+      }
+    }  // end of addFormula()
+    ```
 
 A math formula is passed to addFormula() as a string in a format I'll explain shortly.
 
 The method begins by creating a TextEmbeddedObject service, and referring to it
 using the XTextContent interface:
 
-```java
-XTextContent embedContent =
-     Lo.createInstanceMSF(XTextContent.class,
-                   "com.sun.star.text.TextEmbeddedObject");
-```
+=== "java"
+    ```java
+    XTextContent embedContent =
+         Lo.createInstanceMSF(XTextContent.class,
+                       "com.sun.star.text.TextEmbeddedObject");
+    ```
 
 Details about embedded objects are given in row 2 of Table 1.
 
@@ -470,26 +480,27 @@ The XTextContent interface is converted to XPropertySet so the "CLSID" and
 its value is the OLE class ID for the embedded document. The Lo.java utility contains
 the class ID constants for Office's documents:
 
-```java
-// in the Lo class
-public static final String WRITER_CLSID =
-                     "8BC6B165-B1B2-4EDD-aa47-dae2ee689dd6";
-
-public static final String CALC_CLSID =
-                     "47BBB4CB-CE4C-4E80-a591-42d9ae74950f";
-
-public static final String DRAW_CLSID =
-                     "4BAB8970-8A3B-45B3-991c-cbeeac6bd5e3";
-
-public static final String IMPRESS_CLSID =
-                     "9176E48A-637A-4D1F-803b-99d9bfac1047";
-
-public static final String MATH_CLSID =
-                     "078B7ABA-54FC-457F-8551-6147e776a997";
-
-public static final String CHART_CLSID =
-                     "12DCAE26-281F-416F-a234-c3086127382e";
-```
+=== "java"
+    ```java
+    // in the Lo class
+    public static final String WRITER_CLSID =
+                         "8BC6B165-B1B2-4EDD-aa47-dae2ee689dd6";
+    
+    public static final String CALC_CLSID =
+                         "47BBB4CB-CE4C-4E80-a591-42d9ae74950f";
+    
+    public static final String DRAW_CLSID =
+                         "4BAB8970-8A3B-45B3-991c-cbeeac6bd5e3";
+    
+    public static final String IMPRESS_CLSID =
+                         "9176E48A-637A-4D1F-803b-99d9bfac1047";
+    
+    public static final String MATH_CLSID =
+                         "078B7ABA-54FC-457F-8551-6147e776a997";
+    
+    public static final String CHART_CLSID =
+                         "12DCAE26-281F-416F-a234-c3086127382e";
+    ```
 
 The "AnchorType" property is set to AS_CHARACTER so the formula string will be
 anchored in the document in the same way as a string of characters.
@@ -500,11 +511,12 @@ document first, then filled with the formula.
 The embedded object's content is accessed via the XEmbeddedObjectSupplier2
 interface which has a get method for obtaining the object:
 
-```java
-XEmbeddedObjectSupplier2 supp =
-       Lo.qi(XEmbeddedObjectSupplier2.class, embedContent);
-XComponent oEmbed = supp.getEmbeddedObject();
-```
+=== "java"
+    ```java
+    XEmbeddedObjectSupplier2 supp =
+           Lo.qi(XEmbeddedObjectSupplier2.class, embedContent);
+    XComponent oEmbed = supp.getEmbeddedObject();
+    ```
 
 The properties for this empty object (oEmbed) are accessed, and the formula string is
 assigned to the "Formula" property:
@@ -531,54 +543,55 @@ MathQuestions.java is mainly a for-loop for randomly generating numbers and
 constructing simple formulae strings. Ten formulae are added to the document, which
 is saved as "mathQuestions.pdf". The main() function:
 
-```java
-public static void main(String[] args)
-{
-  XComponentLoader loader = Lo.loadOffice();
-  XTextDocument doc = Write.createDoc(loader);
-  if (doc == null) {
-    System.out.println("Writer doc creation failed");
-    Lo.closeOffice();
-    return;
-  }
-
-  XTextCursor cursor = Write.getCursor(doc);
-  Write.appendPara(cursor, "Math Questions");
-  Write.stylePrevParagraph(cursor, "Heading 1");
-  Write.appendPara(cursor, "Solve the formulae for x:\n");
-
-  Random r = new Random();
-  String formula;
-  for(int i=0; i < 10; i++) {    // generate 10 formulae
-    int iA = r.nextInt(8)+2;     // generate some integers
-    int iB = r.nextInt(8)+2;
-    int iC = r.nextInt(9)+1;
-    int iD = r.nextInt(8)+2;
-    int iE = r.nextInt(9)+1;
-    int iF1 = r.nextInt(8)+2;
-
-    int choice = r.nextInt(3); // decide between 3 formulae
-    if (choice == 0)
-      formula = "{{{sqrt{" + iA + "x}} over " + iB + "} +
-                  {" + iC + " over " + iD +
-                   "}={" + iE + " over " + iF1 + "}}";
-    else if (choice == 1)
-      formula = "{{{" + iA + "x} over " + iB + "} +
-                  {" + iC + " over " + iD +
-                  "}={" + iE + " over " + iF1 + "}}";
-    else
-      formula = "{" + iA + "x + " + iB + " =" + iC + "}";
-
-    Write.addFormula(cursor, formula);
-    Write.endParagraph(cursor);
-  }
-
-  Write.append(cursor, "Timestamp: " + Lo.getTimeStamp()  + "\n");
-  Lo.saveDoc(doc, "mathQuestions.pdf");
-  Lo.closeDoc(doc);
-  Lo.closeOffice();
-} // end of main()
-```
+=== "java"
+    ```java
+    public static void main(String[] args)
+    {
+      XComponentLoader loader = Lo.loadOffice();
+      XTextDocument doc = Write.createDoc(loader);
+      if (doc == null) {
+        System.out.println("Writer doc creation failed");
+        Lo.closeOffice();
+        return;
+      }
+    
+      XTextCursor cursor = Write.getCursor(doc);
+      Write.appendPara(cursor, "Math Questions");
+      Write.stylePrevParagraph(cursor, "Heading 1");
+      Write.appendPara(cursor, "Solve the formulae for x:\n");
+    
+      Random r = new Random();
+      String formula;
+      for(int i=0; i < 10; i++) {    // generate 10 formulae
+        int iA = r.nextInt(8)+2;     // generate some integers
+        int iB = r.nextInt(8)+2;
+        int iC = r.nextInt(9)+1;
+        int iD = r.nextInt(8)+2;
+        int iE = r.nextInt(9)+1;
+        int iF1 = r.nextInt(8)+2;
+    
+        int choice = r.nextInt(3); // decide between 3 formulae
+        if (choice == 0)
+          formula = "{{{sqrt{" + iA + "x}} over " + iB + "} +
+                      {" + iC + " over " + iD +
+                       "}={" + iE + " over " + iF1 + "}}";
+        else if (choice == 1)
+          formula = "{{{" + iA + "x} over " + iB + "} +
+                      {" + iC + " over " + iD +
+                      "}={" + iE + " over " + iF1 + "}}";
+        else
+          formula = "{" + iA + "x + " + iB + " =" + iC + "}";
+    
+        Write.addFormula(cursor, formula);
+        Write.endParagraph(cursor);
+      }
+    
+      Write.append(cursor, "Timestamp: " + Lo.getTimeStamp()  + "\n");
+      Lo.saveDoc(doc, "mathQuestions.pdf");
+      Lo.closeDoc(doc);
+      Lo.closeOffice();
+    } // end of main()
+    ```
 
 Figure 5 shows a screenshot of part of mathQuestions.pdf.
 
@@ -623,14 +636,15 @@ Figure 6. Simplified Hierarchy for the TextField Service.
 The BuildDoc.java example ends with a few lines that appear to do the same thing
 twice:
 
-```java
-// code fragment from BuildDoc.java
-Write.appendPara(cursor, "\nTimestamp: " + Lo.getTimeStamp()+"\n");
-
-Write.append(cursor, "Time (according to office): ");
-Write.appendDateTime(cursor);
-Write.endParagraph(cursor);
-```
+=== "java"
+    ```java
+    // code fragment from BuildDoc.java
+    Write.appendPara(cursor, "\nTimestamp: " + Lo.getTimeStamp()+"\n");
+    
+    Write.append(cursor, "Time (according to office): ");
+    Write.appendDateTime(cursor);
+    Write.endParagraph(cursor);
+    ```
 
 Lo.getTimeStamp() inserts a timestamp (which includes the date and time), and then
 Write.appendDateTime() inserts the date and time. Although these may seem to be the
@@ -657,23 +671,24 @@ Write.appendDateTime() creates a DateTime service, and returns its XTextField
 interface (see Figure 6). The TextField service only contains two properties, with
 most being in the subclass (DateTime in this case).
 
-```java
-public static int appendDateTime(XTextCursor cursor)
-{
-  XTextField dtField = Lo.createInstanceMSF(XTextField.class,
-                 "com.sun.star.text.TextField.DateTime");
-  Props.setProperty(dtField, "IsDate", true);
-                      // so date is reported
-  append(cursor, dtField);
-  append(cursor, "; ");
-
-  dtField = Lo.createInstanceMSF(XTextField.class,
-                 "com.sun.star.text.TextField.DateTime");
-  Props.setProperty(dtField, "IsDate", false);
-                      // so time is reported
-  return append(cursor, dtField);
-}  // end of appendDateTime()
-```
+=== "java"
+    ```java
+    public static int appendDateTime(XTextCursor cursor)
+    {
+      XTextField dtField = Lo.createInstanceMSF(XTextField.class,
+                     "com.sun.star.text.TextField.DateTime");
+      Props.setProperty(dtField, "IsDate", true);
+                          // so date is reported
+      append(cursor, dtField);
+      append(cursor, "; ");
+    
+      dtField = Lo.createInstanceMSF(XTextField.class,
+                     "com.sun.star.text.TextField.DateTime");
+      Props.setProperty(dtField, "IsDate", false);
+                          // so time is reported
+      return append(cursor, dtField);
+    }  // end of appendDateTime()
+    ```
 
 The method adds two DateTime text fields to the document. The first has its "IsDate"
 property set to true, so that the current date is inserted; the second sets "IsDate" to
@@ -695,67 +710,68 @@ Figure 8. Page Footer using Text Fields.
 Write.setPageNumbers() inserts the PageNumber and PageCount text fields into the
 footer's text area:
 
-```java
-// in the Write class
-public static void setPageNumbers(XTextDocument textDoc)
-{
-  // get 'standard' style for page style family
-  XPropertySet props = Info.getStyleProps(textDoc,
-                                    "PageStyles", "Standard");
-  if (props == null) {
-    System.out.println("Could not access standard page style");
-    return;
-  }
-
-  try {
-    props.setPropertyValue("FooterIsOn", Boolean.TRUE);
-                  // footer must be turned on in the document
-
-    // access the footer as XText
-    XText footerText = Lo.qi(XText.class,
-                           props.getPropertyValue("FooterText"));
-    XTextCursor footerCursor = footerText.createTextCursor();
-
-    /* set footer text properties via its cursor:
-       font, font size, paragraph orientation    */
-    Props.setProperty(footerCursor, "CharFontName",
-                                    "Times New Roman");
-    Props.setProperty(footerCursor, "CharHeight", 12.0f);
-    Props.setProperty(footerCursor, "ParaAdjust",
-                                    ParagraphAdjust.CENTER);
-
-    // add text fields to the footer
-    append(footerCursor, getPageNumber());
-    append(footerCursor, " of ");
-    append(footerCursor, getPageCount());
-  }
-  catch (Exception ex)
-  {  System.out.println(ex); }
-}  // end of setPageNumbers()
-
-
-public static XTextField getPageNumber()
-// return Arabic style number showing current page value
-{
-  XTextField numField = Lo.createInstanceMSF(XTextField.class,
-                           "com.sun.star.text.TextField.PageNumber");
-  Props.setProperty(numField, "NumberingType",
-                               NumberingType.ARABIC);
-  Props.setProperty(numField, "SubType", PageNumberType.CURRENT);
-  return numField;
-}
-
-
-public static XTextField getPageCount()
-// return Arabic style number showing current page count
-{
-  XTextField pcField = Lo.createInstanceMSF(XTextField.class,
-                          "com.sun.star.text.TextField.PageCount");
-  Props.setProperty(pcField, "NumberingType",
-                              NumberingType.ARABIC);
-  return pcField;
-}
-```
+=== "java"
+    ```java
+    // in the Write class
+    public static void setPageNumbers(XTextDocument textDoc)
+    {
+      // get 'standard' style for page style family
+      XPropertySet props = Info.getStyleProps(textDoc,
+                                        "PageStyles", "Standard");
+      if (props == null) {
+        System.out.println("Could not access standard page style");
+        return;
+      }
+    
+      try {
+        props.setPropertyValue("FooterIsOn", Boolean.TRUE);
+                      // footer must be turned on in the document
+    
+        // access the footer as XText
+        XText footerText = Lo.qi(XText.class,
+                               props.getPropertyValue("FooterText"));
+        XTextCursor footerCursor = footerText.createTextCursor();
+    
+        /* set footer text properties via its cursor:
+           font, font size, paragraph orientation    */
+        Props.setProperty(footerCursor, "CharFontName",
+                                        "Times New Roman");
+        Props.setProperty(footerCursor, "CharHeight", 12.0f);
+        Props.setProperty(footerCursor, "ParaAdjust",
+                                        ParagraphAdjust.CENTER);
+    
+        // add text fields to the footer
+        append(footerCursor, getPageNumber());
+        append(footerCursor, " of ");
+        append(footerCursor, getPageCount());
+      }
+      catch (Exception ex)
+      {  System.out.println(ex); }
+    }  // end of setPageNumbers()
+    
+    
+    public static XTextField getPageNumber()
+    // return Arabic style number showing current page value
+    {
+      XTextField numField = Lo.createInstanceMSF(XTextField.class,
+                               "com.sun.star.text.TextField.PageNumber");
+      Props.setProperty(numField, "NumberingType",
+                                   NumberingType.ARABIC);
+      Props.setProperty(numField, "SubType", PageNumberType.CURRENT);
+      return numField;
+    }
+    
+    
+    public static XTextField getPageCount()
+    // return Arabic style number showing current page count
+    {
+      XTextField pcField = Lo.createInstanceMSF(XTextField.class,
+                              "com.sun.star.text.TextField.PageCount");
+      Props.setProperty(pcField, "NumberingType",
+                                  NumberingType.ARABIC);
+      return pcField;
+    }
+    ```
 
 Write.setPageNumbers() starts by accessing the "Standard" property set (style) for the
 page style family. Via its properties, the method turns on footer functionality and
@@ -763,22 +779,24 @@ accesses the footer text area as an XText object.
 
 An XTextCursor is created for the footer text area, and properties are configured:
 
-```java
-XText footerText = Lo.qi(XText.class,
-                      props.getPropertyValue("FooterText"));
-
-XTextCursor footerCursor = footerText.createTextCursor();
-
-Props.setProperty(footerCursor, "CharFontName", "Times New Roman");
-```
+=== "java"
+    ```java
+    XText footerText = Lo.qi(XText.class,
+                          props.getPropertyValue("FooterText"));
+    
+    XTextCursor footerCursor = footerText.createTextCursor();
+    
+    Props.setProperty(footerCursor, "CharFontName", "Times New Roman");
+    ```
 
 These properties will be applied to the text and text fields added afterwards:
 
-```java
-append(footerCursor, getPageNumber());
-append(footerCursor, " of ");
-append(footerCursor, getPageCount());
-```
+=== "java"
+    ```java
+    append(footerCursor, getPageNumber());
+    append(footerCursor, " of ");
+    append(footerCursor, getPageCount());
+    ```
 
 getPageNumber() and getPageCount() deal with the properties for the PageNumber
 and PageCount fields.
@@ -803,9 +821,10 @@ Figure 9. A Bond Movies Table.
 The "bondMovies.txt" file is read by readTable() utilizing standard Java file
 processing. It returns a list of String arrays:
 
-```java
-ArrayList<String[]> rowsList = readTable("bondMovies.txt");
-```
+=== "java"
+    ```java
+    ArrayList<String[]> rowsList = readTable("bondMovies.txt");
+    ```
 
 Each line in "bondMovies.txt" is converted into a string array by pulling out the
 substrings delimited by tab characters.
@@ -834,40 +853,41 @@ The Man with the Golden Gun  1974  Roger Moore  Guy Hamilton
 
 The main() function for MakeTable.java is:
 
-```java
-public static void main(String args[])
-{
-
-  ArrayList<String[]> rowsList = readTable("bondMovies.txt");
-  if (rowsList.size() == 0) {
-    System.out.println("No data read from bondMovies.txt");
-    return;
-  }
-
-  XComponentLoader loader = Lo.loadOffice();
-  XTextDocument doc = Write.createDoc(loader);
-  if (doc == null) {
-    System.out.println("Writer doc creation failed");
-    Lo.closeOffice();
-    return;
-  }
-
-  XTextCursor cursor = Write.getCursor(doc);
-  Write.appendPara(cursor, "Table of Bond Movies");
-  Write.stylePrevParagraph(cursor, "Heading 1");
-  Write.appendPara(cursor,
-     "The following table comes from \"bondMovies.txt\":\n");
-
-  Write.addTable(cursor, rowsList);
-
-  Write.endParagraph(cursor);
-  Write.append(cursor, "Timestamp: " + Lo.getTimeStamp() + "\n");
-
-  Lo.saveDoc(doc, "table.odt");
-  Lo.closeDoc(doc);
-  Lo.closeOffice();
-} // end of main()
-```
+=== "java"
+    ```java
+    public static void main(String args[])
+    {
+    
+      ArrayList<String[]> rowsList = readTable("bondMovies.txt");
+      if (rowsList.size() == 0) {
+        System.out.println("No data read from bondMovies.txt");
+        return;
+      }
+    
+      XComponentLoader loader = Lo.loadOffice();
+      XTextDocument doc = Write.createDoc(loader);
+      if (doc == null) {
+        System.out.println("Writer doc creation failed");
+        Lo.closeOffice();
+        return;
+      }
+    
+      XTextCursor cursor = Write.getCursor(doc);
+      Write.appendPara(cursor, "Table of Bond Movies");
+      Write.stylePrevParagraph(cursor, "Heading 1");
+      Write.appendPara(cursor,
+         "The following table comes from \"bondMovies.txt\":\n");
+    
+      Write.addTable(cursor, rowsList);
+    
+      Write.endParagraph(cursor);
+      Write.append(cursor, "Timestamp: " + Lo.getTimeStamp() + "\n");
+    
+      Lo.saveDoc(doc, "table.odt");
+      Lo.closeDoc(doc);
+      Lo.closeOffice();
+    } // end of main()
+    ```
 
 Write.addTable() does the work of converting the list of rows into a text table.
 
@@ -893,65 +913,66 @@ Figure 11. The Cell Names in a Table.
 Write.addTable() uses this naming scheme in the XTextTable.getCellByName()
 method to assign data to cells:
 
-```java
-public static void addTable(XTextCursor cursor,
-                                 ArrayList<String[]> rowsList)
-// part of the Write utility class
-{
-  try {
-    // create a text table
-    XTextTable table = Lo.createInstanceMSF(XTextTable.class,
-                                  "com.sun.star.text.TextTable");
-    if (table == null) {
-      System.out.println("Could not create a text table");
-      return;
-    }
-
-    // initialize table dimensions
-    int numRows = rowsList.size();
-    int numCols = (rowsList.get(0)).length;
-    if (numCols > 26) {    // column labelling goes from 'A' to 'Z'
-      System.out.println("Too many columns: " + numCols +
-                                        "; using first 26");
-      numCols = 26;
-    }
-    table.initialize(numRows, numCols);
-
-    // add the table to the document
-    append(cursor, table);
-    endParagraph(cursor);
-
-    // set table properties
-    XPropertySet tableProps = Lo.qi(XPropertySet.class, table);
-    tableProps.setPropertyValue("BackTransparent", false);
-                                         // not transparent
-    tableProps.setPropertyValue("BackColor", 0xCCCCFF);
-                                         // light blue
-
-    // set color of first row (i.e. the header) to dark blue
-    XTableRows rows = table.getRows();
-    Props.setProperty(rows.getByIndex(0), "BackColor", 0x666694);
-                                         // dark blue
-    // write table header
-    String[] rowData = rowsList.get(0);
-    for (int x=0; x < numCols; x++)
-      setCellHeader( mkCellName(x,1), rowData[x], table);
-                         // e.g. "A1", "B1", "C1", etc.
-
-
-    // insert table body
-    for (int y=1; y < numRows; y++) {   // start in 2nd row of list
-      rowData = rowsList.get(y);
-      for (int x=0; x < numCols; x++)
-        setCellText( mkCellName(x,y+1), rowData[x], table);
-                         // e.g. "A2", "B5", "C3", etc.
-
-    }
-  }
-  catch (Exception e)
-  {  System.out.println("Table insertion failed:" + e);  }
-}  // end of addTable()
-```
+=== "java"
+    ```java
+    public static void addTable(XTextCursor cursor,
+                                     ArrayList<String[]> rowsList)
+    // part of the Write utility class
+    {
+      try {
+        // create a text table
+        XTextTable table = Lo.createInstanceMSF(XTextTable.class,
+                                      "com.sun.star.text.TextTable");
+        if (table == null) {
+          System.out.println("Could not create a text table");
+          return;
+        }
+    
+        // initialize table dimensions
+        int numRows = rowsList.size();
+        int numCols = (rowsList.get(0)).length;
+        if (numCols > 26) {    // column labelling goes from 'A' to 'Z'
+          System.out.println("Too many columns: " + numCols +
+                                            "; using first 26");
+          numCols = 26;
+        }
+        table.initialize(numRows, numCols);
+    
+        // add the table to the document
+        append(cursor, table);
+        endParagraph(cursor);
+    
+        // set table properties
+        XPropertySet tableProps = Lo.qi(XPropertySet.class, table);
+        tableProps.setPropertyValue("BackTransparent", false);
+                                             // not transparent
+        tableProps.setPropertyValue("BackColor", 0xCCCCFF);
+                                             // light blue
+    
+        // set color of first row (i.e. the header) to dark blue
+        XTableRows rows = table.getRows();
+        Props.setProperty(rows.getByIndex(0), "BackColor", 0x666694);
+                                             // dark blue
+        // write table header
+        String[] rowData = rowsList.get(0);
+        for (int x=0; x < numCols; x++)
+          setCellHeader( mkCellName(x,1), rowData[x], table);
+                             // e.g. "A1", "B1", "C1", etc.
+    
+    
+        // insert table body
+        for (int y=1; y < numRows; y++) {   // start in 2nd row of list
+          rowData = rowsList.get(y);
+          for (int x=0; x < numCols; x++)
+            setCellText( mkCellName(x,y+1), rowData[x], table);
+                             // e.g. "A2", "B5", "C3", etc.
+    
+        }
+      }
+      catch (Exception e)
+      {  System.out.println("Table insertion failed:" + e);  }
+    }  // end of addTable()
+    ```
 
 A TextTable service with an XTableText interface is created at the start of
 addTable(). Then the required number of rows and columns is calculated so that
@@ -970,10 +991,11 @@ adding text to the header row, the second deals with all the other rows.
 
 mkCellName() converts an (x, y) integer pair into a cell name like those in Figure 11:
 
-```java
-public static String mkCellName(int x, int y)
-{  return "" + ((char)('A' + x)) + y;  }
-```
+=== "java"
+    ```java
+    public static String mkCellName(int x, int y)
+    {  return "" + ((char)('A' + x)) + y;  }
+    ```
 
 Write.setCellHeader() uses TextTable.getCellByName() to access a cell, which is of
 type XCell. We'll study XCell in Part 4 because it's used for representing cells in a
@@ -991,23 +1013,24 @@ This means that Lo.qi() can convert an XCell instance into XText, which makes th
 cell's text and properties accessible to a text cursor. Write.setCellHeader() implements
 these features:
 
-```java
-private static void setCellHeader(String cellName,
-                               String data, XTextTable table)
-// puts text into the named cell of the table, colored white
-{
-  // convert XCell to XText
-  XText cellText = Lo.qi(XText.class,
-                         table.getCellByName(cellName));
-
-  // create  a cursor inside the cell
-  XTextCursor textCursor = cellText.createTextCursor();
-
-  Props.setProperty(textCursor, "CharColor", 0xFFFFFF);
-                                         // use white text
-  cellText.setString(data);
-}  // end of setCellHeader()
-```
+=== "java"
+    ```java
+    private static void setCellHeader(String cellName,
+                                   String data, XTextTable table)
+    // puts text into the named cell of the table, colored white
+    {
+      // convert XCell to XText
+      XText cellText = Lo.qi(XText.class,
+                             table.getCellByName(cellName));
+    
+      // create  a cursor inside the cell
+      XTextCursor textCursor = cellText.createTextCursor();
+    
+      Props.setProperty(textCursor, "CharColor", 0xFFFFFF);
+                                             // use white text
+      cellText.setString(data);
+    }  // end of setCellHeader()
+    ```
 
 The cell's "CharColor" property is changed so the inserted text in the header row is
 white, as in Figure 9.
@@ -1015,41 +1038,43 @@ white, as in Figure 9.
 Write.setCellText() is shorter than setCellHeader() because there's no need to change
 the text's color:
 
-```java
-private static void setCellText(String cellName,
-                            String data, XTextTable table)
-// puts text into the named cell of the table
-{
-  XText cellText = Lo.qi(XText.class,
-                         table.getCellByName(cellName));
-  cellText.setString(data);
-}  // end of setCellText()
-```
+=== "java"
+    ```java
+    private static void setCellText(String cellName,
+                                String data, XTextTable table)
+    // puts text into the named cell of the table
+    {
+      XText cellText = Lo.qi(XText.class,
+                             table.getCellByName(cellName));
+      cellText.setString(data);
+    }  // end of setCellText()
+    ```
 
 
 ## 6.  Adding a Bookmark to the Document
 
 Write.addBookmark() adds a named bookmark at the current cursor position:
 
-```java
-public static void addBookmark(XTextCursor cursor, String name)
-{
-  XTextContent bmkContent = Lo.createInstanceMSF(
-                                XTextContent.class,
-                                "com.sun.star.text.Bookmark");
-  if (bmkContent == null) {
-    System.out.println("Could not create a bookmark");
-    return;
-  }
-
-  // convert bookmark content to a named collection
-  XNamed bmksNamed = Lo.qi(XNamed.class, bmkContent);
-  bmksNamed.setName(name);
-
-  append(cursor, bmkContent);
-  endParagraph(cursor);
-}  // end of addBookmark()
-```
+=== "java"
+    ```java
+    public static void addBookmark(XTextCursor cursor, String name)
+    {
+      XTextContent bmkContent = Lo.createInstanceMSF(
+                                    XTextContent.class,
+                                    "com.sun.star.text.Bookmark");
+      if (bmkContent == null) {
+        System.out.println("Could not create a bookmark");
+        return;
+      }
+    
+      // convert bookmark content to a named collection
+      XNamed bmksNamed = Lo.qi(XNamed.class, bmkContent);
+      bmksNamed.setName(name);
+    
+      append(cursor, bmkContent);
+      endParagraph(cursor);
+    }  // end of addBookmark()
+    ```
 
 The Bookmark service doesn't have a specific interface (such as XBookmark), so
 Lo.createInstanceMSF() returns an XTextContent interface. These services and
@@ -1066,11 +1091,12 @@ bookmarks (note the plural). This is useful when searching for a bookmark or add
 one, as in the BuildDoc.java example. It calls Write.addBookmark() to add a
 bookmark called "ad-Bookmark" to the document:
 
-```java
-// code fragment from BuildDoc.java
-Write.append(cursor, "This line ends with a bookmark");
-Write.addBookmark(cursor, "ad-bookmark");
-```
+=== "java"
+    ```java
+    // code fragment from BuildDoc.java
+    Write.append(cursor, "This line ends with a bookmark");
+    Write.addBookmark(cursor, "ad-bookmark");
+    ```
 
 Bookmarks, such as "ad-bookmark", are not rendered when the document is opened,
 which means that nothing appears after the "The line ends with a bookmark." string in
@@ -1096,57 +1122,59 @@ document and jump to that position at a later time.
 Write.findBookmark() finds a bookmark by name, returning it as an XTextContent
 instance:
 
-```java
-public static XTextContent findBookmark(XTextDocument doc,
-                                                String bmName)
-{ XBookmarksSupplier supplier =
-                       Lo.qi(XBookmarksSupplier.class, doc);
-  if (supplier == null) {
-    System.out.println("Bookmark supplier could not be created");
-    return null;
-  }
-
-  XNameAccess namedBookmarks = supplier.getBookmarks();
-  if (namedBookmarks == null)  {
-    System.out.println("Name access to bookmarks not possible");
-    return null;
-  }
-
-  if (!namedBookmarks.hasElements())  {
-    System.out.println("No bookmarks found");
-    return null;
-  }
-
-  // find the specified bookmark
-  Object oBookmark = null;
-  try {
-    oBookmark = namedBookmarks.getByName(bmName);
-  }
-  catch(com.sun.star.uno.Exception e) {}
-
-  if (oBookmark == null) {
-    System.out.println("Bookmark \"" + bmName + "\" not found");
-    return null;
-  }
-
-  // there's no XBookmark, so return XTextContent
-  return Lo.qi(XTextContent.class, oBookmark);
-}  // end of findBookmark()
-```
+=== "java"
+    ```java
+    public static XTextContent findBookmark(XTextDocument doc,
+                                                    String bmName)
+    { XBookmarksSupplier supplier =
+                           Lo.qi(XBookmarksSupplier.class, doc);
+      if (supplier == null) {
+        System.out.println("Bookmark supplier could not be created");
+        return null;
+      }
+    
+      XNameAccess namedBookmarks = supplier.getBookmarks();
+      if (namedBookmarks == null)  {
+        System.out.println("Name access to bookmarks not possible");
+        return null;
+      }
+    
+      if (!namedBookmarks.hasElements())  {
+        System.out.println("No bookmarks found");
+        return null;
+      }
+    
+      // find the specified bookmark
+      Object oBookmark = null;
+      try {
+        oBookmark = namedBookmarks.getByName(bmName);
+      }
+      catch(com.sun.star.uno.Exception e) {}
+    
+      if (oBookmark == null) {
+        System.out.println("Bookmark \"" + bmName + "\" not found");
+        return null;
+      }
+    
+      // there's no XBookmark, so return XTextContent
+      return Lo.qi(XTextContent.class, oBookmark);
+    }  // end of findBookmark()
+    ```
 
 findBookmark() can't return an XBookmark object since there's no such interface (see
 Figure 13), but XTextContent is a good alternative. XTextContent has a getAnchor()
 method which returns an XTextRange that can be used for positioning a cursor. The
 following code fragment from BuildDoc.java illustrates the idea:
 
-```java
-// code fragment from BuildDoc.java
-XTextContent bookmark = Write.findBookmark(doc, "ad-bookmark");
-XTextRange bmRange = bookmark.getAnchor();
-
-XTextViewCursor viewCursor = Write.getViewCursor(doc);
-viewCursor.gotoRange(bmRange, false);
-```
+=== "java"
+    ```java
+    // code fragment from BuildDoc.java
+    XTextContent bookmark = Write.findBookmark(doc, "ad-bookmark");
+    XTextRange bmRange = bookmark.getAnchor();
+    
+    XTextViewCursor viewCursor = Write.getViewCursor(doc);
+    viewCursor.gotoRange(bmRange, false);
+    ```
 
 The call to gotoRange() moves the view cursor to the "ad-bookmark" position, which
 causes an on-screen change. gotoRange() can be employed with any type of cursor.

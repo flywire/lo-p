@@ -134,18 +134,20 @@ at the end of 2006.
 
 Class.forName() is used to load the driver, as in:
 
-```java
-Class.forName("org.firebirdsql.jdbc.FBDriver");
-```
+=== "java"
+    ```java
+    Class.forName("org.firebirdsql.jdbc.FBDriver");
+    ```
 
 A communications link through the driver to a database is represented by a
 Connection object, which is created by calling DriverManager.getConnection() with a
 the database's URL. For instance:
 
-```java
-Connection conn = DriverManager.getConnection(
-                     "jdbc:firebirdsql:embedded:crossrate.fdb");
-```
+=== "java"
+    ```java
+    Connection conn = DriverManager.getConnection(
+                         "jdbc:firebirdsql:embedded:crossrate.fdb");
+    ```
 
 The URL's format varies from one driver to the next, but always starts with "jdbc:"
 followed by the driver protocol name. The address may include a machine hostname
@@ -157,35 +159,39 @@ arguments in the getConnection() call.
 A SQL statement is sent across the link via a Statement object, which is created by
 Connection.createStatement():
 
-```java
-Statement statement = conn.createStatement();
-```
+=== "java"
+    ```java
+    Statement statement = conn.createStatement();
+    ```
 
 The SQL statement is written as a string, and sent to the database using one of
 Statement's execute methods. For example:
 
-```java
-ResultSet rs = statement.executeQuery("SELECT * FROM Crossrate");
-```
+=== "java"
+    ```java
+    ResultSet rs = statement.executeQuery("SELECT * FROM Crossrate");
+    ```
 
 The results are returned as a ResultSet object, which can be thought of as a table of
 answers with a cursor pointing to a particular row in that table. The cursor is initially
 assigned to just before the first row, and can be moved down a row with
 ResultSet.next(). Typical code for iterating through all the rows  is:
 
-```java
-while (rs.next()) {
-   // look at a row of the result set
-}
-```
+=== "java"
+    ```java
+    while (rs.next()) {
+       // look at a row of the result set
+    }
+    ```
 
 A particular cell on a row is accessed using the table's corresponding column name, or
 the column index (which starts at 1). For example:
 
-```java
-while(rs.next())
-  System.out.println( rs.getString("FromCurrency"));
-```
+=== "java"
+    ```java
+    while(rs.next())
+      System.out.println( rs.getString("FromCurrency"));
+    ```
 
 This loop prints all the data in the "FromCurrency" column of the result set.
 
@@ -197,53 +203,54 @@ data as Java types.
 
 All the preceding code snippets come together in SimpleJDBC.java:
 
-```java
-// SimpleJDBC.java
-public static void main(String[] args)
-{
-  try {
-    Class.forName("org.firebirdsql.jdbc.FBDriver");
-                            // requires Jaybird and Firebird
-
-    // connect to the database
-    Connection conn = DriverManager.getConnection(
-               "jdbc:firebirdsql:embedded:crossrate.fdb",
-               "sysdba", "masterkeys");  // login, password
-
-    Statement statement = conn.createStatement();
-
-    // Execute a SQL query
-    ResultSet rs = statement.executeQuery(
-                               "SELECT * FROM Crossrate");
-
-    // Print the result set
-    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-    System.out.println("FromCurrency \tToCurrency \t
-                                         ConvRate \tUpdateDate");
-    System.out.println("=============================");
-
-    while(rs.next())
-      System.out.println( rs.getString("FromCurrency") + ",   \t" +
-                          rs.getString("ToCurrency") + ",   \t" +
-                          rs.getFloat("ConvRate") + ",   \t" +
-                     sdf.format( rs.getTimestamp("UpdateDate")) );
-                        // 4th column returns java.sql.Timestamp
-
-    System.out.println("=============================");
-
-    // Close down (should really be in a finally block)
-    rs.close();
-    statement.close();
-    conn.close();
-  }
-  catch (ClassNotFoundException e)   // for Class.forName()
-  {  System.out.println("Failed to load driver: \n  " + e); }
-  catch (SQLException e)
-  {  for (Throwable t : e)
-       System.out.println(t); // to handle a 'chain' of SQLExceptions
-  }
-} // end of main()
-```
+=== "java"
+    ```java
+    // SimpleJDBC.java
+    public static void main(String[] args)
+    {
+      try {
+        Class.forName("org.firebirdsql.jdbc.FBDriver");
+                                // requires Jaybird and Firebird
+    
+        // connect to the database
+        Connection conn = DriverManager.getConnection(
+                   "jdbc:firebirdsql:embedded:crossrate.fdb",
+                   "sysdba", "masterkeys");  // login, password
+    
+        Statement statement = conn.createStatement();
+    
+        // Execute a SQL query
+        ResultSet rs = statement.executeQuery(
+                                   "SELECT * FROM Crossrate");
+    
+        // Print the result set
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        System.out.println("FromCurrency \tToCurrency \t
+                                             ConvRate \tUpdateDate");
+        System.out.println("=============================");
+    
+        while(rs.next())
+          System.out.println( rs.getString("FromCurrency") + ",   \t" +
+                              rs.getString("ToCurrency") + ",   \t" +
+                              rs.getFloat("ConvRate") + ",   \t" +
+                         sdf.format( rs.getTimestamp("UpdateDate")) );
+                            // 4th column returns java.sql.Timestamp
+    
+        System.out.println("=============================");
+    
+        // Close down (should really be in a finally block)
+        rs.close();
+        statement.close();
+        conn.close();
+      }
+      catch (ClassNotFoundException e)   // for Class.forName()
+      {  System.out.println("Failed to load driver: \n  " + e); }
+      catch (SQLException e)
+      {  for (Throwable t : e)
+           System.out.println(t); // to handle a 'chain' of SQLExceptions
+      }
+    } // end of main()
+    ```
 
 Figure 3 shows the command window output of this program.
 
@@ -261,16 +268,18 @@ called compile.bat and run.bat, which can be seen in action in Figure 3. These s
 hide the arguments of the javac.exe and java.exe commands which tell Java where to
 look for the driver's JAR. compile.bat is:
 
-```java
-javac -cp "D:\jaybird\jaybird-full-2.2.5.jar;." %*
-```
+=== "java"
+    ```java
+    javac -cp "D:\jaybird\jaybird-full-2.2.5.jar;." %*
+    ```
 
 run.bat is:
 
-```java
-java -cp "D:\jaybird\jaybird-full-2.2.5.jar;."
-     -Djava.library.path="D:\jaybird" %*
-```
+=== "java"
+    ```java
+    java -cp "D:\jaybird\jaybird-full-2.2.5.jar;."
+         -Djava.library.path="D:\jaybird" %*
+    ```
 
 Jaybird is the JDBC driver for Firebird (available from
 https://firebirdsql.org/en/jdbc-driver/).

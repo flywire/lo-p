@@ -242,25 +242,26 @@ Figure 4. Creating a new TableChart Service.
 
 Chart2.addTableChart() is defined as:
 
-```java
-// in the Chart2 class
-public static void addTableChart(XSpreadsheet sheet,
-               String chartName, CellRangeAddress cellsRange,
-               String cellName, int width, int height)
-// create table chart at cell name and size width x height
-{
-  XTableChartsSupplier chartsSupplier =
-                   Lo.qi(XTableChartsSupplier.class, sheet);
-  XTableCharts tableCharts = chartsSupplier.getCharts();
-
-  com.sun.star.awt.Point pos = Calc.getCellPos(sheet, cellName);
-  Rectangle rect = new Rectangle(pos.X, pos.Y,
-                                 width*1000, height*1000);
-
-  CellRangeAddress[] addrs = new CellRangeAddress[]{ cellsRange };
-  tableCharts.addNewByName(chartName, rect, addrs, true, true);
-}  // end of addTableChart()
-```
+=== "java"
+    ```java
+    // in the Chart2 class
+    public static void addTableChart(XSpreadsheet sheet,
+                   String chartName, CellRangeAddress cellsRange,
+                   String cellName, int width, int height)
+    // create table chart at cell name and size width x height
+    {
+      XTableChartsSupplier chartsSupplier =
+                       Lo.qi(XTableChartsSupplier.class, sheet);
+      XTableCharts tableCharts = chartsSupplier.getCharts();
+    
+      com.sun.star.awt.Point pos = Calc.getCellPos(sheet, cellName);
+      Rectangle rect = new Rectangle(pos.X, pos.Y,
+                                     width*1000, height*1000);
+    
+      CellRangeAddress[] addrs = new CellRangeAddress[]{ cellsRange };
+      tableCharts.addNewByName(chartName, rect, addrs, true, true);
+    }  // end of addTableChart()
+    ```
 
 The arguments passed to Chart2.addTableChart() include the new chart's name, the
 cell range used as a data source, and the chart's position and dimensions when drawn
@@ -308,11 +309,12 @@ Although Chart2.addTableChart() adds a table chart to the spreadsheet, it doesn'
 return a reference to the new chart document. That's obtained by calling
 Chart2.getChartDoc():
 
-```java
-Chart2.addTableChart(sheet, chartName, cellsRange, cellName,
-                                                width, height);
-XChartDocument chartDoc = Chart2.getChartDoc(sheet, chartName);
-```
+=== "java"
+    ```java
+    Chart2.addTableChart(sheet, chartName, cellsRange, cellName,
+                                                    width, height);
+    XChartDocument chartDoc = Chart2.getChartDoc(sheet, chartName);
+    ```
 
 Chart2.getChartDoc() accesses the spreadsheet's collection of TableCharts, searching
 for the one with the given name. The matching TableChart service is treated as an
@@ -328,44 +330,45 @@ Figure 7. Accessing a Chart Document.
 Chart2.getChartDoc() implements Figure 7, using Chart2.getTableChart() to access
 the named table chart:
 
-```java
-// in the Chart2 class
-public static XChartDocument getChartDoc(XSpreadsheet sheet,
-                                         String chartName)
-// return the chart doc from the sheet
-{ // get the named table chart
-  XTableChart tableChart = getTableChart(sheet, chartName);
-  if (tableChart == null)
-    return null;
-
-  // chart doc is embedded inside table chart
-  XEmbeddedObjectSupplier eos =
-              Lo.qi(XEmbeddedObjectSupplier.class, tableChart);
-  return Lo.qi(XChartDocument.class, eos.getEmbeddedObject());
-}  // end of getChartDoc()
-
-
-
-public static XTableChart getTableChart(XSpreadsheet sheet,
-                                        String chartName)
-// return the named table chart from the sheet
-{ // get the supplier for the table charts
-  XTableChartsSupplier chartsSupplier =
-                       Lo.qi(XTableChartsSupplier.class, sheet);
-  XTableCharts tableCharts = chartsSupplier.getCharts();
-  XNameAccess tcAccess = Lo.qi(XNameAccess.class, tableCharts);
-
-  // try to access the chart with the specified name
-  XTableChart tableChart = null;
-  try {
-    tableChart = Lo.qi(XTableChart.class,
-                           tcAccess.getByName(chartName));
-  }
-  catch(Exception ex)
-  {  System.out.println("Could not access " + chartName); }
-  return tableChart;
-}  // end of getTableChart()
-```
+=== "java"
+    ```java
+    // in the Chart2 class
+    public static XChartDocument getChartDoc(XSpreadsheet sheet,
+                                             String chartName)
+    // return the chart doc from the sheet
+    { // get the named table chart
+      XTableChart tableChart = getTableChart(sheet, chartName);
+      if (tableChart == null)
+        return null;
+    
+      // chart doc is embedded inside table chart
+      XEmbeddedObjectSupplier eos =
+                  Lo.qi(XEmbeddedObjectSupplier.class, tableChart);
+      return Lo.qi(XChartDocument.class, eos.getEmbeddedObject());
+    }  // end of getChartDoc()
+    
+    
+    
+    public static XTableChart getTableChart(XSpreadsheet sheet,
+                                            String chartName)
+    // return the named table chart from the sheet
+    { // get the supplier for the table charts
+      XTableChartsSupplier chartsSupplier =
+                           Lo.qi(XTableChartsSupplier.class, sheet);
+      XTableCharts tableCharts = chartsSupplier.getCharts();
+      XNameAccess tcAccess = Lo.qi(XNameAccess.class, tableCharts);
+    
+      // try to access the chart with the specified name
+      XTableChart tableChart = null;
+      try {
+        tableChart = Lo.qi(XTableChart.class,
+                               tcAccess.getByName(chartName));
+      }
+      catch(Exception ex)
+      {  System.out.println("Could not access " + chartName); }
+      return tableChart;
+    }  // end of getTableChart()
+    ```
 
 
 ### 2.3.  Initializing the Chart Document
@@ -383,11 +386,12 @@ The initialization steps in Figure 8, and the earlier calls to Chart2.addTableCh
 Chart2.getChartDoc() are carried out by Chart2.insertChart(). A typical call to
 insertChart() would be:
 
-```java
-CellRangeAddress rangeAddr = Calc.getAddress(sheet, "E15:G21");
-XChartDocument chartDoc =
-      Chart2.insertChart(sheet, rangeAddr, "A22", 20,11, "Column");
-```
+=== "java"
+    ```java
+    CellRangeAddress rangeAddr = Calc.getAddress(sheet, "E15:G21");
+    XChartDocument chartDoc =
+          Chart2.insertChart(sheet, rangeAddr, "A22", 20,11, "Column");
+    ```
 
 The first line converts "E15:G21" into a data range (this corresponds to the cells
 shown in Figure 5), which is passed to Chart2.insertChart(). The "A22" string and the
@@ -397,59 +401,60 @@ shown in Figure 6.
 
 Chart2.insertChart() is:
 
-```java
-// in the Chart2 class
-// globals
-private static final String CHART_NAME = "chart$$_";
-
-
-public static XChartDocument insertChart(XSpreadsheet sheet,
-                    CellRangeAddress cellsRange, String cellName,
-                    int width, int height, String diagramName)
-{
-  String chartName = CHART_NAME + (int)(Math.random()*10000);
-                     // generate a random name
-
-  addTableChart(sheet, chartName, cellsRange, cellName,
-                                            width, height);
-  // get newly created (empty) chart
-  XChartDocument chartDoc = getChartDoc(sheet, chartName);
-
-  // assign chart template to the chart's diagram
-  System.out.println("Using chart template: " + diagramName);
-  XDiagram diagram = chartDoc.getFirstDiagram();
-  XChartTypeTemplate ctTemplate =
-               setTemplate(chartDoc, diagram, diagramName);
-  if (ctTemplate == null)
-    return null;
-
-  boolean hasCats = hasCategories(diagramName);
-
-  // initialize data source
-  XDataProvider dp = chartDoc.getDataProvider();
-  PropertyValue[] aProps = Props.makeProps(
-        new String[] { "CellRangeRepresentation", "DataRowSource",
-                       "FirstCellAsLabel" , "HasCategories" },
-        new Object[] { Calc.getRangeStr(cellsRange, sheet),
-                       ChartDataRowSource.COLUMNS, true, hasCats });
-  XDataSource ds = dp.createDataSource(aProps);
-
-  // add data source to chart template
-  PropertyValue[] args = Props.makeProps("HasCategories", hasCats);
-  ctTemplate.changeDiagramData(diagram, ds, args);
-
-  // apply style settings to chart doc
-  setBackgroundColors(chartDoc, Calc.PALE_BLUE, Calc.LIGHT_BLUE);
-                                // background and wall colors
-
-  if (hasCats)  // charts using x-axis categories
-    setDataPointLabels(chartDoc, Chart2.DP_NUMBER);
-                         // show y-axis values
-
-  printChartTypes(chartDoc);
-  return chartDoc;
-}  // end of insertChart()
-```
+=== "java"
+    ```java
+    // in the Chart2 class
+    // globals
+    private static final String CHART_NAME = "chart$$_";
+    
+    
+    public static XChartDocument insertChart(XSpreadsheet sheet,
+                        CellRangeAddress cellsRange, String cellName,
+                        int width, int height, String diagramName)
+    {
+      String chartName = CHART_NAME + (int)(Math.random()*10000);
+                         // generate a random name
+    
+      addTableChart(sheet, chartName, cellsRange, cellName,
+                                                width, height);
+      // get newly created (empty) chart
+      XChartDocument chartDoc = getChartDoc(sheet, chartName);
+    
+      // assign chart template to the chart's diagram
+      System.out.println("Using chart template: " + diagramName);
+      XDiagram diagram = chartDoc.getFirstDiagram();
+      XChartTypeTemplate ctTemplate =
+                   setTemplate(chartDoc, diagram, diagramName);
+      if (ctTemplate == null)
+        return null;
+    
+      boolean hasCats = hasCategories(diagramName);
+    
+      // initialize data source
+      XDataProvider dp = chartDoc.getDataProvider();
+      PropertyValue[] aProps = Props.makeProps(
+            new String[] { "CellRangeRepresentation", "DataRowSource",
+                           "FirstCellAsLabel" , "HasCategories" },
+            new Object[] { Calc.getRangeStr(cellsRange, sheet),
+                           ChartDataRowSource.COLUMNS, true, hasCats });
+      XDataSource ds = dp.createDataSource(aProps);
+    
+      // add data source to chart template
+      PropertyValue[] args = Props.makeProps("HasCategories", hasCats);
+      ctTemplate.changeDiagramData(diagram, ds, args);
+    
+      // apply style settings to chart doc
+      setBackgroundColors(chartDoc, Calc.PALE_BLUE, Calc.LIGHT_BLUE);
+                                    // background and wall colors
+    
+      if (hasCats)  // charts using x-axis categories
+        setDataPointLabels(chartDoc, Chart2.DP_NUMBER);
+                             // show y-axis values
+    
+      printChartTypes(chartDoc);
+      return chartDoc;
+    }  // end of insertChart()
+    ```
 
 insertChart() creates a new chart document by calling addTableChart() and
 getChartDoc(), and then proceeds to link the chart template, diagram, and data source.
@@ -460,47 +465,49 @@ getChartDoc(), and then proceeds to link the chart template, diagram, and data s
 The chart diagram is the easiest to obtain, since it's directly accessible via the
 XChartDocument reference:
 
-```java
-// part of Chart2.insertChart()...
-XDiagram diagram = chartDoc.getFirstDiagram();
-```
+=== "java"
+    ```java
+    // part of Chart2.insertChart()...
+    XDiagram diagram = chartDoc.getFirstDiagram();
+    ```
 
 #### Creating a Template
 
 Creating a chart template is a few more steps. requiring the creation of a
 XChartTypeManager interface inside Chart2.setTemplate():
 
-```java
-// in the Chart2 class
-public static XChartTypeTemplate setTemplate(
-              XChartDocument chartDoc,
-              XDiagram diagram, String diagramName)
-// set diagram to use the specified chart template
-{ try {
-    XChartTypeManager ctMan = chartDoc.getChartTypeManager();
-    XMultiServiceFactory msf =
-           Lo.qi(XMultiServiceFactory.class, ctMan);
-    String templateNm = "com.sun.star.chart2.template." +
-                                               diagramName;
-    XChartTypeTemplate ctTemplate =
-          Lo.qi(XChartTypeTemplate.class,
-                      msf.createInstance(templateNm));
-    if (ctTemplate == null) {
-      System.out.println("Could not create chart template \"" +
-                 diagramName +  "\"; using a column chart");
-      ctTemplate = Lo.qi(XChartTypeTemplate.class,
-                msf.createInstance(
-                  "com.sun.star.chart2.template.Column"));
-    }
-    ctTemplate.changeDiagram(diagram);
-    return ctTemplate;
-  }
-  catch(Exception ex) {
-    System.out.println("Could not set chart to "+diagramName);
-    return null;
-  }
-}  // end of setTemplate()
-```
+=== "java"
+    ```java
+    // in the Chart2 class
+    public static XChartTypeTemplate setTemplate(
+                  XChartDocument chartDoc,
+                  XDiagram diagram, String diagramName)
+    // set diagram to use the specified chart template
+    { try {
+        XChartTypeManager ctMan = chartDoc.getChartTypeManager();
+        XMultiServiceFactory msf =
+               Lo.qi(XMultiServiceFactory.class, ctMan);
+        String templateNm = "com.sun.star.chart2.template." +
+                                                   diagramName;
+        XChartTypeTemplate ctTemplate =
+              Lo.qi(XChartTypeTemplate.class,
+                          msf.createInstance(templateNm));
+        if (ctTemplate == null) {
+          System.out.println("Could not create chart template \"" +
+                     diagramName +  "\"; using a column chart");
+          ctTemplate = Lo.qi(XChartTypeTemplate.class,
+                    msf.createInstance(
+                      "com.sun.star.chart2.template.Column"));
+        }
+        ctTemplate.changeDiagram(diagram);
+        return ctTemplate;
+      }
+      catch(Exception ex) {
+        System.out.println("Could not set chart to "+diagramName);
+        return null;
+      }
+    }  // end of setTemplate()
+    ```
 
 The diagramName value is one of the template names shown in Table 1 (e.g.
 "Column"). The string "com.sun.star.chart2.template." is added to the front to create a
@@ -515,26 +522,28 @@ template to the chart's diagram.
 Back in Chart2.insertChart(), the right-most branch of Figure 8 involves the creation
 of an XDataProvider instance:
 
-```java
-// part of Chart2.insertChart()...
-XDataProvider dp = chartDoc.getDataProvider();
-```
+=== "java"
+    ```java
+    // part of Chart2.insertChart()...
+    XDataProvider dp = chartDoc.getDataProvider();
+    ```
 
 This data provider converts the chart's data range into an XDataSource:
 
-```java
-// part of Chart2.insertChart()...
-
-boolean hasCats = hasCategories(diagramName);
-
-PropertyValue[] aProps = Props.makeProps(
-      new String[] { "CellRangeRepresentation", "DataRowSource",
-                     "FirstCellAsLabel" , "HasCategories" },
-      new Object[] { Calc.getRangeStr(cellsRange, sheet),
-                     ChartDataRowSource.COLUMNS, true, hasCats });
-
-XDataSource ds = dp.createDataSource(aProps);
-```
+=== "java"
+    ```java
+    // part of Chart2.insertChart()...
+    
+    boolean hasCats = hasCategories(diagramName);
+    
+    PropertyValue[] aProps = Props.makeProps(
+          new String[] { "CellRangeRepresentation", "DataRowSource",
+                         "FirstCellAsLabel" , "HasCategories" },
+          new Object[] { Calc.getRangeStr(cellsRange, sheet),
+                         ChartDataRowSource.COLUMNS, true, hasCats });
+    
+    XDataSource ds = dp.createDataSource(aProps);
+    ```
 
 The properties passed to XDataProvider.createDataSource() specify more details
 about the format of the data in Figure 5 – the data for each graph is organized into
@@ -549,42 +558,45 @@ The hasCats boolean is set by examining the diagram name: if it's an XY scatter 
 or bubble chart then the first column of data will not be used as x-axis categories, so
 the boolean is set to false:
 
-```java
-// in the Chart2 class
-public static boolean hasCategories(String diagramName)
-{
-  String name = diagramName.toLowerCase();
-  if (name.contains("scatter") || name.contains("bubble"))
-     return false;
-  return true;
-}  // end of hasCategories()
-```
+=== "java"
+    ```java
+    // in the Chart2 class
+    public static boolean hasCategories(String diagramName)
+    {
+      String name = diagramName.toLowerCase();
+      if (name.contains("scatter") || name.contains("bubble"))
+         return false;
+      return true;
+    }  // end of hasCategories()
+    ```
 
 #### Linking the template, diagram, and data source
 
 Now the data source can populate the diagram using the specified chart template
 format:
 
-```java
-// part of Chart2.insertChart()...
-PropertyValue[] args = Props.makeProps("HasCategories", hasCats);
-ctTemplate.changeDiagramData(diagram, ds, args);
-```
+=== "java"
+    ```java
+    // part of Chart2.insertChart()...
+    PropertyValue[] args = Props.makeProps("HasCategories", hasCats);
+    ctTemplate.changeDiagramData(diagram, ds, args);
+    ```
 
 At this point the chart will be drawn in the Calc application window, and
 Chart2.insertChart() could return. Instead my code modifies the appearance of the
 chart in two ways:
 
-```java
-// part of Chart2.insertChart()...
-// apply some style settings to chart doc
-setBackgroundColors(chartDoc, Calc.PALE_BLUE, Calc.LIGHT_BLUE);
-                 // color the background and wall colors
-
-if (hasCats)     // charts using x-axis categories
-  setDataPointLabels(chartDoc, Chart2.DP_NUMBER);
-                 // show y-axis values on the data points
-```
+=== "java"
+    ```java
+    // part of Chart2.insertChart()...
+    // apply some style settings to chart doc
+    setBackgroundColors(chartDoc, Calc.PALE_BLUE, Calc.LIGHT_BLUE);
+                     // color the background and wall colors
+    
+    if (hasCats)     // charts using x-axis categories
+      setDataPointLabels(chartDoc, Chart2.DP_NUMBER);
+                     // show y-axis values on the data points
+    ```
 
 Chart2.setBackgroundColors() changes the background and wall colors of the chart
 (see Figure 6). Chart2.setDataPointLabels() switches on the displaying of the y-axis
@@ -631,9 +643,10 @@ A chart's Diagram service is easily reached by calling
 ChartDocument.getFirstDiagram(), which returns a reference to the diagram's
 XDiagram interface:
 
-```java
-XDiagram diagram = chartDoc.getFirstDiagram();
-```
+=== "java"
+    ```java
+    XDiagram diagram = chartDoc.getFirstDiagram();
+    ```
 
 XDiagram contains several useful methods (e.g. getLegend(), getWall(), getFloor()),
 and its services hold many properties (e.g. "StartingAngle" used in pie charts and
@@ -656,28 +669,29 @@ The easiest way to access the documentation for Diagram and XDiagram is via loDo
 Chart2.setBackgroundColors() changes the background and wall colors of the chart
 through the ChartDocument and Diagram services:
 
-```java
-// in the Chart2 class
-public static void setBackgroundColors(XChartDocument chartDoc,
-                                  int bgColor, int wallColor)
-{ if (bgColor > 0) {
-    XPropertySet bgProps = chartDoc.getPageBackground();
-    // Props.showProps("Background", bgProps);
-    Props.setProperty(bgProps, "FillBackground", true);
-    Props.setProperty(bgProps, "FillStyle", FillStyle.SOLID);
-    Props.setProperty(bgProps, "FillColor", bgColor);
-  }
-
-  if (wallColor > 0) {
-    XDiagram diagram = chartDoc.getFirstDiagram();
-    XPropertySet wallProps = diagram.getWall();
-    // Props.showProps("Wall", wallProps);
-    Props.setProperty(wallProps, "FillBackground", true);
-    Props.setProperty(wallProps, "FillStyle", FillStyle.SOLID);
-    Props.setProperty(wallProps, "FillColor", wallColor);
-  }
-}  // end of setBackgroundColors()
-```
+=== "java"
+    ```java
+    // in the Chart2 class
+    public static void setBackgroundColors(XChartDocument chartDoc,
+                                      int bgColor, int wallColor)
+    { if (bgColor > 0) {
+        XPropertySet bgProps = chartDoc.getPageBackground();
+        // Props.showProps("Background", bgProps);
+        Props.setProperty(bgProps, "FillBackground", true);
+        Props.setProperty(bgProps, "FillStyle", FillStyle.SOLID);
+        Props.setProperty(bgProps, "FillColor", bgColor);
+      }
+    
+      if (wallColor > 0) {
+        XDiagram diagram = chartDoc.getFirstDiagram();
+        XPropertySet wallProps = diagram.getWall();
+        // Props.showProps("Wall", wallProps);
+        Props.setProperty(wallProps, "FillBackground", true);
+        Props.setProperty(wallProps, "FillStyle", FillStyle.SOLID);
+        Props.setProperty(wallProps, "FillColor", wallColor);
+      }
+    }  // end of setBackgroundColors()
+    ```
 
 The chart background is manipulated with a property set accessible through
 XChartDocument.getPageBackground(), while the wall is reached with
@@ -705,21 +719,22 @@ Figure 10 shows that the diagram's coordinate systems are reached through
 XCoordinateSystemContainer.getCoordinateSystems(). Chart2.getCoordSystem()
 assumes that the programmer only wants the first coordinate system:
 
-```java
-// in the Chart2 class
-public static XCoordinateSystem getCoordSystem(
-                                XChartDocument chartDoc)
-{ XDiagram diagram = chartDoc.getFirstDiagram();
-  XCoordinateSystemContainer coordSysCon =
-             Lo.qi(XCoordinateSystemContainer.class, diagram);
-  XCoordinateSystem[] coordSys =
-                       coordSysCon.getCoordinateSystems();
-  if (coordSys.length > 1)
-    System.out.println("No of coord systems: " + coordSys.length +
-                                       "; using first");
-  return coordSys[0];  // return first
-}  // end of getCoordSystem()
-```
+=== "java"
+    ```java
+    // in the Chart2 class
+    public static XCoordinateSystem getCoordSystem(
+                                    XChartDocument chartDoc)
+    { XDiagram diagram = chartDoc.getFirstDiagram();
+      XCoordinateSystemContainer coordSysCon =
+                 Lo.qi(XCoordinateSystemContainer.class, diagram);
+      XCoordinateSystem[] coordSys =
+                           coordSysCon.getCoordinateSystems();
+      if (coordSys.length > 1)
+        System.out.println("No of coord systems: " + coordSys.length +
+                                           "; using first");
+      return coordSys[0];  // return first
+    }  // end of getCoordSystem()
+    ```
 
 The CoordinateSystem service is employed to access the chart's axes and its chart
 type (or types), as in Figure 11.
@@ -743,23 +758,24 @@ Figure 11 shows that the chart types in a coordinate system are reached through
 XChartTypeContainer.getChartTypes(). Chart2.getChartType() assumes the
 programmer only wants the first chart type in the array:
 
-```java
-// in the Chart2 class
-public static XChartType getChartType(XChartDocument chartDoc)
-{
-  XChartType[] chartTypes = getChartTypes(chartDoc);
-  return chartTypes[0];  // get first
-}
-
-
-public static XChartType[] getChartTypes(XChartDocument chartDoc)
-{
-  XCoordinateSystem coordSys = getCoordSystem(chartDoc);
-  XChartTypeContainer ctCon =
-      Lo.qi(XChartTypeContainer.class, coordSys);
-  return ctCon.getChartTypes();
-}  // end of getChartTypes()
-```
+=== "java"
+    ```java
+    // in the Chart2 class
+    public static XChartType getChartType(XChartDocument chartDoc)
+    {
+      XChartType[] chartTypes = getChartTypes(chartDoc);
+      return chartTypes[0];  // get first
+    }
+    
+    
+    public static XChartType[] getChartTypes(XChartDocument chartDoc)
+    {
+      XCoordinateSystem coordSys = getCoordSystem(chartDoc);
+      XChartTypeContainer ctCon =
+          Lo.qi(XChartTypeContainer.class, coordSys);
+      return ctCon.getChartTypes();
+    }  // end of getChartTypes()
+    ```
 
 Figure 12 shows the main components of the ChartType service.
 
@@ -786,16 +802,17 @@ Figure 12 shows that the data series for  a chart type is accessed via
 XDataSeriesContainer.getDataSeries(). This is implemented by
 Chart2.getDataSeries():
 
-```java
-// in the Chart2 class
-public static XDataSeries[] getDataSeries(XChartDocument chartDoc)
-{
-  XChartType xChartType = getChartType(chartDoc);
-  XDataSeriesContainer dsCon =
-                   Lo.qi(XDataSeriesContainer.class, xChartType);
-  return dsCon.getDataSeries();
-}  //end of getDataSeries()
-```
+=== "java"
+    ```java
+    // in the Chart2 class
+    public static XDataSeries[] getDataSeries(XChartDocument chartDoc)
+    {
+      XChartType xChartType = getChartType(chartDoc);
+      XDataSeriesContainer dsCon =
+                       Lo.qi(XDataSeriesContainer.class, xChartType);
+      return dsCon.getDataSeries();
+    }  //end of getDataSeries()
+    ```
 
 The DataSeries service is one of the more complex parts of the Chart2 module
 because of its support for several important interfaces. I won't explain all of them just
@@ -823,10 +840,11 @@ I can now explain the second of the two chart changing methods called at the end
 Chart2.insertChart(): Chart2.setDataPointLabels(), which switches on the displaying
 of the y-axis data points as numbers. The call is:
 
-```java
-// part of Chart2.insertChart()...
-setDataPointLabels(chartDoc, Chart2.DP_NUMBER);
-```
+=== "java"
+    ```java
+    // part of Chart2.insertChart()...
+    setDataPointLabels(chartDoc, Chart2.DP_NUMBER);
+    ```
 
 Chart2.setDataPointLabels() uses Chart2.getDataSeries() described above, which
 returns an array of all the data series used in the chart. setDataPointLabels() iterates
@@ -834,46 +852,47 @@ through the array and manipulates the "Label" property for each series. In other
 words, it modifies each data series property without accessing each point. The code
 for Chart2.setDataPointLabels():
 
-```java
-// in the Chart2 class
-// data point label types
-public static final int DP_NUMBER = 0;
-public static final int DP_PERCENT = 1;
-public static final int DP_CATEGORY = 2;
-public static final int DP_SYMBOL = 3;
-public static final int DP_NONE = 4;
-
-
-public static void setDataPointLabels(XChartDocument chartDoc,
-                                            int labelType)
-// change label type for all data series
-{
-  XDataSeries[] dataSeriesArr = getDataSeries(chartDoc);
-  for (XDataSeries dataSeries : dataSeriesArr) {
-    // visit every data series
-    DataPointLabel dpLabel =
-         (DataPointLabel) Props.getProperty(dataSeries, "Label");
-    dpLabel.ShowNumber = false;        // reset show types
-    dpLabel.ShowCategoryName = false;
-    dpLabel.ShowLegendSymbol = false;
-
-    if (labelType == DP_NUMBER)
-      dpLabel.ShowNumber = true;
-    else if (labelType == DP_PERCENT) {
-      dpLabel.ShowNumber = true;
-      dpLabel.ShowNumberInPercent = true;
-    }
-    else if (labelType == DP_CATEGORY)
-      dpLabel.ShowCategoryName = true;
-    else if (labelType == DP_SYMBOL)
-      dpLabel.ShowLegendSymbol = true;
-    else if (labelType == DP_NONE) {}  // do nothing
-    else
-      System.out.println("Unrecognized label type");
-    Props.setProperty(dataSeries, "Label", dataPointLabel);
-  }
-}  // end of setDataPointLabels()
-```
+=== "java"
+    ```java
+    // in the Chart2 class
+    // data point label types
+    public static final int DP_NUMBER = 0;
+    public static final int DP_PERCENT = 1;
+    public static final int DP_CATEGORY = 2;
+    public static final int DP_SYMBOL = 3;
+    public static final int DP_NONE = 4;
+    
+    
+    public static void setDataPointLabels(XChartDocument chartDoc,
+                                                int labelType)
+    // change label type for all data series
+    {
+      XDataSeries[] dataSeriesArr = getDataSeries(chartDoc);
+      for (XDataSeries dataSeries : dataSeriesArr) {
+        // visit every data series
+        DataPointLabel dpLabel =
+             (DataPointLabel) Props.getProperty(dataSeries, "Label");
+        dpLabel.ShowNumber = false;        // reset show types
+        dpLabel.ShowCategoryName = false;
+        dpLabel.ShowLegendSymbol = false;
+    
+        if (labelType == DP_NUMBER)
+          dpLabel.ShowNumber = true;
+        else if (labelType == DP_PERCENT) {
+          dpLabel.ShowNumber = true;
+          dpLabel.ShowNumberInPercent = true;
+        }
+        else if (labelType == DP_CATEGORY)
+          dpLabel.ShowCategoryName = true;
+        else if (labelType == DP_SYMBOL)
+          dpLabel.ShowLegendSymbol = true;
+        else if (labelType == DP_NONE) {}  // do nothing
+        else
+          System.out.println("Unrecognized label type");
+        Props.setProperty(dataSeries, "Label", dataPointLabel);
+      }
+    }  // end of setDataPointLabels()
+    ```
 
 The "Label" DataSeries property is inherited from DataPointProperties (see
 `lodoc DataPointProperties`). "Label" is of type DataPointLabel which maintains four

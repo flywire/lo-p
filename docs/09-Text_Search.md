@@ -34,12 +34,13 @@ Figure 1. The XSearchable and XReplaceable Interfaces.
 The following code fragment utilizes the XSearchable and XSearchDescriptor
 interfaces:
 
-```java
-XSearchable searchable = Lo.qi(XSearchable.class, doc);
-XSearchDescriptor srchDesc = searchable.createSearchDescriptor();
-srchDesc.setSearchString("colou?r");
-       // a regular expression meaning "color" or "colour"
-```
+=== "java"
+    ```java
+    XSearchable searchable = Lo.qi(XSearchable.class, doc);
+    XSearchDescriptor srchDesc = searchable.createSearchDescriptor();
+    srchDesc.setSearchString("colou?r");
+           // a regular expression meaning "color" or "colour"
+    ```
 
 XReplaceable and XReplaceDescriptor objects are configured in a similar way, as
 shown in the examples.
@@ -58,16 +59,18 @@ Figure 2. The SearchDescriptor and ReplaceDescriptor Services.
 The next code fragment accesses the SearchDescriptor properties, and switches on
 regular expression searching:
 
-```java
-XPropertySet srchProps = Lo.qi(XPropertySet.class, srchDesc);
-srchProps.setPropertyValue("SearchRegularExpression", true);
-```
+=== "java"
+    ```java
+    XPropertySet srchProps = Lo.qi(XPropertySet.class, srchDesc);
+    srchProps.setPropertyValue("SearchRegularExpression", true);
+    ```
 
 Alternatively, Props.setProperty() can be employed:
 
-```java
-Props.setProperty(srchDesc, "SearchRegularExpression", true);
-```
+=== "java"
+    ```java
+    Props.setProperty(srchDesc, "SearchRegularExpression", true);
+    ```
 
 Once a search descriptor has been created (i.e. its string is set and any properties
 configured), then one of the findXXX() methods in XSearchable can be called.
@@ -75,10 +78,11 @@ configured), then one of the findXXX() methods in XSearchable can be called.
 For instance, XSearchable.findFirst() returns the text range of the first matching
 element (or null), as in:
 
-```java
-XInterface srch = (XInterface) searchable.findFirst(srchDesc);
-XTextRange matchTR = Lo.qi(XTextRange.class, srch);
-```
+=== "java"
+    ```java
+    XInterface srch = (XInterface) searchable.findFirst(srchDesc);
+    XTextRange matchTR = Lo.qi(XTextRange.class, srch);
+    ```
 
 The example programs, TextReplace.java and ItalicsStyler.java, demonstrate search
 and replacement. TextReplace.java uses XSearchable to find the first occurrence of a
@@ -93,10 +97,11 @@ TextReplace.java repeatedly calls XSearchable.findFirst() with regular expressio
 taken from an array. The first matching phrase for each expression is reported. For
 instance, the call:
 
-```java
-String words[] = {"(G|g)rit", "colou?r"};
-findWords(doc, words);
-```
+=== "java"
+    ```java
+    String words[] = {"(G|g)rit", "colou?r"};
+    findWords(doc, words);
+    ```
 
 prints the following when "story.doc" is searched:
 
@@ -119,53 +124,55 @@ view cursor, and a linked page cursor.
 
 The code for findWords():
 
-```java
-private static void findWords(XTextDocument doc, String[] words)
-{
-  // get the text view cursor and linked page cursor
-  XTextViewCursor tvc = Write.getViewCursor(doc);
-  tvc.gotoStart(false);
-  XPageCursor pageCursor = Lo.qi(XPageCursor.class, tvc);
-
-  try {
-    XSearchable searchable = Lo.qi(XSearchable.class, doc);
-    XSearchDescriptor srchDesc =
-                          searchable.createSearchDescriptor();
-
-    for(int i = 0; i < words.length; i++ ) {
-      System.out.println("Searching for first occurrence of \"" +
-                                                  words[i] + "\"");
-      srchDesc.setSearchString(words[i]);
-      Props.setProperty(srchDesc, "SearchRegularExpression", true);
-
-      XInterface  srch = (XInterface) searchable.findFirst(srchDesc);
-      if (srch != null) {
-        XTextRange matchTR = Lo.qi(XTextRange.class, srch);
-        tvc.gotoRange(matchTR, false);
-        System.out.println("  - found \"" +
-                                   matchTR.getString() + "\"");
-        System.out.println("    - on page " +
-                                     pageCursor.getPage());
-        tvc.gotoStart(true);
-        System.out.println("    - at char position: " +
-                                     tvc.getString().length());
+=== "java"
+    ```java
+    private static void findWords(XTextDocument doc, String[] words)
+    {
+      // get the text view cursor and linked page cursor
+      XTextViewCursor tvc = Write.getViewCursor(doc);
+      tvc.gotoStart(false);
+      XPageCursor pageCursor = Lo.qi(XPageCursor.class, tvc);
+    
+      try {
+        XSearchable searchable = Lo.qi(XSearchable.class, doc);
+        XSearchDescriptor srchDesc =
+                              searchable.createSearchDescriptor();
+    
+        for(int i = 0; i < words.length; i++ ) {
+          System.out.println("Searching for first occurrence of \"" +
+                                                      words[i] + "\"");
+          srchDesc.setSearchString(words[i]);
+          Props.setProperty(srchDesc, "SearchRegularExpression", true);
+    
+          XInterface  srch = (XInterface) searchable.findFirst(srchDesc);
+          if (srch != null) {
+            XTextRange matchTR = Lo.qi(XTextRange.class, srch);
+            tvc.gotoRange(matchTR, false);
+            System.out.println("  - found \"" +
+                                       matchTR.getString() + "\"");
+            System.out.println("    - on page " +
+                                         pageCursor.getPage());
+            tvc.gotoStart(true);
+            System.out.println("    - at char position: " +
+                                         tvc.getString().length());
+          }
+          else
+            System.out.println("  - not found");
+        }
       }
-      else
-        System.out.println("  - not found");
-    }
-  }
-  catch(com.sun.star.uno.Exception e) {
-    System.out.println(e);
-  }
-}  // end of findWords()
-```
+      catch(com.sun.star.uno.Exception e) {
+        System.out.println(e);
+      }
+    }  // end of findWords()
+    ```
 
 findWords() creates the text view cursor (tvc), moves it to the start of the document,
 and links the page cursor to it:
 
-```java
-XPageCursor pageCursor = Lo.qi(XPageCursor.class, tvc);
-```
+=== "java"
+    ```java
+    XPageCursor pageCursor = Lo.qi(XPageCursor.class, tvc);
+    ```
 
 There is only one view cursor in an application, so when the text view cursor moves,
 so does the page cursor, and vice versa.
@@ -178,11 +185,12 @@ the cursor.
 After the page position has been printed, the cursor is moved to the start of the
 document with selection turned on:
 
-```java
-tvc.gotoStart(true);
-System.out.println("    - at char position: " +
-                                      tvc.getString().length());
-```
+=== "java"
+    ```java
+    tvc.gotoStart(true);
+    System.out.println("    - at char position: " +
+                                          tvc.getString().length());
+    ```
 
 This means that tvc.getString() will return all the text from the start of the document
 to the current matching point, and so length() will return the character position
@@ -195,16 +203,17 @@ may fail if the size of the string being instantiated is too big.
 TextReplace.java also contains a method called replaceWords(), which takes two
 string arrays as arguments:
 
-```java
-// code fragment inside TextReplace.java
-String ukWords[] = {
-  "colour", "neighbour", "centre", "behaviour", "metre", "through" };
-
-String usWords[] = {
-  "color", "neighbor", "center", "behavior", "meter", "thru" };
-
-replaceWords(doc, ukWords, usWords);
-```
+=== "java"
+    ```java
+    // code fragment inside TextReplace.java
+    String ukWords[] = {
+      "colour", "neighbour", "centre", "behaviour", "metre", "through" };
+    
+    String usWords[] = {
+      "color", "neighbor", "center", "behavior", "meter", "thru" };
+    
+    replaceWords(doc, ukWords, usWords);
+    ```
 
 replaceWords() cycles through the arrays, replacing all occurrences of the words in
 the first array (e.g. in ukWords[]) with the corresponding words in the second array
@@ -232,26 +241,27 @@ Change all occurrences of ...
 Since replaceWords() doesn't report page and character positions, its code is
 somewhat shorter than findWords():
 
-```java
-private static void replaceWords(XTextDocument doc,
-                       String[] oldWords, String[] newWords)
-{
-  XReplaceable replaceable = Lo.qi(XReplaceable.class, doc);
-  XReplaceDescriptor replaceDesc =
-                        replaceable.createReplaceDescriptor();
-
-  System.out.println("Change all occurrences of ...");
-  for (int i = 0; i < oldWords.length; i++) {
-    System.out.println("  " + oldWords[i] + " -> " + newWords[i]);
-    replaceDesc.setSearchString(oldWords[i]);
-    replaceDesc.setReplaceString(newWords[i]);
-
-    int numChanges = replaceable.replaceAll(replaceDesc);
-                           // replace all occurrence of word
-    System.out.println("    - no. of changes: " + numChanges);
-  }
-}  // end of replaceWords()
-```
+=== "java"
+    ```java
+    private static void replaceWords(XTextDocument doc,
+                           String[] oldWords, String[] newWords)
+    {
+      XReplaceable replaceable = Lo.qi(XReplaceable.class, doc);
+      XReplaceDescriptor replaceDesc =
+                            replaceable.createReplaceDescriptor();
+    
+      System.out.println("Change all occurrences of ...");
+      for (int i = 0; i < oldWords.length; i++) {
+        System.out.println("  " + oldWords[i] + " -> " + newWords[i]);
+        replaceDesc.setSearchString(oldWords[i]);
+        replaceDesc.setReplaceString(newWords[i]);
+    
+        int numChanges = replaceable.replaceAll(replaceDesc);
+                               // replace all occurrence of word
+        System.out.println("    - no. of changes: " + numChanges);
+      }
+    }  // end of replaceWords()
+    ```
 
 The XReplaceable and XReplaceDescriptor interfaces are created in a similar way to
 their search versions. The replace descriptor has two set methods, one for the search
@@ -310,59 +320,61 @@ of the matches.
 The searching in ItalicsStyler.java is performed by italicizeAll(), which bears a close
 resemblance to findWords():
 
-```java
-private static void italicizeAll(XTextDocument doc, String phrase)
-{
-  // get the text view cursor and linked page cursor
-  XTextViewCursor tvc = Write.getViewCursor(doc);
-  tvc.gotoStart(false);
-  XPageCursor pageCursor = Lo.qi(XPageCursor.class, tvc);
-
-  try {
-    XSearchable xSearchable = Lo.qi(XSearchable.class, doc);
-    XSearchDescriptor srchDesc =
-                         xSearchable.createSearchDescriptor();
-
-    System.out.println("Searching for all
-                         occurrences of \"" + phrase + "\"");
-    int phraseLen = phrase.length();
-    srchDesc.setSearchString(phrase);
-    Props.setProperty(srchDesc, "SearchCaseSensitive", false);
-
-    XIndexAccess matches = xSearchable.findAll(srchDesc);
-    System.out.println("No. of matches: " + matches.getCount());
-    for (int i = 0; i < matches.getCount(); i++) {
-      XTextRange matchTR = Lo.qi(XTextRange.class,
-                                      matches.getByIndex(i));
-      if (matchTR != null) {
-        tvc.gotoRange(matchTR, false);
-        System.out.println("  - found \"" +
-                                matchTR.getString() + "\"");
-        System.out.println("    - on page " +
-                                        pageCursor.getPage());
-        tvc.gotoStart(true);
-        System.out.println("    - starting at char position: " +
-                    (tvc.getString().length() - phraseLen));
-        Props.setProperties(matchTR,
-                   new String[] {"CharColor", "CharPosture"},
-                   new Object[] { 0xFF0000,
-                          com.sun.star.awt.FontSlant.ITALIC} );
+=== "java"
+    ```java
+    private static void italicizeAll(XTextDocument doc, String phrase)
+    {
+      // get the text view cursor and linked page cursor
+      XTextViewCursor tvc = Write.getViewCursor(doc);
+      tvc.gotoStart(false);
+      XPageCursor pageCursor = Lo.qi(XPageCursor.class, tvc);
+    
+      try {
+        XSearchable xSearchable = Lo.qi(XSearchable.class, doc);
+        XSearchDescriptor srchDesc =
+                             xSearchable.createSearchDescriptor();
+    
+        System.out.println("Searching for all
+                             occurrences of \"" + phrase + "\"");
+        int phraseLen = phrase.length();
+        srchDesc.setSearchString(phrase);
+        Props.setProperty(srchDesc, "SearchCaseSensitive", false);
+    
+        XIndexAccess matches = xSearchable.findAll(srchDesc);
+        System.out.println("No. of matches: " + matches.getCount());
+        for (int i = 0; i < matches.getCount(); i++) {
+          XTextRange matchTR = Lo.qi(XTextRange.class,
+                                          matches.getByIndex(i));
+          if (matchTR != null) {
+            tvc.gotoRange(matchTR, false);
+            System.out.println("  - found \"" +
+                                    matchTR.getString() + "\"");
+            System.out.println("    - on page " +
+                                            pageCursor.getPage());
+            tvc.gotoStart(true);
+            System.out.println("    - starting at char position: " +
+                        (tvc.getString().length() - phraseLen));
+            Props.setProperties(matchTR,
+                       new String[] {"CharColor", "CharPosture"},
+                       new Object[] { 0xFF0000,
+                              com.sun.star.awt.FontSlant.ITALIC} );
+          }
+        }
       }
-    }
-  }
-  catch(com.sun.star.uno.Exception e) {
-    System.out.println(e);
-  }
-}  // end of italicizeAll()
-```
+      catch(com.sun.star.uno.Exception e) {
+        System.out.println(e);
+      }
+    }  // end of italicizeAll()
+    ```
 
 After the search descriptor string has been defined, the "SearchCaseSensitive"
 property in SearchDescriptor is set to false:
 
-```java
-srchDesc.setSearchString(phrase);
-Props.setProperty(srchDesc, "SearchCaseSensitive", false);
-```
+=== "java"
+    ```java
+    srchDesc.setSearchString(phrase);
+    Props.setProperty(srchDesc, "SearchCaseSensitive", false);
+    ```
 
 This allows the search to match text contains both upper and lower case letters, such
 as "Scandal". Many other search variants, such as restricting the search to complete
@@ -373,9 +385,10 @@ XSearchable.findAll() returns an XIndexAccess collection, which is examined
 element-by-element inside a for-loop. The text range for each element is obtained by
 applying Lo.qi():
 
-```java
-XTextRange matchTR = Lo.qiXTextRange.class, matches.getByIndex(i));
-```
+=== "java"
+    ```java
+    XTextRange matchTR = Lo.qiXTextRange.class, matches.getByIndex(i));
+    ```
 
 The reporting of the matching page and character position use text view and page
 cursors in the same way as findWords() in TextReplace.java.
@@ -384,10 +397,11 @@ XTextRange is part of the TextRange service, which inherits ParagraphProperties 
 CharacterProperties. These properties are changed to adjust the character color and
 style of the selected range:
 
-```java
-Props.setProperties(matchTR,
-      new String[] {"CharColor", "CharPosture"},
-      new Object[] { 0xFF0000, com.sun.star.awt.FontSlant.ITALIC} );
-```
+=== "java"
+    ```java
+    Props.setProperties(matchTR,
+          new String[] {"CharColor", "CharPosture"},
+          new Object[] { 0xFF0000, com.sun.star.awt.FontSlant.ITALIC} );
+    ```
 
 This changes the "CharColor" and "CharPosture" properties to red and italic.

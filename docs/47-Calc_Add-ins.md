@@ -227,24 +227,25 @@ with Administrative privileges, as in Chapter 45.
 The end result is DoublerImpl.java, which contains all the necessary boiler-plate code,
 and three stub functions:
 
-```java
-// part of DoublerImpl.java...
-
-public double doubler(double value)
-{
-  return 0;
-}
-
-public double doublerSum(double[][] vals)
-{
-  return 0;
-}
-
-public double[][] sortByFirstCol(double[][] vals)
-{
-  return new double[0][0];
-}
-```
+=== "java"
+    ```java
+    // part of DoublerImpl.java...
+    
+    public double doubler(double value)
+    {
+      return 0;
+    }
+    
+    public double doublerSum(double[][] vals)
+    {
+      return 0;
+    }
+    
+    public double[][] sortByFirstCol(double[][] vals)
+    {
+      return new double[0][0];
+    }
+    ```
 
 In a spreadsheet, doublerSum() and sortByFirstCol() can be passed cell range
 arguments (e.g. =doublerSum(A1:A6)), which are treated as 2D arrays. The
@@ -267,55 +268,56 @@ of sortByFirstCol().
 Implementing doubler() and doublerSum() is easy, but I had some problems with
 sortByFirstCol() when using Java's Arrays.sort(). The code was initially:
 
-```java
-// added at the start of DoublerImpl.java...
-
-import java.util.*;    // import for Arrays and Comparator classes
-
-private static final String LOG_FNM = "c:\\arrayInfo.txt";
-                       // for debugging
-
-// :
-// completed function stubs
-public double doubler(double value)
-{  return value*2;  }
-
-
-public double doublerSum(double[][] vals)
-{
-  double sum = 0;
-  for (int i = 0; i < vals.length; i++)
-    for (int j = 0; j < vals[i].length; j++)
-      sum += vals[i][j]*2;
-  return sum;
-} // end of doublerSum()
-
-
-public double[][] sortByFirstCol(double[][] vals)
-{
-  FileIO.appendTo(LOG_FNM, Lo.getTimeStamp() + ": sortByFirstCol()");
-  selectionSort(vals);
-
-  for (int i = 0; i < vals.length; i++)
-    FileIO.appendTo(LOG_FNM, "  " + Arrays.toString(vals[i]));
-
-  return vals;
-}  // end of sortByFirstCol()
-
-
-private void selectionSort(double[][] vals)
-// ascending order based on first column of vals; FAILS ??
-{
-  Arrays.sort(vals, new Comparator<double[]>() {
-    public int compare(double[] row1, double[] row2)
-    // compare first column of each row
+=== "java"
+    ```java
+    // added at the start of DoublerImpl.java...
+    
+    import java.util.*;    // import for Arrays and Comparator classes
+    
+    private static final String LOG_FNM = "c:\\arrayInfo.txt";
+                           // for debugging
+    
+    // :
+    // completed function stubs
+    public double doubler(double value)
+    {  return value*2;  }
+    
+    
+    public double doublerSum(double[][] vals)
     {
-      FileIO.appendTo(LOG_FNM, "compared");   // never reached ??
-      return Double.compare(row1[0], row2[0]);
-    }
-  });
-}  // end of selectionSort()
-```
+      double sum = 0;
+      for (int i = 0; i < vals.length; i++)
+        for (int j = 0; j < vals[i].length; j++)
+          sum += vals[i][j]*2;
+      return sum;
+    } // end of doublerSum()
+    
+    
+    public double[][] sortByFirstCol(double[][] vals)
+    {
+      FileIO.appendTo(LOG_FNM, Lo.getTimeStamp() + ": sortByFirstCol()");
+      selectionSort(vals);
+    
+      for (int i = 0; i < vals.length; i++)
+        FileIO.appendTo(LOG_FNM, "  " + Arrays.toString(vals[i]));
+    
+      return vals;
+    }  // end of sortByFirstCol()
+    
+    
+    private void selectionSort(double[][] vals)
+    // ascending order based on first column of vals; FAILS ??
+    {
+      Arrays.sort(vals, new Comparator<double[]>() {
+        public int compare(double[] row1, double[] row2)
+        // compare first column of each row
+        {
+          FileIO.appendTo(LOG_FNM, "compared");   // never reached ??
+          return Double.compare(row1[0], row2[0]);
+        }
+      });
+    }  // end of selectionSort()
+    ```
 
 FileIO.appendTo() is my way of debugging add-in functions by appending messages
 to a file. Its  main drawback is the lack of a UNIX-like tail command in Windows for
@@ -336,25 +338,26 @@ although why is a mystery.
 
 I replaced selectionSort() with my own insertion sort:
 
-```java
-// part of DoublerImpl.java...
-
-private void selectionSort(double[][] vals)
-// ascending order based on first column of vals; WORKS!
-{
-  double[] temp;
-  for(int i = vals.length-1; i > 0; i--) {
-    int first = 0;
-    for(int j = 1; j <= i; j ++) {
-      if(vals[j][0] > vals[first][0]) // compare first col values
-        first = j;
-    }
-    temp = vals[first]; // swap rows
-    vals[first] = vals[i];
-    vals[i] = temp;
-  }
-}  // end of selectionSort()
-```
+=== "java"
+    ```java
+    // part of DoublerImpl.java...
+    
+    private void selectionSort(double[][] vals)
+    // ascending order based on first column of vals; WORKS!
+    {
+      double[] temp;
+      for(int i = vals.length-1; i > 0; i--) {
+        int first = 0;
+        for(int j = 1; j <= i; j ++) {
+          if(vals[j][0] > vals[first][0]) // compare first col values
+            first = j;
+        }
+        temp = vals[first]; // swap rows
+        vals[first] = vals[i];
+        vals[i] = temp;
+      }
+    }  // end of selectionSort()
+    ```
 
 This version of sortByFirstCol() works correctly, and the spreadsheet looks like the
 screenshot at the bottom of Figure 2. The debugging text confirms the sorting:
@@ -379,24 +382,27 @@ include utils.jar.
 The Java code generated by uno-skeletonmaker.exe includes a reference to Office's
 component context, stored as a XComponentContext reference:
 
-```java
-private final XComponentContext m_xContext;  // in DoublerImpl.java
-```
+=== "java"
+    ```java
+    private final XComponentContext m_xContext;  // in DoublerImpl.java
+    ```
 
 The variable is initialized in the constructor:
 
-```java
-public DoublerImpl( XComponentContext context )
-{  m_xContext = context;  }
-```
+=== "java"
+    ```java
+    public DoublerImpl( XComponentContext context )
+    {  m_xContext = context;  }
+    ```
 
 This reference can be used to initialize the globals used by my Lo utility library and
 other support classes, by calling Lo.addonInitialize():
 
-```java
-// part of DoublerImpl()...
-doc = Lo.addonInitialize(m_xContext);
-```
+=== "java"
+    ```java
+    // part of DoublerImpl()...
+    doc = Lo.addonInitialize(m_xContext);
+    ```
 
 Lo.addonInitialize() returns an XComponent instance, which refers to the spreadsheet.
 
@@ -405,22 +411,23 @@ and sortByFirstCol() to access and change the spreadsheet independently of their
 input arguments. For example, it's possible to access document information such as
 the title bar text, and the supported services:
 
-```java
-// in DoubleImpl.java
-// global
-private XComponent doc;
-
-
-public double doubler(double value)
-{
-  FileIO.appendTo(LOG_FNM, "Window title: " + GUI.getTitleBar());
-  FileIO.appendTo(LOG_FNM, "Services for this document:");
-  for(String service : Info.getServices(doc))
-    FileIO.appendTo(LOG_FNM, "  " + service);
-
-  return value*2;
-}
-```
+=== "java"
+    ```java
+    // in DoubleImpl.java
+    // global
+    private XComponent doc;
+    
+    
+    public double doubler(double value)
+    {
+      FileIO.appendTo(LOG_FNM, "Window title: " + GUI.getTitleBar());
+      FileIO.appendTo(LOG_FNM, "Services for this document:");
+      for(String service : Info.getServices(doc))
+        FileIO.appendTo(LOG_FNM, "  " + service);
+    
+      return value*2;
+    }
+    ```
 
 Calls to FileIO.appendTo() are the only way to 'print' information. The lines appended
 to the log are:
@@ -502,18 +509,19 @@ scripts as in Chapter 45: compileOrg.bat, toJar.bat, makeOxt.bat, and pkg.bat. T
 only difference is that the Doubler/ directory zipped up as an OXT file contains a
 configuration file, CalcAddIn.xcu.. The folder's structure is:
 
-```java
-Doubler
-|   CalcAddIn.xcu
-|   description.xml
-|   double.png
-|   license.txt
-|   package-description.txt
-|   Utils.jar
-|
-\---META-INF
-        manifest.xml
-```
+=== "java"
+    ```java
+    Doubler
+    |   CalcAddIn.xcu
+    |   description.xml
+    |   double.png
+    |   license.txt
+    |   package-description.txt
+    |   Utils.jar
+    |
+    \---META-INF
+            manifest.xml
+    ```
 
 makeOxt.bat moves the Doubler.rdb type data and DoublerImpl.jar into Doubler/, and
 zips the contents into Doubler.oxt.

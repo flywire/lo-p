@@ -76,26 +76,28 @@ newly created document always contains a blank spreadsheet in index position 0.
 The following code fragment shows how the first sheet in the "test.odt" document is
 accessed:
 
-```java
-XComponentLoader loader = Lo.loadOffice();
-XComponent compdoc = Lo.openDoc("test.odt", loader);
-XSpreadsheetDocument doc =
-                 Lo.qi(XSpreadsheetDocument.class, compdoc);
-
-XSpreadsheets sheets = doc.getSheets();
-XIndexAccess sheetsIdx = Lo.qi(XIndexAccess.class, sheets);
-XSpreadsheet sheet = Lo.qi(XSpreadsheet.class,
-                                sheetsIdx.getByIndex(0));
-```
+=== "java"
+    ```java
+    XComponentLoader loader = Lo.loadOffice();
+    XComponent compdoc = Lo.openDoc("test.odt", loader);
+    XSpreadsheetDocument doc =
+                     Lo.qi(XSpreadsheetDocument.class, compdoc);
+    
+    XSpreadsheets sheets = doc.getSheets();
+    XIndexAccess sheetsIdx = Lo.qi(XIndexAccess.class, sheets);
+    XSpreadsheet sheet = Lo.qi(XSpreadsheet.class,
+                                    sheetsIdx.getByIndex(0));
+    ```
 
 These steps are hidden by methods in the Calc utility class, so the programmer can
 write:
 
-```java
-XComponentLoader loader = Lo.loadOffice();
-XSpreadsheetDocument doc = Calc.openDoc("test.odt", loader);
-XSpreadsheet sheet = Calc.getSheet(doc, 0);
-```
+=== "java"
+    ```java
+    XComponentLoader loader = Lo.loadOffice();
+    XSpreadsheetDocument doc = Calc.openDoc("test.odt", loader);
+    XSpreadsheet sheet = Calc.getSheet(doc, 0);
+    ```
 
 #### Some Casting Required
 
@@ -104,10 +106,11 @@ it's not possible to pass an XSpreadsheetDocument reference to a method expectin
 an XComponent argument, such as the original GUI.setVisible(), which had the
 signature:
 
-```java
-// in the GUI class (old version)
-public static void setVisible(XComponent objDoc, boolean isVisible);
-```
+=== "java"
+    ```java
+    // in the GUI class (old version)
+    public static void setVisible(XComponent objDoc, boolean isVisible);
+    ```
 
 Text documents can be passed to GUI.setVisible() because XTextDocument does
 subclass XComponent. The same is possible for Draw and Impress documents.
@@ -115,25 +118,27 @@ subclass XComponent. The same is possible for Draw and Impress documents.
 It's possible to manipulate a spreadsheet document as an XComponent, but it must be
 cast first:
 
-```java
-XComponent xc = Lo.qi(XComponent.class, doc);
-GUI.setVisible(xc, true);
-```
+=== "java"
+    ```java
+    XComponent xc = Lo.qi(XComponent.class, doc);
+    GUI.setVisible(xc, true);
+    ```
 
 I decided to hide this casting issue by weakening the typing of methods using
 XComponent parameters. For example, the current version of GUI.setVisible()
 assumes that its first argument is of type Object:
 
-```java
-// in the GUI class
-public static void setVisible(Object objDoc, boolean isVisible)
-{
-  XComponent doc = Lo.qi(XComponent.class, objDoc);
-  XWindow xWindow = getFrame(doc).getContainerWindow();
-  xWindow.setVisible(isVisible);
-  xWindow.setFocus();
-}  // end of setVisible()
-```
+=== "java"
+    ```java
+    // in the GUI class
+    public static void setVisible(Object objDoc, boolean isVisible)
+    {
+      XComponent doc = Lo.qi(XComponent.class, objDoc);
+      XWindow xWindow = getFrame(doc).getContainerWindow();
+      xWindow.setVisible(isVisible);
+      xWindow.setFocus();
+    }  // end of setVisible()
+    ```
 
 This GUI.setVisible() can be called with a XSpreadsheet reference:
 GUI.setVisible(doc, true);
@@ -209,16 +214,17 @@ belonging to the Spreadsheet service. The most important is probably XSpreadshee
 sheet's cells and cell ranges via getCellByPosition(), getCellRangeByPosition(), and
 getCellRangeByName().  For example:
 
-```java
-  :
-XSpreadsheet sheet = Calc.getSheet(doc, 0);
-XCell cell = sheet.getCellByPosition(2, 4);    // (column,row)
-
-XCellRange cellRange1 = sheet.getCellRangeByPosition(1,1,3,2);
-          // startColumn, startRow, endColumn, endRow
-
-XCellRange cellRange2 = sheet.getCellRangeByName("B2:D3");
-```
+=== "java"
+    ```java
+      :
+    XSpreadsheet sheet = Calc.getSheet(doc, 0);
+    XCell cell = sheet.getCellByPosition(2, 4);    // (column,row)
+    
+    XCellRange cellRange1 = sheet.getCellRangeByPosition(1,1,3,2);
+              // startColumn, startRow, endColumn, endRow
+    
+    XCellRange cellRange2 = sheet.getCellRangeByName("B2:D3");
+    ```
 
 Oddly enough there's no getCellByName() method, but my Calc.java class adds one.
 
@@ -264,17 +270,18 @@ services (and their corresponding XTableRows and XTableColumns interfaces).
 They're accessed through the XColumnRowRange interface shown in Figure 6. Code
 for obtaining the first row of a sheet is:
 
-```java
-XColumnRowRange crRange = Lo.qi(XColumnRowRange.class, sheet);
-    // get the XColumnRowRange interface for the sheet
-
-XTableRows rows = crRange.getRows();  // get all the rows
-XIndexAccess con = Lo.qi(XIndexAccess.class, rows);
-                // treat the rows as an indexed container
-
-XCellRange rowRange = Lo.qi(XCellRange.class, con.getByIndex(0));
-                // access the first row as a cell range
-```
+=== "java"
+    ```java
+    XColumnRowRange crRange = Lo.qi(XColumnRowRange.class, sheet);
+        // get the XColumnRowRange interface for the sheet
+    
+    XTableRows rows = crRange.getRows();  // get all the rows
+    XIndexAccess con = Lo.qi(XIndexAccess.class, rows);
+                    // treat the rows as an indexed container
+    
+    XCellRange rowRange = Lo.qi(XCellRange.class, con.getByIndex(0));
+                    // access the first row as a cell range
+    ```
 
 XTableRows is an indexed container containing a sequence of XCellRange objects.
 The TableRow services and interfaces are shown in Figure 8:
@@ -297,9 +304,10 @@ Figure 9. The TableColumn Services and Interfaces.
 My Calc class includes methods that hide these details, so the accessing the first row
 of the sheet becomes:
 
-```java
-XCellRange rowRange = Calc.getRowRange(sheet, 0);
-```
+=== "java"
+    ```java
+    XCellRange rowRange = Calc.getRowRange(sheet, 0);
+    ```
 
 
 ## 6.  Cell Services
@@ -308,9 +316,10 @@ XCellRange.getCellByPosition() returns a single cell from a given cell range.
 However, this method can also be applied to a sheet because the API considers a sheet
 to be a very big cell range. For example:
 
-```java
-XCell cell = sheet.getCellByPosition(2, 4)
-```
+=== "java"
+    ```java
+    XCell cell = sheet.getCellByPosition(2, 4)
+    ```
 
 The SheetCell service manages properties related to cell formulae and cell input
 validation. However, most cell functionality comes from inheriting the Cell service in
@@ -327,12 +336,13 @@ using XCell. XCell contains useful methods for getting and setting the values in
 (which may be numbers, text, or formulae). For example, the following stores the
 number 9 in the cell at coordinate (2, 4) (the "C5" cell):
 
-```java
-  :
-XSpreadsheet sheet = Calc.getSheet(doc, 0);
-XCell cell = sheet.getCellByPosition(2, 4);    // (column,row)
-cell.setValue(9);
-```
+=== "java"
+    ```java
+      :
+    XSpreadsheet sheet = Calc.getSheet(doc, 0);
+    XCell cell = sheet.getCellByPosition(2, 4);    // (column,row)
+    cell.setValue(9);
+    ```
 
 SheetCell inherits the same properties as SheetCellRange. For example,
 CellProperties stores cell formatting properties, while text styling properties are
@@ -343,9 +353,10 @@ interface, it's possible to manipulate cell text in the same way that text is ha
 text document. However, for most purposes, it’s enough to use XCell's setFormula()
 which, despite its name, can be used to assign plain text to a cell. For instance:
 
-```java
-cell.setFormula("hello");     // put "hello" text in the cell
-```
+=== "java"
+    ```java
+    cell.setFormula("hello");     // put "hello" text in the cell
+    ```
 
 Calc differentiates between ordinary text and formulae by expecting a formula to
 begin with "=".

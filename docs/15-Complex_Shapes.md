@@ -43,95 +43,98 @@ Figure 1. Different Styles of Connector.
 
 Grouper.java contains code for generating the top-left example in Figure 1:
 
-```java
-// Grouper.java
-public static void main (String args[])
-{
-  XComponentLoader loader = Lo.loadOffice();
-  XComponent doc = Draw.createDrawDoc(loader);
-  if (doc == null) {
-    System.out.println("Draw doc creation failed");
-    Lo.closeOffice();
-    return;
-  }
-
-  GUI.setVisible(doc, true);
-  Lo.delay(1000);    // need delay or zoom may not occur
-  GUI.zoom(doc, GUI.ENTIRE_PAGE);
-
-  XDrawPage currSlide = Draw.getSlide(doc, 0); //access first page
-
-  System.out.println("\nConnecting rectangles ...");
-  XNameContainer gStyles = Info.getStyleContainer(doc, "graphics");
-  connectRectangles(currSlide, gStyles);
-
-     : // code for grouping, binding, and combining shape,
-     : // discussed later
-
-  Lo.saveDoc(doc, "grouper.odg");
-  Lo.closeDoc(doc);
-  Lo.closeOffice();
-}
-```
+=== "java"
+    ```java
+    // Grouper.java
+    public static void main (String args[])
+    {
+      XComponentLoader loader = Lo.loadOffice();
+      XComponent doc = Draw.createDrawDoc(loader);
+      if (doc == null) {
+        System.out.println("Draw doc creation failed");
+        Lo.closeOffice();
+        return;
+      }
+    
+      GUI.setVisible(doc, true);
+      Lo.delay(1000);    // need delay or zoom may not occur
+      GUI.zoom(doc, GUI.ENTIRE_PAGE);
+    
+      XDrawPage currSlide = Draw.getSlide(doc, 0); //access first page
+    
+      System.out.println("\nConnecting rectangles ...");
+      XNameContainer gStyles = Info.getStyleContainer(doc, "graphics");
+      connectRectangles(currSlide, gStyles);
+    
+         : // code for grouping, binding, and combining shape,
+         : // discussed later
+    
+      Lo.saveDoc(doc, "grouper.odg");
+      Lo.closeDoc(doc);
+      Lo.closeOffice();
+    }
+    ```
 
 The connectRectangles() function creates two labeled rectangles, and links them with
 a standard connector. The connector starts on the bottom edge of the green rectangle
 and finishes at the top edge of the blue one (as shown in the top-left of Figure 1). The
 method also prints out some information about the glue points of the blue rectangle.
 
-```java
-// in Grouper.java
-private static void connectRectangles(XDrawPage currSlide,
-                                       XNameContainer gStyles)
-{
-  // dark green rectangle with shadow and text
-  XShape greenRect = Draw.drawRectangle(currSlide,
-                                          70, 180, 50, 25);
-  Props.setProperty(greenRect, "FillColor",
-             Lo.getColorInt(java.awt.Color.GREEN.darker()));
-  Props.setProperty(greenRect, "Shadow", true);
-  Draw.addText(greenRect, "Green Rect");
-
-  // (blue, the default color) rectangle with shadow and text
-  XShape blueRect = Draw.drawRectangle(currSlide,
-                                         140, 220, 50, 25);
-  Props.setProperty(blueRect, "Shadow", true);
-  Draw.addText(blueRect, "Blue Rect");
-
-  // connect the two rectangles; from the first shape to the second
-  XShape connShape = Draw.addConnector(currSlide,
-                          greenRect, Draw.CONNECT_BOTTOM,
-                          blueRect, Draw.CONNECT_TOP);
-
-  // Draw.setStyle(connShape, gStyles, "objectwitharrow");
-  Props.setProperty(connShape, "LineWidth", 100);  // 1mm
-  Props.setProperty(connShape, "FillColor", 7512015);// dark blue
-
-  // report the glue points for the blue rectangle
-  GluePoint2[] gps = Draw.getGluePoints(blueRect);
-  if (gps != null) {
-    System.out.println("Glue Points for blue rectangle");
-    for(int i=0; i < gps.length; i++) {
-      Point pos = gps[i].Position;
-      System.out.println("  Glue point " + i + ": (" +
-                                 pos.X + ", " + pos.Y + ")");
-    }
-  }
-}  // end of connectRectangles()
-```
+=== "java"
+    ```java
+    // in Grouper.java
+    private static void connectRectangles(XDrawPage currSlide,
+                                           XNameContainer gStyles)
+    {
+      // dark green rectangle with shadow and text
+      XShape greenRect = Draw.drawRectangle(currSlide,
+                                              70, 180, 50, 25);
+      Props.setProperty(greenRect, "FillColor",
+                 Lo.getColorInt(java.awt.Color.GREEN.darker()));
+      Props.setProperty(greenRect, "Shadow", true);
+      Draw.addText(greenRect, "Green Rect");
+    
+      // (blue, the default color) rectangle with shadow and text
+      XShape blueRect = Draw.drawRectangle(currSlide,
+                                             140, 220, 50, 25);
+      Props.setProperty(blueRect, "Shadow", true);
+      Draw.addText(blueRect, "Blue Rect");
+    
+      // connect the two rectangles; from the first shape to the second
+      XShape connShape = Draw.addConnector(currSlide,
+                              greenRect, Draw.CONNECT_BOTTOM,
+                              blueRect, Draw.CONNECT_TOP);
+    
+      // Draw.setStyle(connShape, gStyles, "objectwitharrow");
+      Props.setProperty(connShape, "LineWidth", 100);  // 1mm
+      Props.setProperty(connShape, "FillColor", 7512015);// dark blue
+    
+      // report the glue points for the blue rectangle
+      GluePoint2[] gps = Draw.getGluePoints(blueRect);
+      if (gps != null) {
+        System.out.println("Glue Points for blue rectangle");
+        for(int i=0; i < gps.length; i++) {
+          Point pos = gps[i].Position;
+          System.out.println("  Glue point " + i + ": (" +
+                                     pos.X + ", " + pos.Y + ")");
+        }
+      }
+    }  // end of connectRectangles()
+    ```
 
 Note that Draw.addText() is used to label the shapes.
 
 Draw.addConnector() links the two rectangles based on glue point names supplied as
 arguments. These names are defined in the Draw class:
 
-```java
-// in the Draw class
-public static final int CONNECT_TOP = 0;
-public static final int CONNECT_RIGHT = 1;
-public static final int CONNECT_BOTTOM = 2;
-public static final int CONNECT_LEFT = 3;
-```
+=== "java"
+    ```java
+    // in the Draw class
+    public static final int CONNECT_TOP = 0;
+    public static final int CONNECT_RIGHT = 1;
+    public static final int CONNECT_BOTTOM = 2;
+    public static final int CONNECT_LEFT = 3;
+    ```
 
 Draw.addConnector() creates a ConnectorShape object and sets several of its
 properties. A simplified inheritance hierarchy for ConnectorShape is shown in Figure
@@ -148,31 +151,32 @@ FillProperties class; instead it has ConnectorProperties (see lodoc
 ConnectorProperties), which holds most of the properties used by
 Draw.addConnector(). addConnector() is defined as:
 
-```java
-// in the Draw class
-public static XShape addConnector(XDrawPage slide,
-                        XShape shape1, int fromConnect,
-                        XShape shape2, int toConnect)
-{
-  XShape xConnector = addShape(slide, "ConnectorShape", 0,0,0,0);
-
-  XPropertySet props = Lo.qi(XPropertySet.class, xConnector);
-  try {
-    props.setPropertyValue("StartShape", shape1);
-    props.setPropertyValue("StartGluePointIndex", fromConnect);
-
-    props.setPropertyValue("EndShape", shape2);
-    props.setPropertyValue("EndGluePointIndex", toConnect);
-
-    props.setPropertyValue("EdgeKind", ConnectorType.STANDARD);
-                        // STANDARD, CURVE, LINE, LINES
-  }
-  catch(Exception e)
-  {  System.out.println("Could not connect the shapes");  }
-
-  return xConnector;
-}  // end of addConnectorShape()
-```
+=== "java"
+    ```java
+    // in the Draw class
+    public static XShape addConnector(XDrawPage slide,
+                            XShape shape1, int fromConnect,
+                            XShape shape2, int toConnect)
+    {
+      XShape xConnector = addShape(slide, "ConnectorShape", 0,0,0,0);
+    
+      XPropertySet props = Lo.qi(XPropertySet.class, xConnector);
+      try {
+        props.setPropertyValue("StartShape", shape1);
+        props.setPropertyValue("StartGluePointIndex", fromConnect);
+    
+        props.setPropertyValue("EndShape", shape2);
+        props.setPropertyValue("EndGluePointIndex", toConnect);
+    
+        props.setPropertyValue("EdgeKind", ConnectorType.STANDARD);
+                            // STANDARD, CURVE, LINE, LINES
+      }
+      catch(Exception e)
+      {  System.out.println("Could not connect the shapes");  }
+    
+      return xConnector;
+    }  // end of addConnectorShape()
+    ```
 
 Draw.addShape() is called with a (0,0) position, zero width and height. The real
 position and dimensions of the connector are set via its properties. "StartShape" and
@@ -183,38 +187,40 @@ specifies one of the connection types from Figure 1.
 Grouper.java's connectRectangles() has some code for retrieving an array of glue
 points for a shape:
 
-```java
-// in connectRectangles() in Grouper.java
-GluePoint2[] gps = Draw.getGluePoints(blueRect);
-```
+=== "java"
+    ```java
+    // in connectRectangles() in Grouper.java
+    GluePoint2[] gps = Draw.getGluePoints(blueRect);
+    ```
 
 Draw.getGluePoints() converts the shape into an XGluePointsSupplier, and calls its
 getGluePoints() method to retrieve an indexed container of GluePoint2 objects. To
 simplify the access to the points data, this structure is returned as an array:
 
-```java
-public static GluePoint2[] getGluePoints(XShape shape)
-{
-  XGluePointsSupplier gpSupp =
-               Lo.qi( XGluePointsSupplier.class, shape);
-  XIndexContainer gluePts = gpSupp.getGluePoints();
-
-  int numGPs = gluePts.getCount();  // should be 4 by default
-  if (numGPs == 0) {
-    System.out.println("No glue points for this shape");
-    return null;
-  }
-  GluePoint2[] gps = new GluePoint2[numGPs];
-  for(int i=0; i < numGPs; i++) {
-    try {
-      gps[i] = Lo.qi(GluePoint2.class, gluePts.getByIndex(i));
-    }
-    catch(com.sun.star.uno.Exception e)
-    {  System.out.println("Could not access glue point " + i);  }
-  }
-  return gps;
-}  // end of getGluePoints()
-```
+=== "java"
+    ```java
+    public static GluePoint2[] getGluePoints(XShape shape)
+    {
+      XGluePointsSupplier gpSupp =
+                   Lo.qi( XGluePointsSupplier.class, shape);
+      XIndexContainer gluePts = gpSupp.getGluePoints();
+    
+      int numGPs = gluePts.getCount();  // should be 4 by default
+      if (numGPs == 0) {
+        System.out.println("No glue points for this shape");
+        return null;
+      }
+      GluePoint2[] gps = new GluePoint2[numGPs];
+      for(int i=0; i < numGPs; i++) {
+        try {
+          gps[i] = Lo.qi(GluePoint2.class, gluePts.getByIndex(i));
+        }
+        catch(com.sun.star.uno.Exception e)
+        {  System.out.println("Could not access glue point " + i);  }
+      }
+      return gps;
+    }  // end of getGluePoints()
+    ```
 
 connectRectangles() doesn't do much with this data, aside from printing out each glue
 points coordinate. They're specified in 1/100 mm units relative to the center of the
@@ -224,20 +230,22 @@ Figure 1 shows that connectors don't have arrows, but this can be remedied by
 changing the connector's graphics style. The "graphics" style family is obtained by
 Info.getStyleContainer(), and passed to connectRectangles():
 
-```java
-// in main() of Grouper.java
-XNameContainer gStyles = Info.getStyleContainer(doc, "graphics");
-connectRectangles(currSlide, gStyles);
-```
+=== "java"
+    ```java
+    // in main() of Grouper.java
+    XNameContainer gStyles = Info.getStyleContainer(doc, "graphics");
+    connectRectangles(currSlide, gStyles);
+    ```
 
 Inside connectRectangles(), the connector's graphic style is changed to use arrows:
 
-```java
-// in connectRectangles() of Grouper.java
-Draw.setStyle(connShape, gStyles, "objectwitharrow");
-Props.setProperty(connShape, "LineWidth", 50);  // 0.5 mm
-Props.setProperty(connShape, "FillColor", 7512015);// dark blue
-```
+=== "java"
+    ```java
+    // in connectRectangles() of Grouper.java
+    Draw.setStyle(connShape, gStyles, "objectwitharrow");
+    Props.setProperty(connShape, "LineWidth", 50);  // 0.5 mm
+    Props.setProperty(connShape, "FillColor", 7512015);// dark blue
+    ```
 
 The "objectwitharrow" style creates thick black arrows, with the head at the 'from' end
 of the connector (i.e. pointing at the green rectangle in my example). The line width
@@ -266,11 +274,12 @@ Figure 4. The Arrow Styles in LibreOffice.
 
 If the properties are set to:
 
-```java
-// in connectRectangles() of Grouper.java
-Props.setProperty(connShape, "LineStartCenter", false);
-Props.setProperty(connShape, "LineStartName", "Short line arrow");
-```
+=== "java"
+    ```java
+    // in connectRectangles() of Grouper.java
+    Props.setProperty(connShape, "LineStartCenter", false);
+    Props.setProperty(connShape, "LineStartName", "Short line arrow");
+    ```
 
 then the arrow head changes to that shown in Figure 5.
 
@@ -286,12 +295,13 @@ An arrow can be added to the other end of the connector by adjusting its
 I found out about these "objectwitharrow" style properties by listing its property set
 returned by Info.getStyleProps():
 
-```java
-// in main() of Grouper.java
-// print the "objectwitharrow" style in the "graphics" style family
-Props.showObjProps("Objects with Arrow Graphics Style",
-     Info.getStyleProps(doc, "graphics", "objectwitharrow"));
-```
+=== "java"
+    ```java
+    // in main() of Grouper.java
+    // print the "objectwitharrow" style in the "graphics" style family
+    Props.showObjProps("Objects with Arrow Graphics Style",
+         Info.getStyleProps(doc, "graphics", "objectwitharrow"));
+    ```
 
 Alternatively, you can browse through the LineProperties class inherited by
 ConnectorShape (shown in Figure 2; use `lodoc LineProperties`).
@@ -318,36 +328,37 @@ subtraction, intersection, and combination (the default).
 
 Grouper.java illustrates these techniques:
 
-```java
-// in main() of Grouper.java
-//   :
-Size slideSize = Draw.getSlideSize(currSlide);
-int width = 40;
-int height = 20;
-int x = (slideSize.Width*3)/4 - width/2;
-int y1 = 20;
-int y2 = slideSize.Height/2 - (y1 + height);  // so separated
-// int y2 = 30;     // so overlapping
-
-// create two ellipses, s1 and s2
-XShape s1 = Draw.drawEllipse(currSlide, x, y1, width, height);
-XShape s2 = Draw.drawEllipse(currSlide, x, y2, width, height);
-
-Draw.showShapesInfo(currSlide);
-
-// group/bind/combine the ellipses
-groupEllipses(currSlide, s1, s2);
-// bindEllipses(currSlide, s1, s2);
-// combineEllipses(currSlide, s1, s2);
-
-Draw.showShapesInfo(currSlide);
-
-// 2. combine some rectangles
-XShape compShape = combineRects(doc, currSlide);
-Draw.showShapesInfo(currSlide);
-Lo.delay(2000);   // delay so user can see composition
-  :
-```
+=== "java"
+    ```java
+    // in main() of Grouper.java
+    //   :
+    Size slideSize = Draw.getSlideSize(currSlide);
+    int width = 40;
+    int height = 20;
+    int x = (slideSize.Width*3)/4 - width/2;
+    int y1 = 20;
+    int y2 = slideSize.Height/2 - (y1 + height);  // so separated
+    // int y2 = 30;     // so overlapping
+    
+    // create two ellipses, s1 and s2
+    XShape s1 = Draw.drawEllipse(currSlide, x, y1, width, height);
+    XShape s2 = Draw.drawEllipse(currSlide, x, y2, width, height);
+    
+    Draw.showShapesInfo(currSlide);
+    
+    // group/bind/combine the ellipses
+    groupEllipses(currSlide, s1, s2);
+    // bindEllipses(currSlide, s1, s2);
+    // combineEllipses(currSlide, s1, s2);
+    
+    Draw.showShapesInfo(currSlide);
+    
+    // 2. combine some rectangles
+    XShape compShape = combineRects(doc, currSlide);
+    Draw.showShapesInfo(currSlide);
+    Lo.delay(2000);   // delay so user can see composition
+      :
+    ```
 
 Two ellipses are created, and positioned at the top-right of the page.
 
@@ -372,26 +383,28 @@ code snipper given above.
 
 Grouper.java calls groupEllipses() to group the two ellipses:
 
-```java
-// in Grouper.java
-XShape s1 = Draw.drawEllipse(currSlide, x, y1, width, height);
-XShape s2 = Draw.drawEllipse(currSlide, x, y2, width, height);
-groupEllipses(currSlide, s1, s2);
-```
+=== "java"
+    ```java
+    // in Grouper.java
+    XShape s1 = Draw.drawEllipse(currSlide, x, y1, width, height);
+    XShape s2 = Draw.drawEllipse(currSlide, x, y2, width, height);
+    groupEllipses(currSlide, s1, s2);
+    ```
 
 groupElllipses() is:
 
-```java
-// in Grouper.java
-private static void groupEllipses(XDrawPage currSlide,
-                                       XShape s1, XShape s2)
-{
-  XShape shapeGroup = Draw.addShape(currSlide, "GroupShape",0,0,0,0);
-  XShapes shapes = Lo.qi(XShapes.class, shapeGroup);
-  shapes.add(s1);
-  shapes.add(s2);
-}  // end of groupEllipses()
-```
+=== "java"
+    ```java
+    // in Grouper.java
+    private static void groupEllipses(XDrawPage currSlide,
+                                           XShape s1, XShape s2)
+    {
+      XShape shapeGroup = Draw.addShape(currSlide, "GroupShape",0,0,0,0);
+      XShapes shapes = Lo.qi(XShapes.class, shapeGroup);
+      shapes.add(s1);
+      shapes.add(s2);
+    }  // end of groupEllipses()
+    ```
 
 The GroupShape is converted to an XShapes interface so the two ellipses can be
 added to it. Note that GroupShape has no position or size; they are determined from
@@ -433,28 +446,30 @@ The two ellipses have disappeared, replaced by a single GroupShape.
 
 Instead of groupEllipses(), it's possible to call bindEllipses() in Grouper.java:
 
-```java
-// in Grouper.java
-XShape s1 = Draw.drawEllipse(currSlide, x, y1, width, height);
-XShape s2 = Draw.drawEllipse(currSlide, x, y2, width, height);
-bindEllipses(currSlide, s1, s2);
-```
+=== "java"
+    ```java
+    // in Grouper.java
+    XShape s1 = Draw.drawEllipse(currSlide, x, y1, width, height);
+    XShape s2 = Draw.drawEllipse(currSlide, x, y2, width, height);
+    bindEllipses(currSlide, s1, s2);
+    ```
 
 The function is defined as:
 
-```java
-// in Grouper.java
-private static void bindEllipses(XDrawPage currSlide,
-                                    XShape s1, XShape s2)
-{
-  XShapes shapes =  Lo.createInstanceMCF(XShapes.class,
-                      "com.sun.star.drawing.ShapeCollection");
-  shapes.add(s1);
-  shapes.add(s2);
-  XShapeBinder binder = Lo.qi(XShapeBinder.class, currSlide);
-  binder.bind(shapes);
-}  // end of bindEllipses()
-```
+=== "java"
+    ```java
+    // in Grouper.java
+    private static void bindEllipses(XDrawPage currSlide,
+                                        XShape s1, XShape s2)
+    {
+      XShapes shapes =  Lo.createInstanceMCF(XShapes.class,
+                          "com.sun.star.drawing.ShapeCollection");
+      shapes.add(s1);
+      shapes.add(s2);
+      XShapeBinder binder = Lo.qi(XShapeBinder.class, currSlide);
+      binder.bind(shapes);
+    }  // end of bindEllipses()
+    ```
 
 An empty XShapes shape is created, then filled with the component shapes. The
 shapes inside XShapes are converted into a single object XShapeBinder.bind().
@@ -489,29 +504,31 @@ grouping (not binding) can be applied to the shapes and the connector.
 
 Grouper.java calls combineEllipse() to combine the two ellipses:
 
-```java
-// in Grouper.java
-XShape s1 = Draw.drawEllipse(currSlide, x, y1, width, height);
-XShape s2 = Draw.drawEllipse(currSlide, x, y2, width, height);
-combineEllipses(currSlide, s1, s2);
-```
+=== "java"
+    ```java
+    // in Grouper.java
+    XShape s1 = Draw.drawEllipse(currSlide, x, y1, width, height);
+    XShape s2 = Draw.drawEllipse(currSlide, x, y2, width, height);
+    combineEllipses(currSlide, s1, s2);
+    ```
 
 combineEllipses() employs the XShapeCombiner interface, which is used in the same
 way as XShapeBinder:
 
-```java
-// in Grouper.java
-private static void combineEllipses(XDrawPage currSlide,
-                                      XShape s1, XShape s2)
-{
-  XShapes shapes =  Lo.createInstanceMCF(XShapes.class,
-                          "com.sun.star.drawing.ShapeCollection");
-  shapes.add(s1);
-  shapes.add(s2);
-  XShapeCombiner combiner = Lo.qi(XShapeCombiner.class, currSlide);
-  combiner.combine(shapes);
-}  // end of combineEllipses()
-```
+=== "java"
+    ```java
+    // in Grouper.java
+    private static void combineEllipses(XDrawPage currSlide,
+                                          XShape s1, XShape s2)
+    {
+      XShapes shapes =  Lo.createInstanceMCF(XShapes.class,
+                              "com.sun.star.drawing.ShapeCollection");
+      shapes.add(s1);
+      shapes.add(s2);
+      XShapeCombiner combiner = Lo.qi(XShapeCombiner.class, currSlide);
+      combiner.combine(shapes);
+    }  // end of combineEllipses()
+    ```
 
 The combined shape only differs from grouping if the two ellipses are initially
 overlapping. Figure 8 shows that the interesecting areas of the two shapes is removed
@@ -542,23 +559,24 @@ The drawback of XShapeCombiner that it only supports combination, not merging,
 subtraction, or intersection. I had to implement those effects by using dispatches, as
 shown in combineRects() in Grouper.java:
 
-```java
-// in Grouper.java
-private static XShape combineRects(XComponent doc,
-                                     XDrawPage currSlide)
-{
-  System.out.println("\nCombining rectangles ...");
-  XShape r1 = Draw.drawRectangle(currSlide, 50, 20, 40, 20);
-  XShape r2 = Draw.drawRectangle(currSlide, 70, 25, 40, 20);
-
-  XShapes shapes =  Lo.createInstanceMCF(XShapes.class,
-                          "com.sun.star.drawing.ShapeCollection");
-  shapes.add(r1);
-  shapes.add(r2);
-  return Draw.combineShape(doc, shapes, Draw.COMBINE);
-       // Draw.MERGE, Draw.SUBTRACT, Draw.INTERSECT, Draw.COMBINE
-}  // end of combineRects()
-```
+=== "java"
+    ```java
+    // in Grouper.java
+    private static XShape combineRects(XComponent doc,
+                                         XDrawPage currSlide)
+    {
+      System.out.println("\nCombining rectangles ...");
+      XShape r1 = Draw.drawRectangle(currSlide, 50, 20, 40, 20);
+      XShape r2 = Draw.drawRectangle(currSlide, 70, 25, 40, 20);
+    
+      XShapes shapes =  Lo.createInstanceMCF(XShapes.class,
+                              "com.sun.star.drawing.ShapeCollection");
+      shapes.add(r1);
+      shapes.add(r2);
+      return Draw.combineShape(doc, shapes, Draw.COMBINE);
+           // Draw.MERGE, Draw.SUBTRACT, Draw.INTERSECT, Draw.COMBINE
+    }  // end of combineRects()
+    ```
 
 The dispatching is performed by Draw.combineShape(), which is passed an array of
 XShapes and a constant representing one of the four combining techniques.
@@ -594,42 +612,43 @@ selected prior to the dispatch being sent. After the dispatch has been processed
 selection will have been changed to contain only the single new shape. This approach
 is implemented in combineShape():
 
-```java
-public static XShape combineShape(XComponent doc,
-                              XShapes shapes, int combineOp)
-{
-  // select the shapes for the dispatch to apply to
-  XSelectionSupplier selSupp =  Lo.qi(XSelectionSupplier.class,
-                                   GUI.getCurrentController(doc));
-  selSupp.select(shapes);
-
-  if (combineOp == MERGE)
-    Lo.dispatchCmd("Merge");
-  else if (combineOp == INTERSECT)
-    Lo.dispatchCmd("Intersect");
-  else if (combineOp == SUBTRACT)
-    Lo.dispatchCmd("Substract");   // misspelt!
-  else if (combineOp == COMBINE)
-    Lo.dispatchCmd("Combine");
-  else {
-     System.out.println("Did not recognize op: " +
-                               combineOp + "; using merge");
-     Lo.dispatchCmd("Merge");
-  }
-  Lo.delay(500);   // give time for dispatch to be processed
-
-  // extract the new single shape from the modified selection
-  XShapes xs = Lo.qi(XShapes.class, selSupp.getSelection());
-  XShape combinedShape = null;
-  try {
-    combinedShape = Lo.qi(XShape.class, xs.getByIndex(0));
-  }
-  catch(com.sun.star.uno.Exception e)
-  {  System.out.println("Could not get combined shape");  }
-
-  return combinedShape;
-}  // end of combineShape()
-```
+=== "java"
+    ```java
+    public static XShape combineShape(XComponent doc,
+                                  XShapes shapes, int combineOp)
+    {
+      // select the shapes for the dispatch to apply to
+      XSelectionSupplier selSupp =  Lo.qi(XSelectionSupplier.class,
+                                       GUI.getCurrentController(doc));
+      selSupp.select(shapes);
+    
+      if (combineOp == MERGE)
+        Lo.dispatchCmd("Merge");
+      else if (combineOp == INTERSECT)
+        Lo.dispatchCmd("Intersect");
+      else if (combineOp == SUBTRACT)
+        Lo.dispatchCmd("Substract");   // misspelt!
+      else if (combineOp == COMBINE)
+        Lo.dispatchCmd("Combine");
+      else {
+         System.out.println("Did not recognize op: " +
+                                   combineOp + "; using merge");
+         Lo.dispatchCmd("Merge");
+      }
+      Lo.delay(500);   // give time for dispatch to be processed
+    
+      // extract the new single shape from the modified selection
+      XShapes xs = Lo.qi(XShapes.class, selSupp.getSelection());
+      XShape combinedShape = null;
+      try {
+        combinedShape = Lo.qi(XShape.class, xs.getByIndex(0));
+      }
+      catch(com.sun.star.uno.Exception e)
+      {  System.out.println("Could not get combined shape");  }
+    
+      return combinedShape;
+    }  // end of combineShape()
+    ```
 
 The shapes are selected by adding them to an XSelectionSupplier. The requested
 dispatch is sent to the selection, and then the function briefly sleeps to ensure that the
@@ -646,15 +665,16 @@ before, but may not have the same shape types as the originals.
 The main() function of Grouper.java shows how the combination of the two
 rectangles can be undone:
 
-```java
-// in Grouper.java
-    :
-XShape compShape = combineRects(doc, currSlide);
-    :
-XShapeCombiner combiner = Lo.qi(XShapeCombiner.class, currSlide);
-combiner.split(compShape);  // split the rectangles
-Draw.showShapesInfo(currSlide);
-```
+=== "java"
+    ```java
+    // in Grouper.java
+        :
+    XShape compShape = combineRects(doc, currSlide);
+        :
+    XShapeCombiner combiner = Lo.qi(XShapeCombiner.class, currSlide);
+    combiner.split(compShape);  // split the rectangles
+    Draw.showShapesInfo(currSlide);
+    ```
 
 The combined rectangles shape is passed to XShapeCombiner.split() which removes
 the combined shape from the slide, replacing it by its components.
@@ -680,10 +700,11 @@ intersection, can not be separated.
 For grouped and bound shapes, the methods for breaking apart a shape are
 XShapeGrouper.ungroup() and XShapeBinder.unbind(). For example:
 
-```java
-XShapeGrouper grouper = Lo.qi(XShapeGrouper.class, currSlide);
-grouper.ungroup(compShape);
-```
+=== "java"
+    ```java
+    XShapeGrouper grouper = Lo.qi(XShapeGrouper.class, currSlide);
+    grouper.ungroup(compShape);
+    ```
 
 
 ## 4.  Bezier Curves
@@ -703,28 +724,29 @@ type in Office.
 
 The code for generating Figure 10 is in drawCurve() in BezierBuilder.java:
 
-```java
-// in drawCurve() in BezierBuilder.java
-private static XShape drawCurve(XDrawPage currSlide)
-{
-  Point[] pathPts = new Point[4];
-  PolygonFlags[] pathFlags = new PolygonFlags[4];
-
-  pathPts[0] = new Point(1000, 2500);
-  pathFlags[0] = PolygonFlags.NORMAL;
-
-  pathPts[1] = new Point(1000,1000);    // control point
-  pathFlags[1] = PolygonFlags.CONTROL;
-
-  pathPts[2] = new Point(4000,1000);    // control point
-  pathFlags[2] = PolygonFlags.CONTROL;
-
-  pathPts[3] = new Point(4000,2500);
-  pathFlags[3] = PolygonFlags.NORMAL;
-
-  return Draw.drawBezier(currSlide, pathPts, pathFlags, true);
-}  // end of drawCurve()
-```
+=== "java"
+    ```java
+    // in drawCurve() in BezierBuilder.java
+    private static XShape drawCurve(XDrawPage currSlide)
+    {
+      Point[] pathPts = new Point[4];
+      PolygonFlags[] pathFlags = new PolygonFlags[4];
+    
+      pathPts[0] = new Point(1000, 2500);
+      pathFlags[0] = PolygonFlags.NORMAL;
+    
+      pathPts[1] = new Point(1000,1000);    // control point
+      pathFlags[1] = PolygonFlags.CONTROL;
+    
+      pathPts[2] = new Point(4000,1000);    // control point
+      pathFlags[2] = PolygonFlags.CONTROL;
+    
+      pathPts[3] = new Point(4000,2500);
+      pathFlags[3] = PolygonFlags.NORMAL;
+    
+      return Draw.drawBezier(currSlide, pathPts, pathFlags, true);
+    }  // end of drawCurve()
+    ```
 
 Most of the curve generation is done by Draw.drawBezier(), but the programmer must
 still define two arrays and a boolean. The pathPts[] array holds the four coordinates,
@@ -744,32 +766,33 @@ OpenBezierShape or a ClosedBezierShape. Then it fills a PolyPolygonBezierCoords
 data structure with the coordinates and flags before assigning the structure to the
 shape's "PolyPolygonBezier" property:
 
-```java
-public static XShape drawBezier(XDrawPage slide,
-              Point[] pts, PolygonFlags[] flags, boolean isOpen)
-{
-  if (pts.length != flags.length) {
-    System.out.println("Mismatch in lengths of
-                                   points and flags array");
-    return null;
-  }
-
-  String bezierType = isOpen ? "OpenBezierShape" :
-                               "ClosedBezierShape";
-  XShape bezierPoly = addShape(slide, bezierType, 0, 0, 0, 0);
-
-  // create space for one Bezier shape
-  PolyPolygonBezierCoords aCoords = new PolyPolygonBezierCoords();
-              // for shapes formed by one *or more* Bezier polygons
-  aCoords.Coordinates = new Point[1][];
-  aCoords.Flags = new PolygonFlags[1][];
-  aCoords.Coordinates[0] = pts;
-  aCoords.Flags[0] = flags;
-
-  Props.setProperty(bezierPoly, "PolyPolygonBezier", aCoords);
-  return bezierPoly;
-}  // end of drawBezier()
-```
+=== "java"
+    ```java
+    public static XShape drawBezier(XDrawPage slide,
+                  Point[] pts, PolygonFlags[] flags, boolean isOpen)
+    {
+      if (pts.length != flags.length) {
+        System.out.println("Mismatch in lengths of
+                                       points and flags array");
+        return null;
+      }
+    
+      String bezierType = isOpen ? "OpenBezierShape" :
+                                   "ClosedBezierShape";
+      XShape bezierPoly = addShape(slide, bezierType, 0, 0, 0, 0);
+    
+      // create space for one Bezier shape
+      PolyPolygonBezierCoords aCoords = new PolyPolygonBezierCoords();
+                  // for shapes formed by one *or more* Bezier polygons
+      aCoords.Coordinates = new Point[1][];
+      aCoords.Flags = new PolygonFlags[1][];
+      aCoords.Coordinates[0] = pts;
+      aCoords.Flags[0] = flags;
+    
+      Props.setProperty(bezierPoly, "PolyPolygonBezier", aCoords);
+      return bezierPoly;
+    }  // end of drawBezier()
+    ```
 
 A PolyPolygonBezierCoords object can store multiple Bezier curves, but
 Draw.drawBezier() only assigns one curve to it. Each curve is defined by an array of
@@ -871,20 +894,22 @@ the end point of the previous curve in the list.
 
 Copy the data and save it as two lines in a text file (e.g. in bpts2.txt):
 
-```java
-M 5586,13954
-
-C 5713,13954 4443,2905 8253,7477 12063,12049 8634,19415 15619,10906
-22604,2397 11682,1381 10285,6334 8888,11287 21207,21447 8253,17002 -
-4701,12557 11174,15986 11174,15986
-```
+=== "java"
+    ```java
+    M 5586,13954
+    
+    C 5713,13954 4443,2905 8253,7477 12063,12049 8634,19415 15619,10906
+    22604,2397 11682,1381 10285,6334 8888,11287 21207,21447 8253,17002 -
+    4701,12557 11174,15986 11174,15986
+    ```
 
 BuildBezier.java contains some functions for reading in this data and building the
 arrays required by Draw.drawBezier(). So when the following is called:
 
-```java
-run BezierBuilder bpts2.txt
-```
+=== "java"
+    ```java
+    run BezierBuilder bpts2.txt
+    ```
 
 the curve shown in Figure 14 appears on a page.
 

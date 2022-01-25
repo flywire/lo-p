@@ -141,21 +141,24 @@ GetNumber.get, which are used by the Macro Selector dialog:
 There's an important difference between this parcel-descriptor.xml and the one given
 for ShowEvent.show in the previous chapter, related to the new macros' classpaths:
 
-```java
-      <prop name="classpath" value=".:GetText:Utils.jar"/>
-```
+=== "java"
+    ```java
+          <prop name="classpath" value=".:GetText:Utils.jar"/>
+    ```
 
 and
 
-```java
-      <prop name="classpath" value=".:GetNumber:Utils.jar"/>
-```
+=== "java"
+    ```java
+          <prop name="classpath" value=".:GetNumber:Utils.jar"/>
+    ```
 
 The classpath line for ShowEvent.show was:
 
-```java
-      <prop name="classpath" value="ShowEvent.jar"/>
-```
+=== "java"
+    ```java
+          <prop name="classpath" value="ShowEvent.jar"/>
+    ```
 
 The difference, which took many hours of experimentation to find, is due to the
 inclusion of my utilities classes as a JAR in Utils\.
@@ -213,44 +216,45 @@ GetText.show is triggered when a button is pressed; it displays the text current
 the "Text Box 1" textfield inside a message box (see Figure 1). The code for the class
 is:
 
-```java
-// in GetText.java
-public class GetText
-{
-  private static final String LOG_FNM = "c://macrosInfo.txt";
-              // log file for storing debugging output
-
-
-  public static void show(XScriptContext sc, ActionEvent e)
-  // Called when a button pressed
-  {
-    String controlName = Forms.getEventSourceName(e);
-
-    FileIO.appendTo(LOG_FNM, "\"" + controlName +
-                 "\" sent ActionEvent at " + Lo.getTimeStamp());
-
-    XComponent doc = Lo.scriptInitialize(sc);
-    if (doc == null)
-      return;
-
-    // for debugging
-    Console console = new Console();
-    console.setVisible(true);
-
-    Forms.listForms(doc);
-
-    XControlModel textBox = Forms.getControlModel(doc, "Text Box 1");
-    // Props.showObjProps("TextBox", textBox);
-
-    String textContents = (String)Props.getProperty(textBox, "Text");
-    GUI.showXMessageBox("Textbox text", textContents);
-
-    console.setVisible(false);
-    console.closeDown();
-  } // end of show() for ActionEvent
-
-}  // end of GetText class
-```
+=== "java"
+    ```java
+    // in GetText.java
+    public class GetText
+    {
+      private static final String LOG_FNM = "c://macrosInfo.txt";
+                  // log file for storing debugging output
+    
+    
+      public static void show(XScriptContext sc, ActionEvent e)
+      // Called when a button pressed
+      {
+        String controlName = Forms.getEventSourceName(e);
+    
+        FileIO.appendTo(LOG_FNM, "\"" + controlName +
+                     "\" sent ActionEvent at " + Lo.getTimeStamp());
+    
+        XComponent doc = Lo.scriptInitialize(sc);
+        if (doc == null)
+          return;
+    
+        // for debugging
+        Console console = new Console();
+        console.setVisible(true);
+    
+        Forms.listForms(doc);
+    
+        XControlModel textBox = Forms.getControlModel(doc, "Text Box 1");
+        // Props.showObjProps("TextBox", textBox);
+    
+        String textContents = (String)Props.getProperty(textBox, "Text");
+        GUI.showXMessageBox("Textbox text", textContents);
+    
+        console.setVisible(false);
+        console.closeDown();
+      } // end of show() for ActionEvent
+    
+    }  // end of GetText class
+    ```
 
 The class implements a single show() method suitable for responding to
 ActionEvents.
@@ -262,49 +266,50 @@ and can be removed when the macro is finished.
 Lo.scriptInitialize() uses the macro's XScriptContext object to initialize globals
 maintained by my Lo class:
 
-```java
-// in the Lo class
-// globals
-private static XComponentContext xcc = null;
-private static XDesktop xDesktop = null;
-private static XMultiComponentFactory mcFactory = null;
-private static XMultiServiceFactory msFactory = null;
-
-
-public static XComponent scriptInitialize(XScriptContext sc)
-{
-  if (sc == null) {
-    System.out.println("Script Context is null");
-    return null;
-  }
-
-  xcc = sc.getComponentContext();
-  if (xcc == null)  {
-    System.out.println("Could not access component context");
-    return null;
-  }
-  mcFactory = xcc.getServiceManager();
-  if (mcFactory == null) {
-    System.out.println("Office Service Manager is unavailable");
-    return null;
-  }
-
-  xDesktop = sc.getDesktop();
-  if (xDesktop == null)  {
-    System.out.println("Could not access desktop");
-    return null;
-  }
-
-  XComponent doc = xDesktop.getCurrentComponent();
-  if (doc == null)  {
-    System.out.println("Could not access document");
-    return null;
-  }
-
-  msFactory =  Lo.qi(XMultiServiceFactory.class, doc);
-  return doc;
-}  // end of scriptInitialize()
-```
+=== "java"
+    ```java
+    // in the Lo class
+    // globals
+    private static XComponentContext xcc = null;
+    private static XDesktop xDesktop = null;
+    private static XMultiComponentFactory mcFactory = null;
+    private static XMultiServiceFactory msFactory = null;
+    
+    
+    public static XComponent scriptInitialize(XScriptContext sc)
+    {
+      if (sc == null) {
+        System.out.println("Script Context is null");
+        return null;
+      }
+    
+      xcc = sc.getComponentContext();
+      if (xcc == null)  {
+        System.out.println("Could not access component context");
+        return null;
+      }
+      mcFactory = xcc.getServiceManager();
+      if (mcFactory == null) {
+        System.out.println("Office Service Manager is unavailable");
+        return null;
+      }
+    
+      xDesktop = sc.getDesktop();
+      if (xDesktop == null)  {
+        System.out.println("Could not access desktop");
+        return null;
+      }
+    
+      XComponent doc = xDesktop.getCurrentComponent();
+      if (doc == null)  {
+        System.out.println("Could not access document");
+        return null;
+      }
+    
+      msFactory =  Lo.qi(XMultiServiceFactory.class, doc);
+      return doc;
+    }  // end of scriptInitialize()
+    ```
 
 The log approach is fine for simple debugging, but it's also possible to create a
 Console window for displaying more complex textual output. One useful thing to
@@ -320,12 +325,13 @@ Figure 4. The Console Window Output for GetText.show.
 The control names in Figure 4 include "Text Box 1", which is used by
 Forms.getControlModel() to reference the textfield control:
 
-```java
-// part of show() in GetText.java...
-XControlModel textBox = Forms.getControlModel(doc, "Text Box 1");
-String textContents = (String)Props.getProperty(textBox, "Text");
-GUI.showXMessageBox("Textbox text", textContents);
-```
+=== "java"
+    ```java
+    // part of show() in GetText.java...
+    XControlModel textBox = Forms.getControlModel(doc, "Text Box 1");
+    String textContents = (String)Props.getProperty(textBox, "Text");
+    GUI.showXMessageBox("Textbox text", textContents);
+    ```
 
 ### 1.2.  The GetNumber.get Macro
 
@@ -348,23 +354,24 @@ buttons which updates the "AgeText" textfield depending on which is pressed.
 The GetNumber class defines a single static get() method, suitable for receiving
 KeyEvents:
 
-```java
-// in GetNumber.java
-public static void get(XScriptContext sc, KeyEvent e)
-{
-  String controlName = Forms.getEventSourceName(e);
-  if (e.KeyCode == Key.RETURN) {  // return typed
-    XComponent doc = Lo.scriptInitialize(sc);
-    if (doc != null) {
-      XControlModel cModel =
-             Forms.getControlModel(doc, controlName);
-      if (Forms.isTextField(cModel))
-        loadXDLDialog(cModel);
-        // runtimeDialog(cModel);
-    }
-  }
-} // end of get()
-```
+=== "java"
+    ```java
+    // in GetNumber.java
+    public static void get(XScriptContext sc, KeyEvent e)
+    {
+      String controlName = Forms.getEventSourceName(e);
+      if (e.KeyCode == Key.RETURN) {  // return typed
+        XComponent doc = Lo.scriptInitialize(sc);
+        if (doc != null) {
+          XControlModel cModel =
+                 Forms.getControlModel(doc, controlName);
+          if (Forms.isTextField(cModel))
+            loadXDLDialog(cModel);
+            // runtimeDialog(cModel);
+        }
+      }
+    } // end of get()
+    ```
 
 When the <RETURN> key is pressed, Forms.getControlModel() searches the form
 for the control that sent the event (i.e. the "AgeText" textfield).
@@ -389,45 +396,46 @@ Figure 6. The NumExtractor.xdl Dialog.
 
 The XML contents of NumExtractor.xdl are:
 
-```java
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE dlg:window PUBLIC "-//OpenOffice.org//DTD OfficeDocument
-1.0//EN" "dialog.dtd">
-
-<dlg:window xmlns:dlg="https://openoffice.org/2000/dialog"
-            xmlns:script="https://openoffice.org/2000/script"
-            dlg:id="NumExtractor"
-            dlg:left="109" dlg:top="73"
-            dlg:width="94" dlg:height="44"
-            dlg:closeable="true" dlg:moveable="true"
-            dlg:title="Number Extractor">
-
- <dlg:bulletinboard>
-  <dlg:text dlg:id="Label1" dlg:tab-index="0"
-            dlg:left="8" dlg:top="11"
-            dlg:width="48" dlg:height="10"
-            dlg:value="Extracted number: "
-            dlg:align="right"/>
-
-  <dlg:button dlg:id="CommandButton1" dlg:tab-index="2"
-              dlg:left="8" dlg:top="27"
-              dlg:width="33" dlg:height="12"
-              dlg:value="Ok"/>
-
-  <dlg:textfield dlg:id="TextField1" dlg:tab-index="1"
-                 dlg:left="61" dlg:top="9"
-                 dlg:width="24" dlg:height="12"
-                 dlg:align="center"
-                 dlg:readonly="true"/>
-
-  <dlg:button dlg:id="CommandButton2" dlg:tab-index="3"
-              dlg:left="52" dlg:top="27"
-              dlg:width="33" dlg:height="12"
-              dlg:value="Cancel"/>
-
- </dlg:bulletinboard>
-</dlg:window>
-```
+=== "java"
+    ```java
+    <?xml version="1.0" encoding="UTF-8"?>
+    <!DOCTYPE dlg:window PUBLIC "-//OpenOffice.org//DTD OfficeDocument
+    1.0//EN" "dialog.dtd">
+    
+    <dlg:window xmlns:dlg="https://openoffice.org/2000/dialog"
+                xmlns:script="https://openoffice.org/2000/script"
+                dlg:id="NumExtractor"
+                dlg:left="109" dlg:top="73"
+                dlg:width="94" dlg:height="44"
+                dlg:closeable="true" dlg:moveable="true"
+                dlg:title="Number Extractor">
+    
+     <dlg:bulletinboard>
+      <dlg:text dlg:id="Label1" dlg:tab-index="0"
+                dlg:left="8" dlg:top="11"
+                dlg:width="48" dlg:height="10"
+                dlg:value="Extracted number: "
+                dlg:align="right"/>
+    
+      <dlg:button dlg:id="CommandButton1" dlg:tab-index="2"
+                  dlg:left="8" dlg:top="27"
+                  dlg:width="33" dlg:height="12"
+                  dlg:value="Ok"/>
+    
+      <dlg:textfield dlg:id="TextField1" dlg:tab-index="1"
+                     dlg:left="61" dlg:top="9"
+                     dlg:width="24" dlg:height="12"
+                     dlg:align="center"
+                     dlg:readonly="true"/>
+    
+      <dlg:button dlg:id="CommandButton2" dlg:tab-index="3"
+                  dlg:left="52" dlg:top="27"
+                  dlg:width="33" dlg:height="12"
+                  dlg:value="Cancel"/>
+    
+     </dlg:bulletinboard>
+    </dlg:window>
+    ```
 
 The most important things to note for later are the control IDs; in particular, the
 textfield and button names: "TextField1", "CommandButton1", and
@@ -437,54 +445,56 @@ loadXDLDialog() utilizes Dialogs.loadAddonDialog() described in Chapter 46 to
 obtain a reference to the dialog. It's initialized by initDialog() and made live by
 XDialog.execute():
 
-```java
-// in GetNumber.java
-private static void loadXDLDialog(XControlModel cModel)
-{
-  XDialog dialog = Dialogs.loadAddonDialog(
-                          "org.openoffice.formmacros",
-                          "dialogLibrary/NumExtractor.xdl");
-  if (dialog == null)
-    return;
-  initDialog(dialog, cModel);
-  dialog.execute();
-}  // end of loadXDLDialog()
-```
+=== "java"
+    ```java
+    // in GetNumber.java
+    private static void loadXDLDialog(XControlModel cModel)
+    {
+      XDialog dialog = Dialogs.loadAddonDialog(
+                              "org.openoffice.formmacros",
+                              "dialogLibrary/NumExtractor.xdl");
+      if (dialog == null)
+        return;
+      initDialog(dialog, cModel);
+      dialog.execute();
+    }  // end of loadXDLDialog()
+    ```
 
 initDialog() fills the dialog's textfield with numerical data extracted from the form's
 "AgeText" field, and attaches a NumActionListener to its buttons:
 
-```java
-// part of GetNumber.java
-private static void initDialog(XDialog dialog,
-                               XControlModel cModel)
-{
-  XControl dialogCtrl = Dialogs.getDialogControl(dialog);
-  if (dialogCtrl == null)
-    return;
-
-  int val = extractDigits(
-                (String)Props.getProperty(cModel, "Text"));
-
-  // store extracted number in dialog's read-only text field;
-  // the names of the controls are hardwired
-  XTextComponent numFieldTB = Lo.qi(XTextComponent.class,
-                 Dialogs.findControl(dialogCtrl, "TextField1"));
-  numFieldTB.setText(""+val);
-
-  // assign same listener to both buttons
-  NumActionListener naListener =
-               new NumActionListener(dialog, cModel, val);
-
-  XButton okButton = Lo.qi(XButton.class,
-          Dialogs.findControl(dialogCtrl, "CommandButton1"));
-  okButton.addActionListener(naListener);
-
-  XButton cancelButton = Lo.qi(XButton.class,
-          Dialogs.findControl(dialogCtrl, "CommandButton2"));
-  cancelButton.addActionListener(naListener);
-} // end of initDialog()
-```
+=== "java"
+    ```java
+    // part of GetNumber.java
+    private static void initDialog(XDialog dialog,
+                                   XControlModel cModel)
+    {
+      XControl dialogCtrl = Dialogs.getDialogControl(dialog);
+      if (dialogCtrl == null)
+        return;
+    
+      int val = extractDigits(
+                    (String)Props.getProperty(cModel, "Text"));
+    
+      // store extracted number in dialog's read-only text field;
+      // the names of the controls are hardwired
+      XTextComponent numFieldTB = Lo.qi(XTextComponent.class,
+                     Dialogs.findControl(dialogCtrl, "TextField1"));
+      numFieldTB.setText(""+val);
+    
+      // assign same listener to both buttons
+      NumActionListener naListener =
+                   new NumActionListener(dialog, cModel, val);
+    
+      XButton okButton = Lo.qi(XButton.class,
+              Dialogs.findControl(dialogCtrl, "CommandButton1"));
+      okButton.addActionListener(naListener);
+    
+      XButton cancelButton = Lo.qi(XButton.class,
+              Dialogs.findControl(dialogCtrl, "CommandButton2"));
+      cancelButton.addActionListener(naListener);
+    } // end of initDialog()
+    ```
 
 Dialogs.findControl() finds the dialog's textfield and buttons using the IDs that we
 saw in NumExtractor.xdl.
@@ -493,42 +503,43 @@ The NumActionListener class is included in the extension's Utils\ folder. It's a
 standard button listener, but uses Office's XActionListener and ActionEvent not the
 Java classes with similar names:
 
-```java
-// in NumActionListener.java
-public class NumActionListener implements XActionListener
-{
-  private XDialog dialog;
-  private XControlModel cModel;
-  private int val;
-
-
-  public NumActionListener(XDialog dialog,
-                            XControlModel cModel, int val)
-  { this.dialog = dialog;
-    this.cModel = cModel;
-    this.val = val;
-  }  // end of NumActionListener()
-
-
-  public void actionPerformed(ActionEvent e)
-  {
-    String buttonName = Dialogs.getEventSourceName(e);
-    System.out.println("Event received from : " + buttonName);
-
-    if (buttonName.equals("CommandButton1"))        // "OK" button
-      Props.setProperty(cModel, "Text", "" + val);
-                                          // put val in text field
-    else if (buttonName.equals("CommandButton2"))   // "Cancel"
-      Props.setProperty(cModel, "Text", "");   // clear text field
-
-    dialog.endExecute();
-  }  // end of actionPerformed()
-
-
-  public void disposing(EventObject e) { }
-
-}  // end of NumActionListener class
-```
+=== "java"
+    ```java
+    // in NumActionListener.java
+    public class NumActionListener implements XActionListener
+    {
+      private XDialog dialog;
+      private XControlModel cModel;
+      private int val;
+    
+    
+      public NumActionListener(XDialog dialog,
+                                XControlModel cModel, int val)
+      { this.dialog = dialog;
+        this.cModel = cModel;
+        this.val = val;
+      }  // end of NumActionListener()
+    
+    
+      public void actionPerformed(ActionEvent e)
+      {
+        String buttonName = Dialogs.getEventSourceName(e);
+        System.out.println("Event received from : " + buttonName);
+    
+        if (buttonName.equals("CommandButton1"))        // "OK" button
+          Props.setProperty(cModel, "Text", "" + val);
+                                              // put val in text field
+        else if (buttonName.equals("CommandButton2"))   // "Cancel"
+          Props.setProperty(cModel, "Text", "");   // clear text field
+    
+        dialog.endExecute();
+      }  // end of actionPerformed()
+    
+    
+      public void disposing(EventObject e) { }
+    
+    }  // end of NumActionListener class
+    ```
 
 The number extracted from the "AgeText" textfield is passed to the listener via its
 constructor, along with a reference to the control. If the user presses "Ok" then the
@@ -543,22 +554,23 @@ situations where you want to create a simple dialog at run time. The commented-o
 call to runtimeDialog() in GetNumber.get shows how to do this using my Dialog class
 functions:
 
-```java
-// part of GetNumber.java
-private static void runtimeDialog(XControlModel cModel)
-{
-  XControl dialogCtrl = makeDialogControl();
-  if (dialogCtrl == null)
-    return;
-
-  XDialog dialog = Dialogs.createDialogPeer(dialogCtrl);
-  if (dialog == null)
-    return;
-
-  initDialog(dialog, cModel);
-  dialog.execute();
-}  // end of runtimeDialog()
-```
+=== "java"
+    ```java
+    // part of GetNumber.java
+    private static void runtimeDialog(XControlModel cModel)
+    {
+      XControl dialogCtrl = makeDialogControl();
+      if (dialogCtrl == null)
+        return;
+    
+      XDialog dialog = Dialogs.createDialogPeer(dialogCtrl);
+      if (dialog == null)
+        return;
+    
+      initDialog(dialog, cModel);
+      dialog.execute();
+    }  // end of runtimeDialog()
+    ```
 
 The dialog generated by makeDialogControl() (see Figure 7) is very similar to the one
 defined in NumExtractor.xdl.
@@ -572,38 +584,39 @@ Figure 7. The Rendering of the Runtime Dialog.
 makeDialogControl() creates an empty dialog, and fills it with a label, textfield and
 two buttons:
 
-```java
-// part of GetNumber.java
-private static XControl makeDialogControl()
-{
-  XControl dialogCtrl =
-        Dialogs.createDialogControl(109, 73, 94, 44,
-                                      "Number Extractor");
-  if (dialogCtrl == null)
-    System.out.println("dialog control is null");
-  // log("Dialog name:" + Dialogs.getControlName(dialogCtrl));
-        // reports "OfficeDialog1"
-
-  XControl xc = Dialogs.insertLabel(dialogCtrl, 8, 11, 48,
-                                    "Extracted Number: ");
-  // log("Label name:" + Dialogs.getControlName(xc));
-        // FixedText1
-
-  xc = Dialogs.insertTextField(dialogCtrl, 61, 9, 24, "");
-  // log("Text field name:" + Dialogs.getControlName(xc));
-        // TextField1
-
-  xc = Dialogs.insertButton(dialogCtrl, 9, 27, 33, "Ok");
-  // log("Ok button name:" + Dialogs.getControlName(xc));
-       // CommandButton1
-
-  xc = Dialogs.insertButton(dialogCtrl, 52, 27, 33, "Cancel");
-  // log("Cancel button name:" + Dialogs.getControlName(xc));
-       // CommandButton2
-
-  return dialogCtrl;
-}  // end of makeDialogControl()
-```
+=== "java"
+    ```java
+    // part of GetNumber.java
+    private static XControl makeDialogControl()
+    {
+      XControl dialogCtrl =
+            Dialogs.createDialogControl(109, 73, 94, 44,
+                                          "Number Extractor");
+      if (dialogCtrl == null)
+        System.out.println("dialog control is null");
+      // log("Dialog name:" + Dialogs.getControlName(dialogCtrl));
+            // reports "OfficeDialog1"
+    
+      XControl xc = Dialogs.insertLabel(dialogCtrl, 8, 11, 48,
+                                        "Extracted Number: ");
+      // log("Label name:" + Dialogs.getControlName(xc));
+            // FixedText1
+    
+      xc = Dialogs.insertTextField(dialogCtrl, 61, 9, 24, "");
+      // log("Text field name:" + Dialogs.getControlName(xc));
+            // TextField1
+    
+      xc = Dialogs.insertButton(dialogCtrl, 9, 27, 33, "Ok");
+      // log("Ok button name:" + Dialogs.getControlName(xc));
+           // CommandButton1
+    
+      xc = Dialogs.insertButton(dialogCtrl, 52, 27, 33, "Cancel");
+      // log("Cancel button name:" + Dialogs.getControlName(xc));
+           // CommandButton2
+    
+      return dialogCtrl;
+    }  // end of makeDialogControl()
+    ```
 
 One tricky aspect is deciding on the control positions and widths passed to the
 Dialogs.insertXXX() methods. I based them on the values in NumExtractor.xdl.
@@ -612,14 +625,15 @@ initDialog() is again used to initialize the dialog's textfield and buttons, whi
 assumes they are called "TextField1", "CommandButton1", and "CommandButton2".
 I confirmed this for the runtime dialog by writing their name to the log file:
 
-```java
-// part of GetNumber.java
-// global
-private static final String LOG_FNM = "c://macrosInfo.txt";
-
-private static void log(String msg)
-{  FileIO.appendTo(LOG_FNM, msg);  }
-```
+=== "java"
+    ```java
+    // part of GetNumber.java
+    // global
+    private static final String LOG_FNM = "c://macrosInfo.txt";
+    
+    private static void log(String msg)
+    {  FileIO.appendTo(LOG_FNM, msg);  }
+    ```
 
 
 ### 1.5.  Dialogs and their Controls
@@ -678,98 +692,100 @@ dialog. XDialog contains execute() which makes a dialog active on screen.
 Dialogs.createDialogControl() creates a dialog view and model, and links them. The
 dialog is initialized by setting various properties in its model:
 
-```java
-// in the Dialogs class
-public static XControl createDialogControl(int x, int y,
-                     int width, int height, String title)
-{ try {
-    XControl dialogCtrl =
-                 Lo.createInstanceMCF(XControl.class,
-                     "com.sun.star.awt.UnoControlDialog");
-    XControlModel xControlModel =
-                 Lo.createInstanceMCF(XControlModel.class,
-                     "com.sun.star.awt.UnoControlDialogModel");
-    dialogCtrl.setModel(xControlModel);  // link view and model
-
-    XPropertySet props = getControlProps(dialogCtrl.getModel());
-    props.setPropertyValue("PositionX", x);
-    props.setPropertyValue("PositionY", y);
-    props.setPropertyValue("Height", height);
-    props.setPropertyValue("Width", width);
-
-    props.setPropertyValue("Title", title);
-    props.setPropertyValue("Name", "OfficeDialog");
-
-    props.setPropertyValue("Step", 0);
-    props.setPropertyValue("Moveable", true);
-    props.setPropertyValue("TabIndex", new Short((short) 0));
-
-    return dialogCtrl;
-  }
-  catch (Exception ex) {
-    System.out.println("Could not create dialog control: " + ex);
-    return null;
-  }
-}  // end of createDialogControl()
-```
+=== "java"
+    ```java
+    // in the Dialogs class
+    public static XControl createDialogControl(int x, int y,
+                         int width, int height, String title)
+    { try {
+        XControl dialogCtrl =
+                     Lo.createInstanceMCF(XControl.class,
+                         "com.sun.star.awt.UnoControlDialog");
+        XControlModel xControlModel =
+                     Lo.createInstanceMCF(XControlModel.class,
+                         "com.sun.star.awt.UnoControlDialogModel");
+        dialogCtrl.setModel(xControlModel);  // link view and model
+    
+        XPropertySet props = getControlProps(dialogCtrl.getModel());
+        props.setPropertyValue("PositionX", x);
+        props.setPropertyValue("PositionY", y);
+        props.setPropertyValue("Height", height);
+        props.setPropertyValue("Width", width);
+    
+        props.setPropertyValue("Title", title);
+        props.setPropertyValue("Name", "OfficeDialog");
+    
+        props.setPropertyValue("Step", 0);
+        props.setPropertyValue("Moveable", true);
+        props.setPropertyValue("TabIndex", new Short((short) 0));
+    
+        return dialogCtrl;
+      }
+      catch (Exception ex) {
+        System.out.println("Could not create dialog control: " + ex);
+        return null;
+      }
+    }  // end of createDialogControl()
+    ```
 
 makeDialogControl() in the GetNumber class adds a label, textfield, and two buttons
 to the dialog by calling Dialogs.insertXXX() methods. These methods are all quite
 similar, so I'll only explain insertButton(). Its job is to create a button model, and
 initialize its properties:
 
-```java
-// in the Dialogs class
-public static XControl insertButton(XControl dialogCtrl,
-                          int x, int y, int width, String label)
-{  return insertButton(dialogCtrl, x, y, width, label,
-                       PushButtonType.STANDARD_value);
-}
-
-
-public static XControl insertButton(XControl dialogCtrl,
-                          int x, int y, int width,
-                          String label, int pushButtonType)
-{ try {
-    // create a button model
-    XMultiServiceFactory msf =
-             Lo.qi(XMultiServiceFactory.class,
-                            dialogCtrl.getModel());
-    Object model = msf.createInstance(
-               "com.sun.star.awt.UnoControlButtonModel");
-
-    // generate a unique name for the control
-    XNameContainer nameCon = getDialogNmCon(dialogCtrl);
-    String nm = createName(nameCon, "CommandButton");
-
-    // set properties in the model
-    XPropertySet props = getControlProps(model);
-    props.setPropertyValue("PositionX", x);
-    props.setPropertyValue("PositionY", y);
-    props.setPropertyValue("Height", 14);
-    props.setPropertyValue("Width", width);
-
-    props.setPropertyValue("Label", label);
-    props.setPropertyValue("PushButtonType",
-                  new Short((short) pushButtonType));
-    props.setPropertyValue("Name", nm);
-
-    // add the model to the dialog
-    nameCon.insertByName(nm, model);
-
-    // get the dialog's container holding all the control views
-    XControlContainer ctrlCon =
-               Lo.qi(XControlContainer.class, dialogCtrl);
-
-    // use the model's name to get its view inside the dialog
-    return ctrlCon.getControl(nm);
-  }
-  catch (Exception ex) {
-    System.out.println("Could not create button control: " + ex);
-    return null;
-  }
-}  // end of insertButton()
-```
+=== "java"
+    ```java
+    // in the Dialogs class
+    public static XControl insertButton(XControl dialogCtrl,
+                              int x, int y, int width, String label)
+    {  return insertButton(dialogCtrl, x, y, width, label,
+                           PushButtonType.STANDARD_value);
+    }
+    
+    
+    public static XControl insertButton(XControl dialogCtrl,
+                              int x, int y, int width,
+                              String label, int pushButtonType)
+    { try {
+        // create a button model
+        XMultiServiceFactory msf =
+                 Lo.qi(XMultiServiceFactory.class,
+                                dialogCtrl.getModel());
+        Object model = msf.createInstance(
+                   "com.sun.star.awt.UnoControlButtonModel");
+    
+        // generate a unique name for the control
+        XNameContainer nameCon = getDialogNmCon(dialogCtrl);
+        String nm = createName(nameCon, "CommandButton");
+    
+        // set properties in the model
+        XPropertySet props = getControlProps(model);
+        props.setPropertyValue("PositionX", x);
+        props.setPropertyValue("PositionY", y);
+        props.setPropertyValue("Height", 14);
+        props.setPropertyValue("Width", width);
+    
+        props.setPropertyValue("Label", label);
+        props.setPropertyValue("PushButtonType",
+                      new Short((short) pushButtonType));
+        props.setPropertyValue("Name", nm);
+    
+        // add the model to the dialog
+        nameCon.insertByName(nm, model);
+    
+        // get the dialog's container holding all the control views
+        XControlContainer ctrlCon =
+                   Lo.qi(XControlContainer.class, dialogCtrl);
+    
+        // use the model's name to get its view inside the dialog
+        return ctrlCon.getControl(nm);
+      }
+      catch (Exception ex) {
+        System.out.println("Could not create button control: " + ex);
+        return null;
+      }
+    }  // end of insertButton()
+    ```
 
 First the model is created and added to the dialog. Its view is retrieved from the
 dialog's control container, and returned as an XControl object.
@@ -777,24 +793,25 @@ dialog's control container, and returned as an XControl object.
 Back in GetNumber.runtimeDialog(), the dialog's window (or peer) is linked to the
 Office window by Dialogs.createDialogPeer():
 
-```java
-// in the Dialogs class
-public static XDialog createDialogPeer(XControl dialogCtrl)
-{
-  XWindow xWindow = (XWindow) Lo.qi(XWindow.class, dialogCtrl);
-  xWindow.setVisible(false);
-             // set dialog window invisible until it is executed
-
-  XToolkit xToolkit = Lo.createInstanceMCF(XToolkit.class,
-                                  "com.sun.star.awt.Toolkit");
-  XWindowPeer windowParentPeer = xToolkit.getDesktopWindow();
-
-  dialogCtrl.createPeer(xToolkit, windowParentPeer);
-
-  XComponent dialogComponent = Lo.qi(XComponent.class, dialogCtrl);
-  return getDialog(dialogCtrl);
-}  // end of createDialogPeer()
-```
+=== "java"
+    ```java
+    // in the Dialogs class
+    public static XDialog createDialogPeer(XControl dialogCtrl)
+    {
+      XWindow xWindow = (XWindow) Lo.qi(XWindow.class, dialogCtrl);
+      xWindow.setVisible(false);
+                 // set dialog window invisible until it is executed
+    
+      XToolkit xToolkit = Lo.createInstanceMCF(XToolkit.class,
+                                      "com.sun.star.awt.Toolkit");
+      XWindowPeer windowParentPeer = xToolkit.getDesktopWindow();
+    
+      dialogCtrl.createPeer(xToolkit, windowParentPeer);
+    
+      XComponent dialogComponent = Lo.qi(XComponent.class, dialogCtrl);
+      return getDialog(dialogCtrl);
+    }  // end of createDialogPeer()
+    ```
 
 
 ## 2.  Storing Macros inside the (Form) Document
@@ -936,76 +953,78 @@ Figure 16. The ShowEvent.show Dialogs for Office Events.
 These dialogs are drawn by the DocumentEvent version of show() in the ShowEvent
 class:
 
-```java
-// in the ShowEvent class
-public static void show(XScriptContext sc,
-                      com.sun.star.document.DocumentEvent e)
-{  display("document", e.EventName);  }
-```
+=== "java"
+    ```java
+    // in the ShowEvent class
+    public static void show(XScriptContext sc,
+                          com.sun.star.document.DocumentEvent e)
+    {  display("document", e.EventName);  }
+    ```
 
 #### Automatic Macro Attachment
 
 It's possible to automate the attachment of macros to Office and document events, as
 illustrated by the DocEvents.java example:
 
-```java
-// in DocEvents.java
-public static void main(String[] args)
-{
-  XComponentLoader loader = Lo.loadOffice();
-
-  Macros.listOfficeEvents();
-
-  // list the "OnStartApp" and "OnLoad" Office event properties
-  PropertyValue[] osaProps = Macros.getEventProps("OnStartApp");
-  Props.showProps("OnStartApp Event", osaProps);
-
-  PropertyValue[] olProps = Macros.getEventProps("OnLoad");
-  Props.showProps("OnLoad Event", olProps);
-
-  // attach macros to event if it does not have macros already
-  if (Lo.isNullOrEmpty( (String)Props.getProp(osaProps, "Script")))
-    Macros.setEventScript("OnStartApp",
-       "vnd.sun.star.script:ShowEvent.ShowEvent.show?
-                           language=Java&location=share");
-
-  if (Lo.isNullOrEmpty( (String)Props.getProp(olProps, "Script")))
-    Macros.setEventScript("OnLoad",
-       "vnd.sun.star.script:ShowEvent.ShowEvent.show?
-                          language=Java&location=share");
-
-
-  XTextDocument doc = Write.openDoc("build.odt", loader);
-  if (doc == null) {
-    System.out.println("Could not open build.odt");
-    Lo.closeOffice();
-    return;
-  }
-
-  GUI.setVisible(doc, true);
-  Lo.wait(2000);
-
-  Macros.listDocEvents(doc);
-
-  // list the "OnPageCountChange" doc event properties
-  PropertyValue[] opccProps =
-               Macros.getDocEventProps(doc, "OnPageCountChange");
-    Props.showProps("OnPageCountChange Event", opccProps);
-
-  if (Lo.isNullOrEmpty(
-                   (String)Props.getProp(opccProps, "Script"))) {
-    Macros.setDocEventScript(doc, "OnPageCountChange",
-       "vnd.sun.star.script:ShowEvent.ShowEvent.show?
-                             language=Java&location=share");
-
-    Lo.save(doc);  // must save doc after event macro change
-  }
-
-  Lo.waitEnter();
-  Lo.closeDoc(doc);
-  Lo.closeOffice();
-} // end of main()
-```
+=== "java"
+    ```java
+    // in DocEvents.java
+    public static void main(String[] args)
+    {
+      XComponentLoader loader = Lo.loadOffice();
+    
+      Macros.listOfficeEvents();
+    
+      // list the "OnStartApp" and "OnLoad" Office event properties
+      PropertyValue[] osaProps = Macros.getEventProps("OnStartApp");
+      Props.showProps("OnStartApp Event", osaProps);
+    
+      PropertyValue[] olProps = Macros.getEventProps("OnLoad");
+      Props.showProps("OnLoad Event", olProps);
+    
+      // attach macros to event if it does not have macros already
+      if (Lo.isNullOrEmpty( (String)Props.getProp(osaProps, "Script")))
+        Macros.setEventScript("OnStartApp",
+           "vnd.sun.star.script:ShowEvent.ShowEvent.show?
+                               language=Java&location=share");
+    
+      if (Lo.isNullOrEmpty( (String)Props.getProp(olProps, "Script")))
+        Macros.setEventScript("OnLoad",
+           "vnd.sun.star.script:ShowEvent.ShowEvent.show?
+                              language=Java&location=share");
+    
+    
+      XTextDocument doc = Write.openDoc("build.odt", loader);
+      if (doc == null) {
+        System.out.println("Could not open build.odt");
+        Lo.closeOffice();
+        return;
+      }
+    
+      GUI.setVisible(doc, true);
+      Lo.wait(2000);
+    
+      Macros.listDocEvents(doc);
+    
+      // list the "OnPageCountChange" doc event properties
+      PropertyValue[] opccProps =
+                   Macros.getDocEventProps(doc, "OnPageCountChange");
+        Props.showProps("OnPageCountChange Event", opccProps);
+    
+      if (Lo.isNullOrEmpty(
+                       (String)Props.getProp(opccProps, "Script"))) {
+        Macros.setDocEventScript(doc, "OnPageCountChange",
+           "vnd.sun.star.script:ShowEvent.ShowEvent.show?
+                                 language=Java&location=share");
+    
+        Lo.save(doc);  // must save doc after event macro change
+      }
+    
+      Lo.waitEnter();
+      Lo.closeDoc(doc);
+      Lo.closeOffice();
+    } // end of main()
+    ```
 
 The program begins by listing all the names of the Office events by calling
 Macros.listOfficeEvents(), and then the properties for the "OnStartApp" and
@@ -1061,49 +1080,51 @@ Macro.listOfficeEvents() starts with the theGlobalEventBroadcaster service, and 
 XEventSupplier.getEvents() to obtain an XNameReplace object which is a named
 container whose entries can be changed:
 
-```java
-// in the Macros class
-public static void listOfficeEvents()
-{ System.out.println("\nEvent Handler names");
-  XNameReplace eventHandlers = getEventHandlers();
-  Lo.printNames( eventHandlers.getElementNames() );
-}
-
-
-public static XNameReplace getEventHandlers()
-{ XGlobalEventBroadcaster geb =
-           theGlobalEventBroadcaster.get(Lo.getContext());
-  return geb.getEvents();
-}
-```
+=== "java"
+    ```java
+    // in the Macros class
+    public static void listOfficeEvents()
+    { System.out.println("\nEvent Handler names");
+      XNameReplace eventHandlers = getEventHandlers();
+      Lo.printNames( eventHandlers.getElementNames() );
+    }
+    
+    
+    public static XNameReplace getEventHandlers()
+    { XGlobalEventBroadcaster geb =
+               theGlobalEventBroadcaster.get(Lo.getContext());
+      return geb.getEvents();
+    }
+    ```
 
 Macros.getEventProps() looks up a specific event handler, and casts its entry in the
 XNameReplace container to a PropertyValue array:
 
-```java
-// in Macros class
-public static PropertyValue[] getEventProps(String eventName)
-{
-  XNameReplace eventHandlers = getEventHandlers();
-  return getEventProps( eventHandlers, eventName);
-}
-
-
-public static PropertyValue[] getEventProps(
-            XNameReplace eventHandlers, String eventName)
-{ try {
-    Object oProps = eventHandlers.getByName(eventName);
-    if (AnyConverter.isVoid(oProps))  // or conversion may fail
-      return null;
-    else
-      return (PropertyValue[])oProps;
-  }
-  catch(com.sun.star.uno.Exception e)
-  {  System.out.println("Could not find event " + eventName);
-     return null;
-  }
-} // end of getEventProps()
-```
+=== "java"
+    ```java
+    // in Macros class
+    public static PropertyValue[] getEventProps(String eventName)
+    {
+      XNameReplace eventHandlers = getEventHandlers();
+      return getEventProps( eventHandlers, eventName);
+    }
+    
+    
+    public static PropertyValue[] getEventProps(
+                XNameReplace eventHandlers, String eventName)
+    { try {
+        Object oProps = eventHandlers.getByName(eventName);
+        if (AnyConverter.isVoid(oProps))  // or conversion may fail
+          return null;
+        else
+          return (PropertyValue[])oProps;
+      }
+      catch(com.sun.star.uno.Exception e)
+      {  System.out.println("Could not find event " + eventName);
+         return null;
+      }
+    } // end of getEventProps()
+    ```
 
 Macros.setEventScript() utilizes getEventProps() to get the PropertyValue[] array for
 a given event, and sets the "Script" property to be the full name of the macro (e.g.
@@ -1111,27 +1132,28 @@ a given event, and sets the "Script" property to be the full name of the macro (
 Then the original entry in the XNameReplace object is updated with the changed
 property:
 
-```java
-public static void setEventScript(String eventName,
-                                  String scriptName)
-{
-  PropertyValue[] evProps = getEventProps(eventName);
-  if (evProps != null)
-    Props.setProp(evProps, "Script", scriptName);
-  else
-    evProps = Props.makeProps("EventType", "Script",
-                              "Script", scriptName);
-
-  XNameReplace eventHandlers = getEventHandlers();
-  try {
-    eventHandlers.replaceByName(eventName, evProps);
-    System.out.println("Set script for " + eventName + " to \"" +
-                                           scriptName + "\"");
-  }
-  catch(com.sun.star.uno.Exception e)
-  {  System.out.println("Could not set script " + eventName);  }
-} // end of setEventScript()
-```
+=== "java"
+    ```java
+    public static void setEventScript(String eventName,
+                                      String scriptName)
+    {
+      PropertyValue[] evProps = getEventProps(eventName);
+      if (evProps != null)
+        Props.setProp(evProps, "Script", scriptName);
+      else
+        evProps = Props.makeProps("EventType", "Script",
+                                  "Script", scriptName);
+    
+      XNameReplace eventHandlers = getEventHandlers();
+      try {
+        eventHandlers.replaceByName(eventName, evProps);
+        System.out.println("Set script for " + eventName + " to \"" +
+                                               scriptName + "\"");
+      }
+      catch(com.sun.star.uno.Exception e)
+      {  System.out.println("Could not set script " + eventName);  }
+    } // end of setEventScript()
+    ```
 
 The Macros utilities class contains similar methods for getting and setting document
 events. Macros.listDocEvents(), Macros.getDocEventProps(), and
@@ -1180,11 +1202,12 @@ name instead of "LibreOffice".
 
 One of the show() method in the ShowEvent class doesn't have an event argument:
 
-```java
-// part of ShowEvent.java
-public static void show(XScriptContext sc)
-{  display("menu/run");   }
-```
+=== "java"
+    ```java
+    // part of ShowEvent.java
+    public static void show(XScriptContext sc)
+    {  display("menu/run");   }
+    ```
 
 This method can be called in a number of different situations:
 
