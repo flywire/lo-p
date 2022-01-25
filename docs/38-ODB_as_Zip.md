@@ -32,46 +32,47 @@ how to extract them from ODB documents.
 
 EmbeddedQuery.java shows all the top-level stages:
 
-```java
-// in EmbeddedQuery.java
-public static void main(String[] args)
-{
-  if (args.length != 1) {
-    System.out.println("Usage: run EmbeddedQuery <fnm>");
-    return;
-  }
-
-  ArrayList<String> dbFnms = Base.extractEmbedded(args[0]);
-  if (dbFnms == null)
-    return;
-
-  System.out.println("Is this a Firebird embedded database? " +
-                          Jdbc.isFirebirdEmbedded(dbFnms));
-  System.out.println("Is this an HSQLDB embedded database? " +
-                          Jdbc.isHSQLEmbedded(dbFnms));
-
-  Connection conn = null;
-  try {
-    conn = Jdbc.connectToDB(dbFnms);
-    if (conn == null)
-      return;
-
-    ArrayList<String> tableNames = Jdbc.getTablesNames(conn);
-    System.out.println("No. of tables: " + tableNames.size());
-    System.out.println( Arrays.toString(tableNames.toArray()));
-
-    ResultSet rs = Jdbc.executeQuery("SELECT * FROM \"" +
-                         tableNames.get(0) + "\"", conn);
-
-    DBTablePrinter.printResultSet(rs);
-    conn.close();
-  }
-  catch(SQLException e) {
-    System.out.println(e);
-   }
-  // FileIO.deleteFiles(dbFnms);
-}  // end of main()
-```
+=== "java"
+    ```java
+    // in EmbeddedQuery.java
+    public static void main(String[] args)
+    {
+      if (args.length != 1) {
+        System.out.println("Usage: run EmbeddedQuery <fnm>");
+        return;
+      }
+    
+      ArrayList<String> dbFnms = Base.extractEmbedded(args[0]);
+      if (dbFnms == null)
+        return;
+    
+      System.out.println("Is this a Firebird embedded database? " +
+                              Jdbc.isFirebirdEmbedded(dbFnms));
+      System.out.println("Is this an HSQLDB embedded database? " +
+                              Jdbc.isHSQLEmbedded(dbFnms));
+    
+      Connection conn = null;
+      try {
+        conn = Jdbc.connectToDB(dbFnms);
+        if (conn == null)
+          return;
+    
+        ArrayList<String> tableNames = Jdbc.getTablesNames(conn);
+        System.out.println("No. of tables: " + tableNames.size());
+        System.out.println( Arrays.toString(tableNames.toArray()));
+    
+        ResultSet rs = Jdbc.executeQuery("SELECT * FROM \"" +
+                             tableNames.get(0) + "\"", conn);
+    
+        DBTablePrinter.printResultSet(rs);
+        conn.close();
+      }
+      catch(SQLException e) {
+        System.out.println(e);
+       }
+      // FileIO.deleteFiles(dbFnms);
+    }  // end of main()
+    ```
 
 
 ## 1.  Extracting a Database from an ODB File
@@ -81,39 +82,40 @@ HSQLDB or Firebird database since the unzipping steps are slightly different for
 one.
 
 
-```java
-// in the Base class
-// globals
-public static final int HSQLDB = 1;
-public static final int FIREBIRD = 2;
-public static final String HSQL_EMBEDDED = "sdbc:embedded:hsqldb";
-public static final String FIREBIRD_EMBEDDED =
-                                         "sdbc:embedded:firebird";
-
-
-public static ArrayList<String> extractEmbedded(String fnm)
-{
-  String embedFnm = getEmbeddedFnm(fnm);
-  if (embedFnm == null) {
-    System.out.println(fnm + " is not an embedded
-                                      HSQL/Firebird database");
-    return null;
-  }
-  else if (embedFnm.equals(HSQL_EMBEDDED)) {
-    System.out.println(fnm + " is an embedded HSQL database");
-    return unzipFiles(fnm, HSQLDB);
-  }
-  else if (embedFnm.equals(FIREBIRD_EMBEDDED)) {
-    System.out.println(fnm + " is an embedded Firebird database");
-    return unzipFiles(fnm, FIREBIRD);
-  }
-  else {
-    System.out.println(fnm + " holds an unknown embedded db: " +
-                                                       embedFnm);
-    return null;
-  }
-}  // end of extractEmbedded()
-```
+=== "java"
+    ```java
+    // in the Base class
+    // globals
+    public static final int HSQLDB = 1;
+    public static final int FIREBIRD = 2;
+    public static final String HSQL_EMBEDDED = "sdbc:embedded:hsqldb";
+    public static final String FIREBIRD_EMBEDDED =
+                                             "sdbc:embedded:firebird";
+    
+    
+    public static ArrayList<String> extractEmbedded(String fnm)
+    {
+      String embedFnm = getEmbeddedFnm(fnm);
+      if (embedFnm == null) {
+        System.out.println(fnm + " is not an embedded
+                                          HSQL/Firebird database");
+        return null;
+      }
+      else if (embedFnm.equals(HSQL_EMBEDDED)) {
+        System.out.println(fnm + " is an embedded HSQL database");
+        return unzipFiles(fnm, HSQLDB);
+      }
+      else if (embedFnm.equals(FIREBIRD_EMBEDDED)) {
+        System.out.println(fnm + " is an embedded Firebird database");
+        return unzipFiles(fnm, FIREBIRD);
+      }
+      else {
+        System.out.println(fnm + " holds an unknown embedded db: " +
+                                                           embedFnm);
+        return null;
+      }
+    }  // end of extractEmbedded()
+    ```
 
 In earlier chapters I retrieved the database type by examining the connection
 properties of the driver, but I don't want to use that technique here since it requires the
@@ -148,26 +150,27 @@ Figure 2, which makes it much easier to read.
 Base.getEmbeddedFnm() unzips content.xml so the "xlink:href" attribute of the
 <db.connection-resource> element can be extracted:
 
-```java
-// in the Base class
-// globals
-public static final String TEMP_DIR = "baseTmp/";
-
-public static String getEmbeddedFnm(String fnm)
-{
-  FileIO.makeDirectory(TEMP_DIR);
-  String contentFnm = TEMP_DIR + "content.xml";
-  if (unzipContent(fnm, contentFnm)) {
-    String embedRes = getEmbeddedResource(contentFnm);
-    FileIO.deleteFile(contentFnm);
-    return embedRes;
-  }
-  else {
-    System.out.println("Could not find content.xml inside " + fnm);
-    return null;
-  }
-}  // end of getEmbeddedFnm()
-```
+=== "java"
+    ```java
+    // in the Base class
+    // globals
+    public static final String TEMP_DIR = "baseTmp/";
+    
+    public static String getEmbeddedFnm(String fnm)
+    {
+      FileIO.makeDirectory(TEMP_DIR);
+      String contentFnm = TEMP_DIR + "content.xml";
+      if (unzipContent(fnm, contentFnm)) {
+        String embedRes = getEmbeddedResource(contentFnm);
+        FileIO.deleteFile(contentFnm);
+        return embedRes;
+      }
+      else {
+        System.out.println("Could not find content.xml inside " + fnm);
+        return null;
+      }
+    }  // end of getEmbeddedFnm()
+    ```
 
 Base.unzipContent() extracts content.xml, storing it temporarily in the baseTmp/
 subdirectory. Base.getEmbeddedResource() accesses the <db.connection-resource>
@@ -220,28 +223,29 @@ can be done with JDBC, along with the help of my Jdbc.java support class.
 
 The relevant lines in EmbeddedQuery.java are:
 
-```java
-// part of EmbeddedQuery.java...
-Connection conn = null;
-try {
-  conn = Jdbc.connectToDB(dbFnms);
-  if (conn == null)
-    return;
-
-  ArrayList<String> tableNames = Jdbc.getTablesNames(conn);
-  System.out.println("No. of tables: " + tableNames.size());
-  System.out.println( Arrays.toString(tableNames.toArray()));
-
-  ResultSet rs = Jdbc.executeQuery("SELECT * FROM \"" +
-                           tableNames.get(0) + "\"", conn);
-
-  // Jdbc.printResultSet(rs);
-  DBTablePrinter.printResultSet(rs);
-  // Jdbc.displayResultSet(rs);
-
-  conn.close();
-}
-```
+=== "java"
+    ```java
+    // part of EmbeddedQuery.java...
+    Connection conn = null;
+    try {
+      conn = Jdbc.connectToDB(dbFnms);
+      if (conn == null)
+        return;
+    
+      ArrayList<String> tableNames = Jdbc.getTablesNames(conn);
+      System.out.println("No. of tables: " + tableNames.size());
+      System.out.println( Arrays.toString(tableNames.toArray()));
+    
+      ResultSet rs = Jdbc.executeQuery("SELECT * FROM \"" +
+                               tableNames.get(0) + "\"", conn);
+    
+      // Jdbc.printResultSet(rs);
+      DBTablePrinter.printResultSet(rs);
+      // Jdbc.displayResultSet(rs);
+    
+      conn.close();
+    }
+    ```
 
 I won’t bother describing most of my Jdbc.java support methods (e.g.
 getTablesNames(), executeQuery(), printResultSet(), and displayResultSet()) since
@@ -254,20 +258,21 @@ version.
 Jdbc.connectToDB() uses Jdbc.isHSQLEmbedded() and Jdbc.isFirebirdEmbedded()
 to decide which connect methods are used for HSQLDB and Firebird.
 
-```java
-// in the Jdbc class
-public static Connection connectToDB(ArrayList<String> fnms)
-{
-  if (isHSQLEmbedded(fnms))
-    return connectToHSQL(Base.TEMP_DIR + Base.HSQL_FNM);
-  else if (isFirebirdEmbedded(fnms))
-    return connectToFB(Base.TEMP_DIR + Base.FB_FNM + ".fdb");
-  else {
-    System.out.println("Unrecognized embedded database");
-    return null;
-  }
-}  // end of connectToDB()
-```
+=== "java"
+    ```java
+    // in the Jdbc class
+    public static Connection connectToDB(ArrayList<String> fnms)
+    {
+      if (isHSQLEmbedded(fnms))
+        return connectToHSQL(Base.TEMP_DIR + Base.HSQL_FNM);
+      else if (isFirebirdEmbedded(fnms))
+        return connectToFB(Base.TEMP_DIR + Base.FB_FNM + ".fdb");
+      else {
+        System.out.println("Unrecognized embedded database");
+        return null;
+      }
+    }  // end of connectToDB()
+    ```
 
 I'll explain the details of connectToHSQL() here, and connectToFB() in the next
 section.
@@ -280,28 +285,29 @@ around, beginning at https://hsqldb.org/doc/1.8/guide/, and a short JDBC
 example is in Appendix B at https://hsqldb.org/doc/1.8/guide/apb.html.
 Jdbc.connectToHSQL() is based on that example:
 
-```java
-// in the Jdbc class
-public static Connection connectToHSQL(String filePath)
-{
- Connection conn = null;
-  try {
-    Class.forName("org.hsqldb.jdbcDriver");
-    conn = DriverManager.getConnection("jdbc:hsqldb:file:" +
-                            filePath +
-                            ";shutdown=true",  "SA", "");
-           // force db closure (shutdown) at connection close
-           // otherwise data, log and lock will not be deleted
-  }
-  catch (ClassNotFoundException e) {
-    System.out.println("Failed to load JDBC-HSQLDB driver");
-  }
-  catch(SQLException e) {
-    System.out.println(e);
-  }
-  return conn;
-}  // end of connectToHSQL()
-```
+=== "java"
+    ```java
+    // in the Jdbc class
+    public static Connection connectToHSQL(String filePath)
+    {
+     Connection conn = null;
+      try {
+        Class.forName("org.hsqldb.jdbcDriver");
+        conn = DriverManager.getConnection("jdbc:hsqldb:file:" +
+                                filePath +
+                                ";shutdown=true",  "SA", "");
+               // force db closure (shutdown) at connection close
+               // otherwise data, log and lock will not be deleted
+      }
+      catch (ClassNotFoundException e) {
+        System.out.println("Failed to load JDBC-HSQLDB driver");
+      }
+      catch(SQLException e) {
+        System.out.println(e);
+      }
+      return conn;
+    }  // end of connectToHSQL()
+    ```
 
 #### Using HSQLDB Interactively: SqlTool
 
@@ -312,9 +318,10 @@ SqlTool is explained at length in chapter 8 of the user guide for HSQLDB 1.8 at
 https://hsqldb.org/doc/1.8/guide/ch08.html. It's also possible to get help at
 runtime by calling hsqldb.jar with the "--help" argument:
 
-```java
-java -jar <OFFICE>\program\classes\hsqldb.jar --help
-```
+=== "java"
+    ```java
+    java -jar <OFFICE>\program\classes\hsqldb.jar --help
+    ```
 
 Figure 4 shows the help generated when the JAR file is called inside the
 <OFFICE>\program\classes folder.
@@ -358,37 +365,39 @@ There's no need to add Jaybird to the classpath of the javac.exe compiler, but c
 java.exe must include the location of its JAR and associated DLL. For example,
 run.bat in the Base Tests/ folder calls java.exe like so:
 
-```java
-java  -cp "%LO%\program\classes\*;%LO%\URE\java\*;
-           ..\Utils;D:\jna\jna-4.1.0.jar;
-           D:\jna\jna-platform-4.1.0.jar;
-           D:\jaybird\jaybird-full-2.2.10.jar;."
-      -Djava.library.path="D:\jaybird" %*
-```
+=== "java"
+    ```java
+    java  -cp "%LO%\program\classes\*;%LO%\URE\java\*;
+               ..\Utils;D:\jna\jna-4.1.0.jar;
+               D:\jna\jna-platform-4.1.0.jar;
+               D:\jaybird\jaybird-full-2.2.10.jar;."
+          -Djava.library.path="D:\jaybird" %*
+    ```
 
 The information in bold allows Jdbc.connectToFB() to find the JDBC driver at run
 rime:
 
-```java
-// in the Jdbc class
-public static Connection connectToFB(String filePath)
-{
-  Connection conn = null;
-  try {
-    Class.forName("org.firebirdsql.jdbc.FBDriver");
-    conn = DriverManager.getConnection(
-             "jdbc:firebirdsql:embedded:" + filePath,
-                                      "sysdba", "masterkey");
-  }
-  catch (ClassNotFoundException e) {
-    System.out.println("Failed to load JDBC-Firebird driver");
-  }
-  catch(SQLException e) {
-    System.out.println(e);
-  }
-  return conn;
-}  // end of connectToFB()
-```
+=== "java"
+    ```java
+    // in the Jdbc class
+    public static Connection connectToFB(String filePath)
+    {
+      Connection conn = null;
+      try {
+        Class.forName("org.firebirdsql.jdbc.FBDriver");
+        conn = DriverManager.getConnection(
+                 "jdbc:firebirdsql:embedded:" + filePath,
+                                          "sysdba", "masterkey");
+      }
+      catch (ClassNotFoundException e) {
+        System.out.println("Failed to load JDBC-Firebird driver");
+      }
+      catch(SQLException e) {
+        System.out.println(e);
+      }
+      return conn;
+    }  // end of connectToFB()
+    ```
 
 Note that the DriverManager.getConnection() call requires the system admin's default
 login and password, "sysdba" and "masterkey".

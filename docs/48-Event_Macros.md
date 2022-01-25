@@ -218,49 +218,50 @@ how to use them.
 ListMacros.java calls Macros.getLangScripts() to print the names of the macros
 written in a given language:
 
-```java
-// in ListMacros.java
-public static void main(String[] args)
-{
-  String lang = "Java";
-  if (args.length != 1) {
-    System.out.println("Usage: run ListMacros [Java | Python |
-                BeanShell | Basic | JavaScript]");
-    System.out.println("Using \"Java\"");
-  }
-  else
-    lang = args[0];
-
-  XComponentLoader loader = Lo.loadOffice();
-
-  ArrayList<String> scriptURIs = Macros.getLangScripts(lang);
-  System.out.println(lang + " Macros in Office: (" +
-                           scriptURIs.size() + ")");
-  for(String scriptURI : scriptURIs)
-    System.out.println("  " + scriptURI);
-
-  Lo.closeOffice();
-} // end of main()
-
-Macros.getLangScripts() obtains a list of all the macro names by calling
-Macros.getScripts(), then filters out names based on a "language=LANGPARAM&"
-substring:
-
-// in the Macros class
-public static ArrayList<String> getLangScripts(String lang)
-{
-  if (!isMacroLanguage(lang)) {
-    System.out.println("Not a Macro language; try \"Java\"");
-    return null;
-  }
-  ArrayList<String> fScripts = new ArrayList<>();
-  ArrayList<String> scriptURIs = getScripts();
-  for(String scriptURI : scriptURIs)
-    if (scriptURI.contains("language=" + lang + "&"))
-      fScripts.add(scriptURI);
-  return fScripts;
-} // end of getLangScripts()
-```
+=== "java"
+    ```java
+    // in ListMacros.java
+    public static void main(String[] args)
+    {
+      String lang = "Java";
+      if (args.length != 1) {
+        System.out.println("Usage: run ListMacros [Java | Python |
+                    BeanShell | Basic | JavaScript]");
+        System.out.println("Using \"Java\"");
+      }
+      else
+        lang = args[0];
+    
+      XComponentLoader loader = Lo.loadOffice();
+    
+      ArrayList<String> scriptURIs = Macros.getLangScripts(lang);
+      System.out.println(lang + " Macros in Office: (" +
+                               scriptURIs.size() + ")");
+      for(String scriptURI : scriptURIs)
+        System.out.println("  " + scriptURI);
+    
+      Lo.closeOffice();
+    } // end of main()
+    
+    Macros.getLangScripts() obtains a list of all the macro names by calling
+    Macros.getScripts(), then filters out names based on a "language=LANGPARAM&"
+    substring:
+    
+    // in the Macros class
+    public static ArrayList<String> getLangScripts(String lang)
+    {
+      if (!isMacroLanguage(lang)) {
+        System.out.println("Not a Macro language; try \"Java\"");
+        return null;
+      }
+      ArrayList<String> fScripts = new ArrayList<>();
+      ArrayList<String> scriptURIs = getScripts();
+      for(String scriptURI : scriptURIs)
+        if (scriptURI.contains("language=" + lang + "&"))
+          fScripts.add(scriptURI);
+      return fScripts;
+    } // end of getLangScripts()
+    ```
 
 Macros.getScripts() utilizes services and interfaces in the com.sun.star.script.browse
 module to examine a scripts tree structure consisting of CONTAINER and SCRIPT
@@ -271,65 +272,66 @@ Macros.getScripts() accesses the root of the MACROORGANIZER tree, and collects
 script names by having getLibScripts() recursively traverse the tree, adding names to
 a scripts ArrayList:
 
-```java
-// in the Macros class
-public static ArrayList<String> getScripts()
-{
-  ArrayList<String> scripts = new ArrayList<>();
-
-  XComponentContext xcc = Lo.getContext();
-  XBrowseNodeFactory bnf = Lo.qi(XBrowseNodeFactory.class,
-           xcc.getValueByName(
-              "/singletons/com.sun.star.script.
-
-                   browse.theBrowseNodeFactory"));
-
-  XBrowseNode rootNode = Lo.qi(XBrowseNode.class,
-     bnf.createView( BrowseNodeFactoryViewTypes.MACROORGANIZER) );
-                     // for scripts
-
-  XBrowseNode[] typeNodes = rootNode.getChildNodes();
-  for(int i=0; i < typeNodes.length; i++) {
-    XBrowseNode typeNode = typeNodes[i];
-    XBrowseNode[] libraryNodes = typeNode.getChildNodes();
-    for(int j=0; j < libraryNodes.length; j++)
-      getLibScripts(libraryNodes[j], 0,
-                            typeNode.getName(), scripts);
-  }
-  System.out.println();
-  return scripts;
-} // end of getScripts()
-
-
-public static void getLibScripts(XBrowseNode browseNode, int level,
-                        String path, ArrayList<String> scripts)
-{
-  XBrowseNode[] scriptNodes = browseNode.getChildNodes();
-  if ((scriptNodes.length == 0) && (level > 1))
-    // not a top-level library
-    System.out.println("No scripts in " + path);
-  for(int i=0; i < scriptNodes.length; i++) {
-    XBrowseNode scriptNode = scriptNodes[i];
-    if (scriptNode.getType() == BrowseNodeTypes.SCRIPT) {
-      XPropertySet props = Lo.qi(XPropertySet.class, scriptNode);
-      if (props != null) {
-        try {
-          scripts.add((String)props.getPropertyValue("URI"));
-        }
-        catch(com.sun.star.uno.Exception e)
-        { System.out.println(e); }
+=== "java"
+    ```java
+    // in the Macros class
+    public static ArrayList<String> getScripts()
+    {
+      ArrayList<String> scripts = new ArrayList<>();
+    
+      XComponentContext xcc = Lo.getContext();
+      XBrowseNodeFactory bnf = Lo.qi(XBrowseNodeFactory.class,
+               xcc.getValueByName(
+                  "/singletons/com.sun.star.script.
+    
+                       browse.theBrowseNodeFactory"));
+    
+      XBrowseNode rootNode = Lo.qi(XBrowseNode.class,
+         bnf.createView( BrowseNodeFactoryViewTypes.MACROORGANIZER) );
+                         // for scripts
+    
+      XBrowseNode[] typeNodes = rootNode.getChildNodes();
+      for(int i=0; i < typeNodes.length; i++) {
+        XBrowseNode typeNode = typeNodes[i];
+        XBrowseNode[] libraryNodes = typeNode.getChildNodes();
+        for(int j=0; j < libraryNodes.length; j++)
+          getLibScripts(libraryNodes[j], 0,
+                                typeNode.getName(), scripts);
       }
-      else
-        System.out.println("No props for " + scriptNode.getName());
-    }
-    else if (scriptNode.getType() == BrowseNodeTypes.CONTAINER)
-      getLibScripts(scriptNode, level+1, path + ">" +
-                                scriptNode.getName(), scripts);
-    else
-      System.out.println("Unknown node type");
-  }
-}  // end of getLibScripts()
-```
+      System.out.println();
+      return scripts;
+    } // end of getScripts()
+    
+    
+    public static void getLibScripts(XBrowseNode browseNode, int level,
+                            String path, ArrayList<String> scripts)
+    {
+      XBrowseNode[] scriptNodes = browseNode.getChildNodes();
+      if ((scriptNodes.length == 0) && (level > 1))
+        // not a top-level library
+        System.out.println("No scripts in " + path);
+      for(int i=0; i < scriptNodes.length; i++) {
+        XBrowseNode scriptNode = scriptNodes[i];
+        if (scriptNode.getType() == BrowseNodeTypes.SCRIPT) {
+          XPropertySet props = Lo.qi(XPropertySet.class, scriptNode);
+          if (props != null) {
+            try {
+              scripts.add((String)props.getPropertyValue("URI"));
+            }
+            catch(com.sun.star.uno.Exception e)
+            { System.out.println(e); }
+          }
+          else
+            System.out.println("No props for " + scriptNode.getName());
+        }
+        else if (scriptNode.getType() == BrowseNodeTypes.CONTAINER)
+          getLibScripts(scriptNode, level+1, path + ">" +
+                                    scriptNode.getName(), scripts);
+        else
+          System.out.println("Unknown node type");
+      }
+    }  // end of getLibScripts()
+    ```
 
 All the Java macros can be listed by calling:
 run ListMacros Java
@@ -366,10 +368,11 @@ extension, and four are share macros. The first three share macros
 MemoryUsage.updateMemoryUsage) are LibreOffice examples; I'll explain the first
 one:
 
-```java
-vnd.sun.star.script:HelloWorld.org.libreoffice.example.java_scripts.
-      HelloWorld.printHW?language=Java&location=share
-```
+=== "java"
+    ```java
+    vnd.sun.star.script:HelloWorld.org.libreoffice.example.java_scripts.
+          HelloWorld.printHW?language=Java&location=share
+    ```
 
 The macro's location parameter is "location=share", which means that it appears in the
 "LibreOffice Macros" section of the Macro Selector dialog in Figure 4.
@@ -416,13 +419,14 @@ The format of the HelloWorld class in the JAR file is:
 package org.libreoffice.example.java_scripts;
 
 
-```java
-public class HelloWorld
-{
-  public static void printHW(XScriptContext xSc)
-  {  /* code not shown */  }
-}
-```
+=== "java"
+    ```java
+    public class HelloWorld
+    {
+      public static void printHW(XScriptContext xSc)
+      {  /* code not shown */  }
+    }
+    ```
 
 HelloWorld implements a single printHW() function.
 
@@ -468,52 +472,53 @@ Figure 7. A Document with "hello" Macros Text.
 
 TextMacros.java utilizes Macros.execute() to call the macros:
 
-```java
-// in TextMacros.java
-public static void main(String[] args)
-{
-  XComponentLoader loader = Lo.loadOffice();
-  XTextDocument doc = Write.createDoc(loader);
-  if (doc == null) {
-    System.out.println("Writer doc creation failed");
-    Lo.closeOffice();
-    return;
-  }
-
-  if (Macros.getSecurity() == Macros.LOW)
-    Macros.setSecurity(Macros.MEDIUM);
-
-  XTextCursor cursor = Write.getCursor(doc);
-  GUI.setVisible(doc, true);
-  Lo.wait(1000);   // make sure the document is visible
-                   // before sending it dispatches
-
-  Write.appendPara(cursor, "Hello LibreOffice");
-
-  Macros.execute("HelloWorld.helloworld.bsh",
-                                     "BeanShell", "share");
-  Write.endParagraph(cursor);
-
-  Macros.execute("HelloWorld.py$HelloWorldPython",
-                                     "Python", "share");
-  Write.endParagraph(cursor);
-
-  Macros.execute("HelloWorld.helloworld.js",
-                                     "JavaScript", "share");
-  Write.endParagraph(cursor);
-
-  Macros.execute("HelloWorld.org.libreoffice.example.
-
-                                java_scripts.HelloWorld.printHW",
-                                       "Java", "share");
-  Write.endParagraph(cursor);
-  Write.appendPara(cursor, "Timestamp: " + Lo.getTimeStamp());
-
-  Lo.waitEnter();
-  Lo.closeDoc(doc);
-  Lo.closeOffice();
-} // end of main()
-```
+=== "java"
+    ```java
+    // in TextMacros.java
+    public static void main(String[] args)
+    {
+      XComponentLoader loader = Lo.loadOffice();
+      XTextDocument doc = Write.createDoc(loader);
+      if (doc == null) {
+        System.out.println("Writer doc creation failed");
+        Lo.closeOffice();
+        return;
+      }
+    
+      if (Macros.getSecurity() == Macros.LOW)
+        Macros.setSecurity(Macros.MEDIUM);
+    
+      XTextCursor cursor = Write.getCursor(doc);
+      GUI.setVisible(doc, true);
+      Lo.wait(1000);   // make sure the document is visible
+                       // before sending it dispatches
+    
+      Write.appendPara(cursor, "Hello LibreOffice");
+    
+      Macros.execute("HelloWorld.helloworld.bsh",
+                                         "BeanShell", "share");
+      Write.endParagraph(cursor);
+    
+      Macros.execute("HelloWorld.py$HelloWorldPython",
+                                         "Python", "share");
+      Write.endParagraph(cursor);
+    
+      Macros.execute("HelloWorld.helloworld.js",
+                                         "JavaScript", "share");
+      Write.endParagraph(cursor);
+    
+      Macros.execute("HelloWorld.org.libreoffice.example.
+    
+                                    java_scripts.HelloWorld.printHW",
+                                           "Java", "share");
+      Write.endParagraph(cursor);
+      Write.appendPara(cursor, "Timestamp: " + Lo.getTimeStamp());
+    
+      Lo.waitEnter();
+      Lo.closeDoc(doc);
+      Lo.closeOffice();
+    } // end of main()
+    ```
 
 The arguments of Macros.execute() are the MACROPARAM, LANGPARAM, and
 LOCPARAM parts of the macro's URI; they're separated out to make the macro's
@@ -523,54 +528,55 @@ Macros.execute() uses the theMasterScriptProviderFactory service to obtain a
 XScriptProviderFactory It creates a XScriptProvider which can load the named macro
 as an XScript object; the script is executed by XScript.invoke():
 
-```java
-// in the Macros class
-public static Object execute(String macroName, String language,
-                                                  String location)
-{  return execute(macroName, null, language, location);   }
-
-
-
-public static Object execute(String macroName, Object[] params,
-                                 String language, String location)
-{
-  if (!isMacroLanguage(language)) {
-    System.out.println("\"" + language +
-                   "\" is not a macro language name");
-    return null;
-  }
-
-  try {
-    /* deprecated approach
-       XScriptProviderFactory spFactory =  Lo.createInstanceMCF(
-                  XScriptProviderFactory.class,
-        "com.sun.star.script.provider.MasterScriptProviderFactory");
-    */
-    XComponentContext xcc = Lo.getContext();
-    XScriptProviderFactory spFactory =
-        Lo.qi(XScriptProviderFactory.class,
-            xcc.getValueByName(
-                  "/singletons/com.sun.star.script.provider.
-
-                   theMasterScriptProviderFactory"));
-
-    XScriptProvider sp = spFactory.createScriptProvider("");
-    XScript xScript = sp.getScript("vnd.sun.star.script:" +
-             macroName + "?language=" + language +
-                         "&location=" + location);
-
-    // minimal inout/out parameters
-    short[][] outParamIndex = { { 0 } };
-    Object[][] outParam = { { null } };
-    return xScript.invoke(params, outParamIndex, outParam);
-  }
-  catch (Exception e) {
-    System.out.println("Could not execute macro " +
-                 macroName + ": " + e);
-    return null;
-  }
-}  // end of execute()
-```
+=== "java"
+    ```java
+    // in the Macros class
+    public static Object execute(String macroName, String language,
+                                                      String location)
+    {  return execute(macroName, null, language, location);   }
+    
+    
+    
+    public static Object execute(String macroName, Object[] params,
+                                     String language, String location)
+    {
+      if (!isMacroLanguage(language)) {
+        System.out.println("\"" + language +
+                       "\" is not a macro language name");
+        return null;
+      }
+    
+      try {
+        /* deprecated approach
+           XScriptProviderFactory spFactory =  Lo.createInstanceMCF(
+                      XScriptProviderFactory.class,
+            "com.sun.star.script.provider.MasterScriptProviderFactory");
+        */
+        XComponentContext xcc = Lo.getContext();
+        XScriptProviderFactory spFactory =
+            Lo.qi(XScriptProviderFactory.class,
+                xcc.getValueByName(
+                      "/singletons/com.sun.star.script.provider.
+    
+                       theMasterScriptProviderFactory"));
+    
+        XScriptProvider sp = spFactory.createScriptProvider("");
+        XScript xScript = sp.getScript("vnd.sun.star.script:" +
+                 macroName + "?language=" + language +
+                             "&location=" + location);
+    
+        // minimal inout/out parameters
+        short[][] outParamIndex = { { 0 } };
+        Object[][] outParam = { { null } };
+        return xScript.invoke(params, outParamIndex, outParam);
+      }
+      catch (Exception e) {
+        System.out.println("Could not execute macro " +
+                     macroName + ": " + e);
+        return null;
+      }
+    }  // end of execute()
+    ```
 
 Input parameters can be passed to invoke(), but the three-argument version of
 Macros.execute() sets them to null. It's also possible to have the script set output
@@ -586,11 +592,12 @@ Prior to the macro calls in TextMacros.java, there's a call to Macros.getSecurit
 reports Office's macro execution setting, which is changed to Macros.MEDIUM if the
 current value is Macros.LOW:
 
-```java
-// part of TextMacros.java...
-if (Macros.getSecurity() == Macros.LOW)
-  Macros.setSecurity(Macros.MEDIUM);
-```
+=== "java"
+    ```java
+    // part of TextMacros.java...
+    if (Macros.getSecurity() == Macros.LOW)
+      Macros.setSecurity(Macros.MEDIUM);
+    ```
 
 The Macros class defines four security constants: LOW, MEDIUM, HIGH,
 VERY_HIGH, which correspond to the levels used in Office's "Macro Security"
@@ -610,80 +617,83 @@ Macros.getSecurity() uses Info.getConfig() to access the
 "/org.openoffice.Office.Common/Security/Scripting" configuration node, and look up
 its "MacroSecurityLevel" property:
 
-```java
-// in the Macros class
-public static int getSecurity()
-{
-  System.out.println("Macro security level:");
-  Integer val = (Integer) Info.getConfig(
-        "/org.openoffice.Office.Common/Security/Scripting",
-        "MacroSecurityLevel");
-
-  // various tests of val, before returning its int value
-  // :
-  return val.intValue();
-}
-
-Macros.setSecurity() manipulates the same configuration node but supplies a new
-value for the "MacroSecurityLevel" property:
-
-// in the Macros class
-public static boolean setSecurity(int level)
-{
-  if ((level == Macros.LOW) || (level == Macros.MEDIUM) ||
-      (level == Macros.HIGH) || (level == Macros.VERY_HIGH)) {
-    System.out.println("Setting macro security level to " + level);
-    return Info.setConfig(
-                "/org.openoffice.Office.Common/Security/Scripting",
-                "MacroSecurityLevel", Integer.valueOf(level));
-  }
-  else {
-    System.out.println("Use Macros class constants:
-                           LOW, MEDIUM, HIGH, or VERY_HIGH");
-    return false;
-  }
-}  // end of setSecurity()
-```
+=== "java"
+    ```java
+    // in the Macros class
+    public static int getSecurity()
+    {
+      System.out.println("Macro security level:");
+      Integer val = (Integer) Info.getConfig(
+            "/org.openoffice.Office.Common/Security/Scripting",
+            "MacroSecurityLevel");
+    
+      // various tests of val, before returning its int value
+      // :
+      return val.intValue();
+    }
+    
+    Macros.setSecurity() manipulates the same configuration node but supplies a new
+    value for the "MacroSecurityLevel" property:
+    
+    // in the Macros class
+    public static boolean setSecurity(int level)
+    {
+      if ((level == Macros.LOW) || (level == Macros.MEDIUM) ||
+          (level == Macros.HIGH) || (level == Macros.VERY_HIGH)) {
+        System.out.println("Setting macro security level to " + level);
+        return Info.setConfig(
+                    "/org.openoffice.Office.Common/Security/Scripting",
+                    "MacroSecurityLevel", Integer.valueOf(level));
+      }
+      else {
+        System.out.println("Use Macros class constants:
+                               LOW, MEDIUM, HIGH, or VERY_HIGH");
+        return false;
+      }
+    }  // end of setSecurity()
+    ```
 
 ### 4.2.  Implementing the HelloWorld Java Macro
 
 The four macros called by TextMacros.java add text to the document, but how
 exactly? The Java macro is called using:
 
-```java
-// part of TextMacros.java...
-Macros.execute("HelloWorld.org.libreoffice.example.
-                                java_scripts.HelloWorld.printHW",
-                                       "Java", "share");
-```
+=== "java"
+    ```java
+    // part of TextMacros.java...
+    Macros.execute("HelloWorld.org.libreoffice.example.
+                                    java_scripts.HelloWorld.printHW",
+                                           "Java", "share");
+    ```
 
 This invokes the printHW() static method in the HelloWorld class in the
 org.libreoffice.example.java_scripts package shown back in Figure 4. The complete
 code for the class (minus some comments) is:
 
-```java
-// the HelloWorld class
-package org.libreoffice.example.java_scripts;
-
-import com.sun.star.script.provider.XScriptContext;
-import com.sun.star.uno.*;
-import com.sun.star.text.*;
-
-
-public class HelloWorld
-{
-  public static void printHW(XScriptContext xSc)
-  {
-    XTextDocument xtextdocument =
-        (XTextDocument) UnoRuntime.queryInterface(
-                XTextDocument.class, xSc.getDocument());
-    XText xText = xtextdocument.getText();
-    XTextRange xTextRange = xText.getEnd();
-    xTextRange.setString("Hello World (in Java)");
-  } // end of printHW()
-
-} // end of HelloWorld class
-```
+=== "java"
+    ```java
+    // the HelloWorld class
+    package org.libreoffice.example.java_scripts;
+    
+    import com.sun.star.script.provider.XScriptContext;
+    import com.sun.star.uno.*;
+    import com.sun.star.text.*;
+    
+    
+    public class HelloWorld
+    {
+      public static void printHW(XScriptContext xSc)
+      {
+        XTextDocument xtextdocument =
+            (XTextDocument) UnoRuntime.queryInterface(
+                    XTextDocument.class, xSc.getDocument());
+        XText xText = xtextdocument.getText();
+        XTextRange xTextRange = xText.getEnd();
+        xTextRange.setString("Hello World (in Java)");
+      } // end of printHW()
+    
+    } // end of HelloWorld class
+    ```
 
 XScript.invoke() constructs a one-argument call to printHW(), passing it a
 XScriptContext object. As we'll see later, a function can be called with different
@@ -725,52 +735,54 @@ Figure 10. The Page Generated by UseLogo.java.
 
 UseLogo.java is:
 
-```java
-public class UseLogo
-{
-
-  public static void main(String[] args)
-  {
-    XComponentLoader loader = Lo.loadOffice();
-    XTextDocument doc = Write.createDoc(loader);
-
-    if (doc == null) {
-      System.out.println("Writer doc creation failed");
-      Lo.closeOffice();
-      return;
-    }
-
-    GUI.setVisible(doc, true);
-    Lo.wait(1000);   // make sure doc is visible
-
-    XTextCursor cursor = Write.getCursor(doc);
-
-    String logoCmds = "repeat 88 [ fd 200 left 89 ] fill";
-    Write.appendPara(cursor, logoCmds);
-    Macros.executeLogoCmds(logoCmds);
-
-    Lo.waitEnter();
-    Lo.closeDoc(doc);
-    Lo.closeOffice();
-  } // end of main()
-
-}  // end of UseLogo class
-```
+=== "java"
+    ```java
+    public class UseLogo
+    {
+    
+      public static void main(String[] args)
+      {
+        XComponentLoader loader = Lo.loadOffice();
+        XTextDocument doc = Write.createDoc(loader);
+    
+        if (doc == null) {
+          System.out.println("Writer doc creation failed");
+          Lo.closeOffice();
+          return;
+        }
+    
+        GUI.setVisible(doc, true);
+        Lo.wait(1000);   // make sure doc is visible
+    
+        XTextCursor cursor = Write.getCursor(doc);
+    
+        String logoCmds = "repeat 88 [ fd 200 left 89 ] fill";
+        Write.appendPara(cursor, logoCmds);
+        Macros.executeLogoCmds(logoCmds);
+    
+        Lo.waitEnter();
+        Lo.closeDoc(doc);
+        Lo.closeOffice();
+      } // end of main()
+    
+    }  // end of UseLogo class
+    ```
 
 Macros.executeLogoCmds() is a small wrapper around Macros.execute() which calls
 the commandline() function inside LibreLogo.py:
 
-```java
-// in the Macros class
-public static Object executeLogoCmds(String cmdsStr)
-{
-  Object[] params = new String[2];
-  params[0] = "";        // based on looking at commandline()
-  params[1] = cmdsStr;   // in LibreLogo.py
-  return execute("LibreLogo/LibreLogo.py$commandline",
-                               params, "Python", "share");
-}
-```
+=== "java"
+    ```java
+    // in the Macros class
+    public static Object executeLogoCmds(String cmdsStr)
+    {
+      Object[] params = new String[2];
+      params[0] = "";        // based on looking at commandline()
+      params[1] = cmdsStr;   // in LibreLogo.py
+      return execute("LibreLogo/LibreLogo.py$commandline",
+                                   params, "Python", "share");
+    }
+    ```
 
 The params[] array is treated as two arguments by XScript.invoke() and passed to
 commandline().
@@ -795,63 +807,64 @@ It's time to start coding our own macros. I'll start by writing a ShowEvent clas
 reports when various events occur. It does this by implementing several versions of a
 static show() method:
 
-```java
-// in ShowEvent.java
-public class ShowEvent
-{
-  public static void show(XScriptContext sc, ActionEvent e)
-  // triggered by a action event (usually a button press)
-  {  display("action", getSource(e));  }
-
-
-  public static void show(XScriptContext sc, TextEvent e)
-  // called when text changes inside a text component
-  {  display("text", getSource(e));  }
-
-
-  public static void show(XScriptContext sc, FocusEvent e)
-  // called when the focus changes
-  {  display("focus");  }
-
-
-  public static void show(XScriptContext sc, Short val)
-  // called from a toolbar
-  { display("toolbar (" + val + ")");  }
-
-
-  public static void show(XScriptContext sc, KeyEvent e)
-  // called because of a key
-  {  display("key " + e.KeyChar, getSource(e)); }
-
-
-  public static void show(XScriptContext sc, MouseEvent e)
-  // called because of the mouse
-  { display("mouse"); }
-
-
-  public static void show(XScriptContext sc,
-                        com.sun.star.document.DocumentEvent e)
-  // triggered by a document event
-  {  display("document", e.EventName);  }
-
-
-  public static void show(XScriptContext sc, EventObject e)
-  { if (e != null)
-      display("object", getSource(e));
-    else
-      display("object ()");
-  }
-
-
-  public static void show(XScriptContext sc)
-  // called from a menu or the "Run Macro..." menu
-  {  display("menu/run");   }
-
-  // support methods; explained shortly
-  //   :
-
-}  // end of ShowEvent class
-```
+=== "java"
+    ```java
+    // in ShowEvent.java
+    public class ShowEvent
+    {
+      public static void show(XScriptContext sc, ActionEvent e)
+      // triggered by a action event (usually a button press)
+      {  display("action", getSource(e));  }
+    
+    
+      public static void show(XScriptContext sc, TextEvent e)
+      // called when text changes inside a text component
+      {  display("text", getSource(e));  }
+    
+    
+      public static void show(XScriptContext sc, FocusEvent e)
+      // called when the focus changes
+      {  display("focus");  }
+    
+    
+      public static void show(XScriptContext sc, Short val)
+      // called from a toolbar
+      { display("toolbar (" + val + ")");  }
+    
+    
+      public static void show(XScriptContext sc, KeyEvent e)
+      // called because of a key
+      {  display("key " + e.KeyChar, getSource(e)); }
+    
+    
+      public static void show(XScriptContext sc, MouseEvent e)
+      // called because of the mouse
+      { display("mouse"); }
+    
+    
+      public static void show(XScriptContext sc,
+                            com.sun.star.document.DocumentEvent e)
+      // triggered by a document event
+      {  display("document", e.EventName);  }
+    
+    
+      public static void show(XScriptContext sc, EventObject e)
+      { if (e != null)
+          display("object", getSource(e));
+        else
+          display("object ()");
+      }
+    
+    
+      public static void show(XScriptContext sc)
+      // called from a menu or the "Run Macro..." menu
+      {  display("menu/run");   }
+    
+      // support methods; explained shortly
+      //   :
+    
+    }  // end of ShowEvent class
+    ```
 
 A particular show() function is called depending on the event, and more versions of
 show() could easily be added since Office supports a wide range of events. Probably
@@ -866,39 +879,40 @@ case; instead, the single argument show() (i.e. the last function,
 
 The show() methods utilize display() and showDialog():
 
-```java
-// part of the ShowEvent class...
-
-private static void display(String msg)
-{
-  showDialog(msg + " event");
-  // JOptionPane.showMessageDialog(null, msg + " event");
-}
-
-
-private static void display(String msg, String info)
-{
-  showDialog(msg + " event: " + info);
-  // JOptionPane.showMessageDialog(null, msg + " event: " + info);
-}
-
-
-private static void showDialog(String msg)
-{
-  JDialog dlg = new JDialog((java.awt.Frame)null, "Show Event");
-  dlg.getContentPane().setLayout(new GridLayout(3,1));
-  dlg.add(new JLabel(""));
-  dlg.add(new JLabel(msg, SwingConstants.CENTER)); // centered text
-  dlg.pack();
-
-  Random r = new Random();
-  dlg.setLocation(100 + r.nextInt(50), 100 + r.nextInt(50));
-
-  dlg.setVisible(true);
-  dlg.setResizable(false);
-  dlg.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-}   // end of showDialog()
-```
+=== "java"
+    ```java
+    // part of the ShowEvent class...
+    
+    private static void display(String msg)
+    {
+      showDialog(msg + " event");
+      // JOptionPane.showMessageDialog(null, msg + " event");
+    }
+    
+    
+    private static void display(String msg, String info)
+    {
+      showDialog(msg + " event: " + info);
+      // JOptionPane.showMessageDialog(null, msg + " event: " + info);
+    }
+    
+    
+    private static void showDialog(String msg)
+    {
+      JDialog dlg = new JDialog((java.awt.Frame)null, "Show Event");
+      dlg.getContentPane().setLayout(new GridLayout(3,1));
+      dlg.add(new JLabel(""));
+      dlg.add(new JLabel(msg, SwingConstants.CENTER)); // centered text
+      dlg.pack();
+    
+      Random r = new Random();
+      dlg.setLocation(100 + r.nextInt(50), 100 + r.nextInt(50));
+    
+      dlg.setVisible(true);
+      dlg.setResizable(false);
+      dlg.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    }   // end of showDialog()
+    ```
 
 A modeless dialog is displayed using Java's JDialog rather than
 JOptionPane.showMessageDialog(), which means that the dialog won't cause Office
@@ -918,26 +932,27 @@ Events which are usually triggered by GUI components, such as ActionEvent and
 TextEvent, are passed to getSource() which attempts to find the name of the
 component that sent the event:
 
-```java
-// part of the ShowEvent class...
-
-private static String getSource(EventObject event)
-{
-  XControl control = UnoRuntime.queryInterface(
-                             XControl.class, event.Source);
-  XPropertySet xProps =  UnoRuntime.queryInterface(
-                  XPropertySet.class, control.getModel());
-  try {
-    return (String)xProps.getPropertyValue("Name");
-  }
-  catch (com.sun.star.uno.Exception e) {
-    return "Exception?";
-  }
-  catch (com.sun.star.uno.RuntimeException e) {
-    return "RuntimeException?";
-  }
-} // end of getSource()
-```
+=== "java"
+    ```java
+    // part of the ShowEvent class...
+    
+    private static String getSource(EventObject event)
+    {
+      XControl control = UnoRuntime.queryInterface(
+                                 XControl.class, event.Source);
+      XPropertySet xProps =  UnoRuntime.queryInterface(
+                      XPropertySet.class, control.getModel());
+      try {
+        return (String)xProps.getPropertyValue("Name");
+      }
+      catch (com.sun.star.uno.Exception e) {
+        return "Exception?";
+      }
+      catch (com.sun.star.uno.RuntimeException e) {
+        return "RuntimeException?";
+      }
+    } // end of getSource()
+    ```
 
 
 ### 6.1.  Installing a Simple Event Macro
@@ -1062,12 +1077,13 @@ Figure 17. Reporting Key Events.
 I've rearranged the three dialogs in Figure 17 so they're all visible. They're generated
 by the KeyEvent version of ShowEvent.show:
 
-```java
-// part of the ShowEvent class...
-public static void show(XScriptContext sc, KeyEvent e)
-// Called from a key
-{  display("key " + e.KeyChar, getSource(e)); }
-```
+=== "java"
+    ```java
+    // part of the ShowEvent class...
+    public static void show(XScriptContext sc, KeyEvent e)
+    // Called from a key
+    {  display("key " + e.KeyChar, getSource(e)); }
+    ```
 
 As each letter ("a', 'n', and 'd') is typed, this version of show() is called.
 
@@ -1090,75 +1106,77 @@ ShowEvent.show when they're pressed.
 
 The new code is highlighted in bold in createForm():
 
-```java
-// part of BuildForm.java...
-
-private void createForm(XTextDocument doc)
-{
-  XPropertySet props =
-       Forms.addLabelledControl(doc, "FIRSTNAME", "TextField", 11);
-  textEvents(props);  // only the FIRSTNAME textfield has a listener
-
-  Forms.addLabelledControl(doc, "LASTNAME", "TextField",  19);
-
-  props = Forms.addLabelledControl(doc, "AGE", "NumericField", 43);
-  Props.setProperty(props, "DecimalAccuracy", (short) 0);
-
-  Forms.addLabelledControl(doc, "BIRTHDATE", "FormattedField", 51);
-
-
-  // buttons, all with listeners
-  props = Forms.addButton(doc, "first", "<<", 2, 63, 8);
-  buttonEvent(props);
-
-  props = Forms.addButton(doc, "prev", "<", 12, 63, 8);
-  buttonEvent(props);
-
-  props = Forms.addButton(doc, "next", ">", 22, 63, 8);
-  buttonEvent(props);
-
-  props = Forms.addButton(doc, "last", ">>", 32, 63, 8);
-  buttonEvent(props);
-
-  props = Forms.addButton(doc, "new", ">*", 42, 63, 8);
-  buttonEvent(props);
-
-  props = Forms.addButton(doc, "reload", "reload", 58, 63, 13);
-  buttonEvent(props);
-}  // end of createForm()
-```
+=== "java"
+    ```java
+    // part of BuildForm.java...
+    
+    private void createForm(XTextDocument doc)
+    {
+      XPropertySet props =
+           Forms.addLabelledControl(doc, "FIRSTNAME", "TextField", 11);
+      textEvents(props);  // only the FIRSTNAME textfield has a listener
+    
+      Forms.addLabelledControl(doc, "LASTNAME", "TextField",  19);
+    
+      props = Forms.addLabelledControl(doc, "AGE", "NumericField", 43);
+      Props.setProperty(props, "DecimalAccuracy", (short) 0);
+    
+      Forms.addLabelledControl(doc, "BIRTHDATE", "FormattedField", 51);
+    
+    
+      // buttons, all with listeners
+      props = Forms.addButton(doc, "first", "<<", 2, 63, 8);
+      buttonEvent(props);
+    
+      props = Forms.addButton(doc, "prev", "<", 12, 63, 8);
+      buttonEvent(props);
+    
+      props = Forms.addButton(doc, "next", ">", 22, 63, 8);
+      buttonEvent(props);
+    
+      props = Forms.addButton(doc, "last", ">>", 32, 63, 8);
+      buttonEvent(props);
+    
+      props = Forms.addButton(doc, "new", ">*", 42, 63, 8);
+      buttonEvent(props);
+    
+      props = Forms.addButton(doc, "reload", "reload", 58, 63, 13);
+      buttonEvent(props);
+    }  // end of createForm()
+    ```
 
 The property set for the FIRSTNAME textfield is passed to textEvents(), which calls
 Forms.assignScript() three times:
 
-```java
-// part of BuildForm.java...
-
-public void textEvents(XPropertySet props)
-{
-  // listen for text change
-  Forms.assignScript(props, "XTextListener", "textChanged",
-                       "ShowEvent.ShowEvent.show", "share");
-
-  // listen for focus loss
-  Forms.assignScript(props, "XFocusListener", "focusLost",
-                       "ShowEvent.ShowEvent.show", "share");
-
-  // listen for a key press
-  Forms.assignScript(props, "XKeyListener", "keyPressed",
-                       "ShowEvent.ShowEvent.show", "share");
-}  // end of textEvents()
-
-The buttonEvent() method is a (long) one-liner:
-
-// part of BuildForm.java...
-
-public void buttonEvent(XPropertySet props)
-{
-  Forms.assignScript(props, "XActionListener", "actionPerformed",
-                      "ShowEvent.ShowEvent.show", "share");
-}
-```
+=== "java"
+    ```java
+    // part of BuildForm.java...
+    
+    public void textEvents(XPropertySet props)
+    {
+      // listen for text change
+      Forms.assignScript(props, "XTextListener", "textChanged",
+                           "ShowEvent.ShowEvent.show", "share");
+    
+      // listen for focus loss
+      Forms.assignScript(props, "XFocusListener", "focusLost",
+                           "ShowEvent.ShowEvent.show", "share");
+    
+      // listen for a key press
+      Forms.assignScript(props, "XKeyListener", "keyPressed",
+                           "ShowEvent.ShowEvent.show", "share");
+    }  // end of textEvents()
+    
+    The buttonEvent() method is a (long) one-liner:
+    
+    // part of BuildForm.java...
+    
+    public void buttonEvent(XPropertySet props)
+    {
+      Forms.assignScript(props, "XActionListener", "actionPerformed",
+                          "ShowEvent.ShowEvent.show", "share");
+    }
+    ```
 
 It's surprisingly tricky to decide which class and method names should be passed to
 Forms.assignScript() since the only information about control events are the labels in
@@ -1184,42 +1202,43 @@ Forms.assignScript() utilizes the XEventAttacherManager interface which offers
 multiple methods for attaching and removing scripts from events. The code for
 Forms.assignScript():
 
-```java
-// in the Forms class
-public static void assignScript(XPropertySet controlProps,
-                    String interfaceName, String methodName,
-                    String scriptName, String loc)
-{
-  try {
-    XChild propsChild = Lo.qi(XChild.class, controlProps);
-    XIndexContainer parentForm =
-       Lo.qi(XIndexContainer.class, propsChild.getParent());
-    int pos = -1;
-    for (int i = 0; i < parentForm.getCount(); i++) {
-      XPropertySet child = Lo.qi(XPropertySet.class,
-                              parentForm.getByIndex(i) );
-      if (UnoRuntime.areSame(child, controlProps)) {
-        pos = i;
-        break;
+=== "java"
+    ```java
+    // in the Forms class
+    public static void assignScript(XPropertySet controlProps,
+                        String interfaceName, String methodName,
+                        String scriptName, String loc)
+    {
+      try {
+        XChild propsChild = Lo.qi(XChild.class, controlProps);
+        XIndexContainer parentForm =
+           Lo.qi(XIndexContainer.class, propsChild.getParent());
+        int pos = -1;
+        for (int i = 0; i < parentForm.getCount(); i++) {
+          XPropertySet child = Lo.qi(XPropertySet.class,
+                                  parentForm.getByIndex(i) );
+          if (UnoRuntime.areSame(child, controlProps)) {
+            pos = i;
+            break;
+          }
+        }
+    
+        if (pos == -1)
+          System.out.println("Could not find contol's pos in form");
+        else {
+          XEventAttacherManager manager =
+                Lo.qi(XEventAttacherManager.class, parentForm);
+          manager.registerScriptEvent(pos,
+               new ScriptEventDescriptor(interfaceName, methodName,
+                       "", "Script",
+                       "vnd.sun.star.script:"+scriptName +
+                           "?language=Java&location=" + loc));
+        }
       }
-    }
-
-    if (pos == -1)
-      System.out.println("Could not find contol's pos in form");
-    else {
-      XEventAttacherManager manager =
-            Lo.qi(XEventAttacherManager.class, parentForm);
-      manager.registerScriptEvent(pos,
-           new ScriptEventDescriptor(interfaceName, methodName,
-                   "", "Script",
-                   "vnd.sun.star.script:"+scriptName +
-                       "?language=Java&location=" + loc));
-    }
-  }
-  catch( com.sun.star.uno.Exception e )
-  { System.out.println(e);  }
-}  // end of assignScript()
-```
+      catch( com.sun.star.uno.Exception e )
+      { System.out.println(e);  }
+    }  // end of assignScript()
+    ```
 
 The first half of assignScript() calculates the control's index position inside the
 parent's form. An index is used by most XEventAttacherManager methods to refer to
@@ -1240,16 +1259,18 @@ run FindMacros ShowEvent
 
 produces:
 
-```java
-Matching Macros in Office: (1)
-  vnd.sun.star.script:ShowEvent.ShowEvent.show?
-                                language=Java&location=share
-```
+=== "java"
+    ```java
+    Matching Macros in Office: (1)
+      vnd.sun.star.script:ShowEvent.ShowEvent.show?
+                                    language=Java&location=share
+    ```
 
 "ShowEvent.ShowEvent.show" and "share" are passed to Forms.assignScript() as its
 last two arguments:
 
-```java
-// part of BuildForm.java...
-Forms.assignScript(props, "XTextListener", "textChanged",
-                       "ShowEvent.ShowEvent.show", "share");```
+=== "java"
+    ```java
+    // part of BuildForm.java...
+    Forms.assignScript(props, "XTextListener", "textChanged",
+                           "ShowEvent.ShowEvent.show", "share");```

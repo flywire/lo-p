@@ -168,72 +168,75 @@ indicates whether the text should be in all-caps.
 PoemCreator.java uses Office and the RandomSents component (after it's been added
 to Office) to write a poem into a Word file:
 
-```java
-// in PoemCreator.java
-import com.sun.star.uno.*;
-  // other imports...
-
-
-import org.openoffice.randomsents.XRandomSents;
-
-
-public class PoemCreator
-{
-  public static void main(String args[])
-  {
-    XComponentLoader loader = Lo.loadOffice();
-    XTextDocument doc = Write.createDoc(loader);
-    if (doc == null) {
-      System.out.println("Writer doc creation failed");
-      Lo.closeOffice();
-      return;
-    }
-    Info.listExtensions();
-
-    GUI.setVisible(doc, true);
-
-    Write.setHeader(doc, "Muse of the Office");
-    Write.setA4PageFormat(doc);
-    Write.setPageNumbers(doc);
-
-    XRandomSents rs = Lo.createInstanceMCF(XRandomSents.class,
-                          "org.openoffice.randomsents.RandomSents");
-    String[] sents = rs.getSentences(5);
-
-    XTextCursor cursor = Write.getCursor(doc);
-    for(String sent : sents)
-       Write.appendPara(cursor, sent+"\n");
-
-    rs.setisAllCaps(true);
-    Write.appendPara(cursor, rs.getParagraph(2)+"\n");
-
-    Write.appendPara(cursor, Lo.getTimeStamp());
-
-    Lo.waitEnter();
-    Lo.saveDoc(doc, "poem.doc");
-
-    Lo.closeDoc(doc);
-    Lo.closeOffice();
-  } // end of main()
-
-}  // end of PoemCreator class
-```
+=== "java"
+    ```java
+    // in PoemCreator.java
+    import com.sun.star.uno.*;
+      // other imports...
+    
+    
+    import org.openoffice.randomsents.XRandomSents;
+    
+    
+    public class PoemCreator
+    {
+      public static void main(String args[])
+      {
+        XComponentLoader loader = Lo.loadOffice();
+        XTextDocument doc = Write.createDoc(loader);
+        if (doc == null) {
+          System.out.println("Writer doc creation failed");
+          Lo.closeOffice();
+          return;
+        }
+        Info.listExtensions();
+    
+        GUI.setVisible(doc, true);
+    
+        Write.setHeader(doc, "Muse of the Office");
+        Write.setA4PageFormat(doc);
+        Write.setPageNumbers(doc);
+    
+        XRandomSents rs = Lo.createInstanceMCF(XRandomSents.class,
+                              "org.openoffice.randomsents.RandomSents");
+        String[] sents = rs.getSentences(5);
+    
+        XTextCursor cursor = Write.getCursor(doc);
+        for(String sent : sents)
+           Write.appendPara(cursor, sent+"\n");
+    
+        rs.setisAllCaps(true);
+        Write.appendPara(cursor, rs.getParagraph(2)+"\n");
+    
+        Write.appendPara(cursor, Lo.getTimeStamp());
+    
+        Lo.waitEnter();
+        Lo.saveDoc(doc, "poem.doc");
+    
+        Lo.closeDoc(doc);
+        Lo.closeOffice();
+      } // end of main()
+    
+    }  // end of PoemCreator class
+    ```
 
 The program begins and ends in a familiar way: a Writer document is created and the
 generated text is saved to "poem.doc".
 
 The RandomSents service and its interface are created using Lo.createInstanceMCF():
 
-```java
-XRandomSents rs = Lo.createInstanceMCF(XRandomSents.class,
-                     "org.openoffice.randomsents.RandomSents");
-```
+=== "java"
+    ```java
+    XRandomSents rs = Lo.createInstanceMCF(XRandomSents.class,
+                         "org.openoffice.randomsents.RandomSents");
+    ```
 
 This requires that the RandomSents component's interface be imported:
 
-```java
-import org.openoffice.randomsents.XRandomSents;
-```
+=== "java"
+    ```java
+    import org.openoffice.randomsents.XRandomSents;
+    ```
 
 PoemCreator writes five paragraphs into the document, each one a sentence from the
 array returned by XRandomSents.getSentences(). After switching to all-caps (using
@@ -479,29 +482,30 @@ I decided to improve on this by using the CFR decompiler library
 calls CFR to generate XRandomSents.java, which is written into the randomsents
 folder:
 
-```java
-package org.openoffice.randomsents;
-
-import com.sun.star.lib.uno.typeinfo.AttributeTypeInfo;
-import com.sun.star.lib.uno.typeinfo.MethodTypeInfo;
-import com.sun.star.lib.uno.typeinfo.TypeInfo;
-import com.sun.star.uno.XInterface;
-
-public interface XRandomSents extends XInterface {
-    public static final TypeInfo[] UNOTYPEINFO = new TypeInfo[]{
-           new AttributeTypeInfo("isAllCaps", 0, 0),
-           new MethodTypeInfo("getParagraph", 2, 0),
-           new MethodTypeInfo("getSentences", 3, 0)};
-
-    public boolean getisAllCaps();
-
-    public void setisAllCaps(boolean var1);
-
-    public String getParagraph(int var1);
-
-    public String[] getSentences(int var1);
-}
-```
+=== "java"
+    ```java
+    package org.openoffice.randomsents;
+    
+    import com.sun.star.lib.uno.typeinfo.AttributeTypeInfo;
+    import com.sun.star.lib.uno.typeinfo.MethodTypeInfo;
+    import com.sun.star.lib.uno.typeinfo.TypeInfo;
+    import com.sun.star.uno.XInterface;
+    
+    public interface XRandomSents extends XInterface {
+        public static final TypeInfo[] UNOTYPEINFO = new TypeInfo[]{
+               new AttributeTypeInfo("isAllCaps", 0, 0),
+               new MethodTypeInfo("getParagraph", 2, 0),
+               new MethodTypeInfo("getSentences", 3, 0)};
+    
+        public boolean getisAllCaps();
+    
+        public void setisAllCaps(boolean var1);
+    
+        public String getParagraph(int var1);
+    
+        public String[] getSentences(int var1);
+    }
+    ```
 
 The XRandomSents interface has four methods that need implementing. Note that the
 isAllCaps IDL attribute has become a get and a set method.
@@ -589,29 +593,30 @@ in Office at runtime.
 The remaining four methods in RandomSentsImpl are stubs for the functions defined
 in XRandomSents; our job is to implement them:
 
-```java
-// part of RandomSentsImpl.java...
-
-
-public boolean getisAllCaps()
-{
-  return false;
-}
-
-public void setisAllCaps(boolean the_value)
-{
-}
-
-public java/lang/String getParagraph(int numSents)
-{
-  return new java/lang/String();
-}
-
-public java/lang/String[] getSentences(int numSents)
-{
-  return new java/lang/String[0];
-}
-```
+=== "java"
+    ```java
+    // part of RandomSentsImpl.java...
+    
+    
+    public boolean getisAllCaps()
+    {
+      return false;
+    }
+    
+    public void setisAllCaps(boolean the_value)
+    {
+    }
+    
+    public java/lang/String getParagraph(int numSents)
+    {
+      return new java/lang/String();
+    }
+    
+    public java/lang/String[] getSentences(int numSents)
+    {
+      return new java/lang/String[0];
+    }
+    ```
 
 Any Java classes employed in the stubs are fully qualified, and written using "/"s
 rather than "."s. This can be seen in RandomSentsImpl 's getParagraph() and
@@ -627,95 +632,101 @@ and verbs.
 
 The arrays are defined at the start of the completed RandomSentsImpl.java:
 
-```java
-// globals in RandomSentsImpl.java
-private static final int MAX_SENTENCES = 100;
-
-private static String[] articles = { "the", "my", "your", ... };
-private static String[] adjs = { "happy", "rotating", "red", ... };
-private static String[] nouns = { "forest", "tree", "flower", ... };
-private static String[] preps = { "under", "in front of", ... };
-private static String[] verbs = { "sings", "dances", ... };
-```
+=== "java"
+    ```java
+    // globals in RandomSentsImpl.java
+    private static final int MAX_SENTENCES = 100;
+    
+    private static String[] articles = { "the", "my", "your", ... };
+    private static String[] adjs = { "happy", "rotating", "red", ... };
+    private static String[] nouns = { "forest", "tree", "flower", ... };
+    private static String[] preps = { "under", "in front of", ... };
+    private static String[] verbs = { "sings", "dances", ... };
+    ```
 
 There's a private variable to hold the current all-caps setting:
 
-```java
-private boolean isAllCaps = false;
-```
+=== "java"
+    ```java
+    private boolean isAllCaps = false;
+    ```
 
 This variable makes the all-caps get and set methods trivial:
 
-```java
-public boolean getisAllCaps()
-{  return isAllCaps;  }
-
-public void setisAllCaps(boolean b)
-{  isAllCaps = b; }
-```
+=== "java"
+    ```java
+    public boolean getisAllCaps()
+    {  return isAllCaps;  }
+    
+    public void setisAllCaps(boolean b)
+    {  isAllCaps = b; }
+    ```
 
 getParagraph() calls getSentences() and then converts its sentences array into a single
 string:
 
-```java
-public String getParagraph(int numSents)
-{
-  String[] sents = getSentences(numSents);
-  StringBuilder sb = new StringBuilder();
-  for (int i=0; i < sents.length; i++)
-    sb.append( sents[i]);
-  return sb.toString();
-}  // end of getParagraph()
-```
+=== "java"
+    ```java
+    public String getParagraph(int numSents)
+    {
+      String[] sents = getSentences(numSents);
+      StringBuilder sb = new StringBuilder();
+      for (int i=0; i < sents.length; i++)
+        sb.append( sents[i]);
+      return sb.toString();
+    }  // end of getParagraph()
+    ```
 
 getSentences() implements the sentence grammar:
 
-```java
-  <article> <adjective> <noun> <verb>
-               <preposition> <article> <adjective> <noun>
-```
+=== "java"
+    ```java
+      <article> <adjective> <noun> <verb>
+                   <preposition> <article> <adjective> <noun>
+    ```
 
 A sentence is generated by randomly selecting a word from each syntactic category,
 represented by the word arrays at the top of the program. getSentences() uses a loop to
 repeat this task until enough sentences have been created:
 
-```java
-public String[] getSentences(int numSents)
-{
-  if (numSents < 1)
-    numSents = 1;
-  else if (numSents > MAX_SENTENCES)
-    numSents = MAX_SENTENCES;
-
-  String[] sents = new String[numSents];
-  StringBuilder sb = new StringBuilder();
-  for (int i=0; i < numSents; i++) {
-    sb.setLength(0);    // empty builder
-    sb.append( capitalize(pickWord(articles)) + " ");
-    sb.append( pickWord(adjs) + " ");
-    sb.append( pickWord(nouns) + " ");
-
-    sb.append( pickWord(verbs) + " ");
-    sb.append( pickWord(preps) + " ");
-
-    sb.append( pickWord(articles) + " ");
-    sb.append( pickWord(adjs) + " ");
-    sb.append( pickWord(nouns) + ". ");
-
-    sents[i] = isAllCaps ? sb.toString().toUpperCase() :
-                           sb.toString();
-  }
-  return sents;
-}  // end of getSentences()
-
-
-private String pickWord(String[] words)
-{  return words[ (int)(Math.random()*words.length) ];  }
-
-
-private String capitalize(String word)
-{  return word.substring(0,1).toUpperCase() + word.substring(1);  }
-```
+=== "java"
+    ```java
+    public String[] getSentences(int numSents)
+    {
+      if (numSents < 1)
+        numSents = 1;
+      else if (numSents > MAX_SENTENCES)
+        numSents = MAX_SENTENCES;
+    
+      String[] sents = new String[numSents];
+      StringBuilder sb = new StringBuilder();
+      for (int i=0; i < numSents; i++) {
+        sb.setLength(0);    // empty builder
+        sb.append( capitalize(pickWord(articles)) + " ");
+        sb.append( pickWord(adjs) + " ");
+        sb.append( pickWord(nouns) + " ");
+    
+        sb.append( pickWord(verbs) + " ");
+        sb.append( pickWord(preps) + " ");
+    
+        sb.append( pickWord(articles) + " ");
+        sb.append( pickWord(adjs) + " ");
+        sb.append( pickWord(nouns) + ". ");
+    
+        sents[i] = isAllCaps ? sb.toString().toUpperCase() :
+                               sb.toString();
+      }
+      return sents;
+    }  // end of getSentences()
+    
+    
+    private String pickWord(String[] words)
+    {  return words[ (int)(Math.random()*words.length) ];  }
+    
+    
+    private String capitalize(String word)
+    {  return word.substring(0,1).toUpperCase() + word.substring(1);  }
+    ```
 
 The compilation of RandomSentsImpl.java requires that the Office SDK and the
 org.openoffice.randomsents package be added to javac's classpath. This is managed
@@ -1005,9 +1016,10 @@ Almost every one of my Java examples from previous chapters have been compiled
 against the Office API located below the <Office> directory. My compile.bat script
 contains something like:
 
-```java
-javac  -cp "%LO%\program\classes\*;."  %*
-```
+=== "java"
+    ```java
+    javac  -cp "%LO%\program\classes\*;."  %*
+    ```
 
 The LO variable  is assigned the path to Office by code earlier in the script, and then
 javac looks in <Office>\program\classes for the JAR files that make up the API.
@@ -1043,27 +1055,28 @@ information about installed extensions. My Info.listExtensions() utilizes
 PackageInformationProvider to print extension details. It's called at the start of
 PoemCreator.java before the poetry is generated:
 
-```java
-// in PoemCreator.java
-public static void main(String args[])
-{
-
-  XComponentLoader loader = Lo.loadOffice();
-  XTextDocument doc = Write.createDoc(loader);
-  if (doc == null) {
-    System.out.println("Writer doc creation failed");
-    Lo.closeOffice();
-    return;
-  }
-
-  Info.listExtensions();
-
-  GUI.setVisible(doc, true);
-
-  Write.setHeader(doc, "Muse of the Office");
-   :  // make poetry
-}
-```
+=== "java"
+    ```java
+    // in PoemCreator.java
+    public static void main(String args[])
+    {
+    
+      XComponentLoader loader = Lo.loadOffice();
+      XTextDocument doc = Write.createDoc(loader);
+      if (doc == null) {
+        System.out.println("Writer doc creation failed");
+        Lo.closeOffice();
+        return;
+      }
+    
+      Info.listExtensions();
+    
+      GUI.setVisible(doc, true);
+    
+      Write.setHeader(doc, "Muse of the Office");
+       :  // make poetry
+    }
+    ```
 
 The ID, version, and installation location are printed for each extension:
 
@@ -1116,31 +1129,32 @@ extension's location is obtained by calling
 XPackageInformationProvider.getPackageLocation() with its ID. The listExtensions()
 code:
 
-```java
-// in the Info class
-public static void listExtensions()
-{
-  XPackageInformationProvider pip = getPip();
-  if (pip == null)
-    System.out.println("No package info provider found");
-  else {
-    String[][] extsTable = pip.getExtensionList();
-    System.out.println("\nExtensions:");
-    String serviceName;
-    for(int i=0; i < extsTable.length; i++) {
-      System.out.println((i+1) + ". ID: " + extsTable[i][0]);
-      System.out.println("   Version: " + extsTable[i][1]);
-      System.out.println("   Loc: " +
-            pip.getPackageLocation(extsTable[i][0]));
-      System.out.println();
-    }
-  }
-}  // end of listExtensions()
-
-
-public static XPackageInformationProvider getPip()
-{  return PackageInformationProvider.get(Lo.getContext());  }
-```
+=== "java"
+    ```java
+    // in the Info class
+    public static void listExtensions()
+    {
+      XPackageInformationProvider pip = getPip();
+      if (pip == null)
+        System.out.println("No package info provider found");
+      else {
+        String[][] extsTable = pip.getExtensionList();
+        System.out.println("\nExtensions:");
+        String serviceName;
+        for(int i=0; i < extsTable.length; i++) {
+          System.out.println((i+1) + ". ID: " + extsTable[i][0]);
+          System.out.println("   Version: " + extsTable[i][1]);
+          System.out.println("   Loc: " +
+                pip.getPackageLocation(extsTable[i][0]));
+          System.out.println();
+        }
+      }
+    }  // end of listExtensions()
+    
+    
+    public static XPackageInformationProvider getPip()
+    {  return PackageInformationProvider.get(Lo.getContext());  }
+    ```
 
 
 ### 10.1. Finding an Extension's JAR File
@@ -1152,64 +1166,66 @@ The folder is searched for a JAR filename, and the first match is stored in
 
 The main() function of FindExtJar.java:
 
-```java
-public static void main(String args[])
-{
-  if (args.length != 1) {
-    System.out.println("Usage: run FindExtJar <ID>");
-    return;
-  }
-
-  Lo.loadOffice();
-
-  FileIO.saveString("lofindTemp.txt", "\"xx\"");
-
-  String extDir = Info.getExtensionLoc(args[0]);
-  if ((extDir == null) || extDir.equals("")) {
-    System.out.println("Could not find extension: " + args[0]);
-    Lo.closeOffice();
-    return;
-  }
-
-  // look in folder for JAR filename
-  try {
-    FilenameFilter filter = new FilenameFilter() {
-         public boolean accept(File dir, String name)
-         {  return name.endsWith(".jar"); }
-    };
-    File dir = new File(new URI(extDir));
-    String[] fnms = dir.list(filter);
-
-    if (fnms == null)
-      System.out.println("No jars found");
-    else {
-      String extPath = dir.getAbsolutePath();
-      String jarNm = "\"" + extPath + "/" + fnms[0] + "\"";
-      FileIO.saveString("lofindTemp.txt", jarNm);
-    }
-  }
-  catch(java.lang.Exception e)
-  {  System.out.println(e);  }
-
-  Lo.closeOffice();
-} // end of main()
-```
+=== "java"
+    ```java
+    public static void main(String args[])
+    {
+      if (args.length != 1) {
+        System.out.println("Usage: run FindExtJar <ID>");
+        return;
+      }
+    
+      Lo.loadOffice();
+    
+      FileIO.saveString("lofindTemp.txt", "\"xx\"");
+    
+      String extDir = Info.getExtensionLoc(args[0]);
+      if ((extDir == null) || extDir.equals("")) {
+        System.out.println("Could not find extension: " + args[0]);
+        Lo.closeOffice();
+        return;
+      }
+    
+      // look in folder for JAR filename
+      try {
+        FilenameFilter filter = new FilenameFilter() {
+             public boolean accept(File dir, String name)
+             {  return name.endsWith(".jar"); }
+        };
+        File dir = new File(new URI(extDir));
+        String[] fnms = dir.list(filter);
+    
+        if (fnms == null)
+          System.out.println("No jars found");
+        else {
+          String extPath = dir.getAbsolutePath();
+          String jarNm = "\"" + extPath + "/" + fnms[0] + "\"";
+          FileIO.saveString("lofindTemp.txt", jarNm);
+        }
+      }
+      catch(java.lang.Exception e)
+      {  System.out.println(e);  }
+    
+      Lo.closeOffice();
+    } // end of main()
+    ```
 
 Info.getExtensionLoc() calls XPackageInformationProvider.getPackageLocation():
 
-```java
-// in the Info class
-public static String getExtensionLoc(String id)
-{
-  XPackageInformationProvider pip = getPip();
-  if (pip == null) {
-    System.out.println("No package info provider found");
-    return null;
-  }
-  else
-    return pip.getPackageLocation(id);
-}  // end of getExtensionLoc()
-```
+=== "java"
+    ```java
+    // in the Info class
+    public static String getExtensionLoc(String id)
+    {
+      XPackageInformationProvider pip = getPip();
+      if (pip == null) {
+        System.out.println("No package info provider found");
+        return null;
+      }
+      else
+        return pip.getPackageLocation(id);
+    }  // end of getExtensionLoc()
+    ```
 
 Back in the main() function, the directory is searched for a ".jar" file using a FileFilter
 object.

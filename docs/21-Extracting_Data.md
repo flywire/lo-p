@@ -37,62 +37,63 @@ calculated using formulae.
 
 ExtracNums.java starts by accessing cells and cell ranges by name:
 
-```java
-// in ExtractNums.java
-public static void main(String args[])
-{
-  String outFnm = null;
-  if (args.length != 1) {
-    System.out.println("Usage: run ExtractNums fnm");
-    return;
-  }
-
-  XComponentLoader loader = Lo.loadOffice();
-  XSpreadsheetDocument doc = Calc.openDoc(args[0], loader);
-  if (doc == null) {
-    System.out.println("Could not open " + args[0]);
-    Lo.closeOffice();
-    return;
-  }
-  GUI.setVisible(doc, true);
-  XSpreadsheet sheet = Calc.getSheet(doc, 0);
-
-  System.out.println("\nA1 string: " + Calc.getVal(sheet, "A1"));
-
-  XCell cell = Calc.getCell(sheet, "A2");
-  System.out.println("A2 type: " + Calc.getTypeString(cell));
-  System.out.println("A2 value: " + Calc.getNum(sheet, "A2"));
-
-  cell = Calc.getCell(sheet, "E2");
-  System.out.println("E2 type: " + Calc.getTypeString(cell));
-  System.out.println("E2 formula: " + Calc.getVal(sheet, "E2"));
-  System.out.println();
-
-  Object[][] data = Calc.getArray(sheet, "A1:E10");
-  Calc.printArray(data);
-
-  double[][] ids = Calc.getDoublesArray(sheet, "A2:A7");
-  Calc.printArray(ids);
-
-  double[] projs = Calc.convertToDoubles(
-                             Calc.getCol(sheet, "B2:B7"));
-  System.out.println("Project scores");
-  for(double proj : projs)
-    System.out.println("  " + proj);
-
-  double[] stud = Calc.convertToDoubles(
-                             Calc.getRow(sheet, "A4:E4"));
-  System.out.println("\nStudent scores");
-  for(double v : stud)
-    System.out.println("  " + v);
-
-   : // more complex extraction code, explained later
-
-  Lo.waitEnter();
-  Lo.closeDoc(doc);
-  Lo.closeOffice();
-}  // end of main()
-```
+=== "java"
+    ```java
+    // in ExtractNums.java
+    public static void main(String args[])
+    {
+      String outFnm = null;
+      if (args.length != 1) {
+        System.out.println("Usage: run ExtractNums fnm");
+        return;
+      }
+    
+      XComponentLoader loader = Lo.loadOffice();
+      XSpreadsheetDocument doc = Calc.openDoc(args[0], loader);
+      if (doc == null) {
+        System.out.println("Could not open " + args[0]);
+        Lo.closeOffice();
+        return;
+      }
+      GUI.setVisible(doc, true);
+      XSpreadsheet sheet = Calc.getSheet(doc, 0);
+    
+      System.out.println("\nA1 string: " + Calc.getVal(sheet, "A1"));
+    
+      XCell cell = Calc.getCell(sheet, "A2");
+      System.out.println("A2 type: " + Calc.getTypeString(cell));
+      System.out.println("A2 value: " + Calc.getNum(sheet, "A2"));
+    
+      cell = Calc.getCell(sheet, "E2");
+      System.out.println("E2 type: " + Calc.getTypeString(cell));
+      System.out.println("E2 formula: " + Calc.getVal(sheet, "E2"));
+      System.out.println();
+    
+      Object[][] data = Calc.getArray(sheet, "A1:E10");
+      Calc.printArray(data);
+    
+      double[][] ids = Calc.getDoublesArray(sheet, "A2:A7");
+      Calc.printArray(ids);
+    
+      double[] projs = Calc.convertToDoubles(
+                                 Calc.getCol(sheet, "B2:B7"));
+      System.out.println("Project scores");
+      for(double proj : projs)
+        System.out.println("  " + proj);
+    
+      double[] stud = Calc.convertToDoubles(
+                                 Calc.getRow(sheet, "A4:E4"));
+      System.out.println("\nStudent scores");
+      for(double v : stud)
+        System.out.println("  " + v);
+    
+       : // more complex extraction code, explained later
+    
+      Lo.waitEnter();
+      Lo.closeDoc(doc);
+      Lo.closeOffice();
+    }  // end of main()
+    ```
 
 The output is:
 
@@ -148,40 +149,41 @@ I'll explain the highlighted get methods in the following sections.
 There are three versions of Calc.getVal() which access a value by cell name or
 position:
 
-```java
-// in the Calc class
-public static Object getVal(XSpreadsheet sheet, String cellName)
-// get value by cell name
-{ Point pos = getCellPosition(cellName);
-  return getVal(sheet, pos.x, pos.y);  // column, row
-}  // end of getVal()
-
-
-public static Object getVal(XSpreadsheet sheet,
-                                       int column, int row)
-// get value by cell position
-{ XCell xCell = getCell(sheet, column, row);
-  return getVal(xCell, column, row);
-}  // end of getVal()
-
-
-public static Object getVal(XCell cell, int column, int row)
-// get value based on the type of the data in the cell
-{
-  CellContentType type = cell.getType();
-  if (type == CellContentType.EMPTY)
-    return null;
-  else if (type == CellContentType.VALUE)
-    return new Double( cell.getValue());
-  else if ((type == CellContentType.TEXT) ||
-           (type == CellContentType.FORMULA))
-    return cell.getFormula();
-  else {
-    System.out.println("Unknown cell type; returning null");
-    return null;
-  }
-}  // end of getVal()
-```
+=== "java"
+    ```java
+    // in the Calc class
+    public static Object getVal(XSpreadsheet sheet, String cellName)
+    // get value by cell name
+    { Point pos = getCellPosition(cellName);
+      return getVal(sheet, pos.x, pos.y);  // column, row
+    }  // end of getVal()
+    
+    
+    public static Object getVal(XSpreadsheet sheet,
+                                           int column, int row)
+    // get value by cell position
+    { XCell xCell = getCell(sheet, column, row);
+      return getVal(xCell, column, row);
+    }  // end of getVal()
+    
+    
+    public static Object getVal(XCell cell, int column, int row)
+    // get value based on the type of the data in the cell
+    {
+      CellContentType type = cell.getType();
+      if (type == CellContentType.EMPTY)
+        return null;
+      else if (type == CellContentType.VALUE)
+        return new Double( cell.getValue());
+      else if ((type == CellContentType.TEXT) ||
+               (type == CellContentType.FORMULA))
+        return cell.getFormula();
+      else {
+        System.out.println("Unknown cell type; returning null");
+        return null;
+      }
+    }  // end of getVal()
+    ```
 
 The third getVal() utilizes XCell.getType() to decide how to extract the value. A cell
 may contain four different data types: a number, text, a formula, or be empty. When
@@ -195,25 +197,26 @@ Calc.getNum() which does this task.
 
 There's also Calc.getTypeString() which returns cell type information as a string:
 
-```java
-// in the Calc class
-public static String getTypeString(XCell cell)
-{
-  CellContentType type = cell.getType();
-  if (type == CellContentType.EMPTY)
-    return "EMPTY";
-  else if (type == CellContentType.VALUE)
-    return "VALUE";
-  else if (type == CellContentType.TEXT)
-    return "TEXT";
-  else if (type == CellContentType.FORMULA)
-    return "FORMULA";
-  else {
-    System.out.println("Unknown cell type");
-    return "??";
-  }
-}  // end of getTypeString()
-```
+=== "java"
+    ```java
+    // in the Calc class
+    public static String getTypeString(XCell cell)
+    {
+      CellContentType type = cell.getType();
+      if (type == CellContentType.EMPTY)
+        return "EMPTY";
+      else if (type == CellContentType.VALUE)
+        return "VALUE";
+      else if (type == CellContentType.TEXT)
+        return "TEXT";
+      else if (type == CellContentType.FORMULA)
+        return "FORMULA";
+      else {
+        System.out.println("Unknown cell type");
+        return "??";
+      }
+    }  // end of getTypeString()
+    ```
 
 
 ## 2.  Getting the Data from a Cell Range
@@ -221,23 +224,25 @@ public static String getTypeString(XCell cell)
 Calc.getArray() extracts the data from a cell range as a 2D array of Objects. It utilizes
 XCellRangeData.getDataArray():
 
-```java
-// in the Calc class
-public static Object[][] getArray(XSpreadsheet sheet,
-                                         String rangeName)
-{ XCellRange cellRange = getCellRange(sheet, rangeName);
-  XCellRangeData crData  = Lo.qi(XCellRangeData.class, cellRange);
-  return crData.getDataArray();
-}  // end of getArray()
-```
+=== "java"
+    ```java
+    // in the Calc class
+    public static Object[][] getArray(XSpreadsheet sheet,
+                                             String rangeName)
+    { XCellRange cellRange = getCellRange(sheet, rangeName);
+      XCellRangeData crData  = Lo.qi(XCellRangeData.class, cellRange);
+      return crData.getDataArray();
+    }  // end of getArray()
+    ```
 
 XCellRangeData.getDataArray() evaluates any formulae it encounters. This can be
 seen in the output from:
 
-```java
-// part of ExtractNum.java
-Object[][] data = Calc.getArray(sheet, "A1:E10");
-```
+=== "java"
+    ```java
+    // part of ExtractNum.java
+    Object[][] data = Calc.getArray(sheet, "A1:E10");
+    ```
 
 The cell range includes several formulae (e.g. in "E8" and "E9"), but the data array
 contains their numerical values.
@@ -246,12 +251,13 @@ If you don't want formulae to be evaluated then you'll need to implement your ow
 version of getArray() which uses XCellRangeFormula. Its getDataArray() method
 doesn't process formulae. The code would look something like:
 
-```java
-XCellRange cellRange = getCellRange(sheet, rangeName);
-XCellRangeFormula crForm  =
-                 Lo.qi(XCellRangeFormula.class, cellRange);
-return crForm.getDataArray();
-```
+=== "java"
+    ```java
+    XCellRange cellRange = getCellRange(sheet, rangeName);
+    XCellRangeFormula crForm  =
+                     Lo.qi(XCellRangeFormula.class, cellRange);
+    return crForm.getDataArray();
+    ```
 
 Calc.getArray() returns a 2D array of Objects. Calc.getDoublesArray() can be
 employed to cast them to an array of doubles.
@@ -262,27 +268,28 @@ employed to cast them to an array of doubles.
 Calc.getRow() extracts a row of data by utilizing Calc.getArray() since the array is in
 row-major order:
 
-```java
-// in the Calc class
-public static Object[] getRow(XSpreadsheet sheet, String rangeName)
-{
-  Object[][] vals = getArray(sheet, rangeName);
-  return extractRow(vals, 0);   // assumes user wants 1st row
-}  // end of getRow()
-
-
-public static Object[] extractRow(Object[][] vals, int rowIdx)
-// get specified row index from vals
-{
-  int rowSize = vals.length;
-  if ((rowIdx < 0) || (rowIdx > rowSize-1)) {
-    System.out.println("Row index out of range");
-    return null;
-  }
-  else
-    return vals[rowIdx];
-}  // end of extractRow()
-```
+=== "java"
+    ```java
+    // in the Calc class
+    public static Object[] getRow(XSpreadsheet sheet, String rangeName)
+    {
+      Object[][] vals = getArray(sheet, rangeName);
+      return extractRow(vals, 0);   // assumes user wants 1st row
+    }  // end of getRow()
+    
+    
+    public static Object[] extractRow(Object[][] vals, int rowIdx)
+    // get specified row index from vals
+    {
+      int rowSize = vals.length;
+      if ((rowIdx < 0) || (rowIdx > rowSize-1)) {
+        System.out.println("Row index out of range");
+        return null;
+      }
+      else
+        return vals[rowIdx];
+    }  // end of extractRow()
+    ```
 
 Calc.getRow() defaults to extracting the first row in the 2D array returned by
 Calc.getArray(), but it's possible to obtain other rows by directly calling
@@ -292,34 +299,35 @@ Extracting a column from a sheet is more tricky since Calc.extractCol() must nav
 the row-ordered array returned by Calc.getArray(). The retrieved column is returned
 as a 1D array:
 
-```java
-// in the Calc class
-public static Object[] getCol(XSpreadsheet sheet, String rangeName)
-{
-  Object[][] vals = getArray(sheet, rangeName);
-  return extractCol(vals, 0);      // assumes user wants 1st column
-}  // end of getCol()
-
-
-public static Object[] extractCol(Object[][] vals, int colIdx)
-// extract the specified column index from vals
-{
-  int rowSize = vals.length;
-  int colSize = vals[0].length;
-          // assumes all columns are this length
-
-  if ((colIdx < 0) || (colIdx > colSize-1)) {
-    System.out.println("Column index out of range");
-    return null;
-  }
-  else {
-    Object[] colVals = new Object[rowSize];
-    for (int row = 0; row < rowSize; row++)
-      colVals[row] = vals[row][colIdx];
-    return colVals;
-  }
-}  // end of extractCol()
-```
+=== "java"
+    ```java
+    // in the Calc class
+    public static Object[] getCol(XSpreadsheet sheet, String rangeName)
+    {
+      Object[][] vals = getArray(sheet, rangeName);
+      return extractCol(vals, 0);      // assumes user wants 1st column
+    }  // end of getCol()
+    
+    
+    public static Object[] extractCol(Object[][] vals, int colIdx)
+    // extract the specified column index from vals
+    {
+      int rowSize = vals.length;
+      int colSize = vals[0].length;
+              // assumes all columns are this length
+    
+      if ((colIdx < 0) || (colIdx > colSize-1)) {
+        System.out.println("Column index out of range");
+        return null;
+      }
+      else {
+        Object[] colVals = new Object[rowSize];
+        for (int row = 0; row < rowSize; row++)
+          colVals[row] = vals[row][colIdx];
+        return colVals;
+      }
+    }  // end of extractCol()
+    ```
 
 
 ## 4.  Obtaining Cell Ranges by Using Queries
@@ -329,9 +337,10 @@ getRow(), and getCol() is that they require the programmer to supply cell names 
 ranges. In other words, the location of the data must be known beforehand. For
 example, the call:
 
-```java
-double[][] ids = Calc.getDoublesArray(sheet, "A2:A7");
-```
+=== "java"
+    ```java
+    double[][] ids = Calc.getDoublesArray(sheet, "A2:A7");
+    ```
 
 assumes that the data is located in the "A2:A7" range.
 
@@ -347,18 +356,19 @@ cursors, but the details are hidden inside Calc.findUsedRange().
 The following code fragment illustrates how Calc.findUsedRange() and the
 SheetRangesQuery service can be used together :
 
-```java
-// the second half of ExtractNums.java
-      :
-// get the cell range which spans the used area of the sheet
-XCellRange usedCellRange = Calc.findUsedRange(sheet);
-
-// find cell ranges that cover all the numerical cells
-XCellRangesQuery crQuery =
-                Lo.qi(XCellRangesQuery.class, usedCellRange);
-XSheetCellRanges cellRanges =
-                crQuery.queryContentCells((short) CellFlags.VALUE);
-```
+=== "java"
+    ```java
+    // the second half of ExtractNums.java
+          :
+    // get the cell range which spans the used area of the sheet
+    XCellRange usedCellRange = Calc.findUsedRange(sheet);
+    
+    // find cell ranges that cover all the numerical cells
+    XCellRangesQuery crQuery =
+                    Lo.qi(XCellRangesQuery.class, usedCellRange);
+    XSheetCellRanges cellRanges =
+                    crQuery.queryContentCells((short) CellFlags.VALUE);
+    ```
 
 The cell range returned by Calc.findUsedRange() is converted to XCellRangesQuery,
 which contains the SheetRangesQuery methods.
@@ -385,41 +395,44 @@ or use `lodoc cellflags`.
 The constants can be combined with bit operations, such as "|". For instance, the
 query:
 
-```java
-XSheetCellRanges cellRanges =  crQuery.queryContentCells(
-                (short) (CellFlags.VALUE | CellFlags.FORMULA));
-```
+=== "java"
+    ```java
+    XSheetCellRanges cellRanges =  crQuery.queryContentCells(
+                    (short) (CellFlags.VALUE | CellFlags.FORMULA));
+    ```
 
 finds all the cell ranges that contain numbers or formulae.
 
 The XSheetCellRanges object is most easily processed as an array of cell range
 addresses:
 
-```java
-CellRangeAddress[] addrs = cellRanges.getRangeAddresses();
-```
+=== "java"
+    ```java
+    CellRangeAddress[] addrs = cellRanges.getRangeAddresses();
+    ```
 
 The following code prints out each range address and the numerical data in the range:
 
-```java
- // part of ExtractNums.java
-     :
- if (cellRanges == null)
-   System.out.println("No cell ranges found");
- else {
-   System.out.println("Found cell ranges: " +
-                   cellRanges.getRangeAddressesAsString() + "\n");
-
-   CellRangeAddress[] addrs = cellRanges.getRangeAddresses();
-   System.out.println("Cell ranges (" + addrs.length + "):");
-   for(CellRangeAddress addr : addrs) {
-     Calc.printAddress(addr);
-     double[][] vals = Calc.getDoublesArray(sheet,
-                                     Calc.getRangeStr(addr));
-    Calc.printArray(vals);
-  }
-}
-```
+=== "java"
+    ```java
+     // part of ExtractNums.java
+         :
+     if (cellRanges == null)
+       System.out.println("No cell ranges found");
+     else {
+       System.out.println("Found cell ranges: " +
+                       cellRanges.getRangeAddressesAsString() + "\n");
+    
+       CellRangeAddress[] addrs = cellRanges.getRangeAddresses();
+       System.out.println("Cell ranges (" + addrs.length + "):");
+       for(CellRangeAddress addr : addrs) {
+         Calc.printAddress(addr);
+         double[][] vals = Calc.getDoublesArray(sheet,
+                                         Calc.getRangeStr(addr));
+        Calc.printArray(vals);
+      }
+    }
+    ```
 
 For the "small totals.ods" spreadsheet shown in Figure 1, the output is:
 
@@ -441,10 +454,11 @@ The query found the range A2:D7, which excludes the labels on the first row, and
 formula down the "E column and along rows "8" and "9" (see Figure 1). These
 formulae could be included by modifying the query:
 
-```java
-XSheetCellRanges cellRanges =  crQuery.queryContentCells(
-                  (short) (CellFlags.VALUE | CellFlags.FORMULA));
-```
+=== "java"
+    ```java
+    XSheetCellRanges cellRanges =  crQuery.queryContentCells(
+                      (short) (CellFlags.VALUE | CellFlags.FORMULA));
+    ```
 
 The output changes to:
 
@@ -510,25 +524,26 @@ ways, which parallels the selection of text by a text cursor.
 Calc.findUsedRange() creates a cursor and then calls findUsedCursor() to expand its
 cell range over the used area:
 
-```java
-// in the Calc class
-public static XCellRange findUsedRange(XSpreadsheet sheet)
-{ XSheetCellCursor cursor = sheet.createCursor();
-  return findUsedCursor(cursor);
-}
-
-
-public static XCellRange findUsedCursor(XSheetCellCursor cursor)
-{
-  // use the cursor to select the used area
-  XUsedAreaCursor uaCursor = Lo.qi(XUsedAreaCursor.class, cursor);
-  uaCursor.gotoStartOfUsedArea(false);  // find start of area
-  uaCursor.gotoEndOfUsedArea(true);     // select to end
-
-  XCellRange usedRange = Lo.qi(XCellRange.class, uaCursor);
-  return usedRange;
-}   // end of findUsedCursor()
-```
+=== "java"
+    ```java
+    // in the Calc class
+    public static XCellRange findUsedRange(XSpreadsheet sheet)
+    { XSheetCellCursor cursor = sheet.createCursor();
+      return findUsedCursor(cursor);
+    }
+    
+    
+    public static XCellRange findUsedCursor(XSheetCellCursor cursor)
+    {
+      // use the cursor to select the used area
+      XUsedAreaCursor uaCursor = Lo.qi(XUsedAreaCursor.class, cursor);
+      uaCursor.gotoStartOfUsedArea(false);  // find start of area
+      uaCursor.gotoEndOfUsedArea(true);     // select to end
+    
+      XCellRange usedRange = Lo.qi(XCellRange.class, uaCursor);
+      return usedRange;
+    }   // end of findUsedCursor()
+    ```
 
 Figure 4 shows the services and interfaces related to sheet cursors.
 
@@ -546,12 +561,13 @@ XSpreadsheet.createCursor() or XSpreadsheet.createCursorByRange().
 Calc.findUsedRange() needs the ability to find the sheet's used area, which is obtained
 by converting XSheetCellCursor into XUsedAreaCursor (see Figure 4):
 
-```java
-// in Calc.findUsedCursor()
-XUsedAreaCursor uaCursor = Lo.qi(XUsedAreaCursor.class, cursor);
-uaCursor.gotoStartOfUsedArea(false);
-uaCursor.gotoEndOfUsedArea(true);
-```
+=== "java"
+    ```java
+    // in Calc.findUsedCursor()
+    XUsedAreaCursor uaCursor = Lo.qi(XUsedAreaCursor.class, cursor);
+    uaCursor.gotoStartOfUsedArea(false);
+    uaCursor.gotoEndOfUsedArea(true);
+    ```
 
 The goto methods move the cursor to the start and end of the used area, and by calling
 gotoEndOfUsedArea() with a true flag, the cursor's cell range is extended from the
@@ -559,5 +575,6 @@ start of the used area to its end.
 
 The cell range is retrieved by converting the cursor into a XCellRange:
 
-```java
-XCellRange usedRange = Lo.qi(XCellRange.class, uaCursor);```
+=== "java"
+    ```java
+    XCellRange usedRange = Lo.qi(XCellRange.class, uaCursor);```
