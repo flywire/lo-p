@@ -22,7 +22,7 @@ HSQLDB or Firebird database can be accessed through Java's JDBC without using
 the sdbc, sdbcx, or sdb modules in the Office API.
 
 The Office download includes a copy of the HSQLDB database engine (stored in
-<OFFICE DIR>\program\classes\hsqldb.jar) so there's no need to download any
+`<OFFICE DIR>\program\classes\hsqldb.jar`) so there's no need to download any
 software for manipulating HyperSQL databases through JDBC. However, Firebird
 programming requires Firebird's embedded engine and its JDBC driver, called
 Jaybird.
@@ -324,7 +324,7 @@ runtime by calling hsqldb.jar with the "--help" argument:
     ```
 
 Figure 4 shows the help generated when the JAR file is called inside the
-<OFFICE>\program\classes folder.
+`<OFFICE>\program\classes` folder.
 
 
 ![](images/38-ODB_as_Zip-4.png)
@@ -341,7 +341,7 @@ necessary JDBC driver.
 The easiest thing is to download the embedded version of Firebird from
 https://firebirdsql.org/en/downloads/, making sure to grab either the 32-bit or 64-
 bit version for your OS. This should be unzipped to a convenient location (e.g.
-d:\firebird), and the path added to Window's PATH environment variable.
+`d:\firebird`), and the path added to Window's PATH environment variable.
 
 
 !!! Bug
@@ -359,7 +359,7 @@ d:\firebird), and the path added to Window's PATH environment variable.
 
 The JDBC driver, called Jaybird, is a separate download from
 https://firebirdsql.org/en/jdbc-driver/. This should be unzipped to a convenient
-location (e.g. d:\jaybird).
+location (e.g. `d:\jaybird`).
 
 There's no need to add Jaybird to the classpath of the javac.exe compiler, but calls to
 java.exe must include the location of its JAR and associated DLL. For example,
@@ -410,7 +410,7 @@ isql.exe for that purpose, but it's not included in the embedded Firebird downlo
 The 'simplest' way of adding it is to download the zipped version of the full firebird
 system (called "Classic, Superclassic & Superserver"), and unzip only isql.exe which
 is in the bin/ directory. Copy isql.exe to the embedded firebird directory on your
-machine (e.g. into d:\firebird), and make a copy of the fbembed.dll file in that folder,
+machine (e.g. into `d:\firebird`), and make a copy of the fbembed.dll file in that folder,
 renaming it to fbclient.dll.
 
 The isql manual is online at https://firebirdsql.org/manual/isql.html. isql also has

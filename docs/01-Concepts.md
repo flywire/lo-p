@@ -106,7 +106,7 @@ examples at https://api.libreoffice.org/examples/examples.html (in the Java and
 Developer's Guide subdirectories). They can also be found in the Office download in
 <OFFICE>/sdk/examples; Basic, C++ and Python code is there as well. By the way,
 <OFFICE> is my way of writing the path to the LibreOffice directory, which for
-example is "C:\Program Files\LibreOffice 5" on my 32-bit test machine.
+example is `C:\Program Files\LibreOffice 5` on my 32-bit test machine.
 
 You should also browse the LibreOffice development forums
 (https://imaccanici.org/en.libreofficeforum.org) and the corresponding ones for
@@ -603,6 +603,6 @@ One of the aims of my utilities is to hide as much of the complexity of Office a
 Basic version of the API.
 
 Having just reread this section, I may have just convinced myself to become a Basic
-programmer . The reason I'm going to stick with Java is that it's a full-featured
+programmer. The reason I'm going to stick with Java is that it's a full-featured
 language, with massive numbers of standard and third-part APIs which can augment
 the Office API.

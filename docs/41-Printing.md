@@ -1974,7 +1974,7 @@ Table 13. Windows 7's VBScript Printing Utilities.
 
 
 The utilities are Visual Basic scripts, located in the
-C:\Windows\System32\Printing_Admin_Scripts\en-US\ folder which isn't a standard
+`C:\Windows\System32\Printing_Admin_Scripts\en-US\` folder which isn't a standard
 part of Window's PATH environment variable.
 
 One way of finding documentation on these tools is by starting "Windows Help" and
@@ -2054,8 +2054,8 @@ An alternative is "printui" which starts Window's printui.dll
 However, I'd not recommend "print" or "printui" since Office is a much better
 command line printing tool.
 
-If you open a command prompt in the Office directory (e.g. in C:\Program
-Files\LibreOffice 5), you can get a list of its command line options by typing:
+If you open a command prompt in the Office directory (e.g. in `C:\Program
+Files\LibreOffice 5`), you can get a list of its command line options by typing:
 
 ```
 > soffice.exe –h

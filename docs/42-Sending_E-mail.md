@@ -207,14 +207,14 @@ creates a socket-based link to the specified mail server. If that link utilizes 
 successor TLS) for encrypted communication, then your code will probably crash
 with the error message "No SSL support included in this Python".
 
-This bug (https://bugs.documentfoundation.org/show_bug.cgi?id=77354) is marked
+This bug (<https://bugs.documentfoundation.org/show_bug.cgi?id=77354>) is marked
 as "RESOLVED NOTOURBUG" at Office's bugzilla website which seems a bit
 dismissive. The problem appears to be due to the position of Office's application
 folders in Window's PATH environment variable. When Windows searches for two
 DLLs, ssleay32.dll and libeay32.dll, which implement OpenSSL, it may find incorrect
 versions in folders mentioned earlier in PATH. It's these incorrect DLLs that cause
 Python to issue the cryptic error. One solution is to copy the correct DLLs from
-Office's "program\" folder into the "program\python-core-???\lib\" folder (??? is a
+Office's `program\` folder into the `program\python-core-???\lib\` folder (??? is a
 version number, such as 3.3.3), thereby ensuring they're chosen first.
 
 Another issue with switching to MailServiceProvider is that the programmer must
@@ -1019,8 +1019,8 @@ Mail.mergeEmail() calls Mail.mergeTask():
 
 The e-mailing employs the same mailmerge.py Python script as MailServiceProvider,
 which means it will crash when using SSL encryption unless ssleay32.dll and
-libeay32.dll have been copied from Office's "program\" folder into "program\python-
-core-???\lib\". Please refer back to section 2 for more details.
+libeay32.dll have been copied from Office's `program\` folder into `program\python-
+core-???\lib\`. Please refer back to section 2 for more details.
 
 mailmerge.py attempts to open a link with the specified mail server at the given port,
 and usually has to supply a login and password to be allowed access. If you look back
@@ -1042,7 +1042,7 @@ button pressed. A second dialog opens, shown on the right in Figure 10, which le
 you enter a login and password for accessing the server. It's good practice not to enter
 a password since the data is stored as plain text in "registrymodifications.xcu" in
 Office's user configuration directory (often the folder
-$APPDATA$\LibreOffice\??\user). It's safer to pass the password to
+`$APPDATA$\LibreOffice\??\user`). It's safer to pass the password to
 Mail.mergeTask() at run time, as I've done in Mail.mergeEmail().
 
 mergeEmail() calls Mail.checkMailConfig() to check if the mail server address, port

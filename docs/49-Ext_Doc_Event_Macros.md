@@ -33,7 +33,7 @@ manager does it for them. This section also uses more complex macros than the on
 in the previous chapter, namely ones that utilize their own dialogs and employ my
 utility classes.
 
-The FormMacros.oxt extension is created by zipping up a FormMacros\ folder, which
+The `FormMacros.oxt` extension is created by zipping up a `FormMacros\` folder, which
 is listed below:
 
 ```
@@ -57,8 +57,8 @@ FormMacros
          Utils.jar
 ```
 
-The macros are in the Utils\ folder, and are utilized by the form stored in
-FormMacrosTest.odt in the ways shown in Figure 1.
+The macros are in the `Utils\` folder, and are utilized by the form stored in
+`FormMacrosTest.odt` in the ways shown in Figure 1.
 
 
 ![](images/49-Ext_Doc_Event_Macros-1.png)
@@ -72,18 +72,18 @@ GetNumber.get macro is attached to the second textfield, and is activated when
 <RETURN> is pressed. A dialog, created by the macro, offers the user a choice of
 replacing the text by a number or clearing the textfield.
 
-To simplify the example a little, FormMacrosTest.odt was created by hand rather than
+To simplify the example a little, `FormMacrosTest.odt` was created by hand rather than
 programmatically. Also, I'm going to attach the extension's macros to the button and
 textfield using Office's GUI, as explained shortly.
 
-I won’t explain all the contents of the FormMacros\ folder, because most of them
+I won’t explain all the contents of the `FormMacros\` folder, because most of them
 were covered in early chapters, particularly in Chapter 45. For example, I won't be
 describing how I drew the "Number Extractor" dialog stored in
-dialogLibrary\NumExtractor.xdl since that technique was covered in the last chapter,
+`dialogLibrary\NumExtractor.xdl` since that technique was covered in the last chapter,
 in section 5.
 
-The new elements of FormMacros\ are the contents of manifest.xml and parcel-
-descriptor.xml.
+The new elements of `FormMacros\` are the contents of `manifest.xml` and `parcel-
+descriptor.xml`.
 
 manifest.xml states the location of the macros inside the extension, which in my case
 are in the Utils\ subdirectory. This is encoded as:
@@ -171,7 +171,7 @@ Instead I've stored the macros as .class files in Utils\. In addition, it's nece
 include "." in the classpath so NumActionListener.class can be found at runtime.
 
 The three Java files (GetText.java, GetNumber.java, and NumActionListener.java)
-are compiled and manually copied into FormMacros\Utils\. Then the
+are compiled and manually copied into `FormMacros\Utils\`. Then the
 installMacros.bat batch script zips up the folder as an OXT file, and calls unopkg.exe
 to install it. The extension manager displays the "Form Macros" as in Figure 2.
 
@@ -377,8 +377,8 @@ When the <RETURN> key is pressed, Forms.getControlModel() searches the form
 for the control that sent the event (i.e. the "AgeText" textfield).
 
 If the control is a textfield then the "Number Extractor" dialog is displayed in one of
-two ways – either loadXDLDialog() loads the dialog's XML from
-dialogLibrary\NumExtractor.xdl inside the extension, or runtimeDialog() creates the
+two ways – either `loadXDLDialog()` loads the dialog's XML from
+`dialogLibrary\NumExtractor.xdl` inside the extension, or runtimeDialog() creates the
 dialog dynamically by calling methods in my Dialogs utility class. I'll look at each
 approach in the next two sections.
 
@@ -823,7 +823,7 @@ I'll create a variation of the previous form, with the same functionality for it
 fields, but GetText.show and GetNumber.get (and its dialog and listener) will be
 stored inside the document.
 
-Office documents, such as FormMacrosTest.odt, can be manipulated as zip files; I
+Office documents, such as `FormMacrosTest.odt`, can be manipulated as zip files; I
 chose 7-Zip (https://7-zip.org/) for the purpose, because it's powerful, open
 source, and can be executed from the command line and from DOS batch scripts.
 
@@ -836,10 +836,10 @@ Figure 11.
 
 ![](images/49-Ext_Doc_Event_Macros-11.png)
 
-Figure 11. The Changed FormDocMacros_odt\ Folder
+Figure 11. The Changed `FormDocMacros_odt\` Folder
 
 The dialogLibrary\ folder contains the same "Number Extractor" dialog definition as
-before. The Scripts\java\Utils\ folder contains Macros.jar, and a new version of
+before. The `Scripts\java\Utils\` folder contains Macros.jar, and a new version of
 parcel-descriptor.xml.
 
 Macros.jar is different from the earlier extension, which used three classes
@@ -851,9 +851,11 @@ NumActionListener.class added to it.
 
 This change to the code organization is reflected in parcel-descriptor.xml. The
 classpath entries for the two macros become:
+```xml
 <prop name="classpath" value="Macros.jar"/>
-manifest.xml specifies the structure of FormDocMacros_odt\, so lines are added
-describing dialogLibrary\ and Scripts\:
+```
+manifest.xml specifies the structure of `FormDocMacros_odt\`, so lines are added
+describing `dialogLibrary\` and `Scripts\`:
 
 ```
 // added to manifest.xml
