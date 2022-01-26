@@ -108,30 +108,31 @@ https://wiki.openoffice.org/wiki/Documentation/DevGuide/OfficeDev/Common_Applica
 My Clip.getClip() support method illustrates how to get a reference to the system
 clipboard:
 
-```java
-// in the Clip class
-//global
-private static XSystemClipboard cb = null;
-        // used to store clipboard ref, so only one is created
-        // by the methods here
-
-
-public static XSystemClipboard getClip()
-{
-  if (cb == null) {
-    cb = SystemClipboard.create(Lo.getContext());
-/*
-    cb.addClipboardListener( new XClipboardListener() {
-      public void disposing(EventObject e) { }
-
-      public void changedContents(ClipboardEvent e)
-      { System.out.println(">>Clipboard has been updated");  }
-    });
-*/
-  }
-  return cb;
-}  // end of getClip()
-```
+=== "java"
+    ```java
+    // in the Clip class
+    //global
+    private static XSystemClipboard cb = null;
+            // used to store clipboard ref, so only one is created
+            // by the methods here
+    
+    
+    public static XSystemClipboard getClip()
+    {
+      if (cb == null) {
+        cb = SystemClipboard.create(Lo.getContext());
+    /*
+        cb.addClipboardListener( new XClipboardListener() {
+          public void disposing(EventObject e) { }
+    
+          public void changedContents(ClipboardEvent e)
+          { System.out.println(">>Clipboard has been updated");  }
+        });
+    */
+      }
+      return cb;
+    }  // end of getClip()
+    ```
 
 A call to SystemClipboard.create() with the current context instantiates the
 XSystemClipboard interface. It's possible to attach a XClipboardListener at this stage,
@@ -152,29 +153,30 @@ TextTransferable, ImageTransferable, and FileTransferable, which I'll explain sh
 The Clip class offers an addContents() method for adding transferable data to the
 clipboard:
 
-```java
-// in the Clip class
-private static final int MAX_TRIES = 3;
-
-
-public static boolean addContents(XTransferable trf)
-{
-  int i = 0;
-  while (i < MAX_TRIES) {
-    try {
-      getClip().setContents(trf, null);
-      return true;
-    }
-    catch (IllegalStateException e) {
-      System.out.println("Problem accessing clipboard...");
-      Lo.wait(50);
-    }
-    i++;
-  }
-  System.out.println("Unable to add contents");
-  return false;
-}  // end of addContents()
-```
+=== "java"
+    ```java
+    // in the Clip class
+    private static final int MAX_TRIES = 3;
+    
+    
+    public static boolean addContents(XTransferable trf)
+    {
+      int i = 0;
+      while (i < MAX_TRIES) {
+        try {
+          getClip().setContents(trf, null);
+          return true;
+        }
+        catch (IllegalStateException e) {
+          System.out.println("Problem accessing clipboard...");
+          Lo.wait(50);
+        }
+        i++;
+      }
+      System.out.println("Unable to add contents");
+      return false;
+    }  // end of addContents()
+    ```
 
 The function attempts to add the transferable data to the clipboard three times before
 returning false.
@@ -194,15 +196,16 @@ an XClipboardOwner listener to the clipboard when XClipboard.setContents() adds
 data. The listener will be triggered when data which changes the ownership is copied
 to the clipboard. The following code fragment illustrates the technique:
 
-```java
-// add data to the clipboard, and monitor ownership
-// XSystemClipboard cb = ...
-cb.setContents(data, new XClipboardOwner() {
-        public void lostOwnership(XClipboard board,
-                                  XTransferable contents)
-       {  System.out.println("Ownership is lost");   }
-});
-```
+=== "java"
+    ```java
+    // add data to the clipboard, and monitor ownership
+    // XSystemClipboard cb = ...
+    cb.setContents(data, new XClipboardOwner() {
+            public void lostOwnership(XClipboard board,
+                                      XTransferable contents)
+           {  System.out.println("Ownership is lost");   }
+    });
+    ```
 
 The  lostOwnership() method is called with the clipboard reference and the tranferable
 data just overwritten by the new owner. I didn't use this feature in my addContents()
@@ -217,20 +220,22 @@ usually be manipulated in several different forms, such as plain text or a bitma
 means that the XTransferable extraction must state the required data format, which is
 encoded as a DataFlavor object. The following code fragment illustrates the idea:
 
-```java
-// XSystemClipboard cb = ...
-XTransferable trf = cb.getContents();  // get transferable
-DataFlavor df = // dataflavor for type of data required
-data = trf.getTransferData(df);
-```
+=== "java"
+    ```java
+    // XSystemClipboard cb = ...
+    XTransferable trf = cb.getContents();  // get transferable
+    DataFlavor df = // dataflavor for type of data required
+    data = trf.getTransferData(df);
+    ```
 
 A DataFlavor object is a mapping between a mime type string and an Office type. The
 following example maps the "text/plain" mime type to Office's String class:
 
-```java
-DataFlavor df = new DataFlavor("text/plain;charset=utf-16",
-                       "Unicode Text", new Type(String.class))
-```
+=== "java"
+    ```java
+    DataFlavor df = new DataFlavor("text/plain;charset=utf-16",
+                           "Unicode Text", new Type(String.class))
+    ```
 
 The second argument of the DataFlavor constructor is a 'human representable' string
 for the mime type.
@@ -249,45 +254,46 @@ DataFlavor is amongst those supported by the transferable
 
 The TextTransferable class:
 
-```java
-// in the Utils/ folder
-public class TextTransferable implements XTransferable
-{
-  private final String UNICODE_MIMETYPE =
-                                "text/plain;charset=utf-16";
-  private String text;
-
-
-  public TextTransferable(String s)
-  {  text = s;  }
-
-
-  public Object getTransferData(DataFlavor df)
-                                  throws UnsupportedFlavorException
-  // return the data matching the df DataFlavor
-  {
-    if (!df.MimeType.equalsIgnoreCase(UNICODE_MIMETYPE))
-      throw new UnsupportedFlavorException();
-    return text;
-  }
-
-
-  public DataFlavor[] getTransferDataFlavors()
-  // return an array of all the dataflavors supported
-  {
-    DataFlavor[] dfs = new DataFlavor[1];
-    dfs[0] = new DataFlavor(UNICODE_MIMETYPE, "Unicode Text",
-                                       new Type(String.class));
-    return dfs;
-  }
-
-
-  public boolean isDataFlavorSupported(DataFlavor df)
-  // is the df DataFlavor supported by this transferable?
-  {  return df.MimeType.equalsIgnoreCase(UNICODE_MIMETYPE);  }
-
-}  // end of TextTransferable class
-```
+=== "java"
+    ```java
+    // in the Utils/ folder
+    public class TextTransferable implements XTransferable
+    {
+      private final String UNICODE_MIMETYPE =
+                                    "text/plain;charset=utf-16";
+      private String text;
+    
+    
+      public TextTransferable(String s)
+      {  text = s;  }
+    
+    
+      public Object getTransferData(DataFlavor df)
+                                      throws UnsupportedFlavorException
+      // return the data matching the df DataFlavor
+      {
+        if (!df.MimeType.equalsIgnoreCase(UNICODE_MIMETYPE))
+          throw new UnsupportedFlavorException();
+        return text;
+      }
+    
+    
+      public DataFlavor[] getTransferDataFlavors()
+      // return an array of all the dataflavors supported
+      {
+        DataFlavor[] dfs = new DataFlavor[1];
+        dfs[0] = new DataFlavor(UNICODE_MIMETYPE, "Unicode Text",
+                                           new Type(String.class));
+        return dfs;
+      }
+    
+    
+      public boolean isDataFlavorSupported(DataFlavor df)
+      // is the df DataFlavor supported by this transferable?
+      {  return df.MimeType.equalsIgnoreCase(UNICODE_MIMETYPE);  }
+    
+    }  // end of TextTransferable class
+    ```
 
 TextTransferable supports only the Unicode data format; its flavor maps the
 "text/plain;charset=utf-16" mime type string to the String class.
@@ -295,76 +301,79 @@ TextTransferable supports only the Unicode data format; its flavor maps the
 The Clip support class has setText() and getText() methods for simplifying the use of
 TextTransferable:
 
-```java
-// in the Clip class
-public static boolean setText(String str)
-{  return addContents( new TextTransferable(str));  }
-
-public static String getText()
-{  return (String) getData("text/plain;charset=utf-16");  }
-
-The setText() method uses the TextTransferable constructor to convert a string into a
-transferable that is placed on the clipboard by my addContents() method from above.
-
-getText() passes a mime type string to Clip.getData(), which copies the transferable
-from the clipboard, and uses the mime type to decide which kind of data format to use
-for the returned data:
-
-// in the Clip class
-public static Object getData(String mimeStr)
-{
-  XTransferable trf = getClip().getContents();
-  if (trf == null) {
-    System.out.println("No transferable found");
-    return null;
-  }
-
-  try {
-    DataFlavor df = findFlavor(trf, mimeStr);
-    if (df != null)
-      return trf.getTransferData(df);
-    else
-      System.out.println("Mime \"" + mimeStr + "\" not found");
-  }
-  catch (com.sun.star.uno.Exception e) {
-    System.out.println("Could not read clipboard: " + e);
-  }
-  return null;
-}  // end of getData()
-```
+=== "java"
+    ```java
+    // in the Clip class
+    public static boolean setText(String str)
+    {  return addContents( new TextTransferable(str));  }
+    
+    public static String getText()
+    {  return (String) getData("text/plain;charset=utf-16");  }
+    
+    The setText() method uses the TextTransferable constructor to convert a string into a
+    transferable that is placed on the clipboard by my addContents() method from above.
+    
+    getText() passes a mime type string to Clip.getData(), which copies the transferable
+    from the clipboard, and uses the mime type to decide which kind of data format to use
+    for the returned data:
+    
+    // in the Clip class
+    public static Object getData(String mimeStr)
+    {
+      XTransferable trf = getClip().getContents();
+      if (trf == null) {
+        System.out.println("No transferable found");
+        return null;
+      }
+    
+      try {
+        DataFlavor df = findFlavor(trf, mimeStr);
+        if (df != null)
+          return trf.getTransferData(df);
+        else
+          System.out.println("Mime \"" + mimeStr + "\" not found");
+      }
+      catch (com.sun.star.uno.Exception e) {
+        System.out.println("Could not read clipboard: " + e);
+      }
+      return null;
+    }  // end of getData()
+    ```
 
 Clip.findFlavor() searches through the flavors associated with the transferable looking
 for the mime type string supplied by the user:
 
-```java
-// in the Clip class
-public static DataFlavor findFlavor(XTransferable trf,
-                                    String mimeStr)
-{ DataFlavor[] dfs = trf.getTransferDataFlavors();
-  for (int i = 0; i < dfs.length; i++) {
-    if (dfs[i].MimeType.startsWith(mimeStr)) {
-      return dfs[i];
-    }
-  }
-  System.out.println("Clip does not support mime: " + mimeStr);
-  return null;
-}  // end of findFlavor()
-```
+=== "java"
+    ```java
+    // in the Clip class
+    public static DataFlavor findFlavor(XTransferable trf,
+                                        String mimeStr)
+    { DataFlavor[] dfs = trf.getTransferDataFlavors();
+      for (int i = 0; i < dfs.length; i++) {
+        if (dfs[i].MimeType.startsWith(mimeStr)) {
+          return dfs[i];
+        }
+      }
+      System.out.println("Clip does not support mime: " + mimeStr);
+      return null;
+    }  // end of findFlavor()
+    ```
 
 The CPTests.java file shows an example of how to add and retrieve text from the
 clipboard:
 
-```java
-// part of CPTests.java...
-Lo.loadOffice();
-   :
-Clip.setText(Lo.getTimeStamp());
-System.out.println("Added text to clipboard");
-
-System.out.println("Read clipboard: " + Clip.getText());
-   :
-Lo.closeOffice();
-```
+=== "java"
+    ```java
+    // part of CPTests.java...
+    Lo.loadOffice();
+       :
+    Clip.setText(Lo.getTimeStamp());
+    System.out.println("Added text to clipboard");
+    
+    System.out.println("Read clipboard: " + Clip.getText());
+       :
+    Lo.closeOffice();
+    ```
 
 
 ### 1.3.  Adding and Retrieving an Image
@@ -375,40 +384,41 @@ data flavor maps the mime type "application/x-openoffice-
 bitmap;windows_formatname="Bitmap"" to a byte array.
 
 
-```java
-// in the Utils/ folder
-public class ImageTransferable implements XTransferable
-{
-  private static final String BITMAP_CLIP =
-   "application/x-openoffice-bitmap;windows_formatname=\"Bitmap\"";
-
-  private byte[] imBytes;
-
-  public ImageTransferable(BufferedImage im)
-  {  imBytes = Images.im2bytes(im);   }
-
-
-  public Object getTransferData(DataFlavor df)
-                          throws UnsupportedFlavorException
-  { if (!df.MimeType.equalsIgnoreCase(BITMAP_CLIP))
-      throw new UnsupportedFlavorException();
-    return imBytes;
-  }  // end of getTransferData()
-
-
-  public DataFlavor[] getTransferDataFlavors()
-  { DataFlavor[] dfs = new DataFlavor[1];
-    dfs[0] = new DataFlavor(BITMAP_CLIP, "Bitmap",
-                                  new Type(byte[].class));
-    return dfs;
-  }
-
-
-  public boolean isDataFlavorSupported(DataFlavor df)
-  {  return df.MimeType.equalsIgnoreCase(BITMAP_CLIP);  }
-
-}  // end of ImageTransferable class
-```
+=== "java"
+    ```java
+    // in the Utils/ folder
+    public class ImageTransferable implements XTransferable
+    {
+      private static final String BITMAP_CLIP =
+       "application/x-openoffice-bitmap;windows_formatname=\"Bitmap\"";
+    
+      private byte[] imBytes;
+    
+      public ImageTransferable(BufferedImage im)
+      {  imBytes = Images.im2bytes(im);   }
+    
+    
+      public Object getTransferData(DataFlavor df)
+                              throws UnsupportedFlavorException
+      { if (!df.MimeType.equalsIgnoreCase(BITMAP_CLIP))
+          throw new UnsupportedFlavorException();
+        return imBytes;
+      }  // end of getTransferData()
+    
+    
+      public DataFlavor[] getTransferDataFlavors()
+      { DataFlavor[] dfs = new DataFlavor[1];
+        dfs[0] = new DataFlavor(BITMAP_CLIP, "Bitmap",
+                                      new Type(byte[].class));
+        return dfs;
+      }
+    
+    
+      public boolean isDataFlavorSupported(DataFlavor df)
+      {  return df.MimeType.equalsIgnoreCase(BITMAP_CLIP);  }
+    
+    }  // end of ImageTransferable class
+    ```
 
 My choice of mapping to a byte array may seem a bit strange, since it would make
 more sense to associate the "bitmap" string with a BufferedImage. Unfortunately,
@@ -420,32 +430,33 @@ serializable type to be used in a flavor. This will motivate my use of Java to t
 I hide the use of ImageTransferable inside two Clip.java methods, setImage() and
 getImage():
 
-```java
-// in the Clip class
-public static boolean setImage(BufferedImage im)
-{  return addContents(new ImageTransferable(im));  }
-
-
-public static BufferedImage getImage()
-{
-  XTransferable trf = getClip().getContents();
-  if (trf == null) {
-    System.out.println("No transferable found");
-    return null;
-  }
-  DataFlavor df = findImageFlavor(trf);
-  if (df == null)
-    return null;
-
-  try {
-    return Images.bytes2im( (byte[])trf.getTransferData(df) );
-  }
-  catch (com.sun.star.uno.Exception e) {
-    System.out.println("Could not retrieve image: " + e);
-    return null;
-  }
-}  // end of getImage()
-```
+=== "java"
+    ```java
+    // in the Clip class
+    public static boolean setImage(BufferedImage im)
+    {  return addContents(new ImageTransferable(im));  }
+    
+    
+    public static BufferedImage getImage()
+    {
+      XTransferable trf = getClip().getContents();
+      if (trf == null) {
+        System.out.println("No transferable found");
+        return null;
+      }
+      DataFlavor df = findImageFlavor(trf);
+      if (df == null)
+        return null;
+    
+      try {
+        return Images.bytes2im( (byte[])trf.getTransferData(df) );
+      }
+      catch (com.sun.star.uno.Exception e) {
+        System.out.println("Could not retrieve image: " + e);
+        return null;
+      }
+    }  // end of getImage()
+    ```
 
 getImage() transforms the byte array returned by
 ImageTransferable.getTransferData() into a BufferedImage. Clip.findImageFlavor()
@@ -454,23 +465,24 @@ suitable flavor for an image mime type.
 
 The CPTests.java file shows how to add and retrieve an image from the clipboard:
 
-```java
-// part of CPTests.java...
-Lo.loadOffice();
-   :
-BufferedImage im = Images.loadImage("skinner.png");
-System.out.println("Image (w,h): " + im.getWidth() + ", " +
-                                     im.getHeight());
-Clip.setImage(im);
-System.out.println("Added image to clipboard");
-
-BufferedImage imCopy = Clip.getImage();
-if (imCopy != null)
-  System.out.println("Image (w,h): " + imCopy.getWidth() + ", " +
-                                       imCopy.getHeight());
-   :
-Lo.closeOffice();
-```
+=== "java"
+    ```java
+    // part of CPTests.java...
+    Lo.loadOffice();
+       :
+    BufferedImage im = Images.loadImage("skinner.png");
+    System.out.println("Image (w,h): " + im.getWidth() + ", " +
+                                         im.getHeight());
+    Clip.setImage(im);
+    System.out.println("Added image to clipboard");
+    
+    BufferedImage imCopy = Clip.getImage();
+    if (imCopy != null)
+      System.out.println("Image (w,h): " + imCopy.getWidth() + ", " +
+                                           imCopy.getHeight());
+       :
+    Lo.closeOffice();
+    ```
 
 
 ### 1.4.  Adding and Retrieving an Image from a File
@@ -478,47 +490,48 @@ Lo.closeOffice();
 FileTransferable is the third transferable class in my utilities; a filename is passed to
 the constructor, and the contents of the file are stored on the clipboard:
 
-```java
-// in the Utils/ folder
-public class FileTransferable implements XTransferable
-{
-  private String mimeType = "application/octet-stream";
-                                 // good default
-  private byte[] fileData = null;
-
-
-  public FileTransferable(String fnm)
-  {
-    mimeType = Info.getMIMEType(fnm);
-    try {
-      fileData = Files.readAllBytes( Paths.get(fnm));
-    }
-    catch(java.lang.Exception e)
-    {  System.out.println("Could not read bytes from " + fnm);  }
-  }  // end of FileTransferable()
-
-
-  public Object getTransferData(DataFlavor df)
-                         throws UnsupportedFlavorException
-  { if (!df.MimeType.equalsIgnoreCase(mimeType))
-      throw new UnsupportedFlavorException();
-    return fileData;
-  }  // end of getTransferData()
-
-
-  public DataFlavor[] getTransferDataFlavors()
-  { DataFlavor[] flavors = new DataFlavor[1];
-    flavors[0] = new DataFlavor(mimeType, mimeType,
-                                     new Type(byte[].class));
-    return flavors;
-  }
-
-
-  public boolean isDataFlavorSupported(DataFlavor df)
-  {  return df.MimeType.equalsIgnoreCase(mimeType);  }
-
-}  // end of FileTransferable class
-```
+=== "java"
+    ```java
+    // in the Utils/ folder
+    public class FileTransferable implements XTransferable
+    {
+      private String mimeType = "application/octet-stream";
+                                     // good default
+      private byte[] fileData = null;
+    
+    
+      public FileTransferable(String fnm)
+      {
+        mimeType = Info.getMIMEType(fnm);
+        try {
+          fileData = Files.readAllBytes( Paths.get(fnm));
+        }
+        catch(java.lang.Exception e)
+        {  System.out.println("Could not read bytes from " + fnm);  }
+      }  // end of FileTransferable()
+    
+    
+      public Object getTransferData(DataFlavor df)
+                             throws UnsupportedFlavorException
+      { if (!df.MimeType.equalsIgnoreCase(mimeType))
+          throw new UnsupportedFlavorException();
+        return fileData;
+      }  // end of getTransferData()
+    
+    
+      public DataFlavor[] getTransferDataFlavors()
+      { DataFlavor[] flavors = new DataFlavor[1];
+        flavors[0] = new DataFlavor(mimeType, mimeType,
+                                         new Type(byte[].class));
+        return flavors;
+      }
+    
+    
+      public boolean isDataFlavorSupported(DataFlavor df)
+      {  return df.MimeType.equalsIgnoreCase(mimeType);  }
+    
+    }  // end of FileTransferable class
+    ```
 
 Java's Files.readAllBytes() reads in the file's contents as a bytes array. The
 transferable also stores the mime type string for the data, which it obtains by calling
@@ -526,17 +539,18 @@ Info.getMIMEType().
 
 The Clip class has setFile() and getFile() for using FileTransferable:
 
-```java
-// in the Clip class
-public static boolean setFile(String fnm)
-{  return addContents(new FileTransferable(fnm));  }
-
-
-public static byte[] getFile(String fnm)
-{ String mimeStr = Info.getMIMEType(fnm);
-  return (byte[]) getData(mimeStr);
-}
-```
+=== "java"
+    ```java
+    // in the Clip class
+    public static boolean setFile(String fnm)
+    {  return addContents(new FileTransferable(fnm));  }
+    
+    
+    public static byte[] getFile(String fnm)
+    { String mimeStr = Info.getMIMEType(fnm);
+      return (byte[]) getData(mimeStr);
+    }
+    ```
 
 getFile() shows why it's necessary to store the the data's mime type in the transferable
 – it's used as an argument to Clip.getData() to extract the byte array from the
@@ -544,23 +558,24 @@ clipboard in the correct data format.
 
 CPTests.java shows how to add and retrieve the contents of a file from the clipboard:
 
-```java
-// part of CPTests.java...
-Lo.loadOffice();
-   :
-Clip.setFile("skinner.jpg");
-System.out.println("Added file to clipboard");
-
-byte[] imData = Clip.getFile(fnm);
-System.out.println("Image byte length: " + imData.length);
-
-BufferedImage imCopy = Clip.getImage();
-if (imCopy != null)
-  System.out.println("Image (w,h): " + imCopy.getWidth() + ", " +
-                                       imCopy.getHeight());
-   :
-Lo.closeOffice();
-```
+=== "java"
+    ```java
+    // part of CPTests.java...
+    Lo.loadOffice();
+       :
+    Clip.setFile("skinner.jpg");
+    System.out.println("Added file to clipboard");
+    
+    byte[] imData = Clip.getFile(fnm);
+    System.out.println("Image byte length: " + imData.length);
+    
+    BufferedImage imCopy = Clip.getImage();
+    if (imCopy != null)
+      System.out.println("Image (w,h): " + imCopy.getWidth() + ", " +
+                                           imCopy.getHeight());
+       :
+    Lo.closeOffice();
+    ```
 
 It's possible to read the file's contents from the clipboard in two ways. Clip.getFile()
 returns it as a byte array, while Clip.getImage() attempts to convert it to a
@@ -603,27 +618,28 @@ Table 1. Corresponding Clipboard Services, Interfaces, and Classes in the Office
 The JClip class uses a similar approach to the Clip class for creating a clipboard
 reference:
 
-```java
-// in the JClip class
-private static Clipboard cb = null;
-      // used to store clipboard ref, so only one is created
-      // by the methods here
-
-
-public static Clipboard getClip()
-{
- if (cb == null) {
-    cb = Toolkit.getDefaultToolkit().getSystemClipboard();
-/*
-    cb.addFlavorListener( new FlavorListener() {
-      public void flavorsChanged(FlavorEvent e)
-      {  System.out.println(">>Flavor change detected");  }
-    });
-*/
-  }
-  return cb;
-}
-```
+=== "java"
+    ```java
+    // in the JClip class
+    private static Clipboard cb = null;
+          // used to store clipboard ref, so only one is created
+          // by the methods here
+    
+    
+    public static Clipboard getClip()
+    {
+     if (cb == null) {
+        cb = Toolkit.getDefaultToolkit().getSystemClipboard();
+    /*
+        cb.addFlavorListener( new FlavorListener() {
+          public void flavorsChanged(FlavorEvent e)
+          {  System.out.println(">>Flavor change detected");  }
+        });
+    */
+      }
+      return cb;
+    }
+    ```
 
 The reference is stored in a static variable so the same instance is used when getClip()
 is called more than once. The Java version of Office's XClipboardListener is
@@ -632,29 +648,30 @@ not when the contents change.
 
 JClip.java contains an addContents() method:
 
-```java
-// in the JClip class
-private static final int MAX_TRIES = 3;
-
-
-public static boolean addContents(Transferable trf)
-{
-  int i = 0;
-  while (i < MAX_TRIES) {
-    try {
-      getClip().setContents(trf, null);
-      return true;
-    }
-    catch (IllegalStateException e) {
-      System.out.println("Problem accessing clipboard...");
-      Lo.wait(50);
-    }
-    i++;
-  }
-  System.out.println("Unable to add contents");
-  return false;
-}  // end of addContents()
-```
+=== "java"
+    ```java
+    // in the JClip class
+    private static final int MAX_TRIES = 3;
+    
+    
+    public static boolean addContents(Transferable trf)
+    {
+      int i = 0;
+      while (i < MAX_TRIES) {
+        try {
+          getClip().setContents(trf, null);
+          return true;
+        }
+        catch (IllegalStateException e) {
+          System.out.println("Problem accessing clipboard...");
+          Lo.wait(50);
+        }
+        i++;
+      }
+      System.out.println("Unable to add contents");
+      return false;
+    }  // end of addContents()
+    ```
 
 Java's Clipboard.setContents() can throw an IllegalStateException. However,
 exceptions occur infrequently, and my solution of retrying the method three times,
@@ -669,37 +686,39 @@ which makes it unnecessary to code a TextTransferable class.
 
 The JClip support class has setText() and getText() methods:
 
-```java
-// in the JClip class
-public static boolean setText(String str)
-{  return addContents( new StringSelection(str));  }
-
-
-public static String getText()
-{
-  Transferable trf = getClip().getContents(null);
-  try {
-    if (trf != null &&
-        trf.isDataFlavorSupported(DataFlavor.stringFlavor))
-      return (String) trf.getTransferData(DataFlavor.stringFlavor);
-  }
-  catch (UnsupportedFlavorException e)
-  {  System.out.println(e); }
-  catch (IOException e)
-  { System.out.println(e); }
-  return null;
-}  // end of getText()
-```
+=== "java"
+    ```java
+    // in the JClip class
+    public static boolean setText(String str)
+    {  return addContents( new StringSelection(str));  }
+    
+    
+    public static String getText()
+    {
+      Transferable trf = getClip().getContents(null);
+      try {
+        if (trf != null &&
+            trf.isDataFlavorSupported(DataFlavor.stringFlavor))
+          return (String) trf.getTransferData(DataFlavor.stringFlavor);
+      }
+      catch (UnsupportedFlavorException e)
+      {  System.out.println(e); }
+      catch (IOException e)
+      { System.out.println(e); }
+      return null;
+    }  // end of getText()
+    ```
 
 JCPTests.java shows how to add and retrieve text from the clipboard:
 
-```java
-// part of JCPTests.java...
-JClip.setText(Lo.getTimeStamp());
-System.out.println("Added text to clipboard");
-
-System.out.println("Read clipboard: " + JClip.getText());
-```
+=== "java"
+    ```java
+    // part of JCPTests.java...
+    JClip.setText(Lo.getTimeStamp());
+    System.out.println("Added text to clipboard");
+    
+    System.out.println("Read clipboard: " + JClip.getText());
+    ```
 
 Unlike the Office examples, there's no need to start with a Lo.loadOffice() and end
 with Lo.closeOffice().
@@ -712,85 +731,87 @@ Transferable class. My JImageTransferable is comparable with the earlier
 ImageTransferable class that used the Office API, but returns a BufferedImage from
 getTransferData() instead of a byte array:
 
-```java
-// in the Utils/ folder
-public class JImageTransferable implements Transferable
-{
-  private Image im;
-
-  public JImageTransferable(Image im)
-  {  this.im = im;  }
-
-
-  public Object getTransferData(DataFlavor df)
-                throws UnsupportedFlavorException, IOException
-  { if (df.equals(DataFlavor.imageFlavor) && im != null)
-      return im;
-    else
-      throw new UnsupportedFlavorException(df);
-  }
-
-
-  public DataFlavor[] getTransferDataFlavors()
-  { DataFlavor[] dfs = new DataFlavor[1];
-    dfs[0] = DataFlavor.imageFlavor;
-    return dfs;
-  }
-
-
-  public boolean isDataFlavorSupported(DataFlavor df)
-  {
-    DataFlavor[] dfs = getTransferDataFlavors();
-    for (int i = 0; i < dfs.length; i++) {
-      if (df.equals(dfs[i]))
-        return true;
-    }
-    return false;
-  }
-
-}  // end of JImageTransferable class
-
-The JClip support class has setImage() and getImage() methods:
-
-// in the JClip class
-public static boolean setImage(BufferedImage im)
-{  return addContents(new JImageTransferable(im));  }
-
-
-public static BufferedImage getImage()
-{
-  Transferable trf = getClip().getContents(null);
-  if (trf != null &&
-      trf.isDataFlavorSupported(DataFlavor.imageFlavor)) {
-    try {
-      return (BufferedImage)
-            trf.getTransferData(DataFlavor.imageFlavor);
-    }
-    catch (Exception e)
-    {  System.out.println(e); }
-  }
-  return null;
-}  // end of getImage()
-```
+=== "java"
+    ```java
+    // in the Utils/ folder
+    public class JImageTransferable implements Transferable
+    {
+      private Image im;
+    
+      public JImageTransferable(Image im)
+      {  this.im = im;  }
+    
+    
+      public Object getTransferData(DataFlavor df)
+                    throws UnsupportedFlavorException, IOException
+      { if (df.equals(DataFlavor.imageFlavor) && im != null)
+          return im;
+        else
+          throw new UnsupportedFlavorException(df);
+      }
+    
+    
+      public DataFlavor[] getTransferDataFlavors()
+      { DataFlavor[] dfs = new DataFlavor[1];
+        dfs[0] = DataFlavor.imageFlavor;
+        return dfs;
+      }
+    
+    
+      public boolean isDataFlavorSupported(DataFlavor df)
+      {
+        DataFlavor[] dfs = getTransferDataFlavors();
+        for (int i = 0; i < dfs.length; i++) {
+          if (df.equals(dfs[i]))
+            return true;
+        }
+        return false;
+      }
+    
+    }  // end of JImageTransferable class
+    
+    The JClip support class has setImage() and getImage() methods:
+    
+    // in the JClip class
+    public static boolean setImage(BufferedImage im)
+    {  return addContents(new JImageTransferable(im));  }
+    
+    
+    public static BufferedImage getImage()
+    {
+      Transferable trf = getClip().getContents(null);
+      if (trf != null &&
+          trf.isDataFlavorSupported(DataFlavor.imageFlavor)) {
+        try {
+          return (BufferedImage)
+                trf.getTransferData(DataFlavor.imageFlavor);
+        }
+        catch (Exception e)
+        {  System.out.println(e); }
+      }
+      return null;
+    }  // end of getImage()
+    ```
 
 JClip.getImage() is simpler than the version in the Clip class since it doesn't have to
 convert a byte array to a BufferedImage.
 
 JCPTests.java shows how to add and retrieve an image from the clipboard:
 
-```java
-// part of JCPTests.java...
-BufferedImage im = Images.loadImage("skinner.png");
-System.out.println("Image (w,h): " + im.getWidth() + ", " +
-                                     im.getHeight());
-JClip.setImage(im);
-System.out.println("Added image to clipboard");
-
-BufferedImage imCopy = JClip.getImage();
-if (imCopy != null)
-  System.out.println("Image (w,h): " + imCopy.getWidth() + ", " +
-                                       imCopy.getHeight());
-```
+=== "java"
+    ```java
+    // part of JCPTests.java...
+    BufferedImage im = Images.loadImage("skinner.png");
+    System.out.println("Image (w,h): " + im.getWidth() + ", " +
+                                         im.getHeight());
+    JClip.setImage(im);
+    System.out.println("Added image to clipboard");
+    
+    BufferedImage imCopy = JClip.getImage();
+    if (imCopy != null)
+      System.out.println("Image (w,h): " + imCopy.getWidth() + ", " +
+                                           imCopy.getHeight());
+    ```
 
 It's no different from the example in CPTest.java, except for the use of JClip.
 
@@ -803,96 +824,100 @@ As I mentioned above, I'm using the Java API because of the simplicity of copyin
 JArrayTransferable is an implementation of Transferable that stores a 2D array of
 objects on the clipboard:
 
-```java
-// in the Utils/ folder
-public class JArrayTransferable implements Transferable
-{
-  private Object[][] vals;
-  private DataFlavor arrDF;
-
-  public JArrayTransferable(Object[][] vals)
-  {  this.vals = vals;
-     arrDF = new DataFlavor(Object[][].class, "2D Object Array");
-  }
-
-
-  public Object getTransferData(DataFlavor df)
-                throws UnsupportedFlavorException, IOException
-  { if (df.equals(arrDF) && vals != null)
-      return vals;
-    else
-      throw new UnsupportedFlavorException(df);
-  }
-
-
-  public DataFlavor[] getTransferDataFlavors()
-  { DataFlavor[] dfs = new DataFlavor[1];
-    dfs[0] = arrDF;
-    return dfs;
-  }
-
-
-  public boolean isDataFlavorSupported(DataFlavor df)
-  {
-    DataFlavor[] dfs = getTransferDataFlavors();
-    for (int i = 0; i < dfs.length; i++) {
-      if (df.equals(dfs[i]))
-        return true;
-    }
-    return false;
-  }
-
-}  // end of JArrayTransferable class
-```
+=== "java"
+    ```java
+    // in the Utils/ folder
+    public class JArrayTransferable implements Transferable
+    {
+      private Object[][] vals;
+      private DataFlavor arrDF;
+    
+      public JArrayTransferable(Object[][] vals)
+      {  this.vals = vals;
+         arrDF = new DataFlavor(Object[][].class, "2D Object Array");
+      }
+    
+    
+      public Object getTransferData(DataFlavor df)
+                    throws UnsupportedFlavorException, IOException
+      { if (df.equals(arrDF) && vals != null)
+          return vals;
+        else
+          throw new UnsupportedFlavorException(df);
+      }
+    
+    
+      public DataFlavor[] getTransferDataFlavors()
+      { DataFlavor[] dfs = new DataFlavor[1];
+        dfs[0] = arrDF;
+        return dfs;
+      }
+    
+    
+      public boolean isDataFlavorSupported(DataFlavor df)
+      {
+        DataFlavor[] dfs = getTransferDataFlavors();
+        for (int i = 0; i < dfs.length; i++) {
+          if (df.equals(dfs[i]))
+            return true;
+        }
+        return false;
+      }
+    
+    }  // end of JArrayTransferable class
+    ```
 
 JArrayTransferable defines a flavor for the array type:
 
-```java
-DataFlavor arrDF =
-       new DataFlavor(Object[][].class, "2D Object Array");
-```
+=== "java"
+    ```java
+    DataFlavor arrDF =
+           new DataFlavor(Object[][].class, "2D Object Array");
+    ```
 
 The string argument is a 'human presentable name' rather than a mime type, since
 there's no good mime type match.
 
 In JClip.java, the set and get methods for an array are:
 
-```java
-// in the JClip class
-private static final DataFlavor ARRAY_DF =
-           new DataFlavor(Object[][].class, "2D Object Array");
-
-
-public static boolean setArray(Object[][] vals)
-{  return addContents(new JArrayTransferable(vals));  }
-
-
-public static Object[][] getArray()
-{
-  Transferable trf = getClip().getContents(null);
-  if (trf != null && trf.isDataFlavorSupported(ARRAY_DF)) {
-    try {
-      return (Object[][]) trf.getTransferData(ARRAY_DF);
-    }
-    catch (Exception e)
-    {  System.out.println(e); }
-  }
-  return null;
-}  // end of getArray()
-```
+=== "java"
+    ```java
+    // in the JClip class
+    private static final DataFlavor ARRAY_DF =
+               new DataFlavor(Object[][].class, "2D Object Array");
+    
+    
+    public static boolean setArray(Object[][] vals)
+    {  return addContents(new JArrayTransferable(vals));  }
+    
+    
+    public static Object[][] getArray()
+    {
+      Transferable trf = getClip().getContents(null);
+      if (trf != null && trf.isDataFlavorSupported(ARRAY_DF)) {
+        try {
+          return (Object[][]) trf.getTransferData(ARRAY_DF);
+        }
+        catch (Exception e)
+        {  System.out.println(e); }
+      }
+      return null;
+    }  // end of getArray()
+    ```
 
 JCPTests.java shows how to store and retrieve an array:
 
-```java
-// part of JCPTests.java...
-Object[][] marks = {{50,60,55,67,70},
-                    {62,65,70,70,81},
-                    {72,66,77,80,69} };    // no generics used
-JClip.setArray(marks);
-System.out.println("Added 2D array to clipboard");
-
-Object[][] arr = JClip.getArray();
-```
+=== "java"
+    ```java
+    // part of JCPTests.java...
+    Object[][] marks = {{50,60,55,67,70},
+                        {62,65,70,70,81},
+                        {72,66,77,80,69} };    // no generics used
+    JClip.setArray(marks);
+    System.out.println("Added 2D array to clipboard");
+    
+    Object[][] arr = JClip.getArray();
+    ```
 
 I'll be using JClip.setArray() and JClip.getArray() later in this chapter for clipboard
 copying of spreadsheet cells and database query results (sections 5 and 7).
@@ -987,64 +1012,66 @@ clip in formats other than just text.
 The main() function of CopyPasteText.java loads startStory.doc, then calls either
 useClipUtils() or useDispatches():
 
-```java
-// in CopyPasteText.java
-private static final String FNM = "storyStart.doc";
-
-
-public static void main(String args[])
-{
-  XComponentLoader loader = Lo.loadOffice();
-  XTextDocument doc = Write.openDoc(FNM, loader);
-  if (doc == null) {
-    System.out.println("Could not open " + FNM);
-    Lo.closeOffice();
-    return;
-  }
-
-  useClipUtils(doc, 4);    // invisible approach
-  // useDispatches(doc, 4);  // visible
-
-  Lo.closeDoc(doc);
-  Lo.closeOffice();
-}  // end of main()
-```
+=== "java"
+    ```java
+    // in CopyPasteText.java
+    private static final String FNM = "storyStart.doc";
+    
+    
+    public static void main(String args[])
+    {
+      XComponentLoader loader = Lo.loadOffice();
+      XTextDocument doc = Write.openDoc(FNM, loader);
+      if (doc == null) {
+        System.out.println("Could not open " + FNM);
+        Lo.closeOffice();
+        return;
+      }
+    
+      useClipUtils(doc, 4);    // invisible approach
+      // useDispatches(doc, 4);  // visible
+    
+      Lo.closeDoc(doc);
+      Lo.closeOffice();
+    }  // end of main()
+    ```
 
 useClipUtils() is passed a reference to the document and an integer used to select a
 sentence:
 
-```java
-// in CopyPasteText.java
-private static void useClipUtils(XTextDocument doc, int n)
-{
-  XSentenceCursor senCursor = Write.getSentenceCursor(doc);
-  senCursor.gotoStart(false);     // start of text; no selection
-  gotoSentence(senCursor, n);
-
-  // copy to clipboard
-  Clip.setText(senCursor.getString());
-  System.out.println("Copied \"" + senCursor.getString() + "\"");
-
-  Lo.wait(2000);
-  XTextCursor cursor = Write.getCursor(doc);
-  cursor.gotoEnd(false);   // go to end of doc
-
-  // paste into doc
-  Write.append(cursor, Clip.getText());
-
-  GUI.setVisible(doc, true);   // so we can see change
-  Lo.waitEnter();
-}  // end of useClipUtils()
-
-
-private static void gotoSentence(XSentenceCursor senCursor, int n)
-{
-  do {
-    senCursor.gotoEndOfSentence(true);   // select all of sentence
-    n--;
-  } while ((n > 0) && senCursor.gotoNextSentence(false));
-}  // end of gotoSentence()
-```
+=== "java"
+    ```java
+    // in CopyPasteText.java
+    private static void useClipUtils(XTextDocument doc, int n)
+    {
+      XSentenceCursor senCursor = Write.getSentenceCursor(doc);
+      senCursor.gotoStart(false);     // start of text; no selection
+      gotoSentence(senCursor, n);
+    
+      // copy to clipboard
+      Clip.setText(senCursor.getString());
+      System.out.println("Copied \"" + senCursor.getString() + "\"");
+    
+      Lo.wait(2000);
+      XTextCursor cursor = Write.getCursor(doc);
+      cursor.gotoEnd(false);   // go to end of doc
+    
+      // paste into doc
+      Write.append(cursor, Clip.getText());
+    
+      GUI.setVisible(doc, true);   // so we can see change
+      Lo.waitEnter();
+    }  // end of useClipUtils()
+    
+    
+    private static void gotoSentence(XSentenceCursor senCursor, int n)
+    {
+      do {
+        senCursor.gotoEndOfSentence(true);   // select all of sentence
+        n--;
+      } while ((n > 0) && senCursor.gotoNextSentence(false));
+    }  // end of gotoSentence()
+    ```
 
 Sentence selection in gotoSentence() is done with XSentenceCursor, which was
 previously used in Chapter 5, section 6. The text covered by the cursor is copied to the
@@ -1074,19 +1101,20 @@ Figure 3. The TextDocumentView Service and XTextViewCursor.
 Obtaining an XTextViewCursor involves some casting, which I've hidden inside
 Writer.getViewCursor():
 
-```java
-// the Writer class
-public static XTextViewCursor getViewCursor(XTextDocument textDoc)
-{
-  XModel model = Lo.qi(XModel.class, textDoc);
-  XController xController = model.getCurrentController();
-
-  // the controller gives us the TextViewCursor
-  XTextViewCursorSupplier supplier =
-      Lo.qi(XTextViewCursorSupplier.class, xController);
-  return supplier.getViewCursor();
-}  // end of getViewCursor()
-```
+=== "java"
+    ```java
+    // the Writer class
+    public static XTextViewCursor getViewCursor(XTextDocument textDoc)
+    {
+      XModel model = Lo.qi(XModel.class, textDoc);
+      XController xController = model.getCurrentController();
+    
+      // the controller gives us the TextViewCursor
+      XTextViewCursorSupplier supplier =
+          Lo.qi(XTextViewCursorSupplier.class, xController);
+      return supplier.getViewCursor();
+    }  // end of getViewCursor()
+    ```
 
 The text document is cast to an XModel interface, which allows its corresponding
 controller to be obtained. At that point we're positioned on the far right of Figure 2 in
@@ -1100,40 +1128,41 @@ the cursor.
 useDispatches() calls Writer.getViewCursor() to get a view cursor, and
 Write.getSentenceCursor() for a sentence cursor:
 
-```java
-// in CopyPasteText.java
-private static void useDispatches(XTextDocument doc, int n)
-{
-  GUI.setVisible(doc, true);   // *must* be made visible
-  Lo.wait(2000);   // give Office time to appear
-
-  XTextViewCursor tvc = Write.getViewCursor(doc);
-  XSentenceCursor senCursor = Write.getSentenceCursor(doc);
-  senCursor.gotoStart(false);
-            // go to start of text; no selection
-  gotoSentence(senCursor, n);
-
-  // move the text view cursor to highlight the current paragraph
-  tvc.gotoRange(senCursor.getStart(), false);
-  tvc.gotoRange(senCursor.getEnd(), true);
-
-  Lo.dispatchCmd("Copy");
-  Clip.listFlavors();
-
-  // save copied text as RTF & HTML
-  FileIO.saveString("storyFrag.rtf", Clip.getRTF());
-  FileIO.saveString("storyFrag.html", Clip.getHTML());
-
-  // save embedded text fragment as ODT
-  FileIO.saveBytes("storyFrag.odt", Clip.getEmbedSource());
-
-  Lo.wait(2000);
-  tvc.gotoEnd(false);    // go to end of doc
-  Lo.dispatchCmd("Paste");
-
-  Lo.waitEnter();
-}  // end of useDispatches()
-```
+=== "java"
+    ```java
+    // in CopyPasteText.java
+    private static void useDispatches(XTextDocument doc, int n)
+    {
+      GUI.setVisible(doc, true);   // *must* be made visible
+      Lo.wait(2000);   // give Office time to appear
+    
+      XTextViewCursor tvc = Write.getViewCursor(doc);
+      XSentenceCursor senCursor = Write.getSentenceCursor(doc);
+      senCursor.gotoStart(false);
+                // go to start of text; no selection
+      gotoSentence(senCursor, n);
+    
+      // move the text view cursor to highlight the current paragraph
+      tvc.gotoRange(senCursor.getStart(), false);
+      tvc.gotoRange(senCursor.getEnd(), true);
+    
+      Lo.dispatchCmd("Copy");
+      Clip.listFlavors();
+    
+      // save copied text as RTF & HTML
+      FileIO.saveString("storyFrag.rtf", Clip.getRTF());
+      FileIO.saveString("storyFrag.html", Clip.getHTML());
+    
+      // save embedded text fragment as ODT
+      FileIO.saveBytes("storyFrag.odt", Clip.getEmbedSource());
+    
+      Lo.wait(2000);
+      tvc.gotoEnd(false);    // go to end of doc
+      Lo.dispatchCmd("Paste");
+    
+      Lo.waitEnter();
+    }  // end of useDispatches()
+    ```
 
 The sentence cursor is moved as before, by calling gotoSentence(), but it doesn't
 highlight the text in the window. XTextViewCursor is needed for this, by being
@@ -1172,27 +1201,28 @@ Clip.listFlavors() prints this information by getting a copy of the current tran
 off the clipboard, and calling its getTransferDataFlavors() method to obtain favor
 data:
 
-```java
-// in the Clip class
-public static void listFlavors()
-{
-  XTransferable trf = getClip().getContents();
-  if (trf == null)
-    System.out.println("No transferable found");
-  else
-    listFlavors(trf);
-}  // end of listFlavors()
-
-
-public static void listFlavors(XTransferable trf)
-{
-  DataFlavor[] dfs = trf.getTransferDataFlavors();
-  System.out.println("No of flavors: " + dfs.length);
-  for (int i = 0; i < dfs.length; i++)
-    System.out.println((i+1) + ". " + dfs[i].MimeType);
-  System.out.println();
-}  // end of listFlavors()
-```
+=== "java"
+    ```java
+    // in the Clip class
+    public static void listFlavors()
+    {
+      XTransferable trf = getClip().getContents();
+      if (trf == null)
+        System.out.println("No transferable found");
+      else
+        listFlavors(trf);
+    }  // end of listFlavors()
+    
+    
+    public static void listFlavors(XTransferable trf)
+    {
+      DataFlavor[] dfs = trf.getTransferDataFlavors();
+      System.out.println("No of flavors: " + dfs.length);
+      for (int i = 0; i < dfs.length; i++)
+        System.out.println((i+1) + ". " + dfs[i].MimeType);
+      System.out.println();
+    }  // end of listFlavors()
+    ```
 
 The ClCl clipboard viewer (https://nakka.com/soft/clcl/index_eng.html) is a
 more graphical way of viewing this information. For example, the copied text is
@@ -1218,38 +1248,39 @@ The advantage of using Clip.listFlavors() is that it displays the Office mime ty
 strings, which are used to select data from the transferable. These strings are
 employed by the Clip.getXXX() methods:
 
-```java
-// in the Clip class
-public static String getHTML()
-{
-  byte[] data = (byte[]) getData("text/html");
-  if (data == null)
-    return null;
-  else
-    return new String(data);
-}  // end of getHTML()
-
-
-
-public static String getRTF()
-// text format used by MS
-{
-  byte[] data = (byte[]) getData("text/richtext");
-  if (data == null)
-    return null;
-  else
-    return new String(data);
-}  // end of getRTF()
-
-
-public static byte[] getEmbedSource()
-// fragment in binary ODF
-{
-  return (byte[]) getData(
-      "application/x-openoffice-embed-source-xml;
-            windows_formatname=\"Star Embed Source (XML)\"");
-}  // end of getEmbedSource()
-```
+=== "java"
+    ```java
+    // in the Clip class
+    public static String getHTML()
+    {
+      byte[] data = (byte[]) getData("text/html");
+      if (data == null)
+        return null;
+      else
+        return new String(data);
+    }  // end of getHTML()
+    
+    
+    
+    public static String getRTF()
+    // text format used by MS
+    {
+      byte[] data = (byte[]) getData("text/richtext");
+      if (data == null)
+        return null;
+      else
+        return new String(data);
+    }  // end of getRTF()
+    
+    
+    public static byte[] getEmbedSource()
+    // fragment in binary ODF
+    {
+      return (byte[]) getData(
+          "application/x-openoffice-embed-source-xml;
+                windows_formatname=\"Star Embed Source (XML)\"");
+    }  // end of getEmbedSource()
+    ```
 
 Recall that I'm using the Office API, so Clip.getData() must return either a string or a
 byte array.
@@ -1263,28 +1294,29 @@ and the data is saved to a file using FileIO.saveString() or FileIO.saveBytes().
 CopyPasteCalc.java copies the data in a block of spreadsheet cells to empty cells at
 the bottom of the sheet. The main() function is similar to the Writer example:
 
-```java
-// in CopyPasteCalc.java
-private static final String FNM = "Addresses.ods";
-
-
-public static void main(String args[])
-{
-  XComponentLoader loader = Lo.loadOffice();
-  XSpreadsheetDocument doc = Calc.openDoc(FNM, loader);
-  if (doc == null) {
-    System.out.println("Could not open " + FNM);
-    Lo.closeOffice();
-    return;
-  }
-
-  useClipUtils(doc);    // invisible approach
-  // useDispatches(doc);  // visible
-
-  Lo.closeDoc(doc);
-  Lo.closeOffice();
-}  // end of main()
-```
+=== "java"
+    ```java
+    // in CopyPasteCalc.java
+    private static final String FNM = "Addresses.ods";
+    
+    
+    public static void main(String args[])
+    {
+      XComponentLoader loader = Lo.loadOffice();
+      XSpreadsheetDocument doc = Calc.openDoc(FNM, loader);
+      if (doc == null) {
+        System.out.println("Could not open " + FNM);
+        Lo.closeOffice();
+        return;
+      }
+    
+      useClipUtils(doc);    // invisible approach
+      // useDispatches(doc);  // visible
+    
+      Lo.closeDoc(doc);
+      Lo.closeOffice();
+    }  // end of main()
+    ```
 
 useClipUtils() employs Clip support functions so the Calc window can remain hidden,
 while useDispatches() needs the window to be visible so that "Copy" and "Paste"
@@ -1296,38 +1328,40 @@ by calling Calc.getCellRange() which returns an XCellRange instance. The data
 covered by that range is extracted as a 2D array by Calc.getCellRangeArray(), and
 stored on the clipboard by JClip.setArray():
 
-```java
-// in CopyPasteCalc.java
-private static void useClipUtils(XSpreadsheetDocument doc)
-{
-  XSpreadsheet sheet = Calc.getSheet(doc, 0);
-
-  XCellRange cellRange = Calc.getCellRange(sheet,0,2,6,2); //row 3
-  Object[][] data = Calc.getCellRangeArray(cellRange);
-  JClip.setArray(data);   // copy array to clipboard
-
-  Lo.wait(2000);
-
-  XCellRange toCellRange = Calc.getCellRange(sheet,0,8,6,8); //row 9
-  Object[][] cbData = JClip.getArray();      // paste in array
-  Calc.setCellRangeArray(toCellRange, cbData);
-
-  GUI.setVisible(doc, true);   // so can see the paste
-  Lo.waitEnter();
-}  // end of useClipUtils()
-```
+=== "java"
+    ```java
+    // in CopyPasteCalc.java
+    private static void useClipUtils(XSpreadsheetDocument doc)
+    {
+      XSpreadsheet sheet = Calc.getSheet(doc, 0);
+    
+      XCellRange cellRange = Calc.getCellRange(sheet,0,2,6,2); //row 3
+      Object[][] data = Calc.getCellRangeArray(cellRange);
+      JClip.setArray(data);   // copy array to clipboard
+    
+      Lo.wait(2000);
+    
+      XCellRange toCellRange = Calc.getCellRange(sheet,0,8,6,8); //row 9
+      Object[][] cbData = JClip.getArray();      // paste in array
+      Calc.setCellRangeArray(toCellRange, cbData);
+    
+      GUI.setVisible(doc, true);   // so can see the paste
+      Lo.waitEnter();
+    }  // end of useClipUtils()
+    ```
 
 Calc.getCellRangeArray() wraps the XCellRangeData interface, which was explained
 in Chapter 20, section 2.3:
 
-```java
-// in the Calc class
-public static Object[][] getCellRangeArray(XCellRange cellRange)
-{
-  XCellRangeData crData  = Lo.qi(XCellRangeData.class, cellRange);
-  return crData.getDataArray();
-}
-```
+=== "java"
+    ```java
+    // in the Calc class
+    public static Object[][] getCellRangeArray(XCellRange cellRange)
+    {
+      XCellRangeData crData  = Lo.qi(XCellRangeData.class, cellRange);
+      return crData.getDataArray();
+    }
+    ```
 
 The  process of pasting the cell range back into the sheet requires another call to
 Calc.getCellRange() to select a new block of cells. Then the clip data as an array is
@@ -1340,38 +1374,39 @@ The 'visible' technique also uses XCellRange, but as an argument to
 XSelectionSupplier.select() so the cells are highlighted in the Calc window. The
 useDispatches() method is:
 
-```java
-// in CopyPasteCalc.java
-private static void useDispatches(XSpreadsheetDocument doc)
-{
-  GUI.setVisible(doc, true);   // Office *must* be visible
-
-  XSpreadsheet sheet = Calc.getSheet(doc, 0);
-  XCellRange cellRange = Calc.getCellRange(sheet,0,2,6,2); // row 3
-
-  XSelectionSupplier selSupp = GUI.getSelectionSupplier(doc);
-  selSupp.select(cellRange);
-  Lo.dispatchCmd("Copy");
-
-  Clip.listFlavors();
-
-  Lo.wait(2000);
-
-  // save embedded cells as ODS
-  FileIO.saveBytes("AddressesFrag.ods", Clip.getEmbedSource());
-
-  // save cells as SYLK file
-  FileIO.saveString("AddressesFrag.slk", Clip.getSylk());
-
-  XCellRange toCellRange = Calc.getCellRange(sheet,0,8,6,8); // row 9
-         // GUI dialog asks about insertion if range is too small
-         // and data repeats if range is too big
-  selSupp.select(toCellRange);
-  Lo.dispatchCmd("Paste");
-
-  Lo.waitEnter();
-}  // end of useDispatches()
-```
+=== "java"
+    ```java
+    // in CopyPasteCalc.java
+    private static void useDispatches(XSpreadsheetDocument doc)
+    {
+      GUI.setVisible(doc, true);   // Office *must* be visible
+    
+      XSpreadsheet sheet = Calc.getSheet(doc, 0);
+      XCellRange cellRange = Calc.getCellRange(sheet,0,2,6,2); // row 3
+    
+      XSelectionSupplier selSupp = GUI.getSelectionSupplier(doc);
+      selSupp.select(cellRange);
+      Lo.dispatchCmd("Copy");
+    
+      Clip.listFlavors();
+    
+      Lo.wait(2000);
+    
+      // save embedded cells as ODS
+      FileIO.saveBytes("AddressesFrag.ods", Clip.getEmbedSource());
+    
+      // save cells as SYLK file
+      FileIO.saveString("AddressesFrag.slk", Clip.getSylk());
+    
+      XCellRange toCellRange = Calc.getCellRange(sheet,0,8,6,8); // row 9
+             // GUI dialog asks about insertion if range is too small
+             // and data repeats if range is too big
+      selSupp.select(toCellRange);
+      Lo.dispatchCmd("Paste");
+    
+      Lo.waitEnter();
+    }  // end of useDispatches()
+    ```
 
 The selection of cell ranges is done twice in useDispatches() – a cell range is required
 for the block of cells being copied, and another range is necessary for the empty cell
@@ -1422,19 +1457,20 @@ and as a SYLK file. Clip.getEmbedSource() is called in useDispatches() to return
 byte array holding the ODS data, and Clip.getSylk() returns the SYLK text. The code
 for Clip.getSylk():
 
-```java
-// in the Clip class
-public static String getSylk()
-// text-based spreadsheet format used by MS
-{
-  byte[] data = (byte[]) getData(
-      "application/x-openoffice-sylk;windows_formatname=\"Sylk\"");
-  if (data == null)
-    return null;
-  else
-    return new String(data);
-}  // end of getSylk()
-```
+=== "java"
+    ```java
+    // in the Clip class
+    public static String getSylk()
+    // text-based spreadsheet format used by MS
+    {
+      byte[] data = (byte[]) getData(
+          "application/x-openoffice-sylk;windows_formatname=\"Sylk\"");
+      if (data == null)
+        return null;
+      else
+        return new String(data);
+    }  // end of getSylk()
+    ```
 
 
 ## 5.  Copy and Pasting in an Impress Document
@@ -1451,73 +1487,75 @@ clipboard are saved in various formats.
 
 The main() function loads a slide deck and calls copySave() to do the hard work:
 
-```java
-// in CopySlide.java
-private static final String FNM = "algs.odp";
-
-
-public static void main(String args[])
-{
-  XComponentLoader loader = Lo.loadOffice();
-  XComponent doc = Lo.openDoc(FNM, loader);
-  if (doc == null) {
-    System.out.println("Could not open the file: " + FNM);
-    Lo.closeOffice();
-    return;
-  }
-
-  GUI.setVisible(doc, true);
-  Lo.wait(2000);
-
-  copySave(doc, 3);   // save copy of 4th slide
-
-  Lo.waitEnter();
-  Lo.closeDoc(doc);
-  Lo.closeOffice();
-} // end of main()
-```
+=== "java"
+    ```java
+    // in CopySlide.java
+    private static final String FNM = "algs.odp";
+    
+    
+    public static void main(String args[])
+    {
+      XComponentLoader loader = Lo.loadOffice();
+      XComponent doc = Lo.openDoc(FNM, loader);
+      if (doc == null) {
+        System.out.println("Could not open the file: " + FNM);
+        Lo.closeOffice();
+        return;
+      }
+    
+      GUI.setVisible(doc, true);
+      Lo.wait(2000);
+    
+      copySave(doc, 3);   // save copy of 4th slide
+    
+      Lo.waitEnter();
+      Lo.closeDoc(doc);
+      Lo.closeOffice();
+    } // end of main()
+    ```
 
 copySave() switches Office to slide sorter mode, goes to the specified slide, which
 highlights it in the window. The "Copy" dispatch copies that slide to the clipboard.
 
 
-```java
-// in CopySlide.java
-private static void copySave(XComponent doc, int fromIdx)
-{
-  XController ctrl = GUI.getCurrentController(doc);
-
-  Lo.dispatchCmd("DiaMode");
-      // Switch to slide sorter view
-  Lo.delay(5000);   // give Office plenty of time to do it
-
-  XDrawPage fromSlide = Draw.getSlide(doc, fromIdx);
-  Draw.gotoPage(ctrl, fromSlide);  // select this slide
-
-  Lo.dispatchCmd("Copy");
-  System.out.println("Copied slide no. " + (fromIdx+1));
-
-  Clip.listFlavors();
-
-  // save embedded slide as ODP;
-  FileIO.saveBytes("slide" + (fromIdx+1) +".odp",
-                            Clip.getEmbedSource());
-
-  // save slide as XML ('flat' ODP)
-  FileIO.saveString("slide" + (fromIdx+1) +".fodp",
-                            Clip.getXMLDraw());
-
-  // save slide as PNG image
-  Images.saveImage(Clip.getImage(), "slide" + (fromIdx+1) +".png");
-        // for another approach see Slide2Image.java in Draw Tests/
-
-  // save slide as a Bitmap
-  FileIO.saveBytes("slide" + (fromIdx+1) +".bmp",
-                            Clip.getBitmap());
-
-  Lo.dispatchCmd("DrawingMode");
-}  // end of copySave()
-```
+=== "java"
+    ```java
+    // in CopySlide.java
+    private static void copySave(XComponent doc, int fromIdx)
+    {
+      XController ctrl = GUI.getCurrentController(doc);
+    
+      Lo.dispatchCmd("DiaMode");
+          // Switch to slide sorter view
+      Lo.delay(5000);   // give Office plenty of time to do it
+    
+      XDrawPage fromSlide = Draw.getSlide(doc, fromIdx);
+      Draw.gotoPage(ctrl, fromSlide);  // select this slide
+    
+      Lo.dispatchCmd("Copy");
+      System.out.println("Copied slide no. " + (fromIdx+1));
+    
+      Clip.listFlavors();
+    
+      // save embedded slide as ODP;
+      FileIO.saveBytes("slide" + (fromIdx+1) +".odp",
+                                Clip.getEmbedSource());
+    
+      // save slide as XML ('flat' ODP)
+      FileIO.saveString("slide" + (fromIdx+1) +".fodp",
+                                Clip.getXMLDraw());
+    
+      // save slide as PNG image
+      Images.saveImage(Clip.getImage(), "slide" + (fromIdx+1) +".png");
+            // for another approach see Slide2Image.java in Draw Tests/
+    
+      // save slide as a Bitmap
+      FileIO.saveBytes("slide" + (fromIdx+1) +".bmp",
+                                Clip.getBitmap());
+    
+      Lo.dispatchCmd("DrawingMode");
+    }  // end of copySave()
+    ```
 
 Clip.listFlavors() reports the data types that can be copied from the clipboard:
 
@@ -1554,20 +1592,21 @@ The code at the end of copySave() reads and saves the clipboard data in four way
 
 Clip.getXMLDraw() retrieves the XML for the ODP file:
 
-```java
-// in the Clip class
-public static String getXMLDraw()
-// a 'flat' XML version of the draw/slide copy
-{
-  byte[] data = (byte[]) getData(
-                 "application/x-openoffice-drawing;
-                  windows_formatname=\"Drawing Format\"");
-  if (data == null)
-    return null;
-  else
-    return new String(data);
-}  // end of getXMLDraw()
-```
+=== "java"
+    ```java
+    // in the Clip class
+    public static String getXMLDraw()
+    // a 'flat' XML version of the draw/slide copy
+    {
+      byte[] data = (byte[]) getData(
+                     "application/x-openoffice-drawing;
+                      windows_formatname=\"Drawing Format\"");
+      if (data == null)
+        return null;
+      else
+        return new String(data);
+    }  // end of getXMLDraw()
+    ```
 
 The text is saved to a file with the extension "fodp", indicating that it holds a 'flat'
 XML version of the ODP document. This file can be opened in Office by double
@@ -1618,52 +1657,53 @@ written into a new spreadsheet using XCellRangeData.setDataArray().
 The same approach is used in CopyResultSet.java in this section, except that the array
 is copied to the clipboard with JClip.setArray():
 
-```java
-// in CopyResultSet.java
-private static final String FNM = "liangTables.odb";
-
-
-public static void main(String[] args)
-{
-  XComponentLoader loader = Lo.loadOffice();
-  XOfficeDatabaseDocument dbDoc = Base.openBaseDoc(FNM, loader);
-  if (dbDoc == null) {
-    System.out.println("Could not open database " + FNM);
-    Lo.closeOffice();
-    return;
-  }
-
-  XConnection conn = null;
-  try {
-    XDataSource dataSource = dbDoc.getDataSource();
-    conn = dataSource.getConnection("", ""); // no login/password
-
-    XResultSet rs = Base.executeQuery(
-                        "SELECT * FROM \"Course\"", conn);
-
-    // BaseTablePrinter.printResultSet(rs);
-    // rs.beforeFirst();  // fails if ResultSet is TYPE_FORWARD_ONLY,
-                          // which is the default
-    Object[][] rsArr = Base.getResultSetArr(rs);
-    Base.printResultSetArr(rsArr);
-
-    JClip.setArray(rsArr);
-
-    // Clip.listFlavors();
-    JClip.listFlavors();
-
-    System.out.println("Saving array from clipboard");
-    FileIO.saveArray("queryResults.txt", JClip.getArray());
-  }
-  catch(SQLException e) {
-    System.out.println(e);
-  }
-
-  Base.closeConnection(conn);
-  Base.closeBaseDoc(dbDoc);
-  Lo.closeOffice();
-}  // end of main()
-```
+=== "java"
+    ```java
+    // in CopyResultSet.java
+    private static final String FNM = "liangTables.odb";
+    
+    
+    public static void main(String[] args)
+    {
+      XComponentLoader loader = Lo.loadOffice();
+      XOfficeDatabaseDocument dbDoc = Base.openBaseDoc(FNM, loader);
+      if (dbDoc == null) {
+        System.out.println("Could not open database " + FNM);
+        Lo.closeOffice();
+        return;
+      }
+    
+      XConnection conn = null;
+      try {
+        XDataSource dataSource = dbDoc.getDataSource();
+        conn = dataSource.getConnection("", ""); // no login/password
+    
+        XResultSet rs = Base.executeQuery(
+                            "SELECT * FROM \"Course\"", conn);
+    
+        // BaseTablePrinter.printResultSet(rs);
+        // rs.beforeFirst();  // fails if ResultSet is TYPE_FORWARD_ONLY,
+                              // which is the default
+        Object[][] rsArr = Base.getResultSetArr(rs);
+        Base.printResultSetArr(rsArr);
+    
+        JClip.setArray(rsArr);
+    
+        // Clip.listFlavors();
+        JClip.listFlavors();
+    
+        System.out.println("Saving array from clipboard");
+        FileIO.saveArray("queryResults.txt", JClip.getArray());
+      }
+      catch(SQLException e) {
+        System.out.println(e);
+      }
+    
+      Base.closeConnection(conn);
+      Base.closeBaseDoc(dbDoc);
+      Lo.closeOffice();
+    }  // end of main()
+    ```
 
 As with previous examples, listFlavors() displays the flavors available to Office. The
 Clip.java function reports no flavors since the serialized 2D array added to the
@@ -1696,9 +1736,10 @@ already at the end of the table, it generates no array data.
 
 One solution is to reset the cursor to the start, using:
 
-```java
-rs.beforeFirst();
-```
+=== "java"
+    ```java
+    rs.beforeFirst();
+    ```
 
 but this usually fails because most result sets use the default
 TYPE_FORWARD_ONLY setting which restricts the cursor to only moving forward.

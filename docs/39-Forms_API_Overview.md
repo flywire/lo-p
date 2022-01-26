@@ -228,50 +228,51 @@ Forms.getModels2() method.
 Most of  Figure 4 is implemented as static methods in the Forms class, which means
 that ExamineForm.java is fairly short:
 
-```java
-// in ExamineForm.java
-public static void main(String args[])
-{
-  if (args.length != 1) {
-    System.out.println("Usage: run ExamineForm <ODT file>");
-    return;
-  }
-  XComponentLoader loader = Lo.loadOffice();
-  XComponent doc = Lo.openDoc(args[0], loader);
-  if (doc == null) {
-    System.out.println("Could not open " + args[0]);
-    Lo.closeOffice();
-    return;
-  }
-
-  ArrayList<XControlModel> models = Forms.getModels(doc);
-  System.out.println("No. of control models in form: " +
-                                             models.size());
-  // examine each model
-  for(XControlModel model : models) {
-    System.out.println("  " + Forms.getName(model) + ": " +
-                              Forms.getTypeStr(model));
-
-    // look at the control for each model
-    XControl ctrl = Forms.getControl(doc, model);
-    if (ctrl == null)
-      System.out.println("   No control found");
-    else {   // attach listener if the control is
-             // a button or text field
-      if (Forms.isButton(model))
-        attachButtonListener(ctrl, model);
-      else if (Forms.isTextField(model))
-        attachTextFieldListeners(ctrl);
-    }
-  }
-  System.out.println();
-  GUI.setVisible(doc, true);
-  Lo.waitEnter();
-
-  Lo.closeDoc(doc);
-  Lo.closeOffice();
-}  // end of main()
-```
+=== "java"
+    ```java
+    // in ExamineForm.java
+    public static void main(String args[])
+    {
+      if (args.length != 1) {
+        System.out.println("Usage: run ExamineForm <ODT file>");
+        return;
+      }
+      XComponentLoader loader = Lo.loadOffice();
+      XComponent doc = Lo.openDoc(args[0], loader);
+      if (doc == null) {
+        System.out.println("Could not open " + args[0]);
+        Lo.closeOffice();
+        return;
+      }
+    
+      ArrayList<XControlModel> models = Forms.getModels(doc);
+      System.out.println("No. of control models in form: " +
+                                                 models.size());
+      // examine each model
+      for(XControlModel model : models) {
+        System.out.println("  " + Forms.getName(model) + ": " +
+                                  Forms.getTypeStr(model));
+    
+        // look at the control for each model
+        XControl ctrl = Forms.getControl(doc, model);
+        if (ctrl == null)
+          System.out.println("   No control found");
+        else {   // attach listener if the control is
+                 // a button or text field
+          if (Forms.isButton(model))
+            attachButtonListener(ctrl, model);
+          else if (Forms.isTextField(model))
+            attachTextFieldListeners(ctrl);
+        }
+      }
+      System.out.println();
+      GUI.setVisible(doc, true);
+      Lo.waitEnter();
+    
+      Lo.closeDoc(doc);
+      Lo.closeOffice();
+    }  // end of main()
+    ```
 
 Forms.getModels() and Forms.getControl() will be used in most forms-based
 programs. Forms.getModels() returns a list of all the control models in the document.
@@ -301,44 +302,45 @@ Figure 5. Part of the GenericDrawingDocument Service Hierarchy
 
 The code that implements the cast:
 
-```java
-// in the Forms class
-public static XNameContainer getForms(XComponent doc)
-{
-  XDrawPage drawPage = getDrawPage(doc);
-  if (drawPage != null)
-    return getForms(drawPage);
-  else
-    return null;
-}  // end of getForms()
-
-
-
-public static XDrawPage getDrawPage(XComponent doc)
-// return the first draw page even if there are many
-{
-  XDrawPageSupplier xSuppPage =
-                Lo.qi(XDrawPageSupplier.class, doc);
-  if (xSuppPage != null)
-    // this works if doc supports a single DrawPage
-    return xSuppPage.getDrawPage();
-  else {
-    // this means that the doc supports multiple DrawPages
-    XDrawPagesSupplier xSuppPages =
-                Lo.qi(XDrawPagesSupplier.class, doc);
-
-    XDrawPages xPages = xSuppPages.getDrawPages();
-    try {
-      System.out.println("Returning first draw page");
-      return Lo.qi(XDrawPage.class, xPages.getByIndex(0));
-    }
-    catch(Exception e) {
-      System.out.println(e);
-      return null;
-    }
-  }
-}  // end of getDrawPage()
-```
+=== "java"
+    ```java
+    // in the Forms class
+    public static XNameContainer getForms(XComponent doc)
+    {
+      XDrawPage drawPage = getDrawPage(doc);
+      if (drawPage != null)
+        return getForms(drawPage);
+      else
+        return null;
+    }  // end of getForms()
+    
+    
+    
+    public static XDrawPage getDrawPage(XComponent doc)
+    // return the first draw page even if there are many
+    {
+      XDrawPageSupplier xSuppPage =
+                    Lo.qi(XDrawPageSupplier.class, doc);
+      if (xSuppPage != null)
+        // this works if doc supports a single DrawPage
+        return xSuppPage.getDrawPage();
+      else {
+        // this means that the doc supports multiple DrawPages
+        XDrawPagesSupplier xSuppPages =
+                    Lo.qi(XDrawPagesSupplier.class, doc);
+    
+        XDrawPages xPages = xSuppPages.getDrawPages();
+        try {
+          System.out.println("Returning first draw page");
+          return Lo.qi(XDrawPage.class, xPages.getByIndex(0));
+        }
+        catch(Exception e) {
+          System.out.println(e);
+          return null;
+        }
+      }
+    }  // end of getDrawPage()
+    ```
 
 Forms.getDrawPage() only returns the first draw page in a document, even if many
 pages are available.
@@ -359,41 +361,42 @@ Figure 6. Part of the DrawPage Service Hierarchy.
 XFormsSupplier can supply forms as an indexed sequence (an XIndexContainer) or
 as an associative array using the form names as keys, returned by Forms.getForms():
 
-```java
-// in the Forms class
-public static XNameContainer getForms(XDrawPage drawPage)
-// get all the forms in the page as a named container
-{
-  XFormsSupplier formsSupp = Lo.qi(XFormsSupplier.class, drawPage);
-  return formsSupp.getForms();
-} // end of getForms()
-
-The default form in a draw page is called "Form", and can be extracted by calling
-Forms.getForm(doc,"Form"):
-
-// in the Forms class
-public static XForm getForm(XComponent doc, String formName)
-// get the form called formName
-{
-   XNameContainer namedForms = getForms(doc);  // see above
-   XNameContainer con = getFormByName(formName, namedForms);
-   return Lo.qi(XForm.class, con);
-}
-
-
-public static XNameContainer getFormByName(String formName,
-                                   XNameContainer namedForms)
-// get the form called formName
-{ try {
-    return Lo.qi(XNameContainer.class,
-                       namedForms.getByName(formName));
-  }
-  catch (Exception e) {
-    System.out.println("Could not find form " + formName + ": " + e);
-    return null;
-  }
-}  // end of getFormByName()
-```
+=== "java"
+    ```java
+    // in the Forms class
+    public static XNameContainer getForms(XDrawPage drawPage)
+    // get all the forms in the page as a named container
+    {
+      XFormsSupplier formsSupp = Lo.qi(XFormsSupplier.class, drawPage);
+      return formsSupp.getForms();
+    } // end of getForms()
+    
+    The default form in a draw page is called "Form", and can be extracted by calling
+    Forms.getForm(doc,"Form"):
+    
+    // in the Forms class
+    public static XForm getForm(XComponent doc, String formName)
+    // get the form called formName
+    {
+       XNameContainer namedForms = getForms(doc);  // see above
+       XNameContainer con = getFormByName(formName, namedForms);
+       return Lo.qi(XForm.class, con);
+    }
+    
+    
+    public static XNameContainer getFormByName(String formName,
+                                       XNameContainer namedForms)
+    // get the form called formName
+    { try {
+        return Lo.qi(XNameContainer.class,
+                           namedForms.getByName(formName));
+      }
+      catch (Exception e) {
+        System.out.println("Could not find form " + formName + ": " + e);
+        return null;
+      }
+    }  // end of getFormByName()
+    ```
 
 
 ### 3.3.  From Form to FormComponents
@@ -410,41 +413,42 @@ Figure 7. Part of the Form Service Hierarchy.
 Forms.getModels() collects all the FormComponent instances as a list by recursively
 searching from the top level form (or forms) through all the nested forms :
 
-```java
-// in the Forms class
-public static ArrayList<XControlModel> getModels(XComponent doc)
-{ XNameContainer formNamesCon = getForms(doc);  // see above
-  return getModels(formNamesCon);
-}
-
-
-public static ArrayList<XControlModel> getModels(
-                                         XNameAccess formNamesCon)
-{
-  ArrayList<XControlModel> models = new ArrayList<XControlModel>();
-  String nms[] = formNamesCon.getElementNames();
-  for (int i=0; i < nms.length; i++) {
-    try {
-      XServiceInfo servInfo = Lo.qi(XServiceInfo.class,
-                                  formNamesCon.getByName(nms[i]));
-      if (servInfo.supportsService(
-                             "com.sun.star.form.FormComponents")) {
-        // this means that a nested form has been found
-        XNameAccess childCon = Lo.qi(XNameAccess.class, servInfo);
-        models.addAll( getModels(childCon) );//recursively search it
-      }
-      else if (servInfo.supportsService(
-                             "com.sun.star.form.FormComponent")) {
-        XControlModel model = Lo.qi(XControlModel.class, servInfo);
-        models.add(model);
-      }
+=== "java"
+    ```java
+    // in the Forms class
+    public static ArrayList<XControlModel> getModels(XComponent doc)
+    { XNameContainer formNamesCon = getForms(doc);  // see above
+      return getModels(formNamesCon);
     }
-    catch(Exception e)
-    {  System.out.println("Could not access " + nms[i]);  }
-  }
-  return models;
-}  // end of getModels()
-```
+    
+    
+    public static ArrayList<XControlModel> getModels(
+                                             XNameAccess formNamesCon)
+    {
+      ArrayList<XControlModel> models = new ArrayList<XControlModel>();
+      String nms[] = formNamesCon.getElementNames();
+      for (int i=0; i < nms.length; i++) {
+        try {
+          XServiceInfo servInfo = Lo.qi(XServiceInfo.class,
+                                      formNamesCon.getByName(nms[i]));
+          if (servInfo.supportsService(
+                                 "com.sun.star.form.FormComponents")) {
+            // this means that a nested form has been found
+            XNameAccess childCon = Lo.qi(XNameAccess.class, servInfo);
+            models.addAll( getModels(childCon) );//recursively search it
+          }
+          else if (servInfo.supportsService(
+                                 "com.sun.star.form.FormComponent")) {
+            XControlModel model = Lo.qi(XControlModel.class, servInfo);
+            models.add(model);
+          }
+        }
+        catch(Exception e)
+        {  System.out.println("Could not access " + nms[i]);  }
+      }
+      return models;
+    }  // end of getModels()
+    ```
 
 The first Forms.getModels() method extracts the top-level form (or forms) from the
 document as a named container, then passes it to the recursive getModels() which
@@ -457,9 +461,10 @@ element is of type FormComponent then it's an ordinary control.
 
 A FormComponent instance can be cast to XControlModel:
 
-```java
-XControlModel model = Lo.qi(XControlModel.class, servInfo);
-```
+=== "java"
+    ```java
+    XControlModel model = Lo.qi(XControlModel.class, servInfo);
+    ```
 
 XControlModel first appeared at the top of Figure 2 on the left – it’s the interface
 inherited by all models.
@@ -497,19 +502,20 @@ are located in the awt module.
 
 Returning to ExamineForm.java, the relevant bit of code is:
 
-```java
-// part of ExamineForm.java...
-
-ArrayList<XControlModel> models = Forms.getModels(doc); // see above
-System.out.println("No. of control models in form: " +
-                                           models.size());
-// examine each model
-for(XControlModel model : models) {
-  System.out.println("  " + Forms.getName(model) + ": " +
-                            Forms.getTypeStr(model));
-  :
-}
-```
+=== "java"
+    ```java
+    // part of ExamineForm.java...
+    
+    ArrayList<XControlModel> models = Forms.getModels(doc); // see above
+    System.out.println("No. of control models in form: " +
+                                               models.size());
+    // examine each model
+    for(XControlModel model : models) {
+      System.out.println("  " + Forms.getName(model) + ": " +
+                                Forms.getTypeStr(model));
+      :
+    }
+    ```
 
 An XControlModel reference can be utilized in various ways, but two of the main
 ones are examining its subclass service type and accessing its properties. As Figures 8
@@ -522,96 +528,99 @@ is on the "forms branch" of the service hierarchies in the figures.
 The easiest thing is to print all the model's properties, by calling
 Props.showObjProps():
 
-```java
-Props.showObjProps("Model", model);
-```
+=== "java"
+    ```java
+    Props.showObjProps("Model", model);
+    ```
 
 Info.showInterfaces() and Info.showServices() are similarly useful, listing all the
 interfaces and services for a model:
 
-```java
-Info.showInterfaces("Model", model);
-Info.showServices("Model", model);
-```
+=== "java"
+    ```java
+    Info.showInterfaces("Model", model);
+    Info.showServices("Model", model);
+    ```
 
 The Forms.getName() and Forms.getTypeStr() methods called in the code fragment
 above are defined as:
 
-```java
-// in the Forms class
-public static String getName(XControlModel cModel)
-// returns the name of the given form component
-{  return (String) Props.getProperty(cModel, "Name");  }
-
-
-public static String getTypeStr(XControlModel cModel)
-{
-  int id = getID(cModel);
-  if (id == -1)
-    return null;
-
-  XServiceInfo servInfo = Lo.qi(XServiceInfo.class, cModel);
-  switch (id) {
-    case FormComponentType.COMMANDBUTTON:
-      return "Command button";
-    case FormComponentType.RADIOBUTTON:
-      return "Radio button";
-    case FormComponentType.IMAGEBUTTON:
-      return "Image button";
-    case FormComponentType.CHECKBOX:
-      return "Check Box";
-    case FormComponentType.LISTBOX:
-      return "List Box";
-    case FormComponentType.COMBOBOX:
-      return "Combo Box";
-    case FormComponentType.GROUPBOX:
-      return "Group Box";
-    case FormComponentType.FIXEDTEXT:
-      return "Fixed Text";
-    case FormComponentType.GRIDCONTROL:
-      return "Grid Control";
-    case FormComponentType.FILECONTROL:
-      return "File Control";
-    case FormComponentType.HIDDENCONTROL:
-      return "Hidden Control";
-    case FormComponentType.IMAGECONTROL:
-      return "Image Control";
-    case FormComponentType.DATEFIELD:
-      return "Date Field";
-    case FormComponentType.TIMEFIELD:
-      return "Time Field";
-    case FormComponentType.NUMERICFIELD:
-      return "Numeric Field";
-    case FormComponentType.CURRENCYFIELD:
-      return "Currency Field";
-    case FormComponentType.PATTERNFIELD:
-      return "Pattern Field";
-    case FormComponentType.TEXTFIELD:
-      // two services with this class id:
-      // text field and formatted field
-      if ((servInfo != null) && servInfo.supportsService(
-                     "com.sun.star.form.component.FormattedField"))
-        return "Formatted Field";
-      else
-        return "Text Field";
-    default:
-      System.out.println("Unknown class ID: " + id);
-      return null;
-  }
-}  // end of getTypeStr()
-
-
-public static int getID(XControlModel cModel)
-{
-  // get the ClassId property
-  Short classId = (Short) Props.getProperty(cModel, "ClassId");
-  if (classId == null) {
-    System.out.println("No class ID found for form component");
-    return -1;
-  }
-  return classId.intValue();
-}  // end of getID()
-```
+=== "java"
+    ```java
+    // in the Forms class
+    public static String getName(XControlModel cModel)
+    // returns the name of the given form component
+    {  return (String) Props.getProperty(cModel, "Name");  }
+    
+    
+    public static String getTypeStr(XControlModel cModel)
+    {
+      int id = getID(cModel);
+      if (id == -1)
+        return null;
+    
+      XServiceInfo servInfo = Lo.qi(XServiceInfo.class, cModel);
+      switch (id) {
+        case FormComponentType.COMMANDBUTTON:
+          return "Command button";
+        case FormComponentType.RADIOBUTTON:
+          return "Radio button";
+        case FormComponentType.IMAGEBUTTON:
+          return "Image button";
+        case FormComponentType.CHECKBOX:
+          return "Check Box";
+        case FormComponentType.LISTBOX:
+          return "List Box";
+        case FormComponentType.COMBOBOX:
+          return "Combo Box";
+        case FormComponentType.GROUPBOX:
+          return "Group Box";
+        case FormComponentType.FIXEDTEXT:
+          return "Fixed Text";
+        case FormComponentType.GRIDCONTROL:
+          return "Grid Control";
+        case FormComponentType.FILECONTROL:
+          return "File Control";
+        case FormComponentType.HIDDENCONTROL:
+          return "Hidden Control";
+        case FormComponentType.IMAGECONTROL:
+          return "Image Control";
+        case FormComponentType.DATEFIELD:
+          return "Date Field";
+        case FormComponentType.TIMEFIELD:
+          return "Time Field";
+        case FormComponentType.NUMERICFIELD:
+          return "Numeric Field";
+        case FormComponentType.CURRENCYFIELD:
+          return "Currency Field";
+        case FormComponentType.PATTERNFIELD:
+          return "Pattern Field";
+        case FormComponentType.TEXTFIELD:
+          // two services with this class id:
+          // text field and formatted field
+          if ((servInfo != null) && servInfo.supportsService(
+                         "com.sun.star.form.component.FormattedField"))
+            return "Formatted Field";
+          else
+            return "Text Field";
+        default:
+          System.out.println("Unknown class ID: " + id);
+          return null;
+      }
+    }  // end of getTypeStr()
+    
+    
+    public static int getID(XControlModel cModel)
+    {
+      // get the ClassId property
+      Short classId = (Short) Props.getProperty(cModel, "ClassId");
+      if (classId == null) {
+        System.out.println("No class ID found for form component");
+        return -1;
+      }
+      return classId.intValue();
+    }  // end of getID()
+    ```
 
 Forms.getID returns the "ClassId" integer, which is checked by getTypeStr() against
 values in the FormComponentType enumeration, and mapped to more informative
@@ -620,33 +629,34 @@ strings.
 Forms.getID() is utilized in a similar manner in a series of boolean isXXX() methods,
 such as isButton() and isTextField():
 
-```java
-// in the Forms class
-public static boolean isButton(XControlModel cModel)
-{
-  int id = getID(cModel);
-  if (id == -1)
-    return false;
-  else
-    return ((id == FormComponentType.COMMANDBUTTON) ||
-            (id == FormComponentType.IMAGEBUTTON));
-}  // end of isButton()
-
-
-public static boolean isTextField(XControlModel cModel)
-{
-  int id = getID(cModel);
-  if (id == -1)
-    return false;
-    else
-    return ((id == FormComponentType.DATEFIELD) ||
-            (id == FormComponentType.TIMEFIELD) ||
-            (id == FormComponentType.NUMERICFIELD) ||
-            (id == FormComponentType.CURRENCYFIELD) ||
-            (id == FormComponentType.PATTERNFIELD) ||
-            (id == FormComponentType.TEXTFIELD));
-}  // end of isTextField()
-```
+=== "java"
+    ```java
+    // in the Forms class
+    public static boolean isButton(XControlModel cModel)
+    {
+      int id = getID(cModel);
+      if (id == -1)
+        return false;
+      else
+        return ((id == FormComponentType.COMMANDBUTTON) ||
+                (id == FormComponentType.IMAGEBUTTON));
+    }  // end of isButton()
+    
+    
+    public static boolean isTextField(XControlModel cModel)
+    {
+      int id = getID(cModel);
+      if (id == -1)
+        return false;
+        else
+        return ((id == FormComponentType.DATEFIELD) ||
+                (id == FormComponentType.TIMEFIELD) ||
+                (id == FormComponentType.NUMERICFIELD) ||
+                (id == FormComponentType.CURRENCYFIELD) ||
+                (id == FormComponentType.PATTERNFIELD) ||
+                (id == FormComponentType.TEXTFIELD));
+    }  // end of isTextField()
+    ```
 
 
 ### 3.6.  From Control Model to View
@@ -665,43 +675,44 @@ Figure 10. Part of the DrawingDocumentDrawView Service Hierarchy.
 
 These steps are implemented by GUI.getControlAccess():
 
-```java
-// in the GUI class
-public static XControlAccess getControlAccess(XComponent doc)
-{ return Lo.qi(XControlAccess.class, getCurrentController(doc)); }
-
-
-public static XController getCurrentController(XComponent doc)
-{
-  XModel model = Lo.qi(XModel.class, doc);
-  if (model == null) {
-    System.out.println("Document has no data model");
-    return null;
-  }
-  return model.getCurrentController();
-}
-
-Forms.getControl() employs XControlAccess.getControl() to return the model's view
-when supplied with a model:
-
-// in the Forms class
-public static XControl getControl(XComponent doc,
-                                       XControlModel cModel)
-{ XControlAccess controlAccess = GUI.getControlAccess(doc);
-                                 // see above
-  if (controlAccess == null) {
-    System.out.println("Could not obtain controls access");
-    return null;
-  }
-  try {
-    return controlAccess.getControl(cModel);
-  }
-  catch (Exception e) {
-    System.out.println("Could not access control: " + e);
-    return null;
-  }
-}  // end of getControl()
-```
+=== "java"
+    ```java
+    // in the GUI class
+    public static XControlAccess getControlAccess(XComponent doc)
+    { return Lo.qi(XControlAccess.class, getCurrentController(doc)); }
+    
+    
+    public static XController getCurrentController(XComponent doc)
+    {
+      XModel model = Lo.qi(XModel.class, doc);
+      if (model == null) {
+        System.out.println("Document has no data model");
+        return null;
+      }
+      return model.getCurrentController();
+    }
+    
+    Forms.getControl() employs XControlAccess.getControl() to return the model's view
+    when supplied with a model:
+    
+    // in the Forms class
+    public static XControl getControl(XComponent doc,
+                                           XControlModel cModel)
+    { XControlAccess controlAccess = GUI.getControlAccess(doc);
+                                     // see above
+      if (controlAccess == null) {
+        System.out.println("Could not obtain controls access");
+        return null;
+      }
+      try {
+        return controlAccess.getControl(cModel);
+      }
+      catch (Exception e) {
+        System.out.println("Could not access control: " + e);
+        return null;
+      }
+    }  // end of getControl()
+    ```
 
 
 ## 4.  Attaching Listeners to a View
@@ -719,44 +730,46 @@ Figure 11. Part of the Service Hierarchy Below UnoControl.
 
 Back in ExamineForm.java, every button or text field has listeners attached to it:
 
-```java
-// part of ExamineForms.java...
-
-    :
-// look at the control for each model
-XControl ctrl = Forms.getControl(doc, model);
-if (ctrl == null)
-  System.out.println("   No control found");
-else {   // attach listener if the control is a button or text field
-    if (Forms.isButton(model))
-      attachButtonListener(ctrl, model);
-    else if (Forms.isTextField(model))
-      attachTextFieldListeners(ctrl);
-}
-    :
-```
+=== "java"
+    ```java
+    // part of ExamineForms.java...
+    
+        :
+    // look at the control for each model
+    XControl ctrl = Forms.getControl(doc, model);
+    if (ctrl == null)
+      System.out.println("   No control found");
+    else {   // attach listener if the control is a button or text field
+        if (Forms.isButton(model))
+          attachButtonListener(ctrl, model);
+        else if (Forms.isTextField(model))
+          attachTextFieldListeners(ctrl);
+    }
+        :
+    ```
 
 attachButtonListener() and attachTextFieldListener() implement the casting shown in
 Figure 11, starting with an XControl interface. For instance, attachButtonListener()
 connects an anonymous XActionListener object to a button, and sets its action
 command to be the button's label:
 
-```java
-// in ExamineForms.java
-private static void attachButtonListener(XControl ctrl,
-                                       XControlModel cModel)
-{ XButton xButton = Lo.qi(XButton.class, ctrl);
-  // XControlModel cModel = ctrl.getModel();
-  xButton.setActionCommand( Forms.getLabel(cModel));
-
-  xButton.addActionListener( new XActionListener() {
-    public void disposing(com.sun.star.lang.EventObject ev) {}
-
-    public void actionPerformed(ActionEvent ev)
-    {  System.out.println("Pressed \"" + ev.ActionCommand + "\""); }
-  });
-}  // end of attachButtonListener()
-```
+=== "java"
+    ```java
+    // in ExamineForms.java
+    private static void attachButtonListener(XControl ctrl,
+                                           XControlModel cModel)
+    { XButton xButton = Lo.qi(XButton.class, ctrl);
+      // XControlModel cModel = ctrl.getModel();
+      xButton.setActionCommand( Forms.getLabel(cModel));
+    
+      xButton.addActionListener( new XActionListener() {
+        public void disposing(com.sun.star.lang.EventObject ev) {}
+    
+        public void actionPerformed(ActionEvent ev)
+        {  System.out.println("Pressed \"" + ev.ActionCommand + "\""); }
+      });
+    }  // end of attachButtonListener()
+    ```
 
 Although XActionListener and Java's ActionListener are similar, they're not the same.
 For one thing, its necessary to define two methods in XActionListener,
@@ -792,39 +805,40 @@ XTextListener isn't triggered when the user types <ENTER>. My solution is to
 connect an XFocusListener which treats <ENTER> as a "lost focus" event when the
 cursor leaves the text field. The code for attachTextFieldListeners():
 
-```java
-// in ExamineForms.java
-private static void attachTextFieldListeners(XControl ctrl)
-// listen for text changes and focus changes in the control
-{
-  XTextComponent tc = Lo.qi(XTextComponent.class, ctrl);
-  tc.addTextListener( new XTextListener() {
-    public void textChanged(TextEvent ev)
+=== "java"
+    ```java
+    // in ExamineForms.java
+    private static void attachTextFieldListeners(XControl ctrl)
+    // listen for text changes and focus changes in the control
     {
-      XControlModel cModel = Forms.getEventControlModel(ev);
-      System.out.println( Forms.getName(cModel) +
-                 " text: " + Props.getProperty(cModel, "Text"));
-    }  // end of textChanged()
-
-    public void disposing(EventObject ev) {}
-
-  });
-
-  XWindow tfWindow = Lo.qi(XWindow.class, ctrl);
-  tfWindow.addFocusListener( new XFocusListener() {
-
-    public void focusLost(FocusEvent ev)
-    { XControlModel model = Forms.getEventControlModel(ev);
-      System.out.println("Leaving text: " +
-                          Props.getProperty(model, "Text"));
-    }
-
-    public void disposing(EventObject ev) {}  // unused
-    public void focusGained(FocusEvent ev) {}
-  });
-
-}  // end of attachTextFieldListeners()
-```
+      XTextComponent tc = Lo.qi(XTextComponent.class, ctrl);
+      tc.addTextListener( new XTextListener() {
+        public void textChanged(TextEvent ev)
+        {
+          XControlModel cModel = Forms.getEventControlModel(ev);
+          System.out.println( Forms.getName(cModel) +
+                     " text: " + Props.getProperty(cModel, "Text"));
+        }  // end of textChanged()
+    
+        public void disposing(EventObject ev) {}
+    
+      });
+    
+      XWindow tfWindow = Lo.qi(XWindow.class, ctrl);
+      tfWindow.addFocusListener( new XFocusListener() {
+    
+        public void focusLost(FocusEvent ev)
+        { XControlModel model = Forms.getEventControlModel(ev);
+          System.out.println("Leaving text: " +
+                              Props.getProperty(model, "Text"));
+        }
+    
+        public void disposing(EventObject ev) {}  // unused
+        public void focusGained(FocusEvent ev) {}
+      });
+    
+    }  // end of attachTextFieldListeners()
+    ```
 
 
 #### Obtaining the Model
@@ -835,9 +849,10 @@ obtaining the control's model when an event triggers a view listener.
 In attachButtonListener(), an XControl reference is available, which means that
 XControl.getModel() could be called:
 
-```java
-XControlModel cModel = ctrl.getModel();
-```
+=== "java"
+    ```java
+    XControlModel cModel = ctrl.getModel();
+    ```
 
 In fact that coding isn't used, since the model reference is available already.
 
@@ -845,14 +860,15 @@ attachTextFieldListeners() shows another approach, which is to examine the event
 object that arrives at the listener's method (e.g. the FocusEvent object received by
 focusLost()). Forms.getEventControlModel() is defined as:
 
-```java
-// in the Forms class
-public static XControlModel getEventControlModel(EventObject ev)
-{
-  XControl xControl = Lo.qi(XControl.class, ev.Source);
-  return xControl.getModel();
-}  // end of getEventControlModel()
-```
+=== "java"
+    ```java
+    // in the Forms class
+    public static XControlModel getEventControlModel(EventObject ev)
+    {
+      XControl xControl = Lo.qi(XControl.class, ev.Source);
+      return xControl.getModel();
+    }  // end of getEventControlModel()
+    ```
 
 
 ## 5.  Using ExamineForm.java
