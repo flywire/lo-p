@@ -1,6 +1,6 @@
 ---
 title: LibreOffice Programming
-author: Andrew Davison, flywire
+author: Andrew Davison, flywire, hosseinn
 numbersections: true
 geometry: a4paper,left=2.54cm,right=2.54cm,top=2.54cm,bottom=3.67cm
 header-includes:
