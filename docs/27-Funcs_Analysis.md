@@ -1425,7 +1425,7 @@ There are three constraint inequalities:
     ```java
     x <= 6
     y <= 8
-    z <= 4
+    z >= 4
     ```
 
 The 'profit' expression to be maximized is:
