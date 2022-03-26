@@ -73,6 +73,7 @@ https://lulu.com/shop/roberto-benitez/database-programming-with-openofficeorg-ba
 ## 1.  Fantastic Macros and Where to Find Them
 
 There are four categories of macros:
+
 * user: user macros are available only to the user who added them to Office;
 * share: share macros can be called by all users of that copy of Office;
 * extension: extension macros are added to office as an extension, and may be
