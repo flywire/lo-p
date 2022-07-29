@@ -109,9 +109,6 @@ I'll concentrate on ordinary text in this chapter, and look at more esoteric con
 forms in Chapters 7 and 8.
 
 A text document can utilize eight different cursors, which fall into two groups, as in
-
-![](images/05-Text_API_Overview-4.png)
-
 Figure 4.
 
 
@@ -216,22 +213,9 @@ XTextDocument:
 
 === "java"
     ```java
-    // in the Lo class
-    public static final String WRITER_SERVICE =
-                   "com.sun.star.text.TextDocument";
-    public static final String BASE_SERVICE =
-                   "com.sun.star.sdb.OfficeDatabaseDocument";
-    public static final String CALC_SERVICE =
-                   "com.sun.star.sheet.SpreadsheetDocument";
-    public static final String DRAW_SERVICE =
-                   "com.sun.star.drawing.DrawingDocument";
-    public static final String IMPRESS_SERVICE =
-                  "com.sun.star.presentation.PresentationDocument";
-    public static final String MATH_SERVICE =
-                  "com.sun.star.formula.FormulaProperties";
+    TextDocument textDoc = Lo.qi(XTextDocument.class, doc);
     ```
 
-TextDocument textDoc = Lo.qi(XTextDocument.class, doc);
 This may fail (i.e. return null) if the loaded document isn't an instance of the
 TextDocument service.
 
