@@ -558,7 +558,7 @@ word cursor:
     ```
 
 This uses the same kind of do-while loop as showParagraphs() except that the
-XTextWordCursor methods gotoEndOfWord() and gotoNextWord() control the
+XWordCursor methods gotoEndOfWord() and gotoNextWord() control the
 iteration. Also, there's no need for an XTextViewCursor instance since the selected
 words aren't shown on the screen.
 
@@ -569,7 +569,6 @@ showLines() in HightlightText.java iterates over the document highlighting a lin
 time. Don't confuse this with sentence selection because a sentence may consist of
 several lines on the screen. A sentence is part of the text's organization (i.e. in terms
 of words, sentences, and paragraphs) while a line is part of the document view (i.e.
-
 line, page, screen). This means that XLineCursor is a view cursor, which is obtained
 by converting XTextViewCursor with Lo.qi():
 
@@ -618,7 +617,7 @@ single line. Then the XTextViewCursor instance deselects the line, by moving the
 cursor to the end of the selection with collapseToEnd(). At the end of the loop,
 goRight() tries to move the cursor one character to the right. If goRight() succeeds
 then the cursor is shifted one position to the first character of the next line. When the
-loop repeats, this line will be selected. If doRight() fails, then there are no more
+loop repeats, this line will be selected. If goRight() fails, then there are no more
 characters to be read from the document, and the loop finishes.
 
 
