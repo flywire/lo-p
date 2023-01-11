@@ -1,3 +1,7 @@
+**Note:** This project is rapidly being superseded by a collaboration with [**Python LibreOffice Programming**](https://python-ooo-dev-tools.readthedocs.io/en/latest/odev/index.html). By the end of 2022, two thirds of the guide has been converted to python as part of an extensive [OOO Development Tools documentation](https://python-ooo-dev-tools.readthedocs.io), a python framework. Please use it as the preferred source.
+
+---
+
 # [LibreOffice Programming](https://flywire.github.io/lo-p/)
 
 Star Basic is the native language of Star Office which has been incorporated by Open Office and Libre Office. This means that all other supported languages must negotiate a basic bridge.
